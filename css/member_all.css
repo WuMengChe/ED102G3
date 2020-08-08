@@ -1,0 +1,213 @@
+body {
+  height: 100vh;
+  min-height: 100vh;
+  background-color: rosybrown;
+}
+
+header {
+  width: 100%;
+  height: 80px;
+  background-color: cornflowerblue;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  min-height: calc(100% - 80px);
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: silver;
+}
+
+.mem_log_con_width {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  min-width: 640px;
+  background-color: darkgray;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mem_log_con_width .mem_log_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  min-width: 640px;
+  height: 350px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: burlywood;
+  border-radius: 30px;
+  position: relative;
+}
+
+.mem_log_con_width .mem_log_content .common_set {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mem_log_con_width .mem_log_content .common_set .com_set_area {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding-left: 30px;
+  width: 100%;
+  height: 200px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_con_left {
+  background-color: cadetblue;
+  border-radius: 30px 0px 0px 30px;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_con_right {
+  background-color: lightcoral;
+  border-radius: 0px 30px 30px 0px;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  max-width: 450px;
+  min-width: 320px;
+  height: 550px;
+  background-color: lightgreen;
+  border-radius: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  top: -100px;
+  left: 0px;
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface h1 {
+  margin: 50px auto 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface .sign_in_from {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 350px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: maroon;
+  position: absolute;
+  top: 130px;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface .sign_in_from div.input_div {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
+  min-width: 320px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface .sign_in_from div.input_div label {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface .sign_in_from div.input_div input {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface .sign_in_from div.input_button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin: 0 auto;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: white;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface .sign_in_from div.input_button button {
+  margin: 0 auto;
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface .mem_sign_in-enter-active, .mem_log_con_width .mem_log_content .mem_log_interface .mem_sign_in-leave-active {
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.mem_log_con_width .mem_log_content .mem_log_interface .mem_sign_in-enter, .mem_log_con_width .mem_log_content .mem_log_interface .mem_sign_in-leave-to {
+  opacity: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.mem_log_con_width .mem_log_content div.sign_in {
+  left: 50%;
+}
+/*# sourceMappingURL=member_all.css.map */

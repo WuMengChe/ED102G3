@@ -5,29 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員登入</title> <!--document.title = "會員註冊"-->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
-    <link rel="stylesheet" href="./css/member_sign_in.css">
+    <link rel="stylesheet" href="./css/app_public.css">
+    <link rel="stylesheet" href="./css/member_all.css">
+    <link rel="stylesheet" href="./css/rwd_member_all.css">
 </head>
 <body>
     <header>就只是header而已</header>
     <main>
-        <div class="mem_con_width">
+        <div class="mem_log_con_width">
             <div class = "mem_log_content" id = "mem_log_change">
                 <div class = "mem_log_con_left common_set">
                     <div class = "com_set_area">
                         <h2>會員註冊</h2>
                         <span>現在就來加入會員，來紀錄測驗結果與購買線上課程吧！</span>
-                        <button id = "mem_register" @click="signIn = !signIn, register = !register">Register</button>
+                        <button id = "mem_register" @click="signIn = !signIn, register = !register" class = "btn_second">註冊</button>
                     </div>
                 </div>
                 <div class = "mem_log_con_right common_set">
                     <div class = "com_set_area">
                         <h2>會員登入</h2>
                         <span>立即登入職引960開始上課吧！</span>
-                        <button id = "mem_signin" @click="signIn = !signIn, register = !register">Sign in</button>
+                        <button id = "mem_signin" @click="signIn = !signIn, register = !register" class = "btn_second">登入</button>
                     </div>
                 </div>
                 <div class = "mem_log_interface" :class = "{sign_in: signIn}">
-                    <!-- <signin-interface :sign-in-type=signIn></signin-interface> -->
                     <h1>{{signIn == true ? "會員登入" : "會員註冊"}}</h1>
                     <transition name = "mem_sign_in">
                         <form class = "sign_in_from" action = "#" v-if="signIn == true">
@@ -39,7 +40,10 @@
                                 <label for="code" class="input_label">密碼：</label>
                                 <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code">
                             </div>
-                            <input type="submit" value="送出" class="submit">
+                            <div class = "input_button">
+                                <button class = "btn_second" @click.prevent = "signIn = !signIn, register = !register" v-if = "screenWidth < 900">{{signIn == true ? "會員登入" : "會員註冊"}}</button>
+                                <button class = "btn_second">送出</button>
+                            </div>
                         </form>
                     </transition>
                     <transition name = "mem_sign_in">
@@ -60,13 +64,16 @@
                                 <label for="code_again" class="input_label">再次輸入密碼：</label>
                                 <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code_again">
                             </div>
-                            <input type="submit" value="送出" class="submit">
+                            <div class = "input_button">
+                                <button class = "btn_second" @click.prevent = "signIn = !signIn, register = !register" v-if = "screenWidth < 900">{{signIn == true ? "會員登入" : "會員註冊"}}</button>
+                                <button class = "btn_second"></button>
+                            </div>
                         </form>
                     </transition>
                 </div>
             </div>
         </div>
     </main>
-    <script type="text/javascript" src="./js/member_sign_in.js"></script>
+    <script type="text/javascript" src="./js/member/member_sign_in.js"></script>
 </body>
 </html>
