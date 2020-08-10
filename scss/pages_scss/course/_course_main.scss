@@ -1,0 +1,13 @@
+@import "../../_public_dontTouch/utils/variables";
+
+.container {
+    // width: 100%;
+
+    .cus_list {
+        border: $outline1;
+
+        .cus_cd {
+            border: $outline1;
+        }
+    }
+}

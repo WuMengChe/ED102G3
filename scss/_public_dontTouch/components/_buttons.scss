@@ -1,0 +1,72 @@
+input[type="submit"] {
+    // border: none;
+    outline: none;
+    font-family: '微軟正黑體';
+    cursor: pointer;
+}
+
+
+button {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: '微軟正黑體';
+    cursor: pointer;
+
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+@mixin btn {
+    padding: 0;
+    font-size: 18px;
+    border-radius: 50px;
+    height: 40px;
+    width: 150px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    border: none;
+}
+
+.btn_primary {
+    @include btn();
+    color: #ffffff;
+    background: #1b4d9f;
+    box-shadow: $card_shadow;
+
+    &:hover {
+        background: #336AC6;
+    }
+
+}
+
+.btn_second {
+    @include btn();
+    color: #1b4d9f;
+    background: #e8c300;
+
+    &:hover {
+        background: #FCDA27;
+    }
+}
+
+.btn_third {
+    @include btn();
+    color: #1b4d9f;
+    background: #fff;
+    border: 2px solid #1b4d9f;
+
+    &:hover {
+        color: #fff;
+        background: #336AC6;
+    }
+
+}
