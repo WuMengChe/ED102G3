@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/bootstrap_grid/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./css/app_public.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datedropper/2.0/datedropper.min.css">
+  <link rel="stylesheet" href="./css/post_card.css">
+  <link rel="stylesheet" href="./css/calendar.css">
+  <title>職引960選擇日期</title>
+</head>
+
+<body>
+  <!-- header -->
+  <div class="header">
+    <div class="logo">
+      <a href="#">
+        <img src="https://picsum.photos/70/70" alt="">
+      </a>
+    </div>
+    <div class="header_nav">
+      <ul>
+        <li><a href="#">職涯分析</a></li>
+        <li><a href="#">行業攻略</a></li>
+        <li><a href="#">職涯論壇</a></li>
+        <li><a href="#">探索課程</a></li>
+        <li><a href="#">明信片</a></li>
+      </ul>
+    </div>
+    <div class="header_icon">
+      <div class="cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
+      <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
+    </div>
+  </div>
+  <!-- header 結束-->
+  <div class="postcard_view container">
+    <div class="select_date row">
+      <!--c-init class -->
+      <p class="col-sm">選擇寄送日期：
+        <input type="text" class="input" id="pickdate" data-dd-theme="calendar" /></p>
+    </div>
+    <div class="view row">
+      <div class="view_front col-md-6">
+        <p>正面</p>
+        <img src="./img/post_card/outline1.png" alt="">
+      </div>
+      <div class="view_back col-md-6">
+        <p>背面</p>
+        <img src="./img/post_card/outline1.png" alt="">
+      </div>
+      <div class="col-sm-8 date">
+        <button class="btn_third">重新製作</button>
+        <button class="btn_primary">送出</button>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+  <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="./js/post_card/datedropper.pro.min.js"></script>
+  <script>
+    $("#pickdate").dateDropper({
+      animate: false,
+      format: 'Y-m-d',
+      maxYear: '2025',
+      minYear: '2020',
+      lang: 'zh',
+      fxMobile: true,
+      large: true,
+      lock: 'from',
+
+    });
+  </script>
+
+</body>
+
+</html>

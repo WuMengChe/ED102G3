@@ -1,0 +1,16 @@
+@media screen and (max-width:640px){
+    .mem_log_con_width{
+        width: 320px;
+        min-width: 320px;
+        .mem_log_content{
+            width: 320px;
+            min-width: 320px;
+            .common_set{
+                display: none;
+            }
+            div.sign_in{
+                left: 0%;
+            }
+        }
+    }
+}

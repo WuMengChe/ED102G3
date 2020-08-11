@@ -1,0 +1,104 @@
+@import "../utils/variables";
+
+$nav_font_size: 18px;
+$header_icon_i_size: 20px;
+$header_icon_i_color: #1b4d9f;
+$header_nav_font_color: #1b4d9f;
+
+div.header {
+    width: 100%;
+    max-width: 1200px;
+    // height: 70px;
+    // border: 1px solid black;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 15px 0;
+    margin-bottom: 50px;
+    position: sticky;
+    top: 0px;
+    z-index: 200;
+    background: #fff;
+
+    div.logo {
+        // border: $outline2;
+        width: 70px;
+        height: 70px;
+        margin-right: auto;
+
+        a {
+            width: 100%;
+            display: inline-block;
+            // border: $outline3;
+
+            img {
+                width: 101%;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    div.header_nav {
+        // border: $outline2;
+
+        ul {
+            display: flex;
+
+            li {
+                // border: $outline2;
+                margin: 0 5px;
+
+                a {
+                    display: inline-block;
+                    padding: 5px 15px;
+                    font-size: $nav_font_size;
+                    color: $header_nav_font_color;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    div.header_icon {
+        display: flex;
+        align-items: center;
+        // border: $outline2;
+        margin-left: 100px;
+
+        div.cart {
+            position: relative;
+
+            i {
+                font-size: $header_icon_i_size;
+                color: $header_icon_i_color;
+                padding-right: 20px;
+            }
+
+            div.cart_num {
+                position: absolute;
+                bottom: -4px;
+                left: -2px;
+                width: 15px;
+                height: 15px;
+                background: red;
+                border-radius: 50px;
+                text-align: center;
+                line-height: 12px;
+
+                span {
+                    color: #fff;
+                    font-size: 13px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        div.member {
+            i {
+                font-size: $header_icon_i_size;
+                color: $header_icon_i_color;
+            }
+        }
+    }
+}

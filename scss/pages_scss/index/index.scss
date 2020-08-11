@@ -1,0 +1,255 @@
+@mixin section {
+    display: flex;
+    border: 1px solid red;
+    height: 100vh;
+
+    
+};
+@mixin position($width){
+    width: $width;
+    position: absolute;
+    @content
+}
+
+.index{
+    .index_test{
+        @include section;
+        .index_test_text{
+            border: 1px solid #000;
+            text-align: justify;
+            height: fit-content;
+            
+            margin: auto 0;
+            padding: 30px;
+            h1{
+                text-align: center;
+            }
+            p{
+                padding-left: 10px;
+                padding-right: 10px;
+                margin: 20px 0;
+            }
+            .btn_primary{
+                margin-left: 50%;
+                transform: translateX(-50%);
+
+            }
+        }
+        .index_test_img{
+            height: fit-content;
+            margin: auto 0;
+            .img{
+                border: 1px solid red;
+                position: relative;
+                
+                .grp_chart{
+                    border: 1px solid #000;
+                    background-color: #fff;
+                    text-align: center;
+                    .line_chart{
+                        width:250px;
+                        vertical-align: top;
+                        margin: 20px;
+                        
+
+                    }
+                    .radar_chart{
+                        width: 200px;
+                        margin: 20px;
+                        
+                    }
+                    .bottom{
+                        vertical-align: bottom;
+                        margin: 20px ;
+                        margin-left: 45%;
+                        
+                        
+                    }
+                }
+                .left_boy{
+                    @include position(200px){
+                        left:0;
+                        top: 100px; 
+                    }
+
+                }
+                .right_girl{
+                    @include position(200px){
+                        right:0;
+                        top: 200px
+                    }
+
+                }
+            }
+        }
+    }
+    .index_car{
+        @include section;
+        .index_sal_img{
+            // border: 1px solid #000;
+            height: fit-content;
+            position: relative;
+            margin: 25% 0;
+            text-align: center;
+            .auditor{
+                @include position(100px){
+                   left: 130px;
+                   bottom: 110px;
+
+
+                }
+            }
+            .teacher{
+                @include position(70px){
+                    left: 250px;
+                    bottom: 180px;
+
+                }
+                
+                
+            }
+            .doctor{
+                @include position(100px){
+                    left: 330px;
+                    bottom: 250px;
+
+                }
+                
+            }
+            .stage{
+                width: 300px;
+                // border: 1px solid #000;
+                display: block;
+                margin: 0 auto;
+
+            }
+
+        }
+        .index_sal_chart{
+            h1{}
+            .chart{
+                .horizontal-bar-graph{
+                    display: table;
+                    width: 100%;
+                }
+                .horizontal-bar-graph-segment {
+                    display: table-row;
+                }
+                  
+                .horizontal-bar-graph-label {
+                    display: table-cell;
+                    border-right: 1px solid silver;
+                    text-align: right;
+                    padding: 4px 10px 4px 0;
+                    vertical-align: baseline;
+                    white-space: nowrap;
+                }
+                  
+                .horizontal-bar-graph-value {
+                    display: table-cell;
+                    padding: 3px 0;
+                    vertical-align: baseline;
+                    width: 100%;
+                }
+                  
+                .horizontal-bar-graph-value-bar {
+                    background: silver;
+                    -moz-box-sizing: padding-box;
+                    -webkit-box-sizing: padding-box;
+                    box-sizing: padding-box;
+                    padding: 4px 4px 3px;
+                    height: 40px;
+                    text-align: right;
+                    color: white;
+                    overflow: visible;
+                    display: inline-block;
+                    white-space: nowrap;
+                    -webkit-font-smoothing: antialiased;
+                }
+                  
+                .horizontal-bar-graph-segment:first-child .horizontal-bar-graph-label {
+                    padding-top: 12px;
+                }
+                .horizontal-bar-graph-segment:first-child .horizontal-bar-graph-value {
+                    padding-top: 11px;
+                }
+                  
+                .horizontal-bar-graph-segment:last-child .horizontal-bar-graph-label {
+                    padding-bottom: 12px;
+                }
+                .horizontal-bar-graph-segment:last-child .horizontal-bar-graph-value {
+                    padding-bottom: 11px;
+                }
+                  
+            }
+            .btn_second{}
+        }
+    }
+    .index_disc{
+        @include section;
+        .index_disc_text{
+            h1{}
+            .index_dia{
+                div{}
+                .btn_second{}
+            }
+        }
+        .index_disc_img{
+            .img{}
+        }
+    }
+    .index_cour{
+        @include section;
+        .index_cour_img{}
+        .index_cour_text{
+            h1{}
+            .pad{
+                .screen_bg{
+                    background-color: #000;
+                    border-top-left-radius: 50px;
+                    border-top-right-radius: 50px;
+                    height: 500px;
+                    padding: 40px;
+                    .screen{
+                        background-color: #fff;
+                        height: 425px;
+                        .screen_carousel{
+                            .course{
+                                display: inline-block;
+                                border: 1px solid pink;
+                                color:red;
+                                height: 300px;
+                                width: 200px;
+                                margin: 20px 0;
+                                
+                            }
+                        }
+                        .btn_second{
+                            display: block;
+                            margin: 0 auto;
+                        }
+                    }
+                }
+            }
+            .screen_bt{
+                background-color: #B3B3B3;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                height: 50px;
+
+                
+            }
+        }
+    }
+    .index_card{
+        @include section;
+        .index_card_img{
+            .img{}
+            .btn_second{}
+        }
+        .index_card_text{
+            h1{}
+            p{}
+        }
+    }
+}

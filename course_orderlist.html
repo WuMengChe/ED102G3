@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap_grid/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/app_public.css">
+    <link rel="stylesheet" href="css/course.css">
+    <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+</head>
+
+<body>
+    <!-- course=cus -->
+
+    <!-- header -->
+    <div class="header">
+        <div class="logo">
+            <a href="#">
+                <img src="img/logo.svg" alt="">
+            </a>
+        </div>
+        <div class="header_nav">
+            <ul>
+                <li><a href="#">職涯分析</a></li>
+                <li><a href="#">行業攻略</a></li>
+                <li><a href="#">職涯論壇</a></li>
+                <li><a href="#">探索課程</a></li>
+                <li><a href="#">明信片</a></li>
+            </ul>
+        </div>
+        <div class="header_icon">
+            <div class="cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
+            <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
+        </div>
+    </div>
+
+
+    <!-- course_list -->
+    <div class="course container" id="course_list">
+
+        <div class="row">
+            <!-- 課程清單 -->
+            <div class="cus_list col-xl-7 col-md-12">
+                <h5>課程清單</h5>
+                <!-- 課程細項 -->
+                <ul>
+                    <li>
+                        <div class="cus_card">
+                            <a href="#">
+                                <div class="card_img">
+                                    <img src="img/course/課程圖片.jpg" alt="">
+                                </div>
+                                <div class="card_content">
+                                    <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                    <div class="card_content_scrb">
+                                        <div class="card_content_join">
+                                            <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                        </div>
+                                        <div class="card_content_msg">
+                                            <span class="card_type">企業型</span>
+                                            <span class="card_time">總計3小時</span>
+                                            <span class="card_price">NT$660</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <div class="cus_card">
+                            <a href="#">
+                                <div class="card_img">
+                                    <img src="img/course/課程圖片.jpg" alt="">
+                                </div>
+                                <div class="card_content">
+                                    <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                    <div class="card_content_scrb">
+                                        <div class="card_content_join">
+                                            <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                        </div>
+                                        <div class="card_content_msg">
+                                            <span class="card_type">企業型</span>
+                                            <span class="card_time">總計3小時</span>
+                                            <span class="card_price">NT$660</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="cus_total_price">
+                    <span class="total">總計:</span>
+                    <span class="final_price">$1,122</span>
+                    <span class="origin_price">$1,320</span>
+                    <span class="discount">85% off</span>
+                </div>
+            </div>
+            <!-- 信用卡 -->
+            <div class="check_out col-xl-5 col-md-12">
+                <div class="check_out_contain">
+                    <div class="check_out_title">
+                        <h3>信用卡資訊</h3>
+                    </div>
+                    <div class="credit_card">
+                        <div class="flip">
+                            <div class="card_front">
+                                <div class=bank_name>
+                                    <span>Bank Name</span>
+                                </div>
+                                <div class="account_num">
+                                    <span> &bull; &bull; &bull; &bull;</span><span> &bull; &bull; &bull;
+                                        &bull;</span><span> &bull; &bull; &bull;</span><span> &bull; </span>
+                                </div>
+                                <div class=owner_name>
+                                    <span class="credit_name">Pei-Yu,Ou Yang</span>
+                                    <div class="credit_logo">
+                                        <img src="img/course/svg/credit_card_front.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_back"></div>
+                        </div>
+                    </div>
+                    <div class="form">
+                        <form action="#">
+                            <div class="form_name">
+                                <label for="c_name">持卡人</label>
+                                <input type="text" id="c_name" placeholder="輸入持卡人名稱">
+                            </div>
+                            <div class="form_account">
+                                <label for="c_account">卡號</label>
+                                <div class="account_input">
+                                    <input type="text" id="c_account">-
+                                    <input type="text" id="c_account">-
+                                    <input type="text" id="c_account">-
+                                    <input type="text" id="c_account">
+                                </div>
+                            </div>
+                            <div class="form_exp">
+
+                                <div class="c_exp_date">
+                                    <label for="c_exp">有效日期</label>
+                                    <div class="c_select">
+                                        <select name="c_exp_date" id="c_exp">
+                                            <option value="1">01</option>
+                                            <option value="2">02</option>
+                                        </select>
+                                        <select name="c_exp_month" id="c_exp">
+                                            <option value="1">01</option>
+                                            <option value="2">02</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="c_ccv">
+                                    <label for="ccv">ccv</label>
+                                    <input type="text" id="ccv">
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                    <div class="check_out_btn">
+                        <button class="btn_primary">結帳</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+
+</body>
+
+</html>

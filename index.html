@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職引960</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+    <link rel="stylesheet" href="./css/bootstrap_grid/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./css/app_public.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="#">
+                <img src="https://picsum.photos/70/70" alt="">
+            </a>
+        </div>
+        <div class="header_nav">
+            <ul>
+                <li><a href="#">職涯分析</a></li>
+                <li><a href="#">行業攻略</a></li>
+                <li><a href="#">職涯論壇</a></li>
+                <li><a href="#">探索課程</a></li>
+                <li><a href="#">明信片</a></li>
+            </ul>
+        </div>
+        <div class="header_icon">
+            <div class="cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
+            <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
+        </div>
+    </div>
+    <main class="index">
+        <section class="index_test container">
+            <div class="index_test_text col-5">
+                <h1>職涯分析</h1>
+                <p>不考慮科系單純地透過職能和興趣來釐清自己未來職涯，和求職方向通過全面的診斷可以清楚地看出其優勢，從專業職能測驗來評估最適任的職務，做為未來規劃的參考！！</p>
+                <a class="btn_primary">職涯分析</a>
+            </div>  
+            <div class="index_test_img col-7">
+                <div class="img">
+                    <div class="grp_chart">
+                        <img src="./img/index/index_1st/line.png" class="line_chart" alt="lineChart">
+                        <img src="./img/index/index_1st/radar.png" class="radar_chart" alt="radarChart">
+                        <img src="./img/index/index_1st/line.png" class="line_chart bottom" alt="lineChart">
+                    </div>
+                    <img src="./img/index/index_1st/index_1st_leftBoy.png" class="left_boy">
+                    <img src="./img/index/index_1st/index_1st_rightGirl.png" class="right_girl">
+                </div>
+            </div>  
+        </section>
+        <section class="index_car container">
+            <div class="index_sal_img col-6">
+                <img src="./img/index/index_2nd/auditor.png" class="auditor" alt="">
+                <img src="./img/index/index_2nd/teacher.png" class="teacher" alt="">
+                <img src="./img/index/index_2nd/doctor.png" class="doctor" alt="">
+                <img src="./img/index/index_2nd/stage.png" class="stage" alt="">
+                
+            </div>
+            <div class="index_sal_chart col-6">
+                <h1>熱門行業排行</h1>
+                <div class="chart"> 
+                    <div class="horizontal-bar-graph" id="graph"></div>
+                </div>
+                <a class="btn_second">探索更多行業</a>
+            </div>
+        </section>
+        <section class="index_disc container">
+            <div class="index_disc_text col-6">
+                <h1>熱門行業話題</h1>
+                <div class="index_dia">
+                    <div class="message" >
+                        <div v-for="item in messages">
+                            <h5>{{item.title}}</h5>
+                            <p>{{item.date}}</p>
+                        </div>
+                    </div>
+                    <button class="btn_second">探索更多文章</button>
+                </div>
+            </div>  
+            <div class="index_disc_img col-6">
+                <div class="img">
+                    
+                </div>
+            </div>  
+        </section>
+        <section class="index_cour container">
+            <div class="index_cour_img col-4">我是樓梯圖～～</div>
+            <div class="index_cour_text col-8">
+                <h1>熱門課程</h1>
+                <div class="pad">
+                    <div class="screen_bg">
+                        <div class="screen">
+                            <div class="screen_carousel owl-carousel owl-theme">
+                                <div class="course item">aaa</div>
+                            </div>
+                            <a class="btn_second">探索更多行業</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen_bt"></div>
+            </div>
+        </section>
+        <section class="index_card container">
+            <div class="index_card_img col-6">
+                <div class="img">post card</div> 
+                <a class="btn_second">客制明信片</a>
+            </div>
+            <div class="index_card_text col-6">
+                <h1>時光明信片</h1>
+                <p>面對未知的未來，我期許成為更好的自己！來吧！！寫封信給將來的你</p>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script src="./js/index/index.js"></script>
+</body>
+</html>

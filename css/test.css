@@ -1,0 +1,261 @@
+div.before_test_wrap {
+  border: 1px solid red;
+  width: 1200px;
+  margin: auto;
+}
+
+div.before_test_wrap section.origin_of_types_before_test {
+  border: 1px solid cadetblue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2%;
+}
+
+div.before_test_wrap section.origin_of_types_before_test h3 {
+  font-weight: 600;
+  padding-bottom: 2%;
+}
+
+div.before_test_wrap section.origin_of_types_before_test p {
+  line-height: 25px;
+  letter-spacing: 1px;
+}
+
+div.before_test_wrap .wrap_of_btn_before_test {
+  border: 1px solid fuchsia;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2%;
+}
+
+main.main_before_test {
+  margin: auto;
+}
+
+main.main_before_test .all_type_card_before_test {
+  border: 1px solid navy;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 5% 0px;
+}
+
+main.main_before_test .type_card_before_test {
+  border: 2px solid #AAA;
+  height: 500px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  -webkit-box-shadow: #E0E0E0 3px 3px 5px;
+          box-shadow: #E0E0E0 3px 3px 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main.main_before_test .type_card_before_test .title_type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+}
+
+main.main_before_test .type_card_before_test .img_bx_type_card {
+  overflow: hidden;
+  width: 110px;
+  height: 400px;
+}
+
+.type_card_before_test.expanding {
+  width: 500px;
+  -webkit-transition: ease-in-out 2s;
+  transition: ease-in-out 2s;
+}
+
+.instruction_test_wrap {
+  width: 900px;
+  margin: auto;
+}
+
+.instruction_test_wrap .main_instruction_wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: -webkit-gradient(linear, left top, left bottom, from(#296079), to(white));
+  background: linear-gradient(#296079, white);
+}
+
+.instruction_test_wrap .main_instruction_wrap .instruction_test_txt {
+  border: 2px solid black;
+  max-width: 500px;
+  text-align: center;
+  padding: 2%;
+  background-color: #EEE;
+  border-radius: 25px;
+  margin-top: 2%;
+}
+
+.instruction_test_wrap .main_instruction_wrap .instruction_test_txt h3 {
+  font-weight: 600;
+  margin: 5% 0;
+}
+
+.instruction_test_wrap .main_instruction_wrap .instruction_test_txt li {
+  text-align: justify;
+  line-height: 25px;
+  font-size: 18px;
+  padding: 2%;
+}
+
+.instruction_test_wrap .main_instruction_wrap .wrap_of_btn_instruction_of_test {
+  border: 1px solid red;
+  max-width: 1200px;
+  margin: 50px 0;
+}
+
+main.main_during_test {
+  border: 1px solid red;
+  max-width: 900px;
+  margin: auto;
+}
+
+main.main_during_test .question_bx {
+  border: 1px solid blue;
+  padding: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main.main_during_test .question_bx h3 {
+  padding: 2% 0;
+  font-weight: 600;
+}
+
+main.main_during_test .answer_option_wrap {
+  border: 1px solid darkgoldenrod;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main.main_during_test .answer_option_wrap .answer_option {
+  border: 1px solid fuchsia;
+  width: 350px;
+  height: 400px;
+  cursor: pointer;
+  background-color: goldenrod;
+  margin-top: 5%;
+}
+
+main.main_during_test .answer_option_wrap .answer_option:hover {
+  background-color: gold;
+}
+
+main.main_during_test .answer_option_wrap .answer_option .img_bx {
+  border: 1px solid black;
+  width: 90%;
+  height: 80%;
+}
+
+main.main_during_test .progress_bar_bx {
+  border: 1px solid navy;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main.main_during_test .progress_bar_bx .progress_container {
+  border: 1px solid dimgrey;
+  width: 540px;
+  height: 30px;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+main.main_during_test .progress_bar_bx .progress_container span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+main.main_during_test .progress_bar_bx .progress_container .progress_bar {
+  position: absolute;
+  z-index: -1;
+  background: #5ed5f3;
+  width: 50px;
+  height: 30px;
+  border-radius: 50px;
+}
+/*# sourceMappingURL=test.css.map */

@@ -1,0 +1,103 @@
+@import "../../_public_dontTouch/utils/variables";
+
+$course_title_margin_bottom: 15px;
+$course_sort_margin_bottom: 50px;
+
+div.course_main {
+    // border: $outline1;
+
+    div.course_sort {
+        // border: $outline3;
+        margin-bottom: $course_sort_margin_bottom;
+
+        h2 {
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e8c300;
+            padding: 5px;
+        }
+
+        ul {
+            display: flex;
+
+            li {
+                box-shadow: $card_shadow;
+                margin-right: 15px;
+                width: 80%;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                div.cus_card {
+                    // border: $outline5;
+
+                    a {
+                        div.card_img {
+                            img {
+                                width: 100%;
+                            }
+                        }
+
+                        div.card_content {
+                            padding: 5px;
+
+                            p {
+                                font-weight: bold;
+                                line-height: 1.5;
+                                padding-bottom: $course_title_margin_bottom;
+                            }
+
+                            div.card_content_scrb {
+                                div.card_content_join {
+                                    span {
+                                        font-size: 13px;
+                                        padding: 0 5px;
+                                    }
+                                }
+
+                                div.card_content_msg {
+                                    margin-top: 10px;
+                                    display: flex;
+
+                                    span.card_type {
+                                        background: orange;
+                                        border-radius: 5px;
+                                        padding: 0 5px;
+                                        line-height: 20px;
+                                    }
+
+                                    span.card_time {
+                                        // padding: 0 5px;
+                                        line-height: 20px;
+                                    }
+
+                                    span.card_price {
+                                        margin-left: auto;
+                                        font-size: 20px;
+                                        font-weight: bold;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    div.add_cart {
+                        // border: $outline5;
+
+                        button {
+                            width: 100%;
+                            // background: blue;
+                            padding: 10px 0;
+                            border-radius: 0;
+                            line-height: inherit;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// img {
+//     width: 100px;
+// }

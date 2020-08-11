@@ -1,0 +1,324 @@
+* {
+  box-sizing: border-box;
+}
+
+
+div.postcard_main {
+  border: 1px solid red;
+  max-width: 900px !important;
+  margin-top: 50px;
+
+  .view,
+  .row {
+    justify-content: space-between;
+
+    // 明信片區
+    .postcardZone {
+      background-color: lightblue;
+      padding-left: -15px;
+      padding-bottom: 20px;
+
+      // 正面明信片---------------------
+      .postcard_front {
+        // background-color: lightblue;
+        // padding-left: -15px;
+        // padding-bottom: 20px;
+        border: 1px solid black;
+
+        .front_post {
+          // border: 1px solid blue;
+          margin-top: 20px;
+          background-color: white;
+          width: 100%;
+
+
+          .mainStyle {
+            border: 1px solid black;
+            position: relative;
+            // height: 553px;
+            height: 0;
+            padding-bottom: 63.5%;
+
+            .style1 {
+              display: none;
+            }
+
+            .style2 {
+              border: 1px solid red;
+              text-align: center;
+
+              @mixin label {
+                #{label} {
+                  border: 1px solid #1b4d9f;
+                  display: inline-block;
+                  margin-top: 2%;
+                  color: #1b4d9f;
+                  background: #fff;
+                  border-radius: 20px;
+                  cursor: pointer;
+
+                  i {
+                    display: inline-block;
+                    font-size: 18px;
+                    padding-left: 8px;
+                  }
+
+                  p {
+                    display: inline-block;
+                    padding: 5px 5px 5px 8px;
+                  }
+
+                  input {
+                    display: none;
+                  }
+                }
+              }
+
+              .top_2 {
+                // height: 20%;
+                height: 0;
+                padding-bottom: 20%;
+                background-color: rgb(255, 254, 235);
+
+                p.drag {
+                  color: gray;
+                  padding-top: 4%;
+                }
+
+                @include label();
+              }
+
+              .bottom_2 {
+
+                display: flex;
+
+                .left_2 {
+                  background-color: rgb(219, 253, 204);
+                  height: 0;
+                  padding-bottom: 43.5%;
+                  background-position: center;
+                  flex-grow: 1;
+
+                  p.drag {
+                    color: gray;
+                    padding-top: 10%;
+                  }
+
+                  @include label();
+                }
+
+                .right_2 {
+                  background-color: rgb(255, 228, 253);
+                  flex-grow: 1;
+                  height: 0;
+                  padding-bottom: 43.5%;
+
+                  p.drag {
+                    color: gray;
+                    padding-top: 10%;
+                  }
+
+                  @include label();
+
+                }
+              }
+
+              .style3 {
+                display: none;
+              }
+
+            }
+
+            .style3 {
+              display: none;
+            }
+
+            .main_outline_style {
+              position: absolute;
+              // position: relative;
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 100%;
+              pointer-events: none;
+
+
+              img {
+                height: 100%;
+                width: 100%;
+                z-index: -2;
+
+              }
+            }
+
+
+          }
+        }
+
+        button {
+          float: right;
+          margin: 20px 0;
+          // border: 2px solid #1b4d9f;
+
+          i {
+            // border: 1px solid blue;
+            display: inline-block;
+            font-size: 17px;
+            padding-left: 10px;
+          }
+        }
+
+        .change_style {
+          border: 1px solid rgb(255, 0, 200);
+          margin-top: 80px;
+
+
+
+          .front_all_style {
+            border: 1px solid rgb(23, 29, 23);
+            //  @mixin style_list {
+            //    #{style_list} {
+            //      border: 1px solid blue;
+            //      justify-content: space-around;
+            //      margin: 20px 0;
+
+            //      .style {
+            //        border: 1px solid rgb(17, 17, 17);
+            //        padding: 0;
+            //        cursor: pointer;
+
+            //        img {
+            //          width: 100%;
+            //        }
+            //      }
+            //    }
+            //  }
+
+
+            // @include style_list();
+            .style_list {
+              border: 1px solid blue;
+              justify-content: space-around;
+              margin: 20px 0;
+
+              .style {
+                border: 1px solid rgb(17, 17, 17);
+                padding: 0;
+                cursor: pointer;
+
+                img {
+                  width: 100%;
+                }
+              }
+            }
+          }
+
+          .style_all_outline {
+            border: 1px solid rgb(23, 29, 23);
+
+            .style_list {
+              // border: 1px solid blue;
+              justify-content: space-around;
+              // display: inline-block;
+              margin: 20px 0;
+
+              .style {
+                border: 1px solid rgb(17, 17, 17);
+                padding: 0;
+                background-color: rgba(88, 88, 88, 0.253);
+                height: 100%;
+                text-align: center;
+                position: relative;
+                cursor: pointer;
+
+                img {
+                  width: 100%;
+                }
+
+                p {
+                  position: absolute;
+                  border: 1px solid blue;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                }
+              }
+
+            }
+          }
+        }
+      }
+
+      //背面明信片----------------------
+      .postcard_back {
+        background-color: rgb(149, 252, 154);
+
+        .back_post {
+          border: 1px solid burlywood;
+          margin: 20px 0;
+
+          .mainStyle {
+            border: 1px solid rgb(241, 161, 57);
+
+            .style1 {
+              border: 1px solid red;
+            }
+          }
+        }
+
+        .buttons {
+          border: 1px solid brown;
+          margin-bottom: 20px;
+          display: flex;
+          justify-content: flex-end;
+
+          #toFront {
+            margin-right: 50px;
+            display: inline-block;
+
+            i {
+              padding-right: 10px;
+            }
+          }
+
+          #choice_date {
+            display: inline-block;
+
+            i {
+              padding-left: 10px;
+            }
+          }
+        }
+
+        .change_style {
+          border: 1px solid yellow;
+
+          .back_all_style {
+            border: 1px solid rgb(38, 73, 44);
+
+            .style_list {
+              border: 1px solid blue;
+              justify-content: space-around;
+              margin: 20px 0;
+
+              .style {
+                border: 1px solid rgb(17, 17, 17);
+                padding: 0;
+                cursor: pointer;
+
+                img {
+                  width: 100%;
+                }
+              }
+            }
+          }
+
+          .style_all_stamps {
+            border: 1px solid yellow;
+
+          }
+        }
+      }
+    }
+  }
+}
