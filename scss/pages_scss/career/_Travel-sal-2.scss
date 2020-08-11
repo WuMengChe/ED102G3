@@ -1,0 +1,22 @@
+.Travel-sal-2{
+    max-width:170px;
+    width:100%;
+    height:2.3em;
+    position:absolute;right:0px;top:55px;
+    border: 1px solid 	#97CBFF;
+    padding: 2px;
+    font-size:18px;
+    // text-align:left;
+    text-align: center;
+}
+@keyframes bar-2{
+    from{
+      width: 0
+    }
+    to{
+      width: 70%
+    }
+}
+.bar-2{
+  animation: bar-2 5s forwards;
+}
