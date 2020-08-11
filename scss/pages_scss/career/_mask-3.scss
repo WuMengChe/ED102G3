@@ -1,0 +1,20 @@
+.mask-3{
+    position: absolute;
+    top:0;
+    left:0;
+    max-width:250px;
+    width:100%;
+    height:300px;
+    background: rgba(101, 101, 101, 0.6);
+    color: #ffffff;
+    opacity: 0;
+}
+.mask-3 h1{
+    text-align: center;
+    margin-top:130px;
+    font-size:18px;
+    font-family: Microsoft JhengHei;
+}
+.Travel-main-5 a:hover .mask-3 {
+    opacity: 1;           
+}
