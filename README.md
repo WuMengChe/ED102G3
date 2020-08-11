@@ -3,9 +3,6 @@ ED102G3團專作品
 
 將檔案上傳至github
 
-//test
-test1
-test2
 
 git clone https://github.com/WuMengChe/ED102G3.git
 
