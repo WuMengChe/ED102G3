@@ -1,0 +1,368 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.postcard_main,
+.container {
+  border: 1px solid red;
+  max-width: 1200px;
+  margin-top: 50px;
+}
+
+div.postcard_main .view,
+div.postcard_main .row,
+.container .view,
+.container .row {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+div.postcard_main .view .photo_upload,
+div.postcard_main .row .photo_upload,
+.container .view .photo_upload,
+.container .row .photo_upload {
+  background-color: lightgray;
+}
+
+div.postcard_main .view .photo_upload .title,
+div.postcard_main .row .photo_upload .title,
+.container .view .photo_upload .title,
+.container .row .photo_upload .title {
+  border: 1px solid red;
+}
+
+div.postcard_main .view .photo_upload .title h3,
+div.postcard_main .row .photo_upload .title h3,
+.container .view .photo_upload .title h3,
+.container .row .photo_upload .title h3 {
+  display: inline-block;
+  border: 1px solid #0202fd;
+}
+
+div.postcard_main .view .photo_upload .title p.note,
+div.postcard_main .row .photo_upload .title p.note,
+.container .view .photo_upload .title p.note,
+.container .row .photo_upload .title p.note {
+  display: inline-block;
+  border: 1px solid #0202fd;
+}
+
+div.postcard_main .view .photo_upload .img_upload,
+div.postcard_main .row .photo_upload .img_upload,
+.container .view .photo_upload .img_upload,
+.container .row .photo_upload .img_upload {
+  border: 1px solid #0202fd;
+}
+
+div.postcard_main .view .photo_upload .img_upload .img_show,
+div.postcard_main .row .photo_upload .img_upload .img_show,
+.container .view .photo_upload .img_upload .img_show,
+.container .row .photo_upload .img_upload .img_show {
+  border: 1px solid red;
+  height: 150px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+div.postcard_main .view .photo_upload .img_upload .img_show p,
+div.postcard_main .row .photo_upload .img_upload .img_show p,
+.container .view .photo_upload .img_upload .img_show p,
+.container .row .photo_upload .img_upload .img_show p {
+  border: 1px solid black;
+  margin-top: 50px;
+  color: gray;
+}
+
+div.postcard_main .view .photo_upload .img_upload .img_show label,
+div.postcard_main .row .photo_upload .img_upload .img_show label,
+.container .view .photo_upload .img_upload .img_show label,
+.container .row .photo_upload .img_upload .img_show label {
+  border: 1px solid black;
+  text-align: center;
+  display: inline-block;
+  border-radius: 15px;
+  background-color: #E8C300;
+  color: #1B4D9F;
+  overflow: hidden;
+  padding: 0 5px;
+  margin-top: 45px;
+}
+
+div.postcard_main .view .photo_upload .img_upload .img_show label i,
+div.postcard_main .row .photo_upload .img_upload .img_show label i,
+.container .view .photo_upload .img_upload .img_show label i,
+.container .row .photo_upload .img_upload .img_show label i {
+  border: 1px solid blue;
+  font-size: 18px;
+  display: inline-block;
+}
+
+div.postcard_main .view .photo_upload .img_upload .img_show label .p_small_2,
+div.postcard_main .row .photo_upload .img_upload .img_show label .p_small_2,
+.container .view .photo_upload .img_upload .img_show label .p_small_2,
+.container .row .photo_upload .img_upload .img_show label .p_small_2 {
+  display: inline-block;
+  font-size: 14px;
+  margin: 0;
+  color: #1B4D9F;
+}
+
+div.postcard_main .view .photo_upload .img_upload .img_show label input,
+div.postcard_main .row .photo_upload .img_upload .img_show label input,
+.container .view .photo_upload .img_upload .img_show label input,
+.container .row .photo_upload .img_upload .img_show label input {
+  display: none;
+}
+
+div.postcard_main .view .postcardZone,
+div.postcard_main .row .postcardZone,
+.container .view .postcardZone,
+.container .row .postcardZone {
+  background-color: lightblue;
+  padding-left: -15px;
+  padding-bottom: 20px;
+}
+
+div.postcard_main .view .postcardZone .postcard_front,
+div.postcard_main .row .postcardZone .postcard_front,
+.container .view .postcardZone .postcard_front,
+.container .row .postcardZone .postcard_front {
+  border: 1px solid black;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .front_post,
+div.postcard_main .row .postcardZone .postcard_front .front_post,
+.container .view .postcardZone .postcard_front .front_post,
+.container .row .postcardZone .postcard_front .front_post {
+  margin-top: 20px;
+  background-color: white;
+  width: 100%;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle,
+div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle,
+.container .view .postcardZone .postcard_front .front_post .mainStyle,
+.container .row .postcardZone .postcard_front .front_post .mainStyle {
+  border: 1px solid black;
+  position: relative;
+  height: 0;
+  padding-bottom: 63.5%;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .style2,
+div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .style2,
+.container .view .postcardZone .postcard_front .front_post .mainStyle .style2,
+.container .row .postcardZone .postcard_front .front_post .mainStyle .style2 {
+  border: 1px solid red;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .style2 .top_2,
+div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .style2 .top_2,
+.container .view .postcardZone .postcard_front .front_post .mainStyle .style2 .top_2,
+.container .row .postcardZone .postcard_front .front_post .mainStyle .style2 .top_2 {
+  height: 0;
+  padding-bottom: 20%;
+  background-color: #fffeeb;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .style2 .left_2,
+div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .style2 .left_2,
+.container .view .postcardZone .postcard_front .front_post .mainStyle .style2 .left_2,
+.container .row .postcardZone .postcard_front .front_post .mainStyle .style2 .left_2 {
+  background-color: #dbfdcc;
+  width: 49.5%;
+  height: 0;
+  display: inline-block;
+  padding-bottom: 43.5%;
+  background-position: center;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .style2 .right_2,
+div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .style2 .right_2,
+.container .view .postcardZone .postcard_front .front_post .mainStyle .style2 .right_2,
+.container .row .postcardZone .postcard_front .front_post .mainStyle .style2 .right_2 {
+  background-color: #ffe4fd;
+  width: 49.5%;
+  height: 0;
+  display: inline-block;
+  padding-bottom: 43.5%;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .main_outline_style,
+div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .main_outline_style,
+.container .view .postcardZone .postcard_front .front_post .mainStyle .main_outline_style,
+.container .row .postcardZone .postcard_front .front_post .mainStyle .main_outline_style {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .main_outline_style img,
+div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .main_outline_style img,
+.container .view .postcardZone .postcard_front .front_post .mainStyle .main_outline_style img,
+.container .row .postcardZone .postcard_front .front_post .mainStyle .main_outline_style img {
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+}
+
+div.postcard_main .view .postcardZone .postcard_front button,
+div.postcard_main .row .postcardZone .postcard_front button,
+.container .view .postcardZone .postcard_front button,
+.container .row .postcardZone .postcard_front button {
+  border: 2px solid blue;
+  float: right;
+  margin: 20px 0;
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: white;
+  color: #1B4D9F;
+}
+
+div.postcard_main .view .postcardZone .postcard_front button p,
+div.postcard_main .row .postcardZone .postcard_front button p,
+.container .view .postcardZone .postcard_front button p,
+.container .row .postcardZone .postcard_front button p {
+  display: inline-block;
+  padding: 5px;
+}
+
+div.postcard_main .view .postcardZone .postcard_front button i,
+div.postcard_main .row .postcardZone .postcard_front button i,
+.container .view .postcardZone .postcard_front button i,
+.container .row .postcardZone .postcard_front button i {
+  display: inline-block;
+  font-size: 17px;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .change_style,
+div.postcard_main .row .postcardZone .postcard_front .change_style,
+.container .view .postcardZone .postcard_front .change_style,
+.container .row .postcardZone .postcard_front .change_style {
+  border: 1px solid #ff00c8;
+  margin-top: 80px;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .change_style .front_all_style,
+div.postcard_main .row .postcardZone .postcard_front .change_style .front_all_style,
+.container .view .postcardZone .postcard_front .change_style .front_all_style,
+.container .row .postcardZone .postcard_front .change_style .front_all_style {
+  border: 1px solid #171d17;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .change_style .front_all_style .style_list,
+div.postcard_main .row .postcardZone .postcard_front .change_style .front_all_style .style_list,
+.container .view .postcardZone .postcard_front .change_style .front_all_style .style_list,
+.container .row .postcardZone .postcard_front .change_style .front_all_style .style_list {
+  border: 1px solid blue;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 20px 0;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .change_style .front_all_style .style_list .style,
+div.postcard_main .row .postcardZone .postcard_front .change_style .front_all_style .style_list .style,
+.container .view .postcardZone .postcard_front .change_style .front_all_style .style_list .style,
+.container .row .postcardZone .postcard_front .change_style .front_all_style .style_list .style {
+  border: 1px solid #111111;
+  padding: 0;
+  cursor: pointer;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .change_style .style_all_outline,
+div.postcard_main .row .postcardZone .postcard_front .change_style .style_all_outline,
+.container .view .postcardZone .postcard_front .change_style .style_all_outline,
+.container .row .postcardZone .postcard_front .change_style .style_all_outline {
+  border: 1px solid #171d17;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .change_style .style_all_outline .style_list,
+div.postcard_main .row .postcardZone .postcard_front .change_style .style_all_outline .style_list,
+.container .view .postcardZone .postcard_front .change_style .style_all_outline .style_list,
+.container .row .postcardZone .postcard_front .change_style .style_all_outline .style_list {
+  border: 1px solid blue;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 20px 0;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .change_style .style_all_outline .style_list .style,
+div.postcard_main .row .postcardZone .postcard_front .change_style .style_all_outline .style_list .style,
+.container .view .postcardZone .postcard_front .change_style .style_all_outline .style_list .style,
+.container .row .postcardZone .postcard_front .change_style .style_all_outline .style_list .style {
+  border: 1px solid #111111;
+  padding: 0;
+  background-color: rgba(88, 88, 88, 0.253);
+  height: 100%;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+div.postcard_main .view .postcardZone .postcard_front .change_style .style_all_outline .style_list .style p,
+div.postcard_main .row .postcardZone .postcard_front .change_style .style_all_outline .style_list .style p,
+.container .view .postcardZone .postcard_front .change_style .style_all_outline .style_list .style p,
+.container .row .postcardZone .postcard_front .change_style .style_all_outline .style_list .style p {
+  position: absolute;
+  border: 1px solid blue;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+  .photo_upload {
+    display: none;
+  }
+}
+
+.postcard_view {
+  border: 1px solid black;
+  max-width: 1200px;
+}
+
+.postcard_view h3 {
+  border: 1px solid black;
+}
+
+.postcard_view .view {
+  margin-top: 20px;
+}
+
+.postcard_view .view .view_front {
+  border: 1px solid black;
+}
+
+.postcard_view .view .view_front p {
+  padding-bottom: 20px;
+}
+
+.postcard_view .view .view_back {
+  border: 1px solid black;
+}
+
+.postcard_view .view .view_back p {
+  padding-bottom: 20px;
+}
+
+.postcard_view .select_date {
+  margin-top: 20px;
+  border: 1px solid blue;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.postcard_view .select_date p {
+  border: 1px solid red;
+}
+
+.postcard_view .select_date div {
+  border: 1px solid red;
+}
+/*# sourceMappingURL=post_card.css.map */

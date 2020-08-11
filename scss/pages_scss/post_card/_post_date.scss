@@ -1,0 +1,47 @@
+.postcard_view {
+  border: 1px solid black;
+  max-width: 1200px;
+
+  h3 {
+    // display: block;
+    border: 1px solid black;
+  }
+
+  .view {
+    margin-top: 20px;
+
+    .view_front {
+      border: 1px solid black;
+
+      p {
+        padding-bottom: 20px;
+      }
+    }
+
+    .view_back {
+      border: 1px solid black;
+
+      p {
+        padding-bottom: 20px;
+
+      }
+    }
+  }
+
+
+  .select_date {
+    margin-top: 20px;
+    border: 1px solid blue;
+    justify-content: space-between;
+
+    p {
+      border: 1px solid red;
+
+    }
+
+    div {
+      border: 1px solid red;
+
+    }
+  }
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>職引960客製明信片</title>
+  <link rel="stylesheet" href="./css/bootstrap_grid/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./css/app_public.css">
+  <link rel="stylesheet" href="./css/post_card.css">
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="#">
+        <img src="https://picsum.photos/70/70" alt="">
+      </a>
+    </div>
+    <div class="header_nav">
+      <ul>
+        <li><a href="#">職涯分析</a></li>
+        <li><a href="#">行業攻略</a></li>
+        <li><a href="#">職涯論壇</a></li>
+        <li><a href="#">探索課程</a></li>
+        <li><a href="#">明信片</a></li>
+      </ul>
+    </div>
+    <div class="header_icon">
+      <div class="cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
+      <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
+    </div>
+  </div>
+  <!-- header 結束-->
+  <div class="postcard_main container">
+    <div class="postcard row">
+      <!-- 上傳背景圖片區 -->
+      <div class="photo_upload col-md-3">
+        <div class="title">
+          <h3>上傳背景圖片區</h3>
+          <p class="p_small note">(一張最大2M)</p>
+        </div>
+
+        <div class="img_upload">
+          <!-- 1 -->
+          <div class="img_show" id="imgShow1">
+            <!-- <img id="image1"> -->
+            <p>點擊或拖曳上傳</p>
+            <label for="img">
+              <i class="fa fa-photo"></i>
+              <p class="p_small_2">上傳圖片</p>
+              <input type="file" name="img" id="img">
+            </label>
+          </div>
+          <!-- 2 -->
+          <div class="img_show" id="imgShow2">
+            <p>點擊或拖曳上傳</p>
+            <label for="img">
+              <i class="fa fa-photo"></i>
+              <p class="p_small_2">上傳圖片</p>
+              <input type="file" name="img" id="img">
+            </label>
+          </div>
+          <!-- 3 -->
+          <div class="img_show" id="imgShow3">
+            <p>點擊或拖曳上傳</p>
+            <label for="img">
+              <i class="fa fa-photo"></i>
+              <p class="p_small_2">上傳圖片</p>
+              <input type="file" name="img" id="img">
+            </label>
+          </div>
+          <!-- 4 -->
+          <div class="img_show" id="imgShow4">
+            <p>點擊或拖曳上傳</p>
+            <label for="img">
+              <i class="fa fa-photo"></i>
+              <p class="p_small_2">上傳圖片</p>
+              <input type="file" name="img" id="img">
+            </label>
+          </div>
+          <!-- 5 -->
+          <div class="img_show" id="imgShow5">
+            <p>點擊或拖曳上傳</p>
+            <label for="img">
+              <i class="fa fa-photo"></i>
+              <p class="p_small_2">上傳圖片</p>
+              <input type="file" name="img" id="img">
+            </label>
+          </div>
+          <!-- 6 -->
+          <div class="img_show" id="imgShow6">
+            <p>點擊或拖曳上傳</p>
+            <label for="img">
+              <i class="fa fa-photo"></i>
+              <p class="p_small_2">上傳圖片</p>
+              <input type="file" name="img" id="img">
+            </label>
+          </div>
+          <!-- 底 -->
+        </div>
+      </div>
+      <!-- 明信片區 -->
+      <div class="postcardZone col-md-9">
+        <!-- 正面 -->
+        <div class="postcard_front">
+          <h2>正面</h2>
+          <div class="front_post">
+            <div class="mainStyle">
+              <!-- 以下要createElement -->
+              <!-- 正面格式一 -->
+              <div class="style1"></div>
+              <!-- 正面格式二 -->
+              <div class="style2">
+                <div class="top_2">上
+                  <!-- <label for="img">
+                    <i class="fa fa-photo"></i>
+                    <p class="p_small_2">上傳圖片</p>
+                    <input type="file" name="img" id="img">
+                  </label> -->
+                  <input type="file" name="" id="" style="z-index: 1;">
+                </div>
+                <div class="left_2">左
+                  <input type="file" name="" id="" style="z-index: 1;">
+                </div>
+                <div class="right_2">右
+                  <input type="file" name="" id="" style="z-index: 1;">
+                </div>
+              </div>
+              <!-- 正面格式三 -->
+              <div class="style3">
+                <div class="left_3"></div>
+                <div class="right_3"></div>
+              </div>
+              <!-- 到這裡格式結束 -->
+              <div class="main_outline_style">
+                <img src="./img/post_card/outline1.png" id="mainImg">
+              </div>
+
+            </div>
+          </div>
+          <button id="toBack">
+            <p class="p_small">背面</p>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+          <div class="change_style">
+            <div class="front_all_style">
+              <h3>正面格式</h3>
+              <div class="front_style row style_list">
+                <div class="style col-3">
+                  <img src="./img/post_card/style1.jpg" alt="">
+                </div>
+                <div class="style col-3">
+                  <img src="./img/post_card/style2.jpg" alt="">
+                </div>
+                <div class="style col-3">
+                  <img src="./img/post_card/style3.jpg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="style_all_outline">
+              <h3>正面外框</h3>
+              <div class="outline_style row style_list">
+                <div class="style col-3">
+                  <img src="./img/post_card/outline0.png" alt="無邊框" id="outline0">
+                  <p class="p_small">無邊框</p>
+                </div>
+                <div class="style col-3">
+                  <img src="./img/post_card/outline1.png" alt="紅藍邊框" id="outline1">
+                </div>
+                <div class="style col-3">
+                  <img src="./img/post_card/outline2.png" alt="黃藍邊框" id="outline2">
+                </div>
+              </div>
+              <div class="style_outline">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 背面 -->
+        <div class="postcard_back">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<!-- <script src="./js/jquery-3.4.1.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="./js/popper.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+
+<script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+<script src="./js/post_card/imgUp.js"></script>
+
+<script>
+  // let vm = new Vue({
+  //   el: '#imgShow',
+  //   data: {
+  //     headers: ['about', 'products', 'contact', 'temp1']
+  //   },
+  //   methods: {
+
+  //   },
+  // });
+</script>
+
+
+</html>
