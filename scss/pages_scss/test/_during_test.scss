@@ -1,0 +1,75 @@
+main.main_during_test{
+    border: 1px solid red;
+    max-width: 900px;
+    margin: auto;
+        .question_bx{
+            border: 1px solid blue;
+            padding: 1%;
+            display: flex;
+            justify-content: center;
+            flex-direction:column ;
+            align-items: center;
+                h3{
+                    padding: 2% 0;
+                    font-weight: 600;
+                }
+            
+        }   
+        
+    .answer_option_wrap{
+        border: 1px solid darkgoldenrod;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .answer_option{
+            border: 1px solid fuchsia;
+            width: 350px;
+            height: 400px;
+            cursor: pointer;
+            background-color: goldenrod;
+            margin-top: 5%;
+            &:hover{
+                background-color: gold;
+            }
+                .img_bx{
+                    border: 1px solid black;
+                    width: 90%;
+                    height: 80%;
+                }
+        }
+    }
+    .progress_bar_bx{
+        border: 1px solid navy;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+            .progress_container{
+                border: 1px solid dimgrey;
+                width: 540px;
+                height: 30px;
+                border-radius: 50px;
+                position: relative;
+                overflow: hidden;
+                 span{
+                     display: flex;
+                     position: absolute;
+                     left: 50%;
+                     line-height: 30px;
+                    //  border: 1px solid red;
+                     font-weight: 600;
+                    
+                 }
+                 .progress_bar{
+                     position: absolute;
+                     z-index: -1;
+                     background: rgb(94, 213, 243);
+                     width: 50px;
+                     height: 30px;
+                     border-radius: 50px;
+                 }
+            }
+    }
+}

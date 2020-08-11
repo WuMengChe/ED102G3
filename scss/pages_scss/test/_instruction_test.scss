@@ -1,0 +1,39 @@
+.instruction_test_wrap{
+    // border: 1px solid forestgreen;
+    width: 900px;
+    margin: auto;
+    .main_instruction_wrap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: linear-gradient(rgb(41, 96, 121), rgb(255, 255, 255));
+        .instruction_test_txt{
+            border: 2px solid black;
+            max-width: 500px;
+            text-align: center;
+            padding: 2%;
+            background-color: #EEE;
+            border-radius: 25px;
+            margin-top: 2%;
+            
+            h3{
+                font-weight: 600;
+                margin: 5% 0;
+            }
+            li{
+                text-align: justify;
+                line-height: 25px;
+                font-size: 18px;
+                padding: 2%;
+            }
+        }
+        .wrap_of_btn_instruction_of_test{
+            border: 1px solid red;
+            max-width: 1200px;
+            margin: 50px 0;
+        }
+    }
+
+}
+
