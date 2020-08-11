@@ -1,21 +1,25 @@
-@import '../utils/variables';
+@import "../utils/variables";
 
 $nav_font_size: 18px;
 $header_icon_i_size: 20px;
 $header_icon_i_color: #1b4d9f;
-$header_nav_font_color:#1b4d9f;
+$header_nav_font_color: #1b4d9f;
 
 div.header {
     width: 100%;
     max-width: 1200px;
-    height: 70px;
+    // height: 70px;
     // border: 1px solid black;
-    margin: 10px auto 0;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 0 15px;
+    padding: 10px 15px 0;
     margin-bottom: 50px;
+    position: sticky;
+    top: 0px;
+    z-index: 200;
+    background: #fff;
 
     div.logo {
         // border: $outline2;
@@ -30,7 +34,7 @@ div.header {
 
             img {
                 width: 101%;
-                vertical-align: center;
+                vertical-align: middle;
             }
         }
     }
@@ -51,7 +55,6 @@ div.header {
                     font-size: $nav_font_size;
                     color: $header_nav_font_color;
                     font-weight: bold;
-
                 }
             }
         }
@@ -64,11 +67,30 @@ div.header {
         margin-left: 100px;
 
         div.cart {
+            position: relative;
+
             i {
                 font-size: $header_icon_i_size;
                 color: $header_icon_i_color;
                 padding-right: 20px;
+            }
 
+            div.cart_num {
+                position: absolute;
+                bottom: -4px;
+                left: -2px;
+                width: 15px;
+                height: 15px;
+                background: red;
+                border-radius: 50px;
+                text-align: center;
+                line-height: 12px;
+
+                span {
+                    color: #fff;
+                    font-size: 13px;
+                    font-weight: bold;
+                }
             }
         }
 
@@ -76,11 +98,7 @@ div.header {
             i {
                 font-size: $header_icon_i_size;
                 color: $header_icon_i_color;
-
-
             }
         }
     }
-
-
 }

@@ -1,0 +1,18 @@
+.side_cart {
+    border: $outline2;
+    width: 300px;
+    height: calc(100vh - 69px);
+    background: #fff;
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    transition: .6s ease-in-out;
+    // transition: transform 1.6s easeInQuint;
+    // transition: transform 1.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.cart_off {
+    transform: translateX(100%);
+}
