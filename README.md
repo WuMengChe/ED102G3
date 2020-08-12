@@ -4,13 +4,6 @@ ED102G3團專作品
 將檔案上傳至github
 
 
-judy test
-dev-test
-
-judytest_test1
-
-
-
 
 git clone https://github.com/WuMengChe/ED102G3.git
 
