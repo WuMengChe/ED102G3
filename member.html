@@ -86,7 +86,9 @@
                 <div class = "col-md-12 mem_ana_area" v-for="(quizResult, index) in memberAnalysis">
                     <div class = "col-md-4">{{quizResult.testDate}}</div>
                     <div class = "col-md-4">{{quizResult.industType}}{{index}}</div>
-                    <div class = "col-md-4 btn_third">詳細資訊</div>
+                    <div class = "col-md-4">
+                        <button class="btn_third">詳細資訊</button>
+                    </div>
                 </div>
             </div>
             <div v-if="currentPage == '我的課程'">
