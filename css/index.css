@@ -188,6 +188,12 @@
   height: 100vh;
 }
 
+.index .index_disc .index_disc_text .index_dia .message div {
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
 .index .index_cour {
   display: -webkit-box;
   display: -ms-flexbox;

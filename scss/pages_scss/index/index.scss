@@ -190,7 +190,16 @@
         .index_disc_text{
             h1{}
             .index_dia{
-                div{}
+                .message{
+                    
+                    div{
+                        border: 1px solid #000;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                        h5{}
+                        p{}
+                    }
+                }
                 .btn_second{}
             }
         }
