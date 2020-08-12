@@ -1,3 +1,9 @@
+//購物車
+$('.cart').click(function () {
+  $('.side_cart').toggleClass('cart_off');
+});
+
+//課程輪播
 $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,
@@ -68,7 +74,39 @@ var HorizontalBarGraph = function(el, series) {
                   {
                     title: '關於後端工程師',
                     date: '09/JUN/2020',
-                  }
+                  },
+                  {
+                    title: '關於前端工程師',
+                    date: '05/MAY/2020',
+                  },
+                  {
+                    title: '關於後端工程師',
+                    date: '09/JUN/2020',
+                  },
+                  {
+                    title: '關於前端工程師',
+                    date: '05/MAY/2020',
+                  },
+                  {
+                    title: '關於後端工程師',
+                    date: '09/JUN/2020',
+                  },
+                  {
+                    title: '關於前端工程師',
+                    date: '05/MAY/2020',
+                  },
+                  {
+                    title: '關於後端工程師',
+                    date: '09/JUN/2020',
+                  },
+                  {
+                    title: '關於前端工程師',
+                    date: '05/MAY/2020',
+                  },
+                  {
+                    title: '關於後端工程師',
+                    date: '09/JUN/2020',
+                  },
                 ], 
             },
   });
@@ -95,6 +133,6 @@ var HorizontalBarGraph = function(el, series) {
 $(document).ready(function(){
   $('.message').slick({
     vertical: true,
-    slidesToShow:5,
+    slidesToShow: 5,
   });
 });

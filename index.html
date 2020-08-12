@@ -11,25 +11,34 @@
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <a href="#">
-                <img src="https://picsum.photos/70/70" alt="">
-            </a>
-        </div>
-        <div class="header_nav">
-            <ul>
-                <li><a href="#">職涯分析</a></li>
-                <li><a href="#">行業攻略</a></li>
-                <li><a href="#">職涯論壇</a></li>
-                <li><a href="#">探索課程</a></li>
-                <li><a href="#">明信片</a></li>
-            </ul>
-        </div>
-        <div class="header_icon">
-            <div class="cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
-            <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
-        </div>
+    <div class="header_wrap">
+        <header class="header">
+            <div class="logo">
+                <a href="#">
+                    <img src="img/logo.svg" alt="">
+                </a>
+            </div>
+            <div class="header_nav">
+                <ul>
+                    <li><a href="#">職涯分析</a></li>
+                    <li><a href="#">行業攻略</a></li>
+                    <li><a href="#">職涯論壇</a></li>
+                    <li><a href="#">探索課程</a></li>
+                    <li><a href="#">明信片</a></li>
+                </ul>
+            </div>
+            <div class="header_icon">
+                <div class="cart">
+                    <a href="#"><i class="fas fa-shopping-cart"></i>
+                        <div class="cart_num"><span>1</span></div>
+                    </a>
+                    <!-- <div class="cart_num"><span>1</span></div> -->
+                </div>
+
+                <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
+            </div>
+        </header>
+
     </div>
     <main class="index">
         <section class="index_test container">
@@ -115,6 +124,8 @@
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
     <script src="./js/index/index.js"></script>
