@@ -7,6 +7,10 @@ let memData = {
         code: '1234567890',
         email: '123456789@gmail.com'
     },
+    memberAnalysis:[
+        {testDate:  "109/01/01", industType: "研究型(S)"},
+        {testDate:  "109/02/01", industType: "企業型(E)"}
+    ],
     currentPage: '會員資料',
     rwdClickPage: false,
     fixMode: false,

@@ -79,12 +79,15 @@
                 </div>
             </div>
             <div class="container" v-if="currentPage == '我的分析'">
-                <div>
-                    <div class = "col-md-4"></div>
-                    <div class = "col-md-4"></div>
+                <div class = "col-md-12 mem_tit_area" v-if="screenWidth >= 768">
+                    <div class = "col-md-4 mem_title">測驗日期</div>
+                    <div class = "col-md-4 mem_title">適合類別</div>
                 </div>
-                <!-- <div class = "col-md-4"></div>
-                <div class = "col-md-4"></div> -->
+                <div class = "col-md-12 mem_ana_area" v-for="(quizResult, index) in memberAnalysis">
+                    <div class = "col-md-4">{{quizResult.testDate}}</div>
+                    <div class = "col-md-4">{{quizResult.industType}}{{index}}</div>
+                    <div class = "col-md-4 btn_third">詳細資訊</div>
+                </div>
             </div>
             <div v-if="currentPage == '我的課程'">
                 {{currentPage}}

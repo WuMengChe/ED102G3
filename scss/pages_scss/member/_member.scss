@@ -106,9 +106,29 @@
             .col-sm-12{
                 padding: 0;
             }
-            .col-md-4{
-                border: 1px red solid;
-                height: 100px;
+            .mem_tit_area{
+                display: flex;
+                width: 100%;
+                border-top: 2px black solid;
+                border-bottom: 2px black solid;
+                .mem_title{
+                    display: inline-flex;
+                    height: 25px;
+                    text-align: center;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+            }
+            .mem_ana_area{
+                display: flex;
+                width: 100%;
+                .mem_title{
+                    display: inline-flex;
+                    height: 40px;
+                    text-align: center;
+                    flex-direction: column;
+                    justify-content: center;
+                }
             }
         }
         .btn_third{
