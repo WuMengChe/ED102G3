@@ -169,6 +169,10 @@ a {
   background: #336AC6;
 }
 
+body {
+  background: black;
+}
+
 div.header {
   width: 100%;
   max-width: 1200px;

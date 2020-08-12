@@ -5,6 +5,10 @@ $header_icon_i_size: 20px;
 $header_icon_i_color: #1b4d9f;
 $header_nav_font_color: #1b4d9f;
 
+body {
+    background: black;
+}
+
 div.header {
     width: 100%;
     max-width: 1200px;
