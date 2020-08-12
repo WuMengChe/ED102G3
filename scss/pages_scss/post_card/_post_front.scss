@@ -3,91 +3,14 @@
 }
 
 
-div.postcard_main,
-.container {
+div.postcard_main {
   border: 1px solid red;
-  max-width: 1200px;
+  max-width: 900px !important;
   margin-top: 50px;
 
   .view,
   .row {
     justify-content: space-between;
-
-
-
-
-    // 上傳區
-    .photo_upload {
-      // border: 1px solid blue;
-      background-color: lightgray;
-
-      .title {
-        border: 1px solid red;
-
-        h3 {
-          display: inline-block;
-          border: 1px solid rgb(2, 2, 253);
-        }
-
-        p.note {
-          display: inline-block;
-          border: 1px solid rgb(2, 2, 253);
-
-        }
-      }
-
-      .img_upload {
-        border: 1px solid rgb(2, 2, 253);
-
-
-
-        .img_show {
-          border: 1px solid red;
-          height: 150px;
-          text-align: center;
-          margin: 20px 0;
-
-          p {
-            border: 1px solid black;
-            margin-top: 50px;
-            color: gray;
-          }
-
-          label {
-            border: 1px solid black;
-            text-align: center;
-            display: inline-block;
-            border-radius: 15px;
-            background-color: #E8C300;
-            color: #1B4D9F;
-            overflow: hidden;
-            padding: 0 5px;
-            margin-top: 45px;
-
-
-            i {
-              border: 1px solid blue;
-              font-size: 18px;
-              display: inline-block;
-
-            }
-
-            .p_small_2 {
-              display: inline-block;
-              font-size: 14px;
-              margin: 0;
-              color: #1B4D9F;
-            }
-
-            input {
-              display: none;
-            }
-          }
-        }
-      }
-    }
-
-
 
     // 明信片區
     .postcardZone {
@@ -95,7 +18,7 @@ div.postcard_main,
       padding-left: -15px;
       padding-bottom: 20px;
 
-      // 正面明信片
+      // 正面明信片---------------------
       .postcard_front {
         // background-color: lightblue;
         // padding-left: -15px;
@@ -116,11 +39,40 @@ div.postcard_main,
             height: 0;
             padding-bottom: 63.5%;
 
+            .style1 {
+              display: none;
+            }
+
             .style2 {
               border: 1px solid red;
+              text-align: center;
 
-              // height: 0;
-              // padding-bottom: 63.5%;
+              @mixin label {
+                #{label} {
+                  border: 1px solid #1b4d9f;
+                  display: inline-block;
+                  margin-top: 2%;
+                  color: #1b4d9f;
+                  background: #fff;
+                  border-radius: 20px;
+                  cursor: pointer;
+
+                  i {
+                    display: inline-block;
+                    font-size: 18px;
+                    padding-left: 8px;
+                  }
+
+                  p {
+                    display: inline-block;
+                    padding: 5px 5px 5px 8px;
+                  }
+
+                  input {
+                    display: none;
+                  }
+                }
+              }
 
               .top_2 {
                 // height: 20%;
@@ -128,26 +80,57 @@ div.postcard_main,
                 padding-bottom: 20%;
                 background-color: rgb(255, 254, 235);
 
+                p.drag {
+                  color: gray;
+                  padding-top: 4%;
+                }
+
+                @include label();
               }
 
-              .left_2 {
-                background-color: rgb(219, 253, 204);
-                width: 49.5%;
-                height: 0;
+              .bottom_2 {
 
-                display: inline-block;
-                padding-bottom: 43.5%;
-                background-position: center;
+                display: flex;
+
+                .left_2 {
+                  background-color: rgb(219, 253, 204);
+                  height: 0;
+                  padding-bottom: 43.5%;
+                  background-position: center;
+                  flex-grow: 1;
+
+                  p.drag {
+                    color: gray;
+                    padding-top: 10%;
+                  }
+
+                  @include label();
+                }
+
+                .right_2 {
+                  background-color: rgb(255, 228, 253);
+                  flex-grow: 1;
+                  height: 0;
+                  padding-bottom: 43.5%;
+
+                  p.drag {
+                    color: gray;
+                    padding-top: 10%;
+                  }
+
+                  @include label();
+
+                }
               }
 
-              .right_2 {
-                background-color: rgb(255, 228, 253);
-                width: 49.5%;
-                height: 0;
-                display: inline-block;
-                padding-bottom: 43.5%;
-
+              .style3 {
+                display: none;
               }
+
+            }
+
+            .style3 {
+              display: none;
             }
 
             .main_outline_style {
@@ -157,7 +140,7 @@ div.postcard_main,
               left: 0;
               height: 100%;
               width: 100%;
-
+              pointer-events: none;
 
 
               img {
@@ -173,25 +156,15 @@ div.postcard_main,
         }
 
         button {
-          border: 2px solid blue;
           float: right;
           margin: 20px 0;
-          cursor: pointer;
-          border-radius: 20px;
-          background-color: white;
-          color: #1B4D9F;
-
-
-          p {
-            // border: 1px solid blue;
-            display: inline-block;
-            padding: 5px;
-          }
+          // border: 2px solid #1b4d9f;
 
           i {
             // border: 1px solid blue;
             display: inline-block;
             font-size: 17px;
+            padding-left: 10px;
           }
         }
 
@@ -199,21 +172,43 @@ div.postcard_main,
           border: 1px solid rgb(255, 0, 200);
           margin-top: 80px;
 
+
+
           .front_all_style {
             border: 1px solid rgb(23, 29, 23);
+            //  @mixin style_list {
+            //    #{style_list} {
+            //      border: 1px solid blue;
+            //      justify-content: space-around;
+            //      margin: 20px 0;
 
+            //      .style {
+            //        border: 1px solid rgb(17, 17, 17);
+            //        padding: 0;
+            //        cursor: pointer;
+
+            //        img {
+            //          width: 100%;
+            //        }
+            //      }
+            //    }
+            //  }
+
+
+            // @include style_list();
             .style_list {
               border: 1px solid blue;
               justify-content: space-around;
-              // display: inline-block;
               margin: 20px 0;
 
               .style {
                 border: 1px solid rgb(17, 17, 17);
                 padding: 0;
-                // margin-top: 20px;
-                // width: 150px;
                 cursor: pointer;
+
+                img {
+                  width: 100%;
+                }
               }
             }
           }
@@ -222,7 +217,7 @@ div.postcard_main,
             border: 1px solid rgb(23, 29, 23);
 
             .style_list {
-              border: 1px solid blue;
+              // border: 1px solid blue;
               justify-content: space-around;
               // display: inline-block;
               margin: 20px 0;
@@ -236,9 +231,9 @@ div.postcard_main,
                 position: relative;
                 cursor: pointer;
 
-                // img {
-                //   border: 1px solid red;
-                // }
+                img {
+                  width: 100%;
+                }
 
                 p {
                   position: absolute;
@@ -253,12 +248,77 @@ div.postcard_main,
           }
         }
       }
-    }
-  }
-}
 
-@media (max-width: 767px) {
-  .photo_upload {
-    display: none;
+      //背面明信片----------------------
+      .postcard_back {
+        background-color: rgb(149, 252, 154);
+
+        .back_post {
+          border: 1px solid burlywood;
+          margin: 20px 0;
+
+          .mainStyle {
+            border: 1px solid rgb(241, 161, 57);
+
+            .style1 {
+              border: 1px solid red;
+            }
+          }
+        }
+
+        .buttons {
+          border: 1px solid brown;
+          margin-bottom: 20px;
+          display: flex;
+          justify-content: flex-end;
+
+          #toFront {
+            margin-right: 50px;
+            display: inline-block;
+
+            i {
+              padding-right: 10px;
+            }
+          }
+
+          #choice_date {
+            display: inline-block;
+
+            i {
+              padding-left: 10px;
+            }
+          }
+        }
+
+        .change_style {
+          border: 1px solid yellow;
+
+          .back_all_style {
+            border: 1px solid rgb(38, 73, 44);
+
+            .style_list {
+              border: 1px solid blue;
+              justify-content: space-around;
+              margin: 20px 0;
+
+              .style {
+                border: 1px solid rgb(17, 17, 17);
+                padding: 0;
+                cursor: pointer;
+
+                img {
+                  width: 100%;
+                }
+              }
+            }
+          }
+
+          .style_all_stamps {
+            border: 1px solid yellow;
+
+          }
+        }
+      }
+    }
   }
 }

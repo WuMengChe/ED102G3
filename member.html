@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+    <link rel="stylesheet" href="./css/bootstrap_grid/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./css/app_public.css">
+    <link rel="stylesheet" href="./css/member_all.css">
+    <link rel="stylesheet" href="./css/rwd_member_all.css">
+</head>
+<body>
+    <div class="header" id = "header" v-if="(!rwdClickPage && screenWidth < 975) || (screenWidth >= 975)">就只是header而已</div>
+    <main class = "mem_con_width container" id = "mem_change">
+        <div class = "mem_list col-lg-2 col-md-12" v-if="(!rwdClickPage && screenWidth < 975) || (screenWidth >= 975)">
+            <ul>
+                <li v-for="(item, index) in title" v-on:click="changePages(index), rwdChangePages(rwdClickPage)">{{item}}</li>
+            </ul>
+        </div>
+        <div class = "mem_con_area col-lg-10 col-md-12" v-if="(rwdClickPage && screenWidth < 975) || (screenWidth >= 975)">
+            <div class = "mem_con_title">
+                <button class="btn_second" @click="rwdChangePages(rwdClickPage)" v-if="screenWidth < 975">返回</button>
+                <h1>{{currentPage}}</h1>
+            </div>
+            <div class="container" v-if="currentPage == '會員資料'">
+                <div class = "mem_img_area col-md-4 col-sm-12">
+                    <div class = "mem_img">
+                        <img v-bind:src="memImage"/>
+                    </div>
+                    <label for = "input_image" class = "btn_third">上傳圖片</label>
+                    <input type="file" accept="image/*"  id = "input_image" @change="changeImage">
+                </div>
+                <div class = "mem_con_detail col-md-8 col-sm-12">
+                    <form class = "mem_detail" action="#">
+                        <table>
+                            <tr>
+                                <td>名稱：</td>
+                                <td>
+                                    <span v-if = "!fixMode">{{member.name}}</span>
+                                    <input type = "text" v-model="member.name" v-if = "fixMode">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>生日：</td>
+                                <td>
+                                    <span v-if = "!fixMode">{{member.birthday}}</span>
+                                    <input type = "text" v-model="member.birthday" v-if = "fixMode">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>電話：</td>
+                                <td>
+                                    <span v-if = "!fixMode">{{member.tel}}</span>
+                                    <input type = "text" pattern="[0-9]{9,10}" v-model="member.tel" v-if = "fixMode">
+                                </td>
+                            </tr>
+                            <tr v-if = "fixMode">
+                                <td>密碼：</td>
+                                <td>
+                                    <input type = "password" pattern="[0-9a-zA-Z]{10}" v-model="member.code">
+                                </td>
+                            </tr>
+                            <tr v-if = "fixMode">
+                                <td>再次確認密碼：</td>
+                                <td>
+                                    <input type = "password" pattern="[0-9a-zA-Z]{10}" v-model="member.code">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>電子郵件：</td>
+                                <td>
+                                    <span>{{member.email}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                        <button class="btn_third" v-if="screenWidth < 768" @click="fixMode = !fixMode">{{fixMode?'確認修改':'修改資料'}}</button>
+                    </form>
+                </div>
+            </div>
+            <div class="container" v-if="currentPage == '我的分析'">
+                <div>
+                    <div class = "col-md-4"></div>
+                    <div class = "col-md-4"></div>
+                </div>
+                <!-- <div class = "col-md-4"></div>
+                <div class = "col-md-4"></div> -->
+            </div>
+            <div v-if="currentPage == '我的課程'">
+                {{currentPage}}
+            </div>
+            <div v-if="currentPage == '我的收藏'">
+                {{currentPage}}
+            </div>
+            <div v-if="currentPage == '我的明信片'">
+                {{currentPage}}
+            </div>
+            <div v-if="currentPage == '訂單紀錄'">
+                {{currentPage}}
+            </div>
+            <div v-if="currentPage == '訊息'">
+                {{currentPage}}
+            </div>
+            <button class="btn_third" v-if="(currentPage == '會員資料') && (screenWidth >= 768)" @click="fixMode = !fixMode">{{fixMode?'確認修改':'修改資料'}}</button>
+        </div>
+    </main>
+    <script type="text/javascript" src="./js/member/member.js"></script>
+</body>
+</html>

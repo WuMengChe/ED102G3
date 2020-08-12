@@ -2,9 +2,17 @@
   border: 1px solid black;
   max-width: 1200px;
 
-  h3 {
-    // display: block;
-    border: 1px solid black;
+  .select_date {
+    margin-top: 20px;
+    border: 1px solid blue;
+    justify-content: space-between;
+
+    p {
+      border: 1px solid red;
+
+    }
+
+
   }
 
   .view {
@@ -16,6 +24,10 @@
       p {
         padding-bottom: 20px;
       }
+
+      img {
+        width: 100%;
+      }
     }
 
     .view_back {
@@ -25,23 +37,15 @@
         padding-bottom: 20px;
 
       }
+
+      img {
+        width: 100%;
+      }
     }
+
+
   }
 
 
-  .select_date {
-    margin-top: 20px;
-    border: 1px solid blue;
-    justify-content: space-between;
 
-    p {
-      border: 1px solid red;
-
-    }
-
-    div {
-      border: 1px solid red;
-
-    }
-  }
 }
