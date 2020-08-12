@@ -9,7 +9,8 @@ let memData = {
     },
     memberAnalysis:[
         {testDate:  "109/01/01", industType: "研究型(S)"},
-        {testDate:  "109/02/01", industType: "企業型(E)"}
+        {testDate:  "109/02/01", industType: "企業型(E)"},
+        {testDate:  "109/03/01", industType: "實作型(R)"}
     ],
     currentPage: '會員資料',
     rwdClickPage: false,
@@ -55,6 +56,9 @@ let changeMemContent = new Vue({
                 }
                 reader.readAsDataURL(input.files[0]);
               }
+        },
+        showPage(index){
+            var page = document.querySelectorAll('.mem_ana_area')[index].querySelector('.mem_ana_det').classList.toggle('show');
         }
     },
 })

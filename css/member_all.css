@@ -392,6 +392,7 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 20px;
   width: 100%;
   border-top: 2px black solid;
   border-bottom: 2px black solid;
@@ -416,7 +417,10 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 20px;
   width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .mem_con_width div.mem_con_area div.container .mem_ana_area .mem_ana {
@@ -432,6 +436,19 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.mem_con_width div.mem_con_area div.container .mem_ana_area .mem_ana_det {
+  margin-top: 20px;
+  border: 1px black solid;
+  height: 100px;
+  position: absolute;
+  opacity: 0;
+}
+
+.mem_con_width div.mem_con_area div.container .mem_ana_area .show {
+  position: relative;
+  opacity: 1;
 }
 
 .mem_con_width div.mem_con_area .btn_third {

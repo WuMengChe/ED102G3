@@ -108,6 +108,7 @@
             }
             .mem_tit_area{
                 display: flex;
+                margin-top: 20px;
                 width: 100%;
                 border-top: 2px black solid;
                 border-bottom: 2px black solid;
@@ -121,13 +122,26 @@
             }
             .mem_ana_area{
                 display: flex;
+                margin-top: 20px;
                 width: 100%;
+                flex-wrap: wrap;
                 .mem_ana{
                     display: inline-flex;
                     height: 40px;
                     text-align: center;
                     flex-direction: column;
                     justify-content: center;
+                }
+                .mem_ana_det{
+                    margin-top: 20px;
+                    border: 1px black solid;
+                    height: 100px;
+                    position: absolute;
+                    opacity: 0;
+                }
+                .show{
+                    position: relative;
+                    opacity: 1;
                 }
             }
         }
