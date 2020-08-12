@@ -134,5 +134,8 @@ $(document).ready(function(){
   $('.message').slick({
     vertical: true,
     slidesToShow: 5,
+    autoplay: true,
+    autoplaySpeed:1000,
+    arrows: false,
   });
 });
