@@ -1,3 +1,4 @@
+@import '../../_public_dontTouch/utils/variables';
 @mixin section {
     display: flex;
     border: 1px solid red;
@@ -190,7 +191,17 @@
         .index_disc_text{
             h1{}
             .index_dia{
-                div{}
+                .message{
+                    
+                    div{
+                        border: 1px solid #000;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                        box-shadow: $card_shadow;
+                        h5{}
+                        p{}
+                    }
+                }
                 .btn_second{}
             }
         }
