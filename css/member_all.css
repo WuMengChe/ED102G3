@@ -419,7 +419,7 @@ main {
   width: 100%;
 }
 
-.mem_con_width div.mem_con_area div.container .mem_ana_area .mem_title {
+.mem_con_width div.mem_con_area div.container .mem_ana_area .mem_ana {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
