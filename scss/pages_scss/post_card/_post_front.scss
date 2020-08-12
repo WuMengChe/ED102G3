@@ -366,3 +366,9 @@ div.postcard_main {
     }
   }
 }
+
+@media(max-width:767px) {
+  .postmarks_style {
+    justify-content: space-between;
+  }
+}
