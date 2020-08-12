@@ -84,10 +84,10 @@
                     <div class = "col-md-4 mem_title">適合類別</div>
                 </div>
                 <div class = "col-md-12 mem_ana_area" v-for="(quizResult, index) in memberAnalysis">
-                    <div class = "col-md-4">{{quizResult.testDate}}</div>
-                    <div class = "col-md-4">{{quizResult.industType}}{{index}}</div>
-                    <div class = "col-md-4">
-                        <button class="btn_third">詳細資訊</button>
+                    <div class = "col-md-4 mem_ana">{{quizResult.testDate}}</div>
+                    <div class = "col-md-4 mem_ana">{{quizResult.industType}}{{index}}</div>
+                    <div class = "col-md-4" :class="{index: ture}">
+                        <button class="btn_third" v-on:click="index = !index">詳細資訊</button>
                     </div>
                 </div>
             </div>
