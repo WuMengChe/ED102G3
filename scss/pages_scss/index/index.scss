@@ -192,14 +192,29 @@
             h1{}
             .index_dia{
                 .message{
-                    
-                    div{
+                    border: 1px solid #000;
+                    border-radius: 10px;
+                    padding: 10px;
+                   
+                    .meg_box{
                         border: 1px solid #000;
                         border-radius: 5px;
                         margin-bottom: 20px;
                         box-shadow: $card_shadow;
-                        h5{}
-                        p{}
+                        
+                        a{
+                            width: 100%;
+                            padding: 10px;
+                            h5{}
+                            hr{
+                                width:98%;
+                                color: lightgrey;
+                            }
+                            p{
+                                font-size: 12px;
+                                color: rgb(42, 169, 219)
+                            }
+                        }
                     }
                 }
                 .btn_second{}
@@ -225,14 +240,20 @@
                         background-color: #fff;
                         height: 425px;
                         .screen_carousel{
-                            .course{
+                            .item{
                                 display: inline-block;
                                 border: 1px solid pink;
-                                color:red;
                                 height: 300px;
-                                width: 200px;
                                 margin: 20px 0;
-                                
+                                img{
+                                    width: 100%;
+                                }
+                                h5{}
+                                p{
+                                    overflow:hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                }
                             }
                         }
                         .btn_second{
