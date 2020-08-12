@@ -1,0 +1,41 @@
+.type_analysis{
+    border: 1px solid red;
+    display:flex;
+    flex-direction: column;
+    background: #FFF;
+     .analysis_description{
+         border: 1px solid darkcyan;
+         width: 100%;
+         display: flex;
+         .analysis_txt{
+             border: 1px solid fuchsia;
+             width: 60%;
+             padding: 2%;
+             h2{
+                 margin: 3%;
+                 font-weight: 600;
+             }
+             span,p{
+                 line-height: 28px;
+                 letter-spacing: 2px;
+             }
+             h3{
+                 margin: 3% 3% 3% 0%;
+                 font-weight: 600;
+             }
+         }
+         .chart_bx{
+            border: 1px solid goldenrod;
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+     }
+     .btn_save_bx{
+         border: 1px solid goldenrod;
+         display: flex;
+         justify-content: center;
+         padding: 2% 3% 3% 3%;
+     }
+}
