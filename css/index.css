@@ -1,6 +1,4 @@
 .index .index_test {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border: 1px solid red;
   height: 100vh;
@@ -9,8 +7,6 @@
 .index .index_test .index_test_text {
   border: 1px solid #000;
   text-align: justify;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin: auto 0;
   padding: 30px;
@@ -28,13 +24,10 @@
 
 .index .index_test .index_test_text .btn_primary {
   margin-left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .index .index_test .index_test_img {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin: auto 0;
 }
@@ -82,16 +75,12 @@
 }
 
 .index .index_car {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border: 1px solid red;
   height: 100vh;
 }
 
 .index .index_car .index_sal_img {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   position: relative;
   margin: 25% 0;
@@ -152,7 +141,6 @@
 
 .index .index_car .index_sal_chart .chart .horizontal-bar-graph-value-bar {
   background: silver;
-  -webkit-box-sizing: padding-box;
   box-sizing: padding-box;
   padding: 4px 4px 3px;
   height: 40px;
@@ -181,16 +169,12 @@
 }
 
 .index .index_disc {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border: 1px solid red;
   height: 100vh;
 }
 
 .index .index_cour {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border: 1px solid red;
   height: 100vh;
@@ -231,8 +215,6 @@
 }
 
 .index .index_card {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border: 1px solid red;
   height: 100vh;

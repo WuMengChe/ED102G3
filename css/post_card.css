@@ -1,6 +1,5 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 div.postcard_main {
@@ -11,9 +10,7 @@ div.postcard_main {
 
 div.postcard_main .view,
 div.postcard_main .row {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 div.postcard_main .view .postcardZone,
@@ -98,8 +95,6 @@ div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .sty
 
 div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .style2 .bottom_2,
 div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .style2 .bottom_2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -109,9 +104,7 @@ div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .sty
   height: 0;
   padding-bottom: 43.5%;
   background-position: center;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  flex-grow: 1;
 }
 
 div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .style2 .bottom_2 .left_2 p.drag,
@@ -152,9 +145,7 @@ div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .sty
 div.postcard_main .view .postcardZone .postcard_front .front_post .mainStyle .style2 .bottom_2 .right_2,
 div.postcard_main .row .postcardZone .postcard_front .front_post .mainStyle .style2 .bottom_2 .right_2 {
   background-color: #ffe4fd;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  flex-grow: 1;
   height: 0;
   padding-bottom: 43.5%;
 }
@@ -248,8 +239,7 @@ div.postcard_main .row .postcardZone .postcard_front .change_style .front_all_st
 div.postcard_main .view .postcardZone .postcard_front .change_style .front_all_style .style_list,
 div.postcard_main .row .postcardZone .postcard_front .change_style .front_all_style .style_list {
   border: 1px solid blue;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   margin: 20px 0;
 }
 
@@ -272,8 +262,7 @@ div.postcard_main .row .postcardZone .postcard_front .change_style .style_all_ou
 
 div.postcard_main .view .postcardZone .postcard_front .change_style .style_all_outline .style_list,
 div.postcard_main .row .postcardZone .postcard_front .change_style .style_all_outline .style_list {
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   margin: 20px 0;
 }
 
@@ -299,8 +288,7 @@ div.postcard_main .row .postcardZone .postcard_front .change_style .style_all_ou
   border: 1px solid blue;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 div.postcard_main .view .postcardZone .postcard_back,
@@ -328,12 +316,8 @@ div.postcard_main .view .postcardZone .postcard_back .buttons,
 div.postcard_main .row .postcardZone .postcard_back .buttons {
   border: 1px solid brown;
   margin-bottom: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 div.postcard_main .view .postcardZone .postcard_back .buttons #toFront,
@@ -370,8 +354,7 @@ div.postcard_main .row .postcardZone .postcard_back .change_style .back_all_styl
 div.postcard_main .view .postcardZone .postcard_back .change_style .back_all_style .style_list,
 div.postcard_main .row .postcardZone .postcard_back .change_style .back_all_style .style_list {
   border: 1px solid blue;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   margin: 20px 0;
 }
 
@@ -400,9 +383,7 @@ div.postcard_main .row .postcardZone .postcard_back .change_style .style_all_sta
 .postcard_view .select_date {
   margin-top: 20px;
   border: 1px solid blue;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 .postcard_view .select_date p {

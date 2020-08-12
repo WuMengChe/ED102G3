@@ -6,16 +6,9 @@ div.before_test_wrap {
 
 div.before_test_wrap section.origin_of_types_before_test {
   border: 1px solid cadetblue;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   padding: 2%;
 }
 
@@ -31,12 +24,8 @@ div.before_test_wrap section.origin_of_types_before_test p {
 
 div.before_test_wrap .wrap_of_btn_before_test {
   border: 1px solid fuchsia;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   padding: 2%;
 }
 
@@ -47,12 +36,8 @@ main.main_before_test {
 main.main_before_test .all_type_card_before_test {
   border: 1px solid navy;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  justify-content: space-evenly;
   padding: 5% 0px;
 }
 
@@ -61,31 +46,17 @@ main.main_before_test .type_card_before_test {
   height: 500px;
   border-radius: 10px;
   background-color: #ffffff;
-  -webkit-box-shadow: #E0E0E0 3px 3px 5px;
-          box-shadow: #E0E0E0 3px 3px 5px;
+  box-shadow: #E0E0E0 3px 3px 5px;
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 main.main_before_test .type_card_before_test .title_type {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   height: 40px;
 }
 
@@ -97,7 +68,6 @@ main.main_before_test .type_card_before_test .img_bx_type_card {
 
 .type_card_before_test.expanding {
   width: 500px;
-  -webkit-transition: ease-in-out 2s;
   transition: ease-in-out 2s;
 }
 
@@ -107,20 +77,10 @@ main.main_before_test .type_card_before_test .img_bx_type_card {
 }
 
 .instruction_test_wrap .main_instruction_wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  background: -webkit-gradient(linear, left top, left bottom, from(#296079), to(white));
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background: linear-gradient(#296079, white);
 }
 
@@ -161,19 +121,10 @@ main.main_during_test {
 main.main_during_test .question_bx {
   border: 1px solid blue;
   padding: 1%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 main.main_during_test .question_bx h3 {
@@ -183,19 +134,10 @@ main.main_during_test .question_bx h3 {
 
 main.main_during_test .answer_option_wrap {
   border: 1px solid darkgoldenrod;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 main.main_during_test .answer_option_wrap .answer_option {
@@ -220,15 +162,9 @@ main.main_during_test .answer_option_wrap .answer_option .img_bx {
 main.main_during_test .progress_bar_bx {
   border: 1px solid navy;
   height: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 main.main_during_test .progress_bar_bx .progress_container {
@@ -241,8 +177,6 @@ main.main_during_test .progress_bar_bx .progress_container {
 }
 
 main.main_during_test .progress_bar_bx .progress_container span {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   position: absolute;
   left: 50%;
