@@ -173,7 +173,12 @@ body {
   background: black;
 }
 
-div.header {
+div.header_wrap {
+  width: 100%;
+  background: #fff;
+}
+
+div.header_wrap header.header {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -192,36 +197,35 @@ div.header {
   position: sticky;
   top: 0px;
   z-index: 200;
-  background: #fff;
 }
 
-div.header div.logo {
+div.header_wrap header.header div.logo {
   width: 70px;
   height: 70px;
   margin-right: auto;
 }
 
-div.header div.logo a {
+div.header_wrap header.header div.logo a {
   width: 100%;
   display: inline-block;
 }
 
-div.header div.logo a img {
+div.header_wrap header.header div.logo a img {
   width: 101%;
   vertical-align: middle;
 }
 
-div.header div.header_nav ul {
+div.header_wrap header.header div.header_nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-div.header div.header_nav ul li {
+div.header_wrap header.header div.header_nav ul li {
   margin: 0 5px;
 }
 
-div.header div.header_nav ul li a {
+div.header_wrap header.header div.header_nav ul li a {
   display: inline-block;
   padding: 5px 15px;
   font-size: 18px;
@@ -229,7 +233,7 @@ div.header div.header_nav ul li a {
   font-weight: bold;
 }
 
-div.header div.header_icon {
+div.header_wrap header.header div.header_icon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -239,17 +243,17 @@ div.header div.header_icon {
   margin-left: 100px;
 }
 
-div.header div.header_icon div.cart {
+div.header_wrap header.header div.header_icon div.cart {
   position: relative;
 }
 
-div.header div.header_icon div.cart i {
+div.header_wrap header.header div.header_icon div.cart i {
   font-size: 20px;
   color: #1b4d9f;
   padding-right: 20px;
 }
 
-div.header div.header_icon div.cart div.cart_num {
+div.header_wrap header.header div.header_icon div.cart div.cart_num {
   position: absolute;
   bottom: -4px;
   left: -2px;
@@ -261,13 +265,13 @@ div.header div.header_icon div.cart div.cart_num {
   line-height: 12px;
 }
 
-div.header div.header_icon div.cart div.cart_num span {
+div.header_wrap header.header div.header_icon div.cart div.cart_num span {
   color: #fff;
   font-size: 13px;
   font-weight: bold;
 }
 
-div.header div.header_icon div.member i {
+div.header_wrap header.header div.header_icon div.member i {
   font-size: 20px;
   color: #1b4d9f;
 }
