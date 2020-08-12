@@ -237,14 +237,34 @@ div.postcard_main {
         background-color: rgb(149, 252, 154);
 
         .back_post {
-          border: 1px solid burlywood;
+          border: 1px solid rgb(70, 92, 74);
           margin: 20px 0;
+          // display: inline-block;
 
           .mainStyle {
             border: 1px solid rgb(241, 161, 57);
+            background-color: yellow;
+            padding-bottom: 63.5%;
+            height: 0;
+
 
             .style1 {
               border: 1px solid red;
+              display: flex;
+
+              .left_pic {
+                background-color: lightgray;
+                flex-grow: 1;
+                height: 0;
+                padding-bottom: 63.6%;
+              }
+
+              .right_write {
+                background-color: rgb(251, 184, 184);
+                flex-grow: 1;
+                height: 0;
+                padding-bottom: 63.6%;
+              }
             }
           }
         }
