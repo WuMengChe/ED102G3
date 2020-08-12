@@ -89,3 +89,12 @@ var HorizontalBarGraph = function(el, series) {
                 ], 
             },
   });
+
+
+//論壇--輪播
+$(document).ready(function(){
+  $('.message').slick({
+    vertical: true,
+    slidesToShow:5,
+  });
+});
