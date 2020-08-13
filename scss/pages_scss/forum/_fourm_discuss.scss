@@ -1,0 +1,576 @@
+* {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.header {
+  position: fixed;
+}
+
+.forum_discuss > .dis_body {
+  .career {
+    // padding-right: 30px;
+    min-width: 200px;
+  }
+  .career_name::-webkit-scrollbar {
+    display: none;
+  }
+  .career_name {
+    // border: 1px solid blueviolet;
+    overflow: hidden;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 200px;
+    li {
+      text-align: center;
+      border: 10px solid #336ac6;
+      width: 200px;
+      height: 80px;
+      line-height: 60px;
+      cursor: pointer;
+    }
+  }
+}
+
+.forum_discuss > .search {
+  padding: 20px 0;
+  .search_wrap {
+    display: flex;
+    .search_wrap_line {
+      border: 2px solid #336ac6;
+      border-radius: 30px;
+      width: 100%;
+      #search_btn {
+        cursor: pointer;
+        background-color: white;
+        border: none;
+        margin-left: 13px;
+      }
+      .text_input {
+        min-width: 80%;
+        height: 30px;
+        border: none;
+      }
+    }
+    #cancel_search_btn {
+      min-width: 50px;
+      margin-left: 10px;
+    }
+  }
+}
+//---------------------
+* {
+  box-sizing: border-box;
+}
+/* 整個頁籤及內容最外層區塊 */
+div.tab_container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 頁籤區塊 */
+div.tab_container div.tab_list_block {
+  // padding-left: 20px;
+}
+
+/* 頁籤列表 */
+div.tab_container div.tab_list_block ul.tab_list {
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+div.tab_container div.tab_list_block ul.tab_list > li {
+  display: inline-block;
+  background-color: #336ac6;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+div.tab_container div.tab_list_block ul.tab_list > li > a {
+  text-decoration: none;
+  display: inline-block;
+  // border: 1px solid #ccc;
+  // border-bottom: 1px solid black;
+  padding: 7px 30px;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  color: #ccc;
+
+  position: relative;
+  top: 1px;
+}
+
+/* 頁籤內容區塊 */
+div.tab_container div.tab_contents {
+  background: #336ac6;
+  padding: 0 20px;
+}
+div.tab_container div.tab_contents div.tab {
+  padding: 10px;
+  display: none;
+  .msg_content {
+    border-top: 2px solid #336ac6;
+    margin: 20px 0;
+    .mem_info {
+      display: flex;
+      padding: 10px;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      li {
+        min-width: 50px;
+        line-height: 30px;
+        .type_tag {
+          background-color: #0056b3;
+          padding: 3px 5px;
+          text-align: right;
+          border-radius: 5px;
+          color: white;
+        }
+      }
+    }
+    .msg_title {
+      // background-color: #336ac6;
+      cursor: pointer;
+      padding: 20px;
+      span {
+        background-color: white;
+        border-radius: 5px;
+        padding: 5px;
+        font-weight: 500;
+      }
+      .open_dialog {
+      }
+    }
+    .msg_textarea {
+      min-height: 150px;
+      padding: 20px;
+      letter-spacing: 1px;
+    }
+    .msg_btn {
+      // border: 1px solid red;
+      text-align: end;
+      button {
+        min-width: 50px;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
+div.tab_container div.tab_contents div.tab.-on {
+  display: block;
+  .msg_content {
+    background-color: white;
+    margin: 20px 0;
+    .mem_info {
+      // border: 1px solid red;
+      display: flex;
+      padding: 10px;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        // border: 1px solid #ccc;
+      }
+      li {
+        min-width: 50px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .msg_title {
+      cursor: pointer;
+      padding: 20px;
+      font-size: 20px;
+      span {
+        background-color: white;
+        border-radius: 5px;
+        padding: 5px;
+        font-weight: 500;
+      }
+      .open_dialog {
+      }
+    }
+    .msg_textarea {
+      min-height: 135px;
+      padding: 20px;
+      letter-spacing: 1px;
+    }
+    .msg_btn {
+      // border: 1px solid red;
+      text-align: end;
+      button {
+        min-width: 50px;
+        // background: #1b4d9f;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+//頁碼
+div.pagination_block {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #336ac6;
+  padding: 20px 0;
+}
+
+div.pagination_block > ul.pagination {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+
+div.pagination_block > ul.pagination > li {
+  display: inline-block;
+  background: #336ac6;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+div.pagination_block > ul.pagination > li > a {
+  display: inline-block;
+  text-decoration: none;
+
+  // border: 1px solid #dee2e6; /* 留意 */
+  border-right: 0; /* 留意：將全部的右邊框都移除 */
+
+  text-align: center;
+  padding: 5px 10px;
+  font-size: 1rem;
+  color: white;
+}
+
+/* 留意: 將最後一個 li 裡的 a，右邊框加回來 */
+/* 留意: 將最後一個 li 裡的 a，加上圓角 */
+// div.pagination_block > ul.pagination > li:last-child > a {
+//   border-right: 1px solid #dee2e6;
+//   border-radius: 0 5px 5px 0;
+// }
+/* 留意: 將第一個 li 裡的 a，加上圓角 */
+div.pagination_block > ul.pagination > li:first-child > a {
+  display: inline-block;
+  // border-radius: 5px 0 0 5px;
+}
+
+// div.pagination_block > ul.pagination > li > a.-on {
+//   background-color: #e9ecef;
+//   color: #0056b3;
+// }
+
+div.pagination_block > ul.pagination > li > a:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+  border-radius: 50%;
+}
+
+a.pencil_btn {
+  display: inline-block;
+  cursor: pointer;
+  position: fixed;
+  bottom: 80px;
+  right: 45px;
+
+  outline: none;
+  transform: translate(0, 10px);
+  transition: transform 0.5s;
+  background-color: #ccc;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  .fas {
+    position: absolute;
+    right: 24%;
+    top: 31%;
+  }
+}
+
+/* 點擊主題跳出的燈箱 */
+.forum_overlay {
+  // position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 230vh;
+  background-color: hsla(0, 0%, 0%, 0.5);
+
+  /* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 1s;
+  display: none;
+}
+div.forum_overlay.-on {
+  /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
+  opacity: 1;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+div.forum_overlay.-opacity-zero {
+  /* 關閉 Modal 時，先讓 opacity設定0，就會慢慢變成完全透明，但這時會擋到後面的元素，所以要再移除 -on 及 -opacity-zero 這兩個 class */
+  opacity: 0;
+}
+
+/* 元素 article 置中及基本樣式 */
+div.forum_overlay > .forum_checkMsg {
+  background-color: white;
+  border-radius: 10px;
+  max-height: 103vh;
+  padding: 10px;
+  top: 22%;
+  left: 50%;
+  max-width: 800px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  overflow: scroll;
+}
+
+/* 燈箱內容詳情 */
+.forum_checkMsg .forum_topic {
+  .msg_content {
+    min-height: 150px;
+    border-top: 2px solid #336ac6;
+    margin: 20px 0;
+    .mem_info {
+      // border: 1px solid red;
+      display: flex;
+      padding: 10px;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        // border: 1px solid #ccc;
+      }
+      li {
+        min-width: 50px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .msg_title {
+      background-color: #336ac6;
+      cursor: pointer;
+      padding: 20px;
+      span {
+        background-color: white;
+        border-radius: 5px;
+        padding: 5px;
+        font-weight: 500;
+      }
+      .open_dialog {
+      }
+    }
+    .msg_textarea {
+      min-height: 150px;
+      padding: 20px;
+      letter-spacing: 1px;
+    }
+    .msg_btn {
+      // border: 1px solid red;
+      text-align: end;
+      button {
+        min-width: 50px;
+        // background: #1b4d9f;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/* 留言數量 */
+.forum_checkMsg .feedback_count {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid blue;
+  text-align: center;
+}
+
+/* 回應留言 */
+.forum_checkMsg .forum_feedback {
+  .msg_content {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom: 2px solid #336ac6;
+    // background: #336ac6;
+    margin: 20px 0;
+    .mem_info {
+      // border: 1px solid red;
+      display: flex;
+      padding: 10px;
+      li {
+        min-width: 50px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+      }
+    }
+    .msg_textarea {
+      min-height: 80px;
+      padding: 20px;
+      letter-spacing: 1px;
+    }
+    .msg_btn {
+      // border: 1px solid red;
+      text-align: end;
+      button {
+        min-width: 50px;
+        // background: #1b4d9f;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.forum_overlay > .forum_checkMsg {
+  .close_btn {
+    height: 30px;
+    border: 1px solid red;
+    text-align: right;
+  }
+  .confirm_send_btn {
+    height: 30px;
+    border: 1px solid red;
+    text-align: center;
+  }
+  #send_msg_btn {
+    display: inline-block;
+    margin: 0 auto;
+  }
+  #send_msg {
+    width: 100%;
+    resize: none;
+  }
+}
+.leave_msg {
+  border: 1px solid gray;
+}
+
+/* 點擊檢舉跳出的燈箱 */
+
+button {
+  cursor: pointer;
+}
+div.impeachment_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: hsla(0, 0%, 0%, 0.5);
+
+  /* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 1s;
+}
+div.impeachment_overlay.-on {
+  /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
+  opacity: 1;
+  z-index: 1;
+}
+
+div.impeachment_overlay.-opacity-zero {
+  opacity: 0;
+}
+
+/* 元素 article 置中及基本樣式 */
+div.impeachment_overlay > article {
+  background-color: white;
+  // width: 20%;
+  border-radius: 10px;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .accuse_close_btn {
+    text-align: right;
+  }
+  h3 {
+    text-align: center;
+  }
+  .accuse_wrap {
+    border: 1px solid red;
+    width: 300px;
+    p {
+      padding: 5px;
+    }
+  }
+}
+
+/* RWD */
+@media screen and (max-width: 992px) {
+  .forum_discuss {
+    .dis_body {
+      .career {
+        width: 100%;
+        padding: 0;
+        border: 15px solid red;
+
+        margin: 0 auto;
+        ul.career_name {
+          display: flex;
+          flex-direction: row;
+          position: static;
+          li {
+            min-width: 100px;
+            margin: 20px 10px;
+          }
+        }
+      }
+    }
+  }
+  div.forum_overlay > .forum_checkMsg {
+    max-width: 500px;
+    width: 100%;
+    // margin: 50px auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .rum_overlay {
+    // position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 230vh;
+    // background-color: hsla(0, 0%, 0%, 0.5);
+  }
+  .forum_checkMsg {
+    min-width: 200px;
+  }
+}
