@@ -40,10 +40,15 @@ $(function () {
     var N = $(".outline_style div img").attr('id').substr(7);
     $('#mainImg').attr('src', './img/post_card/outline' + N + '.png');
   });
+  $(".post_desk .style_all_outline").hide();
+  $(".mark #frontStyle").click(function () {
+   $(".front_style").show();
+  $(".style_all_outline").hide();
 
-  $(".postcard_back").css({
-    display: "none",
   });
+  // $(".postcard_back").css({
+  //   display: "none",
+  // });
   // 背面
   $("#toBack").click(function () {
     $(".postcard_front").hide();

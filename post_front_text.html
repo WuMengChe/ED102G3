@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>職引960客製明信片</title>
+  <title>職引960客製明信片測試用</title>
   <link rel="stylesheet" href="./css/bootstrap_grid/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
-  <link rel="stylesheet" href="./css/post_card.css">
+  <link rel="stylesheet" href="./css/post_front_text.css">
 </head>
 
 <body>
@@ -43,8 +43,47 @@
   <!-- header 結束-->
   <div class="postcard_main container">
     <div class="postcard row">
+      <!-- 桌機側邊欄 -->
+      <div class="post_desk col-3">
+        <div class="change_style">
+          <div class="front_all_style">
+            <div class="mark">
+              <h3 id="frontStyle">格式</h3>
+              <h3 id="frontOutline">外框</h3>
+            </div>
+            <div id="test" class="front_style row style_list">
+              <div class="style">
+                <img src="./img/post_card/style1.jpg" alt="">
+              </div>
+              <div class="style">
+                <img src="./img/post_card/style2.jpg" alt="">
+              </div>
+              <div class="style">
+                <img src="./img/post_card/style3.jpg" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="style_all_outline">
+            <div class="outline_style row style_list">
+              <div class="style">
+                <img src="./img/post_card/outline0.png" alt="無邊框" id="outline0">
+                <p class="p_small">無邊框</p>
+              </div>
+              <div class="style">
+                <img src="./img/post_card/outline1.png" alt="紅藍邊框" id="outline1">
+              </div>
+              <div class="style">
+                <img src="./img/post_card/outline2.png" alt="黃藍邊框" id="outline2">
+              </div>
+            </div>
+            <div class="style_outline">
+
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- 明信片區 -->
-      <div class="postcardZone col-12">
+      <div class="postcardZone col-9">
         <!-- --------------------正面開始 ------------------->
         <div class="postcard_front">
           <h2>正面</h2>
@@ -100,7 +139,8 @@
             背面
             <i class="fas fa-arrow-right"></i>
           </button>
-          <div class="change_style">
+          <!-- 開始切換格式 -->
+          <!-- <div class="change_style">
             <div class="front_all_style">
               <h3>正面格式</h3>
               <div class="front_style row style_list">
@@ -133,7 +173,7 @@
 
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- --------------------背面開始------------------ -->
         <div class="postcard_back">
