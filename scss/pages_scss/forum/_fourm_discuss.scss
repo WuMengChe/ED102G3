@@ -7,7 +7,6 @@
 }
 
 .header {
-  position: fixed;
 }
 
 .forum_discuss > .dis_body {
@@ -40,8 +39,13 @@
 }
 
 .forum_discuss > .search {
-  padding: 20px 0;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  // border: 1px solid red;
   .search_wrap {
+    width: 700px;
+    margin: 0 auto;
+    border: 1px solid blue;
     display: flex;
     .search_wrap_line {
       border: 2px solid #336ac6;
@@ -101,10 +105,17 @@ div.tab_container div.tab_list_block ul.tab_list > li > a {
   padding: 7px 30px;
   border-radius: 5px 5px 0 0;
   cursor: pointer;
-  color: #ccc;
+  color: white;
+  background-color: #6495ed;
 
   position: relative;
-  top: 1px;
+  // top: 1px;
+}
+
+//頁籤按鈕按到要換色
+div.tab_container div.tab_list_block ul.tab_list > li > a.-on {
+  background-color: #336ac6;
+  color: white;
 }
 
 /* 頁籤內容區塊 */
@@ -132,10 +143,11 @@ div.tab_container div.tab_contents div.tab {
         line-height: 30px;
         .type_tag {
           background-color: #0056b3;
-          padding: 3px 5px;
+          padding: 0px 5px;
           text-align: right;
           border-radius: 5px;
           color: white;
+          font-size: 5px;
         }
       }
     }
@@ -311,15 +323,12 @@ a.pencil_btn {
   width: 100%;
   height: 230vh;
   background-color: hsla(0, 0%, 0%, 0.5);
-
-  /* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
   opacity: 0;
   z-index: -1;
   transition: opacity 1s;
   display: none;
 }
 div.forum_overlay.-on {
-  /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
   opacity: 1;
   z-index: 1;
   position: fixed;
@@ -329,7 +338,6 @@ div.forum_overlay.-on {
 }
 
 div.forum_overlay.-opacity-zero {
-  /* 關閉 Modal 時，先讓 opacity設定0，就會慢慢變成完全透明，但這時會擋到後面的元素，所以要再移除 -on 及 -opacity-zero 這兩個 class */
   opacity: 0;
 }
 
