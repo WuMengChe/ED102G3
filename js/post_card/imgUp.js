@@ -40,11 +40,18 @@ $(function () {
     var N = $(".outline_style div img").attr('id').substr(7);
     $('#mainImg').attr('src', './img/post_card/outline' + N + '.png');
   });
+
+  $(".postcard_back").css({
+    display: "none",
+  });
   // 背面
   $("#toBack").click(function () {
-    $(".postcard_front").css({
-      display: "none",
-    });
-  });
+    $(".postcard_front").hide();
+    $(".postcard_back").show();
 
+  });
+  $("#toFront").click(function () {
+    $(".postcard_back").hide();
+    $(".postcard_front").show();
+  });
 });

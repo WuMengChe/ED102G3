@@ -1,0 +1,171 @@
+main.main_test_result{
+.type_analysis{
+
+    border: 1px solid red;
+    display:flex;
+    flex-direction: column;
+    background: #FFF;
+     .analysis_description{
+         border: 1px solid darkcyan;
+         width: 100%;
+         display: flex;
+         .analysis_txt{
+             border: 1px solid fuchsia;
+             width: 60%;
+             padding: 2%;
+             h2{
+                 margin: 3%;
+                 font-weight: 600;
+             }
+             span,p{
+                 line-height: 28px;
+                 letter-spacing: 2px;
+             }
+             h3{
+                 margin: 3% 3% 3% 0%;
+                 font-weight: 600;
+             }
+         }
+         .chart_bx{
+            border: 1px solid goldenrod;
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+     }
+     .btn_save_bx{
+         border: 1px solid rgb(0, 0, 0);
+         display: flex;
+         justify-content: center;
+         padding: 2% 3% 3% 3%;
+     }
+ 
+
+
+         }
+         .related_job_wrap{
+            border: 1px solid rebeccapurple;
+            margin: 50px 0px;
+            .btn_wrap{
+                border: 1px solid red;
+                padding: 2% 3% 3% 3%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+            }
+            span.leading_txt{
+                line-height: 28px;
+                letter-spacing: 2px; 
+                font-size: 18px;
+
+             }
+             .jobs{
+                 border: 1px solid blue;
+                 display: flex;
+                 justify-content: space-evenly;
+                 li{
+                     border-radius: 20px;
+                     border: 1px solid rgb(0, 0, 0);
+                     width: 200px;
+                     height: 300px;
+                     background: #068d82;
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: space-between;
+                    //  align-items: center;
+                     padding-top: 2%;
+                     overflow: hidden;
+                     box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 10px;
+                     span{
+                        //  border: 1px solid red;
+                        padding: 5%;
+                        text-align: center;
+                        background: rgba(0, 0, 0, 0.178);
+                        color: white;
+                     }
+                     div{
+                         border: 1px solid black;
+                         width: 100%;
+                         height: 80%;
+                         background-color: rgb(252, 227, 8);
+                     }
+                 }
+             }
+    }
+        .more_course{
+            border: 1px solid rebeccapurple;
+            .btn_wrap{
+                border: 1px solid red;
+                padding: 2% 3% 3% 3%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+            }
+            span.leading_txt{
+                line-height: 28px;
+                letter-spacing: 2px; ;
+                font-size: 18px;
+        }
+        .course_card{
+            border: 1px solid blue;
+            display: flex;
+            justify-content: space-evenly;
+            li{
+                border-radius: 20px;
+                border: 1px solid rgb(0, 0, 0);
+                width: 400px;
+                height: 300px;
+                background: #FFFFF8;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                overflow: hidden;
+                box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 10px;
+                span{
+                    // border: 1px solid red;
+                   padding: 5%;
+                   text-align: center;
+             
+                }
+            }
+        }
+    
+        }
+        .check_forum{
+            border: 1px solid green;
+            span.leading_txt{
+                line-height: 28px;
+                letter-spacing: 2px; ;
+                font-size: 18px;
+        }
+            .btn_wrap{
+                border: 1px solid red;
+                padding: 2% 3% 3% 3%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            .article_wrap{
+                .articles{
+                    border: 1px solid black;
+                    li{
+                        border: 1px solid red;
+                        width: 70%;
+                        display: flex;
+                        padding: 2% 1%;
+                        span{
+                            border: 1px solid blue;
+                        }
+                    }
+                }
+            }
+        }
+        }
+
+    
+     
+   
+

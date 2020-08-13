@@ -22,11 +22,11 @@
             </div>
             <div class="header_nav">
                 <ul>
-                    <li><a href="#">職涯分析</a></li>
-                    <li><a href="#">行業攻略</a></li>
-                    <li><a href="#">職涯論壇</a></li>
-                    <li><a href="#">探索課程</a></li>
-                    <li><a href="#">明信片</a></li>
+                    <li><a href="./test_before.html">職涯分析</a></li>
+                    <li><a href="./Travel Strategy.html">行業攻略</a></li>
+                    <li><a href="./">職涯論壇</a></li>
+                    <li><a href="./course_introduce.html">探索課程</a></li>
+                    <li><a href="./post_intro.html">明信片</a></li>
                 </ul>
             </div>
             <div class="header_icon">
@@ -82,9 +82,12 @@
                 <h1>熱門行業話題</h1>
                 <div class="index_dia">
                     <div class="message" >
-                        <div v-for="item in messages">
-                            <h5>{{item.title}}</h5>
-                            <p>{{item.date}}</p>
+                        <div class="meg_box" v-for="item in messages">
+                            <a href="">
+                                <h5>{{item.title}}</h5>
+                                <hr>
+                                <p>{{item.date}}</p>
+                            </a>
                         </div>
                     </div>
                     <button class="btn_second">探索更多文章</button>
@@ -103,10 +106,14 @@
                 <div class="pad">
                     <div class="screen_bg">
                         <div class="screen">
-                            <div class="screen_carousel owl-carousel owl-theme">
-                                <div class="course item">aaa</div>
+                            <div class="screen_carousel">
+                                <div class="item" v-for="course in courses">
+                                    <img src="./img/index/index_4th/課程照片-翻轉課堂的職業講師祕訣.jpg" alt="">
+                                    <h3>{{course.title}}</h3>
+                                    <p>{{course.content}}</p>
+                                </div>
                             </div>
-                            <a class="btn_second">探索更多行業</a>
+                            <a class="btn_second"><span></span>探索更多行業<span></span></a>
                         </div>
                     </div>
                 </div>
