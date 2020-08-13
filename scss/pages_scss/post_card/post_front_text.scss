@@ -27,6 +27,30 @@
   }
 }
 
+@mixin back-style {
+  #{'.style_list'} {
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+
+    .style {
+      border: 1px solid red;
+      width: 100%;
+      margin: 15px 0;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+
+  }
+}
+
 @mixin label {
   #{label} {
     border: 1px solid #1b4d9f;
@@ -67,7 +91,7 @@ div.postcard_main {
   .row {
     justify-content: space-between;
 
-    .post_desk {
+    #frontAllStyle {
       background-color: rgb(213, 168, 255);
 
       .change_style {
@@ -107,6 +131,44 @@ div.postcard_main {
           }
         }
       }
+    }
+
+    #backAllStyle {
+      border: 1px solid rgb(247, 25, 180);
+      margin: 0;
+
+      .change_style {
+        border: 1px solid yellow;
+
+        .back_all_style {
+          border: 1px solid rgb(38, 73, 44);
+          @include back-style();
+
+          .mark {
+            border: 1px solid black;
+
+            h3 {
+              border: 1px solid yellow;
+              display: inline-block;
+              padding: 5px;
+            }
+          }
+
+        }
+
+        .style_all_stamps {
+          border: 1px solid yellow;
+          @include back-style();
+
+        }
+
+        .style_all_postmarks {
+          border: 1px solid yellow;
+          @include back-style();
+        }
+
+      }
+
     }
 
     // 明信片區
@@ -318,6 +380,7 @@ div.postcard_main {
             height: 0;
 
 
+
             .style1 {
               border: 1px solid red;
               display: flex;
@@ -404,75 +467,75 @@ div.postcard_main {
           }
         }
 
-        .change_style {
-          border: 1px solid yellow;
+        // .change_style {
+        //   border: 1px solid yellow;
 
-          .back_all_style {
-            border: 1px solid rgb(38, 73, 44);
+        //   .back_all_style {
+        //     border: 1px solid rgb(38, 73, 44);
 
-            .style_list {
-              border: 1px solid blue;
-              justify-content: space-around;
-              margin: 20px 0;
+        //     .style_list {
+        //       border: 1px solid blue;
+        //       justify-content: space-around;
+        //       margin: 20px 0;
 
-              .style {
-                border: 1px solid rgb(17, 17, 17);
-                padding: 0;
-                cursor: pointer;
+        //       .style {
+        //         border: 1px solid rgb(17, 17, 17);
+        //         padding: 0;
+        //         cursor: pointer;
 
-                img {
-                  width: 100%;
-                }
-              }
-            }
-          }
+        //         img {
+        //           width: 100%;
+        //         }
+        //       }
+        //     }
+        //   }
 
-          .style_all_stamps {
-            border: 1px solid yellow;
-            margin-top: 20px;
+        //   .style_all_stamps {
+        //     border: 1px solid yellow;
+        //     margin-top: 20px;
 
-            .stamps_style {
-              border: 1px solid blue;
-              margin: 0;
-              display: flex;
-              justify-content: space-around;
-              margin-top: 20px;
+        //     .stamps_style {
+        //       border: 1px solid blue;
+        //       margin: 0;
+        //       display: flex;
+        //       justify-content: space-around;
+        //       margin-top: 20px;
 
-              .style {
-                border: 1px solid red;
-                padding: 0;
+        //       .style {
+        //         border: 1px solid red;
+        //         padding: 0;
 
-                img {
-                  width: 100%;
-                  height: 100%;
-                }
-              }
-            }
-          }
+        //         img {
+        //           width: 100%;
+        //           height: 100%;
+        //         }
+        //       }
+        //     }
+        //   }
 
-          .style_all_postmarks {
-            border: 1px solid yellow;
-            margin-top: 20px;
+        //   .style_all_postmarks {
+        //     border: 1px solid yellow;
+        //     margin-top: 20px;
 
-            .postmarks_style {
-              border: 1px solid blue;
-              margin: 0;
-              display: flex;
-              justify-content: space-around;
-              margin-top: 20px;
+        //     .postmarks_style {
+        //       border: 1px solid blue;
+        //       margin: 0;
+        //       display: flex;
+        //       justify-content: space-around;
+        //       margin-top: 20px;
 
-              .style {
-                border: 1px solid red;
-                padding: 0;
+        //       .style {
+        //         border: 1px solid red;
+        //         padding: 0;
 
-                img {
-                  width: 100%;
-                  height: 100%;
-                }
-              }
-            }
-          }
-        }
+        //         img {
+        //           width: 100%;
+        //           height: 100%;
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
   }
