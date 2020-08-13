@@ -40,15 +40,24 @@ $(function () {
     var N = $(".outline_style div img").attr('id').substr(7);
     $('#mainImg').attr('src', './img/post_card/outline' + N + '.png');
   });
+  //桌機換格式的頁籤
+  let deskLine = $(".post_desk .style_all_outline");
+  let deskFront = $(".post_desk .front_style");
+  //先隱藏外框
   $(".post_desk .style_all_outline").hide();
+  //點擊換格式
   $(".mark #frontStyle").click(function () {
-   $(".front_style").show();
-  $(".style_all_outline").hide();
-
+    deskFront.show();
+    deskLine.hide();
   });
-  // $(".postcard_back").css({
-  //   display: "none",
-  // });
+  $(".mark #frontOutline").click(function () {
+    deskLine.show();
+    deskFront.hide();
+  });
+  //一開始先顯示正面 背面先隱藏
+  $(".postcard_back").css({
+    display: "none",
+  });
   // 背面
   $("#toBack").click(function () {
     $(".postcard_front").hide();

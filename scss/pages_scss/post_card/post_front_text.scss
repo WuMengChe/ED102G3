@@ -223,65 +223,68 @@ div.postcard_main {
           }
         }
 
-        // .change_style {
-        //   border: 1px solid rgb(255, 0, 200);
-        //   margin-top: 80px;
+        .post_phone {
+          .change_style {
+            border: 1px solid rgb(255, 0, 200);
+            margin-top: 80px;
 
 
 
-        //   .front_all_style {
-        //     border: 1px solid rgb(23, 29, 23);
+            .front_all_style {
+              border: 1px solid rgb(23, 29, 23);
 
-        //     .style_list {
-        //       border: 1px solid blue;
-        //       justify-content: space-around;
-        //       margin: 20px 0;
+              // @include style();
+              .style_list {
+                border: 1px solid blue;
+                justify-content: space-around;
+                margin: 20px 0;
 
-        //       .style {
-        //         border: 1px solid rgb(17, 17, 17);
-        //         padding: 0;
-        //         cursor: pointer;
+                .style {
+                  border: 1px solid rgb(17, 17, 17);
+                  padding: 0;
+                  cursor: pointer;
 
-        //         img {
-        //           width: 100%;
-        //         }
-        //       }
-        //     }
-        //   }
+                  img {
+                    width: 100%;
+                  }
+                }
+              }
+            }
 
-        //   .style_all_outline {
-        //     border: 1px solid rgb(23, 29, 23);
+            .style_all_outline {
+              border: 1px solid rgb(23, 29, 23);
 
-        //     .style_list {
-        //       // border: 1px solid blue;
-        //       justify-content: space-around;
-        //       // display: inline-block;
-        //       margin: 20px 0;
+              .style_list {
+                // border: 1px solid blue;
+                justify-content: space-around;
+                // display: inline-block;
+                margin: 20px 0;
 
-        //       .style {
-        //         border: 1px solid rgb(17, 17, 17);
-        //         padding: 0;
-        //         background-color: rgba(88, 88, 88, 0.253);
-        //         height: 100%;
-        //         text-align: center;
-        //         position: relative;
-        //         cursor: pointer;
+                .style {
+                  border: 1px solid rgb(17, 17, 17);
+                  padding: 0;
+                  background-color: rgba(88, 88, 88, 0.253);
+                  height: 100%;
+                  text-align: center;
+                  position: relative;
+                  cursor: pointer;
 
-        //         img {
-        //           width: 100%;
-        //         }
+                  img {
+                    width: 100%;
+                  }
 
-        //         p {
-        //           position: absolute;
-        //           border: 1px solid blue;
-        //           top: 50%;
-        //           left: 50%;
-        //           transform: translate(-50%, -50%);
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
+                  p {
+                    position: absolute;
+                    border: 1px solid blue;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                  }
+                }
+              }
+            }
+          }
+        }
       }
 
       //背面明信片----------------------
@@ -457,6 +460,22 @@ div.postcard_main {
         }
       }
     }
+  }
+}
+
+@media(min-width:768px) {
+  .post_phone {
+    display: none;
+  }
+}
+
+@media(max-width:767px) {
+  .post_desk {
+    display: none;
+  }
+
+  .post_phone {
+    display: block;
   }
 }
 
