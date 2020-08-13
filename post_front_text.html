@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>職引960客製明信片測試用</title>
-  <link rel="stylesheet" href="./css/bootstrap_grid/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./brootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/post_front_text.css">
 </head>
@@ -116,39 +116,12 @@
           <!-- 開始切換格式 -->
           <!-- 手機板換格式 -->
           <div class="post_phone">
-            <div class="change_style">
+            <div class="change_style" id="phoneFrontAllStyle">
               <div class="front_all_style">
                 <h3>正面格式</h3>
-                <div class="front_style row style_list">
-                  <div class="style col-3">
-                    <img src="./img/post_card/style1.jpg" alt="">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/style2.jpg" alt="">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/style3.jpg" alt="">
-                  </div>
-                </div>
+                <front-style></front-style>
               </div>
-              <div class="style_all_outline">
-                <h3>正面外框</h3>
-                <div class="outline_style row style_list">
-                  <div class="style col-3">
-                    <img src="./img/post_card/outline0.png" alt="無邊框" id="outline0">
-                    <p class="p_small">無邊框</p>
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/outline1.png" alt="紅藍邊框" id="outline1">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/outline2.png" alt="黃藍邊框" id="outline2">
-                  </div>
-                </div>
-                <div class="style_outline">
-
-                </div>
-              </div>
+              <outline-style></outline-style>
             </div>
           </div>
 
@@ -261,7 +234,6 @@
 <script src="./js/post_card/imgUp.js"></script>
 
 <script>
-
   // my-components但這邊可以用駝峰式命名禍首字母大寫都可以讓上面html認得
   // 一定要先寫組件Vue.component在new Vue前面
   Vue.component('front-style', {
@@ -317,8 +289,9 @@
 
     },
   });
-
-
+  new Vue({
+    el: '#phoneFrontAllStyle',
+  });
 </script>
 
 

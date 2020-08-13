@@ -54,6 +54,9 @@ $(function () {
     deskLine.show();
     deskFront.hide();
   });
+  //手機板加col-3 class
+  $('#phoneFrontAllStyle .front_all_style .front_style .style').addClass('col-3');
+  $('#phoneFrontAllStyle .style_all_outline .outline_style .style').addClass('col-3');
   //一開始先顯示正面 背面先隱藏
   $(".postcard_back").css({
     display: "none",
