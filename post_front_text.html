@@ -44,42 +44,16 @@
   <div class="postcard_main container">
     <div class="postcard row">
       <!-- 桌機側邊欄 -->
-      <div class="post_desk col-md-3">
+      <div class="post_desk col-md-3" id="frontAllStyle">
         <div class="change_style">
           <div class="front_all_style">
             <div class="mark">
               <h3 id="frontStyle">格式</h3>
               <h3 id="frontOutline">外框</h3>
             </div>
-            <div id="test" class="front_style row style_list">
-              <div class="style">
-                <img src="./img/post_card/style1.jpg" alt="">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/style2.jpg" alt="">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/style3.jpg" alt="">
-              </div>
-            </div>
+            <front-style></front-style>
           </div>
-          <div class="style_all_outline">
-            <div class="outline_style row style_list">
-              <div class="style">
-                <img src="./img/post_card/outline0.png" alt="無邊框" id="outline0">
-                <p class="p_small">無邊框</p>
-              </div>
-              <div class="style">
-                <img src="./img/post_card/outline1.png" alt="紅藍邊框" id="outline1">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/outline2.png" alt="黃藍邊框" id="outline2">
-              </div>
-            </div>
-            <div class="style_outline">
-
-            </div>
-          </div>
+          <outline-style></outline-style>
         </div>
       </div>
       <!-- 明信片區 -->
@@ -287,15 +261,64 @@
 <script src="./js/post_card/imgUp.js"></script>
 
 <script>
-  // let vm = new Vue({
-  //   el: '#imgShow',
-  //   data: {
-  //     headers: ['about', 'products', 'contact', 'temp1']
-  //   },
-  //   methods: {
 
-  //   },
-  // });
+  // my-components但這邊可以用駝峰式命名禍首字母大寫都可以讓上面html認得
+  // 一定要先寫組件Vue.component在new Vue前面
+  Vue.component('front-style', {
+    template: `<div class="front_style row style_list">
+              <div class="style">
+                <img src="./img/post_card/style1.jpg" alt="">
+              </div>
+              <div class="style">
+                <img src="./img/post_card/style2.jpg" alt="">
+              </div>
+              <div class="style">
+                <img src="./img/post_card/style3.jpg" alt="">
+              </div>
+            </div>`,
+  });
+
+  Vue.component('outline-style', {
+    template: `<div class="style_all_outline">
+            <div class="outline_style row style_list">
+              <div class="style">
+                <img src="./img/post_card/outline0.png" alt="無邊框" id="outline0">
+                <p class="p_small">無邊框</p>
+              </div>
+              <div class="style">
+                <img src="./img/post_card/outline1.png" alt="紅藍邊框" id="outline1">
+              </div>
+              <div class="style">
+                <img src="./img/post_card/outline2.png" alt="黃藍邊框" id="outline2">
+              </div>
+            </div>
+            <div class="style_outline">
+
+            </div>
+          </div>`,
+  });
+
+  new Vue({
+    el: '#frontAllStyle',
+    data: {
+
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    watch: {
+
+    },
+    // 區域寫法
+    components: {
+
+    },
+  });
+
+
 </script>
 
 

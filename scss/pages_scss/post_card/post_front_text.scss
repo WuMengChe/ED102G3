@@ -8,13 +8,14 @@
     display: flex;
     flex-direction: column;
     margin: 0;
-    // height: 700px;
     width: 100%;
 
     .style {
       border: 1px solid red;
       width: 100%;
-      margin: 20px 0;
+      margin: 15px 0;
+      background-color: rgba(88, 88, 88, 0.253);
+      cursor: pointer;
 
       img {
         width: 100%;
@@ -78,10 +79,12 @@ div.postcard_main {
 
           .mark {
             border: 1px solid rgb(200, 52, 52);
+            cursor: pointer;
 
             h3 {
               border: 1px solid yellow;
               display: inline-block;
+              padding: 5px;
             }
           }
         }
@@ -89,6 +92,19 @@ div.postcard_main {
         .style_all_outline {
           border: 1px solid blue;
           @include style();
+
+          .style {
+            text-align: center;
+            position: relative;
+
+            p {
+              position: absolute;
+              border: 1px solid blue;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
         }
       }
     }
@@ -233,7 +249,6 @@ div.postcard_main {
             .front_all_style {
               border: 1px solid rgb(23, 29, 23);
 
-              // @include style();
               .style_list {
                 border: 1px solid blue;
                 justify-content: space-around;
