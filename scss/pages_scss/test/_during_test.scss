@@ -32,10 +32,13 @@ main.main_during_test{
             &:hover{
                 background-color: gold;
             }
-                .img_bx{
-                    border: 1px solid black;
-                    width: 90%;
-                    height: 80%;
+                .answer_link{
+                    width: 100%;
+                    .img_bx{
+                        border: 1px solid black;
+                        width: 90%;
+                        height: 80%;
+                    }
                 }
         }
     }
