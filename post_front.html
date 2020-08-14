@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>職引960客製明信片</title>
-  <link rel="stylesheet" href="./css/bootstrap_grid/bootstrap-grid.min.css">
+  <title>職引960客製明信片測試用</title>
+  <link rel="stylesheet" href="./brootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/post_card.css">
 </head>
@@ -43,8 +43,37 @@
   <!-- header 結束-->
   <div class="postcard_main container">
     <div class="postcard row">
+      <!-- 桌機側邊欄 -->
+      <div class="desk col-md-3" id="desk">
+        <div class="post_desk" id="frontAllStyle">
+          <div class="change_style">
+            <div class="front_all_style">
+              <div class="mark">
+                <h3 id="frontStyle">格式</h3>
+                <h3 id="frontOutline">外框</h3>
+              </div>
+              <front-style></front-style>
+            </div>
+            <outline-style></outline-style>
+          </div>
+        </div>
+        <div class="post_desk" id="backAllStyle">
+          <div class="change_style">
+            <div class="back_all_style">
+              <div class="mark">
+                <h3 id="backStyle">格式</h3>
+                <h3 id="backStamps">郵票</h3>
+                <h3 id="backPostmarks">郵戳</h3>
+              </div>
+              <back-style></back-style>
+            </div>
+            <stamp-style></stamp-style>
+            <postmark-style></postmark-style>
+          </div>
+        </div>
+      </div>
       <!-- 明信片區 -->
-      <div class="postcardZone col-12">
+      <div class="postcardZone col-md-9 col-12">
         <!-- --------------------正面開始 ------------------->
         <div class="postcard_front">
           <h2>正面</h2>
@@ -100,46 +129,27 @@
             背面
             <i class="fas fa-arrow-right"></i>
           </button>
-          <div class="change_style">
-            <div class="front_all_style">
-              <h3>正面格式</h3>
-              <div class="front_style row style_list">
-                <div class="style col-3">
-                  <img src="./img/post_card/style1.jpg" alt="">
-                </div>
-                <div class="style col-3">
-                  <img src="./img/post_card/style2.jpg" alt="">
-                </div>
-                <div class="style col-3">
-                  <img src="./img/post_card/style3.jpg" alt="">
-                </div>
+          <!-- 開始切換格式 -->
+          <!-- 手機板換格式 -->
+          <div class="post_phone">
+            <div class="change_style" id="phoneFrontAllStyle">
+              <div class="front_all_style">
+                <h3>正面格式</h3>
+                <front-style></front-style>
               </div>
-            </div>
-            <div class="style_all_outline">
               <h3>正面外框</h3>
-              <div class="outline_style row style_list">
-                <div class="style col-3">
-                  <img src="./img/post_card/outline0.png" alt="無邊框" id="outline0">
-                  <p class="p_small">無邊框</p>
-                </div>
-                <div class="style col-3">
-                  <img src="./img/post_card/outline1.png" alt="紅藍邊框" id="outline1">
-                </div>
-                <div class="style col-3">
-                  <img src="./img/post_card/outline2.png" alt="黃藍邊框" id="outline2">
-                </div>
-              </div>
-              <div class="style_outline">
-
-              </div>
+              <outline-style></outline-style>
             </div>
           </div>
+
         </div>
         <!-- --------------------背面開始------------------ -->
         <div class="postcard_back">
           <h2>背面</h2>
           <div class="back_post">
             <div class="mainStyle">
+
+
               <!-- ---------------以下要createElement --------------->
               <!-- 背面格式一 -->
               <div class="style1">
@@ -153,6 +163,7 @@
                 </div>
                 <div class="right_write">
                   <div class="style1_stamp">
+                    <!-- <img src="./img/post_card/stamp1.png" alt=""> -->
                   </div>
                   <div class="text">
                     <textarea name="" id="" cols="30" rows="10"></textarea>
@@ -172,7 +183,6 @@
             <!-- 到這裡背面格式結束 -->
           </div>
           <div class="buttons">
-
             <button id="toFront" class="btn_third">
               <i class="fas fa-arrow-left"></i>
               正面
@@ -180,53 +190,15 @@
             <a href="./post_date.html" id="choice_date" class="btn_third">選擇日期
               <i class="fas fa-arrow-right"></i>
             </a>
-
-
-
           </div>
-
-          <div class="change_style">
-            <div class="back_all_style">
-              <h3>背面格式</h3>
-              <div class="back_style row style_list">
-                <div class="style col-3">
-                  <img src="./img/post_card/style1.jpg" alt="背面格式1">
-                </div>
-                <div class="style col-3">
-                  <img src="./img/post_card/style2.jpg" alt="背面格式2">
-                </div>
-                <div class="style col-3">
-                  <img src="./img/post_card/style3.jpg" alt="背面格式3">
-                </div>
+          <div class="post_phone">
+            <div class="change_style" id="phoneBackAllStyle">
+              <div class="back_all_style">
+                <h3>背面格式</h3>
+                <back-style></back-style>
               </div>
-            </div>
-            <div class="style_all_stamps">
-              <h3>郵票</h3>
-              <div class="stamps_style row style_list">
-                <div class="style col-3">
-                  <img src="./img/post_card/stamp1.png" alt="郵票1" id="stamp1">
-                </div>
-                <div class="style col-3">
-                  <img src="./img/post_card/stamp2.png" alt="郵票2" id="stamp2">
-                </div>
-                <div class="style col-3">
-                  <img src="./img/post_card/stamp3.png" alt="郵票3" id="stamp3">
-                </div>
-              </div>
-              <div class="style_all_postmarks">
-                <h3>郵戳</h3>
-                <div class="postmarks_style row style_list">
-                  <div class="style col-3">
-                    <img src="./img/post_card/postmark1.png" alt="郵戳1" id="postmark1">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/postmark2.png" alt="郵戳2" id="postmark2">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/postmark3.png" alt="郵戳3" id="postmark3">
-                  </div>
-                </div>
-              </div>
+              <stamp-style></stamp-style>
+              <postmark-style></postmark-style>
             </div>
           </div>
         </div>
@@ -238,21 +210,10 @@
 <script src="./js/post_card/popper.min.js"></script>
 <script src="./js/post_card/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
-
 <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+<script src="./js/post_card/post_vue.js"></script>
 <script src="./js/post_card/imgUp.js"></script>
 
-<script>
-  // let vm = new Vue({
-  //   el: '#imgShow',
-  //   data: {
-  //     headers: ['about', 'products', 'contact', 'temp1']
-  //   },
-  //   methods: {
-
-  //   },
-  // });
-</script>
 
 
 </html>
