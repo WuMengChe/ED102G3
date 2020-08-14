@@ -109,15 +109,15 @@
                 </div>
             </div>
             <div class="container" v-if="currentPage == '我的分析'">
-                <div class = "col-md-12 mem_tit_area" v-if="screenWidth >= 768">
+                <div class = "col-md-12 mem_tit_area" v-if="screenWidth >= 768 && checkAnalysisResult">
                     <div class = "col-md-4 mem_title">測驗日期</div>
                     <div class = "col-md-4 mem_title">適合類別</div>
                 </div>
-                <div class = "col-md-12 mem_ana_area" v-for="(quizResult, index) in memberAnalysis">
-                    <div class = "col-md-4 col-sm-4 col-4 mem_ana">{{quizResult.testDate}}</div>
-                    <div class = "col-md-4 col-sm-4 col-4 mem_ana">{{quizResult.industType}}</div>
-                    <div class = "col-md-4 col-sm-4 col-4">
-                        <button class="btn_third" v-on:click = "showPage(index), plotRadar(index)">詳細資訊</button>
+                <div class = "col-md-12 mem_ana_area" v-for="(quizResult, index) in memberAnalysis" v-if="checkAnalysisResult">
+                    <div class = "col-md-4 col-sm-4 col-3 mem_ana">{{quizResult.testDate}}</div>
+                    <div class = "col-md-4 col-sm-4 col-3 mem_ana">{{quizResult.industType}}</div>
+                    <div class = "col-md-4 col-sm-4 col-6">
+                        <button class="btn_third" v-on:click = "showPage(index), plotRadar(index, analysisResult[index])">詳細資訊</button>
                     </div>
                     <div class="col-md-12 mem_ana_det">
                         <div class = "col-md-6 col-sm-12 mem_ana_det_left">
@@ -129,21 +129,118 @@
                         </div>
                     </div>
                 </div>
+                <div class = "col-md-12 mam_no_data" v-if="!checkAnalysisResult">
+                    <h3>您還沒有做過測驗喔，現在就去測驗吧</h3>
+                    <button class="btn_third">職涯測驗</button>
+                </div>
             </div>
-            <div v-if="currentPage == '我的課程'">
-                {{currentPage}}
+            <div class="container" v-if="currentPage == '我的課程'">
+                <div class = "col-md-12 mem_tit_area" v-if="screenWidth >= 768 && checkMemClass">
+                    <div class = "col-md-4 mem_title">課程名稱</div>
+                    <div class = "col-md-8 mem_title">內容</div>
+                </div>
+                <div class = "col-md-12 mem_cla_area" v-for="(memClass, index) in memberClass" v-if="checkMemClass">
+                    <a class = "col-md-12 mem_cla_area" href="#">
+                        <div class = "col-md-4 col-sm-12 mem_cla">{{memClass.name}}</div>
+                        <div class = "col-md-8 col-sm-12 mem_cla">{{memClass.content}}</div>    
+                    </a>
+                </div>
+                <div class = "col-md-12 mam_no_data" v-if="!checkMemClass">
+                    <h3>您還沒有購買課程喔</h3>
+                </div>
             </div>
-            <div v-if="currentPage == '我的收藏'">
-                {{currentPage}}
+            <div class="container" v-if="currentPage == '我的收藏'">
+                <div class = "col-md-12 mem_tit_area">
+                    <div class = "col-md-4 mem_title">
+                        <div class = "mem_title_tab"  v-on:click="collecttionChange = false">文章</div>
+                    </div>
+                    <div class = "col-md-4 mem_title">
+                        <div class = "mem_title_tab"  v-on:click="collecttionChange = true">課程</div>
+                    </div>
+                </div>
+                <div class = "col-md-12 mem_art_area" v-for="(memArt, index) in memberArticle" v-if="!collecttionChange">
+                    <a class = "col-md-12 mem_art_area" href="#">
+                        <div class = "col-md-12 mem_art"><h3>{{memArt.title}}</h3></div>
+                        <div class = "col-md-12 mem_art mem_art_content">{{memArt.content}}</div>    
+                    </a>
+                </div>
+                <div class = "col-md-12 mem_cla_area" v-for="(memClass, index) in memberClass" v-if="collecttionChange">
+                    <a class = "col-md-12 mem_cla_area" href="#">
+                        <div class = "col-md-4 col-sm-12 mem_cla">{{memClass.name}}</div>
+                        <div class = "col-md-8 col-sm-12 mem_cla">{{memClass.content}}</div>    
+                    </a>
+                </div>
+                <div class = "col-md-12 mam_no_data" v-if="!checkMemClass && collecttionChange">
+                    <h3>您還沒有購買課程喔</h3>
+                </div>
+                <div class = "col-md-12 mam_no_data" v-if="!checkMemArticle && !collecttionChange">
+                    <h3>您還沒有收藏文章喔</h3>
+                </div>
             </div>
-            <div v-if="currentPage == '我的明信片'">
-                {{currentPage}}
+            <div class="container" v-if="currentPage == '我的明信片'">
+                <div class = "col-md-12 mem_tit_area" v-if="screenWidth >= 768 && checkMemPostcard">
+                    <div class = "col-md-3 mem_title">創建日期</div>
+                    <div class = "col-md-3 mem_title">寄送日期</div>
+                    <div class = "col-md-6 mem_title">明信片</div>
+                </div>
+                <div class = "col-md-12 mem_pos_area" v-for="(memPostCard, index) in memberPostCard" v-if="checkMemClass">
+                    <div class = "col-md-3 col-sm-12 mem_pos">{{rwdUse?'創建日期：':''}}{{memPostCard.creatDate}}</div>
+                    <div class = "col-md-3 col-sm-12 mem_pos">{{rwdUse?'寄送日期：':''}}{{memPostCard.sentDate}}</div>
+                    <div class = "col-md-6 col-sm-12 mem_pos">
+                        <a class="mem_pos_img" href = "#" v-if="memPostCard.postSend">
+                            <img :src="memPostCard.postSrc"/>
+                        </a>
+                        <span v-if="!memPostCard.postSend">尚未寄發，敬請期待</span>
+                    </div>
+                </div>
+                <div class = "col-md-12 mam_no_data" v-if="!checkMemPostcard">
+                    <h3>您還沒有建立明信片喔，現在就來創建一個</h3>
+                    <button class="btn_third">時光明信片</button>
+                </div>
             </div>
-            <div v-if="currentPage == '訂單紀錄'">
-                {{currentPage}}
+            <div class="container" v-if="currentPage == '訂單紀錄'">
+                <div class = "col-md-12 mem_tit_area" v-if="screenWidth >= 768 && checkMemOrder">
+                    <div class = "col-md-3 mem_title">標題</div>
+                    <div class = "col-md-2 mem_title">購買日期</div>
+                    <div class = "col-md-1 mem_title">價格</div>
+                    <div class = "col-md-2 mem_title">付款類型</div>
+                </div>
+                <div class = "col-md-12 mem_ord_area" v-for="(memOrder, index) in memberOrder" v-if="checkMemOrder">
+                    <div class = "col-md-3 col-sm-4 col-3 mem_ord">{{memOrder.title}}</div>
+                    <div class = "col-md-2 col-sm-2 col-2 mem_ord">{{memOrder.buyDate}}</div>
+                    <div class = "col-md-1 col-sm-2 col-2 mem_ord">{{memOrder.price}}</div>
+                    <div class = "col-md-2 col-sm-4 col-3 mem_ord" v-if="screenWidth >= 768">信用卡</div>
+                    <div class = "col-md-4 col-sm-4 col-5">
+                        <button class="btn_third" v-on:click = "showOrderPage(index)">詳細資訊</button>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-11 mem_ord_det">
+                        <div class = "col-md-12 col-sm-12 mem_ord_det_con" v-for="(memOrderList, indexOrderList) in memberOrderList[index]">
+                            <div class = "col-md-3 col-sm-12 col-12 mem_ord">{{memOrderList.name}}</div>
+                            <div class = "col-md-8 col-sm-12 col-12 mem_ord">{{memOrderList.content}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "col-md-12 mam_no_data" v-if="!checkMemOrder">
+                    <h3>您目前還沒有訂單紀錄喔</h3>
+                </div>
             </div>
-            <div v-if="currentPage == '訊息'">
-                {{currentPage}}
+            <div class="container" v-if="currentPage == '訊息'">
+                <div class = "col-md-12 mem_tit_area" v-if="screenWidth >= 768 && checkMemMessage">
+                    <div class = "col-md-3 mem_title">發文者</div>
+                    <div class = "col-md-3 mem_title">發文日期</div>
+                    <div class = "col-md-6 mem_title">訊息標題</div>
+                </div>
+                <div class = "col-md-11 col-sm-11 col-11 mem_mes_area" v-for="(memMessage, index) in memberMessage" v-if="checkMemMessage">
+                    <div class = "col-md-3 col-sm-6 col-6 mem_pos" v-if="768 > screenWidth">發文者：</div>
+                    <div class = "col-md-3 col-sm-6 col-6 mem_pos">系統管理員</div>
+                    <div class = "col-md-3 col-sm-6 col-6 mem_pos" v-if="768 > screenWidth">發文日期：</div>
+                    <div class = "col-md-3 col-sm-6 col-6 mem_pos">{{memMessage.sentDate}}</div>
+                    <div class = "col-md-3 col-sm-6 col-6 mem_pos" v-if="768 > screenWidth">訊息標題：</div>
+                    <div class = "col-md-6 col-sm-6 col-6 mem_pos">{{memMessage.title}}</div>
+                </div>
+                <div class = "col-md-12 mam_no_data" v-if="!checkMemMessage">
+                    <h3>您目前還沒有訊息喔</h3>
+                </div>
             </div>
             <button class="btn_third" v-if="(currentPage == '會員資料') && (screenWidth >= 768)" @click="fixMode = !fixMode">{{fixMode?'確認修改':'修改資料'}}</button>
         </div>

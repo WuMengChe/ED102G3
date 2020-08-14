@@ -18,6 +18,7 @@
     }
     div.mem_con_area{
         display: flex;
+        padding: 0;
         min-height: calc(100% - 130px);
         flex-direction: column;
         background-color: darkgoldenrod;
@@ -42,7 +43,7 @@
             padding: 0;
             height: fit-content;
             min-height: 350px;
-            align-items: center;
+            align-items: flex-start;
             flex-wrap: wrap;
             background-color: khaki;
             .mem_img_area{
@@ -114,25 +115,42 @@
                 border-bottom: 2px black solid;
                 .mem_title{
                     display: inline-flex;
-                    height: 25px;
+                    padding: 0;
+                    height: 40px;
                     text-align: center;
                     flex-direction: column;
                     justify-content: center;
                 }
+                .mem_title_tab{
+                    margin: 0 auto;
+                    width: 150px;
+                    cursor: pointer;
+                }
             }
-            .mem_ana_area{
+            .mem_ana_area, .mem_cla_area, .mem_art_area, .mem_pos_area, .mem_ord_area, .mem_mes_area{
                 display: flex;
                 margin: 20px 0;
+                padding: 0;
                 width: 100%;
                 flex-wrap: wrap;
-                .mem_ana{
+                .col-md-12, .col-3, .col-6{
+                    padding: 0;
+                }
+                .col-6, .col-5{
+                    display: flex;
+                    flex-direction: column;
+                }
+                .mem_ana, .mem_cla, .mem_ord, .mem_pos{
                     display: inline-flex;
                     height: 40px;
                     text-align: center;
                     flex-direction: column;
                     justify-content: center;
                 }
-                .mem_ana_det{
+                .mem_ord_det{
+                    padding: 0;
+                }
+                .mem_ana_det, .mem_ord_det{
                     display: flex;
                     margin-top: 5px;
                     flex-direction: row;
@@ -147,8 +165,12 @@
                         height: 200px;
                         flex-direction: column;
                         border: 1px rosybrown solid;
+                        h2{
+                            padding: 0px 15px;
+                        }
                         section{
                             margin-top: 20px;
+                            padding: 0px 15px;
                         }
                     }
                     .mem_ana_det_right{
@@ -158,10 +180,17 @@
                             margin: 0 auto;
                             width: 100%;
                             height: 100%;
-                            // max-width: 300px;
-                            // min-width: 200px;
-                            // max-height: 300px;
-                            // min-height: 200px;
+                        }
+                    }
+                    .mem_ord_det_con{
+                        display: flex;
+                        margin-top: 5px;
+                        padding: 0;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        .mem_ord{
+                            margin: 5px 0;
+                            height: fit-content;
                         }
                     }
                 }
@@ -171,6 +200,65 @@
                     transform: rotateX(0deg);
                     transition: 1s;
                     z-index: 1;
+                }
+                a{
+                    margin: 0;
+                }
+                .mem_cla{
+                    margin-top: 5px;
+                }
+                a.mem_art_area{
+                    display: flex;
+                    flex-direction: column;
+                    .mem_art{
+                        margin: 5px auto;
+                        padding: 0 5px;
+                        width: fit-content;
+                        height: fit-content;
+                    }
+                    .mem_art_content{
+                        opacity: 0.7;
+                    }
+                }
+                .mem_pos{
+                    display: inline-flex;
+                    height: fit-content;
+                    min-height: 40px;
+                    text-align: center;
+                    flex-direction: column;
+                    justify-content: center;
+                    span{
+                        margin: 0 auto;
+                        width: fit-content;
+                    }
+                }
+                .mem_pos_img{
+                    margin: 0 auto;
+                    width: 200px;
+                    height: 200px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .mem_ord_det, .mem_mes_area{
+                margin: 5px auto;
+                border-top: 1px black solid;
+                border-bottom: 1px black solid;
+                cursor: pointer;
+            }
+            .mam_no_data{
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                justify-content: center;
+                h3{
+                    margin: 0 auto 20px;
+                    width: fit-content;
+                }
+                .btn_third{
+                    margin: 0 auto;
                 }
             }
         }
