@@ -44,66 +44,32 @@
   <div class="postcard_main container">
     <div class="postcard row">
       <!-- 桌機側邊欄 -->
-      <div class="post_desk col-md-3" id="frontAllStyle">
-        <div class="change_style">
-          <div class="front_all_style">
-            <div class="mark">
-              <h3 id="frontStyle">格式</h3>
-              <h3 id="frontOutline">外框</h3>
+      <div class="desk col-md-3" id="desk">
+        <div class="post_desk" id="frontAllStyle">
+          <div class="change_style">
+            <div class="front_all_style">
+              <div class="mark">
+                <h3 id="frontStyle">格式</h3>
+                <h3 id="frontOutline">外框</h3>
+              </div>
+              <front-style></front-style>
             </div>
-            <front-style></front-style>
+            <outline-style></outline-style>
           </div>
-          <outline-style></outline-style>
         </div>
-      </div>
-      <div class="post_desk col-md-3" id="backAllStyle">
-        <div class="change_style">
-          <div class="back_all_style">
-            <div class="mark">
-              <h3 id="backStyle">格式</h3>
-              <h3 id="backStamps">郵票</h3>
-              <h3 id="backPostmarks">郵戳</h3>
+        <div class="post_desk" id="backAllStyle">
+          <div class="change_style">
+            <div class="back_all_style">
+              <div class="mark">
+                <h3 id="backStyle">格式</h3>
+                <h3 id="backStamps">郵票</h3>
+                <h3 id="backPostmarks">郵戳</h3>
+              </div>
+              <back-style></back-style>
             </div>
-            <div class="back_style row style_list">
-              <div class="style">
-                <img src="./img/post_card/style1.jpg" alt="背面格式1">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/style2.jpg" alt="背面格式2">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/style3.jpg" alt="背面格式3">
-              </div>
-            </div>
+            <stamp-style></stamp-style>
+            <postmark-style></postmark-style>
           </div>
-          <div class="style_all_stamps">
-            <div class="stamps_style row style_list">
-              <div class="style">
-                <img src="./img/post_card/stamp1.png" alt="郵票1" id="stamp1">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/stamp2.png" alt="郵票2" id="stamp2">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/stamp3.png" alt="郵票3" id="stamp3">
-              </div>
-            </div>
-          </div>
-          <div class="style_all_postmarks">
-
-            <div class="postmarks_style row style_list">
-              <div class="style">
-                <img src="./img/post_card/postmark1.png" alt="郵戳1" id="postmark1">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/postmark2.png" alt="郵戳2" id="postmark2">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/postmark3.png" alt="郵戳3" id="postmark3">
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
       <!-- 明信片區 -->
@@ -171,6 +137,7 @@
                 <h3>正面格式</h3>
                 <front-style></front-style>
               </div>
+              <h3>正面外框</h3>
               <outline-style></outline-style>
             </div>
           </div>
@@ -196,6 +163,7 @@
                 </div>
                 <div class="right_write">
                   <div class="style1_stamp">
+                    <!-- <img src="./img/post_card/stamp1.png" alt=""> -->
                   </div>
                   <div class="text">
                     <textarea name="" id="" cols="30" rows="10"></textarea>
@@ -222,56 +190,17 @@
             <a href="./post_date.html" id="choice_date" class="btn_third">選擇日期
               <i class="fas fa-arrow-right"></i>
             </a>
-
-
-
           </div>
-          <!-- <div class="post_phone col-md-3" id="backAllStyle">
-            <div class="change_style">
+          <div class="post_phone">
+            <div class="change_style" id="phoneBackAllStyle">
               <div class="back_all_style">
                 <h3>背面格式</h3>
-                <div class="back_style row style_list">
-                  <div class="style col-3">
-                    <img src="./img/post_card/style1.jpg" alt="背面格式1">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/style2.jpg" alt="背面格式2">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/style3.jpg" alt="背面格式3">
-                  </div>
-                </div>
+                <back-style></back-style>
               </div>
-              <div class="style_all_stamps">
-                <h3>郵票</h3>
-                <div class="stamps_style row style_list">
-                  <div class="style col-3">
-                    <img src="./img/post_card/stamp1.png" alt="郵票1" id="stamp1">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/stamp2.png" alt="郵票2" id="stamp2">
-                  </div>
-                  <div class="style col-3">
-                    <img src="./img/post_card/stamp3.png" alt="郵票3" id="stamp3">
-                  </div>
-                </div>
-                <div class="style_all_postmarks">
-                  <h3>郵戳</h3>
-                  <div class="postmarks_style row style_list">
-                    <div class="style col-3">
-                      <img src="./img/post_card/postmark1.png" alt="郵戳1" id="postmark1">
-                    </div>
-                    <div class="style col-3">
-                      <img src="./img/post_card/postmark2.png" alt="郵戳2" id="postmark2">
-                    </div>
-                    <div class="style col-3">
-                      <img src="./img/post_card/postmark3.png" alt="郵戳3" id="postmark3">
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <stamp-style></stamp-style>
+              <postmark-style></postmark-style>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>

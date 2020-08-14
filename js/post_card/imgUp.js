@@ -49,9 +49,9 @@ $(function () {
   let deskPostmarks = $(".post_desk .change_style .style_all_postmarks");
 
   //先隱藏正面與背面其他格式
-  $(".post_desk .style_all_outline").hide();
-  $(".style_all_stamps").hide();
-  $(".style_all_postmarks").hide();
+  deskLine.hide();
+  deskStamps.hide();
+  deskPostmarks.hide();
   //點擊正面換格式
   $(".mark #frontStyle").click(function () {
     deskFront.show();
@@ -83,6 +83,11 @@ $(function () {
   //手機板加col-3 class
   $('#phoneFrontAllStyle .front_all_style .front_style .style').addClass('col-3');
   $('#phoneFrontAllStyle .style_all_outline .outline_style .style').addClass('col-3');
+  $('#phoneBackAllStyle .back_all_style .back_style .style').addClass('col-3');
+  $('#phoneBackAllStyle .style_all_stamps .stamps_style .style').addClass('col-3');
+  $('#phoneBackAllStyle .style_all_postmarks .postmarks_style .style').addClass('col-3');
+
+
   //一開始先顯示正面 背面先隱藏
   $(".postcard_back").hide();
   $("#backAllStyle").hide();
