@@ -1,13 +1,13 @@
 @import '../../_public_dontTouch/utils/variables';
 @mixin section {
-    border: 3px solid lightcoral;
+    // border: 3px solid lightcoral;
     width: 100vw;
     // height: 80vh;
 }
 
 @mixin screen {
     display: flex;
-    border: 1px solid red;
+    // border: 1px solid red;
     height: fit-content;
     @content
 
@@ -367,19 +367,19 @@
                             }
                             
                         }
-                        &::after {
-                            content: "";
-                            // border: 1px solid #000;
-                            background-image: url(../../../img/index/index_3rd/triangle.png);
-                            background-repeat: no-repeat;
-                            width: 120px;
-                            height: 90px;
-                            position: absolute;
-                            top: 10px;
-                            right: -100px;
-                            z-index: -1;
+                        // &::after {
+                        //     content: "";
+                        //     // border: 1px solid #000;
+                        //     background-image: url(../../../img/index/index_3rd/triangle.png);
+                        //     background-repeat: no-repeat;
+                        //     width: 120px;
+                        //     height: 90px;
+                        //     position: absolute;
+                        //     top: 10px;
+                        //     right: -100px;
+                        //     z-index: -1;
                             
-                        }
+                        // }
                     }
                     .btn_second{}
                 }
