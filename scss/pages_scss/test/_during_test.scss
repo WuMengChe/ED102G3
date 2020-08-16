@@ -4,8 +4,10 @@ main.main_during_test{
     margin: auto;
     background-color: white;
     border-radius: 25px;
+    overflow: hidden;
         .question_bx{
             border: 1px solid blue;
+            background: #7ED3E0;
             padding: 1%;
             display: flex;
             justify-content: center;
@@ -17,7 +19,21 @@ main.main_during_test{
                 }
             
         }   
-        
+     .timer_bx{
+        border: 1px solid rgb(5, 184, 49);
+        background: #7ED3E0 ;
+        display: flex;
+        justify-content: center;
+        padding: 1%;
+        .timimg{
+            text-align: center;
+            display: flex;
+            border: 3px solid #cf6223;
+            background: #FFE56D;
+            padding: 2% 3%;
+            border-radius: 50px;
+        }
+     }   
     .answer_option_wrap{
         border: 1px solid darkgoldenrod;
         display: flex;
@@ -36,6 +52,7 @@ main.main_during_test{
             border-radius: 20px;
             &:hover{
                 background-color: rgb(255, 255, 255);
+                transform: scale(1.1);
             }
                 .answer_link{
                     width: 100%;
