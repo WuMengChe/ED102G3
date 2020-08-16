@@ -18,26 +18,35 @@
 
 </head>
 <body>
-   <div class="header">
-    <div class="logo">
-        <a href="#">
-            <img src="https://picsum.photos/70/70" alt="">
-        </a>
-    </div>
-    <div class="header_nav">
-        <ul>
-            <li><a href="#">職涯分析</a></li>
-            <li><a href="#">行業攻略</a></li>
-            <li><a href="#">職涯論壇</a></li>
-            <li><a href="#">探索課程</a></li>
-            <li><a href="#">明信片</a></li>
-        </ul>
-    </div>
-    <div class="header_icon">
-        <div class="cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
-        <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
-    </div>
-    </div>
+   <div class="header_wrap">
+      <header class="header">
+          <div class="logo">
+              <a href="#">
+                  <img src="img/logo.svg" alt="">
+              </a>
+          </div>
+          <div class="header_nav">
+              <ul>
+                  <li><a href="./test_before.html">職涯分析</a></li>
+                  <li><a href="./Travel Strategy.html">行業攻略</a></li>
+                  <li><a href="./forum_discuss.html">職涯論壇</a></li>
+                  <li><a href="./course_main.html">探索課程</a></li>
+                  <li><a href="./post_intro.html">明信片</a></li>
+              </ul>
+          </div>
+          <div class="header_icon">
+              <div class="cart">
+                  <a href="#"><i class="fas fa-shopping-cart"></i>
+                      <div class="cart_num"><span>1</span></div>
+                  </a>
+                  <!-- <div class="cart_num"><span>1</span></div> -->
+              </div>
+
+              <div class="member"><a href="./member.html"><i class="fas fa-user"></i></a></div>
+          </div>
+      </header>
+
+  </div>
     <h1 class="job-title">醫生</h1>
     <div class="job">
         <div class="job-f1">
@@ -411,6 +420,27 @@
   </svg>
   </div>
 
+  <div class="forthScreen container">
+   <div class="col-4"></div>
+   <div class="index_cour_text col-8">
+       <h1>熱門課程</h1>
+       <div class="pad">
+           <div class="screen_bg">
+               <div class="screen">
+                   <div class="screen_carousel">
+                       <div class="item" v-for="course in courses">
+                           <img src="./img/index/index_4th/課程照片-翻轉課堂的職業講師祕訣.jpg" alt="">
+                           <h3>{{course.title}}</h3>
+                           <p>{{course.content}}</p>
+                       </div>
+                   </div>
+                   <a class="btn_second"><span></span>探索更多行業<span></span></a>
+               </div>
+           </div>
+       </div>
+       <div class="screen_bt"></div>
+   </div>
+</div>
  
  
  
