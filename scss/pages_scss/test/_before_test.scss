@@ -1,3 +1,6 @@
+body{
+    background-color: #F6F3ED;
+}
 div.before_test_wrap{
     border: 1px solid red;
     width: 1200px;
@@ -38,32 +41,50 @@ main.main_before_test{
            flex-direction: row;
            padding: 5% 0px;
            .type_card{
-               border: 1px solid black;
+               border: 2px solid #FFE56D;
                width: 150px;
-            //    height: 500px;
+               height: 600px;
                border-radius: 5px;
                padding: 1%;
-               background-color: rgb(57, 194, 212);
+               background: white;
+               box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 12px;
                display: flex;
                flex-direction: column;
-            
+               transition:  ease-in-out 1s;
+               animation: blink;
+               animation-iteration-count: infinite;
+               animation-duration: 3s;
+               .icon{
+                //    border: 1px solid red;
+                   width: 50px;
+                   height: 50px;
+                   border-radius: 50%;
+                   margin-top:10px;
+               }
+               .img_bx{
+                height: 500px;
+               }
+
                .type_card_content{
-                   border: 1px solid firebrick;
+                //    border: 1px solid firebrick;
                    display: flex;
+                   flex-direction: row;
                    width: 100%;
-                   p{
-                       border: 1px solid fuchsia;
-                       width: 200px;
-                    display: flex;
+                   overflow: hidden;
+                   height: 500px;
+                   p.type_txt{
+                    //    border: 1px solid fuchsia;
+                    width: 200px;
                     justify-content: center;
                     align-items: center;
                     line-height: 25px;
                     margin-left:10px ;
                     display: none;
+                    transition: linear 1s;
                    }
                }
                .title_bx{
-                   border: 1px solid black;
+                //    border: 1px solid black;
                    display: flex;
                 //    justify-content: center;
                 flex-direction: column;
@@ -71,11 +92,29 @@ main.main_before_test{
                }
            }
         }
+    
 
-        
-        .type_card.expanding{
-            width: 300px;
+        // 動畫
+        @keyframes blink {
+         
+            0%{
+                border: 2px solid #FFE56D;
+            }
             
-        }      
-}
-   
+            100%{
+                border: 2px solid #7ED3E0;
+            
+        }
+    }
+    
+        //
+
+        .type_card.active{
+            width: auto;
+        };
+        
+        .type_card.unactive{
+            width: 100px;
+            overflow: hidden;
+        }
+    }

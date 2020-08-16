@@ -131,5 +131,79 @@ div.course_introduce {
         }
     }
 
+    div.hot_course {
+        margin-bottom: $course_sort_margin_bottom;
+
+        ul.auto_slider {
+            max-width: 1200px;
+            display: flex;
+
+            li.auto_slider_card {
+                background: #fff;
+                flex: 1;
+                margin: 0 15px;
+                box-shadow: $card_shadow;
+                border-radius: $card_radius;
+                overflow: hidden;
+
+
+
+                div.auto_slider_card_pic {
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                div.auto_slider_card_content {
+                    padding: 10px;
+
+                    p {
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: $title_gap;
+
+                    }
+
+                    div.card_content_scrb {
+                        div.card_content_join {
+                            margin-bottom: 20px;
+
+                            i {
+                                margin-right: 5px;
+                            }
+
+                            span {
+                                font-size: 13px;
+                            }
+                        }
+
+                        div.card_content_msg {
+                            display: flex;
+                            justify-content: space-between;
+
+                            span.card_time {}
+
+                            span.card_price {
+                                font-size: 20px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+
+                div.add_cart_btn {
+                    // width: 100%;
+
+                    button {
+                        width: 100%;
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+    }
+
+
+
 
 }

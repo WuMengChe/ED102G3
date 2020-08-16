@@ -5,30 +5,75 @@
     min-height: calc(100% - 130px);
     flex-wrap: wrap;
     div.mem_list{
-        height: fit-content;
-        background-color: darkcyan;
+        height: 100%;
+        min-height: calc(100vh - 130px);
+        background-color: #BCEAFF;
         border-radius: 30px;
+        .mem_img_area{
+            display: flex;
+            height: fit-content;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            .mem_img{
+                margin: 20px auto 0;
+                width: 150px;
+                height: 150px;
+                border: 1px black solid;
+                background-color: white;
+                border-radius: 50%;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+            }
+            span{
+                margin: 20px auto 0px;
+            }
+        }
         ul{
             text-align: center;
             li{
+                display: flex;
                 margin: 15px 0;
+                padding-left: 10px;
+                height: 40px;
+                align-items: center;
+                border-radius: 25px;
                 cursor: pointer;
+                text-align: start;
             }
         }
     }
     div.mem_con_area{
         display: flex;
+        padding: 0;
         min-height: calc(100% - 130px);
         flex-direction: column;
-        background-color: darkgoldenrod;
+        background-color: #ffffff;
         border-radius: 30px;
         .mem_con_title{
+            display: flex;
+            margin: 50px auto 0;
+            padding: 0;
+            width: 100%;
+            height: 50px;
+            align-items: center;
+            // flex-direction: row;
+            // justify-content: flex-start;
+            // h1{
+            //     margin: 0 auto;
+            // }
+        }
+        .mem_con_title_rwd{
             display: flex;
             width: 100%;
             height: 50px;
             flex-direction: column;
             justify-content: center;
-            .btn_second{
+            button{
                 position: absolute;
                 top: 5px;
                 left: 10px;
@@ -40,15 +85,18 @@
         div.container{
             display: flex;
             padding: 0;
-            height: fit-content;
-            min-height: 350px;
-            align-items: center;
+            height: 100%;
+            min-height: calc(100vh - 130px);
+            align-items: flex-start;
+            border-radius: 25px;
             flex-wrap: wrap;
-            background-color: khaki;
+            background-color: #ffffff;
             .mem_img_area{
                 display: flex;
-                height: fit-content;
-                background-color: chartreuse;
+                height: 100%;
+                // min-height: calc(100vh - 130px);
+                background-color: #BCEAFF;
+                border-radius: 25px;
                 flex-direction: column;
                 justify-content: center;
                 position: relative;
@@ -56,7 +104,8 @@
                     margin: 20px auto 0;
                     width: 200px;
                     height: 200px;
-                    background-color: gray;
+                    border: 1px black solid;
+                    background-color: white;
                     border-radius: 50%;
                     overflow: hidden;
                     img{
@@ -66,7 +115,7 @@
                     }
                 }
                 label{
-                    margin-top: 20px;
+                    margin: 20px auto 0px;
                     cursor: pointer;
                 }
                 input{
@@ -75,31 +124,40 @@
             }
             .mem_con_detail{
                 display: flex;
-                height: fit-content;
-                background-color: crimson;
+                height: 100%;
+                background-color: #ffffff;
                 flex-direction: column;
+                justify-content: start;
                 form.mem_detail{
                     display: flex;
                     margin: 0 auto;
                     width: 100%;
                     max-width: 540px;
                     min-width: 320px;
-                    background-color:  indianred;
                     flex-direction: column;
                     table, tr{
                         width: 100%;
                     }
+                    table{
+                        margin-top: 175px;
+                    }
                     tr{
                         height: 50px;
                     }
+                    th{
+                        text-align: start;
+                    }
                     td{
                         width: 50%;
-                        text-align: center;
+                        text-align: start;
                         vertical-align: middle;
                         input{
                             width: 100%;
                             height: 100%;
                         }
+                    }
+                    button{
+                        margin-left: calc(100% - 150px);
                     }
                 }
             }
@@ -108,33 +166,76 @@
             }
             .mem_tit_area{
                 display: flex;
-                margin-top: 20px;
+                margin: 20px auto 0;
+                padding: 0;
                 width: 100%;
-                border-top: 2px black solid;
-                border-bottom: 2px black solid;
+                border-top: 1px black solid;
+                border-bottom: 1px black solid;
+                background-color: #BCEAFF;
                 .mem_title{
                     display: inline-flex;
-                    height: 25px;
-                    text-align: center;
+                    padding: 0px 0px 0px 5px;
+                    height: 40px;
+                    // text-align: center;
                     flex-direction: column;
                     justify-content: center;
+                }
+                .mem_title_tab{
+                    margin: 0 auto;
+                    width: 150px;
+                    cursor: pointer;
                 }
             }
-            .mem_ana_area{
+            .mem_ana_area, .mem_cla_area, .mem_art_area, .mem_pos_area, .mem_ord_area, .mem_mes_area{
                 display: flex;
-                margin: 20px 0;
+                margin: 5px auto;
+                align-items: center;
+                border-top: 1px black solid;
+                border-bottom: 1px black solid;
+                padding: 0;
                 width: 100%;
                 flex-wrap: wrap;
-                .mem_ana{
+                .col-md-12, .col-3, .col-6{
+                    padding: 0;
+                }
+                .col-6, .col-5{
+                    display: flex;
+                    flex-direction: column;
+                }
+                .mem_ana, .mem_cla, .mem_ord, .mem_pos{
                     display: inline-flex;
+                    margin: 10px 0;
                     height: 40px;
-                    text-align: center;
+                    // text-align: center;
                     flex-direction: column;
                     justify-content: center;
+                    .mem_click {
+                        height: 25px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        cursor: pointer;
+                    }
+                    i{
+                        padding-left: 5px;
+                        width: fit-content;
+                        height: fit-content;
+                    }
+                    img{
+                        margin: 0 auto;
+                        width: 200px;
+                        height: 200px;
+                        background-color: gray;
+                    }
                 }
-                .mem_ana_det{
+                .mem_ord_det{
+                    padding: 0;
+                }
+                .mem_ana_det, .mem_ord_det{
                     display: flex;
-                    margin-top: 5px;
+                    margin: 10px 0;
+                    border: 2px #FFE56D solid;
+                    border-radius: 20px;
                     flex-direction: row;
                     flex-wrap: wrap;
                     position: absolute;
@@ -144,11 +245,14 @@
                     .mem_ana_det_left{
                         display: flex;
                         margin-top: 5px;
-                        height: 200px;
+                        height: fit-content;
                         flex-direction: column;
-                        border: 1px rosybrown solid;
+                        h2{
+                            padding: 0px 15px;
+                        }
                         section{
                             margin-top: 20px;
+                            padding: 0px 15px;
                         }
                     }
                     .mem_ana_det_right{
@@ -158,10 +262,18 @@
                             margin: 0 auto;
                             width: 100%;
                             height: 100%;
-                            // max-width: 300px;
-                            // min-width: 200px;
-                            // max-height: 300px;
-                            // min-height: 200px;
+                        }
+                    }
+                    .mem_ord_det_con{
+                        display: flex;
+                        // margin-top: 5px;
+                        padding: 0;
+                        align-items: center;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        .mem_ord{
+                            margin: 5px 0;
+                            height: fit-content;
                         }
                     }
                 }
@@ -172,9 +284,65 @@
                     transition: 1s;
                     z-index: 1;
                 }
+                a{
+                    margin: 0;
+                }
+                .mem_cla{
+                    margin-top: 5px;
+                }
+                a.mem_art_area{
+                    display: flex;
+                    flex-direction: column;
+                    .mem_art{
+                        margin: 5px auto;
+                        padding: 0 5px;
+                        width: fit-content;
+                        height: fit-content;
+                    }
+                    .mem_art_content{
+                        opacity: 0.7;
+                    }
+                }
+                .mem_cla{
+                    height: fit-content;
+                }
+                .mem_pos{
+                    display: inline-flex;
+                    height: fit-content;
+                    min-height: 40px;
+                    // text-align: center;
+                    flex-direction: column;
+                    justify-content: center;
+                    span{
+                        // margin: 0 auto;
+                        width: fit-content;
+                    }
+                }
+                .mem_pos_img{
+                    // margin: 0 auto;
+                    // width: 200px;
+                    // height: 200px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .mem_art_area, .mem_cla_area, .mem_pos_area, .mem_ord_det, .mem_mes_area{
+                cursor: pointer;
+            }
+            .mam_no_data{
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                justify-content: center;
+                h3{
+                    margin: 0 auto 20px;
+                    width: fit-content;
+                }
             }
         }
-        .btn_third{
+        button{
             margin: 0 auto;
         }
     }
