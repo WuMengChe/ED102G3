@@ -6,13 +6,14 @@
   outline: none;
 }
 
-.header {
-}
-
-.forum_discuss > .dis_body {
+.dis_body {
+  background-color: rgb(0, 50, 78);
+  display: flex;
+  justify-content: center;
   .career {
-    // padding-right: 30px;
+    // padding-right: 50px;
     min-width: 200px;
+    // padding-left: 50px;
   }
   .career_name::-webkit-scrollbar {
     display: none;
@@ -23,34 +24,54 @@
     overflow-x: scroll;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 200px;
+    // justify-content: center;
+    // align-items: center;
+    // position: fixed;
+    // top: 200px;
+
     li {
       text-align: center;
-      border: 10px solid #336ac6;
-      width: 200px;
-      height: 80px;
-      line-height: 60px;
+      // border: 10px solid #336ac6;
+      // width: 200px;
+      height: 50px;
+      line-height: 50px;
+      font-weight: 700;
+      max-width: 200px;
+      position: relative;
       cursor: pointer;
+      color: white;
+      &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.1);
+      }
+      .fa-briefcase {
+        padding-left: 10px;
+      }
     }
   }
 }
 
-.forum_discuss > .search {
+.Travel-icon {
+  max-width: 30px;
+  width: 100%;
+  // border: 1px solid red;
+  position: absolute;
+  left: 20px;
+  top: 10px;
+}
+
+.search {
+  background-color: rgb(0, 50, 78);
   padding-top: 30px;
   padding-bottom: 50px;
-  // border: 1px solid red;
+  border: 1px solid red;
   .search_wrap {
-    width: 700px;
-    margin: 0 auto;
     border: 1px solid blue;
-    display: flex;
+    margin: 0 auto;
     .search_wrap_line {
-      border: 2px solid #336ac6;
+      background-color: white;
+      border: 2px solid white;
       border-radius: 30px;
-      width: 100%;
+      min-width: 700px;
       #search_btn {
         cursor: pointer;
         background-color: white;
@@ -58,7 +79,7 @@
         margin-left: 13px;
       }
       .text_input {
-        min-width: 80%;
+        min-width: 85%;
         height: 30px;
         border: none;
       }
@@ -76,7 +97,6 @@
 /* 整個頁籤及內容最外層區塊 */
 div.tab_container {
   max-width: 700px;
-  margin: 0 auto;
 }
 
 /* 頁籤區塊 */
@@ -100,7 +120,7 @@ div.tab_container div.tab_list_block ul.tab_list > li {
 div.tab_container div.tab_list_block ul.tab_list > li > a {
   text-decoration: none;
   display: inline-block;
-  // border: 1px solid #ccc;
+  border-bottom: 1px solid;
   // border-bottom: 1px solid black;
   padding: 7px 30px;
   border-radius: 5px 5px 0 0;
@@ -120,7 +140,7 @@ div.tab_container div.tab_list_block ul.tab_list > li > a.-on {
 
 /* 頁籤內容區塊 */
 div.tab_container div.tab_contents {
-  background: #336ac6;
+  background: white;
   padding: 0 20px;
 }
 div.tab_container div.tab_contents div.tab {
@@ -131,23 +151,36 @@ div.tab_container div.tab_contents div.tab {
     margin: 20px 0;
     .mem_info {
       display: flex;
+      justify-content: space-between;
       padding: 10px;
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        overflow: hidden;
+      .info_list {
+        display: flex;
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+        .dis_name,
+        .dis_date {
+          min-width: 50px;
+          line-height: 30px;
+        }
       }
-      li {
-        min-width: 50px;
-        line-height: 30px;
-        .type_tag {
-          background-color: #0056b3;
-          padding: 0px 5px;
-          text-align: right;
-          border-radius: 5px;
-          color: white;
-          font-size: 5px;
+
+      .tags_list {
+        display: flex;
+        .tags_div {
+          margin: 5px;
+
+          .type_tag {
+            background-color: #0056b3;
+            padding: 0px 5px;
+            text-align: right;
+            border-radius: 5px;
+            color: white;
+            font-size: 5px;
+          }
         }
       }
     }
@@ -196,12 +229,12 @@ div.tab_container div.tab_contents div.tab.-on {
         overflow: hidden;
         // border: 1px solid #ccc;
       }
-      li {
+      .dis_name,
+      .dis_date {
         min-width: 50px;
         padding: 0 10px;
         display: flex;
         align-items: center;
-        justify-content: center;
       }
     }
     .msg_title {
@@ -226,7 +259,7 @@ div.tab_container div.tab_contents div.tab.-on {
       // border: 1px solid red;
       text-align: end;
       button {
-        min-width: 50px;
+        min-width: 40px;
         // background: #1b4d9f;
         border: none;
         cursor: pointer;
@@ -544,12 +577,14 @@ div.impeachment_overlay > article {
 @media screen and (max-width: 992px) {
   .forum_discuss {
     .dis_body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       .career {
-        width: 100%;
-        padding: 0;
-        border: 15px solid red;
-
-        margin: 0 auto;
+        max-width: 700px;
+        // padding: 0;
+        background-color: white;
+        margin-bottom: 50px;
         ul.career_name {
           display: flex;
           flex-direction: row;
@@ -557,6 +592,11 @@ div.impeachment_overlay > article {
           li {
             min-width: 100px;
             margin: 20px 10px;
+            background-color: #0056b3;
+            border-radius: 5px;
+            img {
+              display: none;
+            }
           }
         }
       }
@@ -567,6 +607,18 @@ div.impeachment_overlay > article {
     width: 100%;
     // margin: 50px auto;
   }
+
+  // .search {
+  //   .search_wrap {
+  //     .search_wrap_line {
+  //       .text_input {
+  //         min-width: 80%;
+  //         height: 30px;
+  //         border: none;
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 @media screen and (max-width: 500px) {
