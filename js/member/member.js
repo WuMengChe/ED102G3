@@ -4,13 +4,15 @@ let memData = {
         name: '周伯通',
         birthday: '109/08/11',
         tel: '0912345678',
-        code: '1234567890',
+        code: '123456789',
+        newCode: '',
+        checkNewcode: '',
         email: '123456789@gmail.com'
     },
     memberAnalysis:[
-        {testDate:  "109/01/01", industType: "研究型(I)", industTypeInfo: "樂於觀察、思考、分析，喜歡用頭腦依自己的步調解決問題並追根究底。做事時能提出新的想法和策略，但通常對實際解決問題的細節較無興趣，喜歡和有相同興趣或專業的人討論，或者自己看書思考。此型分數較高的人通常喜歡從事生物、化學、醫藥、數學、天文等需要研究與分析的工作。"},
-        {testDate:  "109/02/01", industType: "企業型(E)", industTypeInfo: "精力旺盛、生活緊湊、好冒險競爭，做事有計畫。希望擁有權力去改善不合理的事。善用說服力和組織能力，希望被他人肯定，並成為團體的焦點人物。此型分數較高的人通常喜歡管理、銷售、司法、從政等相關工作。"},
-        {testDate:  "109/03/01", industType: "實作型(R)", industTypeInfo: "情緒穩定、有耐性，做事坦承直率，寧願行動不喜多言，也喜歡在講求實際、需要動手的環境中，從事明確的工作。他們對於機械和工具等事物較有興趣，生活上亦以實用為重，重視眼前的事勝過於對未來的想像，喜歡獨自做事。此型分數較高的人通常喜歡從事機械、電子、土木建築、農業等相關工作。"}
+        {testDate:  "109/01/01", industType: "研究型(I)", industTypeInfo: "此型分數較高的人通常喜歡從事生物、化學、醫藥、數學、天文等需要研究與分析的工作。"},
+        {testDate:  "109/02/01", industType: "企業型(E)", industTypeInfo: "此型分數較高的人通常喜歡管理、銷售、司法、從政等相關工作。"},
+        {testDate:  "109/03/01", industType: "實作型(R)", industTypeInfo: "此型分數較高的人通常喜歡從事機械、電子、土木建築、農業等相關工作。"}
     ],
     analysisResult: [
         [43, 34, 48, 77, 60, 59],
@@ -18,8 +20,8 @@ let memData = {
         [23, 54, 58, 37, 44, 89]
     ],
     memberClass: [
-        {name: '社會心理學', content: '社會心理學是探討人們如何知覺與認識社會世界、如何進行人際互動，以及社會情境之影響的學科'},
-        {name: '翻轉課堂的職業講師祕訣', content: '《教學的技術》2019年上市即榮登暢銷書排行榜冠軍，也是知名網路書店年度五十大好書，但是看完《教學的技術》全書，還是不懂操作的關鍵？很難想像真實在教室應用的場景？'}
+        {name: '社會心理學', teacher: '劉威德'},
+        {name: '翻轉課堂的職業講師祕訣', teacher: '王永福'}
     ],
     memberArticle: [
         {title: '我想學程式，但到底該從哪個語言入門？', content: '身處在這個「全民學程式」時代，幾年後當程式設計變成連國中生都必備的能力時，不會寫程式的人在未來就要變成少數民族。當越來越多人開始對學程式語言有興趣，大家常常問的第一個問題就是，到底該從哪個程式語言開始？'},
@@ -31,7 +33,7 @@ let memData = {
     ],
     memberOrder: [
         {title: '社會心理學', buyDate: '109/04/20', price: '123$'},
-        {title: '2個購買課程', buyDate: '109/05/20', price: '456$'},
+        {title: '2門課程', buyDate: '109/05/20', price: '456$'},
         {title: '社會心理學', buyDate: '109/06/20', price: '123$'}
     ],
     memberOrderList: [
@@ -97,6 +99,18 @@ let changeMemContent = new Vue({
             this.checkMemMessage = true;
         }
     },
+    // watch: {
+    //     rwdUse: function(val){
+    //         var changeHeight = document.querySelector('.mem_img_area');
+    //         if(val){
+    //             alert(changeHeight);
+    //             changeHeight.style.height = '300px';
+    //         }
+    //         else{
+    //             changeHeight.style.height = '';
+    //         }
+    //     }
+    // },
     created() {
         window.addEventListener('resize', this.changeWidth);
     },
@@ -114,7 +128,12 @@ let changeMemContent = new Vue({
             }
         },
         changePages(e){
-            return this.currentPage = this.title[e];
+            this.currentPage = this.title[e];
+            var liChange = document.querySelectorAll('.mem_list ul li');
+            for(var i = 0; i < liChange.length; i++){
+                liChange[i].style.backgroundColor = 'transparent';
+            }
+            liChange[e].style.backgroundColor = 'white';
         },
         rwdChangePages(e){
             if(this.screenWidth < 975){
@@ -133,12 +152,15 @@ let changeMemContent = new Vue({
         },
         showPage(index){
             document.querySelectorAll('.mem_ana_area')[index].querySelector('.mem_ana_det').classList.toggle('show');
-            var btnText = document.querySelectorAll('.mem_ana_area')[index].querySelector('.btn_third');
-            if(btnText.textContent == "詳細資訊"){
-                btnText.textContent = "關閉資訊";
+            var arrowChange = document.querySelectorAll('.mem_ana_area')[index].querySelector('.fas');
+            var spanText = document.querySelectorAll('.mem_ana_area')[index].querySelector('span');
+            if(spanText.textContent == "詳細資訊"){
+                spanText.textContent = "關閉資訊";
+                arrowChange.style.transform = "rotate(180deg)";
             }
             else{
-                btnText.textContent = "詳細資訊";
+                spanText.textContent = "詳細資訊";
+                arrowChange.style.transform = "rotate(0deg)";
             }
         },
         plotRadar(index, anaValue){
@@ -208,13 +230,19 @@ let changeMemContent = new Vue({
         },
         showOrderPage(index){
             document.querySelectorAll('.mem_ord_area')[index].querySelector('.mem_ord_det').classList.toggle('show');
-            var btnText = document.querySelectorAll('.mem_ord_area')[index].querySelector('.btn_third');
-            if(btnText.textContent == "詳細資訊"){
-                btnText.textContent = "關閉資訊";
+            var arrowChange = document.querySelectorAll('.mem_ord_area')[index].querySelector('.fas');
+            var spanText = document.querySelectorAll('.mem_ord_area')[index].querySelector('span');
+            if(spanText.textContent == "詳細資訊"){
+                spanText.textContent = "關閉資訊";
+                arrowChange.style.transform = "rotate(180deg)";
             }
             else{
-                btnText.textContent = "詳細資訊";
+                spanText.textContent = "詳細資訊";
+                arrowChange.style.transform = "rotate(0deg)";
             }
+        },
+        inputTest(value){
+            alert(value);
         },
     },
 })
