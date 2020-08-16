@@ -1,287 +1,500 @@
 @import '../../_public_dontTouch/utils/variables';
 @mixin section {
+    border: 3px solid lightcoral;
+    width: 100vw;
+    // height: 80vh;
+}
+
+@mixin screen {
     display: flex;
     border: 1px solid red;
-    height: 100vh;
+    height: fit-content;
+    @content
 
     
 };
-@mixin position($width){
+@mixin position($width, $position){
     width: $width;
-    position: absolute;
+    position: $position;
     @content
+};
+
+@mixin stage($height, $position) {
+    height: $height;
+    width: 100px;
+    // border: 1px solid #000;
+    position: relative;
+    top: $position;
+}
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    animation: #{$str};
+    animation-iteration-count: 1 ;
+    animation-duration: 5s;
+    animation-timing-function: ease-in ;      
+}
+
+@include keyframes(firstStair){
+    from{padding-top: 15%;}
+    to{padding-top: 0%;}
+    
+}
+@include keyframes(secondStair){
+    from{padding-top: 25%;}
+    to{padding-top: 0%;}
+    
+}
+@include keyframes(thirdStair){
+    from{padding-top: 35%;}
+    to{padding-top: 0%;}
+    
+}
+@include keyframes(auditor){
+    from{top: 215px;}
+    to{top: 125px;}
+    
+}
+@include keyframes(teacher){
+    from{top: 215px;}
+    to{top: 75px;}
+    
+}
+@include keyframes(doctor){
+    from{top: 215px;}
+    to{top: 20px;}
+    
+}
+
+
+
+
+.header_wrap{
+    position: fixed;
+    z-index: 1;
+    // border: 1px solid #000;
+    background: transparent !important;
 }
 
 .index{
     .index_test{
         @include section;
-        .index_test_text{
-            border: 1px solid #000;
-            text-align: justify;
-            height: fit-content;
-            
-            margin: auto 0;
-            padding: 30px;
-            h1{
-                text-align: center;
-            }
-            p{
-                padding-left: 10px;
-                padding-right: 10px;
-                margin: 20px 0;
-            }
-            .btn_primary{
-                margin-left: 50%;
-                transform: translateX(-50%);
-
-            }
-        }
-        .index_test_img{
-            height: fit-content;
-            margin: auto 0;
-            .img{
-                border: 1px solid red;
-                position: relative;
+        background-image: url(../../../img/index/index_1st/bg_bigblue.png);
+        background-attachment: fixed;
+        background-repeat:no-repeat ;
+        background-position: bottom ;
+        .firstScreen{
+            @include screen{
+                flex-wrap: wrap;
                 
-                .grp_chart{
-                    border: 1px solid #000;
-                    background-color: #fff;
+            };
+            
+            
+            .index_test_text{
+                // border: 1px solid #000;
+                text-align: justify;
+                height: fit-content;
+                margin: auto 0;
+                padding: 30px;
+                h1{
                     text-align: center;
-                    .line_chart{
-                        width:250px;
-                        vertical-align: top;
-                        margin: 20px;
-                        
-
-                    }
-                    .radar_chart{
-                        width: 200px;
-                        margin: 20px;
-                        
-                    }
-                    .bottom{
-                        vertical-align: bottom;
-                        margin: 20px ;
-                        margin-left: 45%;
-                        
-                        
-                    }
                 }
-                .left_boy{
-                    @include position(200px){
-                        left:0;
-                        top: 100px; 
-                    }
-
+                p{
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    margin: 20px 0;
                 }
-                .right_girl{
-                    @include position(200px){
-                        right:0;
-                        top: 200px
-                    }
-
+                .btn_primary{
+                    margin-left: 50%;
+                    transform: translateX(-50%);
+    
                 }
             }
+            .index_test_img{
+                height: fit-content;
+                margin: auto 0;
+                .img{
+                    // border: 1px solid red;
+                    position: relative;
+                    
+                    .grp_chart{
+                        border: 1px solid rgb(187, 187, 187);
+                        background-color: #fff;
+                        text-align: center;
+                        box-shadow: $card_shadow;
+
+                        .line_chart{
+                            width:250px;
+                            vertical-align: top;
+                            margin: 20px;
+                            
+    
+                        }
+                        .radar_chart{
+                            width: 200px;
+                            margin: 20px;
+                            
+                        }
+                        .bottom{
+                            vertical-align: bottom;
+                            margin: 20px ;
+                            margin-left: 45%;
+                            
+                            
+                        }
+                    }
+                    .left_boy{
+                        @include position(200px, absolute){
+                            left:0;
+                            top: 150px; 
+                        }
+    
+                    }
+                    .right_girl{
+                        @include position(200px, absolute){
+                            right:0;
+                            top: 200px;
+                            
+                        
+                        }
+    
+                    }
+                }
+            }
+            
         }
+        .firstMoveBg{
+            background-image: url(../../../img/index/index_1st/bg_frontBlue.png);
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            .firstBg{
+                // border: 1px solid blue;
+                width: 100%;
+                height: 175px;
+                // visibility: hidden;
+                
+                
+            }
+        }
+       
     }
     .index_car{
         @include section;
-        .index_sal_img{
-            // border: 1px solid #000;
-            height: fit-content;
-            position: relative;
-            margin: 25% 0;
-            text-align: center;
-            .auditor{
-                @include position(100px){
-                   left: 130px;
-                   bottom: 110px;
+        background-image: url(../../../img/index/index_2nd/2nd_bg.png);
+        background-position: top;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
 
-
-                }
-            }
-            .teacher{
-                @include position(70px){
-                    left: 250px;
-                    bottom: 180px;
-
-                }
+        // background-repeat: no-repeat;
+        
+        // .secondMoveBg{
+        //     border: 1px solid salmon;
+        //     width: 100%;
+        //     .secondBg{
+        //         width: 100%;
+        //     }
+        // }
+        .secondScreen{
+            @include screen;
+            
+            
+            .index_sal_img{
+                // border: 1px solid blue;
+                height: 545px;
+                overflow: hidden;
+                padding: 0;
+                text-align: center;
                 
-                
-            }
-            .doctor{
-                @include position(100px){
-                    left: 330px;
-                    bottom: 250px;
+                .auditor{
 
+                    @include position(100px, relative){
+                        top: 125px;
+                        right: 5px;
+                        z-index: 1;
+                    }
+                    @include animation(auditor)
                 }
-                
-            }
-            .stage{
-                width: 300px;
-                // border: 1px solid #000;
-                display: block;
-                margin: 0 auto;
+                .teacher{
+                    @include position(80px, relative){
+                        top: 75px;
+                        z-index: 1;
+                    }
+                    @include animation(teacher);
 
-            }
+                    
+                }
+                .doctor{
+                    @include position(100px, relative){
+                        top: 20px;
+                        z-index: 1;
+    
+                    }
+                    @include animation(doctor);
 
-        }
-        .index_sal_chart{
-            h1{}
-            .chart{
-                .horizontal-bar-graph{
-                    display: table;
-                    width: 100%;
+                    
                 }
-                .horizontal-bar-graph-segment {
-                    display: table-row;
+                .stage{
+                    display: flex;
+                    justify-content: center;
+                    margin: 0;
+                    // border: 1px solid #000;
+
+                    .firstStage{
+                        @include stage(30%, 110px);
+                        @include animation(firstStair);
+                    }
+                    
+                    .secondStage{
+                        @include stage(65%, 55px);
+                        @include animation(secondStair);
+                        
+                    }
+                    .thirdStage{
+                        @include stage(100%, 0px);
+                        @include animation(thirdStair);
+
+        
+                    }
                 }
-                  
-                .horizontal-bar-graph-label {
-                    display: table-cell;
-                    border-right: 1px solid silver;
-                    text-align: right;
-                    padding: 4px 10px 4px 0;
-                    vertical-align: baseline;
-                    white-space: nowrap;
-                }
-                  
-                .horizontal-bar-graph-value {
-                    display: table-cell;
-                    padding: 3px 0;
-                    vertical-align: baseline;
-                    width: 100%;
-                }
-                  
-                .horizontal-bar-graph-value-bar {
-                    background: silver;
-                    -moz-box-sizing: padding-box;
-                    -webkit-box-sizing: padding-box;
-                    box-sizing: padding-box;
-                    padding: 4px 4px 3px;
-                    height: 40px;
-                    text-align: right;
-                    color: white;
-                    overflow: visible;
-                    display: inline-block;
-                    white-space: nowrap;
-                    -webkit-font-smoothing: antialiased;
-                }
-                  
-                .horizontal-bar-graph-segment:first-child .horizontal-bar-graph-label {
-                    padding-top: 12px;
-                }
-                .horizontal-bar-graph-segment:first-child .horizontal-bar-graph-value {
-                    padding-top: 11px;
-                }
-                  
-                .horizontal-bar-graph-segment:last-child .horizontal-bar-graph-label {
-                    padding-bottom: 12px;
-                }
-                .horizontal-bar-graph-segment:last-child .horizontal-bar-graph-value {
-                    padding-bottom: 11px;
-                }
-                  
+    
             }
-            .btn_second{}
+            .index_sal_chart{
+                h1{
+                    
+                }
+                .chart{
+                    margin-top: 100px;
+                    margin-bottom: 80px;
+                    .horizontal-bar-graph{
+                        display: table;
+                        width: 100%;
+                    }
+                    .horizontal-bar-graph-segment {
+                        display: table-row;
+                    }
+                      
+                    .horizontal-bar-graph-label {
+                        display: table-cell;
+                        border-right: 1px solid silver;
+                        text-align: right;
+                        padding: 4px 10px 4px 0;
+                        vertical-align: baseline;
+                        white-space: nowrap;
+                        font-size: 20px;
+                    }
+                      
+                    .horizontal-bar-graph-value {
+                        display: table-cell;
+                        padding: 3px 0;
+                        vertical-align: baseline;
+                        width: 100%;
+                    }
+                      
+                    .horizontal-bar-graph-value-bar {
+                        background: silver;
+                        -moz-box-sizing: padding-box;
+                        -webkit-box-sizing: padding-box;
+                        box-sizing: padding-box;
+                        padding: 4px 4px 3px;
+                        height: 40px;
+                        text-align: right;
+                        color: white;
+                        overflow: visible;
+                        display: inline-block;
+                        white-space: nowrap;
+                        -webkit-font-smoothing: antialiased;
+                    }
+                      
+                    .horizontal-bar-graph-segment:first-child .horizontal-bar-graph-label {
+                        padding-top: 12px;
+                    }
+                    .horizontal-bar-graph-segment:first-child .horizontal-bar-graph-value {
+                        padding-top: 11px;
+                    }
+                      
+                    .horizontal-bar-graph-segment:last-child .horizontal-bar-graph-label {
+                        padding-bottom: 12px;
+                    }
+                    .horizontal-bar-graph-segment:last-child .horizontal-bar-graph-value {
+                        padding-bottom: 11px;
+                    }
+                      
+                }
+                .btn_second{
+                    margin-left:50%;
+                    transform: translateX(-50%);
+                }
+            }
         }
     }
     .index_disc{
         @include section;
-        .index_disc_text{
-            h1{}
-            .index_dia{
-                .message{
-                    border: 1px solid #000;
-                    border-radius: 10px;
-                    padding: 10px;
-                   
-                    .meg_box{
+        .thirdScreen{
+            @include screen;
+            .index_disc_text{
+                h1{}
+                .index_dia{
+                    .message{
                         border: 1px solid #000;
-                        border-radius: 5px;
-                        margin-bottom: 20px;
-                        box-shadow: $card_shadow;
-                        
-                        a{
-                            width: 100%;
-                            padding: 10px;
-                            h5{}
-                            hr{
-                                width:98%;
-                                color: lightgrey;
+                        border-radius: 10px;
+                        padding: 10px;
+                        position: relative;
+                        background-color: white;
+                        // z-index: 1;
+                       
+                        .meg_box{
+                            border: 1px solid #000;
+                            border-radius: 5px;
+                            margin-bottom: 15px;
+                            box-shadow: $card_shadow;
+                            
+                            a{
+                                width: 100%;
+                                padding: 10px;
+                                h5{}
+                                hr{
+                                    width:98%;
+                                    color: lightgrey;
+                                }
+                                p{
+                                    font-size: 12px;
+                                    color: rgb(42, 169, 219)
+                                }
                             }
-                            p{
-                                font-size: 12px;
-                                color: rgb(42, 169, 219)
-                            }
+                            
+                        }
+                        &::after {
+                            content: "";
+                            // border: 1px solid #000;
+                            background-image: url(../../../img/index/index_3rd/triangle.png);
+                            background-repeat: no-repeat;
+                            width: 120px;
+                            height: 90px;
+                            position: absolute;
+                            top: 10px;
+                            right: -100px;
+                            z-index: -1;
+                            
                         }
                     }
+                    .btn_second{}
                 }
-                .btn_second{}
             }
-        }
-        .index_disc_img{
-            .img{}
+            .index_disc_img{
+                .img{}
+            }
         }
     }
     .index_cour{
         @include section;
-        .index_cour_img{}
-        .index_cour_text{
-            h1{}
-            .pad{
-                .screen_bg{
-                    background-color: #000;
-                    border-top-left-radius: 50px;
-                    border-top-right-radius: 50px;
-                    height: 500px;
-                    padding: 40px;
-                    .screen{
-                        background-color: #fff;
-                        height: 425px;
-                        .screen_carousel{
-                            .item{
-                                display: inline-block;
-                                border: 1px solid pink;
-                                height: 300px;
-                                margin: 20px 0;
-                                img{
-                                    width: 100%;
-                                }
-                                h5{}
-                                p{
-                                    overflow:hidden;
-                                    white-space: nowrap;
-                                    text-overflow: ellipsis;
+        .index_cour_img{
+            // border: 1px solid #000;
+            width: fit-content;
+            @include position(fit-content, absolute){
+                bottom: 50px;
+                left: 0px;
+            
+            };
+            // position: relative;
+            .stair{
+                // border: 1px solid #000;
+                width: 500px;
+                // @include position(500px, absolute){
+                //     bottom: 0px;
+                //     left: 0px;
+
+                // };
+    
+            }
+          
+        }
+        .forthScreen{
+            @include screen;
+    
+            .index_cour_text{
+                h1{}
+                .pad{
+                    .screen_bg{
+                        background-color: #000;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        height: 450px;
+                        padding: 40px;
+                        .screen{
+                            background-color: #fff;
+                            height: 380px;
+                            .screen_carousel{
+                                .item{
+                                    display: inline-block;
+                                    border: 1px solid pink;
+                                    height: 280px;
+                                    margin: 20px 0;
+                                    img{
+                                        width: 100%;
+                                    }
+                                    h5{}
+                                    p{
+                                        overflow:hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                    }
                                 }
                             }
-                        }
-                        .btn_second{
-                            display: block;
-                            margin: 0 auto;
+                            .btn_second{
+                                display: block;
+                                margin: 0 auto;
+                            }
                         }
                     }
                 }
-            }
-            .screen_bt{
-                background-color: #B3B3B3;
-                border-bottom-left-radius: 50px;
-                border-bottom-right-radius: 50px;
-                height: 50px;
-
-                
+                .screen_bt{
+                    background-color: #B3B3B3;
+                    border-bottom-left-radius: 50px;
+                    border-bottom-right-radius: 50px;
+                    height: 50px;
+    
+                    
+                }
             }
         }
     }
     .index_card{
         @include section;
-        .index_card_img{
-            .img{}
-            .btn_second{}
+        .fifthScreen{
+            @include screen{
+                flex-wrap: wrap;
+            };
+
+            .index_card_img{
+                .img{}
+                .btn_second{
+                    margin-top: 30px;
+                    margin-left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+            .index_card_text{
+                h1{
+                    margin-bottom:30px ;
+                }
+                p{}
+            }
+            .post_front{
+                @include position(200px,relative){
+                    top: 130px;
+                }
+            }
+            .post_back{
+                @include position(80px,relative){
+                    bottom: 50px;
+                    left: 100px;
+                }
+            }
         }
-        .index_card_text{
-            h1{}
-            p{}
-        }
+        
     }
 }
