@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="./css/forum.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
-  <script src="./js/forum/fourm_discuss.js"></script>
+  <script src="./js/forum/forum_discuss.js"></script>
 
 </head>
 
 <body>
-  <div class="forum_discuss container">
+  <div class="forum_discuss container-fluid">
     <div class="header row">
       <div class="header_wrap">
         <header class="header">
@@ -50,28 +50,40 @@
 
     <!--搜尋框-->
     <div class="search row">
-      <div class="col-lg-3"></div>
+      <div class="col-lg-2"></div>
       <div class="search_wrap">
         <div class="search_wrap_line">
           <button id="search_btn">
             <i class="fas fa-search"></i>
           </button>
           <input type="search" placeholder="搜尋..." class="text_input">
+          <button id="cancel_search_btn">取消</button>
         </div>
-        <button id="cancel_search_btn">取消</button>
       </div>
     </div>
 
     <div class="dis_body row">
       <!--右邊類型分類-->
-      <div class="career col-lg-3">
+      <div class="career col-lg-2">
         <ul class="career_name">
-          <li>實作型(R)</li>
-          <li>研究型(I)</li>
-          <li>文藝型(A)</li>
-          <li>社會型(S)</li>
-          <li>企業型(E)</li>
-          <li>事務型(C)</li>
+          <li>
+            <img class="Travel-icon" src="./img/forum/icons8-牛-64.png">實作型(R)
+          </li>
+          <li>
+            <img class=" Travel-icon" src="./img//forum//icons8-海豚-64.png">研究型(I)
+          </li>
+          <li>
+            <img class="Travel-icon" src="./img/forum/icons8-孔雀-64.png">文藝型(A)
+          </li>
+          <li>
+            <img class="Travel-icon" src="./img/forum/icons8-象-64.png">社會型(S)
+          </li>
+          <li>
+            <img class="Travel-icon" src="./img/forum/icons8-大耳猴-64.png">企業型(E)
+          </li>
+          <li>
+            <img class="Travel-icon" src="./img/forum/icons8-pidgey-64.png">事務型(C)
+          </li>
         </ul>
       </div>
 
@@ -81,7 +93,7 @@
         <div class="tab_list_block">
           <ul class="tab_list">
             <li><a href="#" data-target="tab1" class="tab -on">經驗分享</a></li>
-            <li><a href="#" data-target="tab2" class="tab">問體討論</a></li>
+            <li><a href="#" data-target="tab2" class="tab">問題討論</a></li>
           </ul>
         </div>
 
@@ -89,16 +101,22 @@
           <!--第一個頁籤 經驗分享-->
           <div class="tab tab1 -on">
             <div class="msg_content">
-              <ul class="mem_info">
-                <li>
+              <div class="mem_info">
+                <div class="info_list">
                   <img src="./img/forum/ex.jpg" alt="" class="dis_img">
-                </li>
-                <li class="dis_name">王小豬</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
+              </div>
               <div class="msg_title">
-                <span>[經驗分享]</span>
                 <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
               </div>
               <div class="msg_textarea">
@@ -114,135 +132,25 @@
               </div>
             </div>
             <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" id="dis_img"></li>
-                <li class="dis_name">王小春</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
-              <div class="msg_title">
-                <span>[經驗分享]</span> <span class="open_dialog" id="article_2">2有人上過前端工程師學米私塾課嗎？</span>
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-            <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-                <li class="dis_name">李小非</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
-              <div class="msg_title">
-                <span>[經驗分享]</span> <span class="open_dialog">有人上過前端工程師學米私塾課嗎？</span>
-
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-            <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-                <li class="dis_name">葉大美</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
-              <div class="msg_title">
-                <span>[經驗分享]</span> <span class="open_dialog">有人上過前端工程師學米私塾課嗎？</span>
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-            <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-                <li class="dis_name">王小花</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
-              <div class="msg_title">
-                <span>[經驗分享]</span> <span class="open_dialog">有人上過前端工程師學米私塾課嗎？</span>
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-            <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-                <li class="dis_name">王小明</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
-              <div class="msg_title">
-                <span>[經驗分享]</span>
-                <span class="open_dialog">有人上過前端工程師學米私塾課嗎？</span>
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-          </div>
-
-          <!--第二個頁籤 問題討論-->
-          <div class="tab tab2">
-            <div class="msg_content">
-              <ul class="mem_info">
-                <li>
+              <div class="mem_info">
+                <div class="info_list">
                   <img src="./img/forum/ex.jpg" alt="" class="dis_img">
-                </li>
-                <li class="dis_name">王小豬</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
-              <div class="msg_title">
-                <span>[問題討論]</span>
-                <span class="open_dialog" id="">1有人上過前端工程師學米私塾課嗎？</span>
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
               </div>
-              <div class=" msg_textarea">
+              <div class="msg_title">
+                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
+              </div>
+              <div class="msg_textarea">
                 覺得課程整套實在有點貴，
                 而且業務死不讓我看學生作品，讓我覺得很詭異
                 有人買過嗎？學起來如何呢？求經驗分享～
@@ -255,14 +163,23 @@
               </div>
             </div>
             <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" id=""></li>
-                <li class="dis_name">王小春</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
+              <div class="mem_info">
+                <div class="info_list">
+                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
+              </div>
               <div class="msg_title">
-                <span>[經驗分享]</span> <span class="open_dialog" id="">2有人上過前端工程師學米私塾課嗎？</span>
+                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
               </div>
               <div class="msg_textarea">
                 覺得課程整套實在有點貴，
@@ -271,43 +188,124 @@
               </div>
               <div class="msg_btn">
                 <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
                 <button class="collect_btn">收藏</button>
                 <button class="impeachment_btn">檢舉</button>
               </div>
             </div>
             <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-                <li class="dis_name">李小非</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
+              <div class="mem_info">
+                <div class="info_list">
+                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
+              </div>
               <div class="msg_title">
-                <span>[經驗分享]</span> <span class="open_dialog">有人上過前端工程師學米私塾課嗎？</span>
+                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
+              </div>
+              <div class="msg_textarea">
+                覺得課程整套實在有點貴，
+                而且業務死不讓我看學生作品，讓我覺得很詭異
+                有人買過嗎？學起來如何呢？求經驗分享～
+              </div>
+              <div class="msg_btn">
+                <button><i class="far fa-heart"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
+                <button class="collect_btn">收藏</button>
+                <button class="impeachment_btn">檢舉</button>
+              </div>
+            </div>
+            <div class="msg_content">
+              <div class="mem_info">
+                <div class="info_list">
+                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
+              </div>
+              <div class="msg_title">
+                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
+              </div>
+              <div class="msg_textarea">
+                覺得課程整套實在有點貴，
+                而且業務死不讓我看學生作品，讓我覺得很詭異
+                有人買過嗎？學起來如何呢？求經驗分享～
+              </div>
+              <div class="msg_btn">
+                <button><i class="far fa-heart"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
+                <button class="collect_btn">收藏</button>
+                <button class="impeachment_btn">檢舉</button>
+              </div>
+            </div>
+          </div>
 
+          <!--第二個頁籤 問題討論-->
+          <div class="tab tab2">
+            <div class="msg_content">
+              <div class="mem_info">
+                <div class="info_list">
+                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+                  <div class="dis_name">葉大雄</div>
+                  <div class="dis_date">2020-03-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">研究型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">問題討論</span>
+                  </div>
+                </div>
+              </div>
+              <div class="msg_title">
+                <span class="open_dialog" id="">想請問前端工程是必備技能是什麼？</span>
               </div>
               <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
+                求答案
               </div>
               <div class="msg_btn">
                 <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
                 <button class="collect_btn">收藏</button>
                 <button class="impeachment_btn">檢舉</button>
               </div>
             </div>
             <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-                <li class="dis_name">葉大美</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
+              <div class="mem_info">
+                <div class="info_list">
+                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
+              </div>
               <div class="msg_title">
-                <span>[經驗分享]</span> <span class="open_dialog">有人上過前端工程師學米私塾課嗎？</span>
+                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
               </div>
               <div class="msg_textarea">
                 覺得課程整套實在有點貴，
@@ -316,20 +314,29 @@
               </div>
               <div class="msg_btn">
                 <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
                 <button class="collect_btn">收藏</button>
                 <button class="impeachment_btn">檢舉</button>
               </div>
             </div>
             <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-                <li class="dis_name">王小花</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
+              <div class="mem_info">
+                <div class="info_list">
+                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
+              </div>
               <div class="msg_title">
-                <span>[經驗分享]</span> <span class="open_dialog">有人上過前端工程師學米私塾課嗎？</span>
+                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
               </div>
               <div class="msg_textarea">
                 覺得課程整套實在有點貴，
@@ -338,21 +345,29 @@
               </div>
               <div class="msg_btn">
                 <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
                 <button class="collect_btn">收藏</button>
                 <button class="impeachment_btn">檢舉</button>
               </div>
             </div>
             <div class="msg_content">
-              <ul class="mem_info">
-                <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-                <li class="dis_name">王小明</li>
-                <li class="dis_date">2020-07-28</li>
-                <li><span class="type_tag">實作型</span></li>
-              </ul>
+              <div class="mem_info">
+                <div class="info_list">
+                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
+              </div>
               <div class="msg_title">
-                <span>[經驗分享]</span>
-                <span class="open_dialog">有人上過前端工程師學米私塾課嗎？</span>
+                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
               </div>
               <div class="msg_textarea">
                 覺得課程整套實在有點貴，
@@ -361,7 +376,38 @@
               </div>
               <div class="msg_btn">
                 <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
+                <button class="collect_btn">收藏</button>
+                <button class="impeachment_btn">檢舉</button>
+              </div>
+            </div>
+            <div class="msg_content">
+              <div class="mem_info">
+                <div class="info_list">
+                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+                  <div class="dis_name">王小豬</div>
+                  <div class="dis_date">2020-07-28</div>
+                </div>
+                <div class="tags_list">
+                  <div class="tags_div">
+                    <span class="type_tag">實作型</span>
+                  </div>
+                  <div class="tags_div">
+                    <span class="type_tag">經驗分享</span>
+                  </div>
+                </div>
+              </div>
+              <div class="msg_title">
+                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
+              </div>
+              <div class="msg_textarea">
+                覺得課程整套實在有點貴，
+                而且業務死不讓我看學生作品，讓我覺得很詭異
+                有人買過嗎？學起來如何呢？求經驗分享～
+              </div>
+              <div class="msg_btn">
+                <button><i class="far fa-heart"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
                 <button class="collect_btn">收藏</button>
                 <button class="impeachment_btn">檢舉</button>
               </div>
