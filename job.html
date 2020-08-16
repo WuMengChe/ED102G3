@@ -420,29 +420,33 @@
   </svg>
   </div>
 
-  <div class="forthScreen container">
-   <div class="col-4"></div>
-   <div class="index_cour_text col-8">
-       <h1>熱門課程</h1>
-       <div class="pad">
-           <div class="screen_bg">
-               <div class="screen">
-                   <div class="screen_carousel">
-                       <div class="item" v-for="course in courses">
-                           <img src="./img/index/index_4th/課程照片-翻轉課堂的職業講師祕訣.jpg" alt="">
-                           <h3>{{course.title}}</h3>
-                           <p>{{course.content}}</p>
+  <section class="index_cour">
+   <div class="index_cour_img">
+       <img class="stair" src="./img/index/index_4th/upStair.png" alt="" srcset="">
+   
+   </div>
+   <div class="forthScreen container">
+       <div class="col-4"></div>
+       <div class="index_cour_text col-8">
+           <h1>熱門課程</h1>
+           <div class="pad">
+               <div class="screen_bg">
+                   <div class="screen">
+                       <div class="screen_carousel">
+                           <div class="item" v-for="course in courses">
+                               <img src="./img/index/index_4th/課程照片-翻轉課堂的職業講師祕訣.jpg" alt="">
+                               <h3>{{course.title}}</h3>
+                               <p>{{course.content}}</p>
+                           </div>
                        </div>
+                       <a class="btn_second"><span></span>探索更多行業<span></span></a>
                    </div>
-                   <a class="btn_second"><span></span>探索更多行業<span></span></a>
                </div>
            </div>
+           <div class="screen_bt"></div>
        </div>
-       <div class="screen_bt"></div>
    </div>
-</div>
- 
- 
+</section>
  
 
 </body>
