@@ -1,18 +1,145 @@
 .side_cart {
     border: $outline2;
-    width: 300px;
-    height: calc(100vh - 69px);
+    width: 400px;
+    height: 100vh;
     background: #fff;
-
     position: fixed;
     bottom: 0;
     right: 0;
-    z-index: 100;
+    z-index: 200;
     transition: .6s ease-in-out;
+    padding: 10 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // position: relative;
     // transition: transform 1.6s easeInQuint;
     // transition: transform 1.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+    div.cart_close {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+
+        button {
+            // font-size: 30px;
+            // font-weight: bold;
+            width: 60px;
+            height: 30px;
+            line-height: 0;
+
+        }
+    }
+
+    div.cart_course {
+        margin: 10px;
+        // background: pink;
+        overflow-y: scroll;
+
+        ul {
+            // border: $outline1;
+
+            li {
+                box-shadow: $card_shadow;
+                // border: $outline2;
+                margin: 10px 0;
+
+                div.cus_card {
+                    display: flex;
+
+                    // position: relative;
+                    a {
+                        border-bottom: 0;
+
+                    }
+
+                    div.remove {
+                        // position: absolute;
+                        // top: -15px;
+                        // right: -20px;
+                        // border: $outline3;
+
+                        button {
+                            background: #e8c300;
+                            width: 100%;
+                            height: 100%;
+                            font-size: 18px;
+
+
+                            &:hover {
+
+                                background: #FCDA27;
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    div.check_out_contain {
+        // position: absolute;
+        // bottom: 0;
+        // width: 100%;
+        // z-index: 200;
+        // border: $outline1;
+
+        div.discount_title {
+            background: #ededed;
+
+
+            p {
+                padding: 5px;
+            }
+        }
+
+        div.price_check {
+            background: #fff;
+
+            ul {
+                li {
+                    display: flex;
+                    justify-content: space-between;
+
+                    span {
+                        padding: 10px 5px;
+
+                    }
+                }
+            }
+        }
+
+        div.price_total_btn {
+            border-top: 1px soild #ededed;
+            display: flex;
+            align-items: center;
+            background: #ededed;
+
+
+            div.price_total {
+                flex-grow: 1;
+                text-align: center;
+
+            }
+
+            button.check_out {
+                flex-grow: 1;
+                background: #1b4d9f;
+                font-size: 18px;
+                color: #fff;
+                padding: 10px 0;
+
+                &:hover {
+                    background: #336AC6;
+                }
+            }
+        }
+    }
 }
 
 .cart_off {
     transform: translateX(100%);
+
 }

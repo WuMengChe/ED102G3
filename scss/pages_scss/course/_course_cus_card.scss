@@ -1,0 +1,60 @@
+div.cus_card {
+    a {
+        display: flex;
+        border-bottom: 1px solid gray;
+        padding: 10px 0;
+
+        div.card_img {
+            width: $cus_card_img_width;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        div.card_content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px 10px;
+            flex-grow: 1;
+
+            p {
+                font-weight: bold;
+            }
+
+            div.card_content_scrb {
+                div.card_content_join {
+                    span {
+                        font-size: 13px;
+                        padding: 0 5px;
+                    }
+                }
+
+                div.card_content_msg {
+                    margin-top: 10px;
+                    display: flex;
+
+                    span.card_type {
+                        background: orange;
+                        border-radius: 5px;
+                        padding: 0 5px;
+                        line-height: 20px;
+                    }
+
+                    span.card_time {
+                        margin-left: 10px;
+                        padding: 0 5px;
+                        line-height: 20px;
+                    }
+
+                    span.card_price {
+                        margin-left: auto;
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}
