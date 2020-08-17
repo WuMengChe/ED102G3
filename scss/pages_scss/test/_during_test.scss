@@ -5,10 +5,11 @@ main.main_during_test{
     background-color: #F6F3ED;
     border-radius: 25px;
     overflow: hidden;
+    margin-bottom: 50px;
 
         .question_bx{
             // border: 1px solid blue;
-            background: #7ED3E0;
+            background: #bcebfb;
             padding: 1%;
             display: flex;
             justify-content: center;
@@ -30,7 +31,7 @@ main.main_during_test{
             text-align: center;
             display: flex;
             border: 3px solid #cf6223;
-            background: #FFE56D;
+            background: #ffe56d;
             padding: 2% 3%;
             border-radius: 50px;
         }
@@ -70,7 +71,7 @@ main.main_during_test{
         display: flex;
         justify-content: center;
         align-items: center;
-        
+        margin-bottom: 50px;
             .progress_container{
                 border: 2px solid dimgrey;
                 width: 540px;
@@ -91,7 +92,7 @@ main.main_during_test{
                  .progress_bar{
                      position: absolute;
                      z-index: 1;
-                     background: rgb(94, 213, 243);
+                     background: #5ed5f3;
                      width: 50px;
                      height: 30px;
                      border-radius: 50px;

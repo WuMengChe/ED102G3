@@ -1,6 +1,22 @@
 
 main.main_test_result{
-  
+.title_result{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 50px;;
+    &:before{
+        content: "";
+        width: 180px;
+        height: 20px;
+        display: block;
+        background: #ffe56d;
+        position: absolute;
+        bottom: 0;
+        z-index: -1;
+        border-radius: 50px;
+    }
+  }
 .type_analysis{
 
     // border: 1px solid red;
@@ -47,32 +63,37 @@ main.main_test_result{
 
          }
          .related_job_wrap{
-            border: 1px solid rebeccapurple;
+            // border: 1px solid rebeccapurple;
             margin: 50px 0px;
+            background: #ffe56d;
             .btn_wrap{
-                border: 1px solid red;
+                // border: 1px solid red;
                 padding: 2% 3% 3% 3%;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-
+                background: #f6f3ed;
             }
             span.leading_txt{
                 line-height: 28px;
                 letter-spacing: 2px; 
                 font-size: 18px;
-
+                background: #ffe56d;
+                // margin-bottom: 10px;
              }
              .jobs{
-                 border: 1px solid blue;
+                //  border: 1px solid blue;
                  display: flex;
                  justify-content: space-evenly;
+                 margin-top: 2%;
+                 background: #f6f3ed;
                  li{
+                     margin-top: 2%;
                      border-radius: 20px;
-                     border: 1px solid rgb(0, 0, 0);
+                    //  border: 1px solid rgb(0, 0, 0);
                      width: 200px;
                      height: 300px;
-                     background: #068d82;
+                     background: #bcebfb;
                      display: flex;
                      flex-direction: column;
                      justify-content: space-between;
@@ -88,39 +109,44 @@ main.main_test_result{
                         color: white;
                      }
                      div{
-                         border: 1px solid black;
+                        //  border: 1px solid black;
                          width: 100%;
                          height: 80%;
-                         background-color: rgb(252, 227, 8);
+                         background-color: #ffffff;
                      }
                  }
              }
     }
         .more_course{
-            border: 1px solid rebeccapurple;
+            // border: 1px solid rebeccapurple;
+            background: #ffe56d;
             .btn_wrap{
-                border: 1px solid red;
+                // border: 1px solid red;
                 padding: 2% 3% 3% 3%;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-
+                background: #f6f3ed;
             }
             span.leading_txt{
                 line-height: 28px;
                 letter-spacing: 2px; ;
                 font-size: 18px;
+                background: #ffe56d;
         }
         .course_card{
-            border: 1px solid blue;
+            // border: 1px solid blue;
             display: flex;
             justify-content: space-evenly;
+            margin-top: 2%;
+            background: #f6f3ed;
             li{
+                margin-top: 2%;
                 border-radius: 20px;
-                border: 1px solid rgb(0, 0, 0);
+                // border: 1px solid rgb(0, 0, 0);
                 width: 400px;
                 height: 300px;
-                background: #FFFFF8;
+                background: #bcebfb;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
@@ -139,10 +165,12 @@ main.main_test_result{
         .check_forum{
             // border: 1px solid green;
             margin-top: 50px;
+            background: #ffe56d;
             span.leading_txt{
                 line-height: 28px;
                 letter-spacing: 2px; ;
                 font-size: 18px;
+                background: #ffe56d;
         }
             .btn_wrap{
                 // border: 1px solid red;
@@ -150,20 +178,26 @@ main.main_test_result{
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
+                background: #f6f3ed;
             }
             .article_wrap{
+                background: #f6f3ed;
+                padding-top:2%;
+                margin-top: 2%;
                 .articles{
                     // border: 1px solid black;
                     li{
+                        margin-top: 2%;
                         border: 2px solid grey;
                         width: 70%;
                         display: flex;
                         padding: 1%;
                         margin: 1% 0;
                         align-items: center;
+                        background: #ffffff;
                         span{
                             // border: 1px solid blue;
-                            background: #ffe56d;
+                            background: #bcebfb;
                             padding: 1% 2%;
                             margin: 0px 10px;
                             // display: inline-block;
