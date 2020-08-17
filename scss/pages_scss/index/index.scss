@@ -161,7 +161,7 @@ $title: 30px;
                     .right_girl{
                         @include position(200px, absolute){
                             right:0;
-                            top: 200px;
+                            top: 250px;
                             
                         
                         }
@@ -182,6 +182,8 @@ $title: 30px;
                 // border: 1px solid blue;
                 width: 100%;
                 height: 175px;
+                position: absolute;
+                bottom: 0;
                 //  visibility: hidden;
                 
                 
