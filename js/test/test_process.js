@@ -3,7 +3,6 @@ var nowtime=0
 setInterval(
   function(){
     nowtime=nowtime+1;
-    $(".timimg").text("經過"+nowtime+"秒");
-    
+    $(".timimg").text("測驗已經過"+nowtime+"秒");
   }
 ,1000)
