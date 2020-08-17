@@ -137,14 +137,15 @@ main.main_test_result{
     
         }
         .check_forum{
-            border: 1px solid green;
+            // border: 1px solid green;
+            margin-top: 50px;
             span.leading_txt{
                 line-height: 28px;
                 letter-spacing: 2px; ;
                 font-size: 18px;
         }
             .btn_wrap{
-                border: 1px solid red;
+                // border: 1px solid red;
                 padding: 2% 3% 3% 3%;
                 display: flex;
                 flex-direction: column;
@@ -152,14 +153,20 @@ main.main_test_result{
             }
             .article_wrap{
                 .articles{
-                    border: 1px solid black;
+                    // border: 1px solid black;
                     li{
-                        border: 1px solid red;
+                        border: 2px solid grey;
                         width: 70%;
                         display: flex;
-                        padding: 2% 1%;
+                        padding: 1%;
+                        margin: 1% 0;
+                        align-items: center;
                         span{
-                            border: 1px solid blue;
+                            // border: 1px solid blue;
+                            background: #ffe56d;
+                            padding: 1% 2%;
+                            margin: 0px 10px;
+                            // display: inline-block;
                         }
                     }
                 }
