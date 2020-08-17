@@ -12,7 +12,7 @@ var myFullpage = new fullpage('.fullpage', {
   navigation: true,
   navigationPosition: 'right',
   // css3 false才可以背景fixed
-  // css3:false,
+  css3:false,
 
 });
 

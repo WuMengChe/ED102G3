@@ -1,4 +1,6 @@
 @import '../../_public_dontTouch/utils/variables';
+$title: 30px;
+
 @mixin section {
     // border: 3px solid lightcoral;
     width: 100vw;
@@ -101,12 +103,14 @@
                 margin: auto 0;
                 padding: 30px;
                 h1{
+                    margin-bottom: $title;
                     text-align: center;
                 }
                 p{
                     padding-left: 10px;
                     padding-right: 10px;
                     margin: 20px 0;
+                    line-height: 30px;
                 }
                 .btn_primary{
                     margin-left: 50%;
@@ -189,7 +193,6 @@
         background-attachment: fixed;
         background-repeat: no-repeat;
 
-        // background-repeat: no-repeat;
         
         // .secondMoveBg{
         //     border: 1px solid salmon;
@@ -264,7 +267,8 @@
             }
             .index_sal_chart{
                 h1{
-                    
+                    margin-bottom: $title;
+
                 }
                 .chart{
                     margin-top: 100px;
@@ -333,10 +337,18 @@
     }
     .index_disc{
         @include section;
+        // background-image: url(../../../img/index/index_3rd/third_bg.png);
+        background-size: contain;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        
         .thirdScreen{
             @include screen;
             .index_disc_text{
-                h1{}
+                h1{
+                    margin-bottom: $title;
+
+                }
                 .index_dia{
                     .message{
                         border: 1px solid #000;
@@ -344,13 +356,15 @@
                         padding: 10px;
                         position: relative;
                         background-color: white;
+                        margin-bottom: 40px;
                         // z-index: 1;
-                       
+
                         .meg_box{
                             border: 1px solid #000;
                             border-radius: 5px;
                             margin-bottom: 15px;
                             box-shadow: $card_shadow;
+
                             
                             a{
                                 width: 100%;
@@ -385,12 +399,23 @@
                 }
             }
             .index_disc_img{
-                .img{}
+                .img{
+                    width:100%;
+                    background-image: url(../../../img/index/index_1st/1st_smBlue.png);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    .dia_img{
+                        margin-top: 30%;
+                        width: 80%;
+
+                    }
+                }
             }
         }
     }
     .index_cour{
         @include section;
+        // background-image: url(../../../img/index/index_4th/);
         .index_cour_img{
             // border: 1px solid #000;
             width: fit-content;
@@ -416,7 +441,10 @@
             @include screen;
     
             .index_cour_text{
-                h1{}
+                h1{
+                    margin-bottom: $title;
+
+                }
                 .pad{
                     .screen_bg{
                         background-color: #000;
@@ -479,7 +507,7 @@
             }
             .index_card_text{
                 h1{
-                    margin-bottom:30px ;
+                    margin-bottom: $title;
                 }
                 p{}
             }
