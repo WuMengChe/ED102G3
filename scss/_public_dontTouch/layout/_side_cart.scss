@@ -115,21 +115,24 @@
             border-top: 1px soild #ededed;
             display: flex;
             align-items: center;
-            background: #ededed;
+            // background: #ededed;
+            border-top: 1px solid #ededed;
+
 
 
             div.price_total {
-                flex-grow: 1;
+                flex-grow: 2;
                 text-align: center;
 
             }
 
-            button.check_out {
+            a.check_out {
                 flex-grow: 1;
                 background: #1b4d9f;
                 font-size: 18px;
                 color: #fff;
                 padding: 10px 0;
+                text-align: center;
 
                 &:hover {
                     background: #336AC6;
