@@ -1,13 +1,15 @@
 main.main_during_test{
-    border: 1px solid red;
+    // border: 1px solid red;
     max-width: 900px;
     margin: auto;
-    background-color: white;
+    background-color: #F6F3ED;
     border-radius: 25px;
     overflow: hidden;
+    margin-bottom: 50px;
+
         .question_bx{
-            border: 1px solid blue;
-            background: #7ED3E0;
+            // border: 1px solid blue;
+            background: #bcebfb;
             padding: 1%;
             display: flex;
             justify-content: center;
@@ -20,7 +22,7 @@ main.main_during_test{
             
         }   
      .timer_bx{
-        border: 1px solid rgb(5, 184, 49);
+        // border: 1px solid rgb(5, 184, 49);
         background: #7ED3E0 ;
         display: flex;
         justify-content: center;
@@ -29,29 +31,29 @@ main.main_during_test{
             text-align: center;
             display: flex;
             border: 3px solid #cf6223;
-            background: #FFE56D;
+            background: #ffe56d;
             padding: 2% 3%;
             border-radius: 50px;
         }
      }   
     .answer_option_wrap{
-        border: 1px solid darkgoldenrod;
+        // border: 1px solid darkgoldenrod;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
         .answer_option{
-            border: 1px solid fuchsia;
+            // border: 1px solid fuchsia;
             width: 300px;
             height: 400px;
             cursor: pointer;
-            background-color: #ebebeb;
-            box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 12px;
+            background-color: #dbdbdb;
+            box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 12px;
             margin: 5% 0;
             padding: 1% ;
             border-radius: 20px;
             &:hover{
-                background-color: rgb(255, 255, 255);
+                background-color: rgb(243, 243, 243);
                 transform: scale(1.1);
             }
                 .answer_link{
@@ -64,19 +66,20 @@ main.main_during_test{
         }
     }
     .progress_bar_bx{
-        border: 1px solid navy;
+        // border: 1px solid navy;
         height: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
-        
+        margin-bottom: 50px;
             .progress_container{
-                border: 1px solid dimgrey;
+                border: 2px solid dimgrey;
                 width: 540px;
                 height: 30px;
                 border-radius: 50px;
                 position: relative;
                 overflow: hidden;
+                background: white;
                  span{
                      display: flex;
                      position: absolute;
@@ -89,7 +92,7 @@ main.main_during_test{
                  .progress_bar{
                      position: absolute;
                      z-index: 1;
-                     background: rgb(94, 213, 243);
+                     background: #5ed5f3;
                      width: 50px;
                      height: 30px;
                      border-radius: 50px;
