@@ -101,7 +101,7 @@
         <div class="tab_contents">
           <!--第一個頁籤 經驗分享-->
           <div class="tab tab1 -on">
-            <div class="msg_content" v-for="content_Array in msgArray">
+            <div class="msg_content" v-for="content_Array in msgArray1">
               <div class="mem_info">
                 <div class="info_list">
                   <img :src="content_Array.d_img" alt="">
@@ -129,16 +129,16 @@
 
           <!--第二個頁籤 問題討論-->
           <div class="tab tab2">
-            <div class="msg_content">
+            <div class="msg_content" v-for="content_Array2 in msgArray2">
               <div class="mem_info">
                 <div class="info_list">
                   <img src="./img/forum/ex.jpg" alt="" class="dis_img">
-                  <div class="dis_name">葉大雄</div>
-                  <div class="dis_date">2020-03-28</div>
+                  <div class="dis_name">{{content_Array2.d2_name}}</div>
+                  <div class="dis_date">{{content_Array2.d2_data}}</div>
                 </div>
                 <div class="tags_list">
                   <div class="tags_div">
-                    <span class="type_tag">研究型</span>
+                    <span class="type_tag">{{content_Array2.d2_type}}</span>
                   </div>
                   <div class="tags_div">
                     <span class="type_tag">問題討論</span>
@@ -146,10 +146,10 @@
                 </div>
               </div>
               <div class="msg_title">
-                <span class="open_dialog" id="">想請問前端工程是必備技能是什麼？</span>
+                <span class="open_dialog" id="">{{content_Array2.d2_title}}</span>
               </div>
               <div class="msg_textarea">
-                求答案
+                {{content_Array2.d2_text}}
               </div>
               <div class="msg_btn">
                 <button><i class="far fa-heart"></i></button>
@@ -158,130 +158,9 @@
                 <button class="impeachment_btn">檢舉</button>
               </div>
             </div>
-            <div class="msg_content">
-              <div class="mem_info">
-                <div class="info_list">
-                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
-                  <div class="dis_name">王小豬</div>
-                  <div class="dis_date">2020-07-28</div>
-                </div>
-                <div class="tags_list">
-                  <div class="tags_div">
-                    <span class="type_tag">實作型</span>
-                  </div>
-                  <div class="tags_div">
-                    <span class="type_tag">經驗分享</span>
-                  </div>
-                </div>
-              </div>
-              <div class="msg_title">
-                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i>5</button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-            <div class="msg_content">
-              <div class="mem_info">
-                <div class="info_list">
-                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
-                  <div class="dis_name">王小豬</div>
-                  <div class="dis_date">2020-07-28</div>
-                </div>
-                <div class="tags_list">
-                  <div class="tags_div">
-                    <span class="type_tag">實作型</span>
-                  </div>
-                  <div class="tags_div">
-                    <span class="type_tag">經驗分享</span>
-                  </div>
-                </div>
-              </div>
-              <div class="msg_title">
-                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i>5</button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-            <div class="msg_content">
-              <div class="mem_info">
-                <div class="info_list">
-                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
-                  <div class="dis_name">王小豬</div>
-                  <div class="dis_date">2020-07-28</div>
-                </div>
-                <div class="tags_list">
-                  <div class="tags_div">
-                    <span class="type_tag">實作型</span>
-                  </div>
-                  <div class="tags_div">
-                    <span class="type_tag">經驗分享</span>
-                  </div>
-                </div>
-              </div>
-              <div class="msg_title">
-                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i>5</button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-            <div class="msg_content">
-              <div class="mem_info">
-                <div class="info_list">
-                  <img src="./img/forum/ex.jpg" alt="" class="dis_img">
-                  <div class="dis_name">王小豬</div>
-                  <div class="dis_date">2020-07-28</div>
-                </div>
-                <div class="tags_list">
-                  <div class="tags_div">
-                    <span class="type_tag">實作型</span>
-                  </div>
-                  <div class="tags_div">
-                    <span class="type_tag">經驗分享</span>
-                  </div>
-                </div>
-              </div>
-              <div class="msg_title">
-                <span class="open_dialog" id="article_1">1有人上過前端工程師學米私塾課嗎？</span>
-              </div>
-              <div class="msg_textarea">
-                覺得課程整套實在有點貴，
-                而且業務死不讓我看學生作品，讓我覺得很詭異
-                有人買過嗎？學起來如何呢？求經驗分享～
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i>5</button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
+
+
+
           </div>
         </div>
 
@@ -416,7 +295,7 @@
       el: "#forum_discuss",
       data() {
         return {
-          msgArray: [{
+          msgArray1: [{
             d_img: '',
             d_name: '黃小美',
             d_data: '2020-01-20',
@@ -459,6 +338,55 @@
             d_type: '文藝型',
             d_title: '我已經有五年的設計經驗，想再學習室內設計的課程',
             d_text: '有推薦的課程嗎？',
+          }],
+
+          msgArray2: [{
+            d2_img: '',
+            d2_name: '葉大雄',
+            d2_data: '2020-01-20',
+            d2_type: '研究型',
+            d2_color: 'orange',
+            d2_title: '有人上過資策會的web前端app嗎？',
+            d2_text: '想轉職成為工程師，在網路上看到資訊，請問有人可以有經驗可以分享嗎？',
+          }, {
+            d2_img: '',
+            d2_name: '王阿花',
+            d2_data: '2019-04-30',
+            d2_type: '企業型',
+            d2_color: 'orange',
+            d2_title: '法物人員工作內容是什麼？',
+            d2_text: '最近想要考法物人員，但是不知道該如何準備，有前輩可以分享嗎？',
+          }, {
+            d2_img: '',
+            d2_name: '王小豬',
+            d2_data: '2020-02-02',
+            d2_type: '企業型',
+            d2_color: 'orange',
+            d2_title: '保險業務一個月會有多少收入？',
+            d2_text: '聽朋友說他一個月有十萬元，請問保險業真的收入這麼高嗎？',
+          }, {
+            d2_img: '',
+            d2_name: '歐陽同學',
+            d2_data: '2020-10-05',
+            d2_type: '文藝型',
+            d2_color: 'orange',
+            d2_title: '攝影師接一個case怎麼算？',
+            d2_text: '最近朋友說要請我幫忙拍婚紗照，5000元一天，請問這是合理的價格嗎？',
+          }, {
+            d2_img: '',
+            d2_name: 'Annie',
+            d2_data: '2020-07-03',
+            d2_type: '事務型',
+            d2_title: '請問五年的貿易經驗，薪資可以談多少？',
+            d2_text: '最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？',
+          }, {
+            d2_img: '',
+            d2_name: '王依婷',
+            d2_data: '2019-12-25',
+            d2_type: '文藝型',
+            d2_color: 'orange',
+            d2_title: '我已經有五年的設計經驗，想再學習室內設計的課程',
+            d2_text: '有推薦的課程嗎？',
           }],
 
         }
