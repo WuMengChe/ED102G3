@@ -163,18 +163,13 @@ div.tab_container div.tab_contents div.tab {
       }
 
       .tags_list {
-        display: flex;
-        .tags_div {
-          margin: 5px;
-
-          .type_tag {
-            background-color: #0056b3;
-            padding: 0px 5px;
-            text-align: right;
-            border-radius: 5px;
-            color: white;
-            font-size: 5px;
-          }
+        .type_tag {
+          background-color: #0056b3;
+          padding: 0px 5px;
+          text-align: right;
+          border-radius: 5px;
+          color: white;
+          font-size: 5px;
         }
       }
     }
@@ -567,7 +562,7 @@ div.impeachment_overlay > article {
 
 /* RWD */
 @media screen and (max-width: 992px) {
-  .forum_discuss {
+  #forum_discuss {
     .dis_body {
       display: flex;
       flex-direction: column;
@@ -602,7 +597,7 @@ div.impeachment_overlay > article {
 
   // .search {
   //   .search_wrap {
-  //     .search_wrap_line {
+  //     .search_wrap_line {forum_discuss
   //       .text_input {
   //         min-width: 80%;
   //         height: 30px;
