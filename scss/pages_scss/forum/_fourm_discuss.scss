@@ -11,9 +11,7 @@
   display: flex;
   justify-content: center;
   .career {
-    // padding-right: 50px;
     min-width: 200px;
-    // padding-left: 50px;
   }
   .career_name::-webkit-scrollbar {
     display: none;
@@ -32,7 +30,6 @@
     li {
       text-align: center;
       // border: 10px solid #336ac6;
-      // width: 200px;
       height: 50px;
       line-height: 50px;
       font-weight: 700;
@@ -83,8 +80,8 @@
         border: none;
       }
     }
-    #cancel_search_btn {
-    }
+    // #cancel_search_btn {
+    // }
   }
 }
 //---------------------
@@ -191,8 +188,8 @@ div.tab_container div.tab_contents div.tab {
         padding: 5px;
         font-weight: 500;
       }
-      .open_dialog {
-      }
+      // .open_dialog {
+      // }
     }
     .msg_textarea {
       min-height: 150px;
@@ -224,7 +221,6 @@ div.tab_container div.tab_contents div.tab.-on {
         height: 30px;
         border-radius: 50%;
         overflow: hidden;
-        // border: 1px solid #ccc;
       }
       .dis_name,
       .dis_date {
@@ -244,8 +240,8 @@ div.tab_container div.tab_contents div.tab.-on {
         padding: 5px;
         font-weight: 500;
       }
-      .open_dialog {
-      }
+      // .open_dialog {
+      // }
     }
     .msg_textarea {
       min-height: 135px;
@@ -257,7 +253,6 @@ div.tab_container div.tab_contents div.tab.-on {
       text-align: end;
       button {
         min-width: 40px;
-        // background: #1b4d9f;
         border: none;
         cursor: pointer;
       }
