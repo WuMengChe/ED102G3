@@ -1,5 +1,7 @@
 let memData = {
     title: ['會員資料', '我的分析', '我的課程', '我的收藏', '我的明信片', '訂單紀錄', '訊息'],
+    liTitle: ['liDat', 'liAna', 'liClas', 'liCol', 'liPos', 'liOrd', 'liMes'],
+    secTitle: ['課程', '文章'],
     member: {
         name: '周伯通',
         birthday: '109/08/11',
@@ -129,7 +131,7 @@ let changeMemContent = new Vue({
         },
         changePages(e){
             this.currentPage = this.title[e];
-            var liChange = document.querySelectorAll('.mem_list ul li');
+            var liChange = document.querySelectorAll('.mem_list>ul>li');
             for(var i = 0; i < liChange.length; i++){
                 liChange[i].style.backgroundColor = 'transparent';
             }
