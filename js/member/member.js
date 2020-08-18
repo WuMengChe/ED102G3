@@ -1,7 +1,7 @@
 let memData = {
     title: ['會員資料', '我的分析', '我的課程', '我的收藏', '我的明信片', '訂單紀錄', '訊息'],
     liTitle: ['liDat', 'liAna', 'liClas', 'liCol', 'liPos', 'liOrd', 'liMes'],
-    secTitle: ['課程', '文章'],
+    secTitle: ['文章', '課程'],
     member: {
         name: '周伯通',
         birthday: '109/08/11',
@@ -25,6 +25,10 @@ let memData = {
         {name: '社會心理學', teacher: '劉威德'},
         {name: '翻轉課堂的職業講師祕訣', teacher: '王永福'}
     ],
+    memberClassCollection: [
+        {name: '社會心理學', teacher: '劉威德'},
+        {name: '翻轉課堂的職業講師祕訣', teacher: '王永福'}
+    ],
     memberArticle: [
         {title: '我想學程式，但到底該從哪個語言入門？', content: '身處在這個「全民學程式」時代，幾年後當程式設計變成連國中生都必備的能力時，不會寫程式的人在未來就要變成少數民族。當越來越多人開始對學程式語言有興趣，大家常常問的第一個問題就是，到底該從哪個程式語言開始？'},
         {title: 'LSTM的簡單介紹，附情感分析應用', content: '長短期記憶網絡，通常稱為「LSTM」(Long Short Term Memory network,由Schmidhuber和Hochreiterfa提出)。它已經被廣泛用於語音識別，語言建模，情感分析和文本預測。在深入研究LSTM之前，我們首先應該了解LSTM的要求，它可以用實際使用遞歸神經網絡（RNN）的缺點來解釋。所以，我們要從RNN講起。'}
@@ -39,12 +43,12 @@ let memData = {
         {title: '社會心理學', buyDate: '109/06/20', price: '123$'}
     ],
     memberOrderList: [
-        [{name: '社會心理學', content: '社會心理學是探討人們如何知覺與認識社會世界、如何進行人際互動，以及社會情境之影響的學科'}],
+        [{name: '社會心理學', teacher: '劉威德'}],
         [
-            {name: '社會心理學', content: '社會心理學是探討人們如何知覺與認識社會世界、如何進行人際互動，以及社會情境之影響的學科'},
-            {name: '翻轉課堂的職業講師祕訣', content: '《教學的技術》2019年上市即榮登暢銷書排行榜冠軍，也是知名網路書店年度五十大好書，但是看完《教學的技術》全書，還是不懂操作的關鍵？很難想像真實在教室應用的場景？'}
+            {name: '社會心理學', teacher: '劉威德'},
+            {name: '翻轉課堂的職業講師祕訣', teacher: '王永福'}
         ],
-        [{name: '社會心理學', content: '社會心理學是探討人們如何知覺與認識社會世界、如何進行人際互動，以及社會情境之影響的學科'}]
+        [{name: '社會心理學', teacher: '劉威德'}]
     ],
     memberMessage: [
         {sentDate: '109/05/20', title: '您有一封明信片！！'},
@@ -54,11 +58,13 @@ let memData = {
     currentPage: '會員資料',
     checkAnalysisResult: false,
     checkMemClass: false,
+    checkMemClassCollection: false,
     checkMemArticle: false,
     checkMemPostcard: false,
     checkMemOrder: false,
     checkMemMessage: false,
     collecttionChange: false,
+    liSecondArrow: -1,
     rwdClickPage: false,
     rwdUse: false,
     fixMode: false,
@@ -76,6 +82,10 @@ let changeMemContent = new Vue({
     data: memData,
     mounted() {
         this.screenWidth = document.documentElement.clientWidth;
+        if(this.screenWidth >= 992){
+            var liChange = document.querySelectorAll('.mem_list>ul>li');
+            liChange[0].style.backgroundColor = 'white';
+        }
         if(this.screenWidth < 768){
             this.rwdUse = true;
         }
@@ -87,6 +97,9 @@ let changeMemContent = new Vue({
         }
         if(this.memberClass.length != 0){
             this.checkMemClass = true;
+        }
+        if(this.memberClassCollection.length != 0){
+            this.checkMemClassCollection = true;
         }
         if(this.memberArticle.length != 0){
             this.checkMemArticle = true;
@@ -122,6 +135,12 @@ let changeMemContent = new Vue({
     methods: {
         changeWidth(e){
             this.screenWidth = document.documentElement.clientWidth;
+            if(this.screenWidth < 992){
+                var liChange = document.querySelectorAll('.mem_list>ul>li');
+                for(var i = 0; i < liChange.length; i++){
+                    liChange[i].style.backgroundColor = 'transparent';
+                }
+            }
             if(this.screenWidth < 768){
                 this.rwdUse = true;
             }
@@ -130,15 +149,45 @@ let changeMemContent = new Vue({
             }
         },
         changePages(e){
-            this.currentPage = this.title[e];
             var liChange = document.querySelectorAll('.mem_list>ul>li');
             for(var i = 0; i < liChange.length; i++){
                 liChange[i].style.backgroundColor = 'transparent';
             }
             liChange[e].style.backgroundColor = 'white';
+            if(e != 3){
+                this.liSecondArrow = -1;
+            }
+            else if(this.screenWidth < 975 && e == 3){
+                var liShowSecond = document.querySelectorAll('.mem_list>ul>li')[3].querySelector('ul');
+                liShowSecond.classList.toggle('li_sec_show');
+                this.liSecondArrow = -1;
+            }
+            else{
+                var liShowSecond = document.querySelectorAll('.mem_list>ul>li')[3].querySelector('ul');
+                liShowSecond.classList.toggle('li_sec_show');
+                this.liSecondArrow = 0;
+                this.collecttionChange = false;
+            }
+            this.currentPage = this.title[e];
+        },
+        changeSecondPages(e){
+            this.currentPage = this.title[3];
+            if(975 < this.screenWidth){
+                var liChange = document.querySelectorAll('.mem_list>ul>li');
+                for(var i = 0; i < liChange.length; i++){
+                liChange[i].style.backgroundColor = 'transparent';
+                }
+            }
+            this.liSecondArrow = e;
+            if(e == 0){
+                this.collecttionChange = false;
+            }
+            else{
+                this.collecttionChange = true;
+            }
         },
         rwdChangePages(e){
-            if(this.screenWidth < 975){
+            if(this.screenWidth < 975 && e != 3){
                 return this.rwdClickPage = !this.rwdClickPage;
             };
         },
