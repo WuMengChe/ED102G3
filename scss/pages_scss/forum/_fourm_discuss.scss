@@ -10,6 +10,7 @@
   background-color: rgb(0, 50, 78);
   display: flex;
   justify-content: center;
+  padding-top: 100px;
   .career {
     min-width: 200px;
   }
@@ -91,14 +92,14 @@ $timing: 0.3s;
 .select {
   background-color: rgb(0, 50, 78);
   padding-top: 20px;
-  padding-bottom: 0px;
-  justify-content: flex-end;
-  padding-bottom: 20px;
   .select_wrap {
     width: 720px;
     // border: 1px solid white;
     margin: 0 auto;
     text-align: end;
+    position: absolute;
+    z-index: 100;
+    right: 240px;
   }
 }
 
@@ -195,11 +196,11 @@ $timing: 0.3s;
 
 /* 內容區塊 */
 .tab_contents {
-  background: #94b2db;
+  background: rgb(0, 50, 78);
   padding: 0 10px;
-  box-shadow: 5px 5px 5px RGBA(255, 255, 255, 1);
+  // box-shadow: 5px 5px 5px RGBA(255, 255, 255, 1);
   .msg_content {
-    border-bottom: 1px solid RGBA(255, 255, 255, 1);
+    // border-bottom: 1px solid RGBA(255, 255, 255, 1);
     -webkit-transition: -webkit-transform 0.22s, box-shadow 0.22s;
     transition: transform 0.22s, box-shadow 0.22s;
     box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
@@ -249,9 +250,10 @@ $timing: 0.3s;
       // border: 1px solid red;
       text-align: end;
       button {
-        min-width: 50px;
+        min-width: 40px;
         border: none;
         cursor: pointer;
+        color: black;
       }
     }
   }
@@ -260,16 +262,10 @@ $timing: 0.3s;
 //動畫效果
 //滑到畫面會往後
 .tab_contents {
-  text-align: left;
-  -webkit-transition: all 400ms ease-in-out;
-  -moz-transition: all 400ms ease-in-out;
-  -ms-transition: all 400ms ease-in-out;
-  -o-transition: all 400ms ease-in-out;
   transition: all 400ms ease-in-out;
 }
 
 .tab_contents:hover {
-  -webkit-transform: scale(0.97);
   transform: scale(0.97);
 }
 
@@ -282,78 +278,27 @@ $timing: 0.3s;
 
 .msg_content:focus,
 .msg_content:hover {
-  -webkit-transform: scale(1.03);
   transform: scale(1.03);
-  -webkit-transition: -webkit-transform 0.088s, box-shadow 0.088s;
   transition: transform 0.088s, box-shadow 0.088s;
-  z-index: 1;
 }
 
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+.msg_content:nth-child(1) {
+  background: #95c5db;
 }
-
-@-webkit-keyframes flipInX {
-  0% {
-    -webkit-transform: perspective(400px) rotateX(90deg);
-    transform: perspective(400px) rotateX(90deg);
-    opacity: 0;
-  }
-
-  40% {
-    -webkit-transform: perspective(400px) rotateX(-10deg);
-    transform: perspective(400px) rotateX(-10deg);
-  }
-
-  70% {
-    -webkit-transform: perspective(400px) rotateX(10deg);
-    transform: perspective(400px) rotateX(10deg);
-  }
-
-  100% {
-    -webkit-transform: perspective(400px) rotateX(0deg);
-    transform: perspective(400px) rotateX(0deg);
-    opacity: 1;
-  }
+.msg_content:nth-child(2) {
+  background: #94c1db;
 }
-
-@keyframes flipInX {
-  0% {
-    -webkit-transform: perspective(400px) rotateX(90deg);
-    -ms-transform: perspective(400px) rotateX(90deg);
-    transform: perspective(400px) rotateX(90deg);
-    opacity: 0;
-  }
-
-  40% {
-    -webkit-transform: perspective(400px) rotateX(-10deg);
-    -ms-transform: perspective(400px) rotateX(-10deg);
-    transform: perspective(400px) rotateX(-10deg);
-  }
-
-  70% {
-    -webkit-transform: perspective(400px) rotateX(10deg);
-    -ms-transform: perspective(400px) rotateX(10deg);
-    transform: perspective(400px) rotateX(10deg);
-  }
-
-  100% {
-    -webkit-transform: perspective(400px) rotateX(0deg);
-    -ms-transform: perspective(400px) rotateX(0deg);
-    transform: perspective(400px) rotateX(0deg);
-    opacity: 1;
-  }
+.msg_content:nth-child(3) {
+  background: #94bddb;
 }
-
-.flipInX {
-  -webkit-backface-visibility: visible !important;
-  -ms-backface-visibility: visible !important;
-  backface-visibility: visible !important;
-  -webkit-animation-name: flipInX;
-  animation-name: flipInX;
+.msg_content:nth-child(4) {
+  background: #94b9db;
+}
+.msg_content:nth-child(5) {
+  background: #94b5db;
+}
+.msg_content:nth-child(6) {
+  background: #94b2db;
 }
 
 //頁碼
@@ -462,7 +407,7 @@ div.forum_overlay.-opacity-zero {
 
 /* 元素 article 置中及基本樣式 */
 div.forum_overlay > .forum_checkMsg {
-  background-color: white;
+  background-color: #ccc;
   border-radius: 10px;
   max-height: 103vh;
   padding: 10px;
@@ -474,110 +419,68 @@ div.forum_overlay > .forum_checkMsg {
   overflow: scroll;
 }
 
-/* 燈箱內容詳情 */
-// .forum_checkMsg .forum_topic {
-
-//   .msg_content {
-//     min-height: 150px;
-//     border-top: 2px solid #336ac6;
-//     margin: 20px 0;
-//     //動畫效果
-
-//     .mem_info {
-//       // border: 1px solid red;
-//       display: flex;
-//       padding: 10px;
-//       img {
-//         width: 30px;
-//         height: 30px;
-//         border-radius: 50%;
-//         overflow: hidden;
-//         // border: 1px solid #ccc;
-//       }
-//       li {
-//         min-width: 50px;
-//         padding: 0 10px;
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//       }
-//     }
-//     .msg_title {
-//       background-color: #336ac6;
-//       cursor: pointer;
-//       padding: 20px;
-//       span {
-//         background-color: white;
-//         border-radius: 5px;
-//         padding: 5px;
-//         font-weight: 500;
-//       }
-//       .open_dialog {
-//       }
-//     }
-//     .msg_textarea {
-//       min-height: 150px;
-//       padding: 20px;
-//       letter-spacing: 1px;
-//     }
-//     .msg_btn {
-//       // border: 1px solid red;
-//       text-align: end;
-//       button {
-//         min-width: 50px;
-//         // background: #1b4d9f;
-//         border: none;
-//         cursor: pointer;
-//       }
-//     }
-//   }
-// }
-
 /* 留言數量 */
 .forum_checkMsg .feedback_count {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 1px solid blue;
   text-align: center;
+  background-color: #336ac6;
+  padding: 10px;
 }
 
-/* 回應留言 */
-.forum_checkMsg .forum_feedback {
-  .msg_content {
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    border-bottom: 2px solid #336ac6;
-    // background: #336ac6;
-    margin: 20px 0;
+//點進標題的內容
+.feedback_wrap {
+  background: #94b2db;
+  padding: 0 10px;
+  .check_content {
     .mem_info {
-      // border: 1px solid red;
       display: flex;
+      justify-content: space-between;
       padding: 10px;
-      li {
-        min-width: 50px;
-        padding: 0 10px;
+      line-height: 2;
+      color: RGBA(255, 255, 255, 1);
+      .info_list {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        padding: 10px;
+        line-height: 2;
+        color: RGBA(255, 255, 255, 1);
         img {
           width: 30px;
           height: 30px;
           border-radius: 50%;
           overflow: hidden;
         }
+        .dis_name,
+        .dis_date {
+          margin: 0 10px;
+        }
+      }
+      .tags_list {
+        .type_tag {
+          background-color: #0056b3;
+          padding: 0px 5px;
+          text-align: right;
+          border-radius: 5px;
+          color: white;
+          font-size: 5px;
+        }
       }
     }
+    .msg_title {
+      cursor: pointer;
+      padding: 20px;
+      font-weight: 700;
+      font-size: 22px;
+    }
     .msg_textarea {
-      min-height: 80px;
+      min-height: 150px;
       padding: 20px;
       letter-spacing: 1px;
+      color: RGBA(255, 255, 255, 1);
     }
     .msg_btn {
       // border: 1px solid red;
       text-align: end;
       button {
-        min-width: 50px;
-        // background: #1b4d9f;
+        min-width: 40px;
         border: none;
         cursor: pointer;
       }
@@ -585,34 +488,97 @@ div.forum_overlay > .forum_checkMsg {
   }
 }
 
-.forum_overlay > .forum_checkMsg {
-  .close_btn {
-    height: 30px;
-    border: 1px solid red;
-    text-align: left;
-    .btn_modal_close {
-      background-color: #0056b3;
+/* 回應留言 */
+.forum_feedback {
+  // border: 1px solid red;
+  .feedback_content {
+    border-bottom: 2px solid #336ac6;
+    margin-top: 20px;
+    background-color: #94b2db;
+    .info_list {
+      display: flex;
+      padding: 10px;
+      line-height: 2;
+      color: RGBA(255, 255, 255, 1);
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .dis_name,
+      .dis_date {
+        margin: 0 10px;
+      }
     }
   }
-  .confirm_send_btn {
-    height: 30px;
-    border: 1px solid red;
-    text-align: center;
+  .msg_textarea {
+    min-height: 80px;
+    padding: 20px;
+    letter-spacing: 1px;
   }
-  #send_msg_btn {
-    display: inline-block;
-    margin: 0 auto;
+  .msg_btn {
+    // border: 1px solid red;
+    text-align: end;
+    button {
+      min-width: 40px;
+      // background: #1b4d9f;
+      border: none;
+      cursor: pointer;
+    }
   }
-  #send_msg {
-    width: 100%;
-    resize: none;
-  }
-}
-.leave_msg {
-  border: 1px solid gray;
 }
 
-/* 點擊檢舉跳出的燈箱 */
+.forum_overlay {
+  .forum_checkMsg {
+    .close_btn {
+      height: 30px;
+      // border: 1px solid red;
+      text-align: left;
+      .btn_modal_close {
+        width: 50px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 5px;
+        font-size: 12px;
+      }
+    }
+    .leave_msg_wrap {
+      // position: relative;
+      width: 100%;
+      height: 120px;
+      background-color: white;
+      text-align: right;
+      .close_msg_div {
+        border: 1px solid red;
+        height: 30px;
+        width: 100%;
+      }
+      .leave_msg {
+        // border: 1px solid gray;
+        // position: relative;
+        #send_msg {
+          width: 100%;
+          resize: none;
+          // position: absolute;
+          // bottom: 0;
+          border: none;
+          padding: 10px;
+        }
+      }
+      .confirm_send_btn {
+        height: 30px;
+        border: 1px solid red;
+        text-align: right;
+      }
+      #send_msg_btn {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+// 點擊檢舉跳出的燈箱
 
 button {
   cursor: pointer;
@@ -624,14 +590,11 @@ div.impeachment_overlay {
   width: 100%;
   height: 100vh;
   background-color: hsla(0, 0%, 0%, 0.5);
-
-  /* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
   opacity: 0;
   z-index: -1;
   transition: opacity 1s;
 }
 div.impeachment_overlay.-on {
-  /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
   opacity: 1;
   z-index: 1;
 }
@@ -640,10 +603,8 @@ div.impeachment_overlay.-opacity-zero {
   opacity: 0;
 }
 
-/* 元素 article 置中及基本樣式 */
 div.impeachment_overlay > article {
   background-color: white;
-  // width: 20%;
   border-radius: 10px;
   padding: 10px;
   position: absolute;
