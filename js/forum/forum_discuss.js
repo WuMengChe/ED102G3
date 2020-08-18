@@ -82,3 +82,12 @@ $(function () {
     $("div.tab." + $(this).attr("data-target")).addClass("-on");
   });
 });
+
+//為什麼好難
+function filter() {
+  input = document.getElementById("text_input");
+  filterValue = input.value();
+  msg_title = document.querySelectorAll(".msg_title");
+}
+
+
