@@ -61,6 +61,23 @@
       </div>
     </div>
 
+    <!--下拉選單-->
+    <div class="select row">
+      <div class="col-lg-2"></div>
+      <div class="select_wrap">
+        <span class="dis_dropdown">
+          <input type="radio" name="orderSelect" value="all" checked="checked" id="all">
+          <label for="all">所有分類</label>
+          <input type="radio" name="orderSelect" value="popular" id="popular">
+          <label for="popular">熱門討論</label>
+          <input type="radio" name="orderSelect" value="question" id="question">
+          <label for="question">問題討論</label>
+          <input type="radio" name="orderSelect" value="share" id="share">
+          <label for="share">經驗分享</label>
+        </span>
+      </div>
+    </div>
+
     <div class="dis_body row">
       <!--右邊類型分類-->
       <div class="career col-lg-2">
@@ -87,114 +104,75 @@
       </div>
 
       <!--瀏覽留言區-->
-      <!--第一個頁籤-->
-      <div class="tab_container">
-        <div class="tab_list_block">
-          <ul class="tab_list">
-            <li><a href="#" data-target="tab1" class="tab -on">綜合</a></li>
-            <li><a href="#" data-target="tab2" class="tab">熱門討論</a></li>
-          </ul>
-        </div>
-
-        <div class="tab_contents">
-          <!--第一個頁籤 經驗分享-->
-          <div class="tab tab1 -on">
-            <div class="msg_content" v-for="content_Array in msgArray1">
-              <div class="mem_info">
-                <div class="info_list">
-                  <img :src="content_Array.d_img" alt="">
-                  <div class="dis_name">{{content_Array .d_name}}</div>
-                  <div class="dis_date">{{content_Array .d_data}}</div>
-                </div>
-                <div class="tags_list">
-                  <span class="type_tag">{{content_Array .d_type}}</span>
-                  <span class="type_tag">{{content_Array .d_qu}}</span>
-                </div>
-              </div>
-              <div class="msg_title">
-                {{content_Array.d_title}}
-              </div>
-              <div class="msg_textarea">
-                {{content_Array .d_text}}
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i>5</button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
+      <div class="tab_contents animated">
+        <div class="msg_content" v-for="content_Array in msgArray1">
+          <div class="mem_info">
+            <div class="info_list">
+              <img :src="content_Array.d_img" alt="" class="dis_img">
+              <div class=" dis_name">{{content_Array .d_name}}</div>
+              <div class="dis_date">{{content_Array .d_data}}</div>
+            </div>
+            <div class="tags_list">
+              <span class="type_tag">{{content_Array .d_type}}</span>
+              <span class="type_tag">{{content_Array .d_qu}}</span>
             </div>
           </div>
-
-          <!--第二個頁籤 問題討論-->
-          <div class="tab tab2">
-            <div class="msg_content" v-for="content_Array2 in msgArray2">
-              <div class="mem_info">
-                <div class="info_list">
-                  <img :src="content_Array2.d2_img" alt="" class="dis_img">
-                  <div class="dis_name">{{content_Array2.d2_name}}</div>
-                  <div class="dis_date">{{content_Array2.d2_data}}</div>
-                </div>
-                <div class="tags_list">
-                  <span class="type_tag">{{content_Array2.d2_type}}</span>
-                  <span class="type_tag">{{content_Array2.d2_qu}}</span>
-                </div>
-              </div>
-              <div class="msg_title">
-                <span class="open_dialog" id="">{{content_Array2.d2_title}}</span>
-              </div>
-              <div class="msg_textarea">
-                {{content_Array2.d2_text}}
-              </div>
-              <div class="msg_btn">
-                <button><i class="far fa-heart"></i></button>
-                <button><i class="far fa-comment-alt"></i>5</button>
-                <button class="collect_btn">收藏</button>
-                <button class="impeachment_btn">檢舉</button>
-              </div>
-            </div>
-
-
-
+          <div class="msg_title open_dialog">
+            {{content_Array.d_title}}
+          </div>
+          <div class="msg_textarea">
+            {{content_Array .d_text}}
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button><i class="far fa-comment-alt"></i>5</button>
+            <button class="collect_btn">收藏</button>
+            <button class="impeachment_btn">檢舉</button>
           </div>
         </div>
+
 
         <!--頁碼-->
         <div class="pagination_block">
           <ul class="pagination">
-            <li><a href="#">&lt;</a></li>
+            <li><a href="#">‹</a></li>
             <li><a href="#" class="-on">1</a></li>
             <li><a href="#">2</a></li>
-            <li><a href="#">&gt;</a></li>
+            <li><a href="#">›</a></li>
           </ul>
         </div>
       </div>
+
+      <a href="./fourm_form.html" class="pencil_btn">
+        <i class="fas fa-edit"></i>
+      </a>
     </div>
 
-    <a href="./fourm_form.html" class="pencil_btn">
-      <i class="fas fa-edit"></i>
-    </a>
   </div>
-
-
 
 
   <!--燈箱！！！-->
   <!--點擊標題跳出的燈箱-->
-  <div class=" forum_overlay">
+  <div class="forum_overlay">
     <div class="forum_checkMsg">
       <div class="close_btn">
-        <button type="button" class="btn_modal_close">關閉</button>
+        <button type="button" class="btn_modal_close">返回</button>
       </div>
-      <div class="forum_topic">
+      <div class="tab_contents">
         <!--留言板內容-->
         <div class="msg_content">
-          <ul class="mem_info">
-            <li><img src="./img/forum/ex.jpg" alt="" class="dis_img"></li>
-            <li class="dis_name">王小明</li>
-            <li class="dis_date">2020-07-28</li>
-          </ul>
-          <div class="msg_title">
+          <div class="mem_info">
+            <div class="info_list">
+              <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+              <div class="dis_name">豬八戒</div>
+              <div class="dis_date">2020-07-28</div>
+            </div>
+            <div class="tags_list">
+              <span class="type_tag">實作型</span>
+              <span class="type_tag">經驗分享</span>
+            </div>
+          </div>
+          <div class="msg_title open_dialog">
             有人上過前端工程師學米私塾課嗎？
           </div>
           <div class="msg_textarea">
@@ -213,12 +191,12 @@
       <div class="feedback_count">共5則回應</div>
       <!--回應留言區-->
       <div class="forum_feedback">
-        <div class="msg_content">
-          <ul class="mem_info">
-            <li><img src="./img/forum/ex.jpg" alt="" class=" dis_img"></li>
-            <li class="dis_name">王小美</li>
-            <li class="dis_date">2020-10-28</li>
-          </ul>
+        <div class="msg_content" v-for="content_Array in msgArray1">
+          <div class="info_list">
+            <img src="./img/forum/ex.jpg" alt="" class="dis_img">
+            <div class="dis_name">豬八戒</div>
+            <div class="dis_date">2020-07-28</div>
+          </div>
           <div class="msg_textarea">
             我去上過覺得還好
           </div>
@@ -227,7 +205,7 @@
             <button class="impeachment_btn">檢舉</button>
           </div>
         </div>
-        <div class="msg_content">
+        <!-- <div class="msg_content">
           <ul class="mem_info">
             <li><img src="./img/forum/ex.jpg" alt="" class=" dis_img"></li>
             <li class="dis_name">王小美</li>
@@ -254,7 +232,7 @@
             <button><i class="far fa-heart"></i></button>
             <button class="impeachment_btn">檢舉</button>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="leave_msg">
         <textarea name="" id="send_msg" placeholder="送出..."></textarea>
@@ -289,7 +267,6 @@
     new Vue({
       el: "#forum_discuss",
       data() {
-
         return {
           msgArray1: [{
             d_img: './img/forum/大頭照/headshot_1.jpg',
