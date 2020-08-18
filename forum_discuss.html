@@ -55,7 +55,7 @@
       <div class="search_wrap">
         <div class="search_wrap_line">
           <i class="fas fa-search"></i>
-          <input type="search" placeholder="請輸入關鍵字" id="text_input">
+          <input type="search" placeholder="請輸入關鍵字" id="text_input" v-model="filter">
           <button id="search_btn">搜尋</button>
         </div>
       </div>
@@ -289,6 +289,7 @@
     new Vue({
       el: "#forum_discuss",
       data() {
+
         return {
           msgArray1: [{
             d_img: './img/forum/大頭照/headshot_1.jpg',
@@ -383,10 +384,22 @@
             d2_title: '請問五年的貿易經驗，薪資可以談多少？',
             d2_text: '最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？',
           }],
+          filter: "工程師",
 
         }
 
-      }
+      },
+      computed: {
+        filtered() {
+          this.msgArray1.filter(function (post) {
+            if (post.indexOf(this.filter) != -1) {
+              return true;
+            } else {
+              return false;
+            }
+          })
+        }
+      },
     });
   </script>
 
