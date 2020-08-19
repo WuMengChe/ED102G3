@@ -5,20 +5,33 @@ $outline3: 1px solid green;
 $outline4: 1px solid blue;
 $outline5: 1px solid red;
 
-
 // shadow
-$card_shadow:1px 2px 10px rgba(0, 0, 0, 0.1);
+$card_shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
 $card_radius: 5px;
 
-//text color
-// $main-text-color: #303133;
-// $regular-text-color: #606266;
+// category_color
+$practical_color: #79bbb5;
 
-// $primary-text-color:#409eff;
-// $primary-dark-text-color: #277ee2;
-// $success-text-color: #67c23a;
-// $warning-text-color: #e6a23c;
+$research_color: #a0cadb;
 
-//transition
-$quick-transition: all .3s ease;
-$slow-transition: all .8s ease;
+$art_color: #ccc5e3;
+
+$social_color: #f4c3c5;
+
+$thing_color: #e7995f;
+
+$enterprise_color: #f7ea92;
+
+// 輔色
+$second_color1:#FFE56D;
+
+
+$second_color2:#F6F3ED;
+
+
+$second_color3:#BCEAFF;
+
+
+// //transition
+// $quick-transition: all 0.3s ease;
+// $slow-transition: all 0.8s ease;

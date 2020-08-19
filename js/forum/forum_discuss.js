@@ -17,7 +17,7 @@ $(function () {
 
   //點擊回覆留言地方，按下去視窗變大
   $("#send_msg").on("click", function () {
-    $("#send_msg").css("min-height", "80px").css("");
+    $("#send_msg").css("min-height", "100px").css("");
   });
 
 });
@@ -68,17 +68,22 @@ $(function () {
   })
 })
 
-//頁籤
+
+//下拉選單
 $(function () {
-  $("a.tab").on("click", function (e) {
+  $('.dis_dropdown').click(function (e) {
     e.preventDefault();
-
-    /* 將頁籤列表移除所有 -on，再將指定的加上 -on */
-    $(this).closest("ul").find("a.tab").removeClass("-on");
-    $(this).addClass("-on");
-
-    /* 找到對應的頁籤內容，加上 -on 來顯示 */
-    $("div.tab").removeClass("-on");
-    $("div.tab." + $(this).attr("data-target")).addClass("-on");
+    e.stopPropagation();
+    $(this).toggleClass('expanded');
+    $('#' + $(e.target).attr('for')).prop('checked', true);
   });
+  $(document).click(function () {
+    $('.dis_dropdown').removeClass('expanded');
+  })
 });
+
+
+
+//input關鍵字搜尋
+
+

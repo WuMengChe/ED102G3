@@ -1,8 +1,35 @@
+@media screen and (max-width:991px){
+    .mem_img{
+        width: 200px !important;
+        height: 200px !important;
+    }
+    li{
+        background-color: transparent;
+        span{
+            margin: 0 auto;
+        }
+    }
+    li.liCol{
+        text-align: center !important;
+        ul{
+            margin: 10px auto 0 !important;
+        }
+    }
+}
 @media screen and (max-width:768px){
     .mem_img_area{
         height: 300px !important;
     }
-    .mem_cla{
+    .mem_con_detail{
+        height: fit-content !important;
+    }
+    table{
+        margin-top: 15px !important;
+    }
+    .mem_cla, .mem_pos{
         text-align: center;
+        span{
+            margin: 0 auto;
+        }
     }
 }

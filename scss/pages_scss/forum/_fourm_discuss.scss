@@ -10,6 +10,7 @@
   background-color: rgb(0, 50, 78);
   display: flex;
   justify-content: center;
+  padding-top: 100px;
   .career {
     min-width: 200px;
   }
@@ -22,21 +23,19 @@
     overflow-x: scroll;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-    // position: fixed;
-    // top: 200px;
-
+    position: fixed;
+    top: 250px;
+    left: 250px;
     li {
       text-align: center;
-      // border: 10px solid #336ac6;
       height: 50px;
       line-height: 50px;
       font-weight: 700;
-      max-width: 200px;
+      width: 200px;
       position: relative;
       cursor: pointer;
       color: white;
+      text-align: center;
       &:hover {
         background-color: rgba($color: #000000, $alpha: 0.1);
       }
@@ -56,97 +55,161 @@
   top: 10px;
 }
 
+//搜尋關鍵字
 .search {
   background-color: rgb(0, 50, 78);
-  padding-top: 30px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 0px;
   // border: 1px solid red;
   .search_wrap {
     // border: 1px solid blue;
-    width: 700px;
+    width: 720px;
     margin: 0 auto;
     .search_wrap_line {
       background-color: white;
       border-radius: 30px;
+      .fa-search {
+        padding-left: 10px;
+      }
       #search_btn {
         cursor: pointer;
         background-color: white;
         border: none;
-        margin-left: 13px;
       }
-      .text_input {
+      #text_input {
         min-width: 85%;
         height: 30px;
         border: none;
       }
     }
-    // #cancel_search_btn {
-    // }
   }
 }
-//---------------------
-* {
-  box-sizing: border-box;
-}
-/* 整個頁籤及內容最外層區塊 */
-div.tab_container {
-  max-width: 700px;
+
+//下拉選單
+
+$color: #3694d7;
+$timing: 0.3s;
+.select {
+  background-color: rgb(0, 50, 78);
+  padding-top: 20px;
+  .select_wrap {
+    width: 720px;
+    // border: 1px solid white;
+    margin: 0 auto;
+    text-align: end;
+    position: absolute;
+    z-index: 100;
+    right: 240px;
+  }
 }
 
-/* 頁籤區塊 */
-div.tab_container div.tab_list_block {
-  // padding-left: 20px;
-}
-
-/* 頁籤列表 */
-div.tab_container div.tab_list_block ul.tab_list {
-  list-style: none;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-}
-div.tab_container div.tab_list_block ul.tab_list > li {
-  display: inline-block;
-  background-color: #336ac6;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-div.tab_container div.tab_list_block ul.tab_list > li > a {
-  text-decoration: none;
-  display: inline-block;
-  border-bottom: 1px solid;
-  // border-bottom: 1px solid black;
-  padding: 7px 30px;
-  border-radius: 5px 5px 0 0;
-  cursor: pointer;
-  color: white;
-  background-color: #6495ed;
-
+.dis_dropdown {
+  min-width: 250px;
   position: relative;
-  // top: 1px;
+  display: inline-block;
+  min-height: 2em;
+  max-height: 2em;
+  overflow: hidden;
+  top: 0;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  color: #444;
+
+  outline: none;
+  border: 0.06em solid transparent;
+  border-radius: 5px;
+  background-color: mix($color, #fff, 25%);
+
+  transition: $timing all ease-in-out;
+  input:focus + label {
+    background: #def;
+  }
+  input {
+    width: 1px;
+    height: 1px;
+    display: inline-block;
+    position: absolute;
+    opacity: 0.01;
+  }
+  label {
+    border-top: 0.06em solid #d9d9d9;
+    display: block;
+    height: 2em;
+    line-height: 2em;
+    padding-left: 1em;
+    padding-right: 3em;
+    cursor: pointer;
+    position: relative;
+    transition: $timing color ease-in-out;
+    &:nth-child(2) {
+      margin-top: 2em;
+      border-top: 0.06em solid #d9d9d9;
+    }
+  }
+  input:checked + label {
+    display: block;
+    border-top: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    &:nth-child(2) {
+      margin-top: 0;
+      position: relative;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0.8em;
+    top: 0.9em;
+    border: 0.3em solid $color;
+    border-color: $color transparent transparent transparent;
+    transition: 0.4s all ease-in-out;
+  }
+  &.expanded {
+    border: 0.06em solid $color;
+    background: #fff;
+    border-radius: 0.25em;
+    padding: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
+    max-height: 15em;
+
+    label {
+      border-top: 0.06em solid #d9d9d9;
+      &:hover {
+        color: $color;
+      }
+    }
+    input:checked + label {
+      color: $color;
+    }
+
+    &::after {
+      transform: rotate(-180deg);
+      top: 0.55em;
+    }
+  }
 }
 
-//頁籤按鈕按到要換色
-div.tab_container div.tab_list_block ul.tab_list > li > a.-on {
-  background-color: #336ac6;
-  color: white;
-}
-
-/* 頁籤內容區塊 */
-div.tab_container div.tab_contents {
-  background: white;
-  padding: 0 20px;
-}
-div.tab_container div.tab_contents div.tab {
-  padding: 10px;
-  display: none;
+/* 內容區塊 */
+.tab_contents {
+  background: rgb(0, 50, 78);
+  padding: 0 10px;
+  // box-shadow: 5px 5px 5px RGBA(255, 255, 255, 1);
   .msg_content {
-    border-top: 2px solid #336ac6;
-    margin: 20px 0;
+    // border-bottom: 1px solid RGBA(255, 255, 255, 1);
+    -webkit-transition: -webkit-transform 0.22s, box-shadow 0.22s;
+    transition: transform 0.22s, box-shadow 0.22s;
+    box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
     .mem_info {
       display: flex;
       justify-content: space-between;
       padding: 10px;
+      line-height: 2;
+      color: RGBA(255, 255, 255, 1);
       .info_list {
         display: flex;
         img {
@@ -157,96 +220,31 @@ div.tab_container div.tab_contents div.tab {
         }
         .dis_name,
         .dis_date {
-          min-width: 50px;
-          line-height: 30px;
+          margin: 0 10px;
         }
       }
-
       .tags_list {
-        display: flex;
-        .tags_div {
-          margin: 5px;
-
-          .type_tag {
-            background-color: #0056b3;
-            padding: 0px 5px;
-            text-align: right;
-            border-radius: 5px;
-            color: white;
-            font-size: 5px;
-          }
+        .type_tag {
+          background-color: #0056b3;
+          padding: 0px 5px;
+          text-align: right;
+          border-radius: 5px;
+          color: white;
+          font-size: 5px;
         }
       }
     }
     .msg_title {
-      // background-color: #336ac6;
       cursor: pointer;
       padding: 20px;
-      span {
-        background-color: white;
-        border-radius: 5px;
-        padding: 5px;
-        font-weight: 500;
-      }
-      // .open_dialog {
-      // }
+      font-weight: 700;
+      font-size: 22px;
     }
     .msg_textarea {
       min-height: 150px;
       padding: 20px;
       letter-spacing: 1px;
-    }
-    .msg_btn {
-      // border: 1px solid red;
-      text-align: end;
-      button {
-        min-width: 50px;
-        border: none;
-        cursor: pointer;
-      }
-    }
-  }
-}
-div.tab_container div.tab_contents div.tab.-on {
-  display: block;
-  .msg_content {
-    background-color: white;
-    margin: 20px 0;
-    .mem_info {
-      // border: 1px solid red;
-      display: flex;
-      padding: 10px;
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      .dis_name,
-      .dis_date {
-        min-width: 50px;
-        padding: 0 10px;
-        display: flex;
-        align-items: center;
-      }
-    }
-    .msg_title {
-      cursor: pointer;
-      padding: 20px;
-      font-size: 20px;
-      span {
-        background-color: white;
-        border-radius: 5px;
-        padding: 5px;
-        font-weight: 500;
-      }
-      // .open_dialog {
-      // }
-    }
-    .msg_textarea {
-      min-height: 135px;
-      padding: 20px;
-      letter-spacing: 1px;
+      color: RGBA(255, 255, 255, 1);
     }
     .msg_btn {
       // border: 1px solid red;
@@ -255,17 +253,58 @@ div.tab_container div.tab_contents div.tab.-on {
         min-width: 40px;
         border: none;
         cursor: pointer;
+        color: black;
       }
     }
   }
 }
 
+//動畫效果
+//滑到畫面會往後
+.tab_contents {
+  transition: all 400ms ease-in-out;
+}
+
+.tab_contents:hover {
+  transform: scale(0.97);
+}
+
+//滑到單獨的留言自己往前
+.msg_content:focus,
+.msg_content:hover {
+  outline: 0;
+  box-shadow: 0 0.5rem 0 -0.25rem rgba(0, 0, 0, 0.1);
+}
+
+.msg_content:focus,
+.msg_content:hover {
+  transform: scale(1.03);
+  transition: transform 0.088s, box-shadow 0.088s;
+}
+
+.msg_content:nth-child(1) {
+  background: #95c5db;
+}
+.msg_content:nth-child(2) {
+  background: #94c1db;
+}
+.msg_content:nth-child(3) {
+  background: #94bddb;
+}
+.msg_content:nth-child(4) {
+  background: #94b9db;
+}
+.msg_content:nth-child(5) {
+  background: #94b5db;
+}
+.msg_content:nth-child(6) {
+  background: #94b2db;
+}
+
 //頁碼
 div.pagination_block {
-  display: inline-block;
   display: flex;
   justify-content: center;
-  border-top: 2px solid #336ac6;
   padding: 20px 0;
 }
 
@@ -349,13 +388,13 @@ a.pencil_btn {
   height: 230vh;
   background-color: hsla(0, 0%, 0%, 0.5);
   opacity: 0;
-  z-index: -1;
+  z-index: 201;
   transition: opacity 1s;
   display: none;
 }
 div.forum_overlay.-on {
   opacity: 1;
-  z-index: 1;
+  z-index: 300;
   position: fixed;
   top: 0;
   left: 0;
@@ -368,7 +407,7 @@ div.forum_overlay.-opacity-zero {
 
 /* 元素 article 置中及基本樣式 */
 div.forum_overlay > .forum_checkMsg {
-  background-color: white;
+  background-color: #ccc;
   border-radius: 10px;
   max-height: 103vh;
   padding: 10px;
@@ -380,107 +419,68 @@ div.forum_overlay > .forum_checkMsg {
   overflow: scroll;
 }
 
-/* 燈箱內容詳情 */
-.forum_checkMsg .forum_topic {
-  .msg_content {
-    min-height: 150px;
-    border-top: 2px solid #336ac6;
-    margin: 20px 0;
-    .mem_info {
-      // border: 1px solid red;
-      display: flex;
-      padding: 10px;
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        overflow: hidden;
-        // border: 1px solid #ccc;
-      }
-      li {
-        min-width: 50px;
-        padding: 0 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-    .msg_title {
-      background-color: #336ac6;
-      cursor: pointer;
-      padding: 20px;
-      span {
-        background-color: white;
-        border-radius: 5px;
-        padding: 5px;
-        font-weight: 500;
-      }
-      .open_dialog {
-      }
-    }
-    .msg_textarea {
-      min-height: 150px;
-      padding: 20px;
-      letter-spacing: 1px;
-    }
-    .msg_btn {
-      // border: 1px solid red;
-      text-align: end;
-      button {
-        min-width: 50px;
-        // background: #1b4d9f;
-        border: none;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
 /* 留言數量 */
 .forum_checkMsg .feedback_count {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 1px solid blue;
   text-align: center;
+  background-color: #336ac6;
+  padding: 10px;
 }
 
-/* 回應留言 */
-.forum_checkMsg .forum_feedback {
-  .msg_content {
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    border-bottom: 2px solid #336ac6;
-    // background: #336ac6;
-    margin: 20px 0;
+//點進標題的內容
+.feedback_wrap {
+  background: #94b2db;
+  padding: 0 10px;
+  .check_content {
     .mem_info {
-      // border: 1px solid red;
       display: flex;
+      justify-content: space-between;
       padding: 10px;
-      li {
-        min-width: 50px;
-        padding: 0 10px;
+      line-height: 2;
+      color: RGBA(255, 255, 255, 1);
+      .info_list {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        padding: 10px;
+        line-height: 2;
+        color: RGBA(255, 255, 255, 1);
         img {
           width: 30px;
           height: 30px;
           border-radius: 50%;
           overflow: hidden;
         }
+        .dis_name,
+        .dis_date {
+          margin: 0 10px;
+        }
+      }
+      .tags_list {
+        .type_tag {
+          background-color: #0056b3;
+          padding: 0px 5px;
+          text-align: right;
+          border-radius: 5px;
+          color: white;
+          font-size: 5px;
+        }
       }
     }
+    .msg_title {
+      cursor: pointer;
+      padding: 20px;
+      font-weight: 700;
+      font-size: 22px;
+    }
     .msg_textarea {
-      min-height: 80px;
+      min-height: 150px;
       padding: 20px;
       letter-spacing: 1px;
+      color: RGBA(255, 255, 255, 1);
     }
     .msg_btn {
       // border: 1px solid red;
       text-align: end;
       button {
-        min-width: 50px;
-        // background: #1b4d9f;
+        min-width: 40px;
         border: none;
         cursor: pointer;
       }
@@ -488,31 +488,97 @@ div.forum_overlay > .forum_checkMsg {
   }
 }
 
-.forum_overlay > .forum_checkMsg {
-  .close_btn {
-    height: 30px;
-    border: 1px solid red;
-    text-align: right;
+/* 回應留言 */
+.forum_feedback {
+  // border: 1px solid red;
+  .feedback_content {
+    border-bottom: 2px solid #336ac6;
+    margin-top: 20px;
+    background-color: #94b2db;
+    .info_list {
+      display: flex;
+      padding: 10px;
+      line-height: 2;
+      color: RGBA(255, 255, 255, 1);
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .dis_name,
+      .dis_date {
+        margin: 0 10px;
+      }
+    }
   }
-  .confirm_send_btn {
-    height: 30px;
-    border: 1px solid red;
-    text-align: center;
+  .msg_textarea {
+    min-height: 80px;
+    padding: 20px;
+    letter-spacing: 1px;
   }
-  #send_msg_btn {
-    display: inline-block;
-    margin: 0 auto;
+  .msg_btn {
+    // border: 1px solid red;
+    text-align: end;
+    button {
+      min-width: 40px;
+      // background: #1b4d9f;
+      border: none;
+      cursor: pointer;
+    }
   }
-  #send_msg {
-    width: 100%;
-    resize: none;
-  }
-}
-.leave_msg {
-  border: 1px solid gray;
 }
 
-/* 點擊檢舉跳出的燈箱 */
+.forum_overlay {
+  .forum_checkMsg {
+    .close_btn {
+      height: 30px;
+      // border: 1px solid red;
+      text-align: left;
+      .btn_modal_close {
+        width: 50px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 5px;
+        font-size: 12px;
+      }
+    }
+    .leave_msg_wrap {
+      // position: relative;
+      width: 100%;
+      height: 120px;
+      background-color: white;
+      text-align: right;
+      .close_msg_div {
+        border: 1px solid red;
+        height: 30px;
+        width: 100%;
+      }
+      .leave_msg {
+        // border: 1px solid gray;
+        // position: relative;
+        #send_msg {
+          width: 100%;
+          resize: none;
+          // position: absolute;
+          // bottom: 0;
+          border: none;
+          padding: 10px;
+        }
+      }
+      .confirm_send_btn {
+        height: 30px;
+        border: 1px solid red;
+        text-align: right;
+      }
+      #send_msg_btn {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+// 點擊檢舉跳出的燈箱
 
 button {
   cursor: pointer;
@@ -524,14 +590,11 @@ div.impeachment_overlay {
   width: 100%;
   height: 100vh;
   background-color: hsla(0, 0%, 0%, 0.5);
-
-  /* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
   opacity: 0;
   z-index: -1;
   transition: opacity 1s;
 }
 div.impeachment_overlay.-on {
-  /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
   opacity: 1;
   z-index: 1;
 }
@@ -540,10 +603,8 @@ div.impeachment_overlay.-opacity-zero {
   opacity: 0;
 }
 
-/* 元素 article 置中及基本樣式 */
 div.impeachment_overlay > article {
   background-color: white;
-  // width: 20%;
   border-radius: 10px;
   padding: 10px;
   position: absolute;
@@ -567,7 +628,7 @@ div.impeachment_overlay > article {
 
 /* RWD */
 @media screen and (max-width: 992px) {
-  .forum_discuss {
+  #forum_discuss {
     .dis_body {
       display: flex;
       flex-direction: column;
@@ -599,18 +660,6 @@ div.impeachment_overlay > article {
     width: 100%;
     // margin: 50px auto;
   }
-
-  // .search {
-  //   .search_wrap {
-  //     .search_wrap_line {
-  //       .text_input {
-  //         min-width: 80%;
-  //         height: 30px;
-  //         border: none;
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 @media screen and (max-width: 500px) {
