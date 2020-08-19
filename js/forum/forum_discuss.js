@@ -25,7 +25,6 @@ $(function () {
 
 //點擊檢舉跳出的燈箱 
 $(function () {
-
   $("button.impeachment_btn").on("click", function () {
     $("div.impeachment_overlay").addClass("-on");
   });
@@ -60,10 +59,10 @@ $(function () {
   $(".collect_btn").on("click", function () {
     if ($(this).hasClass('active')) {
       $(this).removeClass('active')
-      $(".collect_btn").text('收藏')
+      $(this).text('收藏')
     } else {
       $(this).addClass('active')
-      $(".collect_btn").text('已收藏')
+      $(this).text('已收藏')
     }
   })
 })
