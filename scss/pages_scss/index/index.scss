@@ -77,18 +77,14 @@ $title: 30px;
 
 .header_wrap{
     position: fixed;
-    z-index: 1;
     // border: 1px solid #000;
+    z-index: 1;
     background: transparent !important;
 }
 
 .index{
     .index_test{
         @include section;
-        background-image: url(../../../img/index/index_1st/bg_bigblue.png);
-        background-attachment: fixed;
-        background-repeat:no-repeat ;
-        background-position: bottom ;
         .firstScreen{
             @include screen{
                 flex-wrap: wrap;
@@ -193,8 +189,9 @@ $title: 30px;
     }
     .index_car{
         @include section;
-        background-image: url(../../../img/index/index_2nd/2nd_bg.png);
-        background-position: top;
+        background-image: url(../../../img/index/index_3rd/third_bg.png);
+        background-size: contain;
+        background-position: bottom;
         background-attachment: fixed;
         background-repeat: no-repeat;
 
@@ -342,7 +339,7 @@ $title: 30px;
     }
     .index_disc{
         @include section;
-        // background-image: url(../../../img/index/index_3rd/third_bg.png);
+        background-image: url(../../../img/index/index_3rd/third_bg.png);
         background-size: contain;
         background-position: bottom;
         background-repeat: no-repeat;
@@ -356,19 +353,20 @@ $title: 30px;
                 }
                 .index_dia{
                     .message{
-                        border: 1px solid #000;
+                        // border: 1px solid #000;
                         border-radius: 10px;
                         padding: 10px;
                         position: relative;
                         background-color: white;
                         margin-bottom: 40px;
-                        // z-index: 1;
+                        z-index: 2;
 
                         .meg_box{
                             border: 1px solid #000;
                             border-radius: 5px;
                             margin-bottom: 15px;
                             box-shadow: $card_shadow;
+                            z-index: 2;
 
                             
                             a{
@@ -386,19 +384,19 @@ $title: 30px;
                             }
                             
                         }
-                        // &::after {
-                        //     content: "";
-                        //     // border: 1px solid #000;
-                        //     background-image: url(../../../img/index/index_3rd/triangle.png);
-                        //     background-repeat: no-repeat;
-                        //     width: 120px;
-                        //     height: 90px;
-                        //     position: absolute;
-                        //     top: 10px;
-                        //     right: -100px;
-                        //     z-index: -1;
+                        &::after {
+                            content: "";
+                            // border: 1px solid #000;
+                            background-image: url(../../../img/index/index_3rd/triangle.png);
+                            background-repeat: no-repeat;
+                            width: 120px;
+                            height: 90px;
+                            position: absolute;
+                            top: 10px;
+                            right: -100px;
+                            // z-index: 1;
                             
-                        // }
+                        }
                     }
                     .btn_second{}
                 }
@@ -406,7 +404,7 @@ $title: 30px;
             .index_disc_img{
                 .img{
                     width:100%;
-                    background-image: url(../../../img/index/index_1st/1st_smBlue.png);
+                    // background-image: url(../../../img/index/index_1st/1st_smBlue.png);
                     background-size: contain;
                     background-repeat: no-repeat;
                     .dia_img{
@@ -452,14 +450,16 @@ $title: 30px;
                 }
                 .pad{
                     .screen_bg{
-                        background-color: #000;
+                        background-color: #727171;
                         border-top-left-radius: 50px;
                         border-top-right-radius: 50px;
-                        height: 450px;
-                        padding: 40px;
+                        height: 380px;
+                        padding: 30px;
                         .screen{
                             background-color: #fff;
-                            height: 380px;
+                            height: 300px;
+                            position: relative;
+
                             .screen_carousel{
                                 .item{
                                     display: inline-block;
@@ -485,7 +485,7 @@ $title: 30px;
                     }
                 }
                 .screen_bt{
-                    background-color: #B3B3B3;
+                    background-color: #c9caca;
                     border-bottom-left-radius: 50px;
                     border-bottom-right-radius: 50px;
                     height: 50px;
