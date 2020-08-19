@@ -17,7 +17,7 @@ $(function () {
 
   //點擊回覆留言地方，按下去視窗變大
   $("#send_msg").on("click", function () {
-    $("#send_msg").css("min-height", "80px").css("");
+    $("#send_msg").css("min-height", "100px").css("");
   });
 
 });

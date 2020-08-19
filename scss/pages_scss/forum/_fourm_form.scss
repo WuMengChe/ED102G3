@@ -11,6 +11,11 @@
   }
 }
 
+#form_wrap {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .form-group {
   margin-top: 20px;
   //標題
@@ -80,6 +85,9 @@ $timing: 0.3s;
   background-color: mix($color, #fff, 25%);
 
   transition: $timing all ease-in-out;
+
+  position: absolute;
+  z-index: 200;
   input:focus + label {
     background: #def;
   }

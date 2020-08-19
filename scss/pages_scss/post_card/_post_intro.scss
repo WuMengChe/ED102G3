@@ -3,6 +3,61 @@
 
   .post_ani {
     border: 1px solid blue;
+    height: calc(100vh - 130px);
+
+    .main_pic {
+      border: 1px solid red;
+      margin: 0 auto;
+      // padding: 0;
+
+
+
+      img {
+        border: 1px solid red;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+
+      }
+
+      .buttons {
+        border: 1px solid rgb(169, 169, 236);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+
+  .steps {
+    border: 1px solid red;
+
+    .step1 {
+      border: 1px solid blue;
+
+      img {
+        width: 100%;
+      }
+
+    }
+
+    .step2 {
+      border: 1px solid blue;
+
+      img {
+        width: 100%;
+      }
+
+    }
+
+    .step3 {
+      border: 1px solid blue;
+
+      img {
+        width: 100%;
+      }
+
+    }
 
   }
 }
