@@ -9,6 +9,8 @@ const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const imagemin = require('gulp-imagemin');
 
+var sourcemaps = require('gulp-sourcemaps');
+
 
 gulp.task('hi', function(){
     //do thing
@@ -21,7 +23,7 @@ gulp.task('copy', function(){
 });
 
 gulp.task('bootstrap', function(){
-    return gulp.src('./bootstrap').pipe(gulp.dest('./dest/bootstrap'));
+    return gulp.src('bootstrap/*.css').pipe(gulp.dest('dest/bootstrap'));
 })
 
 
@@ -38,10 +40,13 @@ gulp.task('bootstrap', function(){
 
 gulp.task('sass',function(){
     return gulp.src('./scss/**/**/*.scss') //來源
+    .pipe(sourcemaps.init())
     .pipe(sass().on('error',sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
     .pipe(cleanCSS({
-        compatibility: 'ie8', //轉譯成相容ie8的CSS
+      compatibility: 'ie8', //轉譯成相容ie8的CSS
     }))
+    .pipe(sourcemaps.write())
+
     .pipe(gulp.dest('./dest/css')); //目的地
 })
 
