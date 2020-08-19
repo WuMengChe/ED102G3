@@ -5,10 +5,12 @@
 
 //步驟：
 //1. 請確認有從git上拉到package.json & package-lock.json
-//2. 用vs code打開我們的git專案，
-
-
+//2. 用vs code打開我們的git專案
+//3. 在vs code中打開終端機
+//4. 輸入以下指令安裝所有這個指令所需的套件：npm install
+//5. 引入gulp：
 const gulp = require('gulp'); //引入gulp套件
+//6. 
 const cleanCSS = require('gulp-clean-css');  //引入gulp-clean-css套件
 const sass = require('gulp-sass'); //引入sass轉譯套件
 const concat = require('gulp-concat');
