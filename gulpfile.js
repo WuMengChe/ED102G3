@@ -1,4 +1,12 @@
-// 只要在終端機使用gulp 函數名稱，就可以執行該函數
+//注意事項：
+//*使用gulp轉譯sass時不可以同時開watch sass（會變成雙方都在轉譯）
+//*打開default(指令：gulp)之後不要再開live-server了
+
+
+//步驟：
+//1. 請確認有從git上拉到package.json & package-lock.json
+//2. 用vs code打開我們的git專案，
+
 
 const gulp = require('gulp'); //引入gulp套件
 const cleanCSS = require('gulp-clean-css');  //引入gulp-clean-css套件
@@ -8,34 +16,20 @@ const fileinclude = require('gulp-file-include');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const imagemin = require('gulp-imagemin');
-
 var sourcemaps = require('gulp-sourcemaps');
-
-
-gulp.task('hi', function(){
-    //do thing
-    console.log('測試test');
-});
 
 
 gulp.task('copy', function(){
     return gulp.src('js/**/*.js').pipe(gulp.dest('dest/js'));
 });
 
+
 gulp.task('bootstrap', function(){
     return gulp.src('bootstrap/*.css').pipe(gulp.dest('dest/bootstrap'));
 })
 
 
-// => 執行的時候使用gulp copy就可以把src轉移到dist
 
-// npm install gulp-clean-css --save-dev => 壓縮CSS
-
-// gulp.task('css', function(){
-//     return gulp.src('css/reset.css').pipe(cleanCSS({
-//         compatibility: 'ie8', //轉譯成相容ie8的CSS
-//     })).pipe(gulp.dest('dest/css')) //來源
-// });
 
 
 gulp.task('sass',function(){
@@ -50,7 +44,6 @@ gulp.task('sass',function(){
     .pipe(gulp.dest('./dest/css')); //目的地
 })
 
-//*使用gulp轉譯sass時不可以同時開watch sass（會變成雙方都在轉譯）
 
 gulp.task('watch', function(){
     gulp.watch('./scss/**/*.scss',['sass']) //監看sass的變動，等同於vue的watch sass功能
