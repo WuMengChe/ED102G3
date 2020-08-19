@@ -1,5 +1,20 @@
+@mixin step {
+  p {
+    padding: 15px 0;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .p_small {
+    margin-top: 10px;
+  }
+}
+
 .post_intro {
   border: 1px solid black;
+  margin-bottom: 80px;
 
   .post_ani {
     border: 1px solid blue;
@@ -31,33 +46,45 @@
 
   .steps {
     border: 1px solid red;
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     .step1 {
       border: 1px solid blue;
+      padding: 0;
+      @include step();
+    }
 
-      img {
-        width: 100%;
-      }
+    .fa-arrow-right {
+      border: 1px solid rgb(251, 255, 0);
+      font-size: 22px;
+      color: rgb(31, 31, 31);
+      margin: 0;
+      padding: 0;
 
     }
 
     .step2 {
       border: 1px solid blue;
-
-      img {
-        width: 100%;
-      }
+      padding: 0;
+      @include step();
 
     }
 
     .step3 {
       border: 1px solid blue;
+      padding: 0;
 
-      img {
-        width: 100%;
-      }
+      @include step();
 
     }
 
+    .mas {
+      border: 1px solid blue;
+      display: inline-block;
+    }
   }
 }
