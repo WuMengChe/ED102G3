@@ -1,16 +1,10 @@
-@mixin step {
-  p {
-    padding: 15px 0;
-  }
-
-  img {
-    width: 100%;
-  }
-
-  .p_small {
-    margin-top: 10px;
-  }
+* {
+  box-sizing: border-box;
 }
+
+$width:450px;
+$height:350px;
+$border-top:175px;
 
 @keyframes flip {
   100% {
@@ -30,19 +24,16 @@
   }
 }
 
-$width:450px;
-$height:350px;
-$border-top:175px;
-
 .post_intro {
   border: 1px solid black;
   margin-bottom: 80px;
 
+
   .post_ani {
-    border: 1px solid rgb(255, 0, 0);
 
 
-    // height: calc(100vh - 90px);
+    border: 1px solid blue;
+
     .move {
       border: 1px solid red;
       margin: 0 auto;
@@ -54,7 +45,7 @@ $border-top:175px;
         .envelope {
           width: $width;
           height: $height;
-          margin: 250px auto 0;
+          margin: 280px auto 0;
           background: #c9c9c9;
           /* box-shadow:
         0 0 1px rgba(0, 0, 0, 0.5),
@@ -127,62 +118,13 @@ $border-top:175px;
 
       .buttons {
         border: 1px solid rgb(11, 11, 231);
-        margin: 20px auto;
+        margin: 0 auto;
         display: flex;
         justify-content: space-around;
         // margin-top: 20px;
       }
     }
-
-
   }
-
-  .steps {
-    border: 1px solid red;
-    margin: 0;
-    text-align: center;
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    .step1 {
-      border: 1px solid blue;
-      padding: 0;
-      @include step();
-    }
-
-    .fa-arrow-right {
-      border: 1px solid rgb(251, 255, 0);
-      font-size: 22px;
-      color: rgb(31, 31, 31);
-      margin: 0;
-      padding: 0;
-
-    }
-
-    .step2 {
-      border: 1px solid blue;
-      padding: 0;
-      @include step();
-
-    }
-
-    .step3 {
-      border: 1px solid blue;
-      padding: 0;
-
-      @include step();
-
-    }
-
-    .mas {
-      border: 1px solid blue;
-      display: inline-block;
-    }
-  }
-
-
 }
 
 @media (max-width:575px) {
@@ -192,27 +134,16 @@ $border-top:175px;
     margin: 280px auto 0;
 
     .flap {
-      border-width: ($border-top - 75px) 125px;
+
+      // border-width: $border-top - 75px 125px;
       z-index: 3;
+      /* border:1px solid black; */
     }
 
     .letter {
       position: absolute;
       width: $width - 60px;
       height: $height - 60px;
-    }
-  }
-
-  .steps {
-    .fa-arrow-right {
-      font-size: 18px;
-      display: block;
-      transform: rotate(90deg);
-    }
-
-    .mas {
-      border: 1px solid pink;
-      display: block;
     }
   }
 }
