@@ -56,7 +56,7 @@ gulp.task('default', function () { //當名稱是default的時候在終端機中
   browserSync.init({
     server: {
       baseDir: "./dest",
-      index: "forum_discuss.html"
+      index: "index.html"
     }
   });
   gulp.watch('./scss/**/**/*.scss', ['sass']).on('change', reload);
