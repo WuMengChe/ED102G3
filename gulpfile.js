@@ -62,12 +62,11 @@ gulp.task('default', function () { //當名稱是default的時候在終端機中
   gulp.watch('./scss/**/**/*.scss', ['sass']).on('change', reload);
   gulp.watch(['./*.html'], ['fileinclude']).on('change', reload);
   gulp.watch(['js/**/*.js'], ['js']).on('change', reload);
+  gulp.watch(['img/**/*'], ['img']).on('change', reload);
+
 });
 //使用Control + C 可以停止監看，如果要重新監看就要再重新執行gulp
 //執行到這邊應該會自動開瀏覽器了，請確認一下dest中的html有沒有連接到對的路徑，若不知道如何設定，可以參考原檔中(非dest中的)的index.html
-
-
-
 
 
 
@@ -96,7 +95,7 @@ gulp.task('watch', function () {
 
 //將自動產生的檔案刪掉：用在如果要修改已經產生的檔案，但直接修改不會覆蓋，就可以先刪掉再重新產生。或要打包原始檔案就可以先刪掉之後再產生
 gulp.task('clear', function () {
-  return gulp.src('dest/img', {
+  return gulp.src('dest/css', {
       read: false,
       allowEmpty: true
     })

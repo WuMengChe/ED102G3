@@ -8,6 +8,9 @@ $header_nav_font_color: #1b4d9f;
 div.header_wrap {
     width: 100%;
     background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 200;
 
     header.header {
         width: 100%;
@@ -19,11 +22,9 @@ div.header_wrap {
         align-items: center;
         justify-content: flex-end;
         padding: 10px 15px 0;
-        margin-bottom: 50px;
         position: sticky;
         top: 0px;
-        z-index: 200;
-        // background: #fff;
+
 
         /* hamburger */
 
