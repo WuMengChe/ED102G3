@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>職引960</title>
-    <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <!-- <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.css">
-    <link rel="stylesheet" href="./css/app_public.css">
+    <!-- <link rel="stylesheet" href="./css/app_public.css"> -->
+    @@include('app/link.html')
     <link rel="stylesheet" href="./css/pages_scss/index/index.css">
-    
+
 </head>
+
 <body>
-      <!-- header -->
-      @@include('app/header.html')
+    <!-- header -->
+    @@include('app/header.html')
 
     <main class="index fullpage">
-        <section class="index_test active" style="background-color: #ccc5e3;" >
+        <section class="index_test active" style="background-color: #ccc5e3;">
             <div class="firstScreen container">
-                <div class="index_test_text col-5" >
+                <div class="index_test_text col-5">
                     <h1>職涯分析</h1>
                     <p>不考慮科系單純地透過職能和興趣來釐清自己未來職涯，和求職方向通過全面的診斷可以清楚地看出其優勢，從專業職能測驗來評估最適任的職務，做為未來規劃的參考！！</p>
                     <a href="#" class="btn_primary">職涯分析</a>
-                </div>  
+                </div>
                 <div class="index_test_img col-7">
                     <div class="img">
                     </div>
-                </div> 
+                </div>
             </div>
         </section>
         <section class="index_car" style="background-color: #f6d861;">
-            <div class="secondScreen container" >
+            <div class="secondScreen container">
                 <div class="index_sal_img col-6">
                     <img src="./img/index/index_2nd/auditor.png" class="auditor" alt="">
                     <img src="./img/index/index_2nd/teacher.png" class="teacher" alt="">
@@ -41,11 +44,11 @@
                         <img src="./img/index/index_2nd/stage_block_2.png" class="secondStage" alt="">
                         <img src="./img/index/index_2nd/stage_block_3.png" class="thirdStage" alt="">
                     </div>
-                    
+
                 </div>
                 <div class="index_sal_chart col-6">
                     <h1>熱門行業排行</h1>
-                    <div class="chart"> 
+                    <div class="chart">
                         <div class="horizontal-bar-graph" id="graph"></div>
                     </div>
                     <a href="#" class="btn_second">探索更多行業</a>
@@ -53,11 +56,11 @@
             </div>
         </section>
         <section class="index_disc" style="background-color: #ececec;">
-            <div class="thirdScreen container" >
+            <div class="thirdScreen container">
                 <div class="index_disc_text col-6">
                     <h1>熱門行業話題</h1>
                     <div class="index_dia">
-                        <div class="message" >
+                        <div class="message">
                             <div class="meg_box" v-for="item in messages">
                                 <a href="">
                                     <h5>{{item.title}}</h5>
@@ -68,19 +71,19 @@
                         </div>
                         <a href="#" class="btn_second">探索更多文章</a href="#">
                     </div>
-                </div>  
+                </div>
                 <div class="index_disc_img col-6">
                     <div class="img">
-                        <img class="dia_img" src="./img/index/index_3rd/mixed.png" alt="" srcset=""> 
+                        <img class="dia_img" src="./img/index/index_3rd/mixed.png" alt="" srcset="">
                     </div>
-                </div> 
+                </div>
             </div>
 
         </section>
         <section class="index_cour" style="background-color: #a0cadb;">
             <div class="index_cour_img">
                 <img class="stair" src="./img/index/index_4th/upStair.png" alt="" srcset="">
-            
+
             </div>
             <div class="forthScreen container">
                 <div class="col-4"></div>
@@ -107,13 +110,13 @@
         <section class="index_card" style="background-color: #f4c3c5;">
             <div class="fifthScreen container">
                 <div class="index_card_img col-7">
-                    <div class="img"><img src="./img/post_card/postCard.png" alt="" srcset=""></div> 
+                    <div class="img"><img src="./img/post_card/postCard.png" alt="" srcset=""></div>
                     <a href="#" class="btn_second">客制明信片</a>
                 </div>
                 <div class="index_card_text col-5">
                     <h1>明信片</h1>
                     <p>面對未知的未來，我期許成為更好的自己！<br>來吧！！寫封信給將來的你</p>
-                    <img class="post_front" src="./img/index/index_5th/post_front.png" alt="">    
+                    <img class="post_front" src="./img/index/index_5th/post_front.png" alt="">
                     <img class="post_back" src="./img/index/index_5th/post_forward.png" alt="">
                 </div>
             </div>
@@ -121,16 +124,17 @@
         <!--footer-->
         @@include('app/footer.html')
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    @@include('app/script.html')
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>     -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/easings.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
-    <script src="./js/header.js"></script>
+    <!-- <script src="./js/header.js"></script> -->
     <script src="./js/index/index.js"></script>
+
 </body>
+
 </html>
