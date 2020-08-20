@@ -6,10 +6,10 @@
   outline: none;
 }
 #forum_discuss {
-  background-image: url("../img/forum/all.png");
+  background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
+  background-size:cover;
+  background-position:center;
 }
 
 .dis_body {
@@ -21,32 +21,31 @@
     display: none;
   }
   .career_name {
-    // border: 1px solid blueviolet;
     overflow: hidden;
     overflow-x: scroll;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 250px;
-    left: 250px;
-    li {
-      text-align: center;
-      height: 50px;
-      line-height: 50px;
-      font-weight: 700;
-      width: 200px;
-      position: relative;
-      cursor: pointer;
-      color: white;
-      text-align: center;
-      &:hover {
-        background-color: rgba($color: #000000, $alpha: 0.1);
-      }
-      .fa-briefcase {
-        padding-left: 10px;
-      }
+    // position: fixed;
+    // top: 250px;
+    // left: 250px;
+  //   li {
+  //     text-align: center;
+  //     height: 50px;
+  //     line-height: 50px;
+  //     font-weight: 700;
+  //     width: 200px;
+  //     position: relative;
+  //     cursor: pointer;
+  //     color: white;
+  //     text-align: center;
+  //     &:hover {
+  //       background-color: rgba($color: #000000, $alpha: 0.1);
+  //     }
+  //     .fa-briefcase {
+  //       padding-left: 10px;
+  //     }
     }
-  }
+  // }
 }
 
 .Travel-icon {
