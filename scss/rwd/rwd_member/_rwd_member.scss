@@ -1,3 +1,11 @@
+@media screen and (min-width:991px){
+    li:hover{
+        background-color: white !important;
+    }
+    div.mem_ana_area:hover, div.mem_cla_area:hover, div.mem_art_area:hover, div.mem_pos_area:hover, div.mem_ord_area:hover, div.mem_mes_area:hover{
+        border: 1px #FFE56D solid !important;
+    }
+}
 @media screen and (max-width:991px){
     .mem_img{
         width: 200px !important;
@@ -25,6 +33,13 @@
     }
     table{
         margin-top: 15px !important;
+    }
+    .mem_det_btn_use{
+        button {
+            margin: 0 !important;
+            width: 50% !important;
+            border-radius: 0px !important;
+        }
     }
     .mem_cla, .mem_pos{
         text-align: center;
