@@ -1,5 +1,20 @@
+@mixin step {
+  p {
+    padding: 15px 0;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .p_small {
+    margin-top: 10px;
+  }
+}
+
 .post_intro {
   border: 1px solid black;
+  margin-bottom: 80px;
 
   .post_ani {
     border: 1px solid blue;
@@ -10,15 +25,107 @@
       margin: 0 auto;
       // padding: 0;
 
+      .envelope {
+        width: 400px;
+        height: 300px;
+        margin: 260px auto 0;
+        background: #c9c9c9;
+        /* box-shadow:
+        0 0 1px rgba(0, 0, 0, 0.5),
+        0 1px 3px rgba(0, 0, 0, 0.25); */
+        position: relative;
+        perspective: 800px;
+
+        .envelope .flap {
+          position: absolute;
+          width: 100%;
+          height: 0;
+          border: 0 solid transparent;
+          border-width: 150px 200px;
+          z-index: 3;
+          /* border:1px solid black; */
+        }
+
+        .envelope .flap.front {
+          border-left-color: #fdeded;
+          border-right-color: #fffbe9;
+          border-bottom-color: #e2e6ff;
+          z-index: 3;
 
 
-      img {
-        border: 1px solid red;
-        margin: 0 auto;
-        padding: 0;
-        width: 100%;
+        }
 
+
+        .envelope .flap.top {
+          border-top-width: 150px;
+          border-top-color: #ececec;
+          z-index: 3;
+          animation-duration: 1s;
+          animation-fill-mode: forwards;
+          -webkit-transform-origin-y: top;
+          /* perspective: 800; */
+          transform-style: preserve-3d;
+        }
+
+        .envelope.open .flap.top {
+          animation-name: flip;
+        }
+
+
+        .envelope .letter {
+          position: absolute;
+          width: 360px;
+          height: 280px;
+          background: transparent;
+          top: 10px;
+          left: 13px;
+          z-index: 1;
+          animation-duration: 2s;
+          animation-delay: 1.5s;
+          animation-fill-mode: forwards;
+          transform-style: preserve-3d;
+        }
+
+        .envelope.open .letter {
+          animation-name: remove;
+
+          img {
+            width: 100%;
+            // height: 100%;
+          }
+
+        }
+
+
+        @keyframes flip {
+          100% {
+            transform: rotateX(180deg);
+            z-index: 1;
+          }
+        }
+
+        @keyframes remove {
+          50% {
+            top: -280px;
+          }
+
+          100% {
+            top: 10px;
+            z-index: 3;
+          }
+        }
       }
+
+
+
+
+      // img {
+      //   border: 1px solid red;
+      //   margin: 0 auto;
+      //   padding: 0;
+      //   width: 100%;
+
+      // }
 
       .buttons {
         border: 1px solid rgb(169, 169, 236);
@@ -31,33 +138,45 @@
 
   .steps {
     border: 1px solid red;
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     .step1 {
       border: 1px solid blue;
+      padding: 0;
+      @include step();
+    }
 
-      img {
-        width: 100%;
-      }
+    .fa-arrow-right {
+      border: 1px solid rgb(251, 255, 0);
+      font-size: 22px;
+      color: rgb(31, 31, 31);
+      margin: 0;
+      padding: 0;
 
     }
 
     .step2 {
       border: 1px solid blue;
-
-      img {
-        width: 100%;
-      }
+      padding: 0;
+      @include step();
 
     }
 
     .step3 {
       border: 1px solid blue;
+      padding: 0;
 
-      img {
-        width: 100%;
-      }
+      @include step();
 
     }
 
+    .mas {
+      border: 1px solid blue;
+      display: inline-block;
+    }
   }
 }
