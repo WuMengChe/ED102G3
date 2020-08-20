@@ -56,7 +56,7 @@ gulp.task('default',  function () {  //當名稱是default的時候在終端機�
   browserSync.init({
     server: {
       baseDir: "./dest",  
-      index: "member.html"  //請將"index.html"改成自己的頁面，例如member "member.html"
+      index: "index.html"  //請將"index.html"改成自己的頁面，例如member "member.html"
     }
   });
   gulp.watch('./scss/**/**/*.scss',['sass']).on('change', reload);
