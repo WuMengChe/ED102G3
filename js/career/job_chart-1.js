@@ -4,7 +4,7 @@ var lineChartData = {
         label: '最低月薪',
         lineTension: 0,
         fill: false,
-        backgroundColor: "#66B3FF",
+        backgroundColor: ["#D0D0D0","#FFB5B5","#FFD9EC","#F1E1FF","#D2E9FF"],
         borderColor: "#66B3FF",
         borderWidth:1,
         data: [80000, 110000, 120000, 160000, 190000,0],

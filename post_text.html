@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./css/app_public.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .post_intro {
+      border: 1px solid black;
+    }
+
+    #wrapper {
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid blue;
+      height: auto;
+      padding: 0;
+    }
+
+    .envelope {
+      width: 400px;
+      height: 300px;
+      margin: 260px auto 0;
+      background: #c9c9c9;
+      /* box-shadow:
+        0 0 1px rgba(0, 0, 0, 0.5),
+        0 1px 3px rgba(0, 0, 0, 0.25); */
+      position: relative;
+      perspective: 800px;
+
+    }
+
+    .envelope .flap {
+      position: absolute;
+      width: 100%;
+      height: 0;
+      border: 0 solid transparent;
+      border-width: 150px 200px;
+      z-index: 3;
+      /* border:1px solid black; */
+    }
+
+    .envelope .flap.front {
+      border-left-color: #fdeded;
+      border-right-color: #fffbe9;
+      border-bottom-color: #e2e6ff;
+      z-index: 3;
+
+
+    }
+
+
+    .envelope .flap.top {
+      border-top-width: 150px;
+      border-top-color: #ececec;
+      z-index: 3;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      -webkit-transform-origin-y: top;
+      /* perspective: 800; */
+      transform-style: preserve-3d;
+    }
+
+    .envelope.open .flap.top {
+      animation-name: flip;
+    }
+
+
+    .envelope .letter {
+      position: absolute;
+      width: 360px;
+      height: 280px;
+      background: transparent;
+      top: 10px;
+      left: 13px;
+      z-index: 1;
+      animation-duration: 2s;
+      animation-delay: 1.5s;
+      animation-fill-mode: forwards;
+      transform-style: preserve-3d;
+    }
+
+    .envelope.open .letter {
+      animation-name: remove;
+    }
+
+    .letter img {
+      /* width: 100%; */
+      height: 100%;
+    }
+
+    @keyframes flip {
+      100% {
+        transform: rotateX(180deg);
+        z-index: 1;
+      }
+    }
+
+    @keyframes remove {
+      50% {
+        top: -280px;
+      }
+
+      100% {
+        top: 10px;
+        z-index: 3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- header -->
+  @@include('app/header.html')
+  <!-- header 結束-->
+  <div class="post_intro container">
+    <div id="wrapper" class="row">
+      <div class="envelope open">
+        <div class="flap front"></div>
+        <div class="flap top"></div>
+        <div class="letter">
+          <img src="./img/post_card/postCard.png" alt="">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+
+  <script>
+    // $(document).ready(function () {
+
+    //   $('#reset').click(function () {
+    //     $('.envelope').removeClass('open');
+    //     setTimeout(function () {
+    //       $('.envelope').addClass('open');
+    //     }, 500);
+    //   });
+
+    // });
+  </script>
+
+</body>
+
+
+</html>
