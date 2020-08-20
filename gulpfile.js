@@ -47,7 +47,7 @@ gulp.task('bootstrap', function(){
 //9. 壓縮圖並存入dest/img資料夾中，請在終端機中輸入：gulp img
 gulp.task('img', function () {
   gulp.src('./img/**/*')
-    .pipe(imagemin())
+    // .pipe(imagemin())
     .pipe(gulp.dest('dest/img'))
 })
 
@@ -56,12 +56,14 @@ gulp.task('default',  function () {  //當名稱是default的時候在終端機�
   browserSync.init({
     server: {
       baseDir: "./dest",  
-      index: "index.html"  //請將"index.html"改成自己的頁面，例如member "member.html"
+      index: "member.html"  //請將"index.html"改成自己的頁面，例如member "member.html"
     }
   });
   gulp.watch('./scss/**/**/*.scss',['sass']).on('change', reload);
   gulp.watch(['./*.html'],['fileinclude']).on('change', reload);
   gulp.watch(['js/**/*.js'],['js']).on('change', reload);
+  gulp.watch(['img/**/*'],['img']).on('change', reload);
+
 });
 //使用Control + C 可以停止監看，如果要重新監看就要再重新執行gulp
 //執行到這邊應該會自動開瀏覽器了，請確認一下dest中的html有沒有連接到對的路徑，若不知道如何設定，可以參考原檔中(非dest中的)的index.html
