@@ -184,36 +184,3 @@ $border-top:175px;
 
 
 }
-
-@media (max-width:575px) {
-  .envelope {
-    width: $width - 100px;
-    height: $height - 100px;
-    margin: 280px auto 0;
-  }
-
-  .flap {
-    border-width: ($border-top - 75px) 125px;
-    z-index: 3;
-  }
-
-  .letter {
-    position: absolute;
-    width: $width - 60px;
-    height: $height - 60px;
-  }
-
-
-  .steps {
-    .fa-arrow-right {
-      font-size: 18px;
-      display: block;
-      transform: rotate(90deg);
-    }
-
-    p.mas {
-      border: 1px solid pink;
-      display: block;
-    }
-  }
-}

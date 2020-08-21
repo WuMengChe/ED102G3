@@ -1,0 +1,54 @@
+// @import'../../pages_scss/post_card/post_intro';
+
+@media (max-width:575px) {
+  .post_intro {
+    .post_ani {
+      .move {
+        .main_pic {
+          .envelope {
+            width: 310px;
+            height: 250px;
+            margin: 200px auto 0;
+
+
+            .flap {
+              border-width: ($border-top - 50px) 80px;
+              z-index: 3;
+            }
+
+            .top {
+              border-top-width: $border-top - 50px;
+
+            }
+
+            .letter {
+              width: $width - 130px;
+              height: $height - 130px;
+              top: 10px;
+              left: 7px;
+
+              img {
+                height: 100%;
+              }
+            }
+
+          }
+        }
+
+      }
+
+      .steps {
+        .fa-arrow-right {
+          font-size: 18px;
+          display: block;
+          transform: rotate(90deg);
+        }
+
+        .mas {
+          border: 1px solid orangered;
+          display: block;
+        }
+      }
+    }
+  }
+}
