@@ -171,16 +171,30 @@
                         text-align: start;
                     }
                     td{
-                        width: 50%;
+                        // width: 50%;
                         text-align: start;
                         vertical-align: middle;
                         input{
                             width: 100%;
                             height: 100%;
                         }
+                        input.new_code{
+                            width: 50%;
+                        }
                     }
-                    button{
-                        margin-left: calc(100% - 150px);
+                    td:first-child {
+                        width: 120px;
+                    }
+                    .mem_det_btn_use{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        button{
+                            margin: 0;
+                        }
+                        button:last-child{
+                            margin-left: 50px;
+                        }
                     }
                 }
             }
@@ -327,12 +341,13 @@
                 .mem_cla{
                     margin-top: 5px;
                 }
-                a.mem_art_area{
+                a.mem_art_area, a.mem_cla_area{
                     display: flex;
+                    border: 0px;
                     // flex-direction: column;
                     .mem_art{
                         margin: 5px auto;
-                        padding: 0 5px;
+                        padding: 0px 0px 0px 30px;
                         width: fit-content;
                         height: fit-content;
                     }

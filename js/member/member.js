@@ -6,10 +6,17 @@ let memData = {
         name: '周伯通',
         birthday: '109/08/11',
         tel: '0912345678',
-        code: '123456789',
+        code: '1234567890',
+        codeCheck: '',
         newCode: '',
         checkNewcode: '',
         email: '123456789@gmail.com'
+    },
+    memberTemp: {
+        name: '',
+        birthday: '',
+        tel: '',
+        code: '',
     },
     memberAnalysis:[
         {testDate:  "109/01/01", industType: "研究型(I)", industTypeInfo: "此型分數較高的人通常喜歡從事生物、化學、醫藥、數學、天文等需要研究與分析的工作。"},
@@ -68,12 +75,15 @@ let memData = {
     rwdClickPage: false,
     rwdUse: false,
     fixMode: false,
+    fixNewCode: false,
+    newCodeEqual: false,
+    newCodeEqualWord: false,
     memImage: null,
     screenWidth : 0
 }
 
 let headerHidden = new Vue({
-    el: '#header',
+    el: '.header_wrap',
     data: memData
 })
 
@@ -150,21 +160,21 @@ let changeMemContent = new Vue({
         },
         changePages(e){
             var liChange = document.querySelectorAll('.mem_list>ul>li');
+            var liShowSecond = document.querySelectorAll('.mem_list>ul>li')[3].querySelector('ul');
             for(var i = 0; i < liChange.length; i++){
                 liChange[i].style.backgroundColor = 'transparent';
             }
             liChange[e].style.backgroundColor = 'white';
             if(e != 3){
+                liShowSecond.classList.remove('li_sec_show');
                 this.liSecondArrow = -1;
             }
             else if(this.screenWidth < 975 && e == 3){
-                var liShowSecond = document.querySelectorAll('.mem_list>ul>li')[3].querySelector('ul');
                 liShowSecond.classList.toggle('li_sec_show');
                 this.liSecondArrow = -1;
             }
             else{
-                var liShowSecond = document.querySelectorAll('.mem_list>ul>li')[3].querySelector('ul');
-                liShowSecond.classList.toggle('li_sec_show');
+                liShowSecond.classList.add('li_sec_show');
                 this.liSecondArrow = 0;
                 this.collecttionChange = false;
             }
@@ -292,8 +302,51 @@ let changeMemContent = new Vue({
                 arrowChange.style.transform = "rotate(0deg)";
             }
         },
-        inputTest(value){
-            alert(value);
+        oldDataTempSave(tempData){
+            if(!this.fixMode){
+                this.memberTemp.name = tempData.name;
+                this.memberTemp.tel = tempData.tel;
+                this.memberTemp.birthday = tempData.birthday;
+                this.memberTemp.code = tempData.code;
+                this.fixMode = !this.fixMode;
+            }
+            else if(this.newCodeEqual || (this.member.codeCheck.length == 0)){
+                this.member.name = tempData.name;
+                this.member.tel = tempData.tel;
+                this.member.birthday = tempData.birthday;
+                this.member.code = tempData.checkNewcode;
+                this.fixMode = !this.fixMode;
+                this.member.newCode = '';
+                this.member.checkNewcode = '';
+                this.member.codeCheck = '';
+            }
+            else{
+                alert("錯誤！請確認：1.欄位不可為空2.新密碼是否輸入正確")
+            }
+            this.fixNewCode = false;
         },
+        oldDataTempUse(tempData){
+            if(!this.fixMode){
+                this.member.name = tempData.name;
+                this.member.tel = tempData.tel;
+                this.member.birthday = tempData.birthday;
+                this.member.code = tempData.code;
+            }
+            this.fixNewCode = false;
+        },
+        checkCode(value){
+            if(value == this.memberTemp.code){
+                // alert('密碼輸入成功');
+                this.fixNewCode = true;
+            }
+        },
+        checkNewCodeEqual(value){
+            if(value == this.member.newCode){
+                this.newCodeEqual = true;
+            }
+            else{
+                this.newCodeEqual = false;
+            }
+        }
     },
 })
