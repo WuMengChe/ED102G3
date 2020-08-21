@@ -84,13 +84,13 @@ $title: 30px;
 
 @include keyframes (pulse) {
     0% {
-        transform: scale(1) rotateZ(0);
+        transform: rotateZ(0);
     }
     50% {
-        transform: scale(0.9) rotateZ(180deg);
+        transform: rotateZ(180deg);
     }
     100% {
-        transform: scale(1) rotateZ(360deg);
+        transform: rotateZ(360deg);
     }
 }
 
@@ -139,40 +139,44 @@ div.header_wrap{
                 height: fit-content;
                 margin: auto 0;
                 .img{
-                    // border: 1px solid red;
-                    .holland_small{
-                        
-                        @include animation(pulse,infinite,20s,linear);
+                    border: 1px solid red;
+                    position: absolute;
+                    bottom: 400px;
+                    left: 350px;
+
+                    span {
                         display: block;
                         position: absolute;
-                        left: 90%;
-                            bottom: 300%;
-                        width: 20em;
-                        height: 20em;
-                        
+                        top: calc(50% - 5em);
+                        left: calc(50% - 5em);
+                        width: 40em;
+                        height: 40em;
+                        // border: 1px solid red;
+                    }
+                      
+                      
+                    .holland_small{
+                        @include animation(pulse, infinite, 20s, linear);
                         .circle {
                             border-radius: 50%;
-                            
                         }
-                        
+                          
                         .squircle {
                             border-radius: 25%;
                         }
-                        
+                          
                         
                         
                         .small {
-                            transform-origin: 50% 30em;
-                            position: absolute;
-                            width: 10em;
-                            height: 10em;
-                            left: 90%;
-                            bottom: 300%;
-                            box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2);
+                        position: absolute;
+                        width: 10em;
+                        height: 10em;
+                        left: calc(50% - 5em);
+                        top: calc(50% - 33em);
+                        transform-origin: 38% 33em;
+                        box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2);
                         }
-                        
-                        
-                      
+                          
                         .one {
                         background-color: #79BBB5;
                         transform: rotateZ(288deg);
@@ -197,67 +201,58 @@ div.header_wrap{
                         background: #CCC5E3;
                         transform: rotateZ(0);
                         }
-
-                    } 
-                    .holland_large{
                         
-                        .large.squircle {
-                            @include animation(spin,infinite,20s,linear);
-                            position: absolute;
-                            background: #aaa;
-                            border: none;
-                            left: 200px;
-                            bottom: 200px;
-                            width: 30em;
-                            height: 30em;
-                            border-radius: 25%;
-                          
-                        }
-                          
-                        .content {
-                            text-align: center;
+                        .small.squircle {
+                        box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2);
                         }
                     }
+                      
+                    .holland_large{
+                        // border: 1px solid #000;
+                        
+                    } 
+                    .large.squircle {
+                        position: absolute;
+                        background: #aaa;
+                        left: calc(50% + 100px);
+                        top: calc(50% - 80px);
+                        width: 35em;
+                        height: 35em;
+                        border-radius: 25%;
+                        // border: 1px solid #000;
+                        
+                        
+                        &.one {
+                            @include animation(spin, infinite, 30s, linear );
+                                // border: 1px solid green;
+                                // transform: rotateZ(45deg);
+                                top: 10px;
+                                left: 180px;
+
+                            }
+                        }
+                        
+                        .content {
+                        text-align: center;
+                        }
+                    
+                      
+                      
+                      
+                        
                 }
             }
             
         }
-        .firstMoveBg{
-            // border: 1px solid #000;
-            // background-image: url(../../../img/index/index_1st/bg_frontBlue.png);
-            // background-repeat: no-repeat;
-            // background-position: bottom;
-            // background-size: cover;
-            // background-attachment: scroll;
-            .firstBg{
-                // border: 1px solid blue;
-                width: 100%;
-                height: 175px;
-                position: absolute;
-                bottom: 0;
-                //  visibility: hidden;
-                
-                
-            }
-        }
-       
     }
     .index_car{
         @include section;
-        background-image: url(../../../img/index/index_3rd/third_bg.png);
-        background-size: contain;
+        background-image: url(../../../img/index/index_2nd/2nd_bgYellow.png);
+        background-size: cover;
         background-position: bottom;
-        background-attachment: fixed;
         background-repeat: no-repeat;
 
         
-        // .secondMoveBg{
-        //     border: 1px solid salmon;
-        //     width: 100%;
-        //     .secondBg{
-        //         width: 100%;
-        //     }
-        // }
         .secondScreen{
             @include screen;
             
@@ -394,8 +389,8 @@ div.header_wrap{
     }
     .index_disc{
         @include section;
-        background-image: url(../../../img/index/index_3rd/third_bg.png);
-        background-size: contain;
+        background-image: url(../../../img/index/index_3rd/3rd_bgGreen.png);
+        background-size: cover;
         background-position: bottom;
         background-repeat: no-repeat;
         
@@ -473,7 +468,11 @@ div.header_wrap{
     }
     .index_cour{
         @include section;
-        // background-image: url(../../../img/index/index_4th/);
+        background-image: url(../../../img/index/index_4th/4th_bg.png);
+        background-size: cover;
+        background-position: bottom;
+        background-repeat: no-repeat;
+
         .index_cour_img{
             // border: 1px solid #000;
             width: fit-content;
@@ -497,7 +496,9 @@ div.header_wrap{
         }
         .forthScreen{
             @include screen;
-    
+           
+
+
             .index_cour_text{
                 h1{
                     margin-bottom: $title;
@@ -552,6 +553,10 @@ div.header_wrap{
     }
     .index_card{
         @include section;
+        background-image: url(../../../img/index/index_5th/5th_bg.png);
+        background-size: cover;
+        background-position: bottom;
+        background-repeat: no-repeat;
         .fifthScreen{
             @include screen{
                 flex-wrap: wrap;

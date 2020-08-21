@@ -129,8 +129,8 @@ $border-top:175px;
 
 @media (max-width:575px) {
   .envelope {
-    width: $width - 100px;
-    height: $height - 100px;
+    width: $width -100px;
+    height: $height -100px;
     margin: 280px auto 0;
 
     .flap {
