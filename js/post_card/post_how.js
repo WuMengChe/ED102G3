@@ -1,9 +1,21 @@
-$(function () {
-  $('#how').click(function () {
-    var h = $(window).scrollTop(); //获取当前滚动条距离顶部的位置
-    $('body,html').animate({
-      scrollTop: h + 500
-    }, 800); //点击按钮向下移动800px，时间为800毫秒
+   $(function () {
+     $('#how').click(function () {
+       //获取当前滚动条距离顶部的位置
+       var h = $(window).scrollTop();
+       $('body,html').animate({
+         scrollTop: h + 500
+       }, 800); //点击按钮向下移动500px，时间为800毫秒
 
-  });
-});
+     });
+     if ($(window).width() < 575) {
+       $('.mas').addClass('col-sm-12');
+     } else {};
+   });
+   $(window).resize(function () {
+     if ($(window).width() < 575) {
+       $('.mas').addClass('col-sm-12');
+     } else {
+       $('.mas').removeClass('col-sm-12');
+     };
+
+   });
