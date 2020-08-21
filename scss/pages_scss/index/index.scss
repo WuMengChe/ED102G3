@@ -1,6 +1,7 @@
 @import '../../_public_dontTouch/utils/variables';
 $title: 30px;
 
+
 @mixin section {
     // border: 3px solid lightcoral;
     width: 100vw;
@@ -34,11 +35,11 @@ $title: 30px;
     }
 }
 
-@mixin animation($str) {
+@mixin animation($str, $count:1, $duration:2s, $function:ease-in) {
     animation: #{$str};
-    animation-iteration-count: 1 ;
-    animation-duration: 5s;
-    animation-timing-function: ease-in ;      
+    animation-iteration-count: $count ;
+    animation-duration: $duration;
+    animation-timing-function: $function ;      
 }
 
 @include keyframes(firstStair){
@@ -72,10 +73,30 @@ $title: 30px;
     
 }
 
+@include keyframes(spin){
+    0% {
+        transform: rotateZ(0);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+@include keyframes (pulse) {
+    0% {
+        transform: scale(1) rotateZ(0);
+    }
+    50% {
+        transform: scale(0.9) rotateZ(180deg);
+    }
+    100% {
+        transform: scale(1) rotateZ(360deg);
+    }
+}
 
 
 
-.header_wrap{
+div.header_wrap{
     position: fixed;
     // border: 1px solid #000;
     z-index: 1;
@@ -119,49 +140,83 @@ $title: 30px;
                 margin: auto 0;
                 .img{
                     // border: 1px solid red;
-                    position: relative;
-                    
-                    .grp_chart{
-                        border: 1px solid rgb(187, 187, 187);
-                        background-color: #fff;
-                        text-align: center;
-                        box-shadow: $card_shadow;
-
-                        .line_chart{
-                            width:250px;
-                            vertical-align: top;
-                            margin: 20px;
-                            
-    
-                        }
-                        .radar_chart{
-                            width: 200px;
-                            margin: 20px;
-                            
-                        }
-                        .bottom{
-                            vertical-align: bottom;
-                            margin: 20px ;
-                            margin-left: 45%;
-                            
-                            
-                        }
-                    }
-                    .left_boy{
-                        @include position(200px, absolute){
-                            left:0;
-                            top: 150px; 
-                        }
-    
-                    }
-                    .right_girl{
-                        @include position(200px, absolute){
-                            right:0;
-                            top: 250px;
-                            
+                    .holland_small{
                         
+                        @include animation(pulse,infinite,20s,linear);
+                        display: block;
+                        position: absolute;
+                        left: 90%;
+                            bottom: 300%;
+                        width: 20em;
+                        height: 20em;
+                        
+                        .circle {
+                            border-radius: 50%;
+                            
                         }
-    
+                        
+                        .squircle {
+                            border-radius: 25%;
+                        }
+                        
+                        
+                        
+                        .small {
+                            transform-origin: 50% 30em;
+                            position: absolute;
+                            width: 10em;
+                            height: 10em;
+                            left: 90%;
+                            bottom: 300%;
+                            box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2);
+                        }
+                        
+                        
+                      
+                        .one {
+                        background-color: #79BBB5;
+                        transform: rotateZ(288deg);
+                        }
+                        .two {
+                        background-color: #A0CADB;
+                        transform: rotateZ(230deg);
+                        }
+                        .three {
+                        background: #ECECEC;
+                        transform: rotateZ(173deg);
+                        }
+                        .four {
+                        background: #F7EA92;
+                        transform: rotateZ(116deg);
+                        }
+                        .five {
+                        background: #F4C3C5;
+                        transform: rotateZ(59deg);
+                        }
+                        .six {
+                        background: #CCC5E3;
+                        transform: rotateZ(0);
+                        }
+
+                    } 
+                    .holland_large{
+                        
+                        .large.squircle {
+                            @include animation(spin,infinite,20s,linear);
+                            position: absolute;
+                            background: #aaa;
+                            border: none;
+                            left: 200px;
+                            bottom: 200px;
+                            width: 30em;
+                            height: 30em;
+                            border-radius: 25%;
+                          
+                        }
+                          
+                        .content {
+                            text-align: center;
+                        }
                     }
                 }
             }
@@ -500,7 +555,7 @@ $title: 30px;
         .fifthScreen{
             @include screen{
                 flex-wrap: wrap;
-            };
+            }
 
             .index_card_img{
                 .img{}

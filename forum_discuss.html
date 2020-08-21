@@ -7,7 +7,7 @@
   <title>forum_discuss</title>
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
-  <link rel="stylesheet" href="./css/forum.css">
+  <link rel="stylesheet" href="./css/pages_scss/forum/forum.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
   <script src="./js/forum/forum_discuss.js"></script>
@@ -80,26 +80,33 @@
     <div class="dis_body row">
       <!--右邊類型分類-->
       <div class="career col-lg-2">
-        <ul class="career_name">
-          <li>
-            <img class="Travel-icon" src="./img/forum/icons8-牛-64.png">實作型(R)
-          </li>
-          <li>
-            <img class=" Travel-icon" src="./img//forum//icons8-海豚-64.png">研究型(I)
-          </li>
-          <li>
-            <img class="Travel-icon" src="./img/forum/icons8-孔雀-64.png">文藝型(A)
-          </li>
-          <li>
-            <img class="Travel-icon" src="./img/forum/icons8-象-64.png">社會型(S)
-          </li>
-          <li>
-            <img class="Travel-icon" src="./img/forum/icons8-大耳猴-64.png">企業型(E)
-          </li>
-          <li>
-            <img class="Travel-icon" src="./img/forum/icons8-pidgey-64.png">事務型(C)
-          </li>
-        </ul>
+        <div class="main_side_bar career_name">
+        <ul>
+           <li>
+            <a href="#"><span></span>實作型</a>
+        </li>
+        <li>
+            <a href="#"><span></span>研究型</a>
+        </li>
+        <li>
+            <a href="#"><span></span>文藝型</a>
+        </li>
+        <li>
+            <a href="#"><span></span>社會型</a>
+        </li>
+        <li>
+            <a href="#"><span></span>企業型</a>
+        </li>
+        <li>
+            <a href="#"><span></span>事務型</a>
+        </li>
+    </ul>
+    <div class="side_bar_img">
+        <img src="./img/side_bar.svg" alt="">
+
+    </div>
+
+</div>
       </div>
 
       <!--瀏覽留言區-->
@@ -142,7 +149,7 @@
         </div>
       </div>
 
-      <a href="./fourm_form.html" class="pencil_btn">
+      <a href="./forum_form.html" class="pencil_btn">
         <i class="fas fa-edit"></i>
       </a>
     </div>

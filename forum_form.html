@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./css/app_public.css">
+  <link rel="stylesheet" href="./css/pages_scss/forum/forum.css">
+  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./js/forum/forum_form.js"></script>
+
+</head>
+
+<body>
+  <div class="forum_form container" id="app">
+    <div class="header_wrap">
+      <header class="header">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img/logo.svg" alt="">
+          </a>
+        </div>
+        <div class="header_nav">
+          <ul>
+            <li><a href="test_before.html">職涯分析</a></li>
+            <li><a href="#">行業攻略</a></li>
+            <li><a href="forum_discuss">職涯論壇</a></li>
+            <li><a href="course_main.html">探索課程</a></li>
+            <li><a href="post_intro.html">明信片</a></li>
+          </ul>
+        </div>
+        <div class="header_icon">
+          <div class="cart">
+            <a href="#"><i class="fas fa-shopping-cart"></i>
+              <div class="cart_num"><span>1</span></div>
+            </a>
+            <!-- <div class="cart_num"><span>1</span></div> -->
+          </div>
+
+          <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
+        </div>
+      </header>
+
+    </div>
+    <h3>發表文章</h3>
+    <hr>
+    <form action="" method="" id="form_wrap">
+      <div class="form-group row">
+        <div class="select_name col-sm-1">標題</div>
+        <div class="topic_text col-sm-7">
+          <input type="text" name="" id="text_topic">
+        </div>
+      </div>
+      <div class="form-group row">
+        <!--職業分類-->
+        <div class="select_name col-sm-1">六大分類</div>
+        <div class="typeList_show col-sm-3">
+          <span class="dropdown-el">
+            <input type="radio" name="sortType" value="Relevance" checked="checked" id="sort-relevance"><label
+              for="sort-relevance">實用型</label>
+            <input type="radio" name="sortType" value="Popularity" id="sort-best">
+            <label for="sort-best">研究型</label>
+            <input type="radio" name="sortType" value="PriceIncreasing" id="sort-low">
+            <label for="sort-low">文藝型</label>
+            <input type="radio" name="sortType" value="PriceDecreasing" id="sort-high">
+            <label for="sort-high">社會型</label>
+            <input type="radio" name="sortType" value="ProductBrand" id="sort-brand">
+            <label for="sort-brand">企業型</label>
+            <input type="radio" name="sortType" value="ProductName" id="sort-name">
+            <label for="sort-name">事務型</label>
+          </span>
+        </div>
+        <!--問題分類-->
+        <div class="select_name qu_space col-sm-1">問題分類</div>
+        <div class="typeList_show col-sm-3">
+          <span class="dropdown-el">
+            <input type="radio" name="quType" value="Relevance" checked="checked" id="sort-relevance2"><label
+              for="sort-relevance2">問題討論</label>
+            <input type="radio" name="quType" value="Popularity" id="sort-best2"><label for="sort-best2">經驗分享</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group text_area row">
+        <div class="select_name col-sm-1"></div>
+        <div class="space col-sm-7">
+          <textarea name="" id=""></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 btn-group">
+          <a href="forum_discuss.html" class="btn_third">取消</a>
+          <input type=" submit" value="下一步" class="btn_third">
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="./js/forum/forum_form.js"></script>
+
+</body>
+
+</html>
