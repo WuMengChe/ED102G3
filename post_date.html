@@ -7,45 +7,16 @@
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datedropper/2.0/datedropper.min.css">
-  <link rel="stylesheet" href="./css/post_card.css">
-  <link rel="stylesheet" href="./css/calendar.css">
+  <link rel="stylesheet" href="./css/pages_scss/post_card/post_card.css">
   <title>職引960選擇日期</title>
 </head>
 
 <body>
   <!-- header -->
-  <div class="header_wrap">
-    <header class="header">
-      <div class="logo">
-        <a href="#">
-          <img src="img/logo.svg" alt="">
-        </a>
-      </div>
-      <div class="header_nav">
-        <ul>
-          <li><a href="#">職涯分析</a></li>
-          <li><a href="#">行業攻略</a></li>
-          <li><a href="#">職涯論壇</a></li>
-          <li><a href="#">探索課程</a></li>
-          <li><a href="#">明信片</a></li>
-        </ul>
-      </div>
-      <div class="header_icon">
-        <div class="cart">
-          <a href="#"><i class="fas fa-shopping-cart"></i>
-            <div class="cart_num"><span>1</span></div>
-          </a>
-          <!-- <div class="cart_num"><span>1</span></div> -->
-        </div>
-
-        <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
-      </div>
-    </header>
-
-  </div>
+  @@include('app/header.html')
   <!-- header 結束-->
-  <form action="#" method="post" class="postcard_view container">
-
+  <div class="postcard_view container">
+    <!-- action="#" method="post" -->
     <div class="select_date row">
       <!--c-init class -->
       <div class="date col">
@@ -74,33 +45,25 @@
       </div>
 
     </div>
-
-  </form>
-
+    <div class="overlay">
+      <div class="pop">
+        <div class="close">
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="when">
+          <p class="when_date"></p><!-- 將於2020年8月27號寄出 -->
+          <p class="p_small">3秒後自動跳轉首頁</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  @@include('app/footer.html')
 
 
   <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="./js/post_card/datedropper.pro.min.js"></script>
-  <script>
-    $(function () {
-      $("#pickdate").dateDropper({
-        animate: false,
-        format: 'Y-m-d',
-        maxYear: '2025',
-        minYear: '2020',
-        lang: 'zh',
-        fxMobile: true,
-        large: true,
-        lock: 'from',
-
-      });
-      $('#send').click(function () {
-        alert($('#pickdate').val());
-      });
-
-    });
-  </script>
+  <script src="./js/post_card/post_date.js"></script>
 
 </body>
 

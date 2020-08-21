@@ -4,42 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>職引960客製明信片測試用</title>
+  <title>職引960客製明信片</title>
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
-  <link rel="stylesheet" href="./css/post_card.css">
+  <link rel="stylesheet" href="./css/pages_scss/post_card/post_card.css">
 </head>
 
 <body>
-  <div class="header_wrap">
-    <header class="header">
-      <div class="logo">
-        <a href="#">
-          <img src="img/logo.svg" alt="">
-        </a>
-      </div>
-      <div class="header_nav">
-        <ul>
-          <li><a href="#">職涯分析</a></li>
-          <li><a href="#">行業攻略</a></li>
-          <li><a href="#">職涯論壇</a></li>
-          <li><a href="#">探索課程</a></li>
-          <li><a href="#">明信片</a></li>
-        </ul>
-      </div>
-      <div class="header_icon">
-        <div class="cart">
-          <a href="#"><i class="fas fa-shopping-cart"></i>
-            <div class="cart_num"><span>1</span></div>
-          </a>
-          <!-- <div class="cart_num"><span>1</span></div> -->
-        </div>
-
-        <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
-      </div>
-    </header>
-
-  </div>
+  <!-- header -->
+  @@include('app/header.html')
   <!-- header 結束-->
   <div class="postcard_main container">
     <div class="postcard row">
@@ -204,6 +177,8 @@
         </div>
       </div>
     </div>
+  </div>
+  @@include('app/footer.html')
 </body>
 <!-- <script src="./js/jquery-3.4.1.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
@@ -212,7 +187,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
 <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
 <script src="./js/post_card/post_vue.js"></script>
-<script src="./js/post_card/imgUp.js"></script>
+<script src="./js/post_card/post_imgUp.js"></script>
 
 
 
