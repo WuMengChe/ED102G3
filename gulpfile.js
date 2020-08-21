@@ -61,8 +61,6 @@ gulp.task('default', function () { //當名稱是default的時候在終端機中
   });
   gulp.watch('./scss/**/**/*.scss', ['sass']).on('change', reload);
   gulp.watch(['./*.html'], ['fileinclude']).on('change', reload);
-  gulp.watch(['js/**/*.js'], ['js']).on('change', reload);
-  gulp.watch(['img/**/*'], ['img']).on('change', reload);
 
 });
 //使用Control + C 可以停止監看，如果要重新監看就要再重新執行gulp
