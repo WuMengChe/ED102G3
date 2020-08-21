@@ -51,6 +51,8 @@ gulp.task('img', function () {
     .pipe(gulp.dest('dest/img'))
 })
 
+
+
 //10. 瀏覽器同步，請在終端機中輸入：gulp
 gulp.task('default', function () { //當名稱是default的時候在終端機中就打gulp就可以呼叫到
   browserSync.init({
@@ -70,8 +72,7 @@ gulp.task('default', function () { //當名稱是default的時候在終端機中
 
 //============================================================================================================
 //下面指令都已包含在default中，除非有必要不然不要個別下指令，但也不可以刪掉！！！
-
-gulp.task('sass', function () {
+gulp.task('sass',['img', 'js', 'fileinclude'], function () {
   return gulp.src('./scss/**/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
@@ -82,6 +83,7 @@ gulp.task('sass', function () {
 
     .pipe(gulp.dest('./dest/css'));
 })
+
 
 
 gulp.task('watch', function () {

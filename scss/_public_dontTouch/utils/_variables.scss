@@ -5,22 +5,27 @@ $outline3: 1px solid green;
 $outline4: 1px solid blue;
 $outline5: 1px solid red;
 
+
 // shadow
 $card_shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
 $card_radius: 5px;
 
 // category_color
-$practical_color: #79bbb5;
+$practical_color:#79BBB5;
 
-$research_color: #a0cadb;
 
-$art_color: #ccc5e3;
+$research_color:#A0CADB;
 
-$social_color: #f4c3c5;
+$art_color:#CCC5E3;
 
-$thing_color: #e7995f;
 
-$enterprise_color: #f7ea92;
+$social_color: #F4C3C5;
+
+
+$thing_color: #E7995F;
+
+
+$enterprise_color:#F7EA92;
 
 // 輔色
 $second_color1:#FFE56D;
@@ -32,6 +37,6 @@ $second_color2:#F6F3ED;
 $second_color3:#BCEAFF;
 
 
-// //transition
-// $quick-transition: all 0.3s ease;
-// $slow-transition: all 0.8s ease;
+//transition
+// $quick-transition: all .3s ease;
+// $slow-transition: all .8s ease;
