@@ -190,18 +190,19 @@ $border-top:175px;
     width: $width - 100px;
     height: $height - 100px;
     margin: 280px auto 0;
-
-    .flap {
-      border-width: ($border-top - 75px) 125px;
-      z-index: 3;
-    }
-
-    .letter {
-      position: absolute;
-      width: $width - 60px;
-      height: $height - 60px;
-    }
   }
+
+  .flap {
+    border-width: ($border-top - 75px) 125px;
+    z-index: 3;
+  }
+
+  .letter {
+    position: absolute;
+    width: $width - 60px;
+    height: $height - 60px;
+  }
+
 
   .steps {
     .fa-arrow-right {
@@ -210,7 +211,7 @@ $border-top:175px;
       transform: rotate(90deg);
     }
 
-    .mas {
+    p.mas {
       border: 1px solid pink;
       display: block;
     }
