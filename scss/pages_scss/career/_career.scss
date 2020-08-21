@@ -1,0 +1,148 @@
+.car_con_width{
+    display: flex;
+    padding: 0;
+    max-width: 1200px;
+    min-height: calc(100% - 130px);
+    flex-wrap: wrap;
+    .car_title{
+        display: flex;
+        height: fit-content;
+        flex-wrap: wrap;
+        align-items: center;
+        div, span{
+            display: flex;
+            padding: 0;
+            height: 40px;
+            align-items: center;
+        }
+        .choose_industry{
+            display: flex;
+            margin: 0px 5px;
+            flex-direction: row;
+            i, span{
+                display: flex;
+                align-items: center;
+            }
+            i{
+                cursor: pointer;
+            }
+            span{
+                padding-left: 3px;
+            }
+        }
+        // *{
+        //     padding: 0;
+        // }
+    }
+    .car_con_area_all{
+        display: flex;
+        flex-wrap: wrap;
+        .car_con_area{
+            display: flex;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            .car_con_list{
+                ul{
+                    li{
+                        margin: 5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .car_con_pro{
+                display: flex;
+                padding: 0;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: space-around;
+                background-color: #79BBB5;
+                border-radius: 25px;
+                .car_con_pro_info{
+                    display: flex;
+                    margin: 5px 0;
+                    padding: 0;
+                    cursor: pointer;
+                    flex-direction: column;
+                    background-color: white;
+                    border-radius: 25px;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                    }
+                    span{
+                        display: flex;
+                        width: 100%;
+                        height: 40px;
+                        background-color: white;
+                        flex-direction: column;
+                        justify-content: center;
+                        text-align: center;
+                        position: absolute;
+                        bottom: 32px;
+                        // border-radius: 0 0 25px 25px;
+                    }
+                    .car_con_pro_check{
+                        display: flex;
+                        width: 100%;
+                        height: 32px;
+                        background-color: white;
+                        flex-direction: row;
+                        justify-content: center;
+                        position: absolute;
+                        bottom: 0;
+                        border-radius: 0 0 25px 25px;
+                        i{
+                            width: 32px;
+                            height: 32px;
+                            font-size: 28px;
+                        }
+                        .fa-check-circle{
+                            color: green;
+                        }
+                        .fa-times-circle{
+                            transform: rotate(45deg);
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+        }
+        .car_course_area{
+            margin: 20px auto;
+            padding: 0;
+            border-radius: 25px;
+            box-shadow: 2px 2px 20px gray;
+            h3{
+                margin: 5px auto;
+                width: fit-content;
+            }
+            .car_course_list{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                .car_course_list_info{
+                    background-color: purple;
+                }
+            }
+        }
+        .car_con_plot_area{
+            margin-top: 10px;
+            padding: 0;
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+            h3{
+                width: fit-content;
+                margin: 0 auto;
+            }
+            .car_con_plot{
+                height: 300px;
+            }
+        }
+        .showPlot{
+            position: relative;
+            opacity: 1;
+            z-index: 1;
+        }
+    }
+}
