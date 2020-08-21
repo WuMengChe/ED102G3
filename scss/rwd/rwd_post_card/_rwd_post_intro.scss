@@ -1,31 +1,29 @@
-// @import'../../pages_scss/post_card/post_intro';
-
 @media (max-width:575px) {
   .post_intro {
     .post_ani {
       .move {
         .main_pic {
           .envelope {
-            width: 310px;
-            height: 250px;
-            margin: 200px auto 0;
+            width: 300px;
+            height: 230px;
+            margin: 180px auto 0;
 
 
             .flap {
-              border-width: ($border-top - 50px) 80px;
+              border-width: 115px 150px;
               z-index: 3;
             }
 
             .top {
-              border-top-width: $border-top - 50px;
+              border-top-width: 110px;
 
             }
 
             .letter {
-              width: $width - 130px;
-              height: $height - 130px;
+              width: 280px;
+              height: 210px;
               top: 10px;
-              left: 7px;
+              left: 10px;
 
               img {
                 height: 100%;
@@ -42,6 +40,7 @@
           font-size: 18px;
           display: block;
           transform: rotate(90deg);
+          margin: 8px 0;
         }
 
         .mas {
