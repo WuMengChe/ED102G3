@@ -56,7 +56,7 @@ gulp.task('default', function () { //當名稱是default的時候在終端機中
   browserSync.init({
     server: {
       baseDir: "./dest",
-      index: "index.html"
+      index: "post_intro_text.html"
     }
   });
   gulp.watch('./scss/**/**/*.scss', ['sass']).on('change', reload);
@@ -96,9 +96,9 @@ gulp.task('watch', function () {
 //將自動產生的檔案刪掉：用在如果要修改已經產生的檔案，但直接修改不會覆蓋，就可以先刪掉再重新產生。或要打包原始檔案就可以先刪掉之後再產生
 gulp.task('clear', function () {
   return gulp.src('dest/css', {
-    read: false,
-    allowEmpty: true
-  })
+      read: false,
+      allowEmpty: true
+    })
     .pipe(clean());
 });
 

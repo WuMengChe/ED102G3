@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="buttons col-sm-8">
-          <button class="btn_third">如何製作</button>
+          <button class="btn_third" id="how">如何製作</button>
           <a href="post_front.html" class="btn_primary">
             開始客製
           </a>
@@ -42,16 +42,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 
   <script>
-    // $(document).ready(function () {
+    $(function () {
+      $('#how').click(function () {
+        var h = $(window).scrollTop(); //获取当前滚动条距离顶部的位置
+        $('body,html').animate({
+          scrollTop: h + 50
+        }, 1000); //点击按钮向下移动800px，时间为800毫秒
 
-    //   $('#reset').click(function () {
-    //     $('.envelope').removeClass('open');
-    //     setTimeout(function () {
-    //       $('.envelope').addClass('open');
-    //     }, 500);
-    //   });
-
-    // });
+      });
+    });
   </script>
 
 </body>

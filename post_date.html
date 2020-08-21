@@ -44,11 +44,14 @@
 
   </div>
   <!-- header 結束-->
-  <div class="postcard_view container">
+  <form action="#" method="post" class="postcard_view container">
+
     <div class="select_date row">
       <!--c-init class -->
-      <p class="col-sm">選擇寄送日期：
-        <input type="text" class="input" id="pickdate" data-dd-theme="calendar" /></p>
+      <div class="date col">
+        <p>選擇寄送日期：</p>
+        <input type="text" class="input" id="pickdate" data-dd-theme="calendar" />
+      </div>
     </div>
     <div class="view row">
       <div class="view_front col-md-6">
@@ -59,34 +62,42 @@
         <p>背面</p>
         <img src="./img/post_card/outline1.png" alt="">
       </div>
-      <div class="col-sm-8 date">
-        <a href="./post_front.html" id="choice_date" class="btn_third">
-          <i class="fas fa-arrow-left"></i>
-          重新製作
-        </a>
+      <div class="send_date col">
+        <div class="col-md-5 col-lg-4">
+          <a href="./post_front.html" class="btn_third" id="restart">
+            <i class="fas fa-arrow-left"></i>
+            重新製作
+          </a>
 
-        <button class="btn_primary">送出</button>
+          <button class="btn_primary" id="send">送出</button>
+        </div>
       </div>
 
     </div>
 
+  </form>
 
 
-  </div>
 
   <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="./js/post_card/datedropper.pro.min.js"></script>
   <script>
-    $("#pickdate").dateDropper({
-      animate: false,
-      format: 'Y-m-d',
-      maxYear: '2025',
-      minYear: '2020',
-      lang: 'zh',
-      fxMobile: true,
-      large: true,
-      lock: 'from',
+    $(function () {
+      $("#pickdate").dateDropper({
+        animate: false,
+        format: 'Y-m-d',
+        maxYear: '2025',
+        minYear: '2020',
+        lang: 'zh',
+        fxMobile: true,
+        large: true,
+        lock: 'from',
+
+      });
+      $('#send').click(function () {
+        alert($('#pickdate').val());
+      });
 
     });
   </script>
