@@ -55,7 +55,7 @@
   #{label} {
     border: 1px solid #1b4d9f;
     display: inline-block;
-    margin-top: 2%;
+    margin-top: 4.5%;
     color: #1b4d9f;
     background: #fff;
     border-radius: 20px;
@@ -220,7 +220,7 @@ div.postcard_main {
 
                 p.drag {
                   color: gray;
-                  padding-top: 4%;
+                  padding-top: 6%;
                 }
 
                 @include label();

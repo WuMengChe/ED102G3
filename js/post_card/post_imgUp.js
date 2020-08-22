@@ -108,3 +108,17 @@ $(function () {
     $("#backAllStyle").hide();
   });
 });
+//  進來先判斷
+if ($(window).width() < 575) {
+  $('.drag').hide();
+} else {};
+
+//  resize再判斷一次
+$(window).resize(function () {
+  if ($(window).width() < 575) {
+    $('.drag').hide();
+  } else {
+    $('.drag').show();
+  };
+
+});
