@@ -19,14 +19,14 @@
       @@include('app/header.html')
     </div>
 
-    <!--搜尋框--> ß
+    <!--搜尋框-->
     <div class="search row">
       <div class="col-lg-2"></div>
       <div class="search_wrap">
         <div class="search_wrap_line">
           <i class="fas fa-search"></i>
-          <input type="search" placeholder="請輸入關鍵字" id="text_input" v-model="filter" />
-          <button id="search_btn">搜尋</button>
+          <input type="search" placeholder="請輸入關鍵字" id="text_input" v-model="filter" @keyup.enter="submit">
+          <button id="search_btn" @click="searchContent()">搜尋</button>
         </div>
       </div>
     </div>
@@ -297,7 +297,8 @@
         return {
           information: [],
           searchResult: [],
-          isOpen: false
+          isOpen: false,
+          filter: ''
         }
       },
       mounted() {
@@ -337,14 +338,36 @@
 
         // debugger
       },
+      watch: {
+        filter: function (value) {
+          if (value.length == 0) {
+            this.searchResult = this.information;
+          }
+        }
+      },
       methods: {
+        //側邊欄搜尋
         search(type) {
           const result = this.information.filter(element => {
             return element.d_type == type
           });
           this.searchResult = result;
         },
-        ////點擊標題會進入文章詳情
+        //關鍵字搜尋，點擊搜尋按鈕事件
+        searchContent() {
+          const keyword = this.filter;
+          const result = this.information.filter(element => {
+            return (element.d_title.indexOf(keyword) != -1 || element.d_text.indexOf(keyword) != -1)
+            // return element.d_title == type
+          });
+          this.searchResult = result;
+        },
+        //關鍵字搜尋，點擊Enter按鈕事件
+        submit() {
+          this.searchContent();
+          debugger
+        },
+        //點擊標題會進入文章詳情
         search_title() {
           $(".open_dialog").on("click", function (e) {
             // debugger;
