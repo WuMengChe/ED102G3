@@ -122,7 +122,7 @@ $title: 30px;
       transform: rotate(0deg);
     }
   }
-  
+
 
 div.header_wrap{
     position: fixed;
@@ -465,8 +465,6 @@ div.header_wrap{
                         &::after {
                             content: "";
                             // border: 1px solid #000;
-                            background-image: url(../../../img/index/index_3rd/triangle.png);
-                            background-repeat: no-repeat;
                             width: 120px;
                             height: 90px;
                             position: absolute;
@@ -482,7 +480,7 @@ div.header_wrap{
             .index_disc_img{
                 .img{
                     width:100%;
-                    // background-image: url(../../../img/index/index_1st/1st_smBlue.png);
+                    background-image: url(../../../img/index/index_3rd/3rd_smBlue.png);
                     background-size: contain;
                     background-repeat: no-repeat;
                     .dia_img{
@@ -563,6 +561,7 @@ div.header_wrap{
                             .btn_second{
                                 display: block;
                                 margin: 0 auto;
+                                margin-top: 10px;
                             }
                         }
                     }
@@ -591,43 +590,48 @@ div.header_wrap{
 
             .index_card_img{
                 .img{
+                    position: relative;
+                    height: 500px;
+                    width: 1000px;
+                    margin: 0 auto;
+                    // border: 1px solid #000;
                     #line{
                         position: absolute;
                         left: 0;
-                        top: 115px;
+                        top: 75px;
                         right: 0;
                         border-top: 4px solid #444444;
-                        transform: skewY(-5deg);
+                        transform: skewY(-3.5deg);
                         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                     }
                     #cards{
                         padding-top: 30px;
                         position: relative;
+                        bottom: 50px;
+                        
                         .card{
-                            background: white;
+                            background-image: url(../../../img/index/index_5th/postCard.png);
+                            background-size: cover;
+                            background-repeat: no-repeat;
                             width: 340px;
                             height: 240px;
                             box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                             border-radius: 2px;
-                            padding: 20px 15px;
+                           
                         
-                            &:after{
-                            content: '';
-                            height: 50px;
-                            width: 4px;
-                            background: grey;
-                            display: block;
-                            position: absolute;
-                            top: 0;
-                            left: 50%;
-                            margin-left: -2px;
-                            // transform: translateY(-100%);
-                            }
                             &::before{
+                                // border: 1px solid red;
                                 content:'';
                                 background-image: url(../../../img/index/index_5th/clip.png);
-                                height: 50px;
-                                width: 10px;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                height: 80px;
+                                width: 20px;
+                                display: block;
+                                position: absolute;
+                                bottom: 225px;
+                                left: 150px;
+
                             }
                         
                             &.card--animated{
@@ -637,8 +641,8 @@ div.header_wrap{
                                 @include animation (cardBounce, 1, 1.5s, ease-in-out){
                                     animation-fill-mode: forwards;
                                 } ;
+                                
                                 position: absolute;
-                                // transform-origin: 50% -50px;
                                 margin-top: 120px;
                             
                                 + .card{
@@ -651,32 +655,38 @@ div.header_wrap{
                                     margin-top: 70px;
                                 }
                             }
+                            
                         }
                     }
-                }
-                .btn_second{
-                    margin-top: 30px;
-                    margin-left: 50%;
-                    transform: translateX(-50%);
+                    .post_front{
+                        @include position(200px,relative){
+                            top: 130px;
+                            right: 150px;
+                        }
+                    }
+                    .post_back{
+                        @include position(80px,relative){
+                            bottom: 50px;
+                            left: 850px;
+                        }
+                    }
+                    .postText{
+                        // border: 1px solid #000;
+                        line-height: 20px;
+                        width: fit-content;
+                        margin: 0 auto;
+                        font-size: 18px;
+    
+                    }
+                    .btn_second{
+                        margin:20px 0;
+                        margin-left: 50%;
+                        transform: translateX(-50%);
+                        
+                    }
                 }
             }
-            .index_card_text{
-                h1{
-                    margin-bottom: $title;
-                }
-                p{}
-            }
-            .post_front{
-                @include position(200px,relative){
-                    top: 130px;
-                }
-            }
-            .post_back{
-                @include position(80px,relative){
-                    bottom: 50px;
-                    left: 100px;
-                }
-            }
+            
         }
         
     }

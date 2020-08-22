@@ -7,7 +7,7 @@ $('.cart').click(function () {
 var myFullpage = new fullpage('.fullpage', {
   menu: '.header_wrap',
   sectionSelector: 'section',
-  paddingTop: '100px',
+  paddingTop: '80px',
   easing: 'easeInCirc',
   navigation: true,
   navigationPosition: 'right',
@@ -168,10 +168,6 @@ $(document).ready(function(){
 Vue.component ('cards', {
   template: `
   <div class="card card--animated">
-    <h5>Title</h5>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam dolor totam, minima harum hic non possimus, molestias cum earum ipsa quidem aspernatur.
-    </p>
   </div> `,
 });
 
