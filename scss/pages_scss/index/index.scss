@@ -39,7 +39,8 @@ $title: 30px;
     animation: #{$str};
     animation-iteration-count: $count ;
     animation-duration: $duration;
-    animation-timing-function: $function ;      
+    animation-timing-function: $function ; 
+    @content;     
 }
 
 @include keyframes(firstStair){
@@ -94,6 +95,33 @@ $title: 30px;
     }
 }
 
+@include keyframes (card) {
+    0%   {
+      left: -30%;
+      top: 120px;
+      transform: rotate(8deg);
+    }
+    100% {
+      left: 9%;
+      top: 50px;
+      transform: rotate(15deg);
+    }
+}
+  
+@include keyframes (cardBounce) {
+    0% {
+      transform: rotate(12deg);
+    }
+    33%{
+      transform: rotate(-20deg);
+    }
+    66%{
+      transform: rotate(10deg);
+    }
+    100%{
+      transform: rotate(0deg);
+    }
+  }
 
 
 div.header_wrap{
@@ -186,7 +214,7 @@ div.header_wrap{
                         transform: rotateZ(230deg);
                         }
                         .three {
-                        background: #ECECEC;
+                       background: #ECECEC;
                         transform: rotateZ(173deg);
                         }
                         .four {
@@ -437,8 +465,6 @@ div.header_wrap{
                         &::after {
                             content: "";
                             // border: 1px solid #000;
-                            background-image: url(../../../img/index/index_3rd/triangle.png);
-                            background-repeat: no-repeat;
                             width: 120px;
                             height: 90px;
                             position: absolute;
@@ -454,7 +480,7 @@ div.header_wrap{
             .index_disc_img{
                 .img{
                     width:100%;
-                    // background-image: url(../../../img/index/index_1st/1st_smBlue.png);
+                    background-image: url(../../../img/index/index_3rd/3rd_smBlue.png);
                     background-size: contain;
                     background-repeat: no-repeat;
                     .dia_img{
@@ -470,7 +496,6 @@ div.header_wrap{
         @include section;
         background-image: url(../../../img/index/index_4th/4th_bg.png);
         background-size: cover;
-        background-position: bottom;
         background-repeat: no-repeat;
 
         .index_cour_img{
@@ -536,6 +561,7 @@ div.header_wrap{
                             .btn_second{
                                 display: block;
                                 margin: 0 auto;
+                                margin-top: 10px;
                             }
                         }
                     }
@@ -563,30 +589,104 @@ div.header_wrap{
             }
 
             .index_card_img{
-                .img{}
-                .btn_second{
-                    margin-top: 30px;
-                    margin-left: 50%;
-                    transform: translateX(-50%);
+                .img{
+                    position: relative;
+                    height: 500px;
+                    width: 1000px;
+                    margin: 0 auto;
+                    // border: 1px solid #000;
+                    #line{
+                        position: absolute;
+                        left: 0;
+                        top: 75px;
+                        right: 0;
+                        border-top: 4px solid #444444;
+                        transform: skewY(-3.5deg);
+                        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+                    }
+                    #cards{
+                        padding-top: 30px;
+                        position: relative;
+                        bottom: 50px;
+                        
+                        .card{
+                            background-image: url(../../../img/index/index_5th/postCard.png);
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            width: 340px;
+                            height: 240px;
+                            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+                            border-radius: 2px;
+                           
+                        
+                            &::before{
+                                // border: 1px solid red;
+                                content:'';
+                                background-image: url(../../../img/index/index_5th/clip.png);
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                height: 80px;
+                                width: 20px;
+                                display: block;
+                                position: absolute;
+                                bottom: 225px;
+                                left: 150px;
+
+                            }
+                        
+                            &.card--animated{
+                                @include animation (card, 1,1.5s, ease-in ){
+                                    animation-fill-mode: forwards;
+                                } ;
+                                @include animation (cardBounce, 1, 1.5s, ease-in-out){
+                                    animation-fill-mode: forwards;
+                                } ;
+                                
+                                position: absolute;
+                                margin-top: 120px;
+                            
+                                + .card{
+                                    margin-left: 35%;
+                                    margin-top: 95px;
+                                }
+                                
+                                + .card + .card{
+                                    margin-left: 70%;
+                                    margin-top: 70px;
+                                }
+                            }
+                            
+                        }
+                    }
+                    .post_front{
+                        @include position(200px,relative){
+                            top: 130px;
+                            right: 150px;
+                        }
+                    }
+                    .post_back{
+                        @include position(80px,relative){
+                            bottom: 50px;
+                            left: 850px;
+                        }
+                    }
+                    .postText{
+                        // border: 1px solid #000;
+                        line-height: 20px;
+                        width: fit-content;
+                        margin: 0 auto;
+                        font-size: 18px;
+    
+                    }
+                    .btn_second{
+                        margin:20px 0;
+                        margin-left: 50%;
+                        transform: translateX(-50%);
+                        
+                    }
                 }
             }
-            .index_card_text{
-                h1{
-                    margin-bottom: $title;
-                }
-                p{}
-            }
-            .post_front{
-                @include position(200px,relative){
-                    top: 130px;
-                }
-            }
-            .post_back{
-                @include position(80px,relative){
-                    bottom: 50px;
-                    left: 100px;
-                }
-            }
+            
         }
         
     }

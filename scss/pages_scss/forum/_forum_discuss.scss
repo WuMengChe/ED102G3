@@ -10,6 +10,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  border: 1px solid;
+  min-height: 1000px;
 }
 
 .dis_body {
@@ -200,6 +202,8 @@ $timing: 0.3s;
 /* 內容區塊 */
 .tab_contents {
   padding: 0 10px;
+  max-width: 740px;
+  width: 100%;
   .msg_content {
     // border-bottom: 1px solid RGBA(255, 255, 255, 1);
     box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
