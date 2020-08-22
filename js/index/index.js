@@ -166,12 +166,13 @@ $(document).ready(function(){
 
 //postcard
 Vue.component ('cards', {
-  template: `<div class="card card--animated">
-      <h5>Title</h5>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam dolor totam, minima harum hic non possimus, molestias cum earum ipsa quidem aspernatur.
-      </p>
-    </div> `,
+  template: `
+  <div class="card card--animated">
+    <h5>Title</h5>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam dolor totam, minima harum hic non possimus, molestias cum earum ipsa quidem aspernatur.
+    </p>
+  </div> `,
 });
 
 new Vue   ({
