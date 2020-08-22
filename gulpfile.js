@@ -37,7 +37,7 @@ gulp.task("fileinclude", function () {
 
 //7. 將js複製到dest資料夾中，請在終端機中輸入：gulp js
 gulp.task("js", function () {
-  return gulp.src("js/**/*.js").pipe(gulp.dest("dest/js"));
+  return gulp.src(["js/**/*.js"]).pipe(gulp.dest("dest/js"));
 });
 
 //8. 將bootstrap資料夾複製到dest資料夾中：請在終端機中輸入：gulp bootstrap
@@ -59,12 +59,16 @@ gulp.task("default", function () {
   browserSync.init({
     server: {
       baseDir: "./dest",
-
       index: "forum_discuss.html",
     },
   });
   gulp.watch("./scss/**/**/*.scss", ["sass"]).on("change", reload);
   gulp.watch(["./*.html"], ["fileinclude"]).on("change", reload);
+});
+
+//11. 將json複製到dest資料夾中，請在終端機中輸入：gulp json
+gulp.task("json", function () {
+  return gulp.src(["json/*.json"]).pipe(gulp.dest("dest/json"));
 });
 //使用Control + C 可以停止監看，如果要重新監看就要再重新執行gulp
 //執行到這邊應該會自動開瀏覽器了，請確認一下dest中的html有沒有連接到對的路徑，若不知道如何設定，可以參考原檔中(非dest中的)的index.html

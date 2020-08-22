@@ -50,53 +50,53 @@
     "d_text": "最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？"
   },
   {
-    "d2_img": "./img/forum/大頭照/headshot_7.jpg",
-    "d2_name": "葉大雄",
-    "d2_data": "2020-01-20",
-    "d2_type": "研究型",
-    "d2_qu": "問題討論",
-    "d2_color": "orange",
-    "d2_title": "有人上過資策會的web前端app嗎？",
-    "d2_text": "想轉職成為工程師，在網路上看到資訊，請問有人可以有經驗可以分享嗎？"
+    "d_img": "./img/forum/大頭照/headshot_7.jpg",
+    "d_name": "葉大雄",
+    "d_data": "2020-01-20",
+    "d_type": "研究型",
+    "d_qu": "問題討論",
+    "d_color": "orange",
+    "d_title": "有人上過資策會的web前端app嗎？",
+    "d_text": "想轉職成為工程師，在網路上看到資訊，請問有人可以有經驗可以分享嗎？"
   },
   {
-    "d2_img": "./img/forum/大頭照/headshot_8.jpg",
-    "d2_name": "王阿花",
-    "d2_data": "2019-04-30",
-    "d2_type": "企業型",
-    "d2_qu": "問題討論",
-    "d2_color": "orange",
-    "d2_title": "法物人員工作內容是什麼？",
-    "d2_text": "最近想要考法物人員，但是不知道該如何準備，有前輩可以分享嗎？"
+    "d_img": "./img/forum/大頭照/headshot_8.jpg",
+    "d_name": "王阿花",
+    "d_data": "2019-04-30",
+    "d_type": "企業型",
+    "d_qu": "問題討論",
+    "d_color": "orange",
+    "d_title": "法物人員工作內容是什麼？",
+    "d_text": "最近想要考法物人員，但是不知道該如何準備，有前輩可以分享嗎？"
   },
   {
-    "d2_img": "./img/forum/大頭照/headshot_9.jpg",
-    "d2_name": "王小豬",
-    "d2_data": "2020-02-02",
-    "d2_type": "企業型",
-    "d2_qu": "問題討論",
-    "d2_color": "orange",
-    "d2_title": "保險業務一個月會有多少收？",
-    "d2_text": "聽朋友說他一個月有十萬元，請問保險業真的收入這麼高嗎？"
+    "d_img": "./img/forum/大頭照/headshot_9.jpg",
+    "d_name": "王小豬",
+    "d_data": "2020-02-02",
+    "d_type": "企業型",
+    "d_qu": "問題討論",
+    "d_color": "orange",
+    "d_title": "保險業務一個月會有多少收？",
+    "d_text": "聽朋友說他一個月有十萬元，請問保險業真的收入這麼高嗎？"
   },
   {
-    "d2_img": "./img/forum/大頭照/headshot_1.jpg",
-    "d2_name": "歐陽同",
-    "d2_data": "2020-10-05",
-    "d2_type": "文藝型",
-    "d2_qu": "問題討論",
-    "d2_color": "orange",
-    "d2_title": "攝影師接一個case怎麼？",
-    "d2_text": "最近朋友說要請我幫忙拍婚紗照，5000元一天，請問這是合理的格嗎？"
+    "d_img": "./img/forum/大頭照/headshot_1.jpg",
+    "d_name": "歐陽同",
+    "d_data": "2020-10-05",
+    "d_type": "文藝型",
+    "d_qu": "問題討論",
+    "d_color": "orange",
+    "d_title": "攝影師接一個case怎麼？",
+    "d_text": "最近朋友說要請我幫忙拍婚紗照，5000元一天，請問這是合理的格嗎？"
   },
   {
-    "d2_img": "./img/forum/大頭照/headshot_6.jpg",
-    "d2_name": "Anne",
-    "d2_d": "2020-07-03",
-    "d2_typ": "實務型",
-    "d2_qu": "題討論",
-    "d2_color": "orange",
-    "d2_title": "請問五年的貿易經驗，新資可以談多少？",
-    "d2_text": "最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？"
+    "d_img": "./img/forum/大頭照/headshot_6.jpg",
+    "d_name": "Anne",
+    "d_d": "2020-07-03",
+    "d_typ": "實務型",
+    "d_qu": "題討論",
+    "d_color": "orange",
+    "d_title": "請問五年的貿易經驗，新資可以談多少？",
+    "d_text": "最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？"
   }
 ]
