@@ -59,7 +59,7 @@ gulp.task("default", function () {
   browserSync.init({
     server: {
       baseDir: "./dest",
-      index: "forum_form.html",
+      index: "forum_discuss.html",
     },
   });
   gulp.watch("./scss/**/**/*.scss", ["sass"]).on("change", reload);
