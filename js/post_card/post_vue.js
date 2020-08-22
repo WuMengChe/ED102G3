@@ -3,13 +3,17 @@
 Vue.component('front-style', {
   template: `<div class="front_style row style_list">
               <div class="style">
-                <img src="./img/post_card/style1.jpg" alt="">
+                <img src="./img/post_card/style1.jpg" alt="style1" class="f_img_s1">
               </div>
               <div class="style">
-                <img src="./img/post_card/style2.jpg" alt="">
+                <img src="./img/post_card/style2.jpg"
+                alt="style2"
+                class="f_img_s2">
               </div>
               <div class="style">
-                <img src="./img/post_card/style3.jpg" alt="">
+                <img src="./img/post_card/style3.jpg"
+                alt="style3"
+                class="f_img_s3">
               </div>
             </div>`,
 });
@@ -33,21 +37,7 @@ Vue.component('outline-style', {
             </div>
           </div>`,
 });
-Vue.component('back-style', {
-  template: `
-            <div class="back_style row style_list">
-                <div class="style">
-                  <img src="./img/post_card/style1.jpg" alt="背面格式1">
-                </div>
-                <div class="style">
-                  <img src="./img/post_card/style2.jpg" alt="背面格式2">
-                </div>
-                <div class="style">
-                  <img src="./img/post_card/style3.jpg" alt="背面格式3">
-                </div>
-              </div>
-            `,
-});
+
 Vue.component('stamp-style', {
   template: `<div class="style_all_stamps">
               <div class="stamps_style row style_list">

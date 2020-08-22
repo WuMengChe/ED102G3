@@ -1,6 +1,10 @@
+@import'../../_public_dontTouch/utils/variables';
+
 * {
   box-sizing: border-box;
 }
+
+$bgc:rgba(88, 88, 88, 0.253);
 
 @mixin style {
   #{'.style_list'} {
@@ -9,12 +13,14 @@
     flex-direction: column;
     margin: 0;
     width: 100%;
+    background-color: $second_color3;
+
 
     .style {
       border: 1px solid red;
       width: 100%;
       margin: 15px 0;
-      background-color: rgba(88, 88, 88, 0.253);
+      background-color: $bgc;
       cursor: pointer;
 
       img {
@@ -34,6 +40,7 @@
     flex-direction: column;
     margin: 0;
     width: 100%;
+    background-color: $second_color3;
 
     .style {
       border: 1px solid red;
@@ -78,12 +85,6 @@
   }
 }
 
-// html {
-//   background-color: #3ec5c5;
-
-
-// }
-
 div.postcard_main {
   border: 1px solid red;
   max-width: 1200px;
@@ -95,7 +96,7 @@ div.postcard_main {
 
     .desk {
       #frontAllStyle {
-        background-color: rgb(213, 168, 255);
+        // background-color: $art_color;
 
         .change_style {
           border: 1px solid black;
@@ -103,15 +104,19 @@ div.postcard_main {
           .front_all_style {
             border: 1px solid blue;
             @include style();
+            // background-color: $art_color;
 
             .mark {
               border: 1px solid rgb(200, 52, 52);
               cursor: pointer;
+              display: flex;
 
               h3 {
                 border: 1px solid yellow;
-                display: inline-block;
+                // display: inline-block;
                 padding: 5px;
+                background-color: $second_color3;
+                border-radius: 5px 5px 0 0;
               }
             }
           }
@@ -149,10 +154,10 @@ div.postcard_main {
 
             .mark {
               border: 1px solid black;
+              display: flex;
 
               h3 {
                 border: 1px solid yellow;
-                display: inline-block;
                 padding: 5px;
                 cursor: pointer;
               }
@@ -205,7 +210,25 @@ div.postcard_main {
             padding-bottom: 63.5%;
 
             .style1 {
-              // display: none;
+              border: 1px solid red;
+              text-align: center;
+              display: none;
+
+
+              .all {
+                border: 1px solid rgb(130, 243, 173);
+                // background-color: rgba(88, 88, 88, 0.253);
+                padding-bottom: 63.4%;
+                height: 0;
+
+                p.drag {
+                  color: gray;
+                  padding-top: 6%;
+                }
+
+                @include label();
+              }
+
             }
 
             .style2 {
@@ -263,14 +286,53 @@ div.postcard_main {
                 }
               }
 
-              .style3 {
-                display: none;
-              }
-
             }
 
             .style3 {
-              display: none;
+              display: flex;
+              text-align: center;
+
+              // display: none;
+              .left_3 {
+                background: lightpink;
+                flex-grow: 1;
+                padding-bottom: 63.4%;
+                height: 0;
+                text-align: center;
+
+                div {
+                  margin-top: 10%;
+
+                  p.drag {
+                    color: gray;
+                    padding-top: 10%;
+                  }
+
+                  @include label();
+
+                }
+
+              }
+
+              .right_3 {
+                background: lightyellow;
+                flex-grow: 1;
+                padding-bottom: 63.4%;
+                height: 0;
+
+                div {
+                  margin-top: 10%;
+
+                  p.drag {
+                    color: gray;
+                    padding-top: 10%;
+                  }
+
+                  @include label();
+
+
+                }
+              }
             }
 
             .main_outline_style {
@@ -388,26 +450,51 @@ div.postcard_main {
 
 
 
-            .style1 {
+            .style_back {
               border: 1px solid red;
               display: flex;
+              position: relative;
+              overflow: hidden;
 
-              .left_pic {
-                background-color: lightgray;
+              .mark_position {
+                position: absolute;
+                top: 20%;
+                right: 30%;
+                border: 1px solid blue;
+                min-width: 100px;
+                width: 24%;
+                cursor: move;
+                display: none;
+              }
+
+              .left_write {
+                background-color: rgb(255, 252, 238);
                 width: 50%;
                 height: 0;
                 padding-bottom: 63.6%;
-                @include label();
-                text-align: center;
 
-                p.drag {
-                  color: gray;
-                  padding-top: 4%;
+                textarea {
+                  margin-top: 5%;
+                  padding: 0 5px;
+                  border: none;
+                  border-right: 2px solid #cccccc;
+                  resize: none;
+                  width: 100%;
+                  height: 0;
+                  padding-bottom: 117%;
+                  outline: none;
+                  line-height: 30px;
+                  font-size: 18px;
+                  background: transparent;
+                  // background-size: 100% 30px;
+                  overflow: hidden;
                 }
+
+
               }
 
               .right_write {
-                background-color: rgb(251, 184, 184);
+                background-color: rgb(255, 252, 238);
                 width: 50%;
                 height: 0;
                 padding-bottom: 63.6%;
@@ -415,7 +502,7 @@ div.postcard_main {
                 flex-direction: column;
                 flex-wrap: nowrap;
 
-                .style1_stamp {
+                .style_stamp {
                   border: 1px solid black;
                   margin-top: 3%;
                   // margin-right: 10%;
@@ -432,31 +519,30 @@ div.postcard_main {
                     border: 1px solid blue;
                     width: 46.5%;
                     float: right;
+                    display: none;
                   }
                 }
 
                 .text {
-                  border: 1px solid blue;
-                  // width: 100%;
-                  // display: inline-block;
-                  margin-top: 5%;
+                  // border: 1px solid blue;
+                  margin-top: 20%;
                   display: inline-block;
                   height: 0;
-                  padding-bottom: 84%;
+                  padding-bottom: 69%;
 
                   textarea {
-                    // margin-right: 5%;
+                    margin-left: 5%;
                     resize: none;
-                    width: 95%;
+                    width: 90%;
                     height: 0;
-                    padding-bottom: 83%;
+                    padding-bottom: 68%;
                     outline: none;
                     line-height: 30px;
                     font-size: 18px;
                     background: linear-gradient(transparent 90%, #cccccc 10%);
                     background-size: 100% 30px;
                     overflow: hidden;
-
+                    border: none;
                   }
                 }
               }
@@ -495,42 +581,26 @@ div.postcard_main {
           .change_style {
             border: 1px solid yellow;
 
-            .back_all_style {
-              border: 1px solid rgb(38, 73, 44);
-
-
-              .style_list {
-                border: 1px solid blue;
-                justify-content: space-between;
-                margin: 20px 0;
-
-                .style {
-                  border: 1px solid rgb(17, 17, 17);
-                  padding: 0;
-                  cursor: pointer;
-
-                  img {
-                    width: 100%;
-                  }
-                }
-              }
+            h3 {
+              border: 1px solid blue;
+              margin-bottom: 20px;
             }
 
             .style_all_stamps {
               border: 1px solid yellow;
-              margin-top: 20px;
 
               .stamps_style {
                 border: 1px solid blue;
                 margin: 0;
                 display: flex;
                 justify-content: space-between;
-
-                margin-top: 20px;
+                margin-bottom: 20px;
 
                 .style {
                   border: 1px solid red;
                   padding: 0;
+                  cursor: pointer;
+
 
                   img {
                     width: 100%;
@@ -542,7 +612,6 @@ div.postcard_main {
 
             .style_all_postmarks {
               border: 1px solid yellow;
-              margin-top: 20px;
 
               .postmarks_style {
                 border: 1px solid blue;
@@ -550,11 +619,10 @@ div.postcard_main {
                 display: flex;
                 justify-content: space-between;
 
-                margin-top: 20px;
-
                 .style {
                   border: 1px solid red;
                   padding: 0;
+                  cursor: pointer;
 
                   img {
                     width: 100%;
