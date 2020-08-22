@@ -107,7 +107,7 @@ body {
     }
 
     .pop {
-      border: 1px solid red;
+      // border: 1px solid red;
       background-color: white;
       width: 320px;
       height: 150px;
@@ -118,9 +118,10 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      box-shadow: $card_shadow;
 
       .close {
-        border: 1px solid rgb(71, 131, 98);
+        // border: 1px solid rgb(71, 131, 98);
         cursor: pointer;
 
         &::after {
@@ -148,7 +149,7 @@ body {
 
 
       .when {
-        border: 1px solid orange;
+        // border: 1px solid orange;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -156,13 +157,13 @@ body {
         // height: 100px;
 
         .when_date {
-          border: 1px solid rgb(30, 61, 240);
+          // border: 1px solid rgb(30, 61, 240);
           // margin-top: 50px;
           padding: 10px;
         }
 
         .p_small {
-          border: 1px solid rgb(73, 213, 231);
+          // border: 1px solid rgb(73, 213, 231);
           margin-top: 20px;
           padding: 5px;
           color: #6b6b6b;
