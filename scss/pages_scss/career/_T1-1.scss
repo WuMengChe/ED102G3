@@ -1,0 +1,28 @@
+
+.T-div{
+    max-width:1200px;
+    width:100%;
+    margin:auto;
+    margin-top:50px;
+    display: flex;
+    justify-content: space-between;
+    border:1px solid red;
+}
+.bar{
+    max-width:200px;
+    width:100%;
+    border:1px solid red;
+}
+.T-T-intermediate{
+    max-width:620px;
+    width:100%;
+    height: 100vh;
+    border:1px solid red;
+    display: flex;
+}
+.T-right{
+    max-width:320px;
+    width:100%;
+    border:1px solid red;
+    display: flex;
+}
