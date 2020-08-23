@@ -38,5 +38,47 @@
                 font-weight: 700;
             }
         }
+        .car_pro_single, .car_pro_skill{
+            display: flex;
+            margin: 10px auto;
+            flex-wrap: wrap;
+            border-radius: 25px;
+            box-shadow: 2px 2px 20px gray;
+            .car_pro_skill_area{
+                display: flex;
+                padding: 0;
+                flex-wrap: wrap;
+                h3{
+                    display: flex;
+                    margin: 10px auto;
+                    flex-direction: row;
+                    justify-content: center;
+                }
+                span{
+                    display: flex;
+                    margin: 10px 0;
+                    padding: 10px 5px;
+                    align-items: center;
+                    border-radius: 25px;
+                    color: white;
+                    font-weight: 700;
+                    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+                }
+            }
+        }
+        .car_pro_lhs_plot_area{
+            display: flex;
+            margin: 20px auto;
+            flex-wrap: wrap;
+            h3{
+                font-weight: 700;
+                text-align: center;
+            }
+            .car_pro_lhs_plot{
+                margin: 20px 0;
+                height: 300px;
+            }
+        }
+        
     }
 }

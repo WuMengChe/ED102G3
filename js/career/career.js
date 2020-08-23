@@ -146,7 +146,7 @@ let careerVueContent = new Vue({
                 this.myChart.dispose();//銷燬
             }
             this.myChart = echarts.init(document.querySelector('.car_con_plot'), null, {renderer: 'svg'});
-            var firstRanking = this.careerPlot.industryRank[0];
+            // var firstRanking = this.careerPlot.industryRank[0];
             var seriesLabel = {
                 normal: {
                     show: true,
