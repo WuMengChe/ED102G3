@@ -107,11 +107,12 @@
                 }
             }
         }
-        .car_course_area{
+        .car_course_area, .car_forum_area{
             margin: 20px auto;
             padding: 0;
             border-radius: 25px;
             box-shadow: 2px 2px 20px gray;
+            background-color: rgba(255, 255, 255, 0.7);
             h3{
                 margin: 5px auto;
                 width: fit-content;
@@ -121,8 +122,20 @@
                 flex-wrap: wrap;
                 justify-content: space-evenly;
                 .car_course_list_info{
-                    background-color: purple;
+                    margin: 10px 0;
+                    height: 300px;
+                    background-color: rgb(209, 156, 209);
                 }
+                .car_forum_list_info{
+                    display: flex;
+                    margin: 10px 0;
+                    height: 40px;
+                    align-items: center;
+                    background-color: rgb(209, 180, 156);
+                }
+            }
+            button{
+                margin: 10px auto;
             }
         }
         .car_con_plot_area{

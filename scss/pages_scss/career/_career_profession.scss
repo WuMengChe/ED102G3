@@ -1,0 +1,42 @@
+.car_pro_con_width{
+    display: flex;
+    padding: 0;
+    max-width: 1200px;
+    min-height: calc(100% - 130px);
+    flex-wrap: wrap;
+    .car_pro_title{
+        display: flex;
+        height: 40px;
+        flex-wrap: wrap;
+        div{
+            border-radius: 0;
+        }
+    }
+    .car_pro_con{
+        display: flex;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        .car_pro_info{
+            display: flex;
+            flex-direction: column;
+            background-color: wheat;
+            h1{
+                margin: 10px auto;
+                width: fit-content;
+            }
+            img{
+                margin: 10px auto;
+                width: 100%;
+                max-width: 300px;
+                border: 3px solid;
+                border-radius: 25px;
+            }
+            h3{
+                margin: 20px 0 10px;
+            }
+            .car_pro_info_title{
+                font-weight: 700;
+            }
+        }
+    }
+}
