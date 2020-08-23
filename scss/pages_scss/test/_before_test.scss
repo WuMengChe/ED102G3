@@ -1,4 +1,3 @@
-
 @import'../../_public_dontTouch/utils/variables';
 div.before_test_wrap{
     background-image: url(../../../img/test/bg_test.png);
@@ -7,20 +6,21 @@ div.before_test_wrap{
     background-position: center;
     width: 100%;
     margin: auto;
-    border: 1px solid forestgreen;
+    // border: 1px solid forestgreen;
     .main_before_test{
+        margin: auto;
         section.origin_of_types_before_test{
             // border: 10px solid rgb(0, 0, 0, 0.3);
             background: rgba(255, 255, 255, 0.7);
             width: 100%;
-            margin: auto;
+            margin: 5% 0;
             border-radius: 1px;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 2%;
-            border-radius: 5px;
-            h3{
+            border-radius: 10px;
+            h1{
                 font-weight: 600;
                 padding-bottom: 2%;
             }
@@ -30,61 +30,90 @@ div.before_test_wrap{
             }
         }
         .all_type_card_before_test{
-            border: 1px solid forestgreen;
+            // border: 1px solid forestgreen;
+            margin: 5% 0;
             width: 100%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+            position: relative;
+            @media screen  and (max-width: 980px){ 
+              width: 450px;
+              height: 350px;
+              margin: auto;
+              overflow: hidden;
+              border: 3px solid rgb(36, 36, 36);
+              border-radius: 5px;
+            }
+            .cards_wrap{
+                // border: 1px solid red;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                @media screen  and (max-width: 980px){ 
+                    animation: slide 24s infinite  linear;
+                    position: absolute;
+                  }
             .type_card{
-                border: 2px solid red;
+                // border: 2px solid red;
                 // box-shadow: 0 0 3px 3px #79BBB5;
                 width: 100px;
-                height: 400px;
+                height: 350px;
                 border-radius:100px;
-                background: #ffffff;
+                background: #F6F3ED;
                 box-shadow: $card_shadow;
                 display: flex;
                 flex-direction: column;
                 transition: linear 1s;
                 overflow: hidden;
-                &:hover{
-                    width: 500px;
-                    background-size: contain;
-                    border-radius: 5px;
-                }
+            
              
                 .card_intro{
                     // background-color: rgb(45, 189, 141);
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
                     flex-direction: row;;
                     justify-content: flex-end;
-                    border: 1px solid red;
+                    // border: 1px solid red;
                     width: 100%;
-                    height: 70%;
-                    background-image: url(../../../img/test/醫生.svg);
-                    background-position: left;
+                    height: 50%;
+                    background-image: url(../../../img/test/機車維修.svg);
+                    background-position: bottom;
                     background-repeat: no-repeat;
                     background-size: contain;
+                    @media screen  and (max-width: 980px){ 
+                        background-position: left;
+                        height: 80%;
+                    }
                     .card_txt{
-                        border: 1px solid black;
+                        // border: 1px solid black;
+                        padding: 1%;
                         width: 60%;
                         display: none;
+                        line-height: 1.5rem;
+                        height: auto;
                         transition-timing-function: 1s;
                         transition: linear 2s;
+                        background: rgba(255, 255, 255, 0.7);
+                        @media screen  and (max-width: 980px){ 
+                            display: block;
+                        }
+                
                     }
                 }
-                &:hover .card_txt{
-                    display: block;
-                }
+               
                 .color_ball_bx{
                     display: flex;
                     flex-direction: column;
                     justify-content: space-evenly;
                     align-items: center;
-                    border: 2px solid rgb(0, 0, 0);
-                    height: 30%;
+                    background: $practical_color;
+                    // border: 2px solid rgb(0, 0, 0);
+                    height: 50%;
                     position: relative;
                     z-index: 0;
+                    @media screen  and (max-width: 980px){ 
+                        height: 20%;
+                    }
                     h3{
                         font-weight: 900;
                         position: absolute;
@@ -95,54 +124,163 @@ div.before_test_wrap{
                         // border: 1px solid red;
                         width: 60px;
                         height: 60px;
-                        background:#79BBB5 ;
+                        background:$second_color2;
                         border-radius: 50px;
+                        box-shadow: $card_shadow;
                         position: absolute;
                         z-index: 3;
-                        animation: bounce 1s alternate infinite linear;
+                        animation: shake 1.5s alternate infinite linear;
+                        @media screen  and (max-width: 980px){ 
+                            display: none;
+                        }
                     }
                 }
-            
-                &:hover .ball{
-                    background: white;
+                .color_ball_bx_I{
+                    background: $research_color;
                 }
-                &:hover .color_ball_bx{
-                    background:#79BBB5;
+                .color_ball_bx_A{
+                    background: $art_color;
                 }
+                .color_ball_bx_S{
+                    background: $social_color;
+                }
+                .color_ball_bx_E{
+                    background: $enterprise_color;
+                }
+                .color_ball_bx_C{
+                    background: $thing_color;
+                }
+                &:hover{
+                    width: 450px;
+                    background-size: contain;
+                    border-radius: 5px;
+                    // .card_intro{
+                      
+                    // }
+                    .card_intro{
+                        height: 70%;
+                        background-position: left;
+                    }
+                   .color_ball_bx{
+                       background: $second_color2;
+                       height: 30%;
+                   }
+                    .ball_R{
+                        background:$practical_color;
+                    }
+                    .ball_I{
+                        background:$research_color;
+                    }
+                    .ball_A{
+                        background:$art_color;
+                    }
+                    .ball_S{
+                        background:$social_color;
+                    }
+                    .ball_E{
+                        background:$enterprise_color;
+                    }
+                    .ball_C{
+                        background:$thing_color;
+                    }
                 
+                    .card_txt{
+                        display: block;
+                    }
+                }
+                @media screen  and (max-width: 980px){ 
+                        width: 450px;
+                        border-radius: 5px;
+                    }
+
+                }
         }
      
 }
 
 .wrap_of_btn_before_test{
-    border: 1px solid fuchsia;
+    // border: 1px solid fuchsia;
     display: flex;
     justify-content: center;
     padding: 2%;
 }
 
 }
+@keyframes shake {
+	0%, 100% {transform: translateX(0);}
+	50%{transform: translateX(-30px);}
+	75% {transform: translateX(30px);}
+}
 @keyframes bounce {
     0% {
-      width: 50px;
-      border-radius: 60px;
+      left: -20;
+      border-radius: 40%;
       transform: scaleX(1.1);
     }
     25% {
-      width: 30px;
+      height: 50px;
       border-radius: 50%;
       transform: scaleX(1);
-      border-radius: 60px;
+      border-radius: 100px 70px 50px 60px;
     }
-    50% {
-      width: 50px;
-      height: 50px;
-      border-radius: 60px;
+    60% {
+      right: 0;
+      width: 80px;
+      border-radius: 80%;
     }
+  
     100% {
-        width: 50px;
-        border-radius: 60px;
-        transform: scaleX(1.1);
+        right: 50%;
+        border-radius: 100px;
+        transform: scaleX(0.8);
+        transition-delay: .5s;
       }
   }
+  @keyframes slide {
+      0%{
+          transform: translate(0,0);
+      }
+      8%{
+          transform: translate(0,0); 
+      }
+      18%{
+        transform: translate(0,-350px); 
+      }
+        26%{
+        transform: translate(0,-350px); 
+      }
+      36%{
+        transform: translate(0,-700px);  
+      }
+      42%{
+        transform: translate(0,-700px);  
+      }
+      50%{
+        transform: translate(0,-1050px);
+      }
+      60%{
+        transform: translate(0,-1050px);
+      }
+      68%{
+        transform: translate(0,-1400px);
+      }
+      78%{
+        transform: translate(0,-1400px);
+      }
+      84%{
+        transform: translate(0,-1750px);
+      }
+      94%{
+        transform: translate(0,-1750px);
+      }
+      100%{
+        transform: translate(0,0); 
+      }
+
+
+  }
+
 }
+
+
+

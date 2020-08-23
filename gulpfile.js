@@ -59,13 +59,8 @@ gulp.task("default", function () {
   browserSync.init({
     server: {
       baseDir: "./dest",
-<<<<<<< HEAD
-      index: "index.html"
+      index: "test_before.html"
     }
-=======
-      index: "forum_form.html",
-    },
->>>>>>> 201f83ec23d5df0349c84cacd3b9fc296bcad94c
   });
   gulp.watch("./scss/**/**/*.scss", ["sass"]).on("change", reload);
   gulp.watch(["./*.html"], ["fileinclude"]).on("change", reload);
@@ -75,14 +70,8 @@ gulp.task("default", function () {
 
 //============================================================================================================
 //下面指令都已包含在default中，除非有必要不然不要個別下指令，但也不可以刪掉！！！
-<<<<<<< HEAD
 gulp.task('sass', ['img', 'js', 'fileinclude'], function () {
   return gulp.src('./scss/**/**/*.scss')
-=======
-gulp.task("sass", ["img", "js", "fileinclude"], function () {
-  return gulp
-    .src("./scss/**/**/*.scss")
->>>>>>> 201f83ec23d5df0349c84cacd3b9fc296bcad94c
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
     .pipe(
