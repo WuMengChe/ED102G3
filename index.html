@@ -27,19 +27,16 @@
                     <div class="img">
                         <span class="holland_small">
                             <!-- Small Shapes -->
-                            <div class="small circle one">R</div>
-                            <div class="small squircle two">S</div>
-                            <div class="small circle three">A</div>
-                            <div class="small squircle four">I</div>
-                            <div class="small circle five">C</div>
-                            <div class="small squircle six">E</div>
+                            <a href="" class="small circle one"><p>實作型(R)</p></a>
+                            <a href="" class="small squire two"><p>研究型(I)</p></a>
+                            <a href="" class="small circle three"><p>文藝型(A)</p></a>
+                            <a href="" class="small squire four"><p>社會型(S)</p></a>
+                            <a href="" class="small circle five"><p>企業型(E)</p></a>
+                            <a href="" class="small squire six"><p>事務型(C)</p></a>
                         </span>
-                            <!-- Squircles -->
-                        <span class="holland_large">
-                            <div class="large squircle one"></div>
-                        </span>
-                        <div class="large squircle two">
+                        <div class="large squire two">
                             <div class="content">
+                                <img src="./img/index/index_1st/radar copy.png" alt="">
                             </div>
                         </div>
   
@@ -49,7 +46,7 @@
         </section>
         <section class="index_car" >
             <div class="secondScreen container">
-                <div class="index_sal_img col-6">
+                <div class="index_sal_img col-md-6 col-sm-12">
                     <img src="./img/index/index_2nd/auditor.png" class="auditor" alt="">
                     <img src="./img/index/index_2nd/teacher.png" class="teacher" alt="">
                     <img src="./img/index/index_2nd/doctor.png" class="doctor" alt="">
@@ -60,8 +57,8 @@
                     </div>
 
                 </div>
-                <div class="index_sal_chart col-6">
-                    <h1>熱門行業排行</h1>
+                <div class="index_sal_chart col-md-6 col-sm-12">
+                    <h1>TOP 3 行業薪資排行</h1>
                     <div class="chart">
                         <div class="horizontal-bar-graph" id="graph"></div>
                     </div>
@@ -71,13 +68,15 @@
         </section>
         <section class="index_disc">
             <div class="thirdScreen container">
-                <div class="index_disc_text col-6">
+                <div class="index_disc_text col-md-6 col-sm-12 col-xs-12">
                     <h1>熱門行業話題</h1>
                     <div class="index_dia">
                         <div class="message">
                             <div class="meg_box" v-for="item in messages">
                                 <a href="">
                                     <h5>{{item.title}}</h5>
+                                    <i class="fa fa-thumbs-up" aria-hidden="true">100</i>
+                                    <i class="fa fa-comments" aria-hidden="true">50</i>
                                     <hr>
                                     <p>{{item.date}}</p>
                                 </a>
@@ -86,7 +85,7 @@
                         <a href="#" class="btn_second">探索更多文章</a href="#">
                     </div>
                 </div>
-                <div class="index_disc_img col-6">
+                <div class="index_disc_img col-md-6 col-sm-0 col-xs-0">
                     <div class="img">
                         <img class="dia_img" src="./img/index/index_3rd/mixed.png" alt="" srcset="">
                     </div>
@@ -95,25 +94,25 @@
 
         </section>
         <section class="index_cour" >
-            <div class="index_cour_img">
-                <img class="stair" src="./img/index/index_4th/upStair.png" alt="" srcset="">
-
-            </div>
             <div class="forthScreen container">
-                <div class="col-4"></div>
-                <div class="index_cour_text col-8">
+                <div class="index_cour_img col-md-5 col-sm-0 col-xs-0">
+                    <img class="stair" src="./img/index/index_4th/upStair.png" alt="" srcset="">
+                </div>
+                <div class="index_cour_text col-md-7 col-sm-12 col-xs-12">
                     <h1>熱門課程</h1>
                     <div class="pad">
                         <div class="screen_bg">
                             <div class="screen">
                                 <div class="screen_carousel">
-                                    <div class="item" v-for="course in courses">
+                                    <div class="item" v-for="course in courses" id="indexCoures">
                                         <img src="./img/index/index_4th/課程照片-翻轉課堂的職業講師祕訣.jpg" alt="">
                                         <h3>{{course.title}}</h3>
-                                        <p>{{course.content}}</p>
+                                        <p>課程時數: {{course.time}}</p>
+                                        <p>目前報名人數: {{course.person}}</p>
+                                        <p>課程費用: {{course.cost}}</p>
                                     </div>
                                 </div>
-                                <a class="btn_second"><span></span>探索更多行業<span></span></a>
+                                <a href="" class="btn_second"><span></span>探索更多課程<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -127,16 +126,18 @@
                     <div class="img">
                         <h1>客製明信片</h1>
                         <div id="line"></div>
-                        <div id="cards"> 
+                        <div id="cards" class="container"> 
                             <cards></cards>
                             <cards></cards>
                             <cards></cards>
                         </div>
-                        <img class="post_front" src="./img/index/index_5th/post_front.png" alt="">
-                        <img class="post_back" src="./img/index/index_5th/post_forward.png" alt="">
-                        <p class="postText">在進入職場之前，把對自我的期許，寄給未來的自己吧～</p>
-                        <a href="#" class="btn_second">客製明信片</a>
+                        <!-- <img class="post_front" src="./img/index/index_5th/post_front.png" alt="">
+                        <img class="post_back" src="./img/index/index_5th/post_forward.png" alt=""> -->
                     </div>
+                </div>
+                <div class="index_card_text col-12">
+                    <p class="postText">在進入職場之前，把對自我的期許，寄給未來的自己吧～</p>
+                    <a href="#" class="btn_second">客製明信片</a>
                 </div>
             </div>
             <!-- <p class="footer">&copy2020 Powered by direction.ALL Right Reserved.</p> -->
