@@ -1,3 +1,11 @@
+body.car_body{
+    width: 100%;
+    background-color: #F6F3ED;
+    background-image: url('../../../img/career/career_background_img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 .car_con_width{
     display: flex;
     padding: 0;
@@ -40,13 +48,112 @@
         .car_con_area{
             display: flex;
             margin-top: 10px;
+            padding: 0;
             flex-wrap: wrap;
             .car_con_list{
+                padding: 0;
                 ul{
+                    margin-bottom: 30px;
                     li{
-                        margin: 5px;
+                        margin: 10px 0;
                         cursor: pointer;
+                        border: 2px solid black;
+                        border-radius: 50px;
+                        padding: 5px 30px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 18px;
+                        span {
+                            display: inline-block;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50px;
+                            margin-right: 10px;
+                          }
                     }
+                    .practical_bg_color{
+                        background-color: transparent;
+                        border-color: #79BBB5;
+                        span{
+                            background-color: #79BBB5;
+                        }
+                    }
+                    .practical_bg_color:hover{
+                        background-color: #79BBB5;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .research_bg_color{
+                        background-color: transparent;
+                        border-color: #a0cadb;
+                        span{
+                            background-color: #a0cadb;
+                        }
+                    }
+                    .research_bg_color:hover{
+                        background-color: #a0cadb;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .art_bg_color{
+                        background-color: transparent;
+                        border-color: #ccc5e3;
+                        span{
+                            background-color: #ccc5e3;
+                        }
+                    }
+                    .art_bg_color:hover{
+                        background-color: #ccc5e3;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .social_bg_color{
+                        background-color: transparent;
+                        border-color: #f4c3c5;
+                        span{
+                            background-color: #f4c3c5;
+                        }
+                    }
+                    .social_bg_color:hover{
+                        background-color: #f4c3c5;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .thing_bg_color{
+                        background-color: transparent;
+                        border-color: #e7995f;
+                        span{
+                            background-color: #e7995f;
+                        }
+                    }
+                    .thing_bg_color:hover{
+                        background-color: #e7995f;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .enterprise_bg_color{
+                        background-color: transparent;
+                        border-color: #f7ea92;
+                        span{
+                            background-color: #f7ea92;
+                        }
+                    }
+                    .enterprise_bg_color:hover{
+                        background-color: #f7ea92;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                }
+                .side_bar_img_use{
+                    position: relative;
+                    z-index: 1;
+                    pointer-events: none;
                 }
             }
             .car_con_pro{
@@ -68,6 +175,7 @@
                     overflow: hidden;
                     img{
                         width: 100%;
+                        max-height: 350px;
                     }
                     span{
                         display: flex;
@@ -116,6 +224,7 @@
             h3{
                 margin: 5px auto;
                 width: fit-content;
+                background-image: url('../../../img/career/career_text_title_background.svg');
             }
             .car_course_list{
                 display: flex;
@@ -149,6 +258,7 @@
                 margin: 0 auto;
             }
             .car_con_plot{
+                margin-bottom: 60px;
                 height: 300px;
             }
         }

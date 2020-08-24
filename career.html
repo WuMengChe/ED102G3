@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/app_public.css">
     <link rel="stylesheet" href="./css/career_all.css">
 </head>
-<body>
+<body class="car_body">
     <div class="header_wrap" id = "header" v-if="(!rwdClickPage && screenWidth < 975) || (screenWidth >= 975)">
         <header class="header">
             <div class="logo">
@@ -269,8 +269,11 @@
                 <div class = "col-lg-3 col-md-12 col-sm-12 col-12 car_con_list">
                     <ul>
                         <li v-if="992 > screenWidth" @click="changePlot">薪水排行</li>
-                        <li v-for="(item, index) in industry" @click="changeContent(index, item.backgroundColor)" :class = "item.class">{{item.typeName}}</li>
+                        <li v-for="(item, index) in industry" @click="changeContent(index, item.backgroundColor)" :class = "item.class"><span></span>{{item.typeName}}</li>
                     </ul>
+                    <div class="side_bar_img" v-if="screenWidth >= 992">
+                        <img class="side_bar_img_use" src="./img/side_bar.svg" alt="">
+                    </div>
                 </div>
                 <div class = "col-lg-9 col-md-12 col-sm-12 col-12 car_con_pro" v-if="chooseIndustry >= 0">
                     <div class = "col-md-5 col-sm-5 col-6 car_con_pro_info" v-for="(itemDetail, index) in industry[chooseIndustry].detail" @click="storeData(chooseIndustry, index)">
@@ -286,6 +289,9 @@
             <div class = "col-lg-4 col-md-12 col-sm-11 col-11 car_con_plot_area" :class="{showPlot: showPlotControl}">
                 <h3>工作三到五年薪水排行</h3>
                 <div class = "car_con_plot"></div>
+                <div class="side_bar_img" v-if="screenWidth >= 992">
+                    <img class="side_bar_img_use" src="./img/career/career_right_people.svg" alt="">
+                </div>
             </div>
             <div class = "col-lg-9 col-md-12 car_con_area car_course_area" v-if="chooseIndustry >= 0">
                 <h3>相關課程</h3>

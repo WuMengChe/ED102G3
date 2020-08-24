@@ -377,7 +377,18 @@ let careerProfessionVueContent = new Vue({
                             type: 'line',
                         },
                         formatter: function (params) {
-                            return name_1 + ': ' + params[0].value + '%' + '<br>' + name_2 + ': ' + params[1].value + '%'
+                            // alert(params[1].name != 'undefined')
+                            alert(!params[1].name)
+                            // if(params[0].value != 'undefined' && params[1].value != 'undefined'){
+                            //     return name_1 + ': ' + params[0].value + '%' + '<br>' + name_2 + ': ' + params[1].value + '%'
+                            // }
+                            // else if(params[0].value != 'undefined'){
+                            //     return name_1 + ': ' + params[0].value + '%'
+                            // }
+                            // else if(params[1].value != 'undefined'){
+                            //     return name_2 + ': ' + params[1].value + '%'
+                            // }
+                            // return params[1].value + '%'
                         }
                     },
                     legend: {

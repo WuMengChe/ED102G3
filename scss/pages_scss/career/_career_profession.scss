@@ -1,5 +1,10 @@
-body{
+body.car_pro_body{
+    width: 100%;
     background-color: #F6F3ED;
+    background-image: url('../../../img/career/career_profession_background_img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .car_pro_con_width{
     display: flex;
@@ -22,10 +27,11 @@ body{
         .car_pro_info{
             display: flex;
             flex-direction: column;
-            background-color: wheat;
+            // background-color: wheat;
             h1{
                 margin: 10px auto;
                 width: fit-content;
+                background-color: #BCEAFF;
             }
             img{
                 margin: 10px auto;
@@ -39,6 +45,23 @@ body{
             }
             .car_pro_info_title{
                 font-weight: 700;
+            }
+            .car_pro_info_img{
+                width: fit-content;
+                background-image: url('../../../img/career/career_profession_info.svg');
+                background-repeat:no-repeat;
+                background-size: cover;
+            }
+            ul{
+                margin: 10px 0;
+                li{
+                    display: flex;
+                    span{
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                    }
+                }
             }
         }
         .car_pro_single, .car_pro_skill{

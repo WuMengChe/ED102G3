@@ -1,36 +1,36 @@
 let carData = {
     industry:[
-        {typeName: "實作型(R)", class: "practical_bg_color", backgroundColor: "#79BBB5", detail: [
+        {typeName: "實作型", class: "practical_bg_color", backgroundColor: "#79BBB5", detail: [
             {name: "送貨人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "廚師", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "引擎技術人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "餐飲服務生", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
+            {name: "廚師", src: "./img/career/廚師.svg", isCheck: false},
+            {name: "引擎技術人員", src: "./img/career/引擎技術員.svg", isCheck: false},
+            {name: "餐飲服務生", src: "./img/career/餐飲服務員.svg", isCheck: false}
         ]},
-        {typeName: "研究型(I)", class: "research_bg_color", backgroundColor: "#a0cadb", detail: [
-            {name: "品檢人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
+        {typeName: "研究型", class: "research_bg_color", backgroundColor: "#a0cadb", detail: [
+            {name: "品檢人員", src: "./img/career/品檢員.svg", isCheck: false},
             {name: "工程師", src: "./img/career/工程師.svg", isCheck: false},
-            {name: "研究人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "醫生", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
+            {name: "研究人員", src: "./img/career/研究員.svg", isCheck: false},
+            {name: "醫生", src: "./img/career/醫生.svg", isCheck: false}
         ]},
-        {typeName: "文藝型(A)", class: "art_bg_color", backgroundColor: "#ccc5e3", detail: [
-            {name: "室內設計師", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "攝影師", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "文字工作者", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "髮型師", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
+        {typeName: "文藝型", class: "art_bg_color", backgroundColor: "#ccc5e3", detail: [
+            {name: "室內設計師", src: "./img/career/室內設計師.svg", isCheck: false},
+            {name: "攝影師", src: "./img/career/攝影師.svg", isCheck: false},
+            {name: "文字工作者", src: "./img/career/文字編輯.svg", isCheck: false},
+            {name: "髮型師", src: "./img/career/理髮師.svg", isCheck: false}
         ]},
-        {typeName: "社會型(S)", class: "social_bg_color", backgroundColor: "#f4c3c5", detail: [
+        {typeName: "社會型", class: "social_bg_color", backgroundColor: "#f4c3c5", detail: [
             {name: "牙科助理", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
             {name: "社工", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
             {name: "老師", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
             {name: "醫護人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
         ]},
-        {typeName: "企業型(E)", class: "thing_bg_color", backgroundColor: "#e7995f", detail: [
+        {typeName: "企業型", class: "thing_bg_color", backgroundColor: "#e7995f", detail: [
             {name: "保險業務", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
             {name: "產品行銷人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
             {name: "賣場管理人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
             {name: "法務人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
         ]},
-        {typeName: "事務型(C)", class: "enterprise_bg_color", backgroundColor: "#f7ea92", detail: [
+        {typeName: "事務型", class: "enterprise_bg_color", backgroundColor: "#f7ea92", detail: [
             {name: "國貿人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
             {name: "會計", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
             {name: "行政人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
