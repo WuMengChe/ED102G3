@@ -1,0 +1,397 @@
+.car_con_width {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  max-width: 1200px;
+  min-height: calc(100% - 130px);
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.car_con_width .car_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.car_con_width .car_title div, .car_con_width .car_title span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  height: 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.car_con_width .car_title .choose_industry {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0px 5px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.car_con_width .car_title .choose_industry i, .car_con_width .car_title .choose_industry span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.car_con_width .car_title .choose_industry i {
+  cursor: pointer;
+}
+
+.car_con_width .car_title .choose_industry span {
+  padding-left: 3px;
+}
+
+.car_con_width .car_con_area_all {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.car_con_width .car_con_area_all .car_con_area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_list ul li {
+  margin: 5px;
+  cursor: pointer;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_pro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #79BBB5;
+  border-radius: 25px;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_pro .car_con_pro_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_pro .car_con_pro_info img {
+  width: 100%;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_pro .car_con_pro_info span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  position: absolute;
+  bottom: 32px;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_pro .car_con_pro_info .car_con_pro_check {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 32px;
+  background-color: white;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  bottom: 0;
+  border-radius: 0 0 25px 25px;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_pro .car_con_pro_info .car_con_pro_check i {
+  width: 32px;
+  height: 32px;
+  font-size: 28px;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_pro .car_con_pro_info .car_con_pro_check .fa-check-circle {
+  color: green;
+}
+
+.car_con_width .car_con_area_all .car_con_area .car_con_pro .car_con_pro_info .car_con_pro_check .fa-times-circle {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 0.5;
+}
+
+.car_con_width .car_con_area_all .car_course_area, .car_con_width .car_con_area_all .car_forum_area {
+  margin: 20px auto;
+  padding: 0;
+  border-radius: 25px;
+  -webkit-box-shadow: 2px 2px 20px gray;
+          box-shadow: 2px 2px 20px gray;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.car_con_width .car_con_area_all .car_course_area h3, .car_con_width .car_con_area_all .car_forum_area h3 {
+  margin: 5px auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.car_con_width .car_con_area_all .car_course_area .car_course_list, .car_con_width .car_con_area_all .car_forum_area .car_course_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.car_con_width .car_con_area_all .car_course_area .car_course_list .car_course_list_info, .car_con_width .car_con_area_all .car_forum_area .car_course_list .car_course_list_info {
+  margin: 10px 0;
+  height: 300px;
+  background-color: #d19cd1;
+}
+
+.car_con_width .car_con_area_all .car_course_area .car_course_list .car_forum_list_info, .car_con_width .car_con_area_all .car_forum_area .car_course_list .car_forum_list_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0;
+  height: 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #d1b49c;
+}
+
+.car_con_width .car_con_area_all .car_course_area button, .car_con_width .car_con_area_all .car_forum_area button {
+  margin: 10px auto;
+}
+
+.car_con_width .car_con_area_all .car_con_plot_area {
+  margin-top: 10px;
+  padding: 0;
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.car_con_width .car_con_area_all .car_con_plot_area h3 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.car_con_width .car_con_area_all .car_con_plot_area .car_con_plot {
+  height: 300px;
+}
+
+.car_con_width .car_con_area_all .showPlot {
+  position: relative;
+  opacity: 1;
+  z-index: 1;
+}
+
+body {
+  background-color: #F6F3ED;
+}
+
+.car_pro_con_width {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  max-width: 1200px;
+  min-height: calc(100% - 130px);
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.car_pro_con_width .car_pro_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 40px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.car_pro_con_width .car_pro_title div {
+  border-radius: 0;
+}
+
+.car_pro_con_width .car_pro_con {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: wheat;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_info h1 {
+  margin: 10px auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_info img {
+  margin: 10px auto;
+  width: 100%;
+  max-width: 300px;
+  border: 3px solid;
+  border-radius: 25px;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_info h3 {
+  margin: 20px 0 10px;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_info .car_pro_info_title {
+  font-weight: 700;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_single, .car_pro_con_width .car_pro_con .car_pro_skill {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+  -webkit-box-shadow: 2px 2px 20px gray;
+          box-shadow: 2px 2px 20px gray;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_single .car_pro_skill_area, .car_pro_con_width .car_pro_con .car_pro_skill .car_pro_skill_area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_single .car_pro_skill_area h3, .car_pro_con_width .car_pro_con .car_pro_skill .car_pro_skill_area h3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px auto;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_single .car_pro_skill_area span, .car_pro_con_width .car_pro_con .car_pro_skill .car_pro_skill_area span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0;
+  padding: 10px 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 25px;
+  color: white;
+  font-weight: 700;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_lhs_plot_area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+  -webkit-box-shadow: 2px 2px 20px gray;
+          box-shadow: 2px 2px 20px gray;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_lhs_plot_area h3 {
+  margin-top: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.car_pro_con_width .car_pro_con .car_pro_lhs_plot_area .car_pro_lhs_plot, .car_pro_con_width .car_pro_con .car_pro_lhs_plot_area .car_pro_inc_plot {
+  margin: 20px 0;
+  height: 300px;
+}
+/*# sourceMappingURL=career_all.css.map */

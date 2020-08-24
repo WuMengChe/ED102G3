@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職引960-會員登入</title> <!--document.title = "會員註冊"-->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+    <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/app_public.css">
+    <link rel="stylesheet" href="./css/member_all.css">
+    <link rel="stylesheet" href="./css/rwd_member_all.css">
+</head>
+<body>
+    <div class="header_wrap" id = "header" v-if="(!rwdClickPage && screenWidth < 975) || (screenWidth >= 975)">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="">
+                </a>
+            </div>
+            <div class="header_nav">
+                <ul>
+                    <li><a href="test_before.html">職涯分析</a></li>
+                    <li><a href="#">行業攻略</a></li>
+                    <li><a href="forum_discuss">職涯論壇</a></li>
+                    <li><a href="course_main.html">探索課程</a></li>
+                    <li><a href="post_intro.html">明信片</a></li>
+                </ul>
+            </div>
+            <div class="header_icon">
+                <div class="cart">
+                    <a href="#"><i class="fas fa-shopping-cart"></i>
+                        <div class="cart_num"><span>1</span></div>
+                    </a>
+                    <!-- <div class="cart_num"><span>1</span></div> -->
+                </div>
+
+                <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
+            </div>
+        </header>
+    </div>
+    <div class="side_cart cart_off">
+        <div class="cart_close">
+            <button id="cart_close" class="btn_third">close </button>
+        </div>
+        <div class="cart_course">
+            <ul>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="check_out_contain">
+            <div class="discount_title">
+                <p>購買兩堂課程，即享有8折優惠!</p>
+            </div>
+            <div class="price_check">
+                <ul>
+                    <li>
+                        <span>課程總金額:</span><span>$660</span>
+                    </li>
+                    <li>
+                        <span>折扣金額:</span><span>$60</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="price_total_btn">
+                <div class="price_total">
+                    <span>總計:$600</span>
+                </div>
+                <!-- <button class="check_out">結帳</button> -->
+                <a href="course_orderlist.html" class="check_out">結帳</a>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="mem_log_con_width">
+            <div class = "mem_log_content" id = "mem_log_change">
+                <div class = "mem_log_con_left common_set">
+                    <div class = "com_set_area">
+                        <h2>會員註冊</h2>
+                        <span>現在就來加入會員，來紀錄測驗結果與購買線上課程吧！</span>
+                        <button id = "mem_register" @click="signIn = !signIn, register = !register" class = "btn_primary">註冊</button>
+                    </div>
+                </div>
+                <div class = "mem_log_con_right common_set">
+                    <div class = "com_set_area">
+                        <h2>會員登入</h2>
+                        <span>立即登入職引960開始上課吧！</span>
+                        <button id = "mem_signin" @click="signIn = !signIn, register = !register" class = "btn_primary">登入</button>
+                    </div>
+                </div>
+                <div class = "mem_log_interface" :class = "{sign_in: signIn}">
+                    <h1>{{signIn == true ? "會員登入" : "會員註冊"}}</h1>
+                    <transition name = "mem_sign_in">
+                        <form class = "sign_in_from" action = "#" v-if="signIn == true">
+                            <div class = "input_div">
+                                <label for="account" class="input_label">帳號：</label>
+                                <input type="email" placeholder="123@gmail.com" required="required" class="input_field" id="account">
+                            </div>
+                            <div class = "input_div">
+                                <label for="code" class="input_label">密碼：</label>
+                                <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code">
+                            </div>
+                            <div class = "input_button">
+                                <button class = "btn_primary rwd_btn" @click.prevent = "signIn = !signIn, register = !register">{{signIn == true ? "會員登入" : "會員註冊"}}</button>
+                                <button class = "btn_third">送出</button>
+                            </div>
+                        </form>
+                    </transition>
+                    <transition name = "mem_sign_in">
+                        <form class = "sign_in_from" action = "#" v-if="register == true">
+                            <div class = "input_div">
+                                <label for="account" class="input_label">請輸入電子郵件：</label>
+                                <input type="email" placeholder="123@gmail.com" required="required" class="input_field" id="account">
+                            </div>
+                            <div class = "input_div">
+                                <label for="memName" class="input_label">請輸入名稱：</label>
+                                <input type="text" placeholder="老頑童" required="required" class="input_field" id="memName">
+                            </div>
+                            <div class = "input_div">
+                                <label for="code" class="input_label">請輸入密碼：</label>
+                                <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code">
+                            </div>
+                            <div class = "input_div">
+                                <label for="code_again" class="input_label">再次輸入密碼：</label>
+                                <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code_again">
+                            </div>
+                            <div class = "input_button">
+                                <button class = "btn_primary rwd_btn" @click.prevent = "signIn = !signIn, register = !register">{{signIn == true ? "會員登入" : "會員註冊"}}</button>
+                                <button class = "btn_third">送出</button>
+                            </div>
+                        </form>
+                    </transition>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="./js/member/member_sign_in.js"></script>
+    <script src="./js/header.js"></script>
+</body>
+</html>

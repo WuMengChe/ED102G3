@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../scss/pages_scss/career/industry.scss"
+    ],
+    "names": [],
+    "file": "industry.css"
+}

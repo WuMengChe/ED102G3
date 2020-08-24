@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>forum_discuss</title>
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
+  <link rel="stylesheet" href="./css/app_public.css" />
+  <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+  <div id="forum_discuss" class="container-fluid">
+    <div class="header row">
+          <!-- header -->
+    <div class="header_wrap">
+        <header class="header">
+            <div class="hamburger">
+                <button class=" hamburger hamburger--spring btn_switch" type="button">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="">
+                </a>
+            </div>
+            <div class="header_nav">
+                <ul>
+                    <li><a href="test_before.html">職涯分析</a></li>
+                    <li><a href="career_Travel Strategy.html">行業攻略</a></li>
+                    <li><a href="forum_discuss.html">職涯論壇</a></li>
+                    <li><a href="course_main.html">探索課程</a></li>
+                    <li><a href="post_intro.html">明信片</a></li>
+                </ul>
+
+            </div>
+            <div class="header_icon">
+                <div class="cart">
+                    <a href="#"><i class="fas fa-shopping-cart"></i>
+                        <div class="cart_num"><span>1</span></div>
+                    </a>
+                    <!-- <div class="cart_num"><span>1</span></div> -->
+                </div>
+
+                <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
+            </div>
+        </header>
+
+    </div>
+
+    <!-- cart -->
+    <div class="side_cart cart_off">
+        <div class="cart_close">
+            <button id="cart_close" class="btn_third">close </button>
+        </div>
+        <div class="cart_course">
+            <ul>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="cart_item">
+                    <div class="cus_card">
+                        <a href="#">
+                            <div class="card_img">
+                                <img src="img/course/課程圖片.jpg" alt="">
+                            </div>
+                            <div class="card_content">
+                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                                <div class="card_content_scrb">
+                                    <!-- <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                    </div> -->
+                                    <div class="card_content_msg">
+                                        <span class="card_type">企業型</span>
+                                        <!-- <span class="card_time">總計3小時</span> -->
+                                        <span class="card_price">NT$660</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="remove">
+                            <button>
+                                <p>刪</p>
+                                <p>除</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="check_out_contain">
+            <div class="discount_title">
+                <p>購買兩堂課程，即享有8折優惠!</p>
+            </div>
+            <div class="price_check">
+                <ul>
+                    <li>
+                        <span>課程總金額:</span><span>$660</span>
+                    </li>
+                    <li>
+                        <span>折扣金額:</span><span>$60</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="price_total_btn">
+                <div class="price_total">
+                    <span>總計:$600</span>
+                </div>
+                <!-- <button class="check_out">結帳</button> -->
+                <a href="course_orderlist.html" class="check_out">結帳</a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!--搜尋框-->
+    <div class="search row">
+      <div class="col-lg-2"></div>
+      <div class="search_wrap">
+        <div class="search_wrap_line">
+          <i class="fas fa-search"></i>
+          <input type="search" placeholder="請輸入關鍵字" id="text_input" v-model="filter" @keyup.enter="submit">
+          <button id="search_btn" @click="searchContent()">搜尋</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap row">
+      <div class="col-lg-2"></div>
+      <div class="side_wrap">
+        
+        <div class="main_side_bar">
+          <ul>
+            <li @click="search('實作型')">
+              <a href="#"><span></span>實作型</a>
+            </li>
+            <li @click="search('研究型')">
+              <a href="#"><span></span>研究型</a>
+            </li>
+            <li @click="search('文藝型')">
+              <a href="#"><span></span>文藝型</a>
+            </li>
+            <li @click="search('社會型')">
+              <a href="#"><span></span>社會型</a>
+            </li>
+            <li @click="search('企業型')">
+              <a href="#"><span></span>企業型</a>
+            </li>
+            <li @click="search('事務型')">
+              <a href="#"><span></span>事務型</a>
+            </li>
+          </ul>
+          <div class="side_bar_img">
+            <img src="./img/side_bar.svg" alt="">
+
+          </div>
+
+        </div>
+      </div>
+      <!--下拉選單-->
+      <div class="select row">
+        <div class="col-lg-2"></div>
+        <div class="select_wrap">
+          <span class="dis_dropdown" @click.stop="toggleDropdown($event)" :class="{'expanded': isOpen}">
+            <input type="radio" name="orderSelect" value="all" checked="checked" id="all" />
+            <label for="all">所有分類</label>
+            <input type="radio" name="orderSelect" value="popular" id="popular" />
+            <label for="popular">熱門討論</label>
+            <input type="radio" name="orderSelect" value="question" id="question" />
+            <label for="question">問題討論</label>
+            <input type="radio" name="orderSelect" value="share" id="share" />
+            <label for="share">經驗分享</label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dis_body row">
+      <!--右邊類型分類-->
+      <div class="career col-lg-2"></div>
+      <!--瀏覽留言區-->
+      <div class="tab_contents">
+        <!-- <div class="msg_content" v-for="content_Array in msgArray1">
+          <div class="mem_info">
+            <div class="info_list">
+              <img :src="content_Array.d_img" alt="" class="dis_img" />
+              <div class="dis_name">{{content_Array .d_name}}</div>
+              <div class="dis_date">{{content_Array .d_data}}</div>
+            </div>
+            <div class="tags_list">
+              <span class="type_tag">{{content_Array .d_type}}</span>
+              <span class="type_tag">{{content_Array .d_qu}}</span>
+            </div>
+          </div>
+          <div class="msg_title open_dialog">
+            {{content_Array.d_title}}
+          </div>
+          <div class="msg_textarea">
+            {{content_Array .d_text}}
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button><i class="far fa-comment-alt"></i>5</button>
+            <button class="collect_btn">收藏</button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div> -->
+
+
+        <!--使用json檔仔入資料-->
+        <div class="msg_content" v-for="messages in searchResult">
+          <div class="mem_info">
+            <div class="info_list">
+              <img :src="messages.d_img" alt="" class="dis_img" />
+              <div class="dis_name">{{messages.d_name}}</div>
+              <div class="dis_date">{{messages.d_data}}</div>
+            </div>
+            <div class="tags_list">
+              <span class="type_tag">{{messages.d_type}}</span>
+              <span class="type_tag">{{messages.d_qu}}</span>
+            </div>
+          </div>
+          <div class="msg_title open_dialog" @click="search_title">
+            {{messages.d_title}}
+          </div>
+          <div class="msg_textarea">
+            {{messages.d_text}}
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart" @click="heart_btn"></i></button>
+            <button><i class="far fa-comment-alt"></i>5</button>
+            <button class="collect_btn" @click="collect_btn">收藏</button>
+            <button class="impeachment_btn" @click="bad_btn">檢舉</button>
+          </div>
+        </div>
+
+
+
+
+        <!--頁碼-->
+        <div class="pagination_block">
+          <ul class="pagination">
+            <li><a href="#">‹</a></li>
+            <li><a href="#" class="-on">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">›</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <a href="./forum_form.html" class="pencil_btn">
+        <i class="fas fa-edit"></i>
+      </a>
+    </div>
+  </div>
+
+  <!--燈箱！！！-->
+  <!--點擊標題跳出的燈箱-->
+  <div class="forum_overlay">
+    <div class="forum_checkMsg">
+      <div class="close_btn">
+        <button type="button" class="btn_modal_close btn_primary" @click="btn_modal_close">
+          返回
+        </button>
+      </div>
+      <div class="feedback_wrap">
+        <!--留言板內容-->
+        <div class="check_content">
+          <div class="mem_info">
+            <div class="info_list">
+              <img src="./img/forum/大頭照/headshot_10.jpg" alt="" class="dis_img" />
+              <div class="dis_name">豬八戒</div>
+              <div class="dis_date">2020-07-28</div>
+            </div>
+            <div class="tags_list">
+              <span class="type_tag">實作型</span>
+              <span class="type_tag">經驗分享</span>
+            </div>
+          </div>
+          <div class="msg_title open_dialog">
+            有人上過前端工程師學米私塾課嗎？
+          </div>
+          <div class="msg_textarea">
+            覺得課程整套實在有點貴，
+            而且業務死不讓我看學生作品，讓我覺得很詭異
+            有人買過嗎？學起來如何呢？求經驗分享～
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button><i class="far fa-comment-alt"></i></button>
+            <button class="collect_btn">收藏</button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div>
+      </div>
+      <div class="feedback_count">共5則回應</div>
+      <!--回應留言區-->
+      <div class="forum_feedback">
+        <div class="feedback_content">
+          <div class="info_list">
+            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+            <div class="dis_name">孫悟空</div>
+            <div class="dis_date">2020-07-28</div>
+          </div>
+          <div class="msg_textarea">
+            我去上過覺得還好
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div>
+        <div class="feedback_content">
+          <div class="info_list">
+            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+            <div class="dis_name">孫悟空</div>
+            <div class="dis_date">2020-07-28</div>
+          </div>
+          <div class="msg_textarea">
+            我去上過覺得還好
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div>
+        <div class="feedback_content">
+          <div class="info_list">
+            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+            <div class="dis_name">孫悟空</div>
+            <div class="dis_date">2020-07-28</div>
+          </div>
+          <div class="msg_textarea">
+            我去上過覺得還好
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div>
+
+        <div class="leave_msg_wrap">
+          <div class="close_msg_div">
+            <button class="close_leaveMsg_btn">關閉</button>
+          </div>
+          <div class="leave_msg">
+            <textarea name="" id="send_msg" placeholder="請輸入訊息..." @click="sendMsg"></textarea>
+          </div>
+          <div class="confirm_send_btn">
+            <input type="submit" value="送出" id="send_msg_btn" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--點擊檢舉跳出燈箱-->
+  <div class="impeachment_overlay">
+    <article>
+      <div class="accuse_close_btn">
+        <button type="button" class="impeachment_close_btn" @click="bad_btn">關閉</button>
+      </div>
+      <h3>檢舉這篇文章的原因？</h3>
+      <div class="accuse_wrap">
+        <p>
+          <input type="radio" name="accuse" id="" />
+          重傷、歧視、挑釁、謾罵他人
+        </p>
+        <p><input type="radio" name="accuse" id="" /> 交換個人資料</p>
+        <p><input type="radio" name="accuse" id="" /> 惡意洗版、重複張貼</p>
+        <p>
+          <input type="radio" name="accuse" id="" />
+          包含色情、露點、性騷擾之內容
+        </p>
+        <p>
+          <input type="radio" name="accuse" id="" /> 包含廣告、商業宣傳之內容
+        </p>
+        <p><input type="radio" name="accuse" id="" /> 其他原因</p>
+      </div>
+      <div class="accuse_send_btn">
+        <button class="impeachment_send_btn">送出</button>
+      </div>
+    </article>
+  </div>
+
+  <script>
+
+    new Vue({
+      el: "#forum_discuss",
+      data() {
+        return {
+          information: [],
+          searchResult: [],
+          isOpen: false,
+          filter: ''
+        }
+      },
+      mounted() {
+        fetch('./json/forum.json')
+          .then(res => res.json())
+          .then(information => {
+            this.information = information;
+            this.searchResult = information;
+          })
+
+        $(".open_dialog").on("click", function (e) {
+          // debugger;
+          console.log($(this).attr('id'))
+          $("div.forum_overlay").addClass("-on");
+        });
+
+
+        // .then(() => {
+        //   const self = this;
+        //   const info = this.information;
+        //   const sideBarEle = document.getElementsByClassName('main_side_bar')[0];
+        //   const ulEle = sideBarEle.children[0];
+        //   const liEleArray = ulEle.children;
+        //   for (let i = 0; i < liEleArray.length; i++) {
+        //     const liEle = liEleArray[i];
+        //     liEle.addEventListener('click', function () {
+        //       const type = liEle.innerText;
+        //       information = info.filter(element => {
+        //         return element.d_type == type
+        //       });
+
+        //       Vue.set(self, 'information', information);
+        //     })
+        //   }
+        // })
+        ;
+
+        // debugger
+      },
+      watch: {
+        filter: function (value) {
+          if (value.length == 0) {
+            this.searchResult = this.information;
+          }
+        }
+      },
+      methods: {
+        //側邊欄搜尋
+        search(type) {
+          const result = this.information.filter(element => {
+            return element.d_type == type
+          });
+          this.searchResult = result;
+        },
+        //關鍵字搜尋，點擊搜尋按鈕事件
+        searchContent() {
+          const keyword = this.filter;
+          const result = this.information.filter(element => {
+            return (element.d_title.indexOf(keyword) != -1 || element.d_text.indexOf(keyword) != -1)
+            // return element.d_title == type
+          });
+          this.searchResult = result;
+        },
+        //關鍵字搜尋，點擊Enter按鈕事件
+        submit() {
+          this.searchContent();
+          debugger
+        },
+        //點擊標題會進入文章詳情
+        search_title() {
+          $(".open_dialog").on("click", function (e) {
+            // debugger;
+            console.log($(this).attr('id'))
+            $("div.forum_overlay").addClass("-on");
+          });
+        },
+        // 關閉 Modal
+        btn_modal_close() {
+          $("button.btn_modal_close").on("click", function () {
+            $("div.forum_overlay").addClass("-opacity-zero");
+            // 設定隔一秒後，移除相關 class
+            setTimeout(function () {
+              $("div.forum_overlay").removeClass("-on -opacity-zero");
+            }, 1000);
+          }); s
+        },
+        sendMsg() {
+          //點擊回覆留言地方，按下去視窗變大
+          $("#send_msg").on("click", function () {
+            $("#send_msg").css("min-height", "100px").css("");
+          });
+        },
+
+        bad_btn() {
+          //點擊檢舉跳出的燈箱 
+          $("button.impeachment_btn").on("click", function () {
+            debugger
+            $("div.impeachment_overlay").addClass("-on");
+          });
+
+          $("button.impeachment_close_btn").on("click", function () {
+            $("div.impeachment_overlay").addClass("-opacity-zero");
+
+            setTimeout(function () {
+              $("div.impeachment_overlay").removeClass("-on -opacity-zero");
+            }, 1000);
+          });
+        },
+        heart_btn() {
+          //點擊愛心變成黑色，再點擊一次變白色
+          $(".fa-heart").on("click", function () {
+            if ($(this).hasClass('far')) {
+              $(this).css("color", "black");
+              $(this).removeClass('far')
+              $(this).addClass('fas')
+            } else {
+              $(this).css("color", "black");
+              $(this).removeClass('fas')
+              $(this).addClass('far')
+            }
+          })
+        },
+        collect_btn() {
+          // //點擊收藏會變成已收藏，再點擊一次變收藏
+          $(".collect_btn").on("click", function () {
+            if ($(this).hasClass('active')) {
+              $(this).removeClass('active')
+              $(this).text('收藏')
+            } else {
+              $(this).addClass('active')
+              $(this).text('已收藏')
+            }
+          })
+
+        },
+        toggleDropdown(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (this.isOpen) {
+            this.isOpen = false;
+          } else {
+            this.isOpen = true;
+          }
+          //下拉選單jQuery寫法
+          // $('.dis_dropdown').click(function (e) {
+          //   e.preventDefault();
+          //   e.stopPropagation();
+          // $(this).toggleClass('expanded');
+          // debugger
+          // $('#' + $(this).attr('for')).prop('checked', true);
+          // });
+          // $(document).click(function () {
+          //   $('.dis_dropdown').removeClass('expanded');
+          // })
+        }
+      },
+
+
+    });
+  </script>
+</body>
+
+</html>
