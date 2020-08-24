@@ -1,4 +1,4 @@
-'@import '../../_public_dontTouch/utils/variables';
+@import '../../_public_dontTouch/utils/variables';
 $title: 30px;
 $opacity: 0.8;
 
@@ -269,11 +269,7 @@ div.header_wrap{
                         transform: rotateZ(230deg);
                         }
                         .three {
-<<<<<<< HEAD
-                       background: #ECECEC;
-=======
                        background: #CCC5E3;
->>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                         transform: rotateZ(173deg);
                         }
                         .four {
@@ -653,15 +649,6 @@ div.header_wrap{
                 .img{
                     position: relative;
                     height: 500px;
-<<<<<<< HEAD
-                    width: 1000px;
-                    margin: 0 auto;
-                    // border: 1px solid #000;
-                    #line{
-                        position: absolute;
-                        left: 0;
-                        top: 75px;
-=======
                     width: 100%;
                     margin: 0 auto;
                     // border: 1px solid #000;
@@ -674,28 +661,12 @@ div.header_wrap{
                         position: absolute;
                         left: 0;
                         top: 80px;
->>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                         right: 0;
                         border-top: 4px solid #444444;
                         transform: skewY(-3.5deg);
                         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                     }
                     #cards{
-<<<<<<< HEAD
-                        padding-top: 30px;
-                        position: relative;
-                        bottom: 50px;
-                        
-                        .card{
-                            background-image: url(../../../img/index/index_5th/postCard.png);
-                            background-size: cover;
-                            background-repeat: no-repeat;
-                            width: 340px;
-                            height: 240px;
-                            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
-                            border-radius: 2px;
-                           
-=======
                         position: relative;
                         z-index: 1;
                         // border: 1px solid red;
@@ -713,7 +684,6 @@ div.header_wrap{
                                 border-radius: 2px;
     
                             }
->>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                         
                             &::before{
                                 // border: 1px solid red;
@@ -725,26 +695,12 @@ div.header_wrap{
                                 width: 20px;
                                 display: block;
                                 position: absolute;
-<<<<<<< HEAD
-                                bottom: 225px;
-=======
                                 bottom: 230px;
->>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                                 left: 150px;
 
                             }
                         
                             &.card--animated{
-<<<<<<< HEAD
-                                @include animation (card, 1,1.5s, ease-in ){
-                                    animation-fill-mode: forwards;
-                                } ;
-                                @include animation (cardBounce, 1, 1.5s, ease-in-out){
-                                    animation-fill-mode: forwards;
-                                } ;
-                                
-=======
->>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                                 position: absolute;
                                 margin-top: 120px;
                             
@@ -762,33 +718,6 @@ div.header_wrap{
                         }
                     }
                     .post_front{
-<<<<<<< HEAD
-                        @include position(200px,relative){
-                            top: 130px;
-                            right: 150px;
-                        }
-                    }
-                    .post_back{
-                        @include position(80px,relative){
-                            bottom: 50px;
-                            left: 850px;
-                        }
-                    }
-                    .postText{
-                        // border: 1px solid #000;
-                        line-height: 20px;
-                        width: fit-content;
-                        margin: 0 auto;
-                        font-size: 18px;
-    
-                    }
-                    .btn_second{
-                        margin:20px 0;
-                        margin-left: 50%;
-                        transform: translateX(-50%);
-                        
-                    }
-=======
                         @include position(200px,absolute){
                             bottom: -250px;
                             left: 0px;
@@ -829,7 +758,6 @@ div.header_wrap{
                     margin-left: 50%;
                     transform: translateX(-50%);
                     
->>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                 }
 
             }
