@@ -1,6 +1,6 @@
-@import '../../_public_dontTouch/utils/variables';
+'@import '../../_public_dontTouch/utils/variables';
 $title: 30px;
-
+$opacity: 0.8;
 
 @mixin section {
     // border: 3px solid lightcoral;
@@ -131,6 +131,48 @@ div.header_wrap{
     background: transparent !important;
 }
 
+.fp-viewing-1{
+
+    .fp-tableCell{
+
+        .auditor{
+            @include animation(auditor)
+
+        }
+        .teacher{
+            @include animation(teacher);
+
+        }
+        .doctor{
+            @include animation(doctor);
+
+        }
+        .stage{
+            .firstStage{
+                @include animation(firstStair);
+            }
+            .secondStage{
+                @include animation(secondStair);
+
+            }
+            .thirdStage{
+                @include animation(thirdStair);
+
+            }
+        }
+    }
+}
+.fp-viewing-4{
+    .card--animated{
+        @include animation (card, 1,1.5s, ease-in ){
+            animation-fill-mode: forwards;
+        } ;
+        @include animation (cardBounce, 1, 1.5s, ease-in-out){
+            animation-fill-mode: forwards;
+        } ;
+    }
+
+}
 .index{
     .index_test{
         @include section;
@@ -185,6 +227,11 @@ div.header_wrap{
                       
                     .holland_small{
                         @include animation(pulse, infinite, 20s, linear);
+                        
+                        &:hover{
+                            animation-play-state: paused;
+                        }
+
                         .circle {
                             border-radius: 50%;
                         }
@@ -197,12 +244,20 @@ div.header_wrap{
                         
                         .small {
                         position: absolute;
-                        width: 10em;
-                        height: 10em;
-                        left: calc(50% - 5em);
-                        top: calc(50% - 33em);
+                        width: 100px;
+                        height: 100px;
+                        left: calc(50% - 55px);
+                        top: calc(50% - 505px);
                         transform-origin: 38% 33em;
                         box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2);
+
+                            p{
+                                transform: rotate(90deg);
+                                // border: 1px solid red;
+                                line-height: 100px;
+                                text-align: center;
+                                
+                            }
                         }
                           
                         .one {
@@ -214,23 +269,27 @@ div.header_wrap{
                         transform: rotateZ(230deg);
                         }
                         .three {
+<<<<<<< HEAD
                        background: #ECECEC;
+=======
+                       background: #CCC5E3;
+>>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                         transform: rotateZ(173deg);
                         }
                         .four {
-                        background: #F7EA92;
+                        background: #F4C3C5;
                         transform: rotateZ(116deg);
                         }
                         .five {
-                        background: #F4C3C5;
+                        background: #E7995F;
                         transform: rotateZ(59deg);
                         }
                         .six {
-                        background: #CCC5E3;
+                        background: #F7EA92;
                         transform: rotateZ(0);
                         }
                         
-                        .small.squircle {
+                        .small.squire {
                         box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2);
                         }
                     }
@@ -239,40 +298,36 @@ div.header_wrap{
                         // border: 1px solid #000;
                         
                     } 
-                    .large.squircle {
+                    .large.squire {
                         position: absolute;
-                        background: #aaa;
-                        left: calc(50% + 100px);
+                        background: #abc;
+                        right: calc(50% - 550px);
                         top: calc(50% - 80px);
-                        width: 35em;
-                        height: 35em;
-                        border-radius: 25%;
+                        width: 650px;
+                        height: 650px;
+                        border-radius: 50%;
+                        box-shadow: $card_shadow;
                         // border: 1px solid #000;
                         
-                        
-                        &.one {
-                            @include animation(spin, infinite, 30s, linear );
-                                // border: 1px solid green;
-                                // transform: rotateZ(45deg);
-                                top: 10px;
-                                left: 180px;
-
+                        .content {
+                            // border: 1px solid #000;
+                            text-align: center;
+                            line-height: 650px;
+                            img{
+                                vertical-align: middle;
+                                // border: 1px solid red;
+                                
                             }
                         }
-                        
-                        .content {
-                        text-align: center;
-                        }
-                    
-                      
-                      
-                      
+                    }
                         
                 }
             }
             
         }
     }
+
+    
     .index_car{
         @include section;
         background-image: url(../../../img/index/index_2nd/2nd_bgYellow.png);
@@ -291,6 +346,7 @@ div.header_wrap{
                 overflow: hidden;
                 padding: 0;
                 text-align: center;
+               
                 
                 .auditor{
 
@@ -299,14 +355,12 @@ div.header_wrap{
                         right: 5px;
                         z-index: 1;
                     }
-                    @include animation(auditor)
                 }
                 .teacher{
                     @include position(80px, relative){
                         top: 75px;
                         z-index: 1;
                     }
-                    @include animation(teacher);
 
                     
                 }
@@ -316,7 +370,6 @@ div.header_wrap{
                         z-index: 1;
     
                     }
-                    @include animation(doctor);
 
                     
                 }
@@ -328,30 +381,38 @@ div.header_wrap{
 
                     .firstStage{
                         @include stage(30%, 110px);
-                        @include animation(firstStair);
                     }
                     
                     .secondStage{
                         @include stage(65%, 55px);
-                        @include animation(secondStair);
                         
                     }
                     .thirdStage{
                         @include stage(100%, 0px);
-                        @include animation(thirdStair);
 
         
                     }
                 }
+                
     
             }
+            @media screen and (max-width: 768px) {
+                .index_sal_img{
+                    position: absolute;
+                    top: 100px;
+                    opacity: $opacity ;
+                }
+            }
+
             .index_sal_chart{
+                z-index: 1;
+                // border: 1px solid #000;
+                height: 500px;
                 h1{
                     margin-bottom: $title;
-
                 }
                 .chart{
-                    margin-top: 100px;
+                    margin-top: 150px;
                     margin-bottom: 80px;
                     .horizontal-bar-graph{
                         display: table;
@@ -450,7 +511,14 @@ div.header_wrap{
                             a{
                                 width: 100%;
                                 padding: 10px;
-                                h5{}
+                                h5{
+                                    display: inline-block;
+                                }
+                                i{
+                                    display: inline-block;
+                                    float: right;
+                                    margin-left: 10px;
+                                }
                                 hr{
                                     width:98%;
                                     color: lightgrey;
@@ -497,32 +565,24 @@ div.header_wrap{
         background-image: url(../../../img/index/index_4th/4th_bg.png);
         background-size: cover;
         background-repeat: no-repeat;
-
-        .index_cour_img{
-            // border: 1px solid #000;
-            width: fit-content;
-            @include position(fit-content, absolute){
-                bottom: 50px;
-                left: 0px;
-            
-            };
-            // position: relative;
-            .stair{
-                // border: 1px solid #000;
-                width: 500px;
-                // @include position(500px, absolute){
-                //     bottom: 0px;
-                //     left: 0px;
-
-                // };
-    
-            }
-          
-        }
         .forthScreen{
+            // border: 1px solid #000;
             @include screen;
-           
 
+            .index_cour_img{
+                // border: 1px solid #000;  
+                padding: 0; 
+                .stair{
+                    // border: 1px solid #000;
+                    @include position(130%, absolute){
+                        bottom: 0px;
+                        left: -140px;
+                    };
+                }
+            
+            }
+           
+        
 
             .index_cour_text{
                 h1{
@@ -555,6 +615,7 @@ div.header_wrap{
                                         overflow:hidden;
                                         white-space: nowrap;
                                         text-overflow: ellipsis;
+                                        margin: 10px 0;
                                     }
                                 }
                             }
@@ -592,6 +653,7 @@ div.header_wrap{
                 .img{
                     position: relative;
                     height: 500px;
+<<<<<<< HEAD
                     width: 1000px;
                     margin: 0 auto;
                     // border: 1px solid #000;
@@ -599,12 +661,27 @@ div.header_wrap{
                         position: absolute;
                         left: 0;
                         top: 75px;
+=======
+                    width: 100%;
+                    margin: 0 auto;
+                    // border: 1px solid #000;
+                    h1{
+                        // border: 1px solid blue;
+                        margin-top: 50px;
+                        margin-bottom:10px;
+                    }
+                    #line{
+                        position: absolute;
+                        left: 0;
+                        top: 80px;
+>>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                         right: 0;
                         border-top: 4px solid #444444;
                         transform: skewY(-3.5deg);
                         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                     }
                     #cards{
+<<<<<<< HEAD
                         padding-top: 30px;
                         position: relative;
                         bottom: 50px;
@@ -618,6 +695,25 @@ div.header_wrap{
                             box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                             border-radius: 2px;
                            
+=======
+                        position: relative;
+                        z-index: 1;
+                        // border: 1px solid red;
+                        height: 350px;
+                        
+                        .card{
+                            width: 30%;
+                            height: 250px;
+                            position: absolute;
+                            top: -30px;
+                            
+                            .postCard{
+                                width: 100%;
+                                box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+                                border-radius: 2px;
+    
+                            }
+>>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                         
                             &::before{
                                 // border: 1px solid red;
@@ -629,12 +725,17 @@ div.header_wrap{
                                 width: 20px;
                                 display: block;
                                 position: absolute;
+<<<<<<< HEAD
                                 bottom: 225px;
+=======
+                                bottom: 230px;
+>>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                                 left: 150px;
 
                             }
                         
                             &.card--animated{
+<<<<<<< HEAD
                                 @include animation (card, 1,1.5s, ease-in ){
                                     animation-fill-mode: forwards;
                                 } ;
@@ -642,6 +743,8 @@ div.header_wrap{
                                     animation-fill-mode: forwards;
                                 } ;
                                 
+=======
+>>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
                                 position: absolute;
                                 margin-top: 120px;
                             
@@ -659,6 +762,7 @@ div.header_wrap{
                         }
                     }
                     .post_front{
+<<<<<<< HEAD
                         @include position(200px,relative){
                             top: 130px;
                             right: 150px;
@@ -684,7 +788,50 @@ div.header_wrap{
                         transform: translateX(-50%);
                         
                     }
+=======
+                        @include position(200px,absolute){
+                            bottom: -250px;
+                            left: 0px;
+                        }
+                    }
+                    .post_back{
+                        @include position(80px,absolute){
+                            bottom: 0px;
+                            right: 0px;
+                        }
+                    }
+                    @media screen and(max-width:992px){
+                        .post_front{
+                            display: none;
+                        }
+                        .post_back{
+                            display: none;
+                        }
+                        
+                    }
                 }
+            }
+            
+            .index_card_text{
+                // border: 1px solid #000;
+                position: relative;
+                top: -80px;
+                .postText{
+                    // border: 1px solid #000;
+                    line-height: 20px;
+                    width: fit-content;
+                    margin: 0 auto;
+                    font-size: 18px;
+
+                }
+                .btn_second{
+                    margin:20px 0;
+                    margin-left: 50%;
+                    transform: translateX(-50%);
+                    
+>>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
+                }
+
             }
             
         }

@@ -49,7 +49,7 @@
         <div class="postcard_front">
           <h2>正面</h2>
           <div class="front_post">
-            <div class="mainStyle">
+            <div class="mainStyle" id="frontCapture">
               <!-- ---------------以下要createElement --------------->
               <!-- 正面格式一 -->
               <div class="style1" id="frontStyle1">
@@ -125,6 +125,7 @@
             </div>
           </div>
           <button id="toBack" class="btn_third">
+            <!-- onclick="doCapture();" -->
             背面
             <i class="fas fa-arrow-right"></i>
           </button>
@@ -196,10 +197,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
+<script src="./js/post_card/html2canvas.js"></script>
 <script src="./js/post_card/post_vue.js"></script>
 <script src="./js/post_card/post_imgUp.js"></script>
 <script src="./js/post_card/post_change.js"></script>
+<script src="./js/post_card/post_canvas.js"></script>
 
-
+<script>
+  // function doCapture() {
+  //   html2canvas(document.getElementById("frontCapture")).then(function (canvas) {
+  //     console.log(canvas.toDataURL("image/jpeg", 0.9));
+  //   });
+  // }
+</script>
 
 </html>

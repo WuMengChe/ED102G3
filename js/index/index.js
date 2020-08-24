@@ -1,7 +1,3 @@
-//購物車
-$('.cart').click(function () {
-  $('.side_cart').toggleClass('cart_off');
-});
 
 //fullpage
 var myFullpage = new fullpage('.fullpage', {
@@ -15,6 +11,7 @@ var myFullpage = new fullpage('.fullpage', {
   css3:false,
 
 });
+
 
 
 // 排行榜
@@ -33,7 +30,7 @@ var HorizontalBarGraph = function(el, series) {
         .data(this.series)
       .enter()
         .append("div").classed("horizontal-bar-graph-segment", true);
-  
+  //classed("class", true/flase)->true代表加上class
     segment
       .append("div").classed("horizontal-bar-graph-label", true)
         .text(function(d) { return d.label });
@@ -52,7 +49,7 @@ var HorizontalBarGraph = function(el, series) {
   var graph = new HorizontalBarGraph('#graph', [
     {label: "醫生", inner_label: "50000", value: 50, color: "#6ea6df" },
     {label: "老師",  inner_label: "40000",   value: 40,  color: "#84c26d" },
-    {label: "品檢人員",  inner_label: "30000",   value: 30,  color: "#e17a69" }
+    {label: "保險業務",  inner_label: "30000",   value: 30,  color: "#e17a69" }
   ]);
   graph.draw();
 
@@ -64,37 +61,69 @@ $(document).ready(function(){
     autoplay: true,
     autoplaySpeed:2000,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      }
+
+    ]
   });
 });
   
   //課程vue--要套資料
+
+  
   new Vue ({
     el: '.screen_carousel',
             data: {        
               courses: [
                   {
                     title: '翻轉教學技巧',
-                    content: '《教學的技術》2019年上市即榮登暢銷書排行榜冠軍，也是知名網路書店年度五十大好書，但是看完《教學的技術》全書，還是不懂操作的關鍵？很難想像真實在教室應用的場景？沒問題！本次線上課程特別複刻教學的技術——「教學工作坊」，邀請學校老師、企業家、高階主管、醫師、律師，重新回到教室當學生。由福哥親自示範，你將觀察職業講師的教學技巧，如何融入真實課堂，徹底公開教學技術的精華訣竅。',
+                    time: '6小時',
+                    person: '100人',
+                    cost: '1000元',
                   },
                   {
                     title: '翻轉教學技巧',
-                    content: '《教學的技術》2019年上市即榮登暢銷書排行榜冠軍，也是知名網路書店年度五十大好書，但是看完《教學的技術》全書，還是不懂操作的關鍵？很難想像真實在教室應用的場景？沒問題！本次線上課程特別複刻教學的技術——「教學工作坊」，邀請學校老師、企業家、高階主管、醫師、律師，重新回到教室當學生。由福哥親自示範，你將觀察職業講師的教學技巧，如何融入真實課堂，徹底公開教學技術的精華訣竅。',
+                    time: '6小時',
+                    person: '100人',
+                    cost: '1000元',
                   },
                   {
                     title: '翻轉教學技巧',
-                    content: '《教學的技術》2019年上市即榮登暢銷書排行榜冠軍，也是知名網路書店年度五十大好書，但是看完《教學的技術》全書，還是不懂操作的關鍵？很難想像真實在教室應用的場景？沒問題！本次線上課程特別複刻教學的技術——「教學工作坊」，邀請學校老師、企業家、高階主管、醫師、律師，重新回到教室當學生。由福哥親自示範，你將觀察職業講師的教學技巧，如何融入真實課堂，徹底公開教學技術的精華訣竅。',
+                    time: '6小時',
+                    person: '100人',
+                    cost: '1000元',
                   },
                   {
                     title: '翻轉教學技巧',
-                    content: '《教學的技術》2019年上市即榮登暢銷書排行榜冠軍，也是知名網路書店年度五十大好書，但是看完《教學的技術》全書，還是不懂操作的關鍵？很難想像真實在教室應用的場景？沒問題！本次線上課程特別複刻教學的技術——「教學工作坊」，邀請學校老師、企業家、高階主管、醫師、律師，重新回到教室當學生。由福哥親自示範，你將觀察職業講師的教學技巧，如何融入真實課堂，徹底公開教學技術的精華訣竅。',
+                    time: '6小時',
+                    person: '100人',
+                    cost: '1000元',
                   },
                   {
                     title: '翻轉教學技巧',
-                    content: '《教學的技術》2019年上市即榮登暢銷書排行榜冠軍，也是知名網路書店年度五十大好書，但是看完《教學的技術》全書，還是不懂操作的關鍵？很難想像真實在教室應用的場景？沒問題！本次線上課程特別複刻教學的技術——「教學工作坊」，邀請學校老師、企業家、高階主管、醫師、律師，重新回到教室當學生。由福哥親自示範，你將觀察職業講師的教學技巧，如何融入真實課堂，徹底公開教學技術的精華訣竅。',
-                  },
-                  {
-                    title: '翻轉教學技巧',
-                    content: '《教學的技術》2019年上市即榮登暢銷書排行榜冠軍，也是知名網路書店年度五十大好書，但是看完《教學的技術》全書，還是不懂操作的關鍵？很難想像真實在教室應用的場景？沒問題！本次線上課程特別複刻教學的技術——「教學工作坊」，邀請學校老師、企業家、高階主管、醫師、律師，重新回到教室當學生。由福哥親自示範，你將觀察職業講師的教學技巧，如何融入真實課堂，徹底公開教學技術的精華訣竅。',
+                    time: '6小時',
+                    person: '100人',
+                    cost: '1000元',
                   },
                   
                 ], 
@@ -167,7 +196,12 @@ $(document).ready(function(){
 //postcard
 Vue.component ('cards', {
   template: `
+<<<<<<< HEAD
   <div class="card card--animated">
+=======
+  <div class="card card--animated col-4">
+    <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+>>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
   </div> `,
 });
 
