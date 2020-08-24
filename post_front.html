@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/pages_scss/post_card/post_card.css">
+
 </head>
 
 <body>
@@ -189,26 +190,27 @@
     </div>
   </div>
   @@include('app/footer.html')
-</body>
-<!-- <script src="./js/jquery-3.4.1.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-<script src="./js/post_card/popper.min.js"></script>
-<script src="./js/post_card/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
-<script src="./js/post_card/html2canvas.js"></script>
-<script src="./js/post_card/post_vue.js"></script>
-<script src="./js/post_card/post_imgUp.js"></script>
-<script src="./js/post_card/post_change.js"></script>
-<script src="./js/post_card/post_canvas.js"></script>
+  @@include('app/script.html')
+  <script src="./js/post_card/popper.min.js"></script>
+  <script src="./js/post_card/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="./js/post_card/html2canvas.js"></script>
+  <script src="./js/post_card/post_vue.js"></script>
+  <script src="./js/post_card/post_imgUp.js"></script>
+  <script src="./js/post_card/post_change.js"></script>
+  <script src="./js/post_card/post_canvas.js"></script>
 
-<script>
-  // function doCapture() {
-  //   html2canvas(document.getElementById("frontCapture")).then(function (canvas) {
-  //     console.log(canvas.toDataURL("image/jpeg", 0.9));
-  //   });
-  // }
-</script>
+  <!-- <script>
+    function doCapture() {
+
+      window.scrollTo(0, 0);
+      html2canvas(document.getElementById("frontStyle3")).then(function (canvas) {
+        console.log(canvas.toDataURL("image/jpeg", 0.9));
+      });
+
+    }
+  </script> -->
+
+</body>
 
 </html>
