@@ -26,47 +26,50 @@ a {
 
 @mixin btn {
     padding: 0;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 50px;
-    height: 40px;
-    width: 150px;
-    font-weight: bold;
-    line-height: 40px;
+    // height: 35px;
+    width: 130px;
+    font-weight: bolder;
+    line-height: 30px;
     text-align: center;
     border: none;
+    background: #ffffff;
+    box-shadow: $card_shadow;
+    transition: ease-in-out .2s;
+    &:hover{
+        color:white;
+        transition: ease-in-out .2s;
+    }
 }
 
 .btn_primary {
     @include btn();
-    color: #ffffff;
-    background: #1b4d9f;
-    box-shadow: $card_shadow;
-
+    border: 2px solid #119BEB;
     &:hover {
-        background: #336AC6;
+        background: #119BEB;
+
     }
 
 }
 
 .btn_second {
     @include btn();
-    color: #1b4d9f;
-    background: #e8c300;
-
+    border: 2px solid #EE7002;
     &:hover {
-        background: #FCDA27;
+        background: #EE7002;
+
     }
+
 }
 
 .btn_third {
     @include btn();
-    color: #1b4d9f;
-    background: #fff;
-    border: 2px solid #1b4d9f;
-
+    border: 2px solid #6b6b6b;
     &:hover {
-        color: #fff;
-        background: #336AC6;
+        background: #6b6b6b;
+
     }
+
 
 }
