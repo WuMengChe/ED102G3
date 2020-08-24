@@ -196,8 +196,12 @@ $(document).ready(function(){
 //postcard
 Vue.component ('cards', {
   template: `
+<<<<<<< HEAD
+  <div class="card card--animated">
+=======
   <div class="card card--animated col-4">
     <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+>>>>>>> b492cbecc35e3f91c7384ed9e59c5db191e32fb8
   </div> `,
 });
 

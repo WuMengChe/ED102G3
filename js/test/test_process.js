@@ -1,8 +1,12 @@
+const imagemin = require("gulp-imagemin");
+
+// 計時器
 var nowtime=0
-// 宣告nowtime
 setInterval(
   function(){
     nowtime=nowtime+1;
-    $(".timimg").text("測驗已經過"+nowtime+"秒");
+    $(".timimg").text(nowtime);
   }
 ,1000)
+
+
