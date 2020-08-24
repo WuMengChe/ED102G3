@@ -8,83 +8,46 @@
 #forum_discuss {
   background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  border: 1px solid;
-  min-height: 1000px;
-}
-
-.dis_body {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  .career {
-  }
-  .career_name::-webkit-scrollbar {
-    display: none;
-  }
-  .career_name {
-    overflow: hidden;
-    overflow-x: scroll;
-    display: flex;
-    flex-direction: column;
-    // position: fixed;
-    // top: 250px;
-    // left: 250px;
-    //   li {
-    //     text-align: center;
-    //     height: 50px;
-    //     line-height: 50px;
-    //     font-weight: 700;
-    //     width: 200px;
-    //     position: relative;
-    //     cursor: pointer;
-    //     color: white;
-    //     text-align: center;
-    //     &:hover {
-    //       background-color: rgba($color: #000000, $alpha: 0.1);
-    //     }
-    //     .fa-briefcase {
-    //       padding-left: 10px;
-    //     }
-  }
-  // }
-}
-
-.Travel-icon {
-  max-width: 30px;
-  width: 100%;
-  // border: 1px solid red;
-  position: absolute;
-  left: 20px;
-  top: 10px;
+  // background-size: cover;
+  background-position: top center;
+  min-height: 600px;
+  // background-attachment: fixed
+  border: 1px solid red;
 }
 
 //搜尋關鍵字
-.search {
+.search_wrap {
   padding-top: 20px;
-  padding-bottom: 10px;
-  .search_wrap {
-    // border: 1px solid blue;
-    width: 720px;
-    margin: 0 auto;
-    .search_wrap_line {
-      background-color: white;
-      border-radius: 30px;
-      .fa-search {
-        padding-left: 10px;
-      }
-      #search_btn {
-        cursor: pointer;
-        background-color: white;
-        border: none;
-      }
-      #text_input {
-        min-width: 85%;
-        height: 30px;
-        border: none;
-      }
+  .search_wrap_line {
+    background-color: white;
+    border-radius: 30px;
+    .fa-search {
+      padding-left: 10px;
     }
+    #search_btn {
+      cursor: pointer;
+      background-color: white;
+      border: none;
+    }
+    #text_input {
+      min-width: 90%;
+      height: 30px;
+      border: none;
+    }
+  }
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 1200px;
+  .dis_side {
+    position: fixed;
+    border: 1px solid red;
+  }
+  .right_panel {
+  }
+  .side_wrap {
+    position: fix;
   }
 }
 
@@ -92,17 +55,10 @@
 
 $color: #3694d7;
 $timing: 0.3s;
-
 .select {
-  // background-color: rgb(0, 50, 78);
-  padding-top: 20px;
-  // border: 1px solid red;
-  margin: 0 auto;
+  padding: 20px 0;
   width: 100%;
   .select_wrap {
-    width: 720px;
-    // border: 1px solid white;
-    margin: 0 auto;
     text-align: end;
     max-height: 34px;
     z-index: 100;
@@ -201,9 +157,9 @@ $timing: 0.3s;
 
 /* 內容區塊 */
 .tab_contents {
-  padding: 0 10px;
-  max-width: 740px;
-  width: 100%;
+  // padding: 0 10px;
+  // max-width: 740px;
+  // width: 100%;
   .msg_content {
     // border-bottom: 1px solid RGBA(255, 255, 255, 1);
     box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
@@ -338,13 +294,6 @@ div.pagination_block > ul.pagination > li > a {
   color: white;
 }
 
-/* 留意: 將最後一個 li 裡的 a，右邊框加回來 */
-/* 留意: 將最後一個 li 裡的 a，加上圓角 */
-// div.pagination_block > ul.pagination > li:last-child > a {
-//   border-right: 1px solid #dee2e6;
-//   border-radius: 0 5px 5px 0;
-// }
-/* 留意: 將第一個 li 裡的 a，加上圓角 */
 div.pagination_block > ul.pagination > li:first-child > a {
   display: inline-block;
   // border-radius: 5px 0 0 5px;
@@ -639,59 +588,51 @@ div.impeachment_overlay > article {
   }
 }
 
-//側邊欄位置調整
-
-.side_wrap {
-  max-width: 740px;
-}
-
 /* RWD */
 @media screen and (max-width: 992px) {
   #forum_discuss {
-    .dis_body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .career {
-        max-width: 700px;
-        // padding: 0;
-        background-color: white;
-        // margin-bottom: 50px;
-        ul.career_name {
-          display: flex;
-          flex-direction: row;
-          position: static;
-          li {
-            min-width: 100px;
-            margin: 20px 10px;
-            background-color: #0056b3;
-            border-radius: 5px;
-            img {
-              display: none;
-            }
-          }
-        }
-      }
-    }
+    // .dis_body {
+    //   display: flex;
+    //   flex-direction: column;
+    //   align-items: center;
+    // }
   }
   div.forum_overlay > .forum_checkMsg {
     max-width: 500px;
     width: 100%;
     // margin: 50px auto;
   }
-}
 
-@media screen and (min-width: 1300px) {
-  // div.career.col-lg-2 {
-  //   display: none;
-  //   width: 0%;
-  // }
-  div.side_wrap {
-    display: flex;
-    flex-direction: column;
-    max-width: 740px;
-    margin: 0 auto;
-    width: 100%;
+  .wrap {
+    .side_wrap {
+      overflow: hidden;
+      overflow-x: scroll;
+      width: 100%;
+      margin: 20px 0;
+
+      .dis_side {
+        display: flex;
+        // width: 100%;
+        height: 70px;
+        width: max-content;
+        position: inherit;
+
+        ul {
+          flex-direction: row;
+          margin-bottom: 0px;
+          li {
+            margin: 10px 10px;
+          }
+        }
+      }
+    }
+    .side_wrap::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .side_bar_img {
+    display: none;
   }
 }
 
