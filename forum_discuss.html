@@ -19,23 +19,9 @@
       @@include('app/header.html')
     </div>
 
-    <!--搜尋框-->
-    <div class="search row">
-      <div class="col-lg-2"></div>
-      <div class="search_wrap">
-        <div class="search_wrap_line">
-          <i class="fas fa-search"></i>
-          <input type="search" placeholder="請輸入關鍵字" id="text_input" v-model="filter" @keyup.enter="submit">
-          <button id="search_btn" @click="searchContent()">搜尋</button>
-        </div>
-      </div>
-    </div>
-
     <div class="wrap row">
-      <div class="col-lg-2"></div>
-      <div class="side_wrap">
-        <!-- @@include('app/side_bar.html') -->
-        <div class="main_side_bar">
+      <div class="side_wrap col-lg-3">
+        <div class="dis_side main_side_bar">
           <ul>
             <li @click="search('實作型')">
               <a href="#"><span></span>實作型</a>
@@ -58,105 +44,80 @@
           </ul>
           <div class="side_bar_img">
             <img src="./img/side_bar.svg" alt="">
-
           </div>
-
-        </div>
-      </div>
-      <!--下拉選單-->
-      <div class="select row">
-        <div class="col-lg-2"></div>
-        <div class="select_wrap">
-          <span class="dis_dropdown" @click.stop="toggleDropdown($event)" :class="{'expanded': isOpen}">
-            <input type="radio" name="orderSelect" value="all" checked="checked" id="all" />
-            <label for="all">所有分類</label>
-            <input type="radio" name="orderSelect" value="popular" id="popular" />
-            <label for="popular">熱門討論</label>
-            <input type="radio" name="orderSelect" value="question" id="question" />
-            <label for="question">問題討論</label>
-            <input type="radio" name="orderSelect" value="share" id="share" />
-            <label for="share">經驗分享</label>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="dis_body row">
-      <!--右邊類型分類-->
-      <div class="career col-lg-2"></div>
-      <!--瀏覽留言區-->
-      <div class="tab_contents">
-        <!-- <div class="msg_content" v-for="content_Array in msgArray1">
-          <div class="mem_info">
-            <div class="info_list">
-              <img :src="content_Array.d_img" alt="" class="dis_img" />
-              <div class="dis_name">{{content_Array .d_name}}</div>
-              <div class="dis_date">{{content_Array .d_data}}</div>
-            </div>
-            <div class="tags_list">
-              <span class="type_tag">{{content_Array .d_type}}</span>
-              <span class="type_tag">{{content_Array .d_qu}}</span>
-            </div>
-          </div>
-          <div class="msg_title open_dialog">
-            {{content_Array.d_title}}
-          </div>
-          <div class="msg_textarea">
-            {{content_Array .d_text}}
-          </div>
-          <div class="msg_btn">
-            <button><i class="far fa-heart"></i></button>
-            <button><i class="far fa-comment-alt"></i>5</button>
-            <button class="collect_btn">收藏</button>
-            <button class="impeachment_btn">檢舉</button>
-          </div>
-        </div> -->
-
-
-        <!--使用json檔仔入資料-->
-        <div class="msg_content" v-for="messages in searchResult">
-          <div class="mem_info">
-            <div class="info_list">
-              <img :src="messages.d_img" alt="" class="dis_img" />
-              <div class="dis_name">{{messages.d_name}}</div>
-              <div class="dis_date">{{messages.d_data}}</div>
-            </div>
-            <div class="tags_list">
-              <span class="type_tag">{{messages.d_type}}</span>
-              <span class="type_tag">{{messages.d_qu}}</span>
-            </div>
-          </div>
-          <div class="msg_title open_dialog" @click="search_title">
-            {{messages.d_title}}
-          </div>
-          <div class="msg_textarea">
-            {{messages.d_text}}
-          </div>
-          <div class="msg_btn">
-            <button><i class="far fa-heart" @click="heart_btn"></i></button>
-            <button><i class="far fa-comment-alt"></i>5</button>
-            <button class="collect_btn" @click="collect_btn">收藏</button>
-            <button class="impeachment_btn" @click="bad_btn">檢舉</button>
-          </div>
-        </div>
-
-
-
-
-        <!--頁碼-->
-        <div class="pagination_block">
-          <ul class="pagination">
-            <li><a href="#">‹</a></li>
-            <li><a href="#" class="-on">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">›</a></li>
-          </ul>
         </div>
       </div>
 
-      <a href="./forum_form.html" class="pencil_btn">
-        <i class="fas fa-edit"></i>
-      </a>
+      <div class="right_panel col-lg-9">
+        <!-- 搜尋框 -->
+        <div class="search_wrap">
+          <div class="search_wrap_line">
+            <i class="fas fa-search"></i>
+            <input type="search" placeholder="請輸入關鍵字" id="text_input" v-model="filter" @keyup.enter="submit">
+            <button id="search_btn" @click="searchContent()">搜尋</button>
+          </div>
+        </div>
+        <!-- 下拉選單 -->
+        <div class="select">
+          <div class="select_wrap">
+            <span class="dis_dropdown" @click.stop="toggleDropdown($event)" :class="{'expanded': isOpen}">
+              <input type="radio" name="orderSelect" value="all" checked="checked" id="all" />
+              <label for="all">所有分類</label>
+              <input type="radio" name="orderSelect" value="popular" id="popular" />
+              <label for="popular">熱門討論</label>
+              <input type="radio" name="orderSelect" value="question" id="question" />
+              <label for="question">問題討論</label>
+              <input type="radio" name="orderSelect" value="share" id="share" />
+              <label for="share">經驗分享</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="dis_body">
+          <!--瀏覽留言區-->
+          <div class="tab_contents">
+            <div class="msg_content" v-for="messages in searchResult">
+              <div class="mem_info">
+                <div class="info_list">
+                  <img :src="messages.d_img" alt="" class="dis_img" />
+                  <div class="dis_name">{{messages.d_name}}</div>
+                  <div class="dis_date">{{messages.d_data}}</div>
+                </div>
+                <div class="tags_list">
+                  <span class="type_tag">{{messages.d_type}}</span>
+                  <span class="type_tag">{{messages.d_qu}}</span>
+                </div>
+              </div>
+              <div class="msg_title open_dialog" @click="search_title">
+                {{messages.d_title}}
+              </div>
+              <div class="msg_textarea">
+                {{messages.d_text}}
+              </div>
+              <div class="msg_btn">
+                <button><i class="far fa-heart" @click="heart_btn"></i></button>
+                <button><i class="far fa-comment-alt"></i>5</button>
+                <button class="collect_btn" @click="collect_btn">收藏</button>
+                <button class="impeachment_btn" @click="bad_btn">檢舉</button>
+              </div>
+            </div>
+
+            <!--頁碼-->
+            <div class="pagination_block">
+              <ul class="pagination">
+                <li><a href="#">‹</a></li>
+                <li><a href="#" class="-on">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">›</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <a href="./forum_form.html" class="pencil_btn">
+            <i class="fas fa-edit"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -289,6 +250,7 @@
     </article>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script>
 
     new Vue({
@@ -383,7 +345,7 @@
             setTimeout(function () {
               $("div.forum_overlay").removeClass("-on -opacity-zero");
             }, 1000);
-          }); s
+          });
         },
         sendMsg() {
           //點擊回覆留言地方，按下去視窗變大
