@@ -1,11 +1,11 @@
 @import "../utils/variables";
-div.main_side_bar {
+.main_side_bar {
   width: 200px;
   height: 100vh;
   background: $second_color2;
   border-radius: 20px;
   padding: 0px 20px 0;
-  position: fixed;
+
   ul {
     margin-bottom: 30px;
     display: flex;
