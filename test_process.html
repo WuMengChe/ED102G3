@@ -12,38 +12,39 @@
 </head>
 <body>
     @@include('app/header.html')
-    <div class="during_test_wrap container">
-        <main class="main_during_test">
+    <div class="during_test_wrap ">
+        <main class="main_during_test container">
+                  <!-- 時間去哪了呢 -->
+                  <div class="timer_bx">
+                     <p>測驗時間已經過<span class="timimg"></span>秒</p>
+                    </div>
+                  <!-- 時間放這裡 -->
+                  
             <div class="question_bx">
-                <h3>第一題</h3>
-                <P>你是貓派還是狗派?</P>
+                <div class="img_bx"><img src="./img/test/host.svg"alt=""></div>
+                <div class="question">
+                <P class="topic">Q1:你是貓派還是狗派?</P>
             </div>
-                <!-- 時間去哪了呢 -->
-                    <div class="timer_bx"><p class="timimg"></p></div>
-                    <!-- 時間放這裡 -->
+        </div>
             <div class="answer_option_wrap">
+
                 <div class="answer_option option1">
-                    <a class="answer_link" href="./test_result.html">
-                        <img src="./img/test/cat.svg" alt="">
-                        <span>A</span>
-                        <p>當然貓派</p>
-                    </a>
+                        <img class="cat cat_r " src="./img/test/cat.svg"  alt="">
+                        <p class="a1">當然是貓派</p>
                 </div>
                 <div class="compare">
-            
-                    <span>or</span>
+                   <p>VS</p>
                 </div>
                 <div class="answer_option option2">
-                    <a class="answer_link" href="./test_result.html"></a>
-                    <img src="./img/test/cat.svg" alt="">
-                    <span>B</span>
-                    <p>一定是貓派的，道歉時露出肉球是應該的吧</p>
-                </a>
+                    <img class=" cat cat_l" src="./img/test/cat2.svg"  alt="">
+                <a href="./test_result.html">
+                    <p class="a2">多貓派</p>
+                    </a>
                 </div>
             </div>
             <div class="progress_bar_bx">
                 <div class="progress_container">
-                    <span>1/18</span>
+                    <span class="prg">0/18</span>
                 <div class="progress_bar"></div>
                 </div>
             </div>
@@ -53,6 +54,34 @@
     @@include('app/footer.html')
     <script type="text/javascript" src="./js/test/jquery-3.5.1.min.js"></script>
 
-<script type="text/javascript" src="./js/test/test_process.js"></script>
+<script type="text/javascript">
+
+// 計時器
+var nowtime=0
+setInterval(
+  function(){
+    nowtime=nowtime+1;
+    $(".timimg").text(nowtime);
+  }
+,1000)
+
+$(document).ready(function(){
+			$(".answer_option").click(function(){
+                $(".cat_l").attr('src',"./img/test/cat3.svg"); 
+                $(".cat_r").attr('src',"./img/test/cat4.svg"); 
+                $(".a1").text("賓士黑");
+                $(".a2").text("暹羅貓");
+                $(".topic").text("Q18:哪一種黑眼圈更可愛?");
+                $(".progress_bar").css({
+                    'width':'400px'
+                });
+                $(".prg").text("17/18");
+			});
+		});
+
+
+
+
+</script>
 </body>
 </html>
