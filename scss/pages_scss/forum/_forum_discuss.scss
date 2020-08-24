@@ -8,33 +8,15 @@
 #forum_discuss {
   background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  border: 1px solid;
-  min-height: 1000px;
+  // background-size: cover;
+  background-position: top center;
+  min-height: 600px;
+  // background-attachment: fixed
+  border: 1px solid red;
 }
 
-// .dis_body {
-//   margin-top: 20px;
-//   display: flex;
-//   justify-content: center;
-
-//   .career_name::-webkit-scrollbar {
-//     display: none;
-//   }
-//   .career_name {
-//     overflow: hidden;
-//     overflow-x: scroll;
-//     display: flex;
-//     flex-direction: column;
-//   }
-// }
-
 //搜尋關鍵字
-
 .search_wrap {
-  border: 1px solid blue;
-  // width: 720px;
   padding-top: 20px;
   .search_wrap_line {
     background-color: white;
@@ -56,9 +38,11 @@
 }
 
 .wrap {
-  max-width: 1200px;
   margin: 0 auto;
+  max-width: 1200px;
   .dis_side {
+    position: fixed;
+    border: 1px solid red;
   }
   .right_panel {
   }
@@ -621,21 +605,24 @@ div.impeachment_overlay > article {
 
   .wrap {
     .side_wrap {
-      position: inherit;
       overflow: hidden;
       overflow-x: scroll;
       width: 100%;
-      padding: 20px;
+      margin: 20px 0;
 
       .dis_side {
         display: flex;
-        width: 100%;
-        height: 50px;
+        // width: 100%;
+        height: 70px;
         width: max-content;
+        position: inherit;
 
         ul {
           flex-direction: row;
           margin-bottom: 0px;
+          li {
+            margin: 10px 10px;
+          }
         }
       }
     }
