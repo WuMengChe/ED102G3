@@ -2,15 +2,48 @@
 
 $nav_font_size: 18px;
 $header_icon_i_size: 20px;
-$header_icon_i_color: #1b4d9f;
+$header_icon_i_color: #016caa;
 $header_nav_font_color: #1b4d9f;
+
+@mixin after {
+    &::after {
+        content: "";
+        margin: 0 auto;
+        background-color: $second_color3;
+        width: 100%;
+        height: 12px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 10px;
+        z-index: -1;
+        // transition: all .4s;
+        animation-name: rotation;
+        animation-duration: .6s;
+    }
+}
+
+@keyframes rotation {
+    0% {
+        left: 50%;
+        width: 0%;
+    }
+
+    100% {
+        left: 0%;
+        width: 100%;
+    }
+}
 
 div.header_wrap {
     width: 100%;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.95);
     position: sticky;
     top: 0;
     z-index: 20;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+    ;
+
 
     header.header {
         width: 100%;
@@ -21,7 +54,7 @@ div.header_wrap {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding: 10px 15px 0;
+        padding: 8px 15px;
         position: sticky;
         top: 0px;
 
@@ -143,18 +176,19 @@ div.header_wrap {
 
 
         div.logo {
-            // border: $outline2;
-            width: 70px;
-            height: 70px;
+            // border: 1px solid rgb(240, 17, 17);
+            width: auto;
+            height: 60px;
             margin-right: auto;
 
             a {
-                width: 100%;
+                height: 100%;
                 display: inline-block;
-                // border: $outline3;
+                // border: 1px solid rgb(64, 115, 211);
 
                 img {
-                    width: 101%;
+                    // border: 1px solid black;
+                    height: 100%;
                     vertical-align: middle;
                 }
             }
@@ -176,6 +210,16 @@ div.header_wrap {
                         font-size: $nav_font_size;
                         color: $header_nav_font_color;
                         font-weight: bold;
+                        // border: 1px solid black;
+                        position: relative;
+
+                        &.active {
+                            @include after();
+                        }
+
+                        &:hover {
+                            @include after();
+                        }
                     }
                 }
             }
@@ -226,10 +270,10 @@ div.header_wrap {
 }
 
 
-@media(max-width: 780px) {
+@media(max-width: 920px) {
 
     header.header {
-        background: pink;
+        background: rgba(255, 255, 255, 0.95);
         position: relative;
 
         div.hamburger {

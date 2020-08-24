@@ -42,10 +42,16 @@ function doFirst() {
   $("input[type='file']").change(function () {
     var input = $("input[type='file']")[0];
     if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      let readFile = new FileReader();
+
       reader.onload = function (e) {
+        e.preventDefault();
+        let readFile = new FileReader();
+        readFile.readAsDataURL(file);
+        let image = document.getElementById('frontStyle1');
         image.style.background = `url(${readFile.result})`;
+        image.style.backgroundSize = 'cover';
+        image.style.backgroundRepeat = 'no-repeat';
+        image.style.backgroundPosition = 'center';
 
       }
       reader.readAsDataURL(input.files[0]);
