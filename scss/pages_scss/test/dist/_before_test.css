@@ -1,6 +1,6 @@
 @charset "UTF-8";
 div.before_test_wrap {
-  background-image: url(../../../img/test/bg_test.png);
+  background-image: url(../../../img/test/before_test.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -23,7 +23,13 @@ div.before_test_wrap .main_before_test section.origin_of_types_before_test {
 }
 div.before_test_wrap .main_before_test section.origin_of_types_before_test h1 {
   font-weight: 600;
-  padding-bottom: 2%;
+  letter-spacing: 2px;
+  padding: 1% 2%;
+  margin: 2% 0;
+  border: 3px solid #FFE56D;
+  box-shadow: 5px 5px 1px #FFE56D;
+  display: flex;
+  align-items: center;
 }
 div.before_test_wrap .main_before_test section.origin_of_types_before_test p {
   line-height: 30px;

@@ -10,6 +10,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  border: 1px solid;
+  min-height: 1000px;
 }
 
 .dis_body {
@@ -61,7 +63,7 @@
 //搜尋關鍵字
 .search {
   padding-top: 20px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   .search_wrap {
     // border: 1px solid blue;
     width: 720px;
@@ -200,6 +202,8 @@ $timing: 0.3s;
 /* 內容區塊 */
 .tab_contents {
   padding: 0 10px;
+  max-width: 740px;
+  width: 100%;
   .msg_content {
     // border-bottom: 1px solid RGBA(255, 255, 255, 1);
     box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
@@ -210,6 +214,7 @@ $timing: 0.3s;
       color: RGBA(255, 255, 255, 1);
       .info_list {
         display: flex;
+        align-items: center;
         img {
           width: 30px;
           height: 30px;
@@ -427,7 +432,6 @@ div.forum_overlay > .forum_checkMsg {
 //點進標題的內容
 .feedback_wrap {
   background: #94b2db;
-  padding: 0 10px;
   .check_content {
     .mem_info {
       display: flex;
@@ -437,7 +441,6 @@ div.forum_overlay > .forum_checkMsg {
       color: RGBA(255, 255, 255, 1);
       .info_list {
         display: flex;
-        padding: 10px;
         line-height: 2;
         color: RGBA(255, 255, 255, 1);
         img {
@@ -548,9 +551,10 @@ div.forum_overlay > .forum_checkMsg {
       background-color: white;
       text-align: right;
       .close_msg_div {
-        border: 1px solid red;
+        // border: 1px solid red;
         height: 30px;
         width: 100%;
+        padding: 5px;
       }
       .leave_msg {
         // border: 1px solid gray;
@@ -565,12 +569,13 @@ div.forum_overlay > .forum_checkMsg {
         }
       }
       .confirm_send_btn {
-        height: 30px;
-        border: 1px solid red;
-        text-align: right;
+        background-color: white;
+        padding: 5px;
       }
       #send_msg_btn {
-        display: inline-block;
+        // display: inline-block;
+        border: none;
+        background-color: white;
       }
     }
   }
@@ -594,7 +599,7 @@ div.impeachment_overlay {
 }
 div.impeachment_overlay.-on {
   opacity: 1;
-  z-index: 1;
+  z-index: 400;
 }
 
 div.impeachment_overlay.-opacity-zero {
@@ -609,20 +614,32 @@ div.impeachment_overlay > article {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #f7ea92;
   .accuse_close_btn {
     text-align: right;
+  }
+  .accuse_send_btn {
+    text-align: center;
+    .impeachment_send_btn {
+      background-color: #a0cadb;
+      border-radius: 5px;
+      padding: 5px;
+    }
   }
   h3 {
     text-align: center;
   }
   .accuse_wrap {
-    border: 1px solid red;
+    // border: 1px solid red;
     width: 300px;
+    padding-top: 10px;
     p {
       padding: 5px;
     }
   }
 }
+
+//側邊欄位置調整
 
 .side_wrap {
   max-width: 740px;

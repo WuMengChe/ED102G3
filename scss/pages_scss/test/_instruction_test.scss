@@ -2,7 +2,6 @@
 .instruction_test_wrap{
     // border: 1px solid forestgreen;
     margin: auto;
-    margin-top: 5%;
     background: $second_color2;
     .main_instruction_wrap{
         display: flex;
@@ -18,7 +17,7 @@
             animation: circle 6s  infinite linear;
             position: absolute;
             z-index: 0;
-            top: 20%;
+            top: 15%;
             left: 30%;
             box-shadow: $card_shadow;
 

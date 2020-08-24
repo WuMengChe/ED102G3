@@ -1,36 +1,40 @@
+@import'../../_public_dontTouch/utils/variables';
+
 body {
   background-color: #F6F3ED;
 }
 
 .postcard_view {
-  border: 1px solid black;
+  // border: 1px solid black;
   max-width: 1200px;
-
+  margin: 50px auto;
 
 
   .select_date {
-    margin-top: 20px;
-    border: 1px solid blue;
+    // border: 1px solid blue;
 
-    // justify-content: space-between;
     .date {
+      // border: 1px solid black;
 
 
-      p {
-        border: 1px solid red;
+      h3 {
+        // border: 1px solid red;
         display: inline-block;
+        vertical-align: top;
       }
 
       input {
-        margin-left: 10px;
+        margin-left: 6px;
         border-radius: 5px;
         outline: none;
         border: none;
         display: inline-block;
         font-size: 16px;
         padding: 2px 5px;
-        width: 150px;
-
+        width: 120px;
+        border: 1px solid #6b6b6b;
+        vertical-align: top;
+        // color: #6b6b6b;
       }
 
     }
@@ -40,7 +44,7 @@ body {
     margin-top: 20px;
 
     .view_front {
-      border: 1px solid black;
+      // border: 1px solid black;
 
       p {
         padding-bottom: 20px;
@@ -48,11 +52,13 @@ body {
 
       img {
         width: 100%;
+        border: 1px solid black;
+
       }
     }
 
     .view_back {
-      border: 1px solid black;
+      // border: 1px solid black;
 
       p {
         padding-bottom: 20px;
@@ -61,11 +67,13 @@ body {
 
       img {
         width: 100%;
+        border: 1px solid black;
+
       }
     }
 
     .send_date {
-      border: 1px solid pink;
+      // border: 1px solid pink;
       float: right;
       padding: 0;
       margin: 20px;
@@ -73,7 +81,7 @@ body {
       div {
         margin: 0 auto;
         padding: 0;
-        border: 1px solid blue;
+        // border: 1px solid blue;
         display: flex;
         justify-content: space-between;
         float: right;
@@ -107,7 +115,7 @@ body {
     }
 
     .pop {
-      border: 1px solid red;
+      // border: 1px solid red;
       background-color: white;
       width: 320px;
       height: 150px;
@@ -118,10 +126,13 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      box-shadow: $card_shadow;
+      ;
 
       .close {
-        border: 1px solid rgb(71, 131, 98);
+        // border: 1px solid rgb(71, 131, 98);
         cursor: pointer;
+        float: right;
 
         &::after {
           // 沒有用
@@ -134,11 +145,16 @@ body {
 
 
         i {
-          font-size: 28px;
-          color: rgb(51, 51, 51);
-          border: 1px solid rgb(14, 29, 20);
-          float: right;
-          padding: 5px;
+          font-size: 26px;
+          color: rgb(71, 71, 71);
+          // border: 1px solid rgb(14, 29, 20);
+          // float: right;
+          padding: 5px 8px;
+
+          &:hover {
+            color: black;
+
+          }
         }
 
 
@@ -148,7 +164,7 @@ body {
 
 
       .when {
-        border: 1px solid orange;
+        // border: 1px solid orange;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -156,13 +172,13 @@ body {
         // height: 100px;
 
         .when_date {
-          border: 1px solid rgb(30, 61, 240);
+          // border: 1px solid rgb(30, 61, 240);
           // margin-top: 50px;
           padding: 10px;
         }
 
         .p_small {
-          border: 1px solid rgb(73, 213, 231);
+          // border: 1px solid rgb(73, 213, 231);
           margin-top: 20px;
           padding: 5px;
           color: #6b6b6b;
@@ -174,9 +190,7 @@ body {
 }
 
 /*
-
-  INSTRUCTIONS ---------------------------------------------------------------------------------
-  
+日曆css
   1. Add this stylesheet to the <head> of your pages
      <link href="YOUR PATH/calendar.css" rel="stylesheet" type="text/css" />
      
@@ -203,4 +217,15 @@ div.datedropper.calendar {
 
 div.datedropper .picker ul.pick li span {
   bottom: 10px !important;
+}
+
+@media(max-width:767px) {
+  .postcard_view {
+    margin: 20px auto;
+
+    .view_back {
+      margin-top: 20px;
+    }
+  }
+
 }

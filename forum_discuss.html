@@ -1,429 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>forum_discuss</title>
-    <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
-    <link rel="stylesheet" href="./css/app_public.css" />
-    <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
-    <script src="./js/forum/forum_discuss.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
-  </head>
 
-  <body>
-    <div id="forum_discuss" class="container-fluid">
-      <div class="header row">
-        <div class="header_wrap">
-          <header class="header">
-            <div class="logo">
-              <a href="index.html">
-                <img src="img/logo.svg" alt="" />
-              </a>
-            </div>
-            <div class="header_nav">
-              <ul>
-                <li><a href="test_before.html">職涯分析</a></li>
-                <li><a href="#">行業攻略</a></li>
-                <li><a href="forum_discuss">職涯論壇</a></li>
-                <li><a href="course_main.html">探索課程</a></li>
-                <li><a href="post_intro.html">明信片</a></li>
-              </ul>
-            </div>
-            <div class="header_icon">
-              <div class="cart">
-                <a href="#"
-                  ><i class="fas fa-shopping-cart"></i>
-                  <div class="cart_num"><span>1</span></div>
-                </a>
-                <!-- <div class="cart_num"><span>1</span></div> -->
-              </div>
-              <div class="member">
-                <a href="#"><i class="fas fa-user"></i></a>
-              </div>
-            </div>
-          </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>forum_discuss</title>
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
+  <link rel="stylesheet" href="./css/app_public.css" />
+  <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+  <div id="forum_discuss" class="container-fluid">
+    <div class="header row">
+      @@include('app/header.html')
+    </div>
+
+    <!--搜尋框-->
+    <div class="search row">
+      <div class="col-lg-2"></div>
+      <div class="search_wrap">
+        <div class="search_wrap_line">
+          <i class="fas fa-search"></i>
+          <input type="search" placeholder="請輸入關鍵字" id="text_input" v-model="filter" @keyup.enter="submit">
+          <button id="search_btn" @click="searchContent()">搜尋</button>
         </div>
       </div>
+    </div>
 
-      <!--搜尋框-->
-      <div class="search row">
+    <div class="wrap row">
+      <div class="col-lg-2"></div>
+      <div class="side_wrap">
+        <!-- @@include('app/side_bar.html') -->
+        <div class="main_side_bar">
+          <ul>
+            <li @click="search('實作型')">
+              <a href="#"><span></span>實作型</a>
+            </li>
+            <li @click="search('研究型')">
+              <a href="#"><span></span>研究型</a>
+            </li>
+            <li @click="search('文藝型')">
+              <a href="#"><span></span>文藝型</a>
+            </li>
+            <li @click="search('社會型')">
+              <a href="#"><span></span>社會型</a>
+            </li>
+            <li @click="search('企業型')">
+              <a href="#"><span></span>企業型</a>
+            </li>
+            <li @click="search('事務型')">
+              <a href="#"><span></span>事務型</a>
+            </li>
+          </ul>
+          <div class="side_bar_img">
+            <img src="./img/side_bar.svg" alt="">
+
+          </div>
+
+        </div>
+      </div>
+      <!--下拉選單-->
+      <div class="select row">
         <div class="col-lg-2"></div>
-        <div class="search_wrap">
-          <div class="search_wrap_line">
-            <i class="fas fa-search"></i>
-            <input
-              type="search"
-              placeholder="請輸入關鍵字"
-              id="text_input"
-              v-model="filter"
-            />
-            <button id="search_btn">搜尋</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="wrap row">
-        <div class="col-lg-2"></div>
-        <div class="side_wrap">@@include('./app/side_bar.html')</div>
-        <!--下拉選單-->
-        <div class="select row">
-          <div class="col-lg-2"></div>
-          <div class="select_wrap">
-            <span class="dis_dropdown">
-              <input
-                type="radio"
-                name="orderSelect"
-                value="all"
-                checked="checked"
-                id="all"
-              />
-              <label for="all">所有分類</label>
-              <input
-                type="radio"
-                name="orderSelect"
-                value="popular"
-                id="popular"
-              />
-              <label for="popular">熱門討論</label>
-              <input
-                type="radio"
-                name="orderSelect"
-                value="question"
-                id="question"
-              />
-              <label for="question">問題討論</label>
-              <input type="radio" name="orderSelect" value="share" id="share" />
-              <label for="share">經驗分享</label>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="dis_body row">
-        <!--右邊類型分類-->
-        <div class="career col-lg-2"></div>
-        <!--瀏覽留言區-->
-        <div class="tab_contents">
-          <div class="msg_content" v-for="content_Array in msgArray1">
-            <div class="mem_info">
-              <div class="info_list">
-                <img :src="content_Array.d_img" alt="" class="dis_img" />
-                <div class="dis_name">{{content_Array .d_name}}</div>
-                <div class="dis_date">{{content_Array .d_data}}</div>
-              </div>
-              <div class="tags_list">
-                <span class="type_tag">{{content_Array .d_type}}</span>
-                <span class="type_tag">{{content_Array .d_qu}}</span>
-              </div>
-            </div>
-            <div class="msg_title open_dialog">
-              {{content_Array.d_title}}
-            </div>
-            <div class="msg_textarea">
-              {{content_Array .d_text}}
-            </div>
-            <div class="msg_btn">
-              <button><i class="far fa-heart"></i></button>
-              <button><i class="far fa-comment-alt"></i>5</button>
-              <button class="collect_btn">收藏</button>
-              <button class="impeachment_btn">檢舉</button>
-            </div>
-          </div>
-
-          <!--頁碼-->
-          <div class="pagination_block">
-            <ul class="pagination">
-              <li><a href="#">‹</a></li>
-              <li><a href="#" class="-on">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">›</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <a href="./forum_form.html" class="pencil_btn">
-          <i class="fas fa-edit"></i>
-        </a>
-      </div>
-    </div>
-
-    <!--燈箱！！！-->
-    <!--點擊標題跳出的燈箱-->
-    <div class="forum_overlay">
-      <div class="forum_checkMsg">
-        <div class="close_btn">
-          <button type="button" class="btn_modal_close btn_primary">
-            返回
-          </button>
-        </div>
-        <div class="feedback_wrap">
-          <!--留言板內容-->
-          <div class="check_content">
-            <div class="mem_info">
-              <div class="info_list">
-                <img src="./img/forum/ex.jpg" alt="" class="dis_img" />
-                <div class="dis_name">豬八戒</div>
-                <div class="dis_date">2020-07-28</div>
-              </div>
-              <div class="tags_list">
-                <span class="type_tag">實作型</span>
-                <span class="type_tag">經驗分享</span>
-              </div>
-            </div>
-            <div class="msg_title open_dialog">
-              有人上過前端工程師學米私塾課嗎？
-            </div>
-            <div class="msg_textarea">
-              覺得課程整套實在有點貴，
-              而且業務死不讓我看學生作品，讓我覺得很詭異
-              有人買過嗎？學起來如何呢？求經驗分享～
-            </div>
-            <div class="msg_btn">
-              <button><i class="far fa-heart"></i></button>
-              <button><i class="far fa-comment-alt"></i></button>
-              <button class="collect_btn">收藏</button>
-              <button class="impeachment_btn">檢舉</button>
-            </div>
-          </div>
-        </div>
-        <div class="feedback_count">共5則回應</div>
-        <!--回應留言區-->
-        <div class="forum_feedback">
-          <div class="feedback_content">
-            <div class="info_list">
-              <img
-                src="./img/forum/大頭照/headshot_1.jpg"
-                alt=""
-                class="dis_img"
-              />
-              <div class="dis_name">孫悟空</div>
-              <div class="dis_date">2020-07-28</div>
-            </div>
-            <div class="msg_textarea">
-              我去上過覺得還好
-            </div>
-            <div class="msg_btn">
-              <button><i class="far fa-heart"></i></button>
-              <button class="impeachment_btn">檢舉</button>
-            </div>
-          </div>
-          <div class="feedback_content">
-            <div class="info_list">
-              <img
-                src="./img/forum/大頭照/headshot_1.jpg"
-                alt=""
-                class="dis_img"
-              />
-              <div class="dis_name">孫悟空</div>
-              <div class="dis_date">2020-07-28</div>
-            </div>
-            <div class="msg_textarea">
-              我去上過覺得還好
-            </div>
-            <div class="msg_btn">
-              <button><i class="far fa-heart"></i></button>
-              <button class="impeachment_btn">檢舉</button>
-            </div>
-          </div>
-          <div class="feedback_content">
-            <div class="info_list">
-              <img
-                src="./img/forum/大頭照/headshot_1.jpg"
-                alt=""
-                class="dis_img"
-              />
-              <div class="dis_name">孫悟空</div>
-              <div class="dis_date">2020-07-28</div>
-            </div>
-            <div class="msg_textarea">
-              我去上過覺得還好
-            </div>
-            <div class="msg_btn">
-              <button><i class="far fa-heart"></i></button>
-              <button class="impeachment_btn">檢舉</button>
-            </div>
-          </div>
-
-          <div class="leave_msg_wrap">
-            <div class="close_msg_div">
-              <button class="close_leaveMsg_btn">關閉</button>
-            </div>
-            <div class="leave_msg">
-              <textarea name="" id="send_msg" placeholder="送出..."></textarea>
-            </div>
-            <div class="confirm_send_btn">
-              <input type="submit" value="送出" id="send_msg_btn" />
-            </div>
-          </div>
+        <div class="select_wrap">
+          <span class="dis_dropdown" @click.stop="toggleDropdown($event)" :class="{'expanded': isOpen}">
+            <input type="radio" name="orderSelect" value="all" checked="checked" id="all" />
+            <label for="all">所有分類</label>
+            <input type="radio" name="orderSelect" value="popular" id="popular" />
+            <label for="popular">熱門討論</label>
+            <input type="radio" name="orderSelect" value="question" id="question" />
+            <label for="question">問題討論</label>
+            <input type="radio" name="orderSelect" value="share" id="share" />
+            <label for="share">經驗分享</label>
+          </span>
         </div>
       </div>
     </div>
 
-    <!--點擊檢舉跳出燈箱-->
-    <div class="impeachment_overlay">
-      <article>
-        <div class="accuse_close_btn">
-          <button type="button" class="impeachment_close_btn">關閉</button>
-        </div>
-        <h3>檢舉這篇文章的原因？</h3>
+    <div class="dis_body row">
+      <!--右邊類型分類-->
+      <div class="career col-lg-2"></div>
+      <!--瀏覽留言區-->
+      <div class="tab_contents">
+        <!-- <div class="msg_content" v-for="content_Array in msgArray1">
+          <div class="mem_info">
+            <div class="info_list">
+              <img :src="content_Array.d_img" alt="" class="dis_img" />
+              <div class="dis_name">{{content_Array .d_name}}</div>
+              <div class="dis_date">{{content_Array .d_data}}</div>
+            </div>
+            <div class="tags_list">
+              <span class="type_tag">{{content_Array .d_type}}</span>
+              <span class="type_tag">{{content_Array .d_qu}}</span>
+            </div>
+          </div>
+          <div class="msg_title open_dialog">
+            {{content_Array.d_title}}
+          </div>
+          <div class="msg_textarea">
+            {{content_Array .d_text}}
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button><i class="far fa-comment-alt"></i>5</button>
+            <button class="collect_btn">收藏</button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div> -->
 
-        <div class="accuse_wrap">
-          <p>
-            <input type="radio" name="accuse" id="" />
-            重傷、歧視、挑釁、謾罵他人
-          </p>
-          <p><input type="radio" name="accuse" id="" /> 交換個人資料</p>
-          <p><input type="radio" name="accuse" id="" /> 惡意洗版、重複張貼</p>
-          <p>
-            <input type="radio" name="accuse" id="" />
-            包含色情、露點、性騷擾之內容
-          </p>
-          <p>
-            <input type="radio" name="accuse" id="" /> 包含廣告、商業宣傳之內容
-          </p>
-          <p><input type="radio" name="accuse" id="" /> 其他原因</p>
+
+        <!--使用json檔仔入資料-->
+        <div class="msg_content" v-for="messages in searchResult">
+          <div class="mem_info">
+            <div class="info_list">
+              <img :src="messages.d_img" alt="" class="dis_img" />
+              <div class="dis_name">{{messages.d_name}}</div>
+              <div class="dis_date">{{messages.d_data}}</div>
+            </div>
+            <div class="tags_list">
+              <span class="type_tag">{{messages.d_type}}</span>
+              <span class="type_tag">{{messages.d_qu}}</span>
+            </div>
+          </div>
+          <div class="msg_title open_dialog" @click="search_title">
+            {{messages.d_title}}
+          </div>
+          <div class="msg_textarea">
+            {{messages.d_text}}
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart" @click="heart_btn"></i></button>
+            <button><i class="far fa-comment-alt"></i>5</button>
+            <button class="collect_btn" @click="collect_btn">收藏</button>
+            <button class="impeachment_btn" @click="bad_btn">檢舉</button>
+          </div>
         </div>
-      </article>
+
+
+
+
+        <!--頁碼-->
+        <div class="pagination_block">
+          <ul class="pagination">
+            <li><a href="#">‹</a></li>
+            <li><a href="#" class="-on">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">›</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <a href="./forum_form.html" class="pencil_btn">
+        <i class="fas fa-edit"></i>
+      </a>
     </div>
+  </div>
 
-    <script>
-      new Vue({
-        el: "#forum_discuss",
-        data() {
-          return {
-            msgArray1: [
-              {
-                d_img: "./img/forum/大頭照/headshot_1.jpg",
-                d_name: "黃小美",
-                d_data: "2020-01-20",
-                d_type: "研究型",
-                d_qu: "問題討論",
-                d_color: "orange",
-                d_title: "有人上過資策會的web前端app嗎？",
-                d_text:
-                  "想轉職成為工程師，在網路上看到資訊，請問有人可以有經驗可以分享嗎？",
-              },
-              {
-                d_img: "./img/forum/大頭照/headshot_2.jpg",
-                d_name: "王阿花",
-                d_data: "2019-03-20",
-                d_type: "企業型",
-                d_qu: "問題討論",
-                d_color: "orange",
-                d_title: "法物人員工作內容是什麼？",
-                d_text:
-                  "最近想要考法物人員，但是不知道該如何準備，有前輩可以分享嗎？",
-              },
-              {
-                d_img: "./img/forum/大頭照/headshot_3.jpg",
-                d_name: "王小豬",
-                d_data: "2019-05-03",
-                d_type: "企業型",
-                d_qu: "問題討論",
-                d_color: "orange",
-                d_title: "保險業務一個月會有多少收入？",
-                d_text:
-                  "聽朋友說他一個月有十萬元，請問保險業真的收入這麼高嗎？",
-              },
-              {
-                d_img: "./img/forum/大頭照/headshot_4.jpg",
-                d_name: "歐陽同學",
-                d_data: "2019-12-03",
-                d_type: "文藝型",
-                d_qu: "問題討論",
-                d_color: "orange",
-                d_title: "攝影師接一個case怎麼算？",
-                d_text:
-                  "最近朋友說要請我幫忙拍婚紗照，5000元一天，請問這是合理的價格嗎？",
-              },
-              {
-                d_img: "./img/forum/大頭照/headshot_5.jpg",
-                d_name: "Annie",
-                d_data: "2019-07-07",
-                d_type: "事務型",
-                d_qu: "問題討論",
-                d_color: "orange",
-                d_title: "請問五年的貿易經驗，薪資可以談多少？",
-                d_text:
-                  "最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？",
-              },
-            ],
+  <!--燈箱！！！-->
+  <!--點擊標題跳出的燈箱-->
+  <div class="forum_overlay">
+    <div class="forum_checkMsg">
+      <div class="close_btn">
+        <button type="button" class="btn_modal_close btn_primary" @click="btn_modal_close">
+          返回
+        </button>
+      </div>
+      <div class="feedback_wrap">
+        <!--留言板內容-->
+        <div class="check_content">
+          <div class="mem_info">
+            <div class="info_list">
+              <img src="./img/forum/大頭照/headshot_10.jpg" alt="" class="dis_img" />
+              <div class="dis_name">豬八戒</div>
+              <div class="dis_date">2020-07-28</div>
+            </div>
+            <div class="tags_list">
+              <span class="type_tag">實作型</span>
+              <span class="type_tag">經驗分享</span>
+            </div>
+          </div>
+          <div class="msg_title open_dialog">
+            有人上過前端工程師學米私塾課嗎？
+          </div>
+          <div class="msg_textarea">
+            覺得課程整套實在有點貴，
+            而且業務死不讓我看學生作品，讓我覺得很詭異
+            有人買過嗎？學起來如何呢？求經驗分享～
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button><i class="far fa-comment-alt"></i></button>
+            <button class="collect_btn">收藏</button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div>
+      </div>
+      <div class="feedback_count">共5則回應</div>
+      <!--回應留言區-->
+      <div class="forum_feedback">
+        <div class="feedback_content">
+          <div class="info_list">
+            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+            <div class="dis_name">孫悟空</div>
+            <div class="dis_date">2020-07-28</div>
+          </div>
+          <div class="msg_textarea">
+            我去上過覺得還好
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div>
+        <div class="feedback_content">
+          <div class="info_list">
+            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+            <div class="dis_name">孫悟空</div>
+            <div class="dis_date">2020-07-28</div>
+          </div>
+          <div class="msg_textarea">
+            我去上過覺得還好
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div>
+        <div class="feedback_content">
+          <div class="info_list">
+            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+            <div class="dis_name">孫悟空</div>
+            <div class="dis_date">2020-07-28</div>
+          </div>
+          <div class="msg_textarea">
+            我去上過覺得還好
+          </div>
+          <div class="msg_btn">
+            <button><i class="far fa-heart"></i></button>
+            <button class="impeachment_btn">檢舉</button>
+          </div>
+        </div>
 
-            msgArray2: [
-              {
-                d2_img: "./img/forum/大頭照/headshot_7.jpg",
-                d2_name: "葉大雄",
-                d2_data: "2020-01-20",
-                d2_type: "研究型",
-                d2_qu: "問題討論",
-                d2_color: "orange",
-                d2_title: "有人上過資策會的web前端app嗎？",
-                d2_text:
-                  "想轉職成為工程師，在網路上看到資訊，請問有人可以有經驗可以分享嗎？",
-              },
-              {
-                d2_img: "./img/forum/大頭照/headshot_8.jpg",
-                d2_name: "王阿花",
-                d2_data: "2019-04-30",
-                d2_type: "企業型",
-                d2_qu: "問題討論",
-                d2_color: "orange",
-                d2_title: "法物人員工作內容是什麼？",
-                d2_text:
-                  "最近想要考法物人員，但是不知道該如何準備，有前輩可以分享嗎？",
-              },
-              {
-                d2_img: "./img/forum/大頭照/headshot_9.jpg",
-                d2_name: "王小豬",
-                d2_data: "2020-02-02",
-                d2_type: "企業型",
-                d2_qu: "問題討論",
-                d2_color: "orange",
-                d2_title: "保險業務一個月會有多少收入？",
-                d2_text:
-                  "聽朋友說他一個月有十萬元，請問保險業真的收入這麼高嗎？",
-              },
-              {
-                d2_img: "./img/forum/大頭照/headshot_1.jpg",
-                d2_name: "歐陽同學",
-                d2_data: "2020-10-05",
-                d2_type: "文藝型",
-                d2_qu: "問題討論",
-                d2_color: "orange",
-                d2_title: "攝影師接一個case怎麼算？",
-                d2_text:
-                  "最近朋友說要請我幫忙拍婚紗照，5000元一天，請問這是合理的價格嗎？",
-              },
-              {
-                d2_img: "./img/forum/大頭照/headshot_6.jpg",
-                d2_name: "Annie",
-                d2_data: "2020-07-03",
-                d2_type: "事務型",
-                d2_qu: "問題討論",
-                d2_color: "orange",
-                d2_title: "請問五年的貿易經驗，薪資可以談多少？",
-                d2_text:
-                  "最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？",
-              },
-            ],
-            filter: "工程師",
-          };
+        <div class="leave_msg_wrap">
+          <div class="close_msg_div">
+            <button class="close_leaveMsg_btn">關閉</button>
+          </div>
+          <div class="leave_msg">
+            <textarea name="" id="send_msg" placeholder="請輸入訊息..." @click="sendMsg"></textarea>
+          </div>
+          <div class="confirm_send_btn">
+            <input type="submit" value="送出" id="send_msg_btn" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--點擊檢舉跳出燈箱-->
+  <div class="impeachment_overlay">
+    <article>
+      <div class="accuse_close_btn">
+        <button type="button" class="impeachment_close_btn" @click="bad_btn">關閉</button>
+      </div>
+      <h3>檢舉這篇文章的原因？</h3>
+      <div class="accuse_wrap">
+        <p>
+          <input type="radio" name="accuse" id="" />
+          重傷、歧視、挑釁、謾罵他人
+        </p>
+        <p><input type="radio" name="accuse" id="" /> 交換個人資料</p>
+        <p><input type="radio" name="accuse" id="" /> 惡意洗版、重複張貼</p>
+        <p>
+          <input type="radio" name="accuse" id="" />
+          包含色情、露點、性騷擾之內容
+        </p>
+        <p>
+          <input type="radio" name="accuse" id="" /> 包含廣告、商業宣傳之內容
+        </p>
+        <p><input type="radio" name="accuse" id="" /> 其他原因</p>
+      </div>
+      <div class="accuse_send_btn">
+        <button class="impeachment_send_btn">送出</button>
+      </div>
+    </article>
+  </div>
+
+  <script>
+
+    new Vue({
+      el: "#forum_discuss",
+      data() {
+        return {
+          information: [],
+          searchResult: [],
+          isOpen: false,
+          filter: ''
+        }
+      },
+      mounted() {
+        fetch('./json/forum.json')
+          .then(res => res.json())
+          .then(information => {
+            this.information = information;
+            this.searchResult = information;
+          })
+
+        $(".open_dialog").on("click", function (e) {
+          // debugger;
+          console.log($(this).attr('id'))
+          $("div.forum_overlay").addClass("-on");
+        });
+
+
+        // .then(() => {
+        //   const self = this;
+        //   const info = this.information;
+        //   const sideBarEle = document.getElementsByClassName('main_side_bar')[0];
+        //   const ulEle = sideBarEle.children[0];
+        //   const liEleArray = ulEle.children;
+        //   for (let i = 0; i < liEleArray.length; i++) {
+        //     const liEle = liEleArray[i];
+        //     liEle.addEventListener('click', function () {
+        //       const type = liEle.innerText;
+        //       information = info.filter(element => {
+        //         return element.d_type == type
+        //       });
+
+        //       Vue.set(self, 'information', information);
+        //     })
+        //   }
+        // })
+        ;
+
+        // debugger
+      },
+      watch: {
+        filter: function (value) {
+          if (value.length == 0) {
+            this.searchResult = this.information;
+          }
+        }
+      },
+      methods: {
+        //側邊欄搜尋
+        search(type) {
+          const result = this.information.filter(element => {
+            return element.d_type == type
+          });
+          this.searchResult = result;
         },
-        computed: {
-          filtered() {
-            this.msgArray1.filter(function (post) {
-              if (post.indexOf(this.filter) != -1) {
-                return true;
-              } else {
-                return false;
-              }
-            });
-          },
+        //關鍵字搜尋，點擊搜尋按鈕事件
+        searchContent() {
+          const keyword = this.filter;
+          const result = this.information.filter(element => {
+            return (element.d_title.indexOf(keyword) != -1 || element.d_text.indexOf(keyword) != -1)
+            // return element.d_title == type
+          });
+          this.searchResult = result;
         },
-      });
-    </script>
-  </body>
+        //關鍵字搜尋，點擊Enter按鈕事件
+        submit() {
+          this.searchContent();
+          debugger
+        },
+        //點擊標題會進入文章詳情
+        search_title() {
+          $(".open_dialog").on("click", function (e) {
+            // debugger;
+            console.log($(this).attr('id'))
+            $("div.forum_overlay").addClass("-on");
+          });
+        },
+        // 關閉 Modal
+        btn_modal_close() {
+          $("button.btn_modal_close").on("click", function () {
+            $("div.forum_overlay").addClass("-opacity-zero");
+            // 設定隔一秒後，移除相關 class
+            setTimeout(function () {
+              $("div.forum_overlay").removeClass("-on -opacity-zero");
+            }, 1000);
+          }); s
+        },
+        sendMsg() {
+          //點擊回覆留言地方，按下去視窗變大
+          $("#send_msg").on("click", function () {
+            $("#send_msg").css("min-height", "100px").css("");
+          });
+        },
+
+        bad_btn() {
+          //點擊檢舉跳出的燈箱 
+          $("button.impeachment_btn").on("click", function () {
+            debugger
+            $("div.impeachment_overlay").addClass("-on");
+          });
+
+          $("button.impeachment_close_btn").on("click", function () {
+            $("div.impeachment_overlay").addClass("-opacity-zero");
+
+            setTimeout(function () {
+              $("div.impeachment_overlay").removeClass("-on -opacity-zero");
+            }, 1000);
+          });
+        },
+        heart_btn() {
+          //點擊愛心變成黑色，再點擊一次變白色
+          $(".fa-heart").on("click", function () {
+            if ($(this).hasClass('far')) {
+              $(this).css("color", "black");
+              $(this).removeClass('far')
+              $(this).addClass('fas')
+            } else {
+              $(this).css("color", "black");
+              $(this).removeClass('fas')
+              $(this).addClass('far')
+            }
+          })
+        },
+        collect_btn() {
+          // //點擊收藏會變成已收藏，再點擊一次變收藏
+          $(".collect_btn").on("click", function () {
+            if ($(this).hasClass('active')) {
+              $(this).removeClass('active')
+              $(this).text('收藏')
+            } else {
+              $(this).addClass('active')
+              $(this).text('已收藏')
+            }
+          })
+
+        },
+        toggleDropdown(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (this.isOpen) {
+            this.isOpen = false;
+          } else {
+            this.isOpen = true;
+          }
+          //下拉選單jQuery寫法
+          // $('.dis_dropdown').click(function (e) {
+          //   e.preventDefault();
+          //   e.stopPropagation();
+          // $(this).toggleClass('expanded');
+          // debugger
+          // $('#' + $(this).attr('for')).prop('checked', true);
+          // });
+          // $(document).click(function () {
+          //   $('.dis_dropdown').removeClass('expanded');
+          // })
+        }
+      },
+
+
+    });
+  </script>
+</body>
+
 </html>

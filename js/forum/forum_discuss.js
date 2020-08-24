@@ -20,12 +20,11 @@ $(function () {
     $("#send_msg").css("min-height", "100px").css("");
   });
 
-});
 
 
-//點擊檢舉跳出的燈箱 
-$(function () {
+  //點擊檢舉跳出的燈箱 
   $("button.impeachment_btn").on("click", function () {
+    debugger
     $("div.impeachment_overlay").addClass("-on");
   });
 
@@ -37,10 +36,8 @@ $(function () {
     }, 1000);
   });
 
-});
 
-//點擊愛心變成黑色，再點擊一次變白色
-$(function () {
+  //點擊愛心變成黑色，再點擊一次變白色
   $(".fa-heart").on("click", function () {
     if ($(this).hasClass('far')) {
       $(this).css("color", "black");
@@ -52,10 +49,8 @@ $(function () {
       $(this).addClass('far')
     }
   })
-})
 
-//點擊收藏會變成已收藏，再點擊一次變收藏
-$(function () {
+  //點擊收藏會變成已收藏，再點擊一次變收藏
   $(".collect_btn").on("click", function () {
     if ($(this).hasClass('active')) {
       $(this).removeClass('active')
@@ -65,11 +60,9 @@ $(function () {
       $(this).text('已收藏')
     }
   })
-})
 
 
-//下拉選單
-$(function () {
+  //下拉選單
   $('.dis_dropdown').click(function (e) {
     e.preventDefault();
     e.stopPropagation();

@@ -34,11 +34,9 @@
           <div class="change_style">
             <div class="back_all_style">
               <div class="mark">
-                <h3 id="backStyle">格式</h3>
                 <h3 id="backStamps">郵票</h3>
                 <h3 id="backPostmarks">郵戳</h3>
               </div>
-              <back-style></back-style>
             </div>
             <stamp-style></stamp-style>
             <postmark-style></postmark-style>
@@ -54,9 +52,19 @@
             <div class="mainStyle">
               <!-- ---------------以下要createElement --------------->
               <!-- 正面格式一 -->
-              <div class="style1"></div>
+              <div class="style1" id="frontStyle1">
+                <div class="all">
+                  <p class="drag">拖曳至此區塊上傳</p>
+                  <label for="img" id="frontStyle1_label">
+                    <i class="fa fa-photo"></i>
+                    <p class="p_small">上傳圖片</p>
+                    <input type="file" name="img" id="img">
+                  </label>
+                </div>
+
+              </div>
               <!-- 正面格式二 -->
-              <div class="style2">
+              <div class="style2" id="frontStyle2">
                 <div class="top_2">
                   <p class="drag">拖曳至此區塊上傳</p>
                   <label for="img">
@@ -86,9 +94,27 @@
 
               </div>
               <!-- 正面格式三 -->
-              <div class="style3">
-                <div class="left_3"></div>
-                <div class="right_3"></div>
+              <div class="style3" id="frontStyle3">
+                <div class="left_3">
+                  <div>
+                    <p class="drag">拖曳至此區塊上傳</p>
+                    <label for="img">
+                      <i class="fa fa-photo"></i>
+                      <p class="p_small">上傳圖片</p>
+                      <input type="file" name="img" id="img">
+                    </label>
+                  </div>
+                </div>
+                <div class="right_3">
+                  <div>
+                    <p class="drag">拖曳至此區塊上傳</p>
+                    <label for="img">
+                      <i class="fa fa-photo"></i>
+                      <p class="p_small">上傳圖片</p>
+                      <input type="file" name="img" id="img">
+                    </label>
+                  </div>
+                </div>
               </div>
               <!-- 到這裡正面格式結束 -->
               <!-- 主要外框 -->
@@ -121,36 +147,21 @@
           <h2>背面</h2>
           <div class="back_post">
             <div class="mainStyle">
+              <!-- 背面格式-->
+              <div class="style_back">
+                <img src="./img/post_card/postmark1.png" id="postmark" class="mark_position">
 
-
-              <!-- ---------------以下要createElement --------------->
-              <!-- 背面格式一 -->
-              <div class="style1">
-                <div class="left_pic">
-                  <p class="drag">拖曳至此區塊上傳</p>
-                  <label for="img">
-                    <i class="fa fa-photo"></i>
-                    <p class="p_small">上傳圖片</p>
-                    <input type="file" name="img" id="img">
-                  </label>
+                <div class="left_write">
+                  <textarea id="leftWrite" placeholder="請寫下對未來的期許" maxlength="374"></textarea>
                 </div>
                 <div class="right_write">
-                  <div class="style1_stamp">
-                    <!-- <img src="./img/post_card/stamp1.png" alt=""> -->
+                  <div class="style_stamp">
+                    <img src="./img/post_card/stamp1.png" id="mainStamp">
                   </div>
                   <div class="text">
-                    <textarea name="" id="" maxlength="100"></textarea>
+                    <textarea id="rightWrite" maxlength="200"></textarea>
                   </div>
-
                 </div>
-              </div>
-              <!-- 背面格式二 -->
-              <div class="style2">
-
-              </div>
-              <!-- 背面格式三 -->
-              <div class="style3">
-
               </div>
             </div>
             <!-- 到這裡背面格式結束 -->
@@ -166,11 +177,9 @@
           </div>
           <div class="post_phone">
             <div class="change_style" id="phoneBackAllStyle">
-              <div class="back_all_style">
-                <h3>背面格式</h3>
-                <back-style></back-style>
-              </div>
+              <h3>背面郵票</h3>
               <stamp-style></stamp-style>
+              <h3>背面郵戳</h3>
               <postmark-style></postmark-style>
             </div>
           </div>
@@ -185,9 +194,11 @@
 <script src="./js/post_card/popper.min.js"></script>
 <script src="./js/post_card/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
-<script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
 <script src="./js/post_card/post_vue.js"></script>
 <script src="./js/post_card/post_imgUp.js"></script>
+<script src="./js/post_card/post_change.js"></script>
 
 
 
