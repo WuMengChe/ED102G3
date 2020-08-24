@@ -43,6 +43,7 @@ function doFirst() {
     var input = $("input[type='file']")[0];
     if (input.files && input.files[0]) {
       var reader = new FileReader();
+      let readFile = new FileReader();
       reader.onload = function (e) {
         image.style.background = `url(${readFile.result})`;
 

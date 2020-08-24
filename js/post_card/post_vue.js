@@ -48,7 +48,7 @@ Vue.component('stamp-style', {
                   <img src="./img/post_card/stamp2.png" alt="郵票2" id="stamp2">
                 </div>
                 <div class="style">
-                  <img src="./img/post_card/stamp3.png" alt="郵票3" id="stamp3">
+                  <img src="./img/post_card/stamp4.png" alt="郵票3" id="stamp4">
                 </div>
               </div>
             </div>`,
