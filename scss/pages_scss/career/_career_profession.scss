@@ -1,3 +1,6 @@
+body{
+    background-color: #F6F3ED;
+}
 .car_pro_con_width{
     display: flex;
     padding: 0;
@@ -42,6 +45,7 @@
             display: flex;
             margin: 10px auto;
             flex-wrap: wrap;
+            background-color: rgba(255, 255, 255, 0.7);
             border-radius: 25px;
             box-shadow: 2px 2px 20px gray;
             .car_pro_skill_area{
@@ -70,11 +74,15 @@
             display: flex;
             margin: 20px auto;
             flex-wrap: wrap;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            box-shadow: 2px 2px 20px gray;
             h3{
+                margin-top: 10px;
                 font-weight: 700;
                 text-align: center;
             }
-            .car_pro_lhs_plot{
+            .car_pro_lhs_plot, .car_pro_inc_plot{
                 margin: 20px 0;
                 height: 300px;
             }

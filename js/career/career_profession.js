@@ -85,6 +85,7 @@ let carProData = {
     ],
     isDouble: false,
     myChartLHSalary: '',
+    myChartIncSalary: '',
     screenWidth: 0,
     rwbChangeProfession: 0,
 }
@@ -93,7 +94,6 @@ let careerProfessionVueContent = new Vue({
     el: '#car_pro_vue',
     data: carProData,
     mounted() {
-        // this.lowHeightSalaryPlot();
         this.screenWidth = document.documentElement.clientWidth;
         if(localStorage.pro_typeIndex_1 && localStorage.pro_typeIndex_2){
             this.sendData[0].typeIndex = localStorage.pro_typeIndex_1;
@@ -130,11 +130,14 @@ let careerProfessionVueContent = new Vue({
     created() {
         window.addEventListener('resize', this.changeWidth);
         window.addEventListener('load', this.lowHeightSalaryPlot);
+        window.addEventListener('load', this.increaseSalaryPlot);
         window.addEventListener('resize', this.lowHeightSalaryPlot);
+        window.addEventListener('resize', this.increaseSalaryPlot);
     },
     destroyed() {
         window.removeEventListener('resize', this.changeWidth);
         window.removeEventListener('resize', this.lowHeightSalaryPlot);
+        window.removeEventListener('resize', this.increaseSalaryPlot);
     },
     methods: {
         changeWidth(e){
@@ -159,7 +162,8 @@ let careerProfessionVueContent = new Vue({
             if(!this.sendData[1].industryIndex){
                 var option = {
                     title: {
-                        text: '最高最低薪資區間'
+                        text: '最高最低薪資區間',
+                        show: false
                     },
                     tooltip: {
                         trigger: 'axis',
@@ -282,6 +286,138 @@ let careerProfessionVueContent = new Vue({
                 };
             }
             this.myChartLHSalary.setOption(option);
+        },
+        increaseSalaryPlot(){
+            if (this.myChartIncSalary != null && this.myChartIncSalary != "" && this.myChartIncSalary != undefined) {
+                this.myChartIncSalary.dispose();//銷燬
+            }
+            var lowSalary_1 = Array(5);
+            var hightSalary_1 = Array(5);
+            var meanSalary_1 = Array(5);
+            var increaseSalary_1 = Array(4);
+            var name_1 = this.industry[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].name;
+            for(var temp = 0; temp < 5; temp++){
+                lowSalary_1[temp] = this.industrySalary[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].salary[0 + temp*2];
+                hightSalary_1[temp] = this.industrySalary[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].salary[1 + temp*2];
+                meanSalary_1[temp] = (hightSalary_1[temp] + lowSalary_1[temp]) / 2;
+            }
+            for(var temp = 1; temp < meanSalary_1.length; temp++){
+                increaseSalary_1[temp-1] = ((meanSalary_1[temp] - meanSalary_1[temp-1]) / meanSalary_1[temp-1]) * 100
+                increaseSalary_1[temp-1] = parseFloat(increaseSalary_1[temp-1].toFixed(2))
+            }
+            this.myChartIncSalary = echarts.init(document.querySelector('.car_pro_inc_plot'), null, {renderer: 'svg'});
+
+            if(!this.sendData[1].industryIndex){
+                var option = {
+                    title: {
+                        text: '平均薪資漲幅',
+                        show: false
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'line'
+                        },
+                        formatter: function (params) {
+                            return name_1 + ': ' + params[0].value + '%'
+                        }
+                    },
+                    legend: {
+                        data: [name_1 + ' - 薪資漲幅'],
+                        formatter: function (name) {
+                            return name.split(' ', 1);
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        splitLine: {show: false},
+                        data: ['一到三年', '三到五年', '五到十年', '十年以上']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: name_1 + ' - 薪資漲幅',
+                            type: 'line',
+                            data: increaseSalary_1
+                        }
+                    ]
+                };
+            }
+            else{
+                var lowSalary_2 = Array(5);
+                var hightSalary_2 = Array(5);
+                var meanSalary_2 = Array(5);
+                var increaseSalary_2 = Array(4);
+                var name_2 = this.industry[this.sendData[1].industryIndex].detail[this.sendData[1].typeIndex].name;
+                for(var temp = 0; temp < 5; temp++){
+                    lowSalary_2[temp] = this.industrySalary[this.sendData[1].industryIndex].detail[this.sendData[1].typeIndex].salary[0 + temp*2]
+                    hightSalary_2[temp] = this.industrySalary[this.sendData[1].industryIndex].detail[this.sendData[1].typeIndex].salary[1 + temp*2]
+                    meanSalary_2[temp] = (hightSalary_2[temp] + lowSalary_2[temp]) / 2;
+                }
+                for(var temp = 1; temp < meanSalary_2.length; temp++){
+                    increaseSalary_2[temp-1] = ((meanSalary_2[temp] - meanSalary_2[temp-1]) / meanSalary_2[temp-1]) * 100
+                    increaseSalary_2[temp-1] = parseFloat(increaseSalary_2[temp-1].toFixed(2))
+                }
+                var option = {
+                    title: {
+                        text: '平均薪資漲幅',
+                        show: false
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'line',
+                        },
+                        formatter: function (params) {
+                            return name_1 + ': ' + params[0].value + '%' + '<br>' + name_2 + ': ' + params[1].value + '%'
+                        }
+                    },
+                    legend: {
+                        data: [name_1 + ' - 薪資漲幅', name_2 + ' - 薪資漲幅'],
+                        formatter: function (name) {
+                            return name.split(' ', 1);
+                        },
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        splitLine: {show: false},
+                        data: ['一到三年', '三到五年', '五到十年', '十年以上']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value}' + '%'
+                        }
+                    },
+                    series: [
+                        {
+                            name: name_1 + ' - 薪資漲幅',
+                            type: 'line',
+                            data: increaseSalary_1
+                        },
+                        {
+                            name: name_2 + ' - 薪資漲幅',
+                            type: 'line',
+                            data: increaseSalary_2
+                        }
+                    ]
+                };
+            }
+            this.myChartIncSalary.setOption(option);
         }
     }
 })

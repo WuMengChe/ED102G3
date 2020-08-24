@@ -268,7 +268,7 @@
                 <h3 class="car_pro_info_title">職業介紹</h3>
                 <p>{{industry[item.industryIndex].detail[item.typeIndex].info}}</p>
             </div>
-            <div class="car_pro_info" :class="{'col-lg-6':isDouble, 'col-lg-9':!isDouble, 'col-md-6':isDouble, 'col-md-12':!isDouble, 'car_pro_single':!isDouble}" v-for="(item, index) in chooeseProfession" v-if="(item.content && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
+            <div class="col-sm-12 car_pro_info" :class="{'col-lg-6':isDouble, 'col-lg-9':!isDouble, 'col-md-6':isDouble, 'col-md-12':!isDouble, 'car_pro_single':!isDouble}" v-for="(item, index) in chooeseProfession" v-if="(item.content && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
                 <h3 class="car_pro_info_title">職業內容</h3>
                 <ul>
                     <li v-for="(liItem, liIndex) in item.content">{{liItem}}</li>
@@ -286,7 +286,7 @@
             </div>
             <div class = "col-lg-9 col-md-12 car_pro_lhs_plot_area">
                 <h3 class="col-lg-12 col-md-12">平均薪資漲幅</h3>
-                <!-- <div class = "col-lg-12 col-md-12 car_pro_lhs_plot"></div> -->
+                <div class = "col-lg-12 col-md-12 car_pro_inc_plot"></div>
             </div>
         </div>
     </main>
