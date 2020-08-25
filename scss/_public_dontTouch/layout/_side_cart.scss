@@ -24,8 +24,6 @@ div.side_cart {
             align-self: flex-end;
         }
         button {
-            // font-size: 30px;
-            // font-weight: bold;
             width: 60px;
             height: 30px;
             line-height: 0;
@@ -54,12 +52,12 @@ div.side_cart {
                     // position: relative;
                     a {
                         border-bottom: 0;
+                        flex: 1;
+                        div.card_img {
+                            width: 120px;
+                        }
                     }
                     div.remove {
-                        // position: absolute;
-                        // top: -15px;
-                        // right: -20px;
-                        // border: $outline3;
                         button {
                             background: #e8c300;
                             width: 100%;

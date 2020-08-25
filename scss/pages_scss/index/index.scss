@@ -244,7 +244,7 @@ div.header_wrap {
                         // border: 1px solid red;
                     }
                     .holland_small {
-                        @include animation(pulse, infinite, 20s, linear);
+                        @include animation(pulse, infinite, 10s, linear);
                         &:hover {
                             animation-play-state: paused;
                         }
