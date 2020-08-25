@@ -14,10 +14,8 @@
 </head>
 
 <body>
+  @@include('app/header.html')
   <div id="forum_discuss" class="container-fluid">
-    <div class="header">
-      @@include('app/header.html')
-    </div>
 
     <div class="wrap row">
       <div class="side_wrap col-lg-3">
@@ -62,7 +60,7 @@
           <div class="select_wrap">
             <!-- <span class="dis_dropdown" @click.stop="toggleDropdown($event)" :class="{'expanded': isOpen}"> -->
             <span class="dis_dropdown" @click.stop="toggleDropdown($event)">
-              <input type="radio" name="orderSelect" value="all" checked="checked" id="all" />
+              <input type="radio" name="orderSelect" value="all" checked="checked" id="all" @click="selectP" />
               <label for="all">所有分類</label>
               <input type="radio" name="orderSelect" value="popular" id="popular" />
               <label for="popular">熱門文章</label>
@@ -119,6 +117,9 @@
           </a>
         </div>
       </div>
+    </div>
+    <div class="header">
+      @@include('app/footer.html')
     </div>
 
 
@@ -408,6 +409,9 @@
           $(document).click(function () {
             $('.dis_dropdown').removeClass('expanded');
           })
+        },
+        selectP() {
+          alert("124");
         }
       },
     });
