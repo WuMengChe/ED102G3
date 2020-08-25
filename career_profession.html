@@ -261,18 +261,24 @@
         <div class = "car_pro_con" :class="{'col-lg-12':isDouble, 'col-lg-9':!isDouble, 'col-md-12':isDouble, 'col-md-9':!isDouble}">
             <div class="col-lg-6 col-md-6 car_pro_info" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
                 <h1>{{industry[item.industryIndex].detail[item.typeIndex].name}}</h1>
-                <img src="./img/career/工程師.svg" :style="{borderColor:industry[item.industryIndex].backgroundColor}">
+                <img :src="industry[item.industryIndex].detail[item.typeIndex].src" :style="{borderColor:industry[item.industryIndex].backgroundColor}">
             </div>
             <div class="col-lg-6 col-md-6 car_pro_info" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
                 <h3>{{industry[item.industryIndex].typeName}}</h3>
                 <h3 class="car_pro_info_title car_pro_info_img">職業介紹</h3>
                 <p>{{industry[item.industryIndex].detail[item.typeIndex].info}}</p>
             </div>
-            <div class="col-sm-12 car_pro_info" :class="{'col-lg-6':isDouble, 'col-lg-9':!isDouble, 'col-md-6':isDouble, 'col-md-12':!isDouble, 'car_pro_single':!isDouble}" v-for="(item, index) in chooeseProfession" v-if="(item.content && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                <h3 class="car_pro_info_title">職業內容</h3>
+            <div class="col-sm-12 car_pro_info car_pro_single" :class="{'col-lg-12':isDouble, 'col-lg-9':!isDouble, 'col-md-12':isDouble, 'col-md-12':!isDouble}">
+                <div class="car_pro_info car_pro_info_con" :class="{'col-lg-6':isDouble, 'col-lg-12':!isDouble, 'col-md-6':isDouble, 'col-md-12':!isDouble}" v-for="(item, index) in chooeseProfession" v-if="(item.content && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
+                    <h3 class="car_pro_info_title">職業內容</h3>
+                    <ul>
+                        <li v-for="(liItem, liIndex) in item.content"><span class="car_li_color" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}"></span>{{liItem}}</li>
+                    </ul>
+                </div>
+                <!-- <h3 class="car_pro_info_title">職業內容</h3>
                 <ul>
                     <li v-for="(liItem, liIndex) in item.content"><span class="car_li_color" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}"></span>{{liItem}}</li>
-                </ul>
+                </ul> -->
             </div>
             <div class="col-lg-9 col-md-12 car_pro_info car_pro_skill">
                 <div class="col-md-12 car_pro_skill_area" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">

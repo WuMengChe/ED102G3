@@ -27,6 +27,7 @@ body.car_pro_body{
         .car_pro_info{
             display: flex;
             flex-direction: column;
+            
             // background-color: wheat;
             h1{
                 margin: 10px auto;
@@ -37,6 +38,7 @@ body.car_pro_body{
                 margin: 10px auto;
                 width: 100%;
                 max-width: 300px;
+                max-height: 350px;
                 border: 3px solid;
                 border-radius: 25px;
             }
@@ -62,6 +64,12 @@ body.car_pro_body{
                         border-radius: 50%;
                     }
                 }
+            }
+        }
+        .car_pro_single{
+            flex-direction: row;
+            div:first-child{
+                padding-left: 0;
             }
         }
         .car_pro_single, .car_pro_skill{
