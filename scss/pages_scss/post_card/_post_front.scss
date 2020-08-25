@@ -87,6 +87,7 @@ $bgc:rgba(88, 88, 88, 0.253);
 
 div.postcard_main {
   border: 1px solid red;
+  background-color: $second_color3;
   max-width: 1200px;
   margin-top: 50px;
 
@@ -184,7 +185,7 @@ div.postcard_main {
     // 明信片區
 
     .postcardZone {
-      background-color: lightblue;
+      // background-color: lightblue;
       padding-left: -15px;
       padding-bottom: 20px;
 
@@ -477,19 +478,20 @@ div.postcard_main {
 
                 textarea {
                   margin-top: 5%;
+                  margin-left: 5%;
                   padding: 0 5px;
                   border: none;
                   border-right: 2px solid #cccccc;
                   resize: none;
-                  width: 100%;
+                  width: 95%;
                   height: 0;
                   padding-bottom: 117%;
                   outline: none;
                   line-height: 30px;
                   font-size: 18px;
                   background: transparent;
-                  // background-size: 100% 30px;
                   overflow: hidden;
+                  // border: 1px solid blue;
                 }
 
 
