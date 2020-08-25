@@ -97,7 +97,7 @@ gulp.task("watch", function() {
 //將自動產生的檔案刪掉：用在如果要修改已經產生的檔案，但直接修改不會覆蓋，就可以先刪掉再重新產生。或要打包原始檔案就可以先刪掉之後再產生
 gulp.task("clear", function() {
     return gulp
-        .src("dest/css", {
+        .src("dest", {
             read: false,
             allowEmpty: true,
         })

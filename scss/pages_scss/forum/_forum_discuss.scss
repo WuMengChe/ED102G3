@@ -12,7 +12,8 @@
   background-position: top center;
   min-height: 600px;
   // background-attachment: fixed
-  border: 1px solid red;
+  // border: 1px solid red;
+  padding: 0;
 }
 
 //搜尋關鍵字
@@ -42,12 +43,12 @@
   max-width: 1200px;
   .dis_side {
     position: fixed;
-    border: 1px solid red;
+    // border: 1px solid red;
   }
   .right_panel {
   }
   .side_wrap {
-    position: fix;
+    padding: 0;
   }
 }
 
@@ -242,22 +243,22 @@ $timing: 0.3s;
 }
 
 .msg_content:nth-child(1) {
-  background: #004b97;
+  background: #94b2db;
 }
 .msg_content:nth-child(2) {
-  background: #005ab5;
+  background: #94b5db;
 }
 .msg_content:nth-child(3) {
-  background: #0066cc;
+  background: #94b9db;
 }
 .msg_content:nth-child(4) {
-  background: #0072e3;
+  background: #94bddb;
 }
 .msg_content:nth-child(5) {
-  background: #2894ff;
+  background: #94c1db;
 }
 .msg_content:nth-child(6) {
-  background: #46a3ff;
+  background: #95c5db;
 }
 
 //頁碼
@@ -590,38 +591,32 @@ div.impeachment_overlay > article {
 
 /* RWD */
 @media screen and (max-width: 992px) {
-  #forum_discuss {
-    // .dis_body {
-    //   display: flex;
-    //   flex-direction: column;
-    //   align-items: center;
-    // }
-  }
   div.forum_overlay > .forum_checkMsg {
     max-width: 500px;
     width: 100%;
-    // margin: 50px auto;
   }
 
   .wrap {
     .side_wrap {
-      overflow: hidden;
-      overflow-x: scroll;
+      // overflow: hidden;
+      // overflow-x: scroll;
       width: 100%;
-      margin: 20px 0;
 
       .dis_side {
         display: flex;
-        // width: 100%;
         height: 70px;
-        width: max-content;
+        width: 100%;
         position: inherit;
+        border-radius: 0;
+        overflow: hidden;
+        overflow-x: scroll;
 
         ul {
           flex-direction: row;
           margin-bottom: 0px;
           li {
             margin: 10px 10px;
+            width: max-content;
           }
         }
       }

@@ -15,7 +15,7 @@
 
 <body>
   <div id="forum_discuss" class="container-fluid">
-    <div class="header row">
+    <div class="header">
       @@include('app/header.html')
     </div>
 
@@ -120,137 +120,137 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!--燈箱！！！-->
-  <!--點擊標題跳出的燈箱-->
-  <div class="forum_overlay">
-    <div class="forum_checkMsg">
-      <div class="close_btn">
-        <button type="button" class="btn_modal_close btn_primary" @click="btn_modal_close">
-          返回
-        </button>
-      </div>
-      <div class="feedback_wrap">
-        <!--留言板內容-->
-        <div class="check_content">
-          <div class="mem_info">
+
+    <!--燈箱！！！-->
+    <!--點擊標題跳出的燈箱-->
+    <div class="forum_overlay">
+      <div class="forum_checkMsg">
+        <div class="close_btn">
+          <button type="button" class="btn_modal_close btn_primary" @click="btn_modal">
+            返回
+          </button>
+        </div>
+        <div class="feedback_wrap">
+          <!--留言板內容-->
+          <div class="check_content">
+            <div class="mem_info">
+              <div class="info_list">
+                <img src="./img/forum/大頭照/headshot_10.jpg" alt="" class="dis_img" />
+                <div class="dis_name">豬八戒</div>
+                <div class="dis_date">2020-07-28</div>
+              </div>
+              <div class="tags_list">
+                <span class="type_tag">實作型</span>
+                <span class="type_tag">經驗分享</span>
+              </div>
+            </div>
+            <div class="msg_title open_dialog">
+              有人上過前端工程師學米私塾課嗎？
+            </div>
+            <div class="msg_textarea">
+              覺得課程整套實在有點貴，
+              而且業務死不讓我看學生作品，讓我覺得很詭異
+              有人買過嗎？學起來如何呢？求經驗分享～
+            </div>
+            <div class="msg_btn">
+              <button><i class="far fa-heart" @click="heart_btn"></i></button>
+              <button><i class="far fa-comment-alt"></i></button>
+              <button class="collect_btn" @click="collect_btn">收藏</button>
+              <button class="impeachment_btn" @click="bad_btn">檢舉</button>
+            </div>
+          </div>
+        </div>
+        <div class="feedback_count">共5則回應</div>
+        <!--回應留言區-->
+        <div class="forum_feedback">
+          <div class="feedback_content">
             <div class="info_list">
-              <img src="./img/forum/大頭照/headshot_10.jpg" alt="" class="dis_img" />
-              <div class="dis_name">豬八戒</div>
+              <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              <div class="dis_name">孫悟空</div>
               <div class="dis_date">2020-07-28</div>
             </div>
-            <div class="tags_list">
-              <span class="type_tag">實作型</span>
-              <span class="type_tag">經驗分享</span>
+            <div class="msg_textarea">
+              我去上過覺得還好
+            </div>
+            <div class="msg_btn">
+              <button><i class="far fa-heart"></i></button>
+              <button class="impeachment_btn">檢舉</button>
             </div>
           </div>
-          <div class="msg_title open_dialog">
-            有人上過前端工程師學米私塾課嗎？
+          <div class="feedback_content">
+            <div class="info_list">
+              <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              <div class="dis_name">孫悟空</div>
+              <div class="dis_date">2020-07-28</div>
+            </div>
+            <div class="msg_textarea">
+              我去上過覺得還好
+            </div>
+            <div class="msg_btn">
+              <button><i class="far fa-heart"></i></button>
+              <button class="impeachment_btn">檢舉</button>
+            </div>
           </div>
-          <div class="msg_textarea">
-            覺得課程整套實在有點貴，
-            而且業務死不讓我看學生作品，讓我覺得很詭異
-            有人買過嗎？學起來如何呢？求經驗分享～
+          <div class="feedback_content">
+            <div class="info_list">
+              <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              <div class="dis_name">孫悟空</div>
+              <div class="dis_date">2020-07-28</div>
+            </div>
+            <div class="msg_textarea">
+              我去上過覺得還好
+            </div>
+            <div class="msg_btn">
+              <button><i class="far fa-heart"></i></button>
+              <button class="impeachment_btn">檢舉</button>
+            </div>
           </div>
-          <div class="msg_btn">
-            <button><i class="far fa-heart"></i></button>
-            <button><i class="far fa-comment-alt"></i></button>
-            <button class="collect_btn">收藏</button>
-            <button class="impeachment_btn">檢舉</button>
-          </div>
-        </div>
-      </div>
-      <div class="feedback_count">共5則回應</div>
-      <!--回應留言區-->
-      <div class="forum_feedback">
-        <div class="feedback_content">
-          <div class="info_list">
-            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
-            <div class="dis_name">孫悟空</div>
-            <div class="dis_date">2020-07-28</div>
-          </div>
-          <div class="msg_textarea">
-            我去上過覺得還好
-          </div>
-          <div class="msg_btn">
-            <button><i class="far fa-heart"></i></button>
-            <button class="impeachment_btn">檢舉</button>
-          </div>
-        </div>
-        <div class="feedback_content">
-          <div class="info_list">
-            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
-            <div class="dis_name">孫悟空</div>
-            <div class="dis_date">2020-07-28</div>
-          </div>
-          <div class="msg_textarea">
-            我去上過覺得還好
-          </div>
-          <div class="msg_btn">
-            <button><i class="far fa-heart"></i></button>
-            <button class="impeachment_btn">檢舉</button>
-          </div>
-        </div>
-        <div class="feedback_content">
-          <div class="info_list">
-            <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
-            <div class="dis_name">孫悟空</div>
-            <div class="dis_date">2020-07-28</div>
-          </div>
-          <div class="msg_textarea">
-            我去上過覺得還好
-          </div>
-          <div class="msg_btn">
-            <button><i class="far fa-heart"></i></button>
-            <button class="impeachment_btn">檢舉</button>
-          </div>
-        </div>
 
-        <div class="leave_msg_wrap">
-          <div class="close_msg_div">
-            <button class="close_leaveMsg_btn">關閉</button>
-          </div>
-          <div class="leave_msg">
-            <textarea name="" id="send_msg" placeholder="請輸入訊息..." @click="sendMsg"></textarea>
-          </div>
-          <div class="confirm_send_btn">
-            <input type="submit" value="送出" id="send_msg_btn" />
+          <div class="leave_msg_wrap">
+            <div class="close_msg_div">
+              <button class="close_leaveMsg_btn">關閉</button>
+            </div>
+            <div class="leave_msg">
+              <textarea name="" id="send_msg" placeholder="請輸入訊息..." @click="sendMsg"></textarea>
+            </div>
+            <div class="confirm_send_btn">
+              <input type="submit" value="送出" id="send_msg_btn" />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!--點擊檢舉跳出燈箱-->
-  <div class="impeachment_overlay">
-    <article>
-      <div class="accuse_close_btn">
-        <button type="button" class="impeachment_close_btn" @click="bad_btn">關閉</button>
-      </div>
-      <h3>檢舉這篇文章的原因？</h3>
-      <div class="accuse_wrap">
-        <p>
-          <input type="radio" name="accuse" id="" />
-          重傷、歧視、挑釁、謾罵他人
-        </p>
-        <p><input type="radio" name="accuse" id="" /> 交換個人資料</p>
-        <p><input type="radio" name="accuse" id="" /> 惡意洗版、重複張貼</p>
-        <p>
-          <input type="radio" name="accuse" id="" />
-          包含色情、露點、性騷擾之內容
-        </p>
-        <p>
-          <input type="radio" name="accuse" id="" /> 包含廣告、商業宣傳之內容
-        </p>
-        <p><input type="radio" name="accuse" id="" /> 其他原因</p>
-      </div>
-      <div class="accuse_send_btn">
-        <button class="impeachment_send_btn">送出</button>
-      </div>
-    </article>
+    <!--點擊檢舉跳出燈箱-->
+    <div class="impeachment_overlay">
+      <article>
+        <div class="accuse_close_btn">
+          <button type="button" class="impeachment_close_btn" @click="bad_btn">關閉</button>
+        </div>
+        <h3>檢舉這篇文章的原因？</h3>
+        <div class="accuse_wrap">
+          <p>
+            <input type="radio" name="accuse" id="" />
+            重傷、歧視、挑釁、謾罵他人
+          </p>
+          <p><input type="radio" name="accuse" id="" /> 交換個人資料</p>
+          <p><input type="radio" name="accuse" id="" /> 惡意洗版、重複張貼</p>
+          <p>
+            <input type="radio" name="accuse" id="" />
+            包含色情、露點、性騷擾之內容
+          </p>
+          <p>
+            <input type="radio" name="accuse" id="" /> 包含廣告、商業宣傳之內容
+          </p>
+          <p><input type="radio" name="accuse" id="" /> 其他原因</p>
+        </div>
+        <div class="accuse_send_btn">
+          <button class="impeachment_send_btn">送出</button>
+        </div>
+      </article>
+    </div>
   </div>
-
 
   <script>
     new Vue({
@@ -276,8 +276,6 @@
           console.log($(this).attr('id'))
           $("div.forum_overlay").addClass("-on");
         });
-
-
         // .then(() => {
         //   const self = this;
         //   const info = this.information;
@@ -335,8 +333,7 @@
           });
         },
         // 關閉 Modal
-        btn_modal_close() {
-          debugger
+        btn_modal() {
           $("button.btn_modal_close").on("click", function () {
             $("div.forum_overlay").addClass("-opacity-zero");
             // 設定隔一秒後，移除相關 class
