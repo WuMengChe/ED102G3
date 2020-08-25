@@ -31,8 +31,8 @@ a {
   background: #ffffff;
   box-shadow: 4px 4px 0px #119BEB;
   transition: ease-in-out 0.2s;
-  border: 2px solid #1B4D9F;
-  box-shadow: 4px 4px 0px #1B4D9F;
+  border: 2px solid #119BEB;
+  box-shadow: 4px 4px 0px #119BEB;
 }
 .btn_primary:hover {
   color: white;
@@ -41,7 +41,7 @@ a {
   transform: scale(0.96);
 }
 .btn_primary:hover {
-  background: #1B4D9F;
+  background: #119BEB;
 }
 
 .btn_second {
@@ -92,4 +92,40 @@ a {
 }
 .btn_third:hover {
   background: #a5a5a5;
+}
+
+.btn_addcart_Judy {
+  padding: 0;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 2px solid #119BEB;
+  border-radius: 100px;
+  background: transparent;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0 5px;
+  transition: ease-in-out 0.2s;
+}
+.btn_addcart_Judy:hover {
+  color: white;
+  background: #119BEB;
+  transform: scale(0.97);
+}
+
+.btn_mark_Judy {
+  padding: 0;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 2px solid #119BEB;
+  border-radius: 100px;
+  background: transparent;
+  text-align: center;
+  padding: 0 5px;
+  transition: ease-in-out 0.2s;
+}
+.btn_mark_Judy:hover {
+  color: white;
+  background: #119BEB;
+  transform: scale(0.97);
 }

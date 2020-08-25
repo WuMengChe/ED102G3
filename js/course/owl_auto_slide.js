@@ -1,4 +1,5 @@
-$(document).ready(function () {
+$(document).ready(function() {
+    // hot_course
     $('.auto_slider').owlCarousel({
         loop: true,
         margin: 10,
@@ -15,4 +16,6 @@ $(document).ready(function () {
             }
         }
     })
+
+
 })

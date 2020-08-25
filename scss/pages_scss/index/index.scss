@@ -1,7 +1,6 @@
 @import '../../_public_dontTouch/utils/variables';
 $title: 30px;
 $opacity: 0.8;
-
 @mixin section {
     // border: 3px solid lightcoral;
     width: 100vw;
@@ -13,15 +12,16 @@ $opacity: 0.8;
     // border: 1px solid red;
     height: fit-content;
     @content
+}
 
-    
-};
-@mixin position($width, $position){
+;
+@mixin position($width, $position) {
     width: $width;
     position: $position;
     @content
-};
+}
 
+;
 @mixin stage($height, $position) {
     height: $height;
     width: 100px;
@@ -29,6 +29,7 @@ $opacity: 0.8;
     position: relative;
     top: $position;
 }
+
 @mixin keyframes($name) {
     @keyframes #{$name} {
         @content;
@@ -37,44 +38,67 @@ $opacity: 0.8;
 
 @mixin animation($str, $count:1, $duration:2s, $function:ease-in) {
     animation: #{$str};
-    animation-iteration-count: $count ;
+    animation-iteration-count: $count;
     animation-duration: $duration;
-    animation-timing-function: $function ; 
-    @content;     
+    animation-timing-function: $function;
+    @content;
 }
 
-@include keyframes(firstStair){
-    from{padding-top: 15%;}
-    to{padding-top: 0%;}
-    
-}
-@include keyframes(secondStair){
-    from{padding-top: 25%;}
-    to{padding-top: 0%;}
-    
-}
-@include keyframes(thirdStair){
-    from{padding-top: 35%;}
-    to{padding-top: 0%;}
-    
-}
-@include keyframes(auditor){
-    from{top: 215px;}
-    to{top: 125px;}
-    
-}
-@include keyframes(teacher){
-    from{top: 215px;}
-    to{top: 75px;}
-    
-}
-@include keyframes(doctor){
-    from{top: 215px;}
-    to{top: 20px;}
-    
+@include keyframes(firstStair) {
+    from {
+        padding-top: 15%;
+    }
+    to {
+        padding-top: 0%;
+    }
 }
 
-@include keyframes(spin){
+@include keyframes(secondStair) {
+    from {
+        padding-top: 25%;
+    }
+    to {
+        padding-top: 0%;
+    }
+}
+
+@include keyframes(thirdStair) {
+    from {
+        padding-top: 35%;
+    }
+    to {
+        padding-top: 0%;
+    }
+}
+
+@include keyframes(auditor) {
+    from {
+        top: 215px;
+    }
+    to {
+        top: 125px;
+    }
+}
+
+@include keyframes(teacher) {
+    from {
+        top: 215px;
+    }
+    to {
+        top: 75px;
+    }
+}
+
+@include keyframes(doctor) {
+    from {
+        top: 215px;
+    }
+    to {
+        top: 20px;
+    }
+}
+
+@include keyframes(spin) {
     0% {
         transform: rotateZ(0);
     }
@@ -96,328 +120,293 @@ $opacity: 0.8;
 }
 
 @include keyframes (card) {
-    0%   {
-      left: -30%;
-      top: 120px;
-      transform: rotate(8deg);
+    0% {
+        left: -30%;
+        top: 120px;
+        transform: rotate(8deg);
     }
     100% {
-      left: 9%;
-      top: 50px;
-      transform: rotate(15deg);
+        left: 9%;
+        top: 50px;
+        transform: rotate(15deg);
     }
 }
-  
+
 @include keyframes (cardBounce) {
     0% {
-      transform: rotate(12deg);
+        transform: rotate(12deg);
     }
-    33%{
-      transform: rotate(-20deg);
+    33% {
+        transform: rotate(-20deg);
     }
-    66%{
-      transform: rotate(10deg);
+    66% {
+        transform: rotate(10deg);
     }
-    100%{
-      transform: rotate(0deg);
+    100% {
+        transform: rotate(0deg);
     }
-  }
+}
 
-
-div.header_wrap{
+div.header_wrap {
     position: fixed;
     // border: 1px solid #000;
     z-index: 1;
     background: transparent !important;
 }
 
-.fp-viewing-1{
-
-    .fp-tableCell{
-
-        .auditor{
+.fp-viewing-1 {
+    .fp-tableCell {
+        .auditor {
             @include animation(auditor)
-
         }
-        .teacher{
+        .teacher {
             @include animation(teacher);
-
         }
-        .doctor{
+        .doctor {
             @include animation(doctor);
-
         }
-        .stage{
-            .firstStage{
+        .stage {
+            .firstStage {
                 @include animation(firstStair);
             }
-            .secondStage{
+            .secondStage {
                 @include animation(secondStair);
-
             }
-            .thirdStage{
+            .thirdStage {
                 @include animation(thirdStair);
-
             }
         }
     }
 }
-.fp-viewing-4{
-    .card--animated{
-        @include animation (card, 1,1.5s, ease-in ){
-            animation-fill-mode: forwards;
-        } ;
-        @include animation (cardBounce, 1, 1.5s, ease-in-out){
-            animation-fill-mode: forwards;
-        } ;
-    }
 
+.fp-viewing-4 {
+    .card--animated {
+        @include animation (card, 1, 1.5s, ease-in) {
+            animation-fill-mode: forwards;
+        }
+        ;
+        @include animation (cardBounce, 1, 1.5s, ease-in-out) {
+            animation-fill-mode: forwards;
+        }
+        ;
+    }
 }
-.index{
-    .index_test{
+
+.index {
+    .index_test {
         @include section;
-        .firstScreen{
-            @include screen{
+        .firstScreen {
+            @include screen {
                 flex-wrap: wrap;
-                
-            };
-            
-            
-            .index_test_text{
+            }
+            ;
+            .index_test_text {
                 // border: 1px solid #000;
                 text-align: justify;
                 height: fit-content;
                 margin: auto 0;
                 padding: 30px;
-                h1{
+                h1 {
                     margin-bottom: $title;
                     text-align: center;
                 }
-                p{
+                p {
                     padding-left: 10px;
                     padding-right: 10px;
                     margin: 20px 0;
                     line-height: 30px;
                 }
-                .btn_primary{
+                .btn_primary {
                     margin-left: 50%;
                     transform: translateX(-50%);
-    
                 }
             }
-            .index_test_img{
+            .index_test_img {
                 height: fit-content;
                 margin: auto 0;
-                .img{
-                    border: 1px solid red;
-                    position: absolute;
-                    bottom: 400px;
-                    left: 350px;
-
+                width: 700px;
+                height: fit-content;
+                // border: 1px solid red;
+                .img {
+                    // border: 1px solid green;
+                    position: relative;
+                    width: 100%;
+                    // bottom: 400px;
+                    // left: 350px;
                     span {
                         display: block;
                         position: absolute;
-                        top: calc(50% - 5em);
-                        left: calc(50% - 5em);
+                        top: -530px;
+                        left: 215px;
                         width: 40em;
                         height: 40em;
+                        border-radius: 50%;
                         // border: 1px solid red;
                     }
-                      
-                      
-                    .holland_small{
-                        @include animation(pulse, infinite, 20s, linear);
-                        
-                        &:hover{
+                    .holland_small {
+                        @include animation(pulse, infinite, 10s, linear);
+                        &:hover {
                             animation-play-state: paused;
                         }
-
                         .circle {
                             border-radius: 50%;
                         }
-                          
                         .squircle {
                             border-radius: 25%;
                         }
-                          
-                        
-                        
                         .small {
-                        position: absolute;
-                        width: 100px;
-                        height: 100px;
-                        left: calc(50% - 55px);
-                        top: calc(50% - 505px);
-                        transform-origin: 38% 33em;
-                        box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2);
-
-                            p{
+                            width: 120px;
+                            height: 120px;
+                            position: absolute;
+                            left: 250px;
+                            top: -130px;
+                            transform-origin: 50% 33em;
+                            box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
+                            p {
                                 transform: rotate(90deg);
                                 // border: 1px solid red;
                                 line-height: 100px;
                                 text-align: center;
-                                
                             }
                         }
-                          
-                        .one {
-                        background-color: #79BBB5;
-                        transform: rotateZ(288deg);
+                        .real {
+                            background-color: #79BBB5;
+                            transform: rotateZ(180deg);
+                            top: -250px;
                         }
-                        .two {
-                        background-color: #A0CADB;
-                        transform: rotateZ(230deg);
+                        .inv {
+                            background-color: #A0CADB;
+                            transform: rotateZ(120deg);
+                            top: -200px;
+                            left: 250px;
                         }
-                        .three {
-                       background: #CCC5E3;
-                        transform: rotateZ(173deg);
+                        .art {
+                            background: #CCC5E3;
+                            transform: rotateZ(60deg);
                         }
-                        .four {
-                        background: #F4C3C5;
-                        transform: rotateZ(116deg);
+                        .soc {
+                            background: #F4C3C5;
+                            transform: rotateZ(0deg);
+                            top: -200px;
+                            left: 250px;
                         }
-                        .five {
-                        background: #E7995F;
-                        transform: rotateZ(59deg);
+                        .emp {
+                            background: #E7995F;
+                            transform: rotateZ(-60deg);
                         }
-                        .six {
-                        background: #F7EA92;
-                        transform: rotateZ(0);
+                        .con {
+                            background: #F7EA92;
+                            transform: rotateZ(-120deg);
+                            top: -200px;
+                            left: 250px;
                         }
-                        
                         .small.squire {
-                        box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2);
+                            box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
                         }
                     }
-                      
-                    .holland_large{
+                    .holland_large {
                         // border: 1px solid #000;
-                        
-                    } 
+                    }
                     .large.squire {
                         position: absolute;
-                        background: #abc;
-                        right: calc(50% - 550px);
-                        top: calc(50% - 80px);
-                        width: 650px;
-                        height: 650px;
+                        background: #F6F3ED;
+                        right: -350px;
+                        top: -700px;
+                        width: 800px;
+                        height: 800px;
                         border-radius: 50%;
                         box-shadow: $card_shadow;
+                        // transform: rotate(45deg);
                         // border: 1px solid #000;
-                        
                         .content {
                             // border: 1px solid #000;
                             text-align: center;
-                            line-height: 650px;
-                            img{
+                            line-height: 850px;
+                            img {
                                 vertical-align: middle;
+                                margin-top: 30%;
+                                margin-right: 30%;
                                 // border: 1px solid red;
-                                
                             }
                         }
                     }
-                        
                 }
             }
-            
         }
     }
-
-    
-    .index_car{
+    .index_car {
         @include section;
         background-image: url(../../../img/index/index_2nd/2nd_bgYellow.png);
         background-size: cover;
         background-position: bottom;
         background-repeat: no-repeat;
-
-        
-        .secondScreen{
+        .secondScreen {
             @include screen;
-            
-            
-            .index_sal_img{
+            .index_sal_img {
                 // border: 1px solid blue;
                 height: 545px;
                 overflow: hidden;
                 padding: 0;
                 text-align: center;
-               
-                
-                .auditor{
-
-                    @include position(100px, relative){
+                .auditor {
+                    @include position(100px, relative) {
                         top: 125px;
                         right: 5px;
                         z-index: 1;
                     }
                 }
-                .teacher{
-                    @include position(80px, relative){
+                .teacher {
+                    @include position(80px, relative) {
                         top: 75px;
                         z-index: 1;
                     }
-
-                    
                 }
-                .doctor{
-                    @include position(100px, relative){
+                .doctor {
+                    @include position(100px, relative) {
                         top: 20px;
                         z-index: 1;
-    
                     }
-
-                    
                 }
-                .stage{
+                .stage {
                     display: flex;
                     justify-content: center;
                     margin: 0;
                     // border: 1px solid #000;
-
-                    .firstStage{
+                    .firstStage {
                         @include stage(30%, 110px);
                     }
-                    
-                    .secondStage{
+                    .secondStage {
                         @include stage(65%, 55px);
-                        
                     }
-                    .thirdStage{
+                    .thirdStage {
                         @include stage(100%, 0px);
-
-        
                     }
                 }
-                
-    
             }
             @media screen and (max-width: 768px) {
-                .index_sal_img{
+                .index_sal_img {
                     position: absolute;
                     top: 100px;
-                    opacity: $opacity ;
+                    opacity: $opacity;
                 }
             }
-
-            .index_sal_chart{
+            .index_sal_chart {
                 z-index: 1;
                 // border: 1px solid #000;
                 height: 500px;
-                h1{
+                h1 {
                     margin-bottom: $title;
                 }
-                .chart{
+                .chart {
                     margin-top: 150px;
                     margin-bottom: 80px;
-                    .horizontal-bar-graph{
+                    .horizontal-bar-graph {
                         display: table;
                         width: 100%;
                     }
                     .horizontal-bar-graph-segment {
                         display: table-row;
                     }
-                      
                     .horizontal-bar-graph-label {
                         display: table-cell;
                         border-right: 1px solid silver;
@@ -427,14 +416,12 @@ div.header_wrap{
                         white-space: nowrap;
                         font-size: 20px;
                     }
-                      
                     .horizontal-bar-graph-value {
                         display: table-cell;
                         padding: 3px 0;
                         vertical-align: baseline;
                         width: 100%;
                     }
-                      
                     .horizontal-bar-graph-value-bar {
                         background: silver;
                         -moz-box-sizing: padding-box;
@@ -449,45 +436,40 @@ div.header_wrap{
                         white-space: nowrap;
                         -webkit-font-smoothing: antialiased;
                     }
-                      
                     .horizontal-bar-graph-segment:first-child .horizontal-bar-graph-label {
                         padding-top: 12px;
                     }
                     .horizontal-bar-graph-segment:first-child .horizontal-bar-graph-value {
                         padding-top: 11px;
                     }
-                      
                     .horizontal-bar-graph-segment:last-child .horizontal-bar-graph-label {
                         padding-bottom: 12px;
                     }
                     .horizontal-bar-graph-segment:last-child .horizontal-bar-graph-value {
                         padding-bottom: 11px;
                     }
-                      
                 }
-                .btn_second{
-                    margin-left:50%;
+                .btn_second {
+                    margin-left: 50%;
                     transform: translateX(-50%);
                 }
             }
         }
     }
-    .index_disc{
+    .index_disc {
         @include section;
         background-image: url(../../../img/index/index_3rd/3rd_bgGreen.png);
         background-size: cover;
         background-position: bottom;
         background-repeat: no-repeat;
-        
-        .thirdScreen{
+        .thirdScreen {
             @include screen;
-            .index_disc_text{
-                h1{
+            .index_disc_text {
+                h1 {
                     margin-bottom: $title;
-
                 }
-                .index_dia{
-                    .message{
+                .index_dia {
+                    .message {
                         // border: 1px solid #000;
                         border-radius: 10px;
                         padding: 10px;
@@ -495,36 +477,32 @@ div.header_wrap{
                         background-color: white;
                         margin-bottom: 40px;
                         z-index: 2;
-
-                        .meg_box{
+                        .meg_box {
                             border: 1px solid #000;
                             border-radius: 5px;
                             margin-bottom: 15px;
                             box-shadow: $card_shadow;
                             z-index: 2;
-
-                            
-                            a{
+                            a {
                                 width: 100%;
                                 padding: 10px;
-                                h5{
+                                h5 {
                                     display: inline-block;
                                 }
-                                i{
+                                i {
                                     display: inline-block;
                                     float: right;
                                     margin-left: 10px;
                                 }
-                                hr{
-                                    width:98%;
+                                hr {
+                                    width: 98%;
                                     color: lightgrey;
                                 }
-                                p{
+                                p {
                                     font-size: 12px;
                                     color: rgb(42, 169, 219)
                                 }
                             }
-                            
                         }
                         &::after {
                             content: "";
@@ -535,159 +513,147 @@ div.header_wrap{
                             top: 10px;
                             right: -100px;
                             // z-index: 1;
-                            
                         }
                     }
-                    .btn_second{}
+                    .btn_second {}
                 }
             }
-            .index_disc_img{
-                .img{
-                    width:100%;
+            .index_disc_img {
+                .img {
+                    width: 100%;
                     background-image: url(../../../img/index/index_3rd/3rd_smBlue.png);
                     background-size: contain;
                     background-repeat: no-repeat;
-                    .dia_img{
+                    .dia_img {
                         margin-top: 30%;
                         width: 80%;
-
                     }
                 }
             }
         }
     }
-    .index_cour{
+    .index_cour {
         @include section;
         background-image: url(../../../img/index/index_4th/4th_bg.png);
         background-size: cover;
         background-repeat: no-repeat;
-        .forthScreen{
+        .forthScreen {
             // border: 1px solid #000;
             @include screen;
-
-            .index_cour_img{
+            .index_cour_img {
                 // border: 1px solid #000;  
-                padding: 0; 
-                .stair{
+                padding: 0;
+                .stair {
                     // border: 1px solid #000;
-                    @include position(130%, absolute){
+                    @include position(130%, absolute) {
                         bottom: 0px;
                         left: -140px;
-                    };
+                    }
+                    ;
                 }
-            
             }
-           
-        
-
-            .index_cour_text{
-                h1{
+            .index_cour_text {
+                h1 {
                     margin-bottom: $title;
-
                 }
-                .pad{
-                    .screen_bg{
+                .pad {
+                    .screen_bg {
                         background-color: #727171;
                         border-top-left-radius: 50px;
                         border-top-right-radius: 50px;
                         height: 380px;
                         padding: 30px;
-                        .screen{
+                        .screen {
                             background-color: #fff;
                             height: 300px;
                             position: relative;
-
-                            .screen_carousel{
-                                .item{
+                            .screen_carousel {
+                                .item {
                                     display: inline-block;
-                                    border: 1px solid pink;
-                                    height: 280px;
+                                    border: 1px solid #ececec;
+                                    height: fit-content;
                                     margin: 20px 0;
-                                    img{
+                                    padding: 0 10px;
+                                    img {
                                         width: 100%;
                                     }
-                                    h5{}
-                                    p{
-                                        overflow:hidden;
+                                    h5 {}
+                                    p {
+                                        overflow: hidden;
                                         white-space: nowrap;
                                         text-overflow: ellipsis;
                                         margin: 10px 0;
                                     }
                                 }
                             }
-                            .btn_second{
+                            .btn_second {
                                 display: block;
                                 margin: 0 auto;
-                                margin-top: 10px;
+                                // margin-top: 10px;
+                                margin-bottom: 20px;
+                                ;
                             }
                         }
                     }
                 }
-                .screen_bt{
+                .screen_bt {
                     background-color: #c9caca;
                     border-bottom-left-radius: 50px;
                     border-bottom-right-radius: 50px;
                     height: 50px;
-    
-                    
                 }
             }
         }
     }
-    .index_card{
+    .index_card {
         @include section;
         background-image: url(../../../img/index/index_5th/5th_bg.png);
         background-size: cover;
         background-position: bottom;
         background-repeat: no-repeat;
-        .fifthScreen{
-            @include screen{
+        .fifthScreen {
+            @include screen {
                 flex-wrap: wrap;
             }
-
-            .index_card_img{
-                .img{
+            .index_card_img {
+                .img {
                     position: relative;
                     height: 500px;
                     width: 100%;
                     margin: 0 auto;
                     // border: 1px solid #000;
-                    h1{
+                    h1 {
                         // border: 1px solid blue;
                         margin-top: 50px;
-                        margin-bottom:10px;
+                        margin-bottom: 10px;
                     }
-                    #line{
+                    #line {
                         position: absolute;
                         left: 0;
                         top: 80px;
                         right: 0;
                         border-top: 4px solid #444444;
                         transform: skewY(-3.5deg);
-                        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+                        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
                     }
-                    #cards{
+                    #cards {
                         position: relative;
                         z-index: 1;
                         // border: 1px solid red;
                         height: 350px;
-                        
-                        .card{
+                        .card {
                             width: 30%;
                             height: 250px;
                             position: absolute;
                             top: -30px;
-                            
-                            .postCard{
+                            .postCard {
                                 width: 100%;
-                                box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+                                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
                                 border-radius: 2px;
-    
                             }
-                        
-                            &::before{
+                            &::before {
                                 // border: 1px solid red;
-                                content:'';
+                                content: '';
                                 background-image: url(../../../img/index/index_5th/clip.png);
                                 background-size: contain;
                                 background-repeat: no-repeat;
@@ -697,72 +663,60 @@ div.header_wrap{
                                 position: absolute;
                                 bottom: 230px;
                                 left: 150px;
-
                             }
-                        
-                            &.card--animated{
+                            &.card--animated {
                                 position: absolute;
                                 margin-top: 120px;
-                            
-                                + .card{
+                                +.card {
                                     margin-left: 35%;
                                     margin-top: 95px;
                                 }
-                                
-                                + .card + .card{
+                                +.card+.card {
                                     margin-left: 70%;
                                     margin-top: 70px;
                                 }
                             }
-                            
                         }
                     }
-                    .post_front{
-                        @include position(200px,absolute){
+                    .post_front {
+                        @include position(200px, absolute) {
                             bottom: -250px;
                             left: 0px;
                         }
                     }
-                    .post_back{
-                        @include position(80px,absolute){
+                    .post_back {
+                        @include position(80px, absolute) {
                             bottom: 0px;
                             right: 0px;
                         }
                     }
-                    @media screen and(max-width:992px){
-                        .post_front{
+                    @media screen and(max-width:992px) {
+                        .post_front {
                             display: none;
                         }
-                        .post_back{
+                        .post_back {
                             display: none;
                         }
-                        
                     }
                 }
             }
-            
-            .index_card_text{
+            .index_card_text {
                 // border: 1px solid #000;
                 position: relative;
                 top: -80px;
-                .postText{
+                .postText {
                     // border: 1px solid #000;
                     line-height: 20px;
                     width: fit-content;
                     margin: 0 auto;
                     font-size: 18px;
-
                 }
-                .btn_second{
-                    margin:20px 0;
+                .btn_second {
+                    margin: 20px 0;
                     margin-left: 50%;
                     transform: translateX(-50%);
-                    
                 }
-
             }
-            
         }
-        
     }
 }

@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     @@include('app/link.html')
-    <link rel="stylesheet" href="css/pages_scss/course/course.css">
+    <link rel="stylesheet" href="./css/pages_scss/course/course.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"> -->
 
 </head>
 
@@ -15,53 +17,90 @@
 
 
     <div id="course_introduce">
-        <!-- 課程名稱+圖 -->
+
         <div class="course_introduce container">
-            <div class="cus_banner row">
-                <div class="course_intro_banner col-xl-12">
-                    <h1>九個步驟快速提昇你的簡報力、溝通力</h1>
-                    <div class="course_img">
-                        <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" alt="">
+            <!-- banner -->
+            <div class="row">
+                <div class="course_introduce">
+                    <div class="course_intro_banner col-xl-12">
+                        <div class="intro_banner">
+                            <div class="intro_banner_pic">
+                                <div class="banner_img">
+                                    <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" alt="">
+                                </div>
+                                <div class="banner_type_btn">
+                                    <div class="banner_type">
+                                        <span>企業型</span>
+                                    </div>
+                                    <div class="banner_btn">
+                                        <button class="add_cart btn_intro_addcart">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <!-- 加入購物車 -->
+                                        </button>
+                                        <button class="favorite btn_intro_favor">
+                                            <i class="far fa-bookmark"></i>
+
+                                            收藏
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="intro_banner_content">
+                                <div class="banner_title">
+                                    <h1>九個步驟快速提昇你的簡報力、溝通力</h1>
+                                    <div class="banner_teacher_price">
+                                        <div class="banner_teacher_container">
+                                            <a href="#teacher">
+                                                <div class="banner_teacher_img">
+                                                    <img src="./img/course/course_img/講師-課程-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" alt="">
+                                                </div>
+                                                <span>講師:Leo</span>
+                                            </a>
+                                        </div>
+                                        <div class="banner_price">
+                                            <p><span>價格:</span>$660</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="banner_describe">
+                                    <p>一位負責任的簡報者除了具備應有的專業內容，更需要有多元的教學法來提昇參與者的學習效益。 這堂課專注在課綱上的編排、六大學習領域的平衡、內容的舖陳與呈現、簡報技巧的運用。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- 講師介紹 -->
-            <div class="cus_teacher row">
-                <div class="teacher_img col-xl-4">
-                    <div class="teacher_profile">
-                        <img src="./img/course/course_img/講師-課程-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" alt="">
-                    </div>
-                </div>
-                <div class="teacher_intro col-xl-8">
-                    <h2>講師:<span>Leo</span></h2>
-                    <p>台南出生、高雄長大。讀了造船工程科卻跑去當了三年的職業軍人。當職業軍人的同時又成為義務張老師電話諮詢志工。從業績掛單到月收入20萬時跑去開餐廳。在一無所有的時候走入了五術命理的領域。
-                        才發現，這些過去是為了奠定現在的我。</p>
-                </div>
-            </div>
+
             <!-- 學習到什麼/適合對象 -->
             <div class="cus_learn row">
-                <div class="suitable_list col-xl-6">
-                    <h2>這門課適合對象:</h2>
-                    <ul>
-                        <li>
-                            1. 如果您想要學習更高階簡報設計或者更複雜的技巧，本課程可能並不適合你。
-                        </li>
-                        <li>
-                            2. 本課程適合己有教學內容，但不知如何編制課程大綱的你。或者想要學習如何豐富教學內容的你。
-                        </li>
-                    </ul>
+                <div class="col-xl-6">
+                    <div class="suitable_list">
+                        <h2>這門課適合對象:</h2>
+                        <ul>
+                            <li>
+                                1. 如果您想要學習更高階簡報設計或者更複雜的技巧，本課程可能並不適合你。
+                            </li>
+                            <li>
+                                2. 本課程適合己有教學內容，但不知如何編制課程大綱的你。或者想要學習如何豐富教學內容的你。
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="learn_list col-xl-6">
-                    <h2>我將從這堂課學到什麼?</h2>
-                    <ul>
-                        <li>
-                            1.掌握內容、社群跟商務三者對於行銷活動的重要性。
-                        </li>
-                        <li>
-                            2.瞭解在進行行銷活動時，時間與金錢之前的關聯性。
-                        </li>
-                    </ul>
+                    <div class="learn_list">
+                        <h2>我將從這堂課學到什麼?</h2>
+                        <ul>
+                            <li>
+                                1.掌握內容、社群跟商務三者對於行銷活動的重要性。
+                            </li>
+                            <li>
+                                2.瞭解在進行行銷活動時，時間與金錢之前的關聯性。
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -81,22 +120,40 @@
                 </div>
             </div>
 
+            <!-- 講師介紹 -->
+            <div class="cus_teacher row">
+                <div class="teacher_img col-xl-4">
+                    <div class="teacher_profile">
+                        <img src="./img/course/course_img/講師-課程-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" alt="">
+                    </div>
+                </div>
+                <div class="teacher_intro col-xl-8">
+                    <h2>講師:<span>Leo</span></h2>
+                    <p>台南出生、高雄長大。讀了造船工程科卻跑去當了三年的職業軍人。當職業軍人的同時又成為義務張老師電話諮詢志工。從業績掛單到月收入20萬時跑去開餐廳。在一無所有的時候走入了五術命理的領域。 才發現，這些過去是為了奠定現在的我。
+                    </p>
+                </div>
+            </div>
+
             <!-- 口碑推薦 -->
             <div class="feedback row">
                 <div class="pro_feedback col-xl-6">
                     <h2>口碑推薦</h2>
-                    <div class="pro_contain">
-                        <p>教學經驗豐富，對於想學習溝通技巧卻找不到方向的人總是很熱心的給予協助，在我剛開始學習時也是藉由老師的部落格及教學影片打下扎實的基礎，這個課程絕對能讓人收穫良多。</p>
-                        <div class="pro_person">
-                            <div class="pro_profile">
-                                <img src="" alt="">
+                    <ul class="pro_feedback_auto">
+                        <li>
+                            <div class="pro_contain">
+                                <p>教學經驗豐富，對於想學習溝通技巧卻找不到方向的人總是很熱心的給予協助，在我剛開始學習時也是藉由老師的部落格及教學影片打下扎實的基礎，這個課程絕對能讓人收穫良多。</p>
+                                <div class="pro_person">
+                                    <div class="pro_profile">
+                                        <img src="img/course/course_img/講師-課程-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" alt="">
+                                    </div>
+                                    <div class="pro_introduce">
+                                        <span>Joseph</span>
+                                        <span>保險業務員</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="pro_introduce">
-                                <span>Joseph</span>
-                                <span>保險業務員</span>
-                            </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="stu_feedback col-xl-6">
                     <h2>學生心得</h2>
@@ -117,36 +174,35 @@
                         </ul>
                     </div>
                 </div>
-
-
             </div>
 
             <!-- 推薦課程 -->
-            <div class="hot_course row">
-                <div class="course_session_title col-xl-12">
+            <div class=" hot_course">
+                <div class="course_session_title">
                     <h2>熱門課程</h2>
                 </div>
                 <ul class="auto_slider owl-carousel">
                     <li class="auto_slider_card " v-for="card in hot_course">
-                        <a href="#">
+                        <a href="course_introduce.html">
                             <div class="auto_slider_card_pic">
                                 <img :src="card.img" alt="">
-                            </div>
-                            <div class="auto_slider_card_content">
-                                <p>{{card.course_title}}</p>
-                                <div class="card_content_scrb">
-                                    <div class="card_content_join">
-                                        <i class="fas fa-user-friends"></i><span>{{card.join}}人已參與此課程</span>
-                                    </div>
-                                    <div class="card_content_msg">
-                                        <span class="card_time">總計{{card.hour}}小時</span>
-                                        <span class="card_price">NT${{card.price}}</span>
-                                    </div>
-                                </div>
+                                <span class="course_type" :style="card.color">{{card.type}}</span>
                             </div>
                         </a>
-                        <div class="add_cart_btn">
-                            <button class="btn_primary">加入購物車</button>
+                        <div class="auto_slider_card_content">
+                            <p>{{card.course_title}}</p>
+                            <div class="card_content_scrb">
+                                <div class="card_content_join">
+                                    <i class="fas fa-user-friends"></i><span>{{card.join}}人已參與此課程</span>
+                                </div>
+                                <div class="card_content_msg">
+                                    <span class="card_time">總計{{card.hour}}小時</span>
+                                    <span class="card_price">NT${{card.price}}</span>
+                                </div>
+                            </div>
+                            <div class="add_cart_btn">
+                                <button><i class="fas fa-shopping-cart"></i></button>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -158,17 +214,7 @@
 
 
 
-    </div>
-
-
-
-
-
-
-    @@include('app/footer.html')
-
-    @@include('app/script.html')
-
+    @@include('app/footer.html') @@include('app/script.html')
     <script src="./js/course/owl_auto_slide.js"></script>
     <script>
         new Vue({
