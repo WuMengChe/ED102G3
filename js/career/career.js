@@ -65,28 +65,28 @@ let carData = {
     ],
     industryForum: [
         {typeName: "實作型(R)", detail: [
-            {name: "實作型-酒及飲料調製"},
-            {name: "實作型-職場溝通管理學：打造團隊好關係與高績效"}
+            {name: "酒及飲料調製"},
+            {name: "職場溝通管理學：打造團隊好關係與高績效"}
         ]},
         {typeName: "研究型(I)", detail: [
-            {name: "研究型-人工智慧TENSORFLOW上手實作班"},
-            {name: "研究型-前端工程師就業養成班"}
+            {name: "人工智慧TENSORFLOW上手實作班"},
+            {name: "前端工程師就業養成班"}
         ]},
         {typeName: "文藝型(A)", detail: [
-            {name: "文藝型-行銷必上文案課：受眾溝通與表達"},
-            {name: "文藝型-設計色彩學：建立自己的色彩品味資料庫"}
+            {name: "行銷必上文案課：受眾溝通與表達"},
+            {name: "設計色彩學：建立自己的色彩品味資料庫"}
         ]},
         {typeName: "社會型(S)", detail: [
-            {name: "社會型-社會心理學"},
-            {name: "社會型-翻轉課堂的職業講師祕訣"}
+            {name: "社會心理學"},
+            {name: "翻轉課堂的職業講師祕訣"}
         ]},
         {typeName: "企業型(E)", detail: [
-            {name: "企業型-九個步驟快速提昇你的簡報力、溝通力"},
-            {name: "企業型-新世代行銷法則，行銷=內容X社群X商務"}
+            {name: "九個步驟快速提昇你的簡報力、溝通力"},
+            {name: "新世代行銷法則，行銷=內容X社群X商務"}
         ]},
         {typeName: "事務型(C)", detail: [
-            {name: "事務型-財報分析基礎雲端班"},
-            {name: "事務型-初級會計基礎班"}
+            {name: "財報分析基礎雲端班"},
+            {name: "初級會計基礎班"}
         ]},
     ],
     careerPlot:{
@@ -102,7 +102,8 @@ let carData = {
     myChart: '',
     sendData: false,
     showPlotControl: false,
-    screenWidth: 0
+    screenWidth: 0,
+    scrollHeight: 0,
 }
 
 let careerVueContent = new Vue({
@@ -114,23 +115,40 @@ let careerVueContent = new Vue({
         if(this.screenWidth > 991){
             this.showPlotControl = true;
         }
+        this.scrollHeight = document.documentElement.scrollTop;
     },
     // watch: {
-    //     showPlotControl: function(val){
-    //         if(val > 991){
-    //             this.showPlotControl = true;
-    //         }
+    //     scrollHeight: function(val){
+    //         this.scrollHeight = document.documentElement.scrollTop;
+    //         console.log(this.scrollHeight)
     //     }
     // },
     created() {
         window.addEventListener('resize', this.changeWidth);
+        window.addEventListener('scroll', this.changeScroll);
         window.addEventListener('resize', this.rankingPlot);
     },
     destroyed() {
         window.removeEventListener('resize', this.changeWidth);
+        window.removeEventListener('scroll', this.changeScroll);
         window.removeEventListener('resize', this.rankingPlot);
     },
     methods: {
+        scrollToTop(){
+            window.scrollTo(0, 0)
+        },
+        changeScroll(){
+            var screenHeight = document.documentElement.clientHeight;
+            this.scrollHeight = document.documentElement.scrollTop;
+            if(this.scrollHeight > screenHeight - 300 && this.screenWidth > 991){
+                document.querySelector('.fa-arrow-circle-up').classList.add('car_icon_show');
+            }
+            else if(this.screenWidth > 991){
+                document.querySelector('.fa-arrow-circle-up').classList.remove('car_icon_show');
+
+            }
+            // console.log(this.scrollHeight)
+        },
         changeWidth(e){
             this.screenWidth = document.documentElement.clientWidth;
             if(992 > this.screenWidth){

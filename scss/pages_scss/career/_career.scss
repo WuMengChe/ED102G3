@@ -52,12 +52,23 @@ body.car_body{
             flex-wrap: wrap;
             .car_con_list{
                 padding: 0;
+                background: #f6f3ed;
+                border-radius: 20px;
+                // .car_con_list_fix_use{
+                //     position: fixed;
+                //     z-index: 1;
+                // }
                 ul{
                     margin-bottom: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     li{
-                        margin: 10px 0;
+                        margin: 10px auto;
+                        width: 150px;
                         cursor: pointer;
                         border: 2px solid black;
+                        background-color: transparent;
                         border-radius: 50px;
                         padding: 5px 30px;
                         display: flex;
@@ -161,12 +172,12 @@ body.car_body{
                 padding: 0;
                 flex-wrap: wrap;
                 flex-direction: row;
-                justify-content: space-around;
+                justify-content: space-evenly;
                 background-color: #79BBB5;
                 border-radius: 25px;
                 .car_con_pro_info{
                     display: flex;
-                    margin: 5px 0;
+                    margin: 15px 0;
                     padding: 0;
                     cursor: pointer;
                     flex-direction: column;
@@ -174,9 +185,10 @@ body.car_body{
                     border-radius: 25px;
                     overflow: hidden;
                     img{
-                        width: 100%;
+                        margin: 15px auto;
+                        width: 90%;
                         height: 100%;
-                        max-height: 350px;
+                        max-height: 300px;
                     }
                     span{
                         display: flex;
@@ -220,7 +232,7 @@ body.car_body{
             margin: 20px auto;
             padding: 0;
             border-radius: 25px;
-            box-shadow: 2px 2px 20px gray;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
             background-color: rgba(255, 255, 255, 0.7);
             h3{
                 margin: 5px auto;
@@ -233,15 +245,49 @@ body.car_body{
                 justify-content: space-evenly;
                 .car_course_list_info{
                     margin: 10px 0;
+                    padding: 0;
                     height: 300px;
                     background-color: rgb(209, 156, 209);
+                    box-shadow: 2px 2px 6px rgba(0,0,0,.25);
+                    border-radius: 5px;
+                    .car_course_list_info_img{
+                        width: 100%;
+                        img{
+                            width: 100%;
+                        }
+                        span{
+                            display: inline-block;
+                            padding: 5px;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            border-radius: 5px;
+                            box-shadow: 2px 2px 6px rgba(0,0,0,.25);
+                        }
+                    }
+                    p{
+                        font-size: 18px;
+                        font-weight: 700;
+                    }
                 }
                 .car_forum_list_info{
                     display: flex;
-                    margin: 10px 0;
+                    margin: 0;
                     height: 40px;
                     align-items: center;
-                    background-color: rgb(209, 180, 156);
+                    border: 3px solid;
+                    background-color: white;
+                    transition: linear .2s;
+                    span{
+                        font-size: 18px;
+                    }
+                    span:first-child{
+                        font-size: 15px;
+                    }
+                }
+                .car_forum_list_info:hover{
+                    transform: scale(1.1);
+                    background: #f6f3ed;
                 }
             }
             button{
@@ -269,4 +315,16 @@ body.car_body{
             z-index: 1;
         }
     }
+}
+.fa-arrow-circle-up{
+    cursor: pointer;
+    font-size: 40px;
+    position: fixed;
+    bottom: 10px;
+    right: -50px;
+    z-index: 2;
+    transition: right 1.5s;
+}
+.car_icon_show{
+    right: 10px;
 }
