@@ -49,23 +49,29 @@ $(function () {
   $(".mark #frontStyle").click(function () {
     deskFront.show();
     deskLine.hide();
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
   });
   $(".mark #frontOutline").click(function () {
     deskLine.show();
     deskFront.hide();
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
   });
 
   //點擊背面換格式
   $(".mark #backStamps").click(function () {
     deskStamps.show();
     deskPostmarks.hide();
-
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
 
   });
   $(".mark #backPostmarks").click(function () {
     deskStamps.hide();
     deskPostmarks.show();
-
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
 
   });
   //換郵票

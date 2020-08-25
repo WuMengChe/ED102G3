@@ -34,22 +34,29 @@ $width:450px;
 $height:350px;
 $border-top:175px;
 
+body.intro_bg {
+  background-image: url("../../../img/post_card/post_intro_background.svg");
+  background-size: 100%;
+  background-position: 0 20%;
+  background-repeat: no-repeat;
+}
+
 .post_intro {
-  border: 1px solid black;
+  // border: 1px solid black;
   margin-bottom: 80px;
 
   .post_ani {
-    border: 1px solid rgb(255, 0, 0);
+    // border: 1px solid rgb(255, 0, 0);
 
 
     // height: calc(100vh - 90px);
     .move {
-      border: 1px solid red;
+      // border: 1px solid red;
       margin: 0 auto;
 
 
       .main_pic {
-        border: 1px solid black;
+        // border: 1px solid black;
 
         .envelope {
           width: $width;
@@ -129,7 +136,7 @@ $border-top:175px;
       }
 
       .buttons {
-        border: 1px solid rgb(11, 11, 231);
+        // border: 1px solid rgb(11, 11, 231);
         margin: 20px auto;
         display: flex;
         justify-content: space-around;
@@ -141,7 +148,7 @@ $border-top:175px;
   }
 
   .steps {
-    border: 1px solid red;
+    // border: 1px solid red;
     margin: 0;
     text-align: center;
     margin-top: 10px;
@@ -150,13 +157,13 @@ $border-top:175px;
     align-items: center;
 
     .step1 {
-      border: 1px solid blue;
+      // border: 1px solid blue;
       padding: 0;
       @include step();
     }
 
     .fa-arrow-right {
-      border: 1px solid rgb(251, 255, 0);
+      // border: 1px solid rgb(251, 255, 0);
       font-size: 22px;
       color: rgb(31, 31, 31);
       margin: 0;
@@ -165,14 +172,14 @@ $border-top:175px;
     }
 
     .step2 {
-      border: 1px solid blue;
+      // border: 1px solid blue;
       padding: 0;
       @include step();
 
     }
 
     .step3 {
-      border: 1px solid blue;
+      // border: 1px solid blue;
       padding: 0;
 
       @include step();
@@ -180,7 +187,7 @@ $border-top:175px;
     }
 
     .mas {
-      border: 1px solid blue;
+      // border: 1px solid blue;
       display: inline-block;
     }
   }
