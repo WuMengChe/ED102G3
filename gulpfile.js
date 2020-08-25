@@ -1,7 +1,7 @@
 //注意事項：
 //*使用gulp轉譯sass時不可以同時開watch sass（會變成雙方都在轉譯）
 //*打開default(指令：gulp)之後不要再開live-server了
-//*安裝之前請確保有安裝node.js且版本為v.11.0.0
+//*安裝之前請確保有安裝node.js且版本為v.9.8.0
 
 //步驟：
 //1. 請確認有從git上拉到package.json & package-lock.json
@@ -37,7 +37,7 @@ gulp.task("fileinclude", function() {
 
 //7. 將js複製到dest資料夾中，請在終端機中輸入：gulp js
 gulp.task("js", function() {
-    return gulp.src(["js/**/*.js"]).pipe(gulp.dest("dest/js"));
+    return gulp.src(["./js/**/*.js"]).pipe(gulp.dest("dest/js"));
 });
 
 //8. 將bootstrap資料夾複製到dest資料夾中：請在終端機中輸入：gulp bootstrap
@@ -64,6 +64,7 @@ gulp.task("default", function() {
     });
     gulp.watch("./scss/**/**/*.scss", ["sass"]).on("change", reload);
     gulp.watch(["./*.html"], ["fileinclude"]).on("change", reload);
+    gulp.watch(["./js/**/*.js"], ["js"]).on("change", reload);
 });
 
 //11. 將json複製到dest資料夾中，請在終端機中輸入：gulp json
