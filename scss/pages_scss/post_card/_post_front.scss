@@ -87,6 +87,7 @@ $bgc:rgba(88, 88, 88, 0.253);
 
 div.postcard_main {
   border: 1px solid red;
+  background-color: $second_color3;
   max-width: 1200px;
   margin-top: 50px;
 
@@ -184,7 +185,7 @@ div.postcard_main {
     // 明信片區
 
     .postcardZone {
-      background-color: lightblue;
+      // background-color: lightblue;
       padding-left: -15px;
       padding-bottom: 20px;
 
@@ -193,7 +194,7 @@ div.postcard_main {
         // background-color: lightblue;
         // padding-left: -15px;
         // padding-bottom: 20px;
-        border: 1px solid black;
+        // border: 1px solid black;
 
         .front_post {
           // border: 1px solid blue;
@@ -203,7 +204,8 @@ div.postcard_main {
 
 
           .mainStyle {
-            border: 1px solid black;
+            // border: 1px solid rgb(111, 137, 255);
+            box-shadow: $card_shadow;
             position: relative;
             // height: 553px;
             height: 0;
@@ -435,23 +437,24 @@ div.postcard_main {
 
       //背面明信片----------------------
       .postcard_back {
-        background-color: rgb(149, 252, 154);
+        // background-color: rgb(149, 252, 154);
 
         .back_post {
-          border: 1px solid rgb(70, 92, 74);
+          // border: 1px solid rgb(70, 92, 74);
           margin: 20px 0;
           // display: inline-block;
 
           .mainStyle {
-            border: 1px solid rgb(241, 161, 57);
-            background-color: yellow;
+            // border: 1px solid rgb(241, 161, 57);
+            // background-color: yellow;
+            box-shadow: $card_shadow;
             padding-bottom: 63.5%;
             height: 0;
 
 
 
             .style_back {
-              border: 1px solid red;
+              // border: 1px solid red;
               display: flex;
               position: relative;
               overflow: hidden;
@@ -460,7 +463,7 @@ div.postcard_main {
                 position: absolute;
                 top: 20%;
                 right: 30%;
-                border: 1px solid blue;
+                border: 1px solid gray;
                 min-width: 100px;
                 width: 24%;
                 cursor: move;
@@ -475,19 +478,20 @@ div.postcard_main {
 
                 textarea {
                   margin-top: 5%;
+                  margin-left: 5%;
                   padding: 0 5px;
                   border: none;
                   border-right: 2px solid #cccccc;
                   resize: none;
-                  width: 100%;
+                  width: 95%;
                   height: 0;
                   padding-bottom: 117%;
                   outline: none;
                   line-height: 30px;
                   font-size: 18px;
                   background: transparent;
-                  // background-size: 100% 30px;
                   overflow: hidden;
+                  // border: 1px solid blue;
                 }
 
 
@@ -503,7 +507,7 @@ div.postcard_main {
                 flex-wrap: nowrap;
 
                 .style_stamp {
-                  border: 1px solid black;
+                  // border: 1px solid black;
                   margin-top: 3%;
                   // margin-right: 10%;
                   // width: 100%;
@@ -512,11 +516,11 @@ div.postcard_main {
                   background-position: right;
                   background-repeat: no-repeat;
                   height: 0;
-                  padding-bottom: 30%;
+                  padding-bottom: 35%;
 
 
                   img {
-                    border: 1px solid blue;
+                    // border: 1px solid blue;
                     width: 46.5%;
                     float: right;
                     display: none;
@@ -525,10 +529,10 @@ div.postcard_main {
 
                 .text {
                   // border: 1px solid blue;
-                  margin-top: 20%;
+                  margin-top: 15%;
                   display: inline-block;
                   height: 0;
-                  padding-bottom: 69%;
+                  padding-bottom: 65%;
 
                   textarea {
                     margin-left: 5%;
@@ -551,7 +555,7 @@ div.postcard_main {
         }
 
         .buttons {
-          border: 1px solid brown;
+          // border: 1px solid brown;
           margin-bottom: 20px;
           display: flex;
           justify-content: flex-end;
