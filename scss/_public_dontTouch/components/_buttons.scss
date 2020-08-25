@@ -47,10 +47,10 @@ a {
 
 .btn_primary {
     @include btn();
-    border: 2px solid #1B4D9F;
-    box-shadow: 4px 4px 0px #1B4D9F;
+    border: 2px solid #119BEB;
+    box-shadow: 4px 4px 0px #119BEB;
     &:hover {
-        background: #1B4D9F;
+        background: #119BEB;
     }
 
 }
@@ -64,7 +64,7 @@ a {
     }
 
 }
-
+=
 .btn_third {
     @include btn();
     border: 2px solid #a5a5a5;
