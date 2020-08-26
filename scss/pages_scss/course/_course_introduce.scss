@@ -10,6 +10,10 @@ $title_gap: 20px;
     margin: 50px 0 20px;
 }
 
+div.header_wrap header.header div.header_nav ul li:nth-child(4) a::after {
+    @include header_line;
+}
+
 div#course_introduce {
     background-image: url(../../../img/course/bg/intro.png);
     background-size: cover;
