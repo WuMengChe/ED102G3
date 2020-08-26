@@ -54,6 +54,7 @@ a {
     box-shadow: 4px 3px 0px #EE7002;
     &:hover {
         background: #EE7002;
+        transform: scale(0.97);
     }
 }
 
@@ -63,6 +64,7 @@ a {
     box-shadow: 4px 3px 0px #a5a5a5;
     &:hover {
         background: #a5a5a5;
+        transform: scale(0.97);
     }
 }
 
@@ -82,7 +84,6 @@ a {
     &:hover {
         color: white;
         background: #119BEB;
-        ;
         transform: scale(0.97);
     }
 }

@@ -13,7 +13,6 @@ div.before_test_wrap .main_before_test {
 div.before_test_wrap .main_before_test section.origin_of_types_before_test {
   background: rgba(255, 255, 255, 0.7);
   width: 100%;
-  margin: 5% 0;
   border-radius: 1px;
   display: flex;
   flex-direction: column;
