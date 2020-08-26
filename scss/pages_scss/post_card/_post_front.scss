@@ -4,24 +4,41 @@
   box-sizing: border-box;
 }
 
-$bgc:rgba(88, 88, 88, 0.253);
+body {
+  background-image: url("../../../img/post_card/post_background.svg");
+  background-size: contain;
+  background-position: left;
+  background-repeat: no-repeat;
+}
 
-@mixin style {
+@mixin style () {
   #{'.style_list'} {
-    border: 1px solid green;
+    // border: 1px solid rgb(182, 182, 182);
+    border-radius: 0 20px 20px 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     margin: 0;
     width: 100%;
-    background-color: $second_color3;
+    background-color: $second_color2;
 
 
     .style {
-      border: 1px solid red;
+      border: 2px solid #a5a5a5;
+      border-radius: 8px;
       width: 100%;
       margin: 15px 0;
-      background-color: $bgc;
+      padding: 8px;
       cursor: pointer;
+
+      &.active {
+        border: 2px solid #EE7002;
+      }
+
+      &:hover {
+        border: 2px solid #EE7002;
+
+      }
 
       img {
         width: 100%;
@@ -33,30 +50,7 @@ $bgc:rgba(88, 88, 88, 0.253);
   }
 }
 
-@mixin back-style {
-  #{'.style_list'} {
-    border: 1px solid green;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    width: 100%;
-    background-color: $second_color3;
 
-    .style {
-      border: 1px solid red;
-      width: 100%;
-      margin: 15px 0;
-      cursor: pointer;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-
-  }
-}
 
 @mixin label {
   #{label} {
@@ -85,11 +79,69 @@ $bgc:rgba(88, 88, 88, 0.253);
   }
 }
 
+@mixin phone_style {
+  #{'.style_list'} {
+
+    // border: 1px solid blue;
+    justify-content: space-around;
+    margin: 10px 0 20px;
+
+    .style {
+      border: 2px solid #a5a5a5;
+      border-radius: 8px;
+      padding: 5px;
+      cursor: pointer;
+
+      &.active {
+        border: 2px solid #EE7002;
+      }
+
+      &:hover {
+        border: 2px solid #EE7002;
+
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+  }
+}
+
+@mixin h3 {
+  #{h3} {
+    // border: 1px solid rgb(182, 182, 182);
+    // display: inline-block;
+    padding: 5px;
+    background-color: $second_color2;
+    border-radius: 5px 5px 0 0;
+    border: none;
+    cursor: pointer;
+
+    &.active {
+      background-color: #EE7002;
+      color: white;
+    }
+
+    &:hover {
+      background-color: #EE7002;
+      color: white;
+    }
+
+    &:nth-child(2) {
+      border-left: 1px solid rgb(182, 182, 182);
+    }
+  }
+}
+
 div.postcard_main {
-  border: 1px solid red;
-  background-color: $second_color3;
+  // border: 1px solid red;
+  // background-color: $second_color2;
+  padding-top: 20px;
   max-width: 1200px;
-  margin-top: 50px;
+  margin-top: 30px;
 
   .postcard,
   .row {
@@ -100,30 +152,25 @@ div.postcard_main {
         // background-color: $art_color;
 
         .change_style {
-          border: 1px solid black;
+          // border: 1px solid black;
+
 
           .front_all_style {
-            border: 1px solid blue;
+            // border: 1px solid blue;
+            // padding: 10px;
             @include style();
             // background-color: $art_color;
 
             .mark {
-              border: 1px solid rgb(200, 52, 52);
+              // border: 1px solid rgb(200, 52, 52);
               cursor: pointer;
               display: flex;
-
-              h3 {
-                border: 1px solid yellow;
-                // display: inline-block;
-                padding: 5px;
-                background-color: $second_color3;
-                border-radius: 5px 5px 0 0;
-              }
+              @include h3();
             }
           }
 
           .style_all_outline {
-            border: 1px solid blue;
+            // border: 1px solid blue;
             @include style();
 
             .style {
@@ -132,7 +179,7 @@ div.postcard_main {
 
               p {
                 position: absolute;
-                border: 1px solid blue;
+                // border: 1px solid blue;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
@@ -143,38 +190,34 @@ div.postcard_main {
       }
 
       #backAllStyle {
-        border: 1px solid rgb(247, 25, 180);
+        // border: 1px solid rgb(247, 25, 180);
         margin: 0;
 
         .change_style {
-          border: 1px solid yellow;
+          // border: 1px solid yellow;
 
           .back_all_style {
-            border: 1px solid rgb(38, 73, 44);
-            @include back-style();
+            // border: 1px solid rgb(38, 73, 44);
+
 
             .mark {
-              border: 1px solid black;
+              // border: 1px solid black;
               display: flex;
+              @include h3();
 
-              h3 {
-                border: 1px solid yellow;
-                padding: 5px;
-                cursor: pointer;
-              }
             }
 
           }
 
           .style_all_stamps {
-            border: 1px solid yellow;
-            @include back-style();
+            // border: 1px solid yellow;
+            @include style();
 
           }
 
           .style_all_postmarks {
-            border: 1px solid yellow;
-            @include back-style();
+            // border: 1px solid yellow;
+            @include style();
           }
 
         }
@@ -212,13 +255,13 @@ div.postcard_main {
             padding-bottom: 63.5%;
 
             .style1 {
-              border: 1px solid red;
+              // border: 1px solid red;
               text-align: center;
               display: none;
 
 
               .all {
-                border: 1px solid rgb(130, 243, 173);
+                // border: 1px solid rgb(130, 243, 173);
                 // background-color: rgba(88, 88, 88, 0.253);
                 padding-bottom: 63.4%;
                 height: 0;
@@ -234,7 +277,7 @@ div.postcard_main {
             }
 
             .style2 {
-              border: 1px solid red;
+              // border: 1px solid red;
               text-align: center;
               display: none;
 
@@ -374,62 +417,29 @@ div.postcard_main {
 
         .post_phone {
           .change_style {
-            border: 1px solid rgb(255, 0, 200);
+            // border: 1px solid rgb(255, 0, 200);
             margin-top: 80px;
-
+            // background-color: $second_color2;
 
 
             .front_all_style {
-              border: 1px solid rgb(23, 29, 23);
+              // border: 1px solid rgb(23, 29, 23);
+              @include phone_style();
 
-              .style_list {
-                border: 1px solid blue;
-                justify-content: space-between;
-                margin: 20px 0;
-
-                .style {
-                  border: 1px solid rgb(17, 17, 17);
-                  padding: 0;
-                  cursor: pointer;
-
-                  img {
-                    width: 100%;
-                  }
-                }
-              }
             }
 
             .style_all_outline {
-              border: 1px solid rgb(23, 29, 23);
+              // border: 1px solid rgb(23, 29, 23);
+              @include phone_style();
 
-              .style_list {
+              p {
+                position: absolute;
                 // border: 1px solid blue;
-                justify-content: space-between;
-                // display: inline-block;
-                margin: 20px 0;
-
-                .style {
-                  border: 1px solid rgb(17, 17, 17);
-                  padding: 0;
-                  background-color: rgba(88, 88, 88, 0.253);
-                  height: 100%;
-                  text-align: center;
-                  position: relative;
-                  cursor: pointer;
-
-                  img {
-                    width: 100%;
-                  }
-
-                  p {
-                    position: absolute;
-                    border: 1px solid blue;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                  }
-                }
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
               }
+
             }
           }
         }
@@ -463,7 +473,7 @@ div.postcard_main {
                 position: absolute;
                 top: 20%;
                 right: 30%;
-                border: 1px solid gray;
+                // border: 1px solid gray;
                 min-width: 100px;
                 width: 24%;
                 cursor: move;
@@ -583,57 +593,24 @@ div.postcard_main {
           padding: 0;
 
           .change_style {
-            border: 1px solid yellow;
+            // border: 1px solid gray;
+            // background-color: $second_color2;
 
-            h3 {
-              border: 1px solid blue;
+            p {
+              // border: 1px solid blue;
               margin-bottom: 20px;
             }
 
             .style_all_stamps {
-              border: 1px solid yellow;
+              // border: 1px solid yellow;
 
-              .stamps_style {
-                border: 1px solid blue;
-                margin: 0;
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 20px;
-
-                .style {
-                  border: 1px solid red;
-                  padding: 0;
-                  cursor: pointer;
-
-
-                  img {
-                    width: 100%;
-                    height: 100%;
-                  }
-                }
-              }
+              @include phone_style();
             }
 
             .style_all_postmarks {
-              border: 1px solid yellow;
+              // border: 1px solid yellow;
 
-              .postmarks_style {
-                border: 1px solid blue;
-                margin: 0;
-                display: flex;
-                justify-content: space-between;
-
-                .style {
-                  border: 1px solid red;
-                  padding: 0;
-                  cursor: pointer;
-
-                  img {
-                    width: 100%;
-                    height: 100%;
-                  }
-                }
-              }
+              @include phone_style();
             }
           }
         }
