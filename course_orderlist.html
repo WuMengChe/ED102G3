@@ -12,161 +12,245 @@
 </head>
 
 <body>
-    @@include('app/header.html')
+    <!-- @@include('app/header.html') -->
+    <!-- header -->
 
 
 
     <!-- course_list -->
-    <div class="order_list_wrap">
-        <div class="container">
-            <div class="course_order_list" id="course_list">
-                <div class="row">
-                    <!-- 課程清單 -->
-                    <div class="col-xl-7 col-lg-7 ">
-                        <div class="cus_list">
-                            <h5>課程清單</h5>
-                            <!-- 課程細項 -->
-                            <ul>
-                                <li>
-                                    <div class="cus_card">
-                                        <a href="#">
-                                            <div class="card_img">
-                                                <img src="img/course/課程圖片.jpg" alt="">
-                                            </div>
-                                            <div class="card_content">
-                                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
-                                                <div class="card_content_scrb">
-                                                    <div class="card_content_join">
-                                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
-                                                    </div>
-                                                    <div class="card_content_msg">
-                                                        <span class="card_type">企業型</span>
-                                                        <span class="card_time">總計3小時</span>
-                                                        <span class="card_price">NT$660</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </li>
+    <div id="course_order_list">
+        <div class="header_wrap">
+            <header class="header">
+                <div class="hamburger">
+                    <button class=" hamburger hamburger--spring btn_switch" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/LOGO_FINAL.svg" alt="">
+                    </a>
+                </div>
+                <div class="header_nav">
+                    <ul>
+                        <li><a href="test_before.html" id="text_page">職涯分析</a></li>
+                        <li><a href="career_Travel Strategy.html">行業攻略</a></li>
+                        <li><a href="forum_discuss.html">職涯論壇</a></li>
+                        <li><a href="course_main.html">探索課程</a></li>
+                        <li><a href="post_intro.html">時光明信片</a></li>
+                    </ul>
 
+                </div>
+                <div class="header_icon">
+                    <div class="cart">
+                        <button href="#"><i class="fas fa-shopping-cart"></i>
+                            <div class="cart_num"><span>{{cart_items.length}}</span></div>
+                        </button>
+                        <!-- <div class="cart_num"><span>1</span></div> -->
+                    </div>
 
-                                <li>
-                                    <div class="cus_card">
-                                        <a href="#">
-                                            <div class="card_img">
-                                                <img src="img/course/課程圖片.jpg" alt="">
-                                            </div>
-                                            <div class="card_content">
-                                                <p>九個步驟快速提昇你的簡報力、溝通力</p>
-                                                <div class="card_content_scrb">
-                                                    <div class="card_content_join">
-                                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
-                                                    </div>
-                                                    <div class="card_content_msg">
-                                                        <span class="card_type">企業型</span>
-                                                        <span class="card_time">總計3小時</span>
-                                                        <span class="card_price">NT$660</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
+                    <div class="member"><a href="member.html"><i class="fas fa-user"></i></a></div>
+                </div>
+            </header>
+
+        </div>
+        <!-- cart -->
+        <div class="side_cart cart_off">
+            <div class="cart_close">
+                <span>購物車</span>
+                <button id="cart_close" class="btn_third">close</button>
+                <button class="btn_third" @click="delete_cookie">delete</button>
+            </div>
+            <div class="cart_course">
+                <p class="no_item" v-show="cart_items.length == 0">購物車內無添加課程</p>
+                <ul>
+                    <li class="cart_item" v-for="(item,index) in cart_items">
+                        <div class="cus_card">
+                            <a href="#">
+                                <div class="card_img">
+                                    <img :src="item.img" alt="">
+                                </div>
+                                <div class="card_content">
+                                    <p>{{item.course_title}}</p>
+                                    <div class="card_content_scrb">
+                                        <!-- <div class="card_content_join">
+                                            <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                        </div> -->
+                                        <div class="card_content_msg">
+                                            <span class="card_type" :style="item.color">{{item.type}}</span>
+                                            <!-- <span class="card_time">總計3小時</span> -->
+                                            <span class="card_price">NT${{item.price}}</span>
+                                        </div>
                                     </div>
-                                </li>
-                            </ul>
-                            <div class="cus_total_price">
-                                <span class="total">總計:</span>
-                                <span class="final_price">$1,122</span>
-                                <span class="origin_price">$1,320</span>
-                                <span class="discount">85% off</span>
+                                </div>
+                            </a>
+                            <div class="remove">
+                                <button @click="remove_item(index)">
+                                    <!-- <i class="fas fa-minus-circle"></i> -->
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
                         </div>
+                    </li>
 
+                </ul>
+            </div>
+
+            <div class="check_out_contain">
+                <div class="discount_title">
+                    <p>購買兩堂課程，即享有8折優惠!</p>
+                </div>
+                <div class="price_check">
+                    <ul>
+                        <li>
+                            <span>課程總金額:</span><span>NT${{add_total}}</span>
+                        </li>
+                        <li>
+                            <span>折扣金額:</span><span>NT${{discount}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="price_total_btn">
+                    <div class="price_total">
+                        <span>總計:${{final_price}}</span>
                     </div>
-                    <!-- 信用卡 -->
-                    <div class=" col-xl-5 col-lg-5">
-                        <div class="check_out_contain">
-                            <div class="check_out_title">
-                                <h3>信用卡資訊</h3>
+                    <!-- <button class="check_out">結帳</button> -->
+                    <a href="course_orderlist.html" class="check_out">結帳</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="order_list_wrap">
+            <div class="container">
+                <div class="course_order_list" id="course_list">
+                    <div class="row">
+                        <!-- 課程清單 -->
+                        <div class="col-xl-7 col-lg-7 ">
+                            <div class="cus_list">
+                                <h5>課程清單</h5>
+                                <!-- <button class="btn_primary" @click="receive_cookie">接收cookie</button> -->
+                                <!-- 課程細項 -->
+                                <ul>
+                                    <li v-for="card in cart_items">
+                                        <div class="cus_card">
+                                            <a :href="card.href">
+                                                <div class="card_img">
+                                                    <img :src="card.img" alt="">
+                                                </div>
+                                                <div class="card_content">
+                                                    <p>{{card.course_title}}</p>
+                                                    <div class="card_content_scrb">
+                                                        <div class="card_content_join">
+                                                            <i class="fas fa-user-friends"></i><span>{{card.join}}人已參與此課程</span>
+                                                        </div>
+                                                        <div class="card_content_msg">
+                                                            <span class="card_type" :style="card.color">{{card.type}}</span>
+                                                            <span class="card_time">總計{{card.hour}}小時</span>
+                                                            <span class="card_price">NT${{card.price}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="cus_total_price">
+                                    <span class="total">總計:</span>
+                                    <span class="final_price">NT${{final_price}}</span>
+                                    <span class="origin_price">NT${{add_total}}</span>
+                                    <span class="discount">80% off</span>
+                                </div>
                             </div>
-                            <div class="credit_card">
-                                <div class="flip">
-                                    <div class="card_front">
-                                        <div class=bank_name>
-                                            <span>Bank Name</span>
+
+                        </div>
+                        <!-- 信用卡 -->
+                        <div class=" col-xl-5 col-lg-5">
+                            <div class="check_out_contain">
+                                <div class="check_out_title">
+                                    <h3>信用卡資訊</h3>
+                                </div>
+                                <div class="credit_card">
+                                    <div class="flip">
+                                        <div class="card_front">
+                                            <div class=bank_name>
+                                                <span>Bank Name</span>
+                                            </div>
+                                            <div class="account_num">
+                                                <span> &bull; &bull; &bull; &bull;</span><span> &bull; &bull; &bull;
+                                                    &bull;</span><span> &bull; &bull; &bull;</span><span> &bull; </span>
+                                            </div>
+                                            <div class=owner_name>
+                                                <span class="credit_name">Pei-Yu,Ou Yang</span>
+                                                <div class="credit_logo">
+                                                    <img src="img/course/svg/credit_card_front.svg" alt="">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="account_num">
-                                            <span> &bull; &bull; &bull; &bull;</span><span> &bull; &bull; &bull;
-                                                &bull;</span><span> &bull; &bull; &bull;</span><span> &bull; </span>
-                                        </div>
-                                        <div class=owner_name>
-                                            <span class="credit_name">Pei-Yu,Ou Yang</span>
+                                        <div class="card_back">
+                                            <div class="black_stripe"></div>
+                                            <div class="white_stripe">
+                                                <span>ccv</span>
+                                            </div>
                                             <div class="credit_logo">
                                                 <img src="img/course/svg/credit_card_front.svg" alt="">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="card_back">
-                                        <div class="black_stripe"></div>
-                                        <div class="white_stripe">
-                                            <span>ccv</span>
-                                        </div>
-                                        <div class="credit_logo">
-                                            <img src="img/course/svg/credit_card_front.svg" alt="">
-                                        </div>
 
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form">
-                                <form action="#">
-                                    <div class="form_name">
-                                        <label for="c_name">持卡人</label>
-                                        <input type="text" id="c_name" placeholder="輸入持卡人名稱">
-                                    </div>
-                                    <div class="form_account">
-                                        <label for="c_account">卡號</label>
-                                        <div class="account_input">
-                                            <input type="text" id="c_account">-
-                                            <input type="text" id="c_account">-
-                                            <input type="text" id="c_account">-
-                                            <input type="text" id="c_account">
+                                <div class="form">
+                                    <form action="#">
+                                        <div class="form_name">
+                                            <label for="c_name">持卡人</label>
+                                            <input type="text" id="c_name" placeholder="輸入持卡人名稱">
                                         </div>
-                                    </div>
-                                    <div class="form_exp">
-
-                                        <div class="c_exp_date">
-                                            <label for="c_exp">有效日期</label>
-                                            <div class="c_select">
-                                                <select name="c_exp_date" id="c_exp">
-                                                    <option value="1">01</option>
-                                                    <option value="2">02</option>
-                                                </select>
-                                                <select name="c_exp_month" id="c_exp">
-                                                    <option value="1">01</option>
-                                                    <option value="2">02</option>
-                                                </select>
+                                        <div class="form_account">
+                                            <label for="c_account">卡號</label>
+                                            <div class="account_input">
+                                                <input type="text" id="c_account">-
+                                                <input type="text" id="c_account">-
+                                                <input type="text" id="c_account">-
+                                                <input type="text" id="c_account">
                                             </div>
-
                                         </div>
-                                        <div class="c_ccv">
-                                            <label for="ccv">ccv</label>
-                                            <input type="text" id="ccv">
+                                        <div class="form_exp">
+
+                                            <div class="c_exp_date">
+                                                <label for="c_exp">有效日期</label>
+                                                <div class="c_select">
+                                                    <select name="c_exp_date" id="c_exp">
+                                                        <option value="1">01</option>
+                                                        <option value="2">02</option>
+                                                    </select>
+                                                    <select name="c_exp_month" id="c_exp">
+                                                        <option value="1">01</option>
+                                                        <option value="2">02</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="c_ccv">
+                                                <label for="ccv">ccv</label>
+                                                <input type="text" id="ccv">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
 
 
-                            </div>
-                            <div class="check_out_btn">
-                                <a href="course_check.html" class="btn_primary">結帳</a>
+                                </div>
+                                <div class="check_out_btn">
+                                    <a href="course_check.html" class="btn_primary">結帳</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 
@@ -177,6 +261,376 @@
 
     <!-- @@include('app/footer.html')  -->
     @@include('app/script.html')
+
+
+    <script>
+        new Vue({
+            el: '#course_order_list',
+            data() {
+                return {
+                    message: 'hello',
+                    category: [{
+                        link_from: 'practical',
+                        link_to: 'practical_session',
+                        link_title: '實作型',
+                        // color: 'background: #79BBB5;',
+                        courses: [{
+                            id: 5,
+                            img: './img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '九個步驟快速提昇簡報力',
+                            type: '實作型',
+                            color: 'background: #79BBB5;',
+                            join: 9999,
+                            hour: 3,
+                            price: 660,
+                        }, {
+                            id: 6,
+                            img: './img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '九個步驟快速提昇簡報力',
+                            type: '實作型',
+                            color: 'background: #79BBB5;',
+                            join: 9999,
+                            hour: 3,
+                            price: 660,
+                        }, ],
+
+                    }, {
+                        link_from: 'research',
+                        link_to: 'research_session',
+                        link_title: '研究型',
+                        // color: 'background: #A0CADB;',
+                        courses: [{
+
+                            id: 7,
+                            img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '打造團隊好關係與高績效',
+                            type: '研究型',
+                            color: 'background:#A0CADB;',
+                            join: 7777,
+                            hour: 7,
+                            price: 770,
+                        }, {
+                            id: 8,
+                            img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '打造團隊好關係與高績效',
+                            type: '研究型',
+                            color: 'background:#A0CADB;',
+                            join: 7777,
+                            hour: 7,
+                            price: 770,
+                        }, ],
+
+                    }, {
+                        link_from: 'art',
+                        link_to: 'art_session',
+                        link_title: '文藝型',
+                        // color: 'background: #CCC5E3;',
+                        courses: [{
+                            id: 9,
+                            img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '行銷=內容x社群x商務',
+                            type: '文藝型',
+                            color: 'background:#CCC5E3;',
+                            join: 9999,
+                            hour: 9,
+                            price: 990,
+                        }, {
+                            id: 10,
+                            img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '行銷=內容x社群x商務',
+                            type: '藝術型',
+                            color: 'background:#CCC5E3;',
+                            join: 5555,
+                            hour: 5,
+                            price: 550,
+                        }, ],
+
+
+                    }, {
+                        link_from: 'social',
+                        link_to: 'social_session',
+                        link_title: '社會型',
+                        // color: 'background: #F4C3C5;',
+                        courses: [{
+                            id: 11,
+                            img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '行銷=內容x社群x商務',
+                            type: '社會型',
+                            color: 'background:#F4C3C5;',
+                            join: 5555,
+                            hour: 5,
+                            price: 550,
+                        }, {
+                            id: 12,
+                            img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '行銷=內容x社群x商務',
+                            type: '社會型',
+                            color: 'background:#F4C3C5;',
+                            join: 5555,
+                            hour: 5,
+                            price: 550,
+                        }, ],
+
+
+                    }, {
+                        link_from: 'enterprise',
+                        link_to: 'enterprise_session',
+                        link_title: '企業型',
+                        // color: 'background: #E7995F;',
+                        courses: [{
+                            id: 13,
+                            img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '行銷=內容x社群x商務',
+                            type: '企業型',
+                            color: 'background:#E7995F;',
+                            join: 5555,
+                            hour: 5,
+                            price: 550,
+                        }, {
+                            id: 14,
+                            img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '行銷=內容x社群x商務',
+                            type: '企業型',
+                            color: 'background:#E7995F;',
+                            join: 5555,
+                            hour: 5,
+                            price: 550,
+                        }, ],
+
+
+                    }, {
+                        link_from: 'thing',
+                        link_to: 'thing_session',
+                        link_title: '事務型',
+                        color: 'background: #F7EA92;',
+                        courses: [{
+                            id: 15,
+                            img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '行銷=內容x社群x商務',
+                            type: '事務型',
+                            color: 'background:#F7EA92;',
+                            join: 5555,
+                            hour: 5,
+                            price: 550,
+                        }, {
+                            id: 16,
+                            img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
+                            course_title: '行銷=內容x社群x商務',
+                            type: '事務型',
+                            color: 'background:#F7EA92;',
+                            join: 5555,
+                            hour: 5,
+                            price: 550,
+                        }, ],
+
+                    }],
+
+
+                    hot_course: [{
+                        id: 1,
+                        img: './img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
+                        href: 'course_introduce.html',
+                        course_title: '九個步驟快速提昇簡報力',
+                        type: '企業型',
+                        color: 'background: #E7995F;',
+                        join: 9999,
+                        hour: 3,
+                        price: 660,
+
+                    }, {
+                        id: 2,
+                        img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                        href: 'course_introduce.html',
+                        course_title: '行銷=內容x社群x商務',
+                        type: '文藝型',
+                        color: 'background:#CCC5E3;',
+                        join: 5555,
+                        hour: 5,
+                        price: 550,
+
+                    }, {
+                        id: 3,
+                        img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                        href: 'course_introduce.html',
+                        course_title: '打造團隊好關係與高績效',
+                        type: '實作型',
+                        color: 'background:#79BBB5;',
+                        join: 7777,
+                        hour: 7,
+                        price: 770,
+
+                    }, {
+                        id: 4,
+                        img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                        href: 'course_introduce.html',
+                        course_title: '打造團隊好關係與高績效',
+                        type: '研究型',
+                        color: 'background:#A0CADB;',
+                        join: 7777,
+                        hour: 7,
+                        price: 770,
+
+                    }, ],
+                    cart_items: [],
+
+
+                }
+
+
+            },
+            methods: {
+                add_cookie() {
+                    // let ids = Cookies.get('id'); // 1,3,5
+                    // if (ids == null || ids == undefined) {
+                    //     ids = "";
+                    // }
+                    // ids += id + ","; // 1,3,5,8,
+
+                    // Cookies.set('id', ids, { // 1,3,5,8
+                    //     expires: 7
+                    // })
+                    //----------------------------------------
+                    let ss = "";
+                    this.cart_items.forEach(item => {
+                        ss += item.id + ",";
+                    })
+                    Cookies.set('id', ss, { // 1,2,5
+                        expires: 7
+                    })
+
+                },
+                delete_cookie() {
+                    Cookies.remove('id')
+                },
+                receive_cookie() {
+                    let get_id = Cookies.get('id');
+                    // alert(get_id);
+                    let get_id_arr = get_id.split(',');
+
+
+                    for (i = 0; i < this.category.length; i++) {
+
+                        for (j = 0; j < this.category[i].courses.length; j++) {
+
+                            get_id_arr.forEach(id => {
+
+                                if (id == this.category[i].courses[j].id) {
+                                    this.cart_items.push(this.category[i].courses[j]);
+                                };
+                            });
+
+                        }
+                    }
+                },
+                add_cart(item) {
+                    if (this.cart_items.length == 0) {
+                        this.cart_items.push(item);
+                        // this.add_cookie(item.id);
+
+
+                    } else {
+                        let check = true;
+                        for (i = 0; i < this.cart_items.length; i++) {
+                            if (this.cart_items[i].id == item.id) {
+                                check = false;
+                                alert('購物車內已有此課程囉!');
+                            };
+                        }
+
+                        if (check) {
+                            this.cart_items.push(item);
+                            // this.add_cookie(item.id);
+                        }
+                    }
+                    this.add_cookie();
+
+
+                    // 1.明天處理個別刪除
+
+                    // 2.別的葉面 (先做撈出ID)
+
+                    // 3.DB
+
+
+
+                    // let ids = Cookies.get('id'); // 1,3,5
+                    // if (ids == null || ids == undefined) {
+                    //     ids = "";
+                    // }
+                    // ids += item.id + ","; // 1,3,5,8,
+
+                    // Cookies.set('id', ids, { // 1,3,5,8
+                    //         expires: 7
+                    //     })
+                    // 7天後這個Cookie就過期
+
+                },
+                remove_item(index) {
+                    this.cart_items.splice(index, 1);
+                    this.add_cookie();
+                }
+
+            },
+            computed: {
+                add_total() {
+                    let total = 0;
+                    for (i = 0; i < this.cart_items.length; i++) {
+                        total += this.cart_items[i].price;
+                    }
+                    return total;
+                },
+                discount() {
+                    if (this.cart_items.length >= 2) {
+                        let discount = this.add_total * 0.2;
+                        return discount;
+                    } else {
+                        return 0;
+                    }
+                },
+                final_price() {
+                    let final = this.add_total - this.discount;
+                    return final;
+                }
+
+            },
+
+            mounted() {
+                this.receive_cookie();
+
+
+                // let get_id = Cookies.get('id');
+                // // alert(get_id);
+                // let get_id_arr = get_id.split(',');
+
+
+                // for (i = 0; i < this.category.length; i++) {
+
+                //     for (j = 0; j < this.category[i].courses.length; j++) {
+
+                //         get_id_arr.forEach(id => {
+
+                //             if (id == this.category[i].courses[j].id) {
+                //                 this.order_lists.push(this.category[i].courses[j]);
+                //             };
+                //         });
+
+                //     }
+                // }
+            },
+        })
+    </script>
 
 </body>
 
