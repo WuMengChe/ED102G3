@@ -1,6 +1,6 @@
 @charset "UTF-8";
 div.before_test_wrap {
-  background-image: url(../../../img/test/before_test.svg);
+  background-image: url(../../../img/test/background_before_test.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -9,6 +9,7 @@ div.before_test_wrap {
 }
 div.before_test_wrap .main_before_test {
   margin: auto;
+  padding-top: 3%;
 }
 div.before_test_wrap .main_before_test section.origin_of_types_before_test {
   background: rgba(255, 255, 255, 0.7);
@@ -17,16 +18,14 @@ div.before_test_wrap .main_before_test section.origin_of_types_before_test {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2%;
+  padding: 1%;
   border-radius: 10px;
 }
 div.before_test_wrap .main_before_test section.origin_of_types_before_test h1 {
   font-weight: 600;
   letter-spacing: 2px;
   padding: 1% 2%;
-  margin: 2% 0;
-  border: 3px solid #FFE56D;
-  box-shadow: 5px 5px 1px #FFE56D;
+  margin: 0;
   display: flex;
   align-items: center;
 }
@@ -35,7 +34,7 @@ div.before_test_wrap .main_before_test section.origin_of_types_before_test p {
   letter-spacing: 1px;
 }
 div.before_test_wrap .main_before_test .all_type_card_before_test {
-  margin: 5% 0;
+  margin: 2% 0;
   width: 100%;
   position: relative;
 }
@@ -43,6 +42,16 @@ div.before_test_wrap .main_before_test .all_type_card_before_test {
   div.before_test_wrap .main_before_test .all_type_card_before_test {
     width: 450px;
     height: 350px;
+    margin: auto;
+    overflow: hidden;
+    border: 3px solid #242424;
+    border-radius: 5px;
+  }
+}
+@media screen and (max-width: 576px) {
+  div.before_test_wrap .main_before_test .all_type_card_before_test {
+    width: 300px;
+    height: 300px;
     margin: auto;
     overflow: hidden;
     border: 3px solid #242424;
@@ -91,6 +100,13 @@ div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .t
     height: 80%;
   }
 }
+@media screen and (max-width: 576px) {
+  div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .type_card .card_intro {
+    background-size: 20%;
+    background-position: top;
+    height: 65%;
+  }
+}
 div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .type_card .card_intro .card_txt {
   padding: 1%;
   width: 60%;
@@ -104,6 +120,11 @@ div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .t
 @media screen and (max-width: 980px) {
   div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .type_card .card_intro .card_txt {
     display: block;
+  }
+}
+@media screen and (max-width: 576px) {
+  div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .type_card .card_intro .card_txt {
+    width: 100%;
   }
 }
 div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .type_card .color_ball_bx {
@@ -159,7 +180,7 @@ div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .t
 }
 div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .type_card:hover {
   width: 450px;
-  background-size: contain;
+  background-size: 90%;
   border-radius: 5px;
 }
 div.before_test_wrap .main_before_test .all_type_card_before_test .cards_wrap .type_card:hover .card_intro {
