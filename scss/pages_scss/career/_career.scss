@@ -1,3 +1,9 @@
+@import "../../_public_dontTouch/utils/mixin";
+
+div.header_wrap header.header div.header_nav ul li:nth-child(2) a::after {
+    @include header_line;
+}
+
 body.car_body{
     width: 100%;
     background-color: #F6F3ED;
