@@ -265,6 +265,9 @@ body.car_body{
                             box-shadow: 2px 2px 6px rgba(0,0,0,.25);
                         }
                     }
+                    a{
+                        width: 100%;
+                    }
                     p{
                         margin: 0 auto 15px;
                         width: fit-content;
@@ -296,6 +299,9 @@ body.car_body{
                     border: 3px solid;
                     background-color: white;
                     transition: linear .2s;
+                    a{
+                        width: 100%;
+                    }
                     span{
                         font-size: 18px;
                     }
@@ -308,7 +314,7 @@ body.car_body{
                     background: #f6f3ed;
                 }
             }
-            button{
+            a{
                 margin: 10px auto;
             }
         }
