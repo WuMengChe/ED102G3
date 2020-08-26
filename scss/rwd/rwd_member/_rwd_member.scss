@@ -1,12 +1,15 @@
 @media screen and (min-width:991px){
     li:hover{
-        background-color: white !important;
+        background-color: #A0CADB !important;
     }
     div.mem_ana_area:hover, div.mem_cla_area:hover, div.mem_art_area:hover, div.mem_pos_area:hover, div.mem_ord_area:hover, div.mem_mes_area:hover{
         border: 1px #FFE56D solid !important;
     }
 }
 @media screen and (max-width:991px){
+    div.mem_list{
+        background-color: #A0CADB !important;
+    }
     .mem_img{
         width: 200px !important;
         height: 200px !important;

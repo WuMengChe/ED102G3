@@ -5,14 +5,14 @@
   outline: none;
 }
 
-.forum_form {
+#forum_form {
   background-image: url("../../../img/forum/form.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 600px;
+  // height: 600px;
   h3 {
-    margin-bottom: 20px;
+    padding: 25px 0;
   }
 }
 
@@ -21,31 +21,34 @@
   margin: 0 auto;
 }
 
+.second_fix {
+  max-height: 30px;
+}
 .form-group {
   margin-top: 20px;
+
   //標題
   .select_name {
     width: 90px;
     line-height: 35px;
-
-    // border: 1px solid red;
   }
   .topic_text {
     border-radius: 5px;
-    border: 2px solid #1b4d9f;
+    border: 2px solid #f6f3ed;
     width: 540px;
     #text_topic {
       border: none;
       height: 35px;
       width: 100%;
       background-color: transparent;
+      padding: 10px;
     }
   }
   .space {
     z-index: 0;
     padding: 0;
-    width: 100%;
-    border: 2px solid #1b4d9f;
+    width: 74%;
+    border: 2px solid #f6f3ed;
     border-radius: 5px;
   }
 
@@ -60,10 +63,6 @@
   }
   .qu_space {
     width: 50px;
-    // border: 1px solid blue;
-  }
-  .typeList_show {
-    // border: 1px solid red;
   }
 }
 
@@ -74,9 +73,8 @@
   }
 }
 
-//下拉選單
-
-$color: #3694d7;
+//下拉選單type
+$color: gray;
 $timing: 0.3s;
 
 .dropdown-el {
@@ -85,25 +83,21 @@ $timing: 0.3s;
   min-height: 2em;
   max-height: 2em;
   overflow: hidden;
-  // top: 0;
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  color: white;
-
+  // color: white;
   outline: none;
   border: 0.06em solid transparent;
   border-radius: 5px;
-  background-color: #1b4d9f;
+  background-color: #f6f3ed;
 
   transition: $timing all ease-in-out;
   width: 200px;
-
-  // position: absolute;
   z-index: 200;
-  input:focus + label {
-    background: #1b4d9f;
-  }
+  // input:focus + label {
+  //   background: #1b4d9f;
+  // }
   input {
     width: 1px;
     height: 1px;
@@ -112,7 +106,6 @@ $timing: 0.3s;
     opacity: 0.01;
   }
   label {
-    // border-top: 0.06em solid #d9d9d9;
     display: block;
     height: 2em;
     line-height: 2em;
@@ -149,12 +142,102 @@ $timing: 0.3s;
     transition: 0.4s all ease-in-out;
   }
   &.expanded {
-    border: 0.06em solid $color;
-    background: #fff;
+    // border: 0.06em solid $color;
+    // background: #fff;
     border-radius: 0.25em;
     padding: 0;
     box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
     max-height: 15em;
+
+    label {
+      border-top: 0.06em solid #d9d9d9;
+      &:hover {
+        color: $color;
+      }
+    }
+    input:checked + label {
+      color: $color;
+    }
+
+    &::after {
+      transform: rotate(-180deg);
+      top: 0.55em;
+    }
+  }
+}
+
+//下拉選單
+.dropdown_share {
+  position: relative;
+  display: inline-block;
+  min-height: 2em;
+  max-height: 2em;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  // color: white;
+  outline: none;
+  border: 0.06em solid transparent;
+  border-radius: 5px;
+  background-color: #f6f3ed;
+
+  transition: $timing all ease-in-out;
+  width: 200px;
+  z-index: 200;
+  // input:focus + label {
+  //   background: #1b4d9f;
+  // }
+  input {
+    width: 1px;
+    height: 1px;
+    display: inline-block;
+    position: absolute;
+    opacity: 0.01;
+  }
+  label {
+    display: block;
+    height: 2em;
+    line-height: 2em;
+    padding-left: 1em;
+    padding-right: 3em;
+    cursor: pointer;
+    position: relative;
+    transition: $timing color ease-in-out;
+    &:nth-child(2) {
+      margin-top: 2em;
+      // border-top: 0.06em solid #d9d9d9;
+    }
+  }
+  input:checked + label {
+    display: block;
+    border-top: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    &:nth-child(2) {
+      margin-top: 0;
+      position: relative;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0.8em;
+    top: 0.9em;
+    border: 0.3em solid $color;
+    border-color: $color transparent transparent transparent;
+    transition: 0.4s all ease-in-out;
+  }
+  &.expanded_share {
+    // border: 0.06em solid $color;
+    // background: #fff;
+    border-radius: 0.25em;
+    padding: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
+    max-height: 4em;
 
     label {
       border-top: 0.06em solid #d9d9d9;
@@ -183,22 +266,31 @@ $timing: 0.3s;
 
 @media screen and (max-width: 650px) {
   .form-group {
-    margin: 20px;
-    .dropdown-el {
+    margin: 5px 0;
+    .dropdown-el,
+    .dropdown_share {
       width: 100%;
     }
     div {
       margin: 5px 0;
+      z-index: 10;
+    }
+    .space {
+      width: 100%;
     }
     .select_name {
       width: 100%;
       height: 30px;
     }
   }
+
+  .text_area {
+    margin-top: 110px;
+  }
 }
 
 @media screen and (max-width: 576px) {
-  .forum_form {
+  #forum_form {
     h3 {
       margin-bottom: 20px;
       margin-left: 20px;

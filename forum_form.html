@@ -1,144 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>forum_form</title>
-    <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
-    <link rel="stylesheet" href="./css/app_public.css" />
-    <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
-    <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
-    <script src="./js/forum/forum_form.js"></script>
-  </head>
 
-  <body>
-    <div class="header_wrap">
-      <header class="header">
-        <div class="logo">
-          <a href="index.html">
-            <img src="img/logo.svg" alt="" />
-          </a>
-        </div>
-        <div class="header_nav">
-          <ul>
-            <li><a href="test_before.html">職涯分析</a></li>
-            <li><a href="#">行業攻略</a></li>
-            <li><a href="forum_discuss">職涯論壇</a></li>
-            <li><a href="course_main.html">探索課程</a></li>
-            <li><a href="post_intro.html">明信片</a></li>
-          </ul>
-        </div>
-        <div class="header_icon">
-          <div class="cart">
-            <a href="#"
-              ><i class="fas fa-shopping-cart"></i>
-              <div class="cart_num"><span>1</span></div>
-            </a>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>forum_form</title>
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
+  <link rel="stylesheet" href="./css/app_public.css" />
+  <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
+  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <!-- <script src="./js/forum/forum_form.js"></script> -->
+</head>
 
-          <div class="member">
-            <a href="#"><i class="fas fa-user"></i></a>
-          </div>
+<body>
+  @@include('app/header.html')
+  <div id="forum_form" class="container-fluid">
+    <form action="" method="" id="form_wrap">
+      <h3>發表文章</h3>
+      <hr />
+      <div class="form-group row">
+        <div class="select_name">標題</div>
+        <div class="topic_text">
+          <input type="text" name="" id="text_topic" />
         </div>
-      </header>
-    </div>
-    <div class="forum_form container-fluid" id="app">
-      <form action="" method="" id="form_wrap">
-        <h3>發表文章</h3>
-        <hr />
-        <div class="form-group row">
-          <div class="select_name">標題</div>
-          <div class="topic_text">
-            <input type="text" name="" id="text_topic" />
-          </div>
+      </div>
+      <div class="form-group second_fix row">
+        <!--職業分類-->
+        <div class="select_name">六大分類</div>
+
+        <div class="dropdown-el" @click="typeDropdown">
+          <input type="radio" name="sortType" value="Relevance" checked="checked" id="sort-relevance" /><label
+            for="type_R">實用型</label>
+          <input type="radio" name="sortType" value="Popularity" id="type_I" />
+          <label for="type_I">研究型</label>
+          <input type="radio" name="sortType" value="PriceIncreasing" id="type_A" />
+          <label for="type_A">文藝型</label>
+          <input type="radio" name="sortType" value="PriceDecreasing" id="type_S" />
+          <label for="type_S">社會型</label>
+          <input type="radio" name="sortType" value="ProductBrand" id="type_E" />
+          <label for="type_E">企業型</label>
+          <input type="radio" name="sortType" value="ProductName" id="type_C" />
+          <label for="type_C">事務型</label>
+
         </div>
-        <div class="form-group row">
-          <!--職業分類-->
-          <div class="select_name">六大分類</div>
-          <!-- <div class="typeList_show "> -->
-          <div class="dropdown-el">
-            <input
-              type="radio"
-              name="sortType"
-              value="Relevance"
-              checked="checked"
-              id="sort-relevance"
-            /><label for="type_R">實用型</label>
-            <input
-              type="radio"
-              name="sortType"
-              value="Popularity"
-              id="type_I"
-            />
-            <label for="type_I">研究型</label>
-            <input
-              type="radio"
-              name="sortType"
-              value="PriceIncreasing"
-              id="type_A"
-            />
-            <label for="type_A">文藝型</label>
-            <input
-              type="radio"
-              name="sortType"
-              value="PriceDecreasing"
-              id="type_S"
-            />
-            <label for="type_S">社會型</label>
-            <input
-              type="radio"
-              name="sortType"
-              value="ProductBrand"
-              id="type_E"
-            />
-            <label for="type_E">企業型</label>
-            <input
-              type="radio"
-              name="sortType"
-              value="ProductName"
-              id="type_C"
-            />
-            <label for="type_C">事務型</label>
-            <!-- </span> -->
-          </div>
-          <!--問題分類-->
-          <div class="qu_space"></div>
-          <div class="select_name">問題分類</div>
-          <!-- <div class="typeList_show col-sm-3"> -->
-          <div class="dropdown-el">
-            <input
-              type="radio"
-              name="quType"
-              value="Relevance"
-              checked="checked"
-              id="type_qu"
-            /><label for="type_qu">問題討論</label>
-            <input
-              type="radio"
-              name="quType"
-              value="Popularity"
-              id="type_experience"
-            /><label for="type_experience">經驗分享</label>
-            <!-- </span> -->
-          </div>
+        <!--問題分類-->
+        <div class="qu_space"></div>
+        <div class="select_name">問題分類</div>
+
+        <div class="dropdown_share" @click="shareDropdown">
+          <input type="radio" name="quType" value="Relevance" checked="checked" id="type_qu" />
+          <label for="type_qu">問題討論</label>
+          <input type="radio" name="quType" value="Popularity" id="type_experience" />
+          <label for="type_experience">經驗分享</label>
+
         </div>
 
-        <div class="form-group text_area row">
-          <div class="select_name"></div>
-          <div class="space">
-            <textarea name="" id=""></textarea>
-          </div>
+      </div>
+
+      <div class="form-group text_area row">
+        <div class="select_name"></div>
+        <div class="space">
+          <textarea name="" id=""></textarea>
         </div>
-        <div class="form-group row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-10 btn-group">
-            <a href="./forum_discuss.html" class="btn_third">返回</a>
-            <input type="submit" value="送出" class="btn_third" />
-          </div>
+      </div>
+      <div class="form-group row">
+        <div class="qu_space"></div>
+        <div class="col-sm-10 btn-group">
+
+          <a href="./forum_discuss.html" class="btn_third">返回</a>
+          <input type="submit" value="送出" class="btn_third" />
         </div>
-      </form>
-    </div>
-  </body>
+      </div>
+    </form>
+  </div>
+  @@include('app/footer.html')
+
+  <script>
+    new Vue({
+      el: "#forum_form",
+      data: {
+
+      },
+      methods: {
+        typeDropdown() {
+          $('.dropdown-el').click(function (e) {
+            // e.preventDefault();
+            e.stopPropagation();
+            $(this).toggleClass('expanded');
+            $('#' + $(e.target).attr('for')).prop('checked', true);
+          });
+          $(document).click(function () {
+            $('.dropdown-el').removeClass('expanded');
+          });
+        },
+        shareDropdown() {
+          $('.dropdown_share').click(function (e) {
+            // e.preventDefault();
+            e.stopPropagation();
+            $(this).toggleClass('expanded_share');
+            $('#' + $(e.target).attr('for')).prop('checked', true);
+          });
+          $(document).click(function () {
+            $('.dropdown_share').removeClass('expanded_share');
+          });
+        }
+      },
+    });
+  </script>
+
+</body>
+
 </html>

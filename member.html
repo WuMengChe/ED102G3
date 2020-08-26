@@ -7,12 +7,13 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.js'></script>
     <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="./css/app_public.css">
+    <!-- <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./css/app_public.css"> -->
     <!-- <link rel="stylesheet" href="./css/member_all.css"> -->
+    @@include('app/link.html')
     <link rel="stylesheet" href="./css/pages_scss/member/member_all.css">
 </head>
-<body>
+<body class="mem">
     @@include('app/header.html')
     <main class = "mem_con_width container" id = "mem_change">
         <div class = "mem_list col-lg-2 col-md-12" v-if="(!rwdClickPage && screenWidth < 975) || (screenWidth >= 975)">
@@ -106,7 +107,7 @@
                         </table>
                         <div class = "mem_det_btn_use">
                             <button class="btn_third" @click="fixMode = !fixMode, oldDataTempUse(memberTemp)" v-if="fixMode">取消修改</button>
-                            <button class="btn_third" @click="oldDataTempSave(member)">{{fixMode?'確認修改':'修改資料'}}</button>
+                            <button class="btn_third" @click.prevent="oldDataTempSave(member)">{{fixMode?'確認修改':'修改資料'}}</button>
                         </div>
                     </form>
                 </div>
@@ -156,7 +157,7 @@
                     <div class = "col-md-12 col-sm-11 col-11 mem_cla_area" v-for="(memClass, index) in memberClass">
                         <a class = "col-md-12 mem_cla_area" href="#">
                             <div class = "col-md-6 col-sm-12 mem_cla">
-                                <img/>
+                                <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg"/>
                             </div>
                             <div class = "col-md-3 col-sm-12 mem_cla">{{memClass.name}}<br/>講師名稱：{{memClass.teacher}}</div>
                             <div class = "col-md-3 col-sm-12 mem_cla">
@@ -184,7 +185,7 @@
                     <div class = "col-md-12 col-sm-11 col-11 mem_cla_area" v-for="(memClass, index) in memberClass">
                         <a class = "col-md-12 mem_cla_area" href="#">
                             <div class = "col-md-6 col-sm-12 mem_cla">
-                                <img/>
+                                <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg"/>
                             </div>
                             <div class = "col-md-6 col-sm-12 mem_cla">{{memClass.name}}<br/>講師名稱：{{memClass.teacher}}</div>
                         </a>
@@ -251,7 +252,7 @@
                             <div class = "col-md-12 col-sm-12 mem_ord_det_con" v-for="(memOrderList, indexOrderList) in memberOrderList[index]">
                                 <a class = "col-md-12" href="#">
                                     <div class = "col-md-6 col-sm-12 mem_ord">
-                                        <img/>
+                                        <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg"/>
                                     </div>
                                     <div class = "col-md-6 col-sm-12 mem_ord">{{memOrderList.name}}<br/>講師名稱：{{memOrderList.teacher}}</div>
                                 </a>

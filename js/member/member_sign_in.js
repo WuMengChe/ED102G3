@@ -18,6 +18,9 @@ let changeSignType = new Vue({
     methods: {
         changeWidth(e){
             this.screenWidth = document.documentElement.clientWidth;
+        },
+        changePage(){
+            window.location.href = "./member.html";
         }
     }
 })

@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="bootstrap/bootstrap-grid.min.css">
-    <link rel=" stylesheet" href="css/app_public.css"> -->
+
     @@include('app/link.html')
     <link rel="stylesheet" href="./css/pages_scss/course/course.css">
 
@@ -66,6 +65,7 @@
             <div class="cart_close">
                 <span>購物車</span>
                 <button id="cart_close" class="btn_third">close</button>
+                <button class="btn_third" @click="delete_cookie">delete</button>
             </div>
             <div class="cart_course">
                 <p class="no_item" v-show="cart_items.length == 0">購物車內無添加課程</p>
@@ -274,33 +274,20 @@
             </div>
         </div>
 
-
-
-
-
+        @@include('app/footer.html')
     </div>
 
 
-
-    @@include('app/footer.html') @@include('app/script.html')
-
-
-
-    <!-- 
-    <script src="https://kit.fontawesome.com/d18b20bddd.js " crossorigin="anonymous "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js "></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js "></script> -->
-    <!-- <script src="./js/header.js "></script> -->
+    @@include('app/script.html')
     <script src="./js/course/owl_auto_slide.js "></script>
     <script src="./js/course/parallax_script.js "></script>
     <script src="./js/course/course_main.js "></script>
     <script>
-        $(window).ready(function() {
-            $('#close_test').click(function() {
-                $('#go_test').addClass('_off');
-            });
-        });
+        // $(window).ready(function() {
+        //     $('#close_test').click(function() {
+        //         $('#go_test').addClass('_off');
+        //     });
+        // });
     </script>
     <script>
         new Vue({
@@ -513,9 +500,28 @@
 
             },
             methods: {
+
+                add_cookie(id) {
+                    let ids = Cookies.get('id'); // 1,3,5
+                    if (ids == null || ids == undefined) {
+                        ids = "";
+                    }
+                    ids += id + ","; // 1,3,5,8,
+
+                    Cookies.set('id', ids, { // 1,3,5,8
+                        expires: 7
+                    })
+
+                },
+                delete_cookie() {
+                    Cookies.remove('id')
+                },
                 add_cart(item) {
                     if (this.cart_items.length == 0) {
                         this.cart_items.push(item);
+                        this.add_cookie(item.id);
+
+
                     } else {
                         let check = true;
                         for (i = 0; i < this.cart_items.length; i++) {
@@ -526,8 +532,30 @@
 
                         if (check) {
                             this.cart_items.push(item);
+                            this.add_cookie(item.id);
                         }
                     }
+
+
+                    // 1.明天處理個別刪除
+
+                    // 2.別的葉面 (先做撈出ID)
+
+                    // 3.DB
+
+
+
+                    // let ids = Cookies.get('id'); // 1,3,5
+                    // if (ids == null || ids == undefined) {
+                    //     ids = "";
+                    // }
+                    // ids += item.id + ","; // 1,3,5,8,
+
+                    // Cookies.set('id', ids, { // 1,3,5,8
+                    //         expires: 7
+                    //     })
+                    // 7天後這個Cookie就過期
+
                 },
                 remove_item(index) {
                     this.cart_items.splice(index, 1);
