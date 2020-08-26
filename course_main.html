@@ -187,14 +187,16 @@
                                         </div>
                                         <ul class="auto_slider owl-carousel">
                                             <li class="auto_slider_card " v-for="card in hot_course">
-                                                <a href="course_introduce.html">
+                                                <a :href="card.href">
                                                     <div class="auto_slider_card_pic">
                                                         <img :src="card.img" alt="">
                                                         <span class="course_type" :style="card.color">{{card.type}}</span>
                                                     </div>
                                                 </a>
                                                 <div class="auto_slider_card_content">
-                                                    <p>{{card.course_title}}</p>
+                                                    <a :href="card.href">
+                                                        <p>{{card.course_title}}</p>
+                                                    </a>
                                                     <div class="card_content_scrb">
                                                         <div class="card_content_join">
                                                             <i class="fas fa-user-friends"></i><span>{{card.join}}人已參與此課程</span>
@@ -230,12 +232,14 @@
                                             <ul>
                                                 <li class="auto_slider_card " v-for="card in section.courses">
                                                     <div class="card_pic ">
-                                                        <a href="# ">
+                                                        <a :href="card.href">
                                                             <img :src="card.img " alt=" ">
                                                         </a>
                                                     </div>
                                                     <div class="card_content ">
-                                                        <p>{{card.course_title}}</p>
+                                                        <a :href="card.href">
+                                                            <p>{{card.course_title}}</p>
+                                                        </a>
                                                         <div class="card_content_scrb ">
                                                             <div class="card_content_join ">
                                                                 <i class="fas fa-user-friends "></i><span>{{card.join}}人已參與此課程</span>
@@ -282,13 +286,7 @@
     <script src="./js/course/owl_auto_slide.js "></script>
     <script src="./js/course/parallax_script.js "></script>
     <script src="./js/course/course_main.js "></script>
-    <script>
-        // $(window).ready(function() {
-        //     $('#close_test').click(function() {
-        //         $('#go_test').addClass('_off');
-        //     });
-        // });
-    </script>
+
     <script>
         new Vue({
             el: '#course_main',
@@ -303,6 +301,7 @@
                         courses: [{
                             id: 5,
                             img: './img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
+                            href: 'course_introduce.html',
                             course_title: '九個步驟快速提昇簡報力',
                             type: '實作型',
                             color: 'background: #79BBB5;',
@@ -312,6 +311,7 @@
                         }, {
                             id: 6,
                             img: './img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
+                            href: 'course_introduce.html',
                             course_title: '九個步驟快速提昇簡報力',
                             type: '實作型',
                             color: 'background: #79BBB5;',
@@ -329,6 +329,7 @@
 
                             id: 7,
                             img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                            href: 'course_introduce.html',
                             course_title: '打造團隊好關係與高績效',
                             type: '研究型',
                             color: 'background:#A0CADB;',
@@ -338,6 +339,7 @@
                         }, {
                             id: 8,
                             img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                            href: 'course_introduce.html',
                             course_title: '打造團隊好關係與高績效',
                             type: '研究型',
                             color: 'background:#A0CADB;',
@@ -354,6 +356,7 @@
                         courses: [{
                             id: 9,
                             img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
                             course_title: '行銷=內容x社群x商務',
                             type: '文藝型',
                             color: 'background:#CCC5E3;',
@@ -363,6 +366,7 @@
                         }, {
                             id: 10,
                             img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
                             course_title: '行銷=內容x社群x商務',
                             type: '藝術型',
                             color: 'background:#CCC5E3;',
@@ -380,6 +384,7 @@
                         courses: [{
                             id: 11,
                             img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
                             course_title: '行銷=內容x社群x商務',
                             type: '社會型',
                             color: 'background:#F4C3C5;',
@@ -389,6 +394,7 @@
                         }, {
                             id: 12,
                             img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
                             course_title: '行銷=內容x社群x商務',
                             type: '社會型',
                             color: 'background:#F4C3C5;',
@@ -406,6 +412,7 @@
                         courses: [{
                             id: 13,
                             img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
                             course_title: '行銷=內容x社群x商務',
                             type: '企業型',
                             color: 'background:#E7995F;',
@@ -415,6 +422,7 @@
                         }, {
                             id: 14,
                             img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
                             course_title: '行銷=內容x社群x商務',
                             type: '企業型',
                             color: 'background:#E7995F;',
@@ -432,6 +440,7 @@
                         courses: [{
                             id: 15,
                             img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
                             course_title: '行銷=內容x社群x商務',
                             type: '事務型',
                             color: 'background:#F7EA92;',
@@ -441,6 +450,7 @@
                         }, {
                             id: 16,
                             img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                            href: 'course_introduce.html',
                             course_title: '行銷=內容x社群x商務',
                             type: '事務型',
                             color: 'background:#F7EA92;',
@@ -455,6 +465,7 @@
                     hot_course: [{
                         id: 1,
                         img: './img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
+                        href: 'course_introduce.html',
                         course_title: '九個步驟快速提昇簡報力',
                         type: '企業型',
                         color: 'background: #E7995F;',
@@ -465,6 +476,7 @@
                     }, {
                         id: 2,
                         img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
+                        href: 'course_introduce.html',
                         course_title: '行銷=內容x社群x商務',
                         type: '文藝型',
                         color: 'background:#CCC5E3;',
@@ -475,6 +487,7 @@
                     }, {
                         id: 3,
                         img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                        href: 'course_introduce.html',
                         course_title: '打造團隊好關係與高績效',
                         type: '實作型',
                         color: 'background:#79BBB5;',
@@ -485,6 +498,7 @@
                     }, {
                         id: 4,
                         img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                        href: 'course_introduce.html',
                         course_title: '打造團隊好關係與高績效',
                         type: '研究型',
                         color: 'background:#A0CADB;',
@@ -527,6 +541,7 @@
                         for (i = 0; i < this.cart_items.length; i++) {
                             if (this.cart_items[i].id == item.id) {
                                 check = false;
+                                alert('購物車內已有此課程囉!');
                             };
                         }
 

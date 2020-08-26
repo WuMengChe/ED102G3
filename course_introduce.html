@@ -182,14 +182,16 @@
                 </div>
                 <ul class="auto_slider owl-carousel">
                     <li class="auto_slider_card " v-for="card in hot_course">
-                        <a href="course_introduce.html">
+                        <a :href="card.href">
                             <div class="auto_slider_card_pic">
                                 <img :src="card.img" alt="">
                                 <span class="course_type" :style="card.color">{{card.type}}</span>
                             </div>
                         </a>
                         <div class="auto_slider_card_content">
-                            <p>{{card.course_title}}</p>
+                            <a :href="card.href">
+                                <p>{{card.course_title}}</p>
+                            </a>
                             <div class="card_content_scrb">
                                 <div class="card_content_join">
                                     <i class="fas fa-user-friends"></i><span>{{card.join}}人已參與此課程</span>
@@ -223,29 +225,45 @@
                     message: 'hello',
 
                     hot_course: [{
+                        id: 1,
                         img: './img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
+                        href: 'course_introduce.html',
                         course_title: '九個步驟快速提昇簡報力',
+                        type: '企業型',
+                        color: 'background: #E7995F;',
                         join: 9999,
                         hour: 3,
                         price: 660,
 
                     }, {
+                        id: 2,
                         img: './img/course/course_img/課程照片-新世代行銷法則：行銷 = 內容 X 社群 X 商務.jpg',
-                        course_title: '行銷 = 內容 X 社群 X 商務',
+                        href: 'course_introduce.html',
+                        course_title: '行銷=內容x社群x商務',
+                        type: '文藝型',
+                        color: 'background:#CCC5E3;',
                         join: 5555,
                         hour: 5,
                         price: 550,
 
                     }, {
+                        id: 3,
                         img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                        href: 'course_introduce.html',
                         course_title: '打造團隊好關係與高績效',
+                        type: '實作型',
+                        color: 'background:#79BBB5;',
                         join: 7777,
                         hour: 7,
                         price: 770,
 
                     }, {
+                        id: 4,
                         img: './img/course/course_img/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg',
+                        href: 'course_introduce.html',
                         course_title: '打造團隊好關係與高績效',
+                        type: '研究型',
+                        color: 'background:#A0CADB;',
                         join: 7777,
                         hour: 7,
                         price: 770,
