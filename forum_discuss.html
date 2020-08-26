@@ -5,12 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>forum_discuss</title>
-  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
-  <link rel="stylesheet" href="./css/app_public.css" />
+  <!-- <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" /> -->
+  <!-- <link rel="stylesheet" href="./css/app_public.css" /> -->
+  @@include('app/link.html')
   <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <!-- <script src="https://kit.fontawesome.com/d18b20bddd.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script> -->
 </head>
 
 <body>
@@ -78,12 +79,14 @@
             <div class="msg_content" v-for="messages in searchResult">
               <div class="mem_info">
                 <div class="info_list">
-                  <img :src="messages.d_img" alt="" class="dis_img" />
+                  <div class="img_div">
+                    <img :src="messages.d_img" alt="" class="dis_img" />
+                  </div>
                   <div class="dis_name">{{messages.d_name}}</div>
                   <div class="dis_date">{{messages.d_data}}</div>
                 </div>
                 <div class="tags_list">
-                  <span class="type_tag">{{messages.d_type}}</span>
+                  <span class="type_tag" :style="messages.d_color">{{messages.d_type}}</span>
                   <span class="type_tag">{{messages.d_qu}}</span>
                 </div>
               </div>
@@ -117,18 +120,17 @@
           </a>
         </div>
       </div>
+
     </div>
-    <div class="header">
-      @@include('app/footer.html')
-    </div>
+    @@include('app/footer.html')
 
 
     <!--燈箱！！！-->
     <!--點擊標題跳出的燈箱-->
-    <div class="forum_overlay">
+    <div class="forum_overlay" @click="close_overlay">
       <div class="forum_checkMsg">
         <div class="close_btn">
-          <button type="button" class="btn_modal_close btn_primary" @click="btn_modal">
+          <button type="button" class="btn_modal_close btn_third" @click="btn_modal">
             返回
           </button>
         </div>
@@ -137,7 +139,9 @@
           <div class="check_content">
             <div class="mem_info">
               <div class="info_list">
-                <img src="./img/forum/大頭照/headshot_10.jpg" alt="" class="dis_img" />
+                <div class="img_div">
+                  <img src="./img/forum/大頭照/headshot_10.jpg" alt="" class="dis_img" />
+                </div>
                 <div class="dis_name">豬八戒</div>
                 <div class="dis_date">2020-07-28</div>
               </div>
@@ -167,7 +171,9 @@
         <div class="forum_feedback">
           <div class="feedback_content">
             <div class="info_list">
-              <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              <div class="img_div">
+                <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              </div>
               <div class="dis_name">孫悟空</div>
               <div class="dis_date">2020-07-28</div>
             </div>
@@ -181,7 +187,9 @@
           </div>
           <div class="feedback_content">
             <div class="info_list">
-              <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              <div class="img_div">
+                <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              </div>
               <div class="dis_name">孫悟空</div>
               <div class="dis_date">2020-07-28</div>
             </div>
@@ -195,7 +203,9 @@
           </div>
           <div class="feedback_content">
             <div class="info_list">
-              <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              <div class="img_div">
+                <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+              </div>
               <div class="dis_name">孫悟空</div>
               <div class="dis_date">2020-07-28</div>
             </div>
@@ -210,18 +220,21 @@
 
           <div class="leave_msg_wrap">
             <div class="close_msg_div">
-              <button class="close_leaveMsg_btn">關閉</button>
+              <button class="close_leaveMsg_btn">
+                <i class="fas fa-times"></i>
+              </button>
             </div>
             <div class="leave_msg">
-              <textarea name="" id="send_msg" placeholder="請輸入訊息..." @click="sendMsg"></textarea>
+              <textarea name="" id="send_msg" placeholder="請輸入訊息..."></textarea>
             </div>
             <div class="confirm_send_btn">
-              <input type="submit" value="送出" id="send_msg_btn" />
+              <input type="submit" value="送出" class="btn_third" id="send_msg_btn" />
             </div>
           </div>
         </div>
       </div>
     </div>
+
 
     <!--點擊檢舉跳出燈箱-->
     <div class="impeachment_overlay">
@@ -252,6 +265,8 @@
       </article>
     </div>
   </div>
+
+  @@include('app/script.html')
 
   <script>
     new Vue({
@@ -296,7 +311,6 @@
         //   }
         // })
         ;
-        // debugger
       },
       watch: {
         filter: function (value) {
@@ -342,6 +356,14 @@
               $("div.forum_overlay").removeClass("-on -opacity-zero");
             }, 1000);
           });
+        },
+        //點擊空白處關閉燈箱
+        close_overlay() {
+          $('.forum_overlay').on("click", function () {
+
+            $("div.forum_overlay").removeClass("-on -opacity-zero");
+
+          })
         },
         sendMsg() {
           //點擊回覆留言地方，按下去視窗變大
@@ -394,7 +416,7 @@
         },
         toggleDropdown(e) {
           // e.preventDefault();
-          // e.stopPropagation();
+          // e.stopPropagation();s
           // if (this.isOpen) {
           //   this.isOpen = false;
           // } else {

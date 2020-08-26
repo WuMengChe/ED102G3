@@ -8,11 +8,8 @@
 #forum_discuss {
   background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
-  // background-size: cover;
   background-position: top center;
   min-height: 600px;
-  // background-attachment: fixed
-  // border: 1px solid red;
   padding: 0;
 }
 
@@ -22,6 +19,10 @@
   .search_wrap_line {
     background-color: white;
     border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: end;
     .fa-search {
       padding-left: 10px;
     }
@@ -29,11 +30,15 @@
       cursor: pointer;
       background-color: white;
       border: none;
+      width: 60px;
+      text-align: center;
     }
     #text_input {
-      min-width: 90%;
+      width: 100%;
       height: 30px;
       border: none;
+      padding-left: 5px;
+      // border: 1px solid red;
     }
   }
 }
@@ -41,6 +46,7 @@
 .wrap {
   margin: 0 auto;
   max-width: 1200px;
+  min-height: 600px;
   .dis_side {
     position: fixed;
     // border: 1px solid red;
@@ -138,7 +144,6 @@ $timing: 0.3s;
     padding: 0;
     box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
     max-height: 15em;
-
     label {
       border-top: 0.06em solid #d9d9d9;
       &:hover {
@@ -157,63 +162,62 @@ $timing: 0.3s;
 }
 
 /* 內容區塊 */
-.tab_contents {
-  // padding: 0 10px;
-  // max-width: 740px;
-  // width: 100%;
-  .msg_content {
-    // border-bottom: 1px solid RGBA(255, 255, 255, 1);
-    box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
-    .mem_info {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px;
-      color: RGBA(255, 255, 255, 1);
-      .info_list {
+.dis_body {
+  .tab_contents {
+    .msg_content {
+      box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
+      .mem_info {
         display: flex;
-        align-items: center;
-        img {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          overflow: hidden;
+        justify-content: space-between;
+        padding: 10px;
+        line-height: 33px;
+        .info_list {
+          display: flex;
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+          }
+          .dis_name,
+          .dis_date {
+            margin: 0 10px;
+            color: gray;
+          }
         }
-        .dis_name,
-        .dis_date {
-          margin: 0 10px;
+        .tags_list {
+          .type_tag {
+            background-color: #0056b3;
+            padding: 5px;
+            text-align: right;
+            border-radius: 5px;
+            color: white;
+            &:first-child {
+              color: black;
+            }
+          }
         }
       }
-      .tags_list {
-        .type_tag {
-          background-color: #0056b3;
-          padding: 0px 5px;
-          text-align: right;
-          border-radius: 5px;
-          color: white;
-          font-size: 5px;
-        }
-      }
-    }
-    .msg_title {
-      cursor: pointer;
-      padding: 20px;
-      font-weight: 700;
-      font-size: 22px;
-    }
-    .msg_textarea {
-      min-height: 150px;
-      padding: 20px;
-      letter-spacing: 1px;
-      color: RGBA(255, 255, 255, 1);
-    }
-    .msg_btn {
-      padding-bottom: 10px;
-      text-align: end;
-      button {
-        min-width: 40px;
-        border: none;
+      .msg_title {
         cursor: pointer;
-        color: black;
+        padding: 20px;
+        font-weight: 700;
+        font-size: 22px;
+      }
+      .msg_textarea {
+        min-height: 150px;
+        padding: 20px;
+        letter-spacing: 1px;
+      }
+      .msg_btn {
+        padding-bottom: 10px;
+        text-align: end;
+        button {
+          min-width: 40px;
+          border: none;
+          cursor: pointer;
+          color: black;
+        }
       }
     }
   }
@@ -243,22 +247,22 @@ $timing: 0.3s;
 }
 
 .msg_content:nth-child(1) {
-  background: #94b2db;
+  background: #f8f6f2;
 }
 .msg_content:nth-child(2) {
-  background: #94b5db;
+  background: #f7ecd9;
 }
 .msg_content:nth-child(3) {
-  background: #94b9db;
+  background: #f6f3ed;
 }
 .msg_content:nth-child(4) {
-  background: #94bddb;
+  background: #f7ecd9;
 }
 .msg_content:nth-child(5) {
-  background: #94c1db;
+  background: #f6f3ed;
 }
 .msg_content:nth-child(6) {
-  background: #95c5db;
+  background: #f7ecd9;
 }
 
 //頁碼
@@ -315,8 +319,8 @@ a.pencil_btn {
   display: inline-block;
   cursor: pointer;
   position: fixed;
-  bottom: 75px;
-  right: 90px;
+  bottom: 50%;
+  right: 2%;
 
   outline: none;
   transform: translate(0, 10px);
@@ -381,23 +385,25 @@ div.forum_overlay > .forum_checkMsg {
 
 //點進標題的內容
 .feedback_wrap {
-  background: #94b2db;
+  background: #f8f6f2;
   .check_content {
+    margin: 10px 0;
     .mem_info {
       display: flex;
       justify-content: space-between;
       padding: 10px;
-      line-height: 2;
-      color: RGBA(255, 255, 255, 1);
+      line-height: 33px;
+      color: gray;
       .info_list {
         display: flex;
-        line-height: 2;
-        color: RGBA(255, 255, 255, 1);
-        img {
+        .img_div {
           width: 30px;
           height: 30px;
-          border-radius: 50%;
-          overflow: hidden;
+          img {
+            width: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+          }
         }
         .dis_name,
         .dis_date {
@@ -406,12 +412,10 @@ div.forum_overlay > .forum_checkMsg {
       }
       .tags_list {
         .type_tag {
-          background-color: #0056b3;
-          padding: 0px 5px;
-          text-align: right;
+          background-color: #1b4d9f;
+          padding: 5px;
           border-radius: 5px;
           color: white;
-          font-size: 5px;
         }
       }
     }
@@ -425,7 +429,7 @@ div.forum_overlay > .forum_checkMsg {
       min-height: 150px;
       padding: 20px;
       letter-spacing: 1px;
-      color: RGBA(255, 255, 255, 1);
+      color: black;
     }
     .msg_btn {
       // border: 1px solid red;
@@ -443,14 +447,13 @@ div.forum_overlay > .forum_checkMsg {
 .forum_feedback {
   // border: 1px solid red;
   .feedback_content {
-    border-bottom: 2px solid #336ac6;
     margin-top: 20px;
-    background-color: #94b2db;
+    background-color: #f7ecd9;
     .info_list {
       display: flex;
       padding: 10px;
       line-height: 2;
-      color: RGBA(255, 255, 255, 1);
+      color: gray;
       img {
         width: 30px;
         height: 30px;
@@ -487,24 +490,24 @@ div.forum_overlay > .forum_checkMsg {
       // border: 1px solid red;
       text-align: left;
       .btn_modal_close {
-        width: 50px;
-        height: 25px;
+        width: 60px;
+        height: 30px;
         line-height: 25px;
-        border-radius: 5px;
-        font-size: 12px;
       }
     }
     .leave_msg_wrap {
       // position: relative;
       width: 100%;
-      height: 120px;
+      // height: 20px;
       background-color: white;
       text-align: right;
+      position: sticky;
+      bottom: 0px;
+      border: 1px solid red;
       .close_msg_div {
-        // border: 1px solid red;
-        height: 30px;
-        width: 100%;
-        padding: 5px;
+        .close_leaveMsg_btn {
+          padding: 2px 8px;
+        }
       }
       .leave_msg {
         // border: 1px solid gray;
@@ -519,13 +522,13 @@ div.forum_overlay > .forum_checkMsg {
         }
       }
       .confirm_send_btn {
-        background-color: white;
-        padding: 5px;
+        padding: 10px;
+        text-align: center;
       }
       #send_msg_btn {
-        // display: inline-block;
-        border: none;
-        background-color: white;
+        width: 60px;
+        height: 30px;
+        line-height: 25px;
       }
     }
   }
@@ -533,9 +536,6 @@ div.forum_overlay > .forum_checkMsg {
 
 // 點擊檢舉跳出的燈箱
 
-button {
-  cursor: pointer;
-}
 div.impeachment_overlay {
   position: fixed;
   top: 0;
@@ -598,30 +598,31 @@ div.impeachment_overlay > article {
 
   .wrap {
     .side_wrap {
-      // overflow: hidden;
-      // overflow-x: scroll;
       width: 100%;
-
       .dis_side {
         display: flex;
+        justify-content: center;
         height: 70px;
         width: 100%;
         position: inherit;
         border-radius: 0;
         overflow: hidden;
         overflow-x: scroll;
-
         ul {
           flex-direction: row;
           margin-bottom: 0px;
           li {
             margin: 10px 10px;
             width: max-content;
+            a {
+              padding: 6px 10px;
+              font-size: 16px;
+            }
           }
         }
       }
     }
-    .side_wrap::-webkit-scrollbar {
+    .dis_side::-webkit-scrollbar {
       display: none;
     }
   }
@@ -633,12 +634,10 @@ div.impeachment_overlay > article {
 
 @media screen and (max-width: 500px) {
   .rum_overlay {
-    // position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 230vh;
-    // background-color: hsla(0, 0%, 0%, 0.5);
   }
   .forum_checkMsg {
     min-width: 200px;
