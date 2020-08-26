@@ -1,7 +1,12 @@
 @import'../../_public_dontTouch/utils/variables';
+@import'../../_public_dontTouch/utils/mixin';
 
 * {
   box-sizing: border-box;
+}
+
+div.header_wrap header.header div.header_nav ul li:nth-child(5) a::after {
+  @include header_line;
 }
 
 body {
