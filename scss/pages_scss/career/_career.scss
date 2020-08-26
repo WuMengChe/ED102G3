@@ -1,0 +1,360 @@
+@import "../../_public_dontTouch/utils/mixin";
+
+div.header_wrap header.header div.header_nav ul li:nth-child(2) a::after {
+    @include header_line;
+}
+
+body.car_body{
+    width: 100%;
+    background-color: #F6F3ED;
+    background-image: url('../../../img/career/career_background_img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.car_con_width{
+    display: flex;
+    padding: 0;
+    max-width: 1200px;
+    min-height: calc(100% - 130px);
+    flex-wrap: wrap;
+    .car_title{
+        display: flex;
+        height: fit-content;
+        flex-wrap: wrap;
+        align-items: center;
+        div, span{
+            display: flex;
+            padding: 0;
+            height: 40px;
+            align-items: center;
+        }
+        .choose_industry{
+            display: flex;
+            margin: 0px 5px;
+            flex-direction: row;
+            i, span{
+                display: flex;
+                align-items: center;
+            }
+            i{
+                cursor: pointer;
+            }
+            span{
+                padding-left: 3px;
+            }
+        }
+        // *{
+        //     padding: 0;
+        // }
+    }
+    .car_con_area_all{
+        display: flex;
+        flex-wrap: wrap;
+        .car_con_area{
+            display: flex;
+            margin-top: 10px;
+            padding: 0;
+            flex-wrap: wrap;
+            .car_con_list{
+                padding: 0;
+                background: #f6f3ed;
+                border-radius: 20px;
+                // .car_con_list_fix_use{
+                //     position: fixed;
+                //     z-index: 1;
+                // }
+                ul{
+                    margin-bottom: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    li{
+                        margin: 10px auto;
+                        width: 150px;
+                        cursor: pointer;
+                        border: 2px solid black;
+                        background-color: transparent;
+                        border-radius: 50px;
+                        padding: 5px 30px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 18px;
+                        span {
+                            display: inline-block;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50px;
+                            margin-right: 10px;
+                          }
+                    }
+                    .practical_bg_color{
+                        background-color: transparent;
+                        border-color: #79BBB5;
+                        span{
+                            background-color: #79BBB5;
+                        }
+                    }
+                    .practical_bg_color:hover{
+                        background-color: #79BBB5;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .research_bg_color{
+                        background-color: transparent;
+                        border-color: #a0cadb;
+                        span{
+                            background-color: #a0cadb;
+                        }
+                    }
+                    .research_bg_color:hover{
+                        background-color: #a0cadb;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .art_bg_color{
+                        background-color: transparent;
+                        border-color: #ccc5e3;
+                        span{
+                            background-color: #ccc5e3;
+                        }
+                    }
+                    .art_bg_color:hover{
+                        background-color: #ccc5e3;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .social_bg_color{
+                        background-color: transparent;
+                        border-color: #f4c3c5;
+                        span{
+                            background-color: #f4c3c5;
+                        }
+                    }
+                    .social_bg_color:hover{
+                        background-color: #f4c3c5;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .thing_bg_color{
+                        background-color: transparent;
+                        border-color: #e7995f;
+                        span{
+                            background-color: #e7995f;
+                        }
+                    }
+                    .thing_bg_color:hover{
+                        background-color: #e7995f;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .enterprise_bg_color{
+                        background-color: transparent;
+                        border-color: #f7ea92;
+                        span{
+                            background-color: #f7ea92;
+                        }
+                    }
+                    .enterprise_bg_color:hover{
+                        background-color: #f7ea92;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                }
+                .side_bar_img_use{
+                    position: relative;
+                    z-index: 1;
+                    pointer-events: none;
+                }
+            }
+            .car_con_pro{
+                display: flex;
+                padding: 0;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: space-evenly;
+                background-color: #79BBB5;
+                border-radius: 25px;
+                .car_con_pro_info{
+                    display: flex;
+                    margin: 15px 0;
+                    padding: 0;
+                    cursor: pointer;
+                    flex-direction: column;
+                    background-color: white;
+                    border-radius: 25px;
+                    overflow: hidden;
+                    img{
+                        margin: 15px auto;
+                        width: 90%;
+                        height: 100%;
+                        max-height: 300px;
+                    }
+                    span{
+                        display: flex;
+                        width: 100%;
+                        height: 40px;
+                        background-color: white;
+                        flex-direction: column;
+                        justify-content: center;
+                        text-align: center;
+                        position: absolute;
+                        bottom: 32px;
+                        // border-radius: 0 0 25px 25px;
+                    }
+                    .car_con_pro_check{
+                        display: flex;
+                        width: 100%;
+                        height: 32px;
+                        background-color: white;
+                        flex-direction: row;
+                        justify-content: center;
+                        position: absolute;
+                        bottom: 0;
+                        border-radius: 0 0 25px 25px;
+                        i{
+                            width: 32px;
+                            height: 32px;
+                            font-size: 28px;
+                        }
+                        .fa-check-circle{
+                            color: green;
+                        }
+                        .fa-times-circle{
+                            transform: rotate(45deg);
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+        }
+        .car_course_area, .car_forum_area{
+            margin: 20px auto;
+            padding: 0;
+            border-radius: 25px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+            background-color: rgba(255, 255, 255, 0.7);
+            h3{
+                margin: 5px auto;
+                width: fit-content;
+                background-image: url('../../../img/career/career_text_title_background.svg');
+            }
+            .car_course_list{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                .car_course_list_info{
+                    margin: 10px 0;
+                    padding: 0;
+                    // height: 300px;
+                    background-color: white;
+                    box-shadow: 2px 2px 6px rgba(0,0,0,.25);
+                    border-radius: 5px;
+                    .car_course_list_info_img{
+                        width: 100%;
+                        img{
+                            width: 100%;
+                        }
+                        span{
+                            display: inline-block;
+                            padding: 5px;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            border-radius: 5px;
+                            box-shadow: 2px 2px 6px rgba(0,0,0,.25);
+                        }
+                    }
+                    a{
+                        width: 100%;
+                    }
+                    p{
+                        margin: 0 auto 15px;
+                        width: fit-content;
+                        font-size: 18px;
+                        font-weight: 700;
+                    }
+                    span.car_course_list_info_word{
+                        display: block;
+                        margin: 5px auto;
+                        width: fit-content;
+                        i{
+                            margin-right: 5px;
+                        }
+                    }
+                    .car_course_list_info_hour{
+                        margin-left: 15px;
+                    }
+                    .car_course_list_info_price{
+                        margin-right: 15px;
+                        float: right;
+                        font-weight: 700;
+                    }
+                }
+                .car_forum_list_info{
+                    display: flex;
+                    margin: 0;
+                    height: 40px;
+                    align-items: center;
+                    border: 3px solid;
+                    background-color: white;
+                    transition: linear .2s;
+                    a{
+                        width: 100%;
+                    }
+                    span{
+                        font-size: 18px;
+                    }
+                    span:first-child{
+                        font-size: 15px;
+                    }
+                }
+                .car_forum_list_info:hover{
+                    transform: scale(1.1);
+                    background: #f6f3ed;
+                }
+            }
+            a{
+                margin: 10px auto;
+            }
+        }
+        .car_con_plot_area{
+            margin-top: 10px;
+            padding: 0;
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+            h3{
+                width: fit-content;
+                margin: 0 auto;
+            }
+            .car_con_plot{
+                margin-bottom: 60px;
+                height: 300px;
+            }
+        }
+        .showPlot{
+            position: relative;
+            opacity: 1;
+            z-index: 1;
+        }
+    }
+}
+.fa-arrow-circle-up{
+    cursor: pointer;
+    font-size: 40px;
+    position: fixed;
+    bottom: 10px;
+    right: -50px;
+    z-index: 2;
+    transition: right 1.5s;
+}
+.car_icon_show{
+    right: 10px;
+}

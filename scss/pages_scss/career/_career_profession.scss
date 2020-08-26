@@ -1,0 +1,129 @@
+@import "../../_public_dontTouch/utils/mixin";
+
+div.header_wrap header.header div.header_nav ul li:nth-child(2) a::after {
+    @include header_line;
+}
+
+body.car_pro_body{
+    width: 100%;
+    background-color: #F6F3ED;
+    background-image: url('../../../img/career/career_profession_background_img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.car_pro_con_width{
+    display: flex;
+    padding: 0;
+    max-width: 1200px;
+    min-height: calc(100% - 130px);
+    flex-wrap: wrap;
+    .car_pro_title{
+        display: flex;
+        height: 40px;
+        flex-wrap: wrap;
+        div{
+            border-radius: 0;
+        }
+    }
+    .car_pro_con{
+        display: flex;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        .car_pro_info{
+            display: flex;
+            flex-direction: column;
+            
+            // background-color: wheat;
+            h1{
+                margin: 10px auto;
+                width: fit-content;
+                background-color: #BCEAFF;
+            }
+            img{
+                margin: 10px auto;
+                width: 100%;
+                max-width: 300px;
+                max-height: 350px;
+                border: 3px solid;
+                border-radius: 25px;
+            }
+            h3{
+                margin: 20px 0 10px;
+            }
+            .car_pro_info_title{
+                font-weight: 700;
+            }
+            .car_pro_info_img{
+                width: fit-content;
+                background-image: url('../../../img/career/career_profession_info.svg');
+                background-repeat:no-repeat;
+                background-size: cover;
+            }
+            ul{
+                margin: 10px 0;
+                li{
+                    display: flex;
+                    span{
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+        .car_pro_single{
+            flex-direction: row;
+            div:first-child{
+                padding-left: 0;
+            }
+        }
+        .car_pro_single, .car_pro_skill{
+            display: flex;
+            margin: 10px auto;
+            flex-wrap: wrap;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+            .car_pro_skill_area{
+                display: flex;
+                padding: 0;
+                flex-wrap: wrap;
+                h3{
+                    display: flex;
+                    margin: 10px auto;
+                    flex-direction: row;
+                    justify-content: center;
+                }
+                span{
+                    display: flex;
+                    margin: 10px 0;
+                    padding: 10px 5px;
+                    align-items: center;
+                    border-radius: 25px;
+                    color: white;
+                    font-weight: 700;
+                    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+                }
+            }
+        }
+        .car_pro_lhs_plot_area{
+            display: flex;
+            margin: 20px auto;
+            flex-wrap: wrap;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+            h3{
+                margin-top: 10px;
+                font-weight: 700;
+                text-align: center;
+            }
+            .car_pro_lhs_plot, .car_pro_inc_plot{
+                margin: 20px 0;
+                height: 300px;
+            }
+        }
+        
+    }
+}
