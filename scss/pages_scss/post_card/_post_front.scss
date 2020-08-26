@@ -112,22 +112,26 @@ body {
 
 @mixin h3 {
   #{h3} {
-    border: 1px solid rgb(182, 182, 182);
+    // border: 1px solid rgb(182, 182, 182);
     // display: inline-block;
     padding: 5px;
     background-color: $second_color2;
     border-radius: 5px 5px 0 0;
-    border-bottom: none;
-    border-right: none;
+    border: none;
     cursor: pointer;
 
-    &:hover {
-      border: 1px solid rgb(236, 17, 17);
+    &.active {
+      background-color: #EE7002;
+      color: white;
+    }
 
+    &:hover {
+      background-color: #EE7002;
+      color: white;
     }
 
     &:nth-child(2) {
-      border-right: 1px solid rgb(182, 182, 182);
+      border-left: 1px solid rgb(182, 182, 182);
     }
   }
 }
@@ -469,7 +473,7 @@ div.postcard_main {
                 position: absolute;
                 top: 20%;
                 right: 30%;
-                border: 1px solid gray;
+                // border: 1px solid gray;
                 min-width: 100px;
                 width: 24%;
                 cursor: move;

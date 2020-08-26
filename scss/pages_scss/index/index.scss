@@ -165,14 +165,14 @@ div.header_wrap {
         .doctor {
             @include animation(doctor);
         }
-        .stage {
-            .firstStage {
+        .stages {
+            .stageS {
                 @include animation(firstStair);
             }
-            .secondStage {
+            .stageM {
                 @include animation(secondStair);
             }
-            .thirdStage {
+            .stageL {
                 @include animation(thirdStair);
             }
         }
@@ -181,18 +181,21 @@ div.header_wrap {
 
 .fp-viewing-4 {
     .card--animated {
-        @include animation (card, 1, 1.5s, ease-in) {
+        @include animation (card, 1, 3s, ease-in) {
             animation-fill-mode: forwards;
+            animation-delay: 100s;
         }
         ;
         @include animation (cardBounce, 1, 1.5s, ease-in-out) {
             animation-fill-mode: forwards;
+            // animation-delay: 50s;
         }
         ;
     }
 }
 
 .index {
+    //第一屏
     .index_test {
         @include section;
         .firstScreen {
@@ -244,7 +247,7 @@ div.header_wrap {
                         // border: 1px solid red;
                     }
                     .holland_small {
-                        @include animation(pulse, infinite, 10s, linear);
+                        @include animation(pulse, infinite, 30s, linear);
                         &:hover {
                             animation-play-state: paused;
                         }
@@ -334,6 +337,7 @@ div.header_wrap {
             }
         }
     }
+    //第二屏
     .index_car {
         @include section;
         background-image: url(../../../img/index/index_2nd/2nd_bgYellow.png);
@@ -367,31 +371,82 @@ div.header_wrap {
                         z-index: 1;
                     }
                 }
-                .stage {
+                .stages {
                     display: flex;
                     justify-content: center;
                     margin: 0;
                     // border: 1px solid #000;
-                    .firstStage {
+                    .stageS {
                         @include stage(30%, 110px);
+                        .firstStage {
+                            width: 100%;
+                        }
+                        .Stext {
+                            position: relative;
+                            bottom: 80px;
+                            color: white;
+                        }
+                        .Stitle {
+                            position: relative;
+                            bottom: 50px;
+                            color: white;
+                        }
                     }
-                    .secondStage {
+                    .stageM {
                         @include stage(65%, 55px);
+                        .secondStage {
+                            width: 100%;
+                        }
+                        .Mtext {
+                            position: relative;
+                            bottom: 130px;
+                            color: white;
+                        }
+                        .Mtitle {
+                            position: relative;
+                            bottom: 50px;
+                            color: white;
+                        }
                     }
-                    .thirdStage {
+                    .stageL {
                         @include stage(100%, 0px);
+                        .thirdStage {
+                            width: 100%;
+                        }
+                        .Ltext {
+                            position: relative;
+                            bottom: 180px;
+                            color: white;
+                        }
+                        .Ltitle {
+                            position: relative;
+                            bottom: 50px;
+                            color: white;
+                        }
                     }
                 }
             }
             @media screen and (max-width: 768px) {
                 .index_sal_img {
                     position: absolute;
-                    top: 100px;
-                    opacity: $opacity;
+                    top: 130px;
+                    height: 480px;
+                    .auditor {
+                        @include position(80px, relative) {
+                            right: 20px;
+                        }
+                    }
+                    .teacher {
+                        @include position(60px, relative) {}
+                    }
+                    .doctor {
+                        @include position(80px, relative) {
+                            left: 10px;
+                        }
+                    }
                 }
             }
             .index_sal_chart {
-                z-index: 1;
                 // border: 1px solid #000;
                 height: 500px;
                 h1 {
@@ -453,9 +508,18 @@ div.header_wrap {
                     margin-left: 50%;
                     transform: translateX(-50%);
                 }
+                @media screen and (max-width: 768px) {
+                    .chart {
+                        display: none;
+                    }
+                    .btn_second {
+                        margin-top: 450px;
+                    }
+                }
             }
         }
     }
+    //第三屏
     .index_disc {
         @include section;
         background-image: url(../../../img/index/index_3rd/3rd_bgGreen.png);
@@ -476,7 +540,7 @@ div.header_wrap {
                         position: relative;
                         background-color: white;
                         margin-bottom: 40px;
-                        z-index: 2;
+                        // z-index: 2;
                         .meg_box {
                             border: 1px solid #000;
                             border-radius: 5px;
@@ -515,7 +579,10 @@ div.header_wrap {
                             // z-index: 1;
                         }
                     }
-                    .btn_second {}
+                    .btn_second {
+                        margin-left: 50%;
+                        transform: translateX(-50%);
+                    }
                 }
             }
             .index_disc_img {
@@ -530,8 +597,14 @@ div.header_wrap {
                     }
                 }
             }
+            @media screen and (max-width:767px) {
+                .index_disc_img {
+                    display: none;
+                }
+            }
         }
     }
+    //第四屏
     .index_cour {
         @include section;
         background-image: url(../../../img/index/index_4th/4th_bg.png);
@@ -605,6 +678,7 @@ div.header_wrap {
             }
         }
     }
+    //第五屏
     .index_card {
         @include section;
         background-image: url(../../../img/index/index_5th/5th_bg.png);
