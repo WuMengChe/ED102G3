@@ -52,6 +52,7 @@
     // border: 1px solid red;
   }
   .right_panel {
+    padding: 0;
   }
   .side_wrap {
     padding: 0;
@@ -174,11 +175,14 @@ $timing: 0.3s;
         line-height: 33px;
         .info_list {
           display: flex;
-          img {
+          .img_div {
             width: 30px;
             height: 30px;
             border-radius: 50%;
             overflow: hidden;
+            img {
+              width: 100%;
+            }
           }
           .dis_name,
           .dis_date {
@@ -290,20 +294,18 @@ div.pagination_block > ul.pagination > li {
 div.pagination_block > ul.pagination > li > a {
   display: inline-block;
   text-decoration: none;
-
-  // border: 1px solid #dee2e6; /* 留意 */
-  border-right: 0; /* 留意：將全部的右邊框都移除 */
-
   text-align: center;
-  padding: 5px 10px;
-  font-size: 1rem;
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
   color: white;
 }
 
-div.pagination_block > ul.pagination > li:first-child > a {
-  display: inline-block;
-  // border-radius: 5px 0 0 5px;
-}
+// div.pagination_block > ul.pagination > li:first-child > a {
+//   display: inline-block;
+// border-radius: 5px 0 0 5px;
+// }
 
 // div.pagination_block > ul.pagination > li > a.-on {
 //   background-color: #e9ecef;
@@ -320,7 +322,7 @@ a.pencil_btn {
   display: inline-block;
   cursor: pointer;
   position: fixed;
-  bottom: 50%;
+  bottom: 30%;
   right: 2%;
 
   outline: none;
@@ -401,10 +403,10 @@ div.forum_overlay > .forum_checkMsg {
         .img_div {
           width: 30px;
           height: 30px;
+          border-radius: 50%;
+          overflow: hidden;
           img {
             width: 100%;
-            border-radius: 50%;
-            overflow: hidden;
           }
         }
         .dis_name,
@@ -456,12 +458,16 @@ div.forum_overlay > .forum_checkMsg {
       padding: 10px;
       line-height: 2;
       color: gray;
-      img {
+      .img_div {
         width: 30px;
         height: 30px;
         border-radius: 50%;
         overflow: hidden;
+        img {
+          width: 100%;
+        }
       }
+
       .dis_name,
       .dis_date {
         margin: 0 10px;
@@ -491,6 +497,7 @@ div.forum_overlay > .forum_checkMsg {
       height: 30px;
       // border: 1px solid red;
       text-align: left;
+      padding-left: 5px;
       .btn_modal_close {
         width: 60px;
         height: 30px;
@@ -506,11 +513,6 @@ div.forum_overlay > .forum_checkMsg {
       position: sticky;
       bottom: 0px;
       // border: 1px solid red;
-      .close_msg_div {
-        .close_leaveMsg_btn {
-          padding: 2px 8px;
-        }
-      }
       .leave_msg {
         // border: 1px solid gray;
         // position: relative;
@@ -524,7 +526,7 @@ div.forum_overlay > .forum_checkMsg {
         }
       }
       .confirm_send_btn {
-        padding: 10px;
+        padding-bottom: 15px;
         text-align: center;
       }
       #send_msg_btn {
@@ -593,29 +595,36 @@ div.impeachment_overlay > article {
   div.forum_overlay > .forum_checkMsg {
     max-width: 500px;
     width: 100%;
+    padding: 10px 0;
   }
 
   .wrap {
     .side_wrap {
-      width: 100%;
-      .dis_side {
-        display: flex;
-        justify-content: center;
-        height: 70px;
-        width: 100%;
+      position: fixed;
+      z-index: 200;
+      left: 0;
+      z-index: 10;
+      .main_side_bar {
         position: inherit;
+        width: inherit;
+        // position: absolute;
         border-radius: 0;
-        overflow: hidden;
-        overflow-x: scroll;
+        height: inherit;
+        padding: 0;
+        width: 100%;
         ul {
           flex-direction: row;
           margin-bottom: 0px;
+          justify-content: center;
           li {
-            margin: 10px 10px;
-            width: max-content;
+            margin: 10px 5px;
             a {
               padding: 6px 10px;
               font-size: 16px;
+              span {
+                width: 15px;
+                height: 15px;
+              }
             }
           }
         }
@@ -629,6 +638,22 @@ div.impeachment_overlay > article {
   .side_bar_img {
     display: none;
   }
+
+  .select {
+    padding: 20px 5px;
+  }
+}
+
+@media (max-width: 670px) {
+  .side_wrap .main_side_bar {
+    overflow-x: scroll;
+  }
+  .side_wrap .main_side_bar::-webkit-scrollbar {
+    display: none;
+  }
+  .side_wrap .main_side_bar ul {
+    width: max-content;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -640,5 +665,43 @@ div.impeachment_overlay > article {
   }
   .forum_checkMsg {
     min-width: 200px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dis_body {
+    font-size: 14px;
+    .tab_contents {
+      .msg_content {
+        .msg_title {
+          font-size: 18px;
+        }
+        .mem_info {
+          .tags_list {
+            font-size: 10px;
+            .type_tag {
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .feedback_wrap {
+    .check_content {
+      font-size: 14px;
+      .mem_info {
+        .tags_list {
+          font-size: 10px;
+        }
+      }
+      .msg_title {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .select {
+    padding: 20px 5px;
   }
 }

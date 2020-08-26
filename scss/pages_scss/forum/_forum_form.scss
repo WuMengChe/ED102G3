@@ -13,6 +13,9 @@
   // height: 600px;
   h3 {
     padding: 25px 0;
+    width: 630px;
+    border-bottom: 2px solid gray;
+    padding-bottom: 10px;
   }
 }
 
@@ -20,13 +23,13 @@
   max-width: 700px;
   margin: 0 auto;
 }
-
-.second_fix {
-  max-height: 30px;
+.title {
+  justify-content: end;
 }
+
 .form-group {
   margin-top: 20px;
-
+  justify-content: center;
   //標題
   .select_name {
     width: 90px;
@@ -47,7 +50,7 @@
   .space {
     z-index: 0;
     padding: 0;
-    width: 74%;
+    width: 540px;
     border: 2px solid #f6f3ed;
     border-radius: 5px;
   }
@@ -56,7 +59,8 @@
   textarea {
     border: none;
     resize: none;
-    height: 200px;
+    height: 500px;
+    width: 100%;
     padding: 10px;
     border-radius: 10px;
     background-color: transparent;
@@ -71,6 +75,15 @@
   input {
     margin: 10px;
   }
+}
+
+.m_50 {
+  margin-top: 50px;
+}
+
+//按鈕隔開
+.btn_third {
+  margin: 0 10px;
 }
 
 //下拉選單type
@@ -94,7 +107,7 @@ $timing: 0.3s;
 
   transition: $timing all ease-in-out;
   width: 200px;
-  z-index: 200;
+  z-index: 10;
   // input:focus + label {
   //   background: #1b4d9f;
   // }
@@ -184,7 +197,7 @@ $timing: 0.3s;
 
   transition: $timing all ease-in-out;
   width: 200px;
-  z-index: 200;
+  z-index: 20;
   // input:focus + label {
   //   background: #1b4d9f;
   // }
@@ -283,17 +296,9 @@ $timing: 0.3s;
       height: 30px;
     }
   }
-
-  .text_area {
-    margin-top: 110px;
-  }
 }
 
 @media screen and (max-width: 576px) {
   #forum_form {
-    h3 {
-      margin-bottom: 20px;
-      margin-left: 20px;
-    }
   }
 }
