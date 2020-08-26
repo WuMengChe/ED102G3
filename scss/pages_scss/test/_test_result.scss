@@ -1,6 +1,6 @@
 @import'../../_public_dontTouch/utils/variables';
 .test_result_wrap{
-    background-image: url(../../../img/test/test_result_bg.svg);
+    background-image: url(../../../img/test/bg_resultttt.svg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -398,6 +398,9 @@ main.main_test_result{
                         box-shadow: $card_shadow;
                         padding: 1%;
                         transition: linear .2s;
+                        @media screen  and (max-width: 570px){ 
+                          line-height: 20px;
+                        }
                         &:hover{
                             transform: scale(1.1);
                             background: $second_color2;

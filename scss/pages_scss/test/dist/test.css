@@ -1,4 +1,19 @@
 @charset "UTF-8";
+div.header_wrap header.header div.header_nav ul li:nth-child(1) a::after {
+  content: "";
+  margin: 0 auto;
+  background-color: #bceaff;
+  width: 100%;
+  height: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  z-index: -1;
+  animation-name: rotation;
+  animation-duration: 0.6s;
+}
+
 div.before_test_wrap {
   background-image: url(../../../img/test/background_before_test.svg);
   background-repeat: no-repeat;
@@ -920,4 +935,19 @@ div.before_test_wrap .main_before_test .wrap_of_btn_before_test {
   background: #CCC5E3;
   font-size: 15px;
   margin: 0px 10px;
+}
+
+div.header_wrap header.header div.header_nav ul li:nth-child(1) a::after {
+  content: "";
+  margin: 0 auto;
+  background-color: #bceaff;
+  width: 100%;
+  height: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  z-index: -1;
+  animation-name: rotation;
+  animation-duration: 0.6s;
 }
