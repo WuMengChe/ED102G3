@@ -125,7 +125,7 @@ let careerProfessionVueContent = new Vue({
             alert('請先選擇職業');
             window.location.href = "./career.html";
         }
-        // localStorage.clear();
+        localStorage.clear();
     },
     created() {
         window.addEventListener('resize', this.changeWidth);

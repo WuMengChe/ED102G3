@@ -39,28 +39,28 @@ let carData = {
     ],
     industryCourse: [
         {typeName: "實作型(R)", detail: [
-            {name: "酒及飲料調製"},
-            {name: "職場溝通管理學：打造團隊好關係與高績效"}
+            {name: "酒及飲料調製", time: "2天12小時", price: 5800},
+            {name: "職場溝通管理學：打造團隊好關係與高績效", time: "3小時", price: 2880}
         ]},
         {typeName: "研究型(I)", detail: [
-            {name: "人工智慧TENSORFLOW上手實作班"},
-            {name: "前端工程師就業養成班"}
+            {name: "人工智慧TENSORFLOW上手實作班", time: "18小時", price: 21000},
+            {name: "前端工程師就業養成班", time: "600小時", price: 120000}
         ]},
         {typeName: "文藝型(A)", detail: [
-            {name: "行銷必上文案課：受眾溝通與表達"},
-            {name: "設計色彩學：建立自己的色彩品味資料庫"}
+            {name: "行銷必上文案課：受眾溝通與表達", time: "4小時21分鐘", price: 1280},
+            {name: "設計色彩學：建立自己的色彩品味資料庫", time: "3小時46分鐘", price: 1800}
         ]},
         {typeName: "社會型(S)", detail: [
-            {name: "社會心理學"},
-            {name: "翻轉課堂的職業講師祕訣"}
+            {name: "社會心理學", time: "9小時", price: 3000},
+            {name: "翻轉課堂的職業講師祕訣", time: "5小時", price: 3980}
         ]},
         {typeName: "企業型(E)", detail: [
-            {name: "九個步驟快速提昇你的簡報力、溝通力"},
-            {name: "新世代行銷法則，行銷=內容X社群X商務"}
+            {name: "九個步驟快速提昇你的簡報力、溝通力", time: "2小時", price: 615},
+            {name: "新世代行銷法則，行銷=內容X社群X商務", time: "2小時", price: 615}
         ]},
         {typeName: "事務型(C)", detail: [
-            {name: "財報分析基礎雲端班"},
-            {name: "初級會計基礎班"}
+            {name: "財報分析基礎雲端班", time: "6小時", price: 4200},
+            {name: "初級會計基礎班", time: "12小時", price: 5000}
         ]},
     ],
     industryForum: [
@@ -134,6 +134,11 @@ let careerVueContent = new Vue({
         window.removeEventListener('resize', this.rankingPlot);
     },
     methods: {
+        ulMove(){
+            // if(992 > this.screenWidth){
+            //     console.log(123)
+            // }
+        },
         scrollToTop(){
             window.scrollTo(0, 0)
         },

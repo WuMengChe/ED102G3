@@ -41,7 +41,7 @@
                             <img class="side_bar_img_use" src="./img/side_bar.svg" alt="">
                         </div>
                     </div> -->
-                    <ul>
+                    <ul @touchmove="ulMove" @mousemove="ulMove()">
                         <li v-if="992 > screenWidth" @click="changePlot">薪水排行</li>
                         <li v-for="(item, index) in industry" @click="changeContent(index, item.backgroundColor)" :class = "item.class"><span></span>{{item.typeName}}</li>
                     </ul>
@@ -95,7 +95,9 @@
                             <span :style="{backgroundColor:industry[chooseIndustry].backgroundColor}">{{industry[chooseIndustry].typeName}}</span>
                         </a>
                         <p>{{item.name}}</p>
-                        <span>{{item.name}}</span>
+                        <span class="car_course_list_info_word"><i class="fas fa-user-friends "></i>123人已參與此課程</span>
+                        <span class="car_course_list_info_hour">時數：{{item.time}}</span>
+                        <span class="car_course_list_info_price">NT${{item.price}}</span>
                     </div>
                 </div>
                 <button class = "btn_primary">查看相關課程</button>

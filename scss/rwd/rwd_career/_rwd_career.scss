@@ -1,3 +1,20 @@
+@media screen and (max-width:991px){
+    .car_con_list{
+        overflow: scroll;
+        overflow-x: auto;
+        overflow-y: hidden;
+        ul{
+            margin-bottom: 0 !important;
+            width: fit-content;
+            flex-direction: row !important;
+            position: relative;
+            li{
+                margin: 10px !important;
+                height: 40px;
+            }
+        }
+    }
+}
 @media screen and (max-width:768px){
     .car_title{
         >span{
