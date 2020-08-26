@@ -1,3 +1,8 @@
+@import "../../_public_dontTouch/utils/mixin";
+div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
+  @include header_line;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -295,10 +300,5 @@ $timing: 0.3s;
       width: 100%;
       height: 30px;
     }
-  }
-}
-
-@media screen and (max-width: 576px) {
-  #forum_form {
   }
 }
