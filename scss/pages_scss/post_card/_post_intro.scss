@@ -1,3 +1,9 @@
+@import'../../_public_dontTouch/utils/mixin';
+
+div.header_wrap header.header div.header_nav ul li:nth-child(5) a::after {
+  @include header_line;
+}
+
 @mixin step {
   p {
     padding: 15px 0;

@@ -1,4 +1,9 @@
 @import'../../_public_dontTouch/utils/variables';
+@import'../../_public_dontTouch/utils/mixin';
+
+div.header_wrap header.header div.header_nav ul li:nth-child(5) a::after {
+  @include header_line;
+}
 
 .postcard_view {
   // border: 1px solid black;

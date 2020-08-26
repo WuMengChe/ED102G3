@@ -143,7 +143,10 @@
                 </div>
                 <div class = "col-md-12 mam_no_data" v-if="!checkAnalysisResult">
                     <h3>您還沒有做過測驗喔，現在就去測驗吧</h3>
-                    <button class="btn_primary">職涯測驗</button>
+                    <a href="./test_before.html">
+                        <button class="btn_primary">職涯測驗</button>
+                    </a>
+                    <!-- <button class="btn_primary">職涯測驗</button> -->
                 </div>
             </div>
             <div class="container" v-if="currentPage == '我的課程'">
@@ -223,7 +226,10 @@
                 </div>
                 <div class = "col-md-12 mam_no_data" v-if="!checkMemPostcard">
                     <h3>您還沒有建立明信片喔，現在就來創建一個</h3>
-                    <button class="btn_primary">時光明信片</button>
+                    <a href="./post_intro.html">
+                        <button class="btn_primary">時光明信片</button>
+                    </a>
+                    <!-- <button class="btn_primary">時光明信片</button> -->
                 </div>
             </div>
             <div class="container" v-if="currentPage == '訂單紀錄'">
