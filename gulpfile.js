@@ -118,3 +118,46 @@ gulp.task("concat", ["sass"], function() {
         ) //壓縮
         .pipe(gulp.dest("dest/css")); //目的地
 });
+
+//backstage
+
+gulp.task('bgsass', ['bgimg', 'bgjs', 'bgfileinclude'], function() {
+    return gulp.src('./backstage/sass/**/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass().on("error", sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
+        .pipe(
+            cleanCSS({
+                compatibility: "ie8",
+            })
+        )
+        .pipe(sourcemaps.write())
+
+    .pipe(gulp.dest("./dest/backstage/css"));
+});
+gulp.task("bgfileinclude", function() {
+    return gulp
+        .src(["./backstage/html/*.html"]) //來源
+        .pipe(
+            fileinclude({
+                prefix: "@@",
+                basepath: "@file",
+            })
+        )
+        .pipe(gulp.dest("./dest/backstage")); //目的地
+});
+
+//執行到這邊請看看有沒有產生dest資料夾，並且這資料夾中有產生html
+
+//7. 將js複製到dest資料夾中，請在終端機中輸入：gulp js
+gulp.task("bgjs", function() {
+    return gulp.src(["./backstage/js/**/*.js"]).pipe(gulp.dest("dest/backstage/js"));
+});
+
+
+//9. 壓縮圖並存入dest/img資料夾中，請在終端機中輸入：gulp img
+gulp.task("bgimg", function() {
+    gulp
+        .src("./backstage/img/**/*")
+        // .pipe(imagemin())
+        .pipe(gulp.dest("dest/backstage/img"));
+});
