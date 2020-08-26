@@ -127,8 +127,8 @@
 
     <!--燈箱！！！-->
     <!--點擊標題跳出的燈箱-->
-    <div class="forum_overlay" @click="close_overlay">
-      <div class="forum_checkMsg">
+    <div class="forum_overlay">
+      <div class=" forum_checkMsg">
         <div class="close_btn">
           <button type="button" class="btn_modal_close btn_third" @click="btn_modal">
             返回
@@ -240,7 +240,9 @@
     <div class="impeachment_overlay">
       <article>
         <div class="accuse_close_btn">
-          <button type="button" class="impeachment_close_btn" @click="bad_btn">關閉</button>
+          <button type="button" class="impeachment_close_btn" @click="bad_btn">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
         <h3>檢舉這篇文章的原因？</h3>
         <div class="accuse_wrap">
@@ -260,7 +262,7 @@
           <p><input type="radio" name="accuse" id="" /> 其他原因</p>
         </div>
         <div class="accuse_send_btn">
-          <button class="impeachment_send_btn">送出</button>
+          <button class="impeachment_send_btn btn_third">送出</button>
         </div>
       </article>
     </div>
@@ -357,14 +359,6 @@
             }, 1000);
           });
         },
-        //點擊空白處關閉燈箱
-        close_overlay() {
-          // $('.forum_overlay').on("click", function () {
-
-          //   $("div.forum_overlay").removeClass("-on -opacity-zero");
-
-          // })
-        },
         sendMsg() {
           //點擊回覆留言地方，按下去視窗變大
           $("#send_msg").on("click", function () {
@@ -433,7 +427,7 @@
           })
         },
         selectP() {
-          alert("124");
+
         }
       },
     });

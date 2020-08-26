@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 600px;
+  // height: 600px;
   h3 {
     padding: 25px 0;
   }
@@ -26,18 +26,15 @@
 }
 .form-group {
   margin-top: 20px;
-  // max-height: 30px;
 
   //標題
   .select_name {
     width: 90px;
     line-height: 35px;
-
-    // border: 1px solid red;
   }
   .topic_text {
     border-radius: 5px;
-    border: 2px solid #1b4d9f;
+    border: 2px solid #f6f3ed;
     width: 540px;
     #text_topic {
       border: none;
@@ -51,7 +48,7 @@
     z-index: 0;
     padding: 0;
     width: 74%;
-    border: 2px solid #1b4d9f;
+    border: 2px solid #f6f3ed;
     border-radius: 5px;
   }
 
@@ -66,10 +63,6 @@
   }
   .qu_space {
     width: 50px;
-    // border: 1px solid blue;
-  }
-  .typeList_show {
-    // border: 1px solid red;
   }
 }
 
@@ -81,8 +74,7 @@
 }
 
 //下拉選單type
-
-$color: #3694d7;
+$color: gray;
 $timing: 0.3s;
 
 .dropdown-el {
@@ -94,18 +86,18 @@ $timing: 0.3s;
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  color: white;
+  // color: white;
   outline: none;
   border: 0.06em solid transparent;
   border-radius: 5px;
-  background-color: #1b4d9f;
+  background-color: #f6f3ed;
 
   transition: $timing all ease-in-out;
   width: 200px;
   z-index: 200;
-  input:focus + label {
-    background: #1b4d9f;
-  }
+  // input:focus + label {
+  //   background: #1b4d9f;
+  // }
   input {
     width: 1px;
     height: 1px;
@@ -150,7 +142,7 @@ $timing: 0.3s;
     transition: 0.4s all ease-in-out;
   }
   &.expanded {
-    border: 0.06em solid $color;
+    // border: 0.06em solid $color;
     // background: #fff;
     border-radius: 0.25em;
     padding: 0;
@@ -175,7 +167,6 @@ $timing: 0.3s;
 }
 
 //下拉選單
-
 .dropdown_share {
   position: relative;
   display: inline-block;
@@ -185,18 +176,18 @@ $timing: 0.3s;
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  color: white;
+  // color: white;
   outline: none;
   border: 0.06em solid transparent;
   border-radius: 5px;
-  background-color: #1b4d9f;
+  background-color: #f6f3ed;
 
   transition: $timing all ease-in-out;
   width: 200px;
   z-index: 200;
-  input:focus + label {
-    background: #1b4d9f;
-  }
+  // input:focus + label {
+  //   background: #1b4d9f;
+  // }
   input {
     width: 1px;
     height: 1px;
@@ -215,7 +206,7 @@ $timing: 0.3s;
     transition: $timing color ease-in-out;
     &:nth-child(2) {
       margin-top: 2em;
-      border-top: 0.06em solid #d9d9d9;
+      // border-top: 0.06em solid #d9d9d9;
     }
   }
   input:checked + label {
@@ -240,13 +231,13 @@ $timing: 0.3s;
     border-color: $color transparent transparent transparent;
     transition: 0.4s all ease-in-out;
   }
-  &.expanded {
-    border: 0.06em solid $color;
+  &.expanded_share {
+    // border: 0.06em solid $color;
     // background: #fff;
     border-radius: 0.25em;
     padding: 0;
     box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
-    max-height: 15em;
+    max-height: 4em;
 
     label {
       border-top: 0.06em solid #d9d9d9;

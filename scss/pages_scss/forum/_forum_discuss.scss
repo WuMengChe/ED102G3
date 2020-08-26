@@ -60,7 +60,7 @@
 
 //下拉選單
 
-$color: #3694d7;
+$color: gray;
 $timing: 0.3s;
 .select {
   padding: 20px 0;
@@ -73,7 +73,7 @@ $timing: 0.3s;
 }
 
 .dis_dropdown {
-  min-width: 250px;
+  min-width: 200px;
   position: relative;
   display: inline-block;
   max-height: 2em;
@@ -87,7 +87,7 @@ $timing: 0.3s;
   outline: none;
   border: 0.06em solid transparent;
   border-radius: 5px;
-  background-color: mix($color, #fff, 25%);
+  background-color: #f6f3ed;
 
   transition: $timing all ease-in-out;
   input:focus + label {
@@ -138,21 +138,22 @@ $timing: 0.3s;
     transition: 0.4s all ease-in-out;
   }
   &.expanded {
-    border: 0.06em solid $color;
+    // border: 0.06em solid $color;
     background: #fff;
     border-radius: 0.25em;
     padding: 0;
     box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
     max-height: 15em;
+    z-index: 50;
     label {
       border-top: 0.06em solid #d9d9d9;
       &:hover {
         color: $color;
       }
     }
-    input:checked + label {
-      color: $color;
-    }
+    // input:checked + label {
+    //   color: $color;
+    // }
 
     &::after {
       transform: rotate(-180deg);
@@ -367,7 +368,7 @@ div.forum_overlay > .forum_checkMsg {
   background-color: #ccc;
   border-radius: 10px;
   max-height: 103vh;
-  padding: 10px;
+  padding: 0 5px;
   top: 22%;
   left: 50%;
   max-width: 800px;
@@ -379,15 +380,16 @@ div.forum_overlay > .forum_checkMsg {
 /* 留言數量 */
 .forum_checkMsg .feedback_count {
   text-align: center;
-  background-color: #336ac6;
+  background-color: #f7ecd9;
   padding: 10px;
+  margin: 5px 0;
 }
 
 //點進標題的內容
 .feedback_wrap {
   background: #f8f6f2;
   .check_content {
-    margin: 10px 0;
+    margin-top: 10px;
     .mem_info {
       display: flex;
       justify-content: space-between;
@@ -447,8 +449,8 @@ div.forum_overlay > .forum_checkMsg {
 .forum_feedback {
   // border: 1px solid red;
   .feedback_content {
-    margin-top: 20px;
-    background-color: #f7ecd9;
+    background-color: #f8f6f2;
+    margin: 5px 0;
     .info_list {
       display: flex;
       padding: 10px;
@@ -564,16 +566,13 @@ div.impeachment_overlay > article {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #f7ea92;
+  background-color: #f5edde;
   .accuse_close_btn {
     text-align: right;
   }
   .accuse_send_btn {
     text-align: center;
     .impeachment_send_btn {
-      background-color: #a0cadb;
-      border-radius: 5px;
-      padding: 5px;
     }
   }
   h3 {
