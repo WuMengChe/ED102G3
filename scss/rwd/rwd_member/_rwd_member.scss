@@ -32,6 +32,7 @@
         height: 300px !important;
     }
     .mem_con_detail{
+        margin: 0 auto !important;
         height: fit-content !important;
     }
     table{
@@ -39,9 +40,9 @@
     }
     .mem_det_btn_use{
         button {
-            margin: 0 !important;
-            width: 50% !important;
-            border-radius: 0px !important;
+            margin: 0 auto !important;
+            // width: 50% !important;
+            // border-radius: 0px !important;
         }
     }
     .mem_cla, .mem_pos{

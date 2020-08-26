@@ -1,1 +1,15 @@
 // Here you can add other styles
+.card-body {
+  // border: 1px solid blue;
+
+  .search {
+    // border: 1px solid blue;
+    // display: inline-block;
+    margin: 0 auto;
+
+    #member_search {
+      border: 1px solid rgb(75, 147, 255);
+      border-radius: 5px;
+    }
+  }
+}
