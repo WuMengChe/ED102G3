@@ -6,10 +6,11 @@
     <title>職引960-會員登入</title> <!--document.title = "會員註冊"-->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/app_public.css">
+    <!-- <link rel="stylesheet" href="./css/app_public.css"> -->
+    @@include('app/link.html')
     <link rel="stylesheet" href="./css/pages_scss/member/member_all.css">
 </head>
-<body>
+<body class="mem_sign_in">
     @@include('app/header.html')
     <main>
         <div class="mem_log_con_width">
@@ -34,15 +35,15 @@
                         <form class = "sign_in_from" action = "#" v-if="signIn == true">
                             <div class = "input_div">
                                 <label for="account" class="input_label">帳號：</label>
-                                <input type="email" placeholder="123@gmail.com" required="required" class="input_field" id="account">
+                                <input type="email" placeholder="123@gmail.com" required="required" class="input_field" id="account" value="123456789@gmail.com">
                             </div>
                             <div class = "input_div">
                                 <label for="code" class="input_label">密碼：</label>
-                                <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code">
+                                <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code" value="1234567890">
                             </div>
                             <div class = "input_button">
                                 <button class = "btn_primary rwd_btn" @click.prevent = "signIn = !signIn, register = !register">{{signIn == true ? "會員登入" : "會員註冊"}}</button>
-                                <button class = "btn_third">送出</button>
+                                <button class = "btn_third" @click.prevent="changePage">送出</button>
                             </div>
                         </form>
                     </transition>
@@ -71,11 +72,14 @@
                         </form>
                     </transition>
                 </div>
+                <img class="mem_log_fir" src="./img/member/member_sign_in_img.svg" v-if="screenWidth > 1000">
+                <img class="mem_log_sec" src="./img/member/member_sign_in_img.svg" v-if="screenWidth > 1000">
             </div>
         </div>
     </main>
     @@include('app/footer.html')
+    @@include('app/script.html')
     <script type="text/javascript" src="./js/member/member_sign_in.js"></script>
-    <script src="./js/header.js"></script>
+    <!-- <script src="./js/header.js"></script> -->
 </body>
 </html>

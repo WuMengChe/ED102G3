@@ -94,7 +94,7 @@ let changeMemContent = new Vue({
         this.screenWidth = document.documentElement.clientWidth;
         if(this.screenWidth >= 992){
             var liChange = document.querySelectorAll('.mem_list>ul>li');
-            liChange[0].style.backgroundColor = 'white';
+            liChange[0].style.backgroundColor = '#A0CADB';
         }
         if(this.screenWidth < 768){
             this.rwdUse = true;
@@ -164,7 +164,7 @@ let changeMemContent = new Vue({
             for(var i = 0; i < liChange.length; i++){
                 liChange[i].style.backgroundColor = 'transparent';
             }
-            liChange[e].style.backgroundColor = 'white';
+            liChange[e].style.backgroundColor = '#A0CADB';
             if(e != 3){
                 liShowSecond.classList.remove('li_sec_show');
                 this.liSecondArrow = -1;
