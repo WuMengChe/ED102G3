@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +11,16 @@
   <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <script src="https://use.fontawesome.com/79072b09c8.js"></script>
   <!-- Main styles for this application-->
   <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
- <!-- top_header -->
- @@include('layout/top_header.html')
+  <!-- top_header -->
+  @@include('layout/top_header.html')
   <div class="app-body">
     <div class="sidebar">
       <!-- sidebar menu-->
@@ -28,27 +32,23 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item">
-          <a href="#">Admin</a>
+          <a href="#">人員管理</a>
         </li>
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item active">會員</li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group">
             <a class="btn" href="#">
               <i class="icon-speech"></i>
             </a>
-            <a class="btn" href="./">
-              <i class="icon-graph"></i>  Dashboard</a>
-            <a class="btn" href="#">
-              <i class="icon-settings"></i>  Settings</a>
           </div>
         </li>
       </ol>
       <div class="container-fluid">
-   
-       <!-- 中間內容 -->
-       @@include('layout/content.html')
-       <!-- end -->
+
+        <!-- 中間內容 -->
+        @@include('layout/content.html')
+        <!-- end -->
       </div>
     </main>
     <aside class="aside-menu">
@@ -361,4 +361,5 @@
   <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
   <script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
 </body>
+
 </html>
