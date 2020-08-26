@@ -62,3 +62,14 @@ div#check_order {
         }
     }
 }
+
+@media(max-width:400px) {
+    div#check_order div.check_bg div.check_order_center div.check_order_contain fieldset table tr th {
+        padding: 0;
+        vertical-align: middle;
+    }
+    div#check_order div.check_bg div.check_order_center div.check_order_contain fieldset table tr td {
+        width: 70%;
+        line-height: 1.5;
+    }
+}

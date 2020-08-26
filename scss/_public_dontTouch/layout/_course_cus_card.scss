@@ -1,5 +1,5 @@
 @import "../utils/variables";
-$hot_course_btn_width: 50px;
+$hot_course_btn_width: 45px;
 $cus_card_img_width: 200px;
 $course_title_margin_bottom: 20px;
 $session_margin_bottom: 50px;
@@ -170,12 +170,12 @@ div.hot_course {
                         width: $hot_course_btn_width;
                         height: $hot_course_btn_width;
                         border-radius: $hot_course_btn_width;
-                        background: #336AC6;
+                        background: #119beb;
                         box-shadow: $card_shadow;
                         i {
                             color: #fff;
                             font-size: 18px;
-                            line-height: 50px;
+                            line-height: 45px;
                         }
                         &:hover {
                             // background: #fff;
