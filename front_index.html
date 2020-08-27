@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職引960</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.css"> @@include('app/link.html')
+    <link rel="stylesheet" href="./css/pages_scss/index/index.css">
+
+</head>
+
+<body>
+    <!-- header -->
+    @@include('app/header.html')
+
+    <main class="index fullpage">
+        <section class="index_test active">
+            <div class="firstScreen container">
+                <div class="index_test_text col-md-5 col-sm-8 col-xs-10">
+                    <h1>職涯分析</h1>
+                    <p>剛畢業亦或是正在考慮轉職的你，夠了解自己嗎？透過職涯960讓生涯探索更接近真實工作世界！</p>
+                    <a href="./test_before.html" class="btn_primary">職涯分析</a>
+                </div>
+                <div class="index_test_img col-md-7 col-sm-4 col-xs-2">
+                    <div class="img">
+                        <span class="holland_small">
+                            <!-- Small Shapes -->
+                            <div href="" class="small circle real"><p>實作型(R)</p></div>
+                            <div href="" class="small squire inv"><p>研究型(I)</p></div>
+                            <div href="" class="small circle art"><p>文藝型(A)</p></div>
+                            <div href="" class="small squire soc"><p>社會型(S)</p></div>
+                            <div href="" class="small circle emp"><p>企業型(E)</p></div>
+                            <div href="" class="small squire con"><p>事務型(C)</p></div>
+                        </span>
+                        <div class="large">
+                            <div class="content">
+                                <p class="holland">何輪碼分別是哪六個？</p>
+                                <img class="holland" src="./img/index/index_1st/holland.png" alt="">
+                            </div>
+                            <div class="content realistic">
+                                <p class="realistic radar">實作型</p>
+                                <img class="realistic radar" src="./img/index/index_1st/social.png" alt="">
+                            </div>
+                            <div class="content investigation">
+                                <p class="investigation radar">研究型</p>
+                                <img class="investigation radar" src="./img/index/index_1st/investigation.png" alt="">
+
+                            </div>
+                            <div class="content artistic">
+                                <p class="artistic radar">文藝型</p>
+                                <img class="artistic radar" src="./img/index/index_1st/enterprising.png" alt="">
+
+                            </div>
+                            <div class="content social">
+                                <p class="social radar">社會型</p>
+                                <img class="social radar" src="./img/index/index_1st/social.png" alt="">
+
+                            </div>
+                            <div class="content enterprising">
+                                <p class="enterprising radar">企業型</p>
+                                <img class="enterprising radar" src="./img/index/index_1st/enterprising.png" alt="">
+
+                            </div>
+                            <div class="content conventional">
+                                <p class="conventional radar">事務型</p>
+                                <img class="conventional radar" src="./img/index/index_1st/investigation.png" alt="">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            </div>
+        </section>
+        <section class="index_car">
+            <div class="secondScreen container">
+                <div class="index_sal_img col-md-6 col-sm-12">
+                    <img src="./img/index/index_2nd/auditor.png" class="auditor" alt="">
+                    <img src="./img/index/index_2nd/teacher.png" class="teacher" alt="">
+                    <img src="./img/index/index_2nd/doctor.png" class="doctor" alt="">
+                    <div class="stages">
+                        <div class="stageS stageRWD">
+                            <img src="./img/index/index_2nd/stage_block.png" class="firstStage" alt="">
+                            <p class="Stext">30000</p>
+                            <p class="Stitle">品檢人員</p>
+                        </div>
+                        <div class="stageM stageRWD">
+                            <img src="./img/index/index_2nd/stage_block_2.png" class="secondStage" alt="">
+                            <p class="Mtext">40000</p>
+                            <p class="Mtitle">老師</p>
+                        </div>
+                        <div class="stageL stageRWD">
+                            <img src="./img/index/index_2nd/stage_block_3.png" class="thirdStage" alt="">
+                            <p class="Ltext">50000</p>
+                            <p class="Ltitle">醫生</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="index_sal_chart col-md-6 col-sm-12">
+                    <h1>TOP 3 行業薪資排行</h1>
+                    <div class="chart">
+                        <div class="horizontal-bar-graph" id="graph"></div>
+                    </div>
+                    <a href="./career.html" class="btn_second">探索更多行業</a>
+                </div>
+            </div>
+        </section>
+        <section class="index_disc">
+            <div class="thirdScreen container">
+                <div class="index_disc_text col-md-6 col-sm-12 col-xs-12">
+                    <h1>熱門行業話題</h1>
+                    <div class="index_dia">
+                        <div class="message">
+                            <div class="meg_box" v-for="item in messages">
+                                <a href="">
+                                    <h5>{{item.title}}</h5>
+                                    <i class="fa fa-thumbs-up" aria-hidden="true">100</i>
+                                    <i class="fa fa-comments" aria-hidden="true">50</i>
+                                    <hr>
+                                    <p>{{item.date}}</p>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="./forum_discuss.html" class="btn_second">探索更多文章</a href="#">
+                    </div>
+                </div>
+                <div class="index_disc_img col-md-6">
+                    <div class="img">
+                        <img class="dia_img" src="./img/index/index_3rd/mixed.png" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section class="index_cour" >
+            <div class="forthScreen container">
+                <div class="index_cour_img col-md-5 col-sm-0 col-xs-0">
+                    <img class="stair" src="./img/index/index_4th/upStair.png" alt="" srcset="">
+                </div>
+                <div class="index_cour_text col-md-7 col-sm-12 col-xs-12">
+                    <h1>熱門課程</h1>
+                    <div class="pad">
+                        <div class="screen_bg">
+                            <div class="screen">
+                                <div class="screen_carousel">
+                                    <div class="item" v-for="course in courses" id="indexCoures">
+                                        <img src="./img/index/index_4th/課程照片-翻轉課堂的職業講師祕訣.jpg" alt="">
+                                        <h3>{{course.title}}</h3>
+                                        <p>課程時數: {{course.time}}</p>
+                                        <p>目前報名人數: {{course.person}}</p>
+                                        <p>課程費用: {{course.cost}}</p>
+                                    </div>
+                                </div>
+                                <a href="./course_main.html" class="btn_second"><span></span>探索更多課程<span></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="screen_bt"></div>
+            </div>
+            </div>
+        </section>
+        <section class="index_card">
+            <div class="fifthScreen container">
+                <div class="index_card_img col-md-6 col-sm-0 order-2">
+                    <div class="img ">
+                        <h1>時光明信片</h1>
+                        <!-- <div id="line"></div> -->
+                        <div id="cards">
+                            <!-- class="container"-->
+                            <img src="./img/index/index_5th/postCard.png" alt="" srcset="">
+                            <!-- <cards></cards>
+                            <cards></cards>
+                            <cards></cards> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="index_card_text col-md-6 col-sm-12 order-1">
+                    <h1>時光明信片</h1>
+                    <p class="postText">在進入職場之前，把對自我的期許，寄給未來的自己吧!</p>
+                    <a href="./post_intro.html" class="btn_second">客製明信片</a>
+                    <img class="post_front" src="./img/index/index_5th/post_front.png" alt="">
+                    <img class="middleCard" src="./img/index/index_5th/postCard.png" alt="" srcset="">
+                    <img class="post_back" src="./img/index/index_5th/post_forward.png" alt="">
+                </div>
+            </div>
+            <!-- <p class="footer">&copy2020 Powered by direction.ALL Right Reserved.</p> -->
+        </section>
+    </main>
+    @@include('app/script.html')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/easings.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="./js/index/index.js"></script>
+</body>
+
+</html>
