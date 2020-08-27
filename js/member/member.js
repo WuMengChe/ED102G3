@@ -319,6 +319,8 @@ let changeMemContent = new Vue({
                 this.member.newCode = '';
                 this.member.checkNewcode = '';
                 this.member.codeCheck = '';
+                this.newCodeEqualWord = false;
+                this.newCodeEqual = false;
             }
             else{
                 alert("錯誤！請確認：1.欄位不可為空2.新密碼是否輸入正確")
@@ -331,12 +333,16 @@ let changeMemContent = new Vue({
                 this.member.tel = tempData.tel;
                 this.member.birthday = tempData.birthday;
                 this.member.code = tempData.code;
+                this.member.codeCheck = '';
+                this.member.newCode = '';
+                this.member.checkNewcode = '';
+                this.newCodeEqualWord = false;
+                this.newCodeEqual = false;
             }
             this.fixNewCode = false;
         },
         checkCode(value){
             if(value == this.memberTemp.code){
-                // alert('密碼輸入成功');
                 this.fixNewCode = true;
             }
         },

@@ -105,21 +105,18 @@ let careerProfessionVueContent = new Vue({
             this.chooeseProfession[1].content = this.industry[this.sendData[1].industryIndex].detail[this.sendData[1].typeIndex].content.split(';').splice(1);
             this.chooeseProfession[1].skill = this.industry[this.sendData[1].industryIndex].detail[this.sendData[1].typeIndex].skill.split(';').splice(1);
             this.isDouble = true;
-            console.log(123)
         }
         else if(localStorage.pro_typeIndex_1){
             this.sendData[0].typeIndex = localStorage.pro_typeIndex_1;
             this.sendData[0].industryIndex = localStorage.pro_industryIndex_1;
             this.chooeseProfession[0].content = this.industry[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].content.split(';').splice(1);
             this.chooeseProfession[0].skill = this.industry[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].skill.split(';').splice(1);
-            console.log(456)
         }
         else if(localStorage.pro_typeIndex_2){
             this.sendData[0].typeIndex = localStorage.pro_typeIndex_2;
             this.sendData[0].industryIndex = localStorage.pro_industryIndex_2;
             this.chooeseProfession[0].content = this.industry[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].content.split(';').splice(1);
             this.chooeseProfession[0].skill = this.industry[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].skill.split(';').splice(1);
-            console.log(789)
         }
         else{
             alert('請先選擇職業');
