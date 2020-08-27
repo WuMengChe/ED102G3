@@ -28,6 +28,7 @@ function doFirst() {
   };
   //拖曳郵戳
   $("#postmark").draggable();
+
   // let label = image.getElementsByTagName("label");
   // label.addEventListener("change", function () {
   //   let readFile = new FileReader();
