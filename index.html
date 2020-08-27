@@ -17,30 +17,63 @@
     <main class="index fullpage">
         <section class="index_test active">
             <div class="firstScreen container">
-                <div class="index_test_text col-md-5 col-xs-8">
+                <div class="index_test_text col-md-5 col-sm-8 col-xs-10">
                     <h1>職涯分析</h1>
-                    <p>剛畢業亦或是正在考慮轉職的你，夠了解自己嗎？讓職涯960來讓你更加了解自己！</p>
-                    <a href="#" class="btn_primary">職涯分析</a>
+                    <p>剛畢業亦或是正在考慮轉職的你，夠了解自己嗎？透過職涯960讓生涯探索更接近真實工作世界！</p>
+                    <a href="./test_before.html" class="btn_primary">職涯分析</a>
                 </div>
-                <div class="index_test_img col-md-7 col-xs-4">
+                <div class="index_test_img col-md-7 col-sm-4 col-xs-2">
                     <div class="img">
                         <span class="holland_small">
                             <!-- Small Shapes -->
-                            <a href="" class="small circle real"><p>實作型(R)</p></a>
-                            <a href="" class="small squire inv"><p>研究型(I)</p></a>
-                            <a href="" class="small circle art"><p>文藝型(A)</p></a>
-                            <a href="" class="small squire soc"><p>社會型(S)</p></a>
-                            <a href="" class="small circle emp"><p>企業型(E)</p></a>
-                            <a href="" class="small squire con"><p>事務型(C)</p></a>
+                            <div href="" class="small circle real"><p>實作型(R)</p></div>
+                            <div href="" class="small squire inv"><p>研究型(I)</p></div>
+                            <div href="" class="small circle art"><p>文藝型(A)</p></div>
+                            <div href="" class="small squire soc"><p>社會型(S)</p></div>
+                            <div href="" class="small circle emp"><p>企業型(E)</p></div>
+                            <div href="" class="small squire con"><p>事務型(C)</p></div>
                         </span>
-                        <div class="large squire two">
+                        <div class="large">
                             <div class="content">
-                                <img src="./img/index/index_1st/radar copy.png" alt="">
+                                <p class="holland">何輪碼分別是哪六個？</p>
+                                <img class="holland" src="./img/index/index_1st/holland.png" alt="">
+                            </div>
+                            <div class="content realistic">
+                                <p class="realistic radar">實作型</p>
+                                <img class="realistic radar" src="./img/index/index_1st/social.png" alt="">
+                            </div>
+                            <div class="content investigation">
+                                <p class="investigation radar">研究型</p>
+                                <img class="investigation radar" src="./img/index/index_1st/investigation.png" alt="">
+
+                            </div>
+                            <div class="content artistic">
+                                <p class="artistic radar">文藝型</p>
+                                <img class="artistic radar" src="./img/index/index_1st/enterprising.png" alt="">
+
+                            </div>
+                            <div class="content social">
+                                <p class="social radar">社會型</p>
+                                <img class="social radar" src="./img/index/index_1st/social.png" alt="">
+
+                            </div>
+                            <div class="content enterprising">
+                                <p class="enterprising radar">企業型</p>
+                                <img class="enterprising radar" src="./img/index/index_1st/enterprising.png" alt="">
+
+                            </div>
+                            <div class="content conventional">
+                                <p class="conventional radar">事務型</p>
+                                <img class="conventional radar" src="./img/index/index_1st/investigation.png" alt="">
+
                             </div>
                         </div>
-
                     </div>
+
                 </div>
+
+
+            </div>
             </div>
         </section>
         <section class="index_car">
@@ -73,7 +106,7 @@
                     <div class="chart">
                         <div class="horizontal-bar-graph" id="graph"></div>
                     </div>
-                    <a href="#" class="btn_second">探索更多行業</a>
+                    <a href="./career.html" class="btn_second">探索更多行業</a>
                 </div>
             </div>
         </section>
@@ -93,7 +126,7 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="#" class="btn_second">探索更多文章</a href="#">
+                        <a href="./forum_discuss.html" class="btn_second">探索更多文章</a href="#">
                     </div>
                 </div>
                 <div class="index_disc_img col-md-6">
@@ -123,7 +156,7 @@
                                         <p>課程費用: {{course.cost}}</p>
                                     </div>
                                 </div>
-                                <a href="" class="btn_second"><span></span>探索更多課程<span></span></a>
+                                <a href="./course_main.html" class="btn_second"><span></span>探索更多課程<span></span></a>
                     </div>
                 </div>
             </div>
@@ -133,22 +166,26 @@
         </section>
         <section class="index_card">
             <div class="fifthScreen container">
-                <div class="index_card_img col-12">
-                    <div class="img">
-                        <h1>客製明信片</h1>
-                        <div id="line"></div>
-                        <div id="cards" class="container">
+                <div class="index_card_img col-md-6 col-sm-0 order-2">
+                    <div class="img ">
+                        <h1>時光明信片</h1>
+                        <!-- <div id="line"></div> -->
+                        <div id="cards">
+                            <!-- class="container"-->
+                            <img src="./img/index/index_5th/postCard.png" alt="" srcset="">
+                            <!-- <cards></cards>
                             <cards></cards>
-                            <cards></cards>
-                            <cards></cards>
+                            <cards></cards> -->
                         </div>
-                        <!-- <img class="post_front" src="./img/index/index_5th/post_front.png" alt="">
-                        <img class="post_back" src="./img/index/index_5th/post_forward.png" alt=""> -->
                     </div>
                 </div>
-                <div class="index_card_text col-12">
-                    <p class="postText">在進入職場之前，把對自我的期許，寄給未來的自己吧～</p>
-                    <a href="#" class="btn_second">客製明信片</a>
+                <div class="index_card_text col-md-6 col-sm-12 order-1">
+                    <h1>時光明信片</h1>
+                    <p class="postText">在進入職場之前，把對自我的期許，寄給未來的自己吧!</p>
+                    <a href="./post_intro.html" class="btn_second">客製明信片</a>
+                    <img class="post_front" src="./img/index/index_5th/post_front.png" alt="">
+                    <img class="middleCard" src="./img/index/index_5th/postCard.png" alt="" srcset="">
+                    <img class="post_back" src="./img/index/index_5th/post_forward.png" alt="">
                 </div>
             </div>
             <!-- <p class="footer">&copy2020 Powered by direction.ALL Right Reserved.</p> -->

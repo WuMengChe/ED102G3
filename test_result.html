@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>測驗結果</title>
+    @@include('app/link.html')
     <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
     <link rel="stylesheet" href="./css/app_public.css">
     <link rel="stylesheet" href="./css/pages_scss/test/test.css">
@@ -32,7 +33,7 @@
         </div>
         </div>
         <div class="btn_save_bx">
-            <button class="btn_third">儲存測驗結果</button>
+            <button class="btn_third" onclick="window.alert('測驗結果已儲存')">儲存測驗結果</button>
         </div>
     </div>
    
@@ -69,7 +70,7 @@
                     </li>
             </ul>
             <div class="btn_wrap">
-                 <a href="" class="btn_second">
+                 <a href="./career.html" class="btn_second">
                  看更多
                 </a>
             </div>
@@ -167,7 +168,9 @@
 
 
 </main>
-</div>
 @@include('app/footer.html')
+@@include('app/script.html')
+</div>
+
 </body>
 </html>

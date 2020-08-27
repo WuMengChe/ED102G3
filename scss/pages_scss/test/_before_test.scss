@@ -1,6 +1,7 @@
 @import'../../_public_dontTouch/utils/variables';
+
 div.before_test_wrap{
-    background-image: url(../../../img/test/before_test.svg);
+    background-image: url(../../../img/test/background_before_test.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -9,24 +10,31 @@ div.before_test_wrap{
     // border: 1px solid forestgreen;
     .main_before_test{
         margin: auto;
+        padding-top: 3%;
+        .wrap_of_btn_before_test{
+            // border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            padding: 1%;
+        }
         section.origin_of_types_before_test{
             // border: 10px solid rgb(0, 0, 0, 0.3);
             background: rgba(255, 255, 255, 0.7);
             width: 100%;
-            // margin: 5% 0;
             border-radius: 1px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2%;
+            padding: 1%;
+            margin-bottom: 3%;
             border-radius: 10px;
             h1{
                 font-weight: 600;
                 letter-spacing: 2px;
                 padding: 1% 2%;
-                margin: 2% 0;
-                border: 3px solid $second_color1;
-                box-shadow: 5px 5px 1px$second_color1;
+                margin:  0;
+                // border: 3px solid $second_color1;
+                // box-shadow: 5px 5px 1px$second_color1;
                 display: flex;
                 align-items: center;
             }
@@ -37,17 +45,25 @@ div.before_test_wrap{
         }
         .all_type_card_before_test{
             // border: 1px solid forestgreen;
-            margin: 5% 0;
+            margin: 2% 0;
             width: 100%;
             position: relative;
             @media screen  and (max-width: 980px){ 
-              width: 450px;
-              height: 350px;
-              margin: auto;
-              overflow: hidden;
-              border: 3px solid rgb(36, 36, 36);
-              border-radius: 5px;
+                width: 100%;
+                height: 350px;
+                margin: auto;
+                overflow: hidden;
+                border: 3px solid rgb(36, 36, 36);
+                border-radius: 5px;
             }
+            @media screen  and (max-width: 575px){ 
+                width: 100%;
+                // height: 300px;
+                margin: auto;
+                overflow: hidden;
+                border: 3px solid rgb(36, 36, 36);
+                border-radius: 5px;
+              }
             .cards_wrap{
                 // border: 1px solid red;
                 width: 100%;
@@ -70,6 +86,12 @@ div.before_test_wrap{
                 flex-direction: column;
                 transition: linear 1s;
                 overflow: hidden;
+                @media screen  and (max-width: 980px){ 
+                    width: 100%;
+                    border-radius: 5px;
+                    justify-content: space-between;
+                }
+
             
              
                 .card_intro{
@@ -89,7 +111,13 @@ div.before_test_wrap{
                     @media screen  and (max-width: 980px){ 
                         background-position: left;
                         height: 80%;
-                    }
+                    }  
+                    @media screen  and (max-width: 375px){ 
+                        background-size:20%;
+                        background-position: top;
+                        align-items: flex-end;
+
+                      }
                     .card_txt{
                         // border: 1px solid black;
                         padding: 1%;
@@ -103,6 +131,9 @@ div.before_test_wrap{
                         @media screen  and (max-width: 980px){ 
                             display: block;
                         }
+                        @media screen  and (max-width: 375px){ 
+                            width: 100%;
+                          }
                 
                     }
                 }
@@ -158,18 +189,15 @@ div.before_test_wrap{
                 }
                 &:hover{
                     width: 450px;
-                    background-size: contain;
+                    background-size: 90%;
                     border-radius: 5px;
-                    // .card_intro{
-                      
-                    // }
                     .card_intro{
-                        height: 70%;
+                        height: 80%;
                         background-position: left;
                     }
                    .color_ball_bx{
                        background: $second_color2;
-                       height: 30%;
+                       height: 20%;
                    }
                     .ball_R{
                         background:$practical_color;
@@ -193,23 +221,17 @@ div.before_test_wrap{
                     .card_txt{
                         display: block;
                     }
-                }
-                @media screen  and (max-width: 980px){ 
-                        width: 450px;
-                        border-radius: 5px;
+                    @media screen  and (max-width: 980px){ 
+                        width: 100%;
                     }
-
                 }
+            
         }
+   
      
 }
 
-.wrap_of_btn_before_test{
-    // border: 1px solid fuchsia;
-    display: flex;
-    justify-content: center;
-    padding: 2%;
-}
+
 
 }
 @keyframes shake {
@@ -288,5 +310,5 @@ div.before_test_wrap{
 
 }
 
-
+}
 

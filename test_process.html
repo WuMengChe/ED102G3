@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>測驗進行</title>
+    @@include('app/link.html')
     <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
     <link rel="stylesheet" href="./css/app_public.css">
     <link rel="stylesheet" href="./css/pages_scss/test/test.css">
@@ -14,17 +15,18 @@
     @@include('app/header.html')
     <div class="during_test_wrap ">
         <main class="main_during_test container">
-                  <!-- 時間去哪了呢 -->
-                  <div class="timer_bx">
-                     <p>測驗時間已經過<span class="timimg"></span>秒</p>
-                    </div>
-                  <!-- 時間放這裡 -->
-                  
             <div class="question_bx">
+                 <!-- 時間去哪了呢 -->
+                 <div class="timer_bx">
+                    <p>測驗時間已經過<span class="timimg"></span>秒</p>
+                   </div>
+                 <!-- 時間放這裡 -->
+                 <div class="topic_bx">
                 <div class="img_bx"><img src="./img/test/host.svg"alt=""></div>
                 <div class="question">
                 <P class="topic">Q1:你是貓派還是狗派?</P>
             </div>
+        </div>
         </div>
             <div class="answer_option_wrap">
 
@@ -35,12 +37,10 @@
                 <div class="compare">
                    <p>VS</p>
                 </div>
-                <div class="answer_option option2">
+                <a href="./test_result.html" class="answer_option option2">
                     <img class=" cat cat_l" src="./img/test/cat2.svg"  alt="">
-                <a href="./test_result.html">
                     <p class="a2">多貓派</p>
-                    </a>
-                </div>
+                </a>
             </div>
             <div class="progress_bar_bx">
                 <div class="progress_container">
@@ -49,9 +49,10 @@
                 </div>
             </div>
         </main>
-
+        @@include('app/footer.html')
+        @@include('app/script.html')
     </div>
-    @@include('app/footer.html')
+  
     <script type="text/javascript" src="./js/test/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
