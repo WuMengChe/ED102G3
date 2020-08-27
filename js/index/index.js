@@ -12,56 +12,118 @@ var myFullpage = new fullpage('.fullpage', {
 });
 
 //第一屏換圖
+
+
+
 $(document).ready(function() {
+    if ($(window).width() >= 1145) {
+        $(".type").hide();
+        $('.real').click(function() {
+            $('.holland').hide();
+            $('.realistic').siblings().hide();
+            $('.realistic').show();
+        });
 
-    $('.real').click(function() {
-        $('.holland').hide();
-        $('.realistic').siblings().hide();
-        $('.realistic').show();
-    });
+        $('.inv').click(function() {
+            $('.holland').hide();
+            $('.investigation').siblings().hide();
+            $('.investigation').show()
+        });
+        $('.art').click(function() {
+            $('.holland').hide();
+            $('.artistic').siblings().hide();
+            $('.artistic').show()
+        });
+        $('.soc').click(function() {
+            $('.holland').hide();
+            $('.social').siblings().hide();
+            $('.social').show()
+        });
+        $('.emp').click(function() {
+            $('.holland').hide();
+            $('.enterprising').siblings().hide();
+            $('.enterprising').show()
+        });
+        $('.con').click(function() {
+            $('.holland').hide();
+            $('.conventional').siblings().hide();
+            $('.conventional').show()
+        });
 
-    $('.inv').click(function() {
-        $('.holland').hide();
-        $('.investigation').siblings().hide();
-        $('.investigation').show()
-    });
-    $('.art').click(function() {
-        $('.holland').hide();
-        $('.artistic').siblings().hide();
-        $('.artistic').show()
-    });
-    $('.soc').click(function() {
-        $('.holland').hide();
-        $('.social').siblings().hide();
-        $('.social').show()
-    });
-    $('.emp').click(function() {
-        $('.holland').hide();
-        $('.enterprising').siblings().hide();
-        $('.enterprising').show()
-    });
-    $('.con').click(function() {
-        $('.holland').hide();
-        $('.conventional').siblings().hide();
-        $('.conventional').show()
-    });
+    } else {
+        $('.large').slick({
+            slidesToShow: 1,
+            autoplay: false,
+            autoplaySpeed: 2000,
+            arrows: false,
+            responsive: [{
+                breakpoint: 1144,
+                settings: {
+                    slidesToShow: 1,
+                    autoplay: true,
+                }
+            }]
+        });
+    }
+    $(window).resize(function() {
+        if ($(window).width() >= 1145) {
+            $(".type").hide();
+            $('.real').click(function() {
+                $('.holland').hide();
+                $('.realistic').siblings().hide();
+                $('.realistic').show();
+            });
+
+            $('.inv').click(function() {
+                $('.holland').hide();
+                $('.investigation').siblings().hide();
+                $('.investigation').show()
+            });
+            $('.art').click(function() {
+                $('.holland').hide();
+                $('.artistic').siblings().hide();
+                $('.artistic').show()
+            });
+            $('.soc').click(function() {
+                $('.holland').hide();
+                $('.social').siblings().hide();
+                $('.social').show()
+            });
+            $('.emp').click(function() {
+                $('.holland').hide();
+                $('.enterprising').siblings().hide();
+                $('.enterprising').show()
+            });
+            $('.con').click(function() {
+                $('.holland').hide();
+                $('.conventional').siblings().hide();
+                $('.conventional').show()
+            });
+
+        } else {
+            $('.large').slick({
+                slidesToShow: 1,
+                autoplay: false,
+                autoplaySpeed: 2000,
+                arrows: false,
+                responsive: [{
+                    breakpoint: 1144,
+                    settings: {
+                        slidesToShow: 1,
+                        autoplay: true,
+                    }
+                }]
+            });
+        }
+
+    })
+
+
 });
 
 //holland:rwd
 $(document).ready(function() {
-    $('.large').slick({
-        slidesToShow: 1,
-        autoplay: false,
-        autoplaySpeed: 2000,
-        arrows: false,
-        responsive: [{
-            breakpoint: 1144,
-            settings: {
-                slidesToShow: 1,
-                autoplay: true,
-            }
-        }]
-    });
+
 
 })
 

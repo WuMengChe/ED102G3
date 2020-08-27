@@ -327,29 +327,33 @@ div.header_wrap {
                         top: -700px;
                         width: 800px;
                         height: 800px;
-                        border-radius: 50%;
+                        border-bottom-left-radius: 50%;
                         box-shadow: $card_shadow;
                         // transform: rotate(45deg);
                         // border: 1px solid #000;
                         .content {
                             // border: 1px solid #000;
-                            // text-align: center;
+                            text-align: center;
                             height: fit-content;
                             margin-top: 50%;
                             p {
                                 // border: 1px solid #000;
-                                width: fit-content;
-                                margin: 0 auto;
-                                margin-bottom: 20px;
-                                margin-right: 50%;
-                                border-bottom: 5px solid #BCEAFF;
+                                margin-right: 10%;
+                                margin-bottom: 10px;
                             }
                             img {
                                 vertical-align: middle;
                                 width: 300px;
-                                margin: 0 auto;
-                                margin-right: 45%;
+                                margin-right: 10%;
                                 // border: 1px solid red;
+                            }
+                            @media screen and (max-width:1144px) {
+                                p {
+                                    margin-right: 30%;
+                                }
+                                img {
+                                    margin-left: 15%;
+                                }
                             }
                             .radar {
                                 // display: none;
@@ -643,23 +647,24 @@ div.header_wrap {
     //第四屏
     .index_cour {
         @include section;
-        background-image: url(../../../img/index/index_4th/4th_bg.png);
-        background-size: cover;
-        background-repeat: no-repeat;
+        background-image: url(../../../img/index/index_4th/upStair.png), url(../../../img/index/index_4th/4th_bg.png);
+        background-size: 30%, cover;
+        background-position: left, center;
+        background-repeat: no-repeat, no-repeat;
         .forthScreen {
             // border: 1px solid #000;
             @include screen;
             .index_cour_img {
                 // border: 1px solid #000;  
-                padding: 0;
-                .stair {
-                    // border: 1px solid #000;
-                    @include position(130%, absolute) {
-                        bottom: 0px;
-                        left: -200px;
-                    }
-                    ;
-                }
+                // padding: 0;
+                // .stair {
+                //     // border: 1px solid #000;
+                //     @include position(130%, absolute) {
+                //         bottom: 0px;
+                //         left: -200px;
+                //     }
+                //     ;
+                // }
             }
             .index_cour_text {
                 h1 {
@@ -670,7 +675,7 @@ div.header_wrap {
                         background-color: #727171;
                         border-top-left-radius: 50px;
                         border-top-right-radius: 50px;
-                        height: 380px;
+                        height: 430px;
                         padding: 30px;
                         box-shadow: $card_shadow;
                         .screen {
@@ -712,6 +717,7 @@ div.header_wrap {
                     border-bottom-left-radius: 50px;
                     border-bottom-right-radius: 50px;
                     height: 50px;
+                    box-shadow: $card_shadow;
                 }
             }
         }
