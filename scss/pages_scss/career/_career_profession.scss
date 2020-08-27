@@ -64,11 +64,18 @@ body.car_pro_body{
                 margin: 10px 0;
                 li{
                     display: flex;
-                    span{
+                    position: relative;
+                    span.car_li_color{
                         width: 12px;
                         height: 12px;
                         border-radius: 50%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }span.car_li_content{
+                        margin-left: 15px;
                     }
+
                 }
             }
         }
