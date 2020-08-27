@@ -42,7 +42,7 @@
                                 <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code" value="1234567890">
                             </div>
                             <div class = "input_button">
-                                <button class = "btn_primary rwd_btn" @click.prevent = "signIn = !signIn, register = !register">{{signIn == true ? "會員登入" : "會員註冊"}}</button>
+                                <button class = "btn_primary rwd_btn" @click.prevent = "signIn = !signIn, register = !register">{{signIn == false ? "會員登入" : "會員註冊"}}</button>
                                 <button class = "btn_third" @click.prevent="changePage">送出</button>
                             </div>
                         </form>
