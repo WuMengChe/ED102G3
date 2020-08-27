@@ -1,6 +1,6 @@
 @import'../../_public_dontTouch/utils/variables';
 .during_test_wrap{
- background-image: url(../../../img/test/背景.svg);
+ background-image: url(../../../img/test/bg_process.svg);
  background-size: cover;
  background-repeat: no-repeat;
  background-position: center;
@@ -86,7 +86,11 @@ main.main_during_test{
                     border-bottom: 15px solid transparent;
                     border-right: 24px solid $second_color1;
                     z-index: 0;
+                    @media screen  and (max-width: 375px){ 
+                    left: -16px;
+                    }
                 }
+              
              
 
             }

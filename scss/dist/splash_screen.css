@@ -29,10 +29,32 @@
   width: 100%;
   display: flex;
 }
+@media screen and (max-width: 767px) {
+  .whole_page .main_content .link_wrap {
+    flex-direction: column;
+  }
+}
+.whole_page .main_content .link_wrap .sign {
+  display: flex;
+  align-items: flex-end;
+}
+.whole_page .main_content .link_wrap .sign img {
+  width: 200px;
+}
+@media screen and (max-width: 878px) {
+  .whole_page .main_content .link_wrap .sign {
+    display: none;
+  }
+}
 .whole_page .main_content .link_wrap .circle_bx {
   width: 50%;
   display: flex;
   justify-content: center;
+}
+@media screen and (max-width: 767px) {
+  .whole_page .main_content .link_wrap .circle_bx {
+    width: 100%;
+  }
 }
 .whole_page .main_content .link_wrap .circle_bx .circle {
   width: 350px;
@@ -43,6 +65,14 @@
   border-radius: 50%;
   overflow: hidden;
   transition: linear 0.2s;
+  animation: ta-da 1.5s linear 1;
+}
+@media screen and (max-width: 767px) {
+  .whole_page .main_content .link_wrap .circle_bx .circle {
+    width: 350px;
+    height: 200px;
+    border-radius: 5px;
+  }
 }
 .whole_page .main_content .link_wrap .circle_bx .circle a {
   font-size: 32px;
@@ -57,13 +87,14 @@
   border: 10px solid transparent;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
   animation: blink 3s linear infinite;
-  transition: linear 1s;
+  transition: linear 0.5s;
 }
 .whole_page .main_content .link_wrap .circle_bx .circle_left a {
   color: #EE7002;
 }
 .whole_page .main_content .link_wrap .circle_bx .circle_left:hover {
   animation-play-state: paused;
+  transform: scale(0.9);
 }
 .whole_page .main_content .link_wrap .circle_bx .circle_left:hover a {
   color: white;
@@ -72,15 +103,16 @@
   border: 10px solid transparent;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
   animation: blink2 3s linear infinite;
-  transition: linear 1s;
+  transition: linear 0.5s;
 }
 .whole_page .main_content .link_wrap .circle_bx .circle_right a {
   color: #119BEB;
 }
-.whole_page .main_content .link_wrap .circle_bx:hover {
+.whole_page .main_content .link_wrap .circle_bx .circle_right:hover {
   animation-play-state: paused;
+  transform: scale(0.9);
 }
-.whole_page .main_content .link_wrap .circle_bx:hover a {
+.whole_page .main_content .link_wrap .circle_bx .circle_right:hover a {
   color: white;
 }
 @keyframes blink {

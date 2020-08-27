@@ -31,13 +31,28 @@
         // border: 1px solid black;
         width: 100%;
         display: flex;
-    
+        @media screen  and (max-width: 767px){ 
+            flex-direction: column;
+           }
+        .sign{
+            // border: 1px solid black;
+            display: flex;
+            align-items:flex-end ;
+            img{
+                width: 200px;
+            }
+            @media screen  and (max-width: 878px){ 
+               display: none;
+               }
+        }
         .circle_bx{
             // border: 1px solid green;
             width: 50%;
             display: flex;
             justify-content: center;
-            &
+            @media screen  and (max-width: 767px){ 
+                width: 100%;
+                }
             .circle{
               width: 350px;
               height: 350px;
@@ -48,6 +63,13 @@
             //   background: white;
               overflow: hidden;
             transition: linear .2s;
+            animation: ta-da 1.5s linear 1;
+            @media screen  and (max-width: 767px){ 
+                width: 350px;
+                height: 200px;
+                border-radius: 5px;
+                
+            }
               a{
                   font-size: 32px;
                   font-weight: bold;
@@ -62,15 +84,15 @@
                 border: 10px solid transparent;
                 box-shadow: $card_shadow;
                 animation: blink 3s linear infinite;
-                transition: linear 1s;
+                transition: linear .5s;
                 a{
                 color: #EE7002;
                 }
                 &:hover{
-                          animation-play-state: paused;
+                animation-play-state: paused;
+                transform: scale(0.9);
                    }
                    &:hover a{
-                 
                     color: white;
                    }
             }
@@ -78,17 +100,19 @@
                 border: 10px solid transparent;
                 box-shadow: $card_shadow;
                 animation: blink2 3s linear infinite;
-                transition: linear 1s;
+                transition: linear .5s;
                 a{
-                color: #119BEB;}
-                }
+                color: #119BEB;
+               }
                 &:hover{
                     animation-play-state: paused;
+                    transform: scale(0.9);
                    }
                    &:hover a{
                     color: white;
                    }
             }
+
             @keyframes blink {
                 0%{
                     background: transparent;
@@ -117,7 +141,7 @@
             }
             
             }
-        }
+}}
     
 
 
