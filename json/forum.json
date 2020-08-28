@@ -1,5 +1,6 @@
 [
   {
+    "d_number": 1,
     "d_img": "./img/forum/大頭照/headshot_1.jpg",
     "d_name": "黃小美",
     "d_data": "2020-01-20",
@@ -7,9 +8,11 @@
     "d_qu": "問題討論",
     "d_color": "background:#A0CADB;",
     "d_title": "有人上過資策會的web前端app嗎？",
-    "d_text": "想轉職成為工程師，在網路上看到資訊，請問有人可以有經驗可以分享嗎？"
+    "d_text": "想轉職成為工程師，在網路上看到資訊，請問有人可以有經驗可以分享嗎？",
+    "d_heart": 10
   },
   {
+    "d_number": 2,
     "d_img": "./img/forum/大頭照/headshot_2.jpg",
     "d_name": "王阿花",
     "d_data": "2019-03-20",
@@ -17,9 +20,11 @@
     "d_qu": "問題討論",
     "d_color": "background:#E7995F;",
     "d_title": "法物人員工作內容是什麼？",
-    "d_text": "最近想要考法物人員，但是不知道該如何準備，有前輩可以分享嗎？"
+    "d_text": "最近想要考法物人員，但是不知道該如何準備，有前輩可以分享嗎？",
+    "d_heart": 14
   },
   {
+    "d_number": 3,
     "d_img": "./img/forum/大頭照/headshot_3.jpg",
     "d_name": "王小豬",
     "d_data": "2019-05-03",
@@ -27,19 +32,23 @@
     "d_qu": "問題討論",
     "d_color": "background:#E7995F;",
     "d_title": "保險業務一個月會有多少收入？",
-    "d_text": "聽朋友說他一個月有十萬元，請問保險業真的收入這麼高嗎？"
+    "d_text": "聽朋友說他一個月有十萬元，請問保險業真的收入這麼高嗎？",
+    "d_heart": 5
   },
   {
+    "d_number": 4,
     "d_img": "./img/forum/大頭照/headshot_6.jpg",
     "d_name": "歐陽同學",
     "d_data": "2019-12-03",
     "d_type": "文藝型",
-    "d_qu": "問題討論",
+    "d_qu": "經驗分享",
     "d_color": "background:#CCC5E3;",
     "d_title": "攝影師接一個case怎麼算？",
-    "d_text": "最近朋友說要請我幫忙拍婚紗照，5000元一天，請問這是合理的價格嗎？"
+    "d_text": "最近朋友說要請我幫忙拍婚紗照，5000元一天，請問這是合理的價格嗎？",
+    "d_heart": 7
   },
   {
+    "d_number": 5,
     "d_img": "./img/forum/大頭照/headshot_5.jpg",
     "d_name": "Annie",
     "d_data": "2019-07-07",
@@ -47,6 +56,7 @@
     "d_qu": "問題討論",
     "d_color": "background:#F7EA92;",
     "d_title": "請問五年的貿易經驗，薪資可以拿多少？",
-    "d_text": "最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？"
+    "d_text": "最近收到兩個面試通知，但是不確定薪水是否符合自己的情況，請問有前輩可以分享嗎？",
+    "d_heart": 3
   }
 ]

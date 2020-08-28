@@ -167,6 +167,15 @@ $timing: 0.3s;
     }
   }
 }
+@mixin content_button {
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+}
 
 /* 內容區塊 */
 .dis_body {
@@ -218,15 +227,44 @@ $timing: 0.3s;
         min-height: 150px;
         padding: 20px;
         letter-spacing: 1px;
+        cursor: pointer;
       }
       .msg_btn {
         padding-bottom: 10px;
         text-align: end;
-        button {
-          min-width: 40px;
-          border: none;
-          cursor: pointer;
-          color: black;
+        .heart {
+          @include content_button;
+          // background-color: pink;
+          .fa-heart {
+            width: 100%;
+            height: 100%;
+            font-size: 21px;
+            cursor: pointer;
+            color: rgb(173, 169, 169);
+            &.colorRed {
+              color: red;
+            }
+            &::before {
+              line-height: 2;
+            }
+          }
+        }
+        .gray_btn {
+          @include content_button;
+          // background-color: pink;
+          i {
+            width: 100%;
+            height: 100%;
+            font-size: 21px;
+            cursor: pointer;
+            color: rgb(173, 169, 169);
+            &.colorGray {
+              color: gray;
+            }
+            &::before {
+              line-height: 2;
+            }
+          }
         }
       }
     }
@@ -346,18 +384,18 @@ a.pencil_btn {
 
 /* 點擊主題跳出的燈箱 */
 .forum_overlay {
-  // position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 230vh;
   background-color: hsla(0, 0%, 0%, 0.5);
-  opacity: 0;
+  opacity: 1;
   z-index: 201;
   transition: opacity 1s;
   display: none;
 }
-div.forum_overlay.-on {
+
+.-open {
   opacity: 1;
   z-index: 300;
   position: fixed;
@@ -366,12 +404,12 @@ div.forum_overlay.-on {
   display: block;
 }
 
-div.forum_overlay.-opacity-zero {
+.forum_overlay.-opacity-zero {
   opacity: 0;
 }
 
 /* 元素 article 置中及基本樣式 */
-div.forum_overlay > .forum_checkMsg {
+.forum_overlay > .forum_checkMsg {
   background-color: #ccc;
   border-radius: 10px;
   max-height: 103vh;
@@ -439,14 +477,44 @@ div.forum_overlay > .forum_checkMsg {
       padding: 20px;
       letter-spacing: 1px;
       color: black;
+      cursor: pointer;
     }
     .msg_btn {
       // border: 1px solid red;
       text-align: end;
-      button {
-        min-width: 40px;
-        border: none;
-        cursor: pointer;
+      .heart {
+        @include content_button;
+        // background-color: pink;
+        .fa-heart {
+          width: 100%;
+          height: 100%;
+          font-size: 21px;
+          cursor: pointer;
+          color: rgb(173, 169, 169);
+          &.colorRed {
+            color: red;
+          }
+          &::before {
+            line-height: 2;
+          }
+        }
+      }
+      .gray_btn {
+        @include content_button;
+        // background-color: pink;
+        i {
+          width: 100%;
+          height: 100%;
+          font-size: 21px;
+          cursor: pointer;
+          color: rgb(173, 169, 169);
+          &.colorGray {
+            color: gray;
+          }
+          &::before {
+            line-height: 2;
+          }
+        }
       }
     }
   }
@@ -487,11 +555,39 @@ div.forum_overlay > .forum_checkMsg {
   .msg_btn {
     // border: 1px solid red;
     text-align: end;
-    button {
-      min-width: 40px;
-      // background: #1b4d9f;
-      border: none;
-      cursor: pointer;
+    .heart {
+      @include content_button;
+      // background-color: pink;
+      .fa-heart {
+        width: 100%;
+        height: 100%;
+        font-size: 21px;
+        cursor: pointer;
+        color: rgb(173, 169, 169);
+        &.colorRed {
+          color: red;
+        }
+        &::before {
+          line-height: 2;
+        }
+      }
+    }
+    .gray_btn {
+      @include content_button;
+      // background-color: pink;
+      i {
+        width: 100%;
+        height: 100%;
+        font-size: 21px;
+        cursor: pointer;
+        color: rgb(173, 169, 169);
+        &.colorGray {
+          color: gray;
+        }
+        &::before {
+          line-height: 2;
+        }
+      }
     }
   }
 }
@@ -510,17 +606,12 @@ div.forum_overlay > .forum_checkMsg {
       }
     }
     .leave_msg_wrap {
-      // position: relative;
       width: 100%;
-      // height: 20px;
       background-color: white;
       text-align: right;
       position: sticky;
       bottom: 0px;
-      // border: 1px solid red;
       .leave_msg {
-        // border: 1px solid gray;
-        // position: relative;
         #send_msg {
           width: 100%;
           resize: none;
@@ -545,7 +636,7 @@ div.forum_overlay > .forum_checkMsg {
 
 // 點擊檢舉跳出的燈箱
 
-div.impeachment_overlay {
+.impeachment_overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -554,18 +645,14 @@ div.impeachment_overlay {
   background-color: hsla(0, 0%, 0%, 0.5);
   opacity: 0;
   z-index: -1;
-  transition: opacity 1s;
+  transition: opacity 0.5s;
 }
-div.impeachment_overlay.-on {
+div.-on {
   opacity: 1;
   z-index: 400;
 }
 
-div.impeachment_overlay.-opacity-zero {
-  opacity: 0;
-}
-
-div.impeachment_overlay > article {
+.impeachment_overlay > article {
   background-color: white;
   border-radius: 10px;
   padding: 10px;

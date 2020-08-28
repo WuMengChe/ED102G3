@@ -5,16 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>forum_discuss</title>
-  <!-- <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" /> -->
-  <!-- <link rel="stylesheet" href="./css/app_public.css" /> -->
-  @@include('app/link.html')
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
+  <link rel="stylesheet" href="./css/app_public.css" />
   <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-  <!-- <script src="https://kit.fontawesome.com/d18b20bddd.js"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
 </head>
 
 <body>
+
   @@include('app/header.html')
   <div id="forum_discuss" class="container-fluid">
     <div class="wrap row">
@@ -58,8 +58,8 @@
         <!-- 下拉選單 -->
         <div class="select">
           <div class="select_wrap">
-            <!-- <span class="dis_dropdown" @click.stop="toggleDropdown($event)" :class="{'expanded': isOpen}"> -->
-            <span class="dis_dropdown" @click.stop="toggleDropdown($event)">
+            <span class="dis_dropdown" @click.stop="toggleDropdown($event)" :class="{'expanded': isOpen}">
+              <!-- <span class="dis_dropdown" @click.stop="toggleDropdown($event)"> -->
               <input type="radio" name="orderSelect" value="all" checked="checked" id="all" @click="setOrderType(0)" />
               <label for="all">所有分類</label>
               <input type="radio" name="orderSelect" value="popular" id="popular" @click="setOrderType(1)" />
@@ -76,12 +76,12 @@
           <!--瀏覽留言區-->
           <div class="tab_contents">
             <div class="msg_content" v-for="messages in searchResult">
-              <div class="mem_info">
+              <div class="mem_info" @click="openContent">
                 <div class="info_list">
                   <div class="img_div">
                     <img :src="messages.d_img" alt="" class="dis_img" />
                   </div>
-                  <div class="dis_name">{{messages.d_name}}</div>
+                  <div class="dis_name">{{messages.d_name}}{{accuseIsOpen}}</div>
                   <div class="dis_date">{{messages.d_data}}</div>
                 </div>
                 <div class="tags_list">
@@ -89,17 +89,25 @@
                   <span class="type_tag">{{messages.d_qu}}</span>
                 </div>
               </div>
-              <div class="msg_title open_dialog" @click="search_title">
+              <div class="msg_title open_dialog" @click="openContent">
                 {{messages.d_title}}
               </div>
-              <div class="msg_textarea">
+              <div class="msg_textarea" @click="openContent">
                 {{messages.d_text}}
               </div>
               <div class="msg_btn">
-                <button><i class="far fa-heart" @click="heart_btn"></i></button>
-                <button><i class="far fa-comment-alt"></i>5</button>
-                <button class="collect_btn" @click="collect_btn">收藏</button>
-                <button class="impeachment_btn" @click="bad_btn">檢舉</button>
+                <button class="heart">
+                  <i class="fas fa-heart" @click="heart_btn"></i>
+                </button>
+                <button class="gray_btn">
+                  <i class="far fa-comment-alt"></i>
+                </button>
+                <button class="gray_btn" @click="collect_btn">
+                  <i class="fas fa-bookmark"></i>
+                </button>
+                <button class="gray_btn" @click="accuse_btn">
+                  <i class="fas fa-exclamation-circle"></i>
+                </button>
               </div>
             </div>
 
@@ -124,11 +132,11 @@
 
 
     <!--燈箱！！！-->
-    <!--點擊標題跳出的燈箱-->
-    <div class="forum_overlay">
-      <div class=" forum_checkMsg">
+    <!--點擊留言板跳出的燈箱-->
+    <div class="forum_overlay" :class="{'-open':contentIsOpen}">
+      <div class="forum_checkMsg">
         <div class="close_btn">
-          <button type="button" class="btn_modal_close btn_third" @click="btn_modal">
+          <button type="button" class="btn_modal_close btn_third" @click="close_openContent">
             返回
           </button>
         </div>
@@ -157,10 +165,18 @@
               有人買過嗎？學起來如何呢？求經驗分享～
             </div>
             <div class="msg_btn">
-              <button><i class="far fa-heart" @click="heart_btn"></i></button>
-              <button><i class="far fa-comment-alt"></i></button>
-              <button class="collect_btn" @click="collect_btn">收藏</button>
-              <button class="impeachment_btn" @click="bad_btn">檢舉</button>
+              <button class="heart">
+                <i class="fas fa-heart" @click="heart_btn"></i>
+              </button>
+              <button class="gray_btn">
+                <i class="far fa-comment-alt"></i>
+              </button>
+              <button class="gray_btn" @click="collect_btn">
+                <i class="fas fa-bookmark"></i>
+              </button>
+              <button class="gray_btn" @click="accuse_btn">
+                <i class="fas fa-exclamation-circle"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -179,8 +195,12 @@
               我去上過覺得還好
             </div>
             <div class="msg_btn">
-              <button><i class="far fa-heart"></i></button>
-              <button class="impeachment_btn">檢舉</button>
+              <button class="heart">
+                <i class="fas fa-heart" @click="heart_btn"></i>
+              </button>
+              <button class="gray_btn" @click="accuse_btn">
+                <i class="fas fa-exclamation-circle"></i>
+              </button>
             </div>
           </div>
           <div class="feedback_content">
@@ -195,8 +215,12 @@
               我去上過覺得還好
             </div>
             <div class="msg_btn">
-              <button><i class="far fa-heart"></i></button>
-              <button class="impeachment_btn">檢舉</button>
+              <button class="heart">
+                <i class="fas fa-heart" @click="heart_btn"></i>
+              </button>
+              <button class="gray_btn" @click="accuse_btn">
+                <i class="fas fa-exclamation-circle"></i>
+              </button>
             </div>
           </div>
           <div class="feedback_content">
@@ -211,8 +235,12 @@
               我去上過覺得還好
             </div>
             <div class="msg_btn">
-              <button><i class="far fa-heart"></i></button>
-              <button class="impeachment_btn">檢舉</button>
+              <button class="heart">
+                <i class="fas fa-heart" @click="heart_btn"></i>
+              </button>
+              <button class="gray_btn" @click="accuse_btn">
+                <i class="fas fa-exclamation-circle"></i>
+              </button>
             </div>
           </div>
 
@@ -230,10 +258,10 @@
 
 
     <!--點擊檢舉跳出燈箱-->
-    <div class="impeachment_overlay">
+    <div class="impeachment_overlay" :class="{'-on':accuseIsOpen}">
       <article>
         <div class="accuse_close_btn">
-          <button type="button" class="impeachment_close_btn" @click="bad_btn">
+          <button type="button" class="impeachment_close_btn" @click="btn_modal">
             <i class="fas fa-times"></i>
           </button>
         </div>
@@ -266,13 +294,16 @@
   <script>
     new Vue({
       el: "#forum_discuss",
-      data: () => {
+      data() {
         return {
           information: [],
           searchResult: [],
           isOpen: false,
           filter: '',
-          orderType: 0,
+          // orderType: 0,
+          accuseIsOpen: false,
+          openLight: false,
+          contentIsOpen: false,
         }
       },
       mounted() {
@@ -282,14 +313,6 @@
             this.information = information;
             this.searchResult = information;
           })
-
-        $(".open_dialog").on("click", function (e) {
-          // debugger;
-          console.log($(this).attr('id'))
-          $("div.forum_overlay").addClass("-on");
-        });
-
-        ;
       },
       watch: {
         filter: function (value) {
@@ -299,6 +322,22 @@
         }
       },
       methods: {
+        //開啟燈箱按鈕
+        openContent() {
+          if (this.contentIsOpen) {
+            this.contentIsOpen = false
+          } else {
+            this.contentIsOpen = true
+          }
+        },
+        //關閉燈箱
+        close_openContent() {
+          if (this.contentIsOpen) {
+            this.contentIsOpen = false
+          } else {
+            this.contentIsOpen = true
+          }
+        },
         //下拉選單
         setOrderType() {
           if (orderType !== 0) {
@@ -326,107 +365,57 @@
           this.searchContent();
         },
         //點擊標題會進入文章詳情
-        search_title() {
-          $(".open_dialog").on("click", function (e) {
-            console.log($(this).attr('id'))
-            $("div.forum_overlay").addClass("-on");
-          });
-        },
-        // 關閉 Modal
+
+        //關閉檢舉燈箱
         btn_modal() {
-          $("button.btn_modal_close").on("click", function () {
-            $("div.forum_overlay").addClass("-opacity-zero");
-            // 設定隔一秒後，移除相關 class
-            setTimeout(function () {
-              $("div.forum_overlay").removeClass("-on -opacity-zero");
-            }, 1000);
-          });
+          if (this.accuseIsOpen) {
+            this.accuseIsOpen = false
+          } else {
+            this.accuseIsOpen = true
+          }
         },
-        sendMsg() {
-          //點擊回覆留言地方，按下去視窗變大
-          $("#send_msg").on("click", function () {
-            $("#send_msg").css("min-height", "100px").css("");
-          });
+        //開啟檢舉燈箱
+        accuse_btn() {
+          if (this.accuseIsOpen) {
+            this.accuseIsOpen = false
+          } else {
+            this.accuseIsOpen = true
+          }
         },
-
-        bad_btn() {
-          //點擊檢舉跳出的燈箱 
-          $("button.impeachment_btn").on("click", function () {
-            //debugger
-            $("div.impeachment_overlay").addClass("-on");
-          });
-
-          $("button.impeachment_close_btn").on("click", function () {
-            $("div.impeachment_overlay").addClass("-opacity-zero");
-
-            setTimeout(function () {
-              $("div.impeachment_overlay").removeClass("-on -opacity-zero");
-            }, 1000);
-          });
+        //愛心
+        heart_btn(e) {
+          e.target.classList.contains("colorRed")
+            ? e.target.classList.remove("colorRed")
+            : e.target.classList.add("colorRed");
         },
-        heart_btn() {
-          //點擊愛心變成黑色，再點擊一次變白色
-          $(".fa-heart").on("click", function () {
-            if ($(this).hasClass('far')) {
-              $(this).css("color", "black");
-              $(this).removeClass('far')
-              $(this).addClass('fas')
-            } else {
-              $(this).css("color", "black");
-              $(this).removeClass('fas')
-              $(this).addClass('far')
-            }
-          })
+        //收藏
+        collect_btn(e) {
+          e.target.classList.contains("colorGray")
+            ? e.target.classList.remove("colorGray")
+            : e.target.classList.add("colorGray");
         },
-        collect_btn() {
-          // //點擊收藏會變成已收藏，再點擊一次變收藏
-          $(".collect_btn").on("click", function () {
-            if ($(this).hasClass('active')) {
-              $(this).removeClass('active')
-              $(this).text('收藏')
-            } else {
-              $(this).addClass('active')
-              $(this).text('已收藏')
-            }
-          })
-
-        },
+        //下拉選單
         toggleDropdown(e) {
-          // e.preventDefault();
-          // e.stopPropagation();s
-          // if (this.isOpen) {
-          //   this.isOpen = false;
-          // } else {
-          //   this.isOpen = true;
-          // }
+          e.preventDefault();
+          e.stopPropagation();
+          if (this.isOpen) {
+            this.isOpen = false;
+          } else {
+            this.isOpen = true;
+          }
           //下拉選單jQuery寫法
-          $('.dis_dropdown').click(function (e) {
-            $(this).toggleClass('expanded');
-            // debugger
-            $('#' + $(this).attr('for')).prop('checked', true);
-          });
-          $(document).click(function () {
-            $('.dis_dropdown').removeClass('expanded');
-          })
+          // $('.dis_dropdown').click(function (e) {
+          //   $(this).toggleClass('expanded');
+          //   // debugger
+          //   $('#' + $(this).attr('for')).prop('checked', true);
+          // });
+          // $(document).click(function () {
+          //   $('.dis_dropdown').removeClass('expanded');
+          // })
         },
 
       },
-      computed: {
-        information: function () {
-          return sortKey(this.information, "d_heart")
-        }
-      },
-
     });
-
-    function sortKey() {
-      return array.sort(function (a, b) {
-        var x = a[key];
-        var y = b[key];
-        return ((x < y) ? -1 : (x > y) ? 1 : 0)
-      })
-    }
-
 
   </script>
 </body>
