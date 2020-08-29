@@ -1,7 +1,7 @@
 $(function () {
     //換正面格式
     $('.f_img_s1').click(function () {
-        $('#frontStyle1').show();
+        $('#frontStyle1').css('display', 'inline-block');
         $('#frontStyle2').hide();
         $('#frontStyle3').hide();
         $(this).parent().siblings().removeClass("active");
@@ -120,15 +120,15 @@ $("#toFront").click(function () {
 
 //  進來先判斷
 if ($(window).width() < 575) {
-    $('.drag').hide();
+    $('.drag').text('點擊區塊上傳');
 } else {};
 
 //  resize再判斷一次
 $(window).resize(function () {
     if ($(window).width() < 575) {
-        $('.drag').hide();
+        $('.drag').text('點擊區塊上傳');
     } else {
-        $('.drag').show();
+        $('.drag').text('拖曳或點擊此區塊上傳');
     };
 
 });

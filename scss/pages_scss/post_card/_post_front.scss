@@ -261,23 +261,32 @@ div.postcard_main {
 
 
             .style1 {
-              // border: 1px solid red;
+              border: 1px solid red;
               text-align: center;
               display: none;
+              // display: inline-block;
+              height: 0;
+              padding-bottom: 63.5%;
+              width: 100%;
 
 
               .all {
-                // border: 1px solid rgb(130, 243, 173);
+                border: 1px solid rgb(130, 243, 173);
                 // background-color: rgba(88, 88, 88, 0.253);
                 padding-bottom: 63.4%;
                 height: 0;
+                width: 100%;
+
+
 
                 p.drag {
                   color: gray;
                   padding-top: 6%;
                 }
 
-                @include label();
+                input {
+                  display: none;
+                }
               }
 
             }
