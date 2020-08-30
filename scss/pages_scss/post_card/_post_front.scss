@@ -56,34 +56,6 @@ body {
 }
 
 
-
-@mixin label {
-  #{label} {
-    border: 1px solid #1b4d9f;
-    display: inline-block;
-    margin-top: 4.5%;
-    color: #1b4d9f;
-    background: #fff;
-    border-radius: 20px;
-    cursor: pointer;
-
-    i {
-      display: inline-block;
-      font-size: 18px;
-      padding-left: 8px;
-    }
-
-    p {
-      display: inline-block;
-      padding: 5px 5px 5px 8px;
-    }
-
-    input {
-      display: none;
-    }
-  }
-}
-
 @mixin phone_style {
   #{'.style_list'} {
 
@@ -268,25 +240,15 @@ div.postcard_main {
               height: 0;
               padding-bottom: 63.5%;
               width: 100%;
+              background-color: rgb(255, 252, 238);
 
+              p.drag {
+                color: gray;
+                padding-top: 6%;
+              }
 
-              .all {
-                // border: 1px solid rgb(130, 243, 173);
-                background-color: rgb(255, 252, 238);
-                padding-bottom: 63.4%;
-                height: 0;
-                width: 100%;
-
-
-
-                p.drag {
-                  color: gray;
-                  padding-top: 6%;
-                }
-
-                input {
-                  display: none;
-                }
+              input {
+                display: none;
               }
 
             }
@@ -360,50 +322,42 @@ div.postcard_main {
             }
 
             .style3 {
-              display: flex;
               display: none;
               text-align: center;
 
-              // display: none;
               .left_3 {
-                background-color: rgb(255, 252, 238);
+                background-color: rgb(219, 253, 204);
                 flex-grow: 1;
                 padding-bottom: 63.4%;
                 height: 0;
                 text-align: center;
 
-                div {
-                  margin-top: 10%;
+                p.drag {
+                  color: gray;
+                  padding-top: 15%;
+                }
 
-                  p.drag {
-                    color: gray;
-                    padding-top: 10%;
-                  }
-
-                  @include label();
-
+                input {
+                  display: none;
                 }
 
               }
 
               .right_3 {
-                background: lightyellow;
+                background-color: rgb(255, 228, 253);
                 flex-grow: 1;
                 padding-bottom: 63.4%;
                 height: 0;
 
-                div {
-                  margin-top: 10%;
-
-                  p.drag {
-                    color: gray;
-                    padding-top: 10%;
-                  }
-
-                  @include label();
-
-
+                p.drag {
+                  color: gray;
+                  padding-top: 15%;
                 }
+
+                input {
+                  display: none;
+                }
+
               }
             }
 

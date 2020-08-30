@@ -134,3 +134,5 @@ $(window).resize(function () {
     };
 
 });
+//拖曳郵戳
+$('.mark_position').draggable();
