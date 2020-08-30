@@ -107,7 +107,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(5) a::after {
 
       /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
       opacity: 1;
-      z-index: 21;
+      z-index: 200;
     }
 
     &.-opacity-zero {
