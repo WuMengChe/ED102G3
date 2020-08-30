@@ -1,81 +1,131 @@
-//點擊標題會進入文章詳情
-$(function () {
-  $(".open_dialog").on("click", function (e) {
-    // debugger;
-    console.log($(this).attr('id'))
-    $("div.forum_overlay").addClass("-on");
-  });
-
-  // 關閉 Modal
-  $("button.btn_modal_close").on("click", function () {
-    $("div.forum_overlay").addClass("-opacity-zero");
-    // 設定隔一秒後，移除相關 class
-    setTimeout(function () {
-      $("div.forum_overlay").removeClass("-on -opacity-zero");
-    }, 1000);
-  });
-
-  //點擊回覆留言地方，按下去視窗變大
-  $("#send_msg").on("click", function () {
-    $("#send_msg").css("min-height", "100px").css("");
-  });
-
-
-
-  //點擊檢舉跳出的燈箱 
-  $("button.impeachment_btn").on("click", function () {
-    debugger
-    $("div.impeachment_overlay").addClass("-on");
-  });
-
-  $("button.impeachment_close_btn").on("click", function () {
-    $("div.impeachment_overlay").addClass("-opacity-zero");
-
-    setTimeout(function () {
-      $("div.impeachment_overlay").removeClass("-on -opacity-zero");
-    }, 1000);
-  });
-
-
-  //點擊愛心變成黑色，再點擊一次變白色
-  $(".fa-heart").on("click", function () {
-    if ($(this).hasClass('far')) {
-      $(this).css("color", "black");
-      $(this).removeClass('far')
-      $(this).addClass('fas')
-    } else {
-      $(this).css("color", "black");
-      $(this).removeClass('fas')
-      $(this).addClass('far')
+new Vue({
+  el: "#forum_discuss",
+  data() {
+    return {
+      information: [],
+      searchResult: [],
+      isOpen: false,
+      filter: '',
+      accuseIsOpen: false,
+      openLight: false,
+      contentIsOpen: false,
+      type: 'all',
     }
-  })
+  },
+  mounted() {
+    fetch('./json/forum.json')
+      .then(res => res.json())
+      .then(information => {
+        this.information = information;
+        this.searchResult = information;
+      })
 
-  //點擊收藏會變成已收藏，再點擊一次變收藏
-  $(".collect_btn").on("click", function () {
-    if ($(this).hasClass('active')) {
-      $(this).removeClass('active')
-      $(this).text('收藏')
-    } else {
-      $(this).addClass('active')
-      $(this).text('已收藏')
+  },
+  watch: {
+    filter: function (value) {
+      if (value.length == 0) {
+        this.searchResult = this.information;
+      }
     }
-  })
+  },
+  methods: {
+    //開啟燈箱按鈕
+    openContent() {
+      if (this.contentIsOpen) {
+        this.contentIsOpen = false
+      } else {
+        this.contentIsOpen = true
+      }
+    },
+    //關閉燈箱
+    close_openContent() {
+      if (this.contentIsOpen) {
+        this.contentIsOpen = false
+      } else {
+        this.contentIsOpen = true
+      }
+    },
+    //側邊欄搜尋
+    search(type) {
+      const result = this.information.filter(element => {
+        return element.d_type == type
+      });
+      this.searchResult = result;
+    },
+    //關鍵字搜尋
+    searchContent() {
+      const keyword = this.filter;
+      const result = this.information.filter(element => {
+        return (element.d_title.indexOf(keyword) != -1 || element.d_text.indexOf(keyword) != -1)
+        // return element.d_title == type
+      });
+      this.searchResult = result;
+    },
+    //關鍵字搜尋，點擊Enter按鈕事件
+    submit() {
+      this.searchContent();
+    },
+    //關閉檢舉燈箱
+    btn_modal() {
+      if (this.accuseIsOpen) {
+        this.accuseIsOpen = false
+      } else {
+        this.accuseIsOpen = true
+      }
+    },
+    //開啟檢舉燈箱
+    accuse_btn() {
+      if (this.accuseIsOpen) {
+        this.accuseIsOpen = false
+      } else {
+        this.accuseIsOpen = true
+      }
+    },
+    //愛心
+    heart_btn(e) {
+      e.target.classList.contains("colorRed")
+        ? e.target.classList.remove("colorRed")
+        : e.target.classList.add("colorRed");
+    },
+    //收藏
+    collect_btn(e) {
+      e.target.classList.contains("colorGray")
+        ? e.target.classList.remove("colorGray")
+        : e.target.classList.add("colorGray");
+    },
+    //下拉選單
+    toggleDropdown() {
+      if (this.isOpen) {
+        this.isOpen = false;
+      } else {
+        this.isOpen = true;
+      }
+    },
+    //下拉選單
+    changeOrderType(type) {
+      debugger
+      this.type = type
+      this.toggleDropdown()
+      if (type == 'all') {
+        // alert("111");
+        this.searchResult = this.information
+      } else if (type == 'popular') {
+        // alert("111");
+        this.searchResult = this.information.sort(function (a, b) {
+          return a.d_heart < b.d_heart ? 1 : -1;
+        })
+      } else if (type == 'question') {
+        // alert("123")
+        this.searchResult = this.information.filter(function (a, b) {
+          return a.d_qu == "問題討論"
+        })
 
+      } else if (type == 'share') {
+        this.searchResult = this.information.filter(function (a, b) {
+          return a.d_qu == "經驗分享"
+        })
+      }
+    },
 
-  //下拉選單
-  $('.dis_dropdown').click(function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).toggleClass('expanded');
-    $('#' + $(e.target).attr('for')).prop('checked', true);
-  });
-  $(document).click(function () {
-    $('.dis_dropdown').removeClass('expanded');
-  })
+  },
 });
-
-
-
-//input關鍵字搜尋
-
-
