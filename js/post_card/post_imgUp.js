@@ -1,3 +1,5 @@
+//style1上傳
+
 let frontStyle1 = document.getElementById('frontStyle1');
 
 frontStyle1.ondragover = dragOver1;
@@ -42,7 +44,7 @@ document.getElementById('frontStyle1').onchange = function (e) {
   });
 
 };
-
+//style2 top上傳------------------------------------------
 let frontStyle2Top = document.getElementById('frontStyle2Top');
 frontStyle2Top.ondragover = dragOver2Top;
 frontStyle2Top.ondrop = dropped2Top;

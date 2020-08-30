@@ -8,14 +8,14 @@ $(function () {
         $(this).parent().addClass("active");
     });
     $('.f_img_s2').click(function () {
-        $('#frontStyle2').show();
+        $('#frontStyle2').css('display', 'inline-block');
         $('#frontStyle1').hide();
         $('#frontStyle3').hide();
         $(this).parent().siblings().removeClass("active");
         $(this).parent().addClass("active");
     });
     $('.f_img_s3').click(function () {
-        $('#frontStyle3').show();
+        $('#frontStyle3').css('display', 'flex');
         $('#frontStyle2').hide();
         $('#frontStyle1').hide();
         $(this).parent().siblings().removeClass("active");
@@ -121,7 +121,9 @@ $("#toFront").click(function () {
 //  進來先判斷
 if ($(window).width() < 575) {
     $('.drag').text('點擊區塊上傳');
-} else {};
+} else {
+    $('.drag').text('拖曳或點擊此區塊上傳');
+};
 
 //  resize再判斷一次
 $(window).resize(function () {
