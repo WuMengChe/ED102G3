@@ -11,10 +11,36 @@ var myFullpage = new fullpage('.fullpage', {
 
 });
 
+//第一屏圓圈
+$(document).ready(function() {
+
+    var tl = new TimelineMax({
+        repeat: -1,
+        repeatDelay: 10
+    }).timeScale(4);
+
+    var dots = $("svg .dot");
+    var cruveG = $("svg g");
+
+    for (var i = 0; i < dots.length; i++) {
+        tl.set(dots[i], { scale: 0 });
+    }
+    for (var i = 0; i < cruveG.length; i++) {
+        tl.set(cruveG[i], { opacity: 0 });
+    }
+
+    for (var i = 0; i < dots.length; i++) {
+        (function(d, l, tl) {
+            tl.to(d, 1, { transformOrigin: "50% 50%", scale: 0, duration: .1, ease: Power0.easeInOut });
+            tl.to(d, 1, { transformOrigin: "50%% 50%", scale: 23, duration: .1, ease: Power0.easeInOut });
+            tl.to(d, 1, { transformOrigin: "50% 50%", scale: 0, duration: 2, ease: Power0.easeInOut });
+            tl.to(l, 1, { transformOrigin: "50% 50%", opacity: 1, duration: 2, ease: Power0.easeInOut }, "-=1");
+        })(dots[i], cruveG[i], tl);
+    }
+
+});
+
 //第一屏換圖
-
-
-
 $(document).ready(function() {
     if ($(window).width() >= 1145) {
         $(".type").hide();
@@ -161,9 +187,9 @@ HorizontalBarGraph.prototype.draw = function() {
 };
 
 var graph = new HorizontalBarGraph('#graph', [
-    { label: "醫生", inner_label: "50000", value: 50, color: "#6ea6df" },
-    { label: "老師", inner_label: "40000", value: 40, color: "#84c26d" },
-    { label: "品檢人員", inner_label: "30000", value: 30, color: "#e17a69" }
+    { label: "醫生", inner_label: "50000", value: 50, color: "#FFE56D" },
+    { label: "老師", inner_label: "40000", value: 40, color: "#F6F3ED" },
+    { label: "品檢人員", inner_label: "30000", value: 30, color: "#BCEAFF" }
 ]);
 graph.draw();
 
