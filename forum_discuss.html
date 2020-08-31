@@ -58,15 +58,16 @@
           <div class="select_wrap">
             <span class="dis_dropdown" @click.stop="toggleDropdown()" :class="{'expanded': isOpen}">
               <!-- <span class="dis_dropdown" @click.stop="toggleDropdown($event)"> -->
-              <input type="radio" name="orderSelect" value="all" checked="checked" id="all"
-                @click="changeOrderType('all')" />
-              <label for="all">所有分類</label>
-              <input type="radio" name="orderSelect" value="popular" id="popular" @click="changeOrderType('popular')" />
+              <input type="radio" name="orderSelect" v-model="select" value="全部文章" checked="checked" id="all"
+                @click="toggleDropdown" />
+              <label for="all">全部文章</label>
+              <input type="radio" name="orderSelect" v-model="select" value="熱門討論" id="popular"
+                @click="toggleDropdown" />
               <label for="popular">熱門文章</label>
-              <input type="radio" name="orderSelect" value="question" id="question"
-                @click="changeOrderType('question')" />
+              <input type="radio" name="orderSelect" v-model="select" value="問題討論" id="question"
+                @click="toggleDropdown" />
               <label for="question">問題討論</label>
-              <input type="radio" name="orderSelect" value="share" id="share" @click="changeOrderType('share')" />
+              <input type="radio" name="orderSelect" v-model="select" value="經驗分享" id="share" @click="toggleDropdown" />
               <label for="share">經驗分享</label>
             </span>
           </div>
