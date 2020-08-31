@@ -10,6 +10,7 @@ new Vue({
       openLight: false,
       contentIsOpen: false,
       type: 'all',
+      select: '全部文章'
     }
   },
   mounted() {
@@ -25,6 +26,19 @@ new Vue({
     filter: function (value) {
       if (value.length == 0) {
         this.searchResult = this.information;
+      }
+    },
+    select: function (value) {
+      if (value == "全部文章") {
+        this.searchResult = this.information
+      } else if (value == "熱門討論") {
+        this.searchResult = this.information.sort(function (a, b) {
+          return a.d_heart < b.d_heart ? 1 : -1;
+        })
+      } else {
+        this.searchResult = this.information.filter(function (a, b) {
+          return a.d_qu == value
+        })
       }
     }
   },
@@ -47,6 +61,7 @@ new Vue({
     },
     //側邊欄搜尋
     search(type) {
+      this.searchResult = this.information;
       const result = this.information.filter(element => {
         return element.d_type == type
       });
@@ -83,9 +98,7 @@ new Vue({
     },
     //愛心
     heart_btn(e) {
-      e.target.classList.contains("colorRed")
-        ? e.target.classList.remove("colorRed")
-        : e.target.classList.add("colorRed");
+      e.target.classList.toggle("colorRed")
     },
     //收藏
     collect_btn(e) {
@@ -95,37 +108,33 @@ new Vue({
     },
     //下拉選單
     toggleDropdown() {
-      if (this.isOpen) {
-        this.isOpen = false;
-      } else {
-        this.isOpen = true;
-      }
+      this.isOpen = !this.isOpen;
     },
     //下拉選單
-    changeOrderType(type) {
-      debugger
-      this.type = type
-      this.toggleDropdown()
-      if (type == 'all') {
-        // alert("111");
-        this.searchResult = this.information
-      } else if (type == 'popular') {
-        // alert("111");
-        this.searchResult = this.information.sort(function (a, b) {
-          return a.d_heart < b.d_heart ? 1 : -1;
-        })
-      } else if (type == 'question') {
-        // alert("123")
-        this.searchResult = this.information.filter(function (a, b) {
-          return a.d_qu == "問題討論"
-        })
+    // changeOrderType(type) {
+    //   // debugger
+    //   this.type = type
+    //   this.toggleDropdown()
+    //   if (type == 'all') {
+    //     // alert("111");
+    //     this.searchResult = this.searchResult
+    //   } else if (type == 'popular') {
+    //     // alert("111");
+    //     this.searchResult = this.searchResult.sort(function (a, b) {
+    //       return a.d_heart < b.d_heart ? 1 : -1;
+    //     })
+    //   } else if (type == 'question') {
+    //     // alert("123")
+    //     this.searchResult = this.searchResult.filter(function (a, b) {
+    //       return a.d_qu == "問題討論"
+    //     })
 
-      } else if (type == 'share') {
-        this.searchResult = this.information.filter(function (a, b) {
-          return a.d_qu == "經驗分享"
-        })
-      }
-    },
+    //   } else if (type == 'share') {
+    //     this.searchResult = this.searchResult.filter(function (a, b) {
+    //       return a.d_qu == "經驗分享"
+    //     })
+    //   }
+    // },
 
   },
 });
