@@ -15,7 +15,7 @@ main{
 }
 .mem_log_con_width{
     display: flex;
-    margin: 0 auto;
+    margin: 100px auto 0;
     width: 100%;
     max-width: 900px;
     min-width: 640px;
@@ -127,18 +127,18 @@ main{
             display: none;
         }
         img.mem_log_fir{
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 200px;
             position: absolute;
             top: 50px;
-            right: -50px;
+            right: -78px;
         }
         img.mem_log_sec{
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             position: absolute;
-            bottom: -20px;
-            left: -50px;
+            top: -135px;
+            left: 100px;
         }
     }
 }
