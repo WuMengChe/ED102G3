@@ -11,7 +11,7 @@ $(function () {
 
   });
   //頁面跳轉
-  var count = 3;
+  var count = 5;
   //寫一個方法，顯示倒數秒數  數到0後跳轉頁面  
   function countDown() {
     //將count顯示在div中
