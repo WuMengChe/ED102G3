@@ -17,14 +17,16 @@ $(function () {
     //將count顯示在div中
     document.getElementById("sec").innerHTML = `${count}秒後自動跳轉首頁`;
     //每執行一次，count減1
-    count -= 1;
+    count--;
     //count=0時，跳轉頁面
     if (count == 0) {
       window.location.href = "http://www.google.com";
       //window.location.href="index.html";
+    } else {
+      //每秒執行一次,showTime()
+      setTimeout(countDown, 1000);
     }
-    //每秒執行一次,showTime()
-    setTimeout("countDown()", 1000);
+
   }
 
   // 開啟 Modal 彈跳視窗
