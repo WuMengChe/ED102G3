@@ -56,8 +56,10 @@
         <!-- 下拉選單 -->
         <div class="select">
           <div class="select_wrap">
-            <span class="dis_dropdown" @click.stop="toggleDropdown()" :class="{'expanded': isOpen}">
-              <!-- <span class="dis_dropdown" @click.stop="toggleDropdown($event)"> -->
+            <span class="dis_dropdown" @click="toggleDropdown" :class="{'expanded': isOpen}">
+              <input type="radio" name="orderSelect" v-model="select" value="選擇分類" checked="checked" id="forLeft"
+                disabled />
+              <label for="forLeft">選擇分類</label>
               <input type="radio" name="orderSelect" v-model="select" value="全部文章" checked="checked" id="all"
                 @click="toggleDropdown" />
               <label for="all">全部文章</label>
@@ -71,6 +73,13 @@
               <label for="share">經驗分享</label>
             </span>
           </div>
+        </div>
+
+        <div class="bulletin">
+          <marquee class="blink_text">
+            <span>公告</span>目前推出課程買二打八折
+            <span>公告</span>目前推出課程買二打八折
+          </marquee>
         </div>
 
         <div class="dis_body">
@@ -134,7 +143,7 @@
 
     <!--燈箱！！！-->
     <!--點擊留言板跳出的燈箱-->
-    <div class="forum_overlay" :class="{'-open':contentIsOpen}">
+    <div class="forum_overlay" :class="{'-open':contentIsOpen}" @click="closeOverlay">
       <div class="forum_checkMsg">
         <div class="close_btn">
           <button type="button" class="btn_modal_close btn_third" @click="close_openContent">
@@ -298,6 +307,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="js/forum/forum_discuss.js"></script>
   <script>
+
+
+    $(function () {
+      $(".marquee>div").width($("span").width());
+    });
+
 
 
   </script>
