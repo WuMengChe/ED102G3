@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // $postData = file_get_contents('php://input');
     // $requests = !empty($postData) ? json_decode($postData, true) : array();
     try{
@@ -14,6 +15,9 @@
                 echo 0;
             }
             else{
+                $member_row=$member_all->fetch(PDO::FETCH_ASSOC);
+                $_SESSION["memName"] = $member_row["MEM_NAME"];
+                $_SESSION["memEmail"] = $member_row["MEM_EMAIL"];
                 echo 1;
             }
             // $MEM_EMAIL_check = Array();

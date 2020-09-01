@@ -1,3 +1,16 @@
+@media screen and (min-width:991px){
+    .car_con_area{
+        height: 100%;
+        min-height: calc(100vh - 190px);
+        .car_con_list{
+            width: 200px;
+            position: fixed;
+        }
+        .car_con_plot_area{
+            margin-top: 110px !important;
+        }
+    }
+}
 @media screen and (max-width:991px){
     .car_con_list{
         overflow: scroll;
@@ -14,9 +27,13 @@
             }
         }
     }
+    .car_title{
+        margin: 10px 0 !important;
+    }
 }
 @media screen and (max-width:768px){
     .car_title{
+        padding: 0;
         >span{
             display: flex;
             flex-direction: column;
@@ -27,10 +44,10 @@
             margin: 0 auto;
             flex-direction: row;
             justify-content: center;
-            button{
-                width: 100%;
-                border-radius: 0px;
-            }
+            // button{
+            //     width: 100%;
+            //     border-radius: 0px;
+            // }
         }
     }
 }
