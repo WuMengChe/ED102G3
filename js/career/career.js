@@ -98,24 +98,19 @@ let carData = {
         {typeName: "", typeIndex: "", name: "", backgroundColor: "", industryIndex: ""},
         {typeName: "", typeIndex: "", name: "", backgroundColor: "", industryIndex: ""}
     ],
-    chooseIndustry: 0,
+    chooseIndustry: -1,
     myChart: '',
     sendData: false,
-    showPlotControl: false,
+    showPlotControl: true,
     screenWidth: 0,
-    scrollHeight: 0,
 }
 
 let careerVueContent = new Vue({
     el: '#car_vue',
     data: carData,
     mounted() {
-        this.rankingPlot();
         this.screenWidth = document.documentElement.clientWidth;
-        if(this.screenWidth > 991){
-            this.showPlotControl = true;
-        }
-        this.scrollHeight = document.documentElement.scrollTop;
+        this.rankingPlot();
     },
     // watch: {
     //     scrollHeight: function(val){
@@ -125,12 +120,10 @@ let careerVueContent = new Vue({
     // },
     created() {
         window.addEventListener('resize', this.changeWidth);
-        window.addEventListener('scroll', this.changeScroll);
         window.addEventListener('resize', this.rankingPlot);
     },
     destroyed() {
         window.removeEventListener('resize', this.changeWidth);
-        window.removeEventListener('scroll', this.changeScroll);
         window.removeEventListener('resize', this.rankingPlot);
     },
     methods: {
@@ -139,30 +132,10 @@ let careerVueContent = new Vue({
             //     console.log(123)
             // }
         },
-        scrollToTop(){
-            window.scrollTo(0, 0)
-        },
-        changeScroll(){
-            var screenHeight = document.documentElement.clientHeight;
-            this.scrollHeight = document.documentElement.scrollTop;
-            if(this.scrollHeight > screenHeight - 300 && this.screenWidth > 991){
-                document.querySelector('.fa-arrow-circle-up').classList.add('car_icon_show');
-            }
-            else if(this.screenWidth > 991){
-                document.querySelector('.fa-arrow-circle-up').classList.remove('car_icon_show');
-
-            }
-            // console.log(this.scrollHeight)
-        },
         changeWidth(e){
             this.screenWidth = document.documentElement.clientWidth;
-            if(992 > this.screenWidth){
-                this.chooseIndustry = -1;
-                this.showPlotControl = true;
-            }
-            else{
-                this.chooseIndustry = 0;
-            }
+            this.chooseIndustry = -1;
+            this.showPlotControl = true;
         },
         rankingPlot(){
             if (this.myChart != null && this.myChart != "" && this.myChart != undefined) {
@@ -170,6 +143,12 @@ let careerVueContent = new Vue({
             }
             this.myChart = echarts.init(document.querySelector('.car_con_plot'), null, {renderer: 'svg'});
             // var firstRanking = this.careerPlot.industryRank[0];
+            if(this.screenWidth > 991){
+                var gridUse = 120
+            }
+            else{
+                var gridUse = 80
+            }
             var seriesLabel = {
                 normal: {
                     show: true,
@@ -178,88 +157,77 @@ let careerVueContent = new Vue({
                 }
             }
             var option = {
-                baseOption: {
-                    title: {
-                        text: '工作三到五年薪水排行',
-                        show: false
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'shadow'
-                        }
-                    },
-                    legend: {
-                        data: ['平均薪資(新台幣)'],
-                        show: true,
-                        top: 25
-                    },
-                    grid: {
-                        left: 80
-                    },
-                    // toolbox: {
-                    //     show: true,
-                    //     feature: {
-                    //         saveAsImage: {}
-                    //     }
-                    // },
-                    xAxis: {
-                        type: 'value',
-                        // name: 'NTD',
-                        max: function(value){
-                            return value.max + 10000;
-                        },
-                        axisLabel: {
-                            formatter: '{value}'
-                        }
-                    },
-                    yAxis: {
-                        type: 'category',
-                        inverse: true,
-                        data: ['醫生', '老師', '品檢人員', '產品行銷人員', '保險業務'],
-                        axisLabel: {
-                            formatter: function (value) {
-                                // return '{' + value + '| }\n{value|' + value + '}';
-                                return value;
-                            },
-                            margin: 5,
-                            // backgroundColor: "rgba(193, 45, 45, 1)",
-                            rich: {
-                                value: {
-                                    align: 'center'
-                                },
-                                // 醫生: {
-                                //     height: 40,
-                                //     align: 'center',
-                                //     backgroundColor: {
-                                //         width: 40,
-                                //         height: 40,
-                                //         image: '../img/career/crown.png'
-                                //     }
-                                // }
-                            }
-                        }
-                    },
-                    series: [
-                        {
-                            name: '平均薪資(新台幣)',
-                            type: 'bar',
-                            label: seriesLabel,
-                            data: this.careerPlot.industrySalary,
-                            barWidth: 20
-                        }
-                    ]
+                title: {
+                    text: '工作三到五年薪水排行',
+                    show: false
                 },
-                media: [
-                    {
-                        query: {
-                            minWidth: 200,
-                            maxHeight: 300
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['平均薪資(新台幣)'],
+                    show: true,
+                    top: 25,
+                    right: 80
+                },
+                grid: {
+                    left: gridUse
+                },
+                // toolbox: {
+                //     show: true,
+                //     feature: {
+                //         saveAsImage: {}
+                //     }
+                // },
+                xAxis: {
+                    type: 'value',
+                    // name: 'NTD',
+                    max: function(value){
+                        return value.max + 10000;
+                    },
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                yAxis: {
+                    type: 'category',
+                    inverse: true,
+                    data: ['醫生', '老師', '品檢人員', '產品行銷人員', '保險業務'],
+                    axisLabel: {
+                        formatter: function (value) {
+                            // return '{' + value + '| }\n{value|' + value + '}';
+                            return value;
                         },
-                        option: {
-                            series:[{
-                                center: ['50%', '50%']
-                            }]
+                        margin: 5,
+                        // backgroundColor: "rgba(193, 45, 45, 1)",
+                        rich: {
+                            value: {
+                                align: 'center'
+                            },
+                            // 醫生: {
+                            //     height: 40,
+                            //     align: 'center',
+                            //     backgroundColor: {
+                            //         width: 40,
+                            //         height: 40,
+                            //         image: '../img/career/crown.png'
+                            //     }
+                            // }
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: '平均薪資(新台幣)',
+                        type: 'bar',
+                        label: seriesLabel,
+                        data: this.careerPlot.industrySalary,
+                        barWidth: 20,
+                        itemStyle: {
+                            color: "#c70000"
                         }
                     }
                 ]
@@ -273,9 +241,7 @@ let careerVueContent = new Vue({
                 var changeBgColor = document.querySelector('.car_con_pro');
                 changeBgColor.style.backgroundColor = color;
             }, 1);
-            if(992 > this.screenWidth){
-                this.showPlotControl = false;
-            }
+            this.showPlotControl = false;
         },
         changePlot(){
             this.chooseIndustry = -1;
