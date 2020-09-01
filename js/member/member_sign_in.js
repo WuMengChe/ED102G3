@@ -26,7 +26,7 @@ let changeSignType = new Vue({
             formData.append('memAccount', memAccount);
             formData.append('memCode', memCode);
             axios
-            .post('./php_Use/memberSignInCheck.php',formData)
+            .post('./php/memberSignInCheck.php',formData)
             .then((resp) => {
                 if(resp.data == 0){
                     alert('帳號或密碼錯誤，請重新輸入');
@@ -37,8 +37,8 @@ let changeSignType = new Vue({
                 }
                 console.table(resp.data)
             })
-            .catch(error => console.log(error))
-            // window.location.href = "./member.html";
+            // .catch(error => console.log(error))
+            window.location.href = "./member.html";
         },
         changePageSignUp(){
             var memAccount = document.querySelector('.input_div #account').value;
@@ -51,7 +51,7 @@ let changeSignType = new Vue({
                 formData.append('memCode', memCode);
                 formData.append('memName', memName);
                 axios
-                .post('./php_Use/memberSignUp.php',formData)
+                .post('./php/memberSignUp.php',formData)
                 .then((resp) => {
                     if(resp.data == 1){
                         alert('此電子郵件已有人申請，請重新輸入');
