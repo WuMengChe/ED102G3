@@ -99,7 +99,7 @@
 
             </div>
           </div>
-          <button id="toBack" class="btn_third">
+          <button id="toBack" class="btn_third" onclick="captureFront();">
             <!-- onclick="doCapture();" -->
             背面
             <i class="fas fa-arrow-right"></i>
@@ -124,18 +124,18 @@
           <div class="back_post">
             <div class="mainStyle">
               <!-- 背面格式-->
-              <div class="style_back">
+              <div class="style_back" id="backCapture">
                 <img src="./img/post_card/postmark1.png" id="postmark" class="mark_position">
 
                 <div class="left_write">
-                  <textarea id="leftWrite" placeholder="請寫下對未來的期許" maxlength="374"></textarea>
+                  <textarea id="leftWrite" placeholder="請寫下對未來的期許" maxlength="357"></textarea>
                 </div>
                 <div class="right_write">
                   <div class="style_stamp">
                     <img src="./img/post_card/stamp1.png" id="mainStamp">
                   </div>
                   <div class="text">
-                    <textarea id="rightWrite" maxlength="200"></textarea>
+                    <textarea id="rightWrite" maxlength="208"></textarea>
                   </div>
                 </div>
               </div>
@@ -147,7 +147,7 @@
               <i class="fas fa-arrow-left"></i>
               正面
             </button>
-            <a href="./post_date.html" id="choice_date" class="btn_third">選擇日期
+            <a href="./post_date.html" id="choice_date" class="btn_third" onclick="captureBack();">選擇日期
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -175,15 +175,15 @@
   <script src="./js/post_card/post_change.js"></script>
   <script src="./js/post_card/post_canvas.js"></script>
 
-  <!-- <script>
-    function doCapture() {
+  <script>
+    // function doCapture() {
 
-      window.scrollTo(0, 0);
-      html2canvas(document.getElementById("frontStyle3")).then(function (canvas) {
-        console.log(canvas.toDataURL("image/jpeg", 0.9));
-      });
+    //   window.scrollTo(0, 0);
+    //   html2canvas(document.getElementById("frontCapture")).then(function (canvas) {
+    //     console.log(canvas.toDataURL("image/png", 1));
+    //   });
 
-    } -->
+    // }
   </script>
 
 </body>

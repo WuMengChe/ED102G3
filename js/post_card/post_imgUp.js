@@ -61,3 +61,8 @@ function changed(e) {
 
   });
 };
+//字數限制
+var len = document.getElementById('leftWrite');
+var width = document.documentElement.clientWidth;
+len.maxLength = width / 57;
+// len = width / 57;

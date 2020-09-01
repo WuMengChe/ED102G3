@@ -20,8 +20,8 @@ $(function () {
     count--;
     //count=0時，跳轉頁面
     if (count == 0) {
-      window.location.href = "http://www.google.com";
-      //window.location.href="index.html";
+      window.location.href = "./front_index.html";
+
     } else {
       //每秒執行一次,showTime()
       setTimeout(countDown, 1000);
