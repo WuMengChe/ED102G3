@@ -10,6 +10,12 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
   box-sizing: border-box;
   outline: none;
 }
+
+.noScroll {
+  position: fixed;
+  width: 100%;
+}
+
 #forum_discuss {
   background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
@@ -65,7 +71,6 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
 }
 
 //下拉選單
-
 $color: gray;
 $timing: 0.3s;
 .select {
@@ -87,7 +92,7 @@ $timing: 0.3s;
   top: 0;
   cursor: pointer;
   text-align: center;
-  white-space: nowrap;
+  // white-space: nowrap;
   color: #444;
 
   outline: none;
@@ -95,7 +100,7 @@ $timing: 0.3s;
   border-radius: 5px;
   background-color: #f6f3ed;
 
-  transition: $timing all ease-in-out;
+  transition: $timing max-height ease-in-out;
   input:focus + label {
     background: #def;
   }
@@ -167,6 +172,7 @@ $timing: 0.3s;
     }
   }
 }
+
 @mixin content_button {
   box-sizing: border-box;
   width: 40px;
@@ -175,6 +181,27 @@ $timing: 0.3s;
   border: none;
   outline: none;
   border-radius: 50%;
+}
+
+//跑馬燈
+
+.bulletin {
+  background: #f7ecd9;
+  min-height: 35px;
+  margin-bottom: 10px;
+  padding: 5px;
+  .blink_text {
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    span {
+      background: maroon;
+      color: white;
+      border-radius: 5px;
+      padding: 5px;
+    }
+  }
 }
 
 /* 內容區塊 */
