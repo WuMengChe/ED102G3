@@ -110,31 +110,5 @@ new Vue({
     toggleDropdown() {
       this.isOpen = !this.isOpen;
     },
-    //下拉選單
-    // changeOrderType(type) {
-    //   // debugger
-    //   this.type = type
-    //   this.toggleDropdown()
-    //   if (type == 'all') {
-    //     // alert("111");
-    //     this.searchResult = this.searchResult
-    //   } else if (type == 'popular') {
-    //     // alert("111");
-    //     this.searchResult = this.searchResult.sort(function (a, b) {
-    //       return a.d_heart < b.d_heart ? 1 : -1;
-    //     })
-    //   } else if (type == 'question') {
-    //     // alert("123")
-    //     this.searchResult = this.searchResult.filter(function (a, b) {
-    //       return a.d_qu == "問題討論"
-    //     })
-
-    //   } else if (type == 'share') {
-    //     this.searchResult = this.searchResult.filter(function (a, b) {
-    //       return a.d_qu == "經驗分享"
-    //     })
-    //   }
-    // },
-
   },
 });
