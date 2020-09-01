@@ -1,9 +1,14 @@
 // document.getElementById('toBack').onclick =
 
 function captureFront() {
-
+  var frontImg = document.getElementById("frontCapture");
   window.scrollTo(0, 0);
-  html2canvas(document.getElementById("frontCapture")).then(function (canvas) {
+  html2canvas(frontImg, {
+    height: frontImg.offsetHeight, //注意 下面解决当页面滚动之后生成图片出现白边问题
+    width: frontImg.offsetWidth, //注意 下面解决当页面滚动之后生成图片出现白边问题
+    dpi: window.devicePixelRatio * 2, // 解决图片不清晰问题
+    scale: 2
+  }).then(function (canvas) {
     // canvas.width = 500;
     // canvas.height = 300;
     console.log(canvas.toDataURL("image/jpeg", 0.9));
