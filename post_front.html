@@ -48,7 +48,8 @@
         <!-- --------------------正面開始 ------------------->
         <div class="postcard_front">
           <h2>正面</h2>
-          <div class="front_post">
+          <form class="front_post" method="post" id="frontPost">
+            <input name="hidden_front" id="hidden_front" type="hidden" />
             <div class="mainStyle" id="frontCapture">
               <!-- 正面格式一 -->
               <label for="img1" class="style1" id="frontStyle1">
@@ -98,7 +99,7 @@
               </div>
 
             </div>
-          </div>
+          </form>
           <button id="toBack" class="btn_third" onclick="captureFront();">
             <!-- onclick="doCapture();" -->
             背面

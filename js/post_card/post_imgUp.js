@@ -70,11 +70,11 @@ if (width >= 1200) {
   lenF.maxLength = 357;
 } else if (width < 1200 && width > 767) {
   let x = 21 - Math.ceil(1200 - width) / 50;
-  let y = 17 - Math.ceil(1200 - width) / 80;
+  let y = 17 - Math.ceil(1200 - width) / 70;
   lenF.maxLength = x * y;
 } else {
-  let x = 21 - Math.ceil(1200 - width) / 60;
-  let y = 17 - Math.ceil(1200 - width) / 80;
+  let x = 18 - Math.ceil(767 - width) / 38;
+  let y = 14 - Math.ceil(767 - width) / 50;
   lenF.maxLength = x * y;
 }
 
@@ -82,13 +82,13 @@ if (width >= 1200) {
 $(window).resize(function () {
   if ($(window).width() >= 1200) {
     lenF.maxLength = 357;
-  } else if ($(window).width() < 1200) {
+  } else if ($(window).width() < 1200 && $(window).width() > 767) {
     let x = 21 - Math.ceil(1200 - width) / 50;
-    let y = 17 - Math.ceil(1200 - width) / 80;
+    let y = 17 - Math.ceil(1200 - width) / 70;
     lenF.maxLength = x * y;
-  } else if ($(window).width() < 767) {
-    let x = 21 - Math.ceil(1200 - width) / 60;
-    let y = 17 - Math.ceil(1200 - width) / 80;
+  } else {
+    let x = 18 - Math.ceil(767 - width) / 38;
+    let y = 14 - Math.ceil(767 - width) / 50;
     lenF.maxLength = x * y;
   }
 
