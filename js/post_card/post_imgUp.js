@@ -63,57 +63,33 @@ function changed(e) {
 };
 //字數限制
 var lenF = document.getElementById('leftWrite');
-var width = document.documentElement.clientWidth;
-//要改用case寫
-// >=1200字數 357
-// 1199-768 要算是
-// <=767 另一個算式
+var width = $(window).width();
 
+//  進來先判斷
+if (width >= 1200) {
+  lenF.maxLength = 357;
+} else if (width < 1200 && width > 767) {
+  let x = 21 - Math.ceil(1200 - width) / 50;
+  let y = 17 - Math.ceil(1200 - width) / 80;
+  lenF.maxLength = x * y;
+} else {
+  let x = 21 - Math.ceil(1200 - width) / 60;
+  let y = 17 - Math.ceil(1200 - width) / 80;
+  lenF.maxLength = x * y;
+}
 
-
-switch (width) {
-  case width >= 1200:
+//  resize再判斷一次
+$(window).resize(function () {
+  if ($(window).width() >= 1200) {
     lenF.maxLength = 357;
-    break;
-  case width < 1200 && width > 767:
+  } else if ($(window).width() < 1200) {
+    let x = 21 - Math.ceil(1200 - width) / 50;
+    let y = 17 - Math.ceil(1200 - width) / 80;
+    lenF.maxLength = x * y;
+  } else if ($(window).width() < 767) {
     let x = 21 - Math.ceil(1200 - width) / 60;
     let y = 17 - Math.ceil(1200 - width) / 80;
     lenF.maxLength = x * y;
-    break;
-  case width <= 767:
-    let x = 21 - Math.ceil(1200 - width) / 52;
-    let y = 17 - Math.ceil(1200 - width) / 75;
-    lenF.maxLength = x * y;
-    break;
-  default:
-    break;
-}
+  }
 
-
-
-
-
-// //  進來先判斷
-// if ($(window).width() < 1200 && $(window).width() > 767) {
-//   let x = 21 - Math.ceil(1200 - width) / 60;
-//   let y = 17 - Math.ceil(1200 - width) / 80;
-//   lenF.maxLength = x * y;
-// } else {
-//   let x = 21 - Math.ceil(1200 - width) / 52;
-//   let y = 17 - Math.ceil(1200 - width) / 75;
-//   lenF.maxLength = x * y;
-// };
-
-// //  resize再判斷一次
-// $(window).resize(function () {
-//   if ($(window).width() < 1200 && $(window).width() > 767) {
-//     let x = 21 - Math.ceil(1200 - width) / 60;
-//     let y = 17 - Math.ceil(1200 - width) / 80;
-//     lenF.maxLength = x * y;
-//   } else {
-//     let x = 21 - Math.ceil(1200 - width) / 52;
-//     let y = 17 - Math.ceil(1200 - width) / 75;
-//     lenF.maxLength = x * y;
-//   };
-
-// });
+});

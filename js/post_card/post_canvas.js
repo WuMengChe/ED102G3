@@ -2,11 +2,12 @@
 
 function captureFront() {
   var frontImg = document.getElementById("frontCapture");
-  window.scrollTo(0, 0);
   html2canvas(frontImg, {
-    height: frontImg.offsetHeight, //注意 下面解决当页面滚动之后生成图片出现白边问题
-    width: frontImg.offsetWidth, //注意 下面解决当页面滚动之后生成图片出现白边问题
-    dpi: window.devicePixelRatio * 2, // 解决图片不清晰问题
+    //解决頁面滾動後白邊問題
+    height: frontImg.offsetHeight,
+    width: frontImg.offsetWidth,
+    // 解决图片不清晰问题
+    dpi: window.devicePixelRatio * 2,
     scale: 2
   }).then(function (canvas) {
     // canvas.width = 500;
@@ -27,9 +28,15 @@ function captureFront() {
 };
 
 function captureBack() {
-
-  window.scrollTo(0, 0);
-  html2canvas(document.getElementById("backCapture")).then(function (canvas) {
+  var backImg = document.getElementById("backCapture");
+  html2canvas(backImg, {
+    //解决頁面滾動後白邊問題
+    height: frontImg.offsetHeight,
+    width: frontImg.offsetWidth,
+    // 解决图片不清晰问题
+    dpi: window.devicePixelRatio * 2,
+    scale: 2
+  }).then(function (canvas) {
     // canvas.width = 500;
     // canvas.height = 300;
     console.log(canvas.toDataURL("image/jpeg", 0.9));
@@ -45,4 +52,4 @@ function captureBack() {
     // };
   });
 
-}
+};
