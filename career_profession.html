@@ -7,9 +7,6 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.js'></script>
     <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="./css/app_public.css"> -->
-    <!-- <link rel="stylesheet" href="./css/career_all.css"> -->
     @@include('app/link.html')
     <link rel="stylesheet" href="./css/pages_scss/career/career_all.css">
 </head>
@@ -22,34 +19,73 @@
             </div>
         </div>
         <div class = "car_pro_con" :class="{'col-lg-12':isDouble, 'col-lg-9':!isDouble, 'col-md-12':isDouble, 'col-md-9':!isDouble}">
-            <div class="col-lg-6 col-md-6 car_pro_info" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                <h1>{{industry[item.industryIndex].detail[item.typeIndex].name}}</h1>
-                <img :src="industry[item.industryIndex].detail[item.typeIndex].src" :style="{borderColor:industry[item.industryIndex].backgroundColor}">
+            <div class="car_pro_info" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-6':isDouble, 'col-lg-4':!isDouble, 'col-md-6':isDouble, 'col-md-4':!isDouble}">
+                <template v-if="industry[item.industryIndex]">
+                    <h1>{{industry[item.industryIndex].detail[item.typeIndex].name}}</h1>
+                    <img :src="industry[item.industryIndex].detail[item.typeIndex].src" :style="{borderColor:industry[item.industryIndex].backgroundColor}">
+                </template>
             </div>
-            <div class="col-lg-6 col-md-6 car_pro_info" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                <h3>{{industry[item.industryIndex].typeName}}</h3>
-                <h3 class="car_pro_info_title car_pro_info_img">職業介紹</h3>
-                <p>{{industry[item.industryIndex].detail[item.typeIndex].info}}</p>
-            </div>
-            <div class="col-sm-12 car_pro_info car_pro_single" :class="{'col-lg-12':isDouble, 'col-lg-9':!isDouble, 'col-md-12':isDouble, 'col-md-12':!isDouble}">
-                <div class="car_pro_info car_pro_info_con" :class="{'col-lg-6':isDouble, 'col-lg-12':!isDouble, 'col-md-6':isDouble, 'col-md-12':!isDouble}" v-for="(item, index) in chooeseProfession" v-if="(item.content && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                    <h3 class="car_pro_info_title">職業內容</h3>
-                    <ul>
-                        <li v-for="(liItem, liIndex) in item.content">
-                            <span class="car_li_color" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}"></span>
-                            <span class="car_li_content">{{liItem}}</span>
-                        </li>
-                    </ul>
+            <div class="car_pro_con_area" :class="{'col-lg-12':isDouble, 'col-lg-8':!isDouble, 'col-md-12':isDouble, 'col-md-8':!isDouble, 'car_pro_con_pad':!isDouble}">
+                <div class="col-lg-12 col-md-12 car_pro_con_area">
+                    <span class="col-lg-2 col-md-2 col-sm-3 col-3 car_pro_con_span car_pro_con_mar" v-if="isDouble" :class="{'order_double':screenWidth > 768}">型別</span>
+                    <div class="car_pro_con_area car_pro_con_mar" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-5':isDouble, 'col-lg-12':!isDouble, 'col-md-5':isDouble, 'col-md-12':!isDouble, 'col-sm-9':isDouble, 'col-sm-12':!isDouble, 'col-9':isDouble, 'col-12':!isDouble, 'order_first':(isDouble && index == 0 && screenWidth > 768), 'order_second':(isDouble && index == 1 && screenWidth > 768)}">
+                        <template v-if="industry[item.industryIndex]">
+                            <div class="col-lg-12 col-md-12 car_pro_con_area">
+                                <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">型別</span>
+                                <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
+                                    <h3 class="car_pro_con_cen" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}">{{industry[item.industryIndex].typeName}}</h3>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
                 </div>
-                <!-- <h3 class="car_pro_info_title">職業內容</h3>
-                <ul>
-                    <li v-for="(liItem, liIndex) in item.content"><span class="car_li_color" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}"></span>{{liItem}}</li>
-                </ul> -->
+                <div class="col-lg-12 col-md-12 car_pro_con_area">
+                    <span class="col-lg-2 col-md-2 col-sm-3 col-3 car_pro_con_span car_pro_con_mar" v-if="isDouble" :class="{'order_double':screenWidth > 768}">職業介紹</span>
+                    <div class="car_pro_con_area car_pro_con_mar" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-5':isDouble, 'col-lg-12':!isDouble, 'col-md-5':isDouble, 'col-md-12':!isDouble, 'col-sm-9':isDouble, 'col-sm-12':!isDouble, 'col-9':isDouble, 'col-12':!isDouble, 'order_first':(isDouble && index == 0 && screenWidth > 768), 'order_second':(isDouble && index == 1 && screenWidth > 768)}">
+                        <template v-if="industry[item.industryIndex]">
+                            <div class="col-lg-12 col-md-12 car_pro_con_area">
+                                <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">職業介紹</span>
+                                <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
+                                    <h3 :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}">{{industry[item.industryIndex].detail[item.typeIndex].info}}</h3>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-9 col-md-12 car_pro_info car_pro_skill">
-                <div class="col-md-12 car_pro_skill_area" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                    <h3 class="col-md-12 car_pro_info_title">相關技能 - {{industry[item.industryIndex].detail[item.typeIndex].name}}</h3>
-                    <span class="col-md-4 col-sm-4 col-4"v-for="(skillItem, skillIndex) in chooeseProfession[index].skill" :style="{backgroundColor:industry[item.industryIndex].backgroundColor}">{{skillItem}}</span>
+            <div class="col-lg-12 col-md-12 car_pro_con_area">
+                <span class="col-lg-2 col-md-2 col-sm-3 col-3 car_pro_con_span car_pro_con_mar" v-if="isDouble" :class="{'order_double':screenWidth > 768}">職業內容</span>
+                <div class="car_pro_con_area car_pro_con_mar" v-for="(item, index) in chooeseProfession" v-if="(item.content && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-5':isDouble, 'col-lg-12':!isDouble, 'col-md-5':isDouble, 'col-md-12':!isDouble, 'col-sm-9':isDouble, 'col-sm-12':!isDouble, 'col-9':isDouble, 'col-12':!isDouble, 'order_first':(isDouble && index == 0 && screenWidth > 768), 'order_second':(isDouble && index == 1 && screenWidth > 768)}">
+                    <template v-if="industry[sendData[index].industryIndex]">
+                        <div class="col-lg-12 col-md-12 car_pro_con_area">
+                            <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">職業內容</span>
+                            <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
+                                <ul :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}">
+                                    <li v-for="(liItem, liIndex) in item.content">
+                                        <span class="car_li_color" :style="{backgroundColor:'white'}"></span>
+                                        <span class="car_li_content">{{liItem}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 car_pro_con_area">
+                <span class="col-lg-2 col-md-2 col-sm-3 col-3 car_pro_con_span car_pro_con_mar" v-if="isDouble" :class="{'order_double':screenWidth > 768}">相關技能</span>
+                <div class="car_pro_con_area car_pro_con_mar" v-for="(item, index) in chooeseProfession" v-if="(item.content && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-5':isDouble, 'col-lg-12':!isDouble, 'col-md-5':isDouble, 'col-md-12':!isDouble, 'col-sm-9':isDouble, 'col-sm-12':!isDouble, 'col-9':isDouble, 'col-12':!isDouble, 'order_first':(isDouble && index == 0 && screenWidth > 768), 'order_second':(isDouble && index == 1 && screenWidth > 768)}">
+                    <template v-if="industry[sendData[index].industryIndex]">
+                        <div class="col-lg-12 col-md-12 car_pro_con_area">
+                            <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">相關技能</span>
+                            <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
+                                <div class="car_pro_ski_mar" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}">
+                                    <div class="col-md-4 col-sm-4 col-4 car_pro_con_area"v-for="(skillItem, skillIndex) in item.skill">
+                                        <span>{{skillItem}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
             <div class = "col-lg-9 col-md-12 car_pro_lhs_plot_area">
