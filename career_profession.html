@@ -78,11 +78,12 @@
                         <div class="col-lg-12 col-md-12 car_pro_con_area">
                             <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">相關技能</span>
                             <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
-                                <div class="car_pro_ski_mar" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}">
-                                    <div class="col-md-4 col-sm-4 col-4 car_pro_con_area"v-for="(skillItem, skillIndex) in item.skill">
-                                        <span>{{skillItem}}</span>
-                                    </div>
-                                </div>
+                                <ul :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}">
+                                    <li v-for="(skillItem, skillIndex) in item.skill">
+                                        <span class="car_li_color" :style="{backgroundColor:'white'}"></span>
+                                        <span class="car_li_content">{{skillItem}}</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </template>

@@ -175,6 +175,7 @@ let careerProfessionVueContent = new Vue({
                         }
                     },
                     legend: {
+                        right: 40,
                         data: [this.industry[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].name + ' - 最高薪資'],
                         formatter: function (name) {
                             return name.split(' ', 1);
@@ -214,6 +215,10 @@ let careerProfessionVueContent = new Vue({
                                 barBorderColor: '#119BEB',
                                 color: '#119BEB'
                             },
+                            label: {
+                                show: true,
+                                position: 'inside'
+                            },
                             data: AreaSalary_1
                         }
                     ]
@@ -244,6 +249,7 @@ let careerProfessionVueContent = new Vue({
                         }
                     },
                     legend: {
+                        right: 40,
                         data: [this.industry[this.sendData[0].industryIndex].detail[this.sendData[0].typeIndex].name + ' - 最高薪資', this.industry[this.sendData[1].industryIndex].detail[this.sendData[1].typeIndex].name + ' - 最高薪資'],
                         formatter: function (name) {
                             return name.split(' ', 1);
@@ -283,6 +289,10 @@ let careerProfessionVueContent = new Vue({
                                 barBorderColor: '#119BEB',
                                 color: '#119BEB'
                             },
+                            label: {
+                                show: true,
+                                position: 'inside'
+                            },
                             data: AreaSalary_1
                         },
                         {
@@ -302,6 +312,10 @@ let careerProfessionVueContent = new Vue({
                             itemStyle: {
                                 barBorderColor: '#EE7002',
                                 color: '#EE7002'
+                            },
+                            label: {
+                                show: true,
+                                position: 'inside'
                             },
                             data: AreaSalary_2
                         }
@@ -346,6 +360,7 @@ let careerProfessionVueContent = new Vue({
                         }
                     },
                     legend: {
+                        right: 40,
                         data: [name_1 + ' - 薪資漲幅'],
                         formatter: function (name) {
                             return name.split(' ', 1);
@@ -413,6 +428,7 @@ let careerProfessionVueContent = new Vue({
                         }
                     },
                     legend: {
+                        right: 40,
                         data: [name_1 + ' - 薪資漲幅', name_2 + ' - 薪資漲幅'],
                         formatter: function (name) {
                             return name.split(' ', 1);
