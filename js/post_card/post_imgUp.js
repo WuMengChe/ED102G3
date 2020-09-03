@@ -61,3 +61,35 @@ function changed(e) {
 
   });
 };
+//字數限制
+var lenF = document.getElementById('leftWrite');
+var width = $(window).width();
+
+//  進來先判斷
+if (width >= 1200) {
+  lenF.maxLength = 357;
+} else if (width < 1200 && width > 767) {
+  let x = 21 - Math.ceil(1200 - width) / 50;
+  let y = 17 - Math.ceil(1200 - width) / 70;
+  lenF.maxLength = x * y;
+} else {
+  let x = 18 - Math.ceil(767 - width) / 38;
+  let y = 14 - Math.ceil(767 - width) / 50;
+  lenF.maxLength = x * y;
+}
+
+//  resize再判斷一次
+$(window).resize(function () {
+  if ($(window).width() >= 1200) {
+    lenF.maxLength = 357;
+  } else if ($(window).width() < 1200 && $(window).width() > 767) {
+    let x = 21 - Math.ceil(1200 - width) / 50;
+    let y = 17 - Math.ceil(1200 - width) / 70;
+    lenF.maxLength = x * y;
+  } else {
+    let x = 18 - Math.ceil(767 - width) / 38;
+    let y = 14 - Math.ceil(767 - width) / 50;
+    lenF.maxLength = x * y;
+  }
+
+});

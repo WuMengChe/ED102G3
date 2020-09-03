@@ -1,4 +1,5 @@
 @import "../../_public_dontTouch/utils/mixin";
+@import "../../_public_dontTouch/utils/variables";
 
 div.header_wrap header.header div.header_nav ul li:nth-child(2) a::after {
     @include header_line;
@@ -20,6 +21,8 @@ body.car_body{
     flex-wrap: wrap;
     .car_title{
         display: flex;
+        margin-top: 50px;
+        margin-bottom: 20px;
         height: fit-content;
         flex-wrap: wrap;
         align-items: center;
@@ -29,10 +32,17 @@ body.car_body{
             height: 40px;
             align-items: center;
         }
+        > span{
+            font-size: 20px;
+            font-weight: 700;
+        }
         .choose_industry{
             display: flex;
             margin: 0px 5px;
+            padding: 5px;
             flex-direction: row;
+            border-radius: 20px;
+            border: 2px solid #149e04;
             i, span{
                 display: flex;
                 align-items: center;
@@ -44,39 +54,43 @@ body.car_body{
                 padding-left: 3px;
             }
         }
-        // *{
-        //     padding: 0;
-        // }
+        .choose_industry:hover{
+            border-color: #C70000;
+            i{
+                color: #C70000;
+            }
+        } 
+        button{
+            margin: 0 auto;
+        }
     }
     .car_con_area_all{
         display: flex;
         flex-wrap: wrap;
         .car_con_area{
             display: flex;
-            margin-top: 10px;
+            // margin-top: 10px;
             padding: 0;
             flex-wrap: wrap;
             .car_con_list{
+                height: 100%;
+                max-height: calc(100vh - 76px);
                 padding: 0;
                 background: #f6f3ed;
                 border-radius: 20px;
-                // .car_con_list_fix_use{
-                //     position: fixed;
-                //     z-index: 1;
-                // }
                 ul{
-                    margin-bottom: 30px;
+                    margin-bottom: 10px;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     li{
-                        margin: 10px auto;
+                        margin: 5px auto;
                         width: 150px;
                         cursor: pointer;
                         border: 2px solid black;
                         background-color: transparent;
                         border-radius: 50px;
-                        padding: 5px 30px;
+                        padding: 5px 20px;
                         display: flex;
                         align-items: center;
                         font-size: 18px;
@@ -88,155 +102,179 @@ body.car_body{
                             margin-right: 10px;
                           }
                     }
-                    .practical_bg_color{
+                    .salary_rank{
                         background-color: transparent;
-                        border-color: #79BBB5;
+                        border-color: #C70000;
                         span{
-                            background-color: #79BBB5;
+                            background-color: #C70000;
                         }
                     }
-                    .practical_bg_color:hover{
-                        background-color: #79BBB5;
+                    .salary_rank.select_li, .salary_rank:hover{
+                        background-color: #C70000;
+                        color: white;
+                        span{
+                            background-color: white;
+                        }
+                    }
+                    .practical_bg_color{
+                        background-color: transparent;
+                        border-color: $practical_color;
+                        span{
+                            background-color: $practical_color;
+                        }
+                    }
+                    .practical_bg_color.select_li, .practical_bg_color:hover{
+                        background-color: $practical_color;
                         span{
                             background-color: white;
                         }
                     }
                     .research_bg_color{
                         background-color: transparent;
-                        border-color: #a0cadb;
+                        border-color: $research_color;
                         span{
-                            background-color: #a0cadb;
+                            background-color: $research_color;
                         }
                     }
-                    .research_bg_color:hover{
-                        background-color: #a0cadb;
+                    .research_bg_color.select_li, .research_bg_color:hover{
+                        background-color: $research_color;
                         span{
                             background-color: white;
                         }
                     }
                     .art_bg_color{
                         background-color: transparent;
-                        border-color: #ccc5e3;
+                        border-color: $art_color;
                         span{
-                            background-color: #ccc5e3;
+                            background-color: $art_color;
                         }
                     }
-                    .art_bg_color:hover{
-                        background-color: #ccc5e3;
+                    .art_bg_color.select_li, .art_bg_color:hover{
+                        background-color: $art_color;
                         span{
                             background-color: white;
                         }
                     }
                     .social_bg_color{
                         background-color: transparent;
-                        border-color: #f4c3c5;
+                        border-color: $social_color;
                         span{
-                            background-color: #f4c3c5;
+                            background-color: $social_color;
                         }
                     }
-                    .social_bg_color:hover{
-                        background-color: #f4c3c5;
+                    .social_bg_color.select_li, .social_bg_color:hover{
+                        background-color: $social_color;
                         span{
                             background-color: white;
                         }
                     }
                     .thing_bg_color{
                         background-color: transparent;
-                        border-color: #e7995f;
+                        border-color: $thing_color;
                         span{
-                            background-color: #e7995f;
+                            background-color: $thing_color;
                         }
                     }
-                    .thing_bg_color:hover{
-                        background-color: #e7995f;
+                    .thing_bg_color.select_li, .thing_bg_color:hover{
+                        background-color: $thing_color;
                         span{
                             background-color: white;
                         }
                     }
                     .enterprise_bg_color{
                         background-color: transparent;
-                        border-color: #f7ea92;
+                        border-color: $enterprise_color;
                         span{
-                            background-color: #f7ea92;
+                            background-color: $enterprise_color;
                         }
                     }
-                    .enterprise_bg_color:hover{
-                        background-color: #f7ea92;
+                    .enterprise_bg_color.select_li, .enterprise_bg_color:hover{
+                        background-color: $enterprise_color;
                         span{
                             background-color: white;
                         }
                     }
                 }
-                .side_bar_img_use{
-                    position: relative;
-                    z-index: 1;
-                    pointer-events: none;
-                }
-            }
-            .car_con_pro{
-                display: flex;
-                padding: 0;
-                flex-wrap: wrap;
-                flex-direction: row;
-                justify-content: space-evenly;
-                background-color: #79BBB5;
-                border-radius: 25px;
-                .car_con_pro_info{
-                    display: flex;
-                    margin: 15px 0;
-                    padding: 0;
-                    cursor: pointer;
-                    flex-direction: column;
-                    background-color: white;
-                    border-radius: 25px;
-                    overflow: hidden;
-                    img{
-                        margin: 15px auto;
-                        width: 90%;
+                .side_bar_img{
+                    height: 100%;
+                    max-height: calc(100% - 308px);
+                    .side_bar_img_use{
+                        width: 100%;
                         height: 100%;
-                        max-height: 300px;
-                    }
-                    span{
-                        display: flex;
-                        width: 100%;
-                        height: 40px;
-                        background-color: white;
-                        flex-direction: column;
-                        justify-content: center;
-                        text-align: center;
-                        position: absolute;
-                        bottom: 32px;
-                        // border-radius: 0 0 25px 25px;
-                    }
-                    .car_con_pro_check{
-                        display: flex;
-                        width: 100%;
-                        height: 32px;
-                        background-color: white;
-                        flex-direction: row;
-                        justify-content: center;
-                        position: absolute;
-                        bottom: 0;
-                        border-radius: 0 0 25px 25px;
-                        i{
-                            width: 32px;
-                            height: 32px;
-                            font-size: 28px;
-                        }
-                        .fa-check-circle{
-                            color: green;
-                        }
-                        .fa-times-circle{
-                            transform: rotate(45deg);
-                            opacity: 0.5;
-                        }
                     }
                 }
             }
         }
+        .car_con_pro{
+            display: flex;
+            padding: 0;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-evenly;
+            // background-color: #79BBB5;
+            border-radius: 25px;
+            .car_con_pro_info{
+                display: flex;
+                margin: 15px;
+                padding: 0;
+                cursor: pointer;
+                flex-direction: column;
+                box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+                background-color: white;
+                border: 4px solid transparent;
+                border-radius: 25px;
+                overflow: hidden;
+                img{
+                    margin: 15px auto;
+                    width: 90%;
+                    height: 100%;
+                    max-height: 300px;
+                }
+                span{
+                    display: flex;
+                    width: 100%;
+                    height: 40px;
+                    background-color: white;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                    position: absolute;
+                    bottom: 32px;
+                    // border-radius: 0 0 25px 25px;
+                }
+                .car_con_pro_check{
+                    display: flex;
+                    width: 100%;
+                    height: 32px;
+                    background-color: white;
+                    flex-direction: row;
+                    justify-content: center;
+                    position: absolute;
+                    bottom: 0;
+                    border-radius: 0 0 25px 25px;
+                    i{
+                        width: 32px;
+                        height: 32px;
+                        font-size: 28px;
+                    }
+                    .fa-check-circle{
+                        color: #149E04;
+                    }
+                    .fa-times-circle{
+                        transform: rotate(45deg);
+                        opacity: 0.5;
+                    }
+                }
+            }
+            .show_border{
+                border-color: #149E04 ;
+            }
+        }
         .car_course_area, .car_forum_area{
+            display: flex;
             margin: 20px auto;
             padding: 0;
+            flex-wrap: wrap;
             border-radius: 25px;
             box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
             background-color: rgba(255, 255, 255, 0.7);
@@ -316,7 +354,7 @@ body.car_body{
                     }
                 }
                 .car_forum_list_info:hover{
-                    transform: scale(1.1);
+                    transform: scale(1.05);
                     background: #f6f3ed;
                 }
             }
@@ -325,14 +363,18 @@ body.car_body{
             }
         }
         .car_con_plot_area{
+            display: none;
             margin-top: 10px;
             padding: 0;
+            height: fit-content;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
             position: absolute;
             opacity: 0;
             z-index: -1;
             h3{
                 width: fit-content;
-                margin: 0 auto;
+                margin: 15px auto;
             }
             .car_con_plot{
                 margin-bottom: 60px;
@@ -340,21 +382,10 @@ body.car_body{
             }
         }
         .showPlot{
+            display: block;
             position: relative;
             opacity: 1;
             z-index: 1;
         }
     }
-}
-.fa-arrow-circle-up{
-    cursor: pointer;
-    font-size: 40px;
-    position: fixed;
-    bottom: 10px;
-    right: -50px;
-    z-index: 2;
-    transition: right 1.5s;
-}
-.car_icon_show{
-    right: 10px;
 }

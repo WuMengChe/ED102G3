@@ -10,10 +10,12 @@ new Vue({
       openLight: false,
       contentIsOpen: false,
       type: 'all',
-      select: '全部文章'
+      select: '全部文章',
+      stopScroll: false
     }
   },
   mounted() {
+
     fetch('./json/forum.json')
       .then(res => res.json())
       .then(information => {
@@ -23,14 +25,24 @@ new Vue({
 
   },
   watch: {
+    stopScroll: function () {
+      console.log(this.stopScroll)
+      if (this.stopScroll) {
+        document.body.classList.add('noScroll');
+      } else {
+        document.body.classList.remove('noScroll');
+
+      }
+    },
     filter: function (value) {
       if (value.length == 0) {
         this.searchResult = this.information;
       }
     },
     select: function (value) {
+      this.searchResult = this.information;
       if (value == "全部文章") {
-        this.searchResult = this.information
+        this.searchResult = this.information;
       } else if (value == "熱門討論") {
         this.searchResult = this.information.sort(function (a, b) {
           return a.d_heart < b.d_heart ? 1 : -1;
@@ -47,8 +59,11 @@ new Vue({
     openContent() {
       if (this.contentIsOpen) {
         this.contentIsOpen = false
+        this.stopScroll = false
       } else {
         this.contentIsOpen = true
+        this.stopScroll = true
+        console.log(this.stopScroll)
       }
     },
     //關閉燈箱
@@ -66,6 +81,7 @@ new Vue({
         return element.d_type == type
       });
       this.searchResult = result;
+      this.select = "選擇分類";
     },
     //關鍵字搜尋
     searchContent() {
@@ -92,8 +108,10 @@ new Vue({
     accuse_btn() {
       if (this.accuseIsOpen) {
         this.accuseIsOpen = false
+        this.stopScroll = false
       } else {
         this.accuseIsOpen = true
+        this.stopScroll = true
       }
     },
     //愛心
@@ -110,5 +128,10 @@ new Vue({
     toggleDropdown() {
       this.isOpen = !this.isOpen;
     },
+    closeOverlay() {
+      // alert("124")
+      this.contentIsOpen = false
+      this.stopScroll = false
+    }
   },
 });
