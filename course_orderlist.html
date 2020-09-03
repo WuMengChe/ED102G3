@@ -133,6 +133,10 @@
                                 <h2>課程清單</h2>
                                 <!-- <button class="btn_primary" @click="receive_cookie">接收cookie</button> -->
                                 <!-- 課程細項 -->
+                                <div class="pre_list" v-show="cart_items.length == 0">
+                                    <p>尚未添加課程，前去<a href="course_main.html" class="btn_second">探索課程</a></p>
+
+                                </div>
                                 <ul>
                                     <li v-for="card in cart_items">
                                         <div class="cus_card">
