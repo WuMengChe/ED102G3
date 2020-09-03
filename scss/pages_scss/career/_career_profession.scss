@@ -33,12 +33,9 @@ body.car_pro_body{
         .car_pro_info{
             display: flex;
             flex-direction: column;
-            
-            // background-color: wheat;
             h1{
                 margin: 10px auto;
                 width: fit-content;
-                background-color: #BCEAFF;
             }
             img{
                 margin: 10px auto;
@@ -79,40 +76,81 @@ body.car_pro_body{
                 }
             }
         }
-        .car_pro_single{
-            flex-direction: row;
-            div:first-child{
-                padding-left: 0;
+        .car_pro_con_area{
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 40px;
+            *{
+                padding: 0;
+            }
+            .order_double{
+                order: 1;
+            }
+            .order_first{
+                order: 0;
+            }
+            .order_second{
+                order: 2;
+            }
+            .car_pro_con_span{
+                display: flex;
+                text-align: center;
+                flex-direction: column;
+                justify-content: center;
+                // margin: 10px 0px;
+                // height: 40px;
+                font-size: 22px;
+                font-weight: 700;
+                color: white;
+                background-color: #AAAAAA;
+            }
+            h3{
+                display: flex;
+                padding-left: 10px;
+                width: 100%;
+                flex-direction: column;
+                justify-content: center;
+                font-size: 18px;
+            }
+            h3.car_pro_con_cen{
+                padding-left: 0px;
+                text-align: center;
+            }
+            ul{
+                margin: 0 10px;
+                padding: 8px 0;
+                width: 100%;
+                max-width: calc(100% - 20px);
+                li{
+                    display: flex;
+                    margin: 5px 0;
+                    padding-left: 10px;
+                    position: relative;
+                    font-size: 22px;
+                    span.car_li_color{
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 5px;
+                        left: 10px;
+                    }span.car_li_content{
+                        margin-left: 15px;
+                        font-size: 18px;
+                    }
+
+                }
             }
         }
-        .car_pro_single, .car_pro_skill{
-            display: flex;
-            margin: 10px auto;
-            flex-wrap: wrap;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 25px;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
-            .car_pro_skill_area{
-                display: flex;
-                padding: 0;
-                flex-wrap: wrap;
-                h3{
-                    display: flex;
-                    margin: 10px auto;
-                    flex-direction: row;
-                    justify-content: center;
-                }
-                span{
-                    display: flex;
-                    margin: 10px 0;
-                    padding: 10px 5px;
-                    align-items: center;
-                    border-radius: 25px;
-                    color: white;
-                    font-weight: 700;
-                    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-                }
+        .car_pro_con_pad{
+            padding-top: 50px;
+            height: fit-content;
+            .car_pro_con_area{
+                height: fit-content;
             }
+        }
+        .car_pro_con_mar{
+            margin: 10px 0;
         }
         .car_pro_lhs_plot_area{
             display: flex;
@@ -131,6 +169,5 @@ body.car_pro_body{
                 height: 300px;
             }
         }
-        
     }
 }

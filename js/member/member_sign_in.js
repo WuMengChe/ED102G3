@@ -33,12 +33,13 @@ let changeSignType = new Vue({
                     document.querySelector('.input_div #code').value = "";
                 }
                 else{
-                    // window.location.href = "./member.html";
+                    alert('會員登入成功');
+                    window.location.href = "./member.html";
                 }
                 console.table(resp.data)
             })
             // .catch(error => console.log(error))
-            window.location.href = "./member.html";
+            // window.location.href = "./member.html";
         },
         changePageSignUp(){
             var memAccount = document.querySelector('.input_div #account').value;

@@ -1,6 +1,6 @@
 <?php
 // echo $_POST["image"];
-$image = $_POST["image"];
+$image = $_POST["hidden_front"];
 $image = explode(";", $image);
 $image = explode(",", $image);
 $image = str_replace(" ", "+", $image);

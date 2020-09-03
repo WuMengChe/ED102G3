@@ -72,6 +72,7 @@ let memData = {
     checkMemMessage: false,
     collecttionChange: false,
     liSecondArrow: -1,
+    myChart: '',
     rwdClickPage: false,
     rwdUse: false,
     fixMode: false,
@@ -92,6 +93,7 @@ let changeMemContent = new Vue({
     data: memData,
     mounted() {
         this.screenWidth = document.documentElement.clientWidth;
+        this.myChart = Array(this.analysisResult.length);
         if(this.screenWidth >= 992){
             var liChange = document.querySelectorAll('.mem_list>ul>li');
             liChange[0].style.backgroundColor = '#A0CADB';
@@ -138,6 +140,7 @@ let changeMemContent = new Vue({
     // },
     created() {
         window.addEventListener('resize', this.changeWidth);
+        window.addEventListener('resize', this.plotRadarReSize);
     },
     destroyed() {
         window.removeEventListener('resize', this.changeWidth);
@@ -225,7 +228,7 @@ let changeMemContent = new Vue({
             }
         },
         plotRadar(index, anaValue){
-            var myChart = echarts.init(document.querySelectorAll('.mem_ana_area')[index].querySelector('.mem_plot'), null, {renderer: 'svg'});
+            this.myChart[index] = echarts.init(document.querySelectorAll('.mem_ana_area')[index].querySelector('.mem_plot'), null, {renderer: 'svg'});
             var option = {
                 baseOption: {
                     title: {
@@ -287,7 +290,84 @@ let changeMemContent = new Vue({
                     }
                 ]
             };
-            myChart.setOption(option);
+            this.myChart[index].setOption(option);
+        },
+        plotRadarReSize(){
+            if(document.querySelectorAll('.mem_plot').length > 0){
+                for(var i = 0; i < this.myChart.length; i = i + 1){
+                    if(typeof this.myChart[i] != "undefined"){
+                        // console.log(i);
+                        var index = i;
+                        var anaValue = this.analysisResult[i];
+                        if (this.myChart[index] != null && this.myChart[index] != "" && this.myChart[index] != undefined) {
+                            this.myChart[index].dispose();//銷燬
+                        }
+                        this.myChart[index] = echarts.init(document.querySelectorAll('.mem_ana_area')[index].querySelector('.mem_plot'), null, {renderer: 'svg'});
+                        var option = {
+                            baseOption: {
+                                title: {
+                                    text: '分析結果',
+                                    show: false
+                                },
+                                tooltip: {},
+                                legend: {
+                                    data: ['分析結果'],
+                                    show: false
+                                },
+                                radar: {
+                                    shape: 'circle',
+                                    name: {
+                                        textStyle: {
+                                            color: 'black',
+                                            backgroundColor: '#999',
+                                            borderRadius: 3,
+                                            padding: [3, 1]
+                                        }
+                                    },
+                                    indicator: [
+                                        { name: '文藝型（A）', max: 100},
+                                        { name: '事務型（C）', max: 100},
+                                        { name: '企業型（E）', max: 100},
+                                        { name: '研究型（I）', max: 100},
+                                        { name: '實作型（R）', max: 100},
+                                        { name: '社會型（S）', max: 100}
+                                    ]
+                                },
+                                series: [{
+                                    name: '分析結果',
+                                    type: 'radar',
+                                    areaStyle: {normal: {}},
+                                    data: [
+                                        {
+                                            value: anaValue,
+                                            name: '分析結果'
+                                        }
+                                    ],
+                                    lineStyle: {
+                                        color: "rgba(50, 87, 200, 1)"
+                                    },
+                                    symbolSize: 10,
+                                    symbol: "diamond"
+                                }]
+                            },
+                            media: [
+                                {
+                                    query: {
+                                        minWidth: 200,
+                                        maxHeight: 300
+                                    },
+                                    option: {
+                                        series:[{
+                                            center: ['50%', '50%']
+                                        }]
+                                    }
+                                }
+                            ]
+                        };
+                        this.myChart[index].setOption(option);
+                    }
+                }
+            }
         },
         showOrderPage(index){
             document.querySelectorAll('.mem_ord_area')[index].querySelector('.mem_ord_det').classList.toggle('show');
