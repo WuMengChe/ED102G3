@@ -516,7 +516,7 @@
 
             },
             methods: {
-                add_cookie() {
+                add_storage() {
                     // let ids = Cookies.get('id'); // 1,3,5
                     // if (ids == null || ids == undefined) {
                     //     ids = "";
@@ -531,16 +531,20 @@
                     this.cart_items.forEach(item => {
                         ss += item.id + ",";
                     })
-                    Cookies.set('id', ss, { // 1,2,5
-                        expires: 7
-                    })
+
+                    // Cookies.set('id', ss, { // 1,2,5
+                    //     expires: 7
+                    // })
+                    localStorage.setItem('id', ss);
 
                 },
-                delete_cookie() {
-                    Cookies.remove('id')
+                delete_storage() {
+                    // Cookies.remove('id');
+                    localStorage.removeItem('id');
                 },
-                receive_cookie() {
-                    let get_id = Cookies.get('id');
+                receive_storage() {
+                    // let get_id = Cookies.get('id');
+                    let get_id = localStorage.getItem('id');
                     // alert(get_id);
                     let get_id_arr = get_id.split(',');
 
@@ -579,7 +583,7 @@
                             // this.add_cookie(item.id);
                         }
                     }
-                    this.add_cookie();
+                    this.add_storage();
 
 
                     // 1.明天處理個別刪除
@@ -604,7 +608,7 @@
                 },
                 remove_item(index) {
                     this.cart_items.splice(index, 1);
-                    this.add_cookie();
+                    this.add_storage();
                 }
 
             },
@@ -632,7 +636,7 @@
             },
 
             mounted() {
-                this.receive_cookie();
+                this.receive_storage();
 
 
                 // let get_id = Cookies.get('id');
@@ -656,6 +660,7 @@
             },
         })
     </script>
+
 
 
 </body>
