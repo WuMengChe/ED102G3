@@ -6,9 +6,13 @@ var myFullpage = new fullpage('.fullpage', {
     easing: 'easeInCirc',
     navigation: true,
     navigationPosition: 'right',
+    //導航小圓點的tooltips設定，預設為[]，注意按照順序設定 
+    navigationTooltips: ["職涯分析", "行業攻略", "職涯論壇", "探索課程", "時光明信片"],
+    //是否顯示當前頁面的導航的tooltip資訊，預設為false 
+    showActiveTooltip: true,
     // css3 false才可以背景fixed
     css3: false,
-
+    scrollingSpeed: 1200
 });
 
 //第一屏圓圈
@@ -41,117 +45,112 @@ $(document).ready(function() {
 });
 
 //第一屏換圖
-$(document).ready(function() {
-    if ($(window).width() >= 1145) {
-        $(".type").hide();
-        $('.real').click(function() {
-            $('.holland').hide();
-            $('.realistic').siblings().hide();
-            $('.realistic').show();
-        });
+// $(document).ready(function() {
+//     if ($(window).width() >= 1145) {
+//         $(".type").hide();
+//         $('.real').click(function() {
+//             $('.holland').hide();
+//             $('.realistic').siblings().hide();
+//             $('.realistic').show();
+//         });
 
-        $('.inv').click(function() {
-            $('.holland').hide();
-            $('.investigation').siblings().hide();
-            $('.investigation').show()
-        });
-        $('.art').click(function() {
-            $('.holland').hide();
-            $('.artistic').siblings().hide();
-            $('.artistic').show()
-        });
-        $('.soc').click(function() {
-            $('.holland').hide();
-            $('.social').siblings().hide();
-            $('.social').show()
-        });
-        $('.emp').click(function() {
-            $('.holland').hide();
-            $('.enterprising').siblings().hide();
-            $('.enterprising').show()
-        });
-        $('.con').click(function() {
-            $('.holland').hide();
-            $('.conventional').siblings().hide();
-            $('.conventional').show()
-        });
+//         $('.inv').click(function() {
+//             $('.holland').hide();
+//             $('.investigation').siblings().hide();
+//             $('.investigation').show()
+//         });
+//         $('.art').click(function() {
+//             $('.holland').hide();
+//             $('.artistic').siblings().hide();
+//             $('.artistic').show()
+//         });
+//         $('.soc').click(function() {
+//             $('.holland').hide();
+//             $('.social').siblings().hide();
+//             $('.social').show()
+//         });
+//         $('.emp').click(function() {
+//             $('.holland').hide();
+//             $('.enterprising').siblings().hide();
+//             $('.enterprising').show()
+//         });
+//         $('.con').click(function() {
+//             $('.holland').hide();
+//             $('.conventional').siblings().hide();
+//             $('.conventional').show()
+//         });
 
-    } else {
-        $('.large').slick({
-            slidesToShow: 1,
-            autoplay: false,
-            autoplaySpeed: 2000,
-            arrows: false,
-            responsive: [{
-                breakpoint: 1144,
-                settings: {
-                    slidesToShow: 1,
-                    autoplay: true,
-                }
-            }]
-        });
-    }
-    $(window).resize(function() {
-        if ($(window).width() >= 1145) {
-            $(".type").hide();
-            $('.real').click(function() {
-                $('.holland').hide();
-                $('.realistic').siblings().hide();
-                $('.realistic').show();
-            });
+//     } else {
+//         $('.large').slick({
+//             slidesToShow: 1,
+//             autoplay: false,
+//             autoplaySpeed: 2000,
+//             arrows: false,
+//             responsive: [{
+//                 breakpoint: 1144,
+//                 settings: {
+//                     slidesToShow: 1,
+//                     autoplay: true,
+//                 }
+//             }]
+//         });
+//     }
+//     $(window).resize(function() {
+//         if ($(window).width() >= 1145) {
+//             $(".type").hide();
+//             $('.real').click(function() {
+//                 $('.holland').hide();
+//                 $('.realistic').siblings().hide();
+//                 $('.realistic').show();
+//             });
 
-            $('.inv').click(function() {
-                $('.holland').hide();
-                $('.investigation').siblings().hide();
-                $('.investigation').show()
-            });
-            $('.art').click(function() {
-                $('.holland').hide();
-                $('.artistic').siblings().hide();
-                $('.artistic').show()
-            });
-            $('.soc').click(function() {
-                $('.holland').hide();
-                $('.social').siblings().hide();
-                $('.social').show()
-            });
-            $('.emp').click(function() {
-                $('.holland').hide();
-                $('.enterprising').siblings().hide();
-                $('.enterprising').show()
-            });
-            $('.con').click(function() {
-                $('.holland').hide();
-                $('.conventional').siblings().hide();
-                $('.conventional').show()
-            });
+//             $('.inv').click(function() {
+//                 $('.holland').hide();
+//                 $('.investigation').siblings().hide();
+//                 $('.investigation').show()
+//             });
+//             $('.art').click(function() {
+//                 $('.holland').hide();
+//                 $('.artistic').siblings().hide();
+//                 $('.artistic').show()
+//             });
+//             $('.soc').click(function() {
+//                 $('.holland').hide();
+//                 $('.social').siblings().hide();
+//                 $('.social').show()
+//             });
+//             $('.emp').click(function() {
+//                 $('.holland').hide();
+//                 $('.enterprising').siblings().hide();
+//                 $('.enterprising').show()
+//             });
+//             $('.con').click(function() {
+//                 $('.holland').hide();
+//                 $('.conventional').siblings().hide();
+//                 $('.conventional').show()
+//             });
 
-        } else {
-            $('.large').slick({
-                slidesToShow: 1,
-                autoplay: false,
-                autoplaySpeed: 2000,
-                arrows: false,
-                responsive: [{
-                    breakpoint: 1144,
-                    settings: {
-                        slidesToShow: 1,
-                        autoplay: true,
-                    }
-                }]
-            });
-        }
+//         } else {
+//             $('.large').slick({
+//                 slidesToShow: 1,
+//                 autoplay: false,
+//                 autoplaySpeed: 2000,
+//                 arrows: false,
+//                 responsive: [{
+//                     breakpoint: 1144,
+//                     settings: {
+//                         slidesToShow: 1,
+//                         autoplay: true,
+//                     }
+//                 }]
+//             });
+//         }
 
-    })
-
-
-});
-
-//holland:rwd
-$(document).ready(function() {
+//     })
 
 
-})
+// });
+
 
 
 // 排行榜
