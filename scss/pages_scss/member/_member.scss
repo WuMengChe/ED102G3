@@ -73,6 +73,23 @@ body.mem{
                 }
             }
         }
+        a.mem_con_ind_rwd{
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            z-index: 10;
+            i{
+                display: flex;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+            }
+            .fa-arrow-left:before{
+                font-size: 32px;
+            }
+        }
     }
     div.mem_con_area{
         display: flex;
