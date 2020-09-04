@@ -122,7 +122,7 @@ let careerProfessionVueContent = new Vue({
             alert('請先選擇職業');
             window.location.href = "./career.html";
         }
-        // localStorage.clear();
+        localStorage.clear();
     },
     created() {
         window.addEventListener('resize', this.changeWidth);
@@ -388,6 +388,12 @@ let careerProfessionVueContent = new Vue({
                                 barBorderColor: '#119BEB',
                                 color: '#119BEB'
                             },
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'top'
+                                }
+                            },
                             data: increaseSalary_1
                         }
                     ]
@@ -459,6 +465,12 @@ let careerProfessionVueContent = new Vue({
                                 barBorderColor: '#119BEB',
                                 color: '#119BEB'
                             },
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'top'
+                                }
+                            },
                             data: increaseSalary_1
                         },
                         {
@@ -467,6 +479,12 @@ let careerProfessionVueContent = new Vue({
                             itemStyle: {
                                 barBorderColor: '#EE7002',
                                 color: '#EE7002'
+                            },
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'top'
+                                }
                             },
                             data: increaseSalary_2
                         }

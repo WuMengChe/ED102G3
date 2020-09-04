@@ -516,55 +516,38 @@
 
             },
             methods: {
-                add_cookie() {
-                    // let ids = Cookies.get('id'); // 1,3,5
-                    // if (ids == null || ids == undefined) {
-                    //     ids = "";
-                    // }
-                    // ids += id + ","; // 1,3,5,8,
+                add_storage() {
 
-                    // Cookies.set('id', ids, { // 1,3,5,8
-                    //     expires: 7
-                    // })
-                    //----------------------------------------
                     let ss = "";
                     this.cart_items.forEach(item => {
-                        ss += item.id + ",";
-                    })
-                    Cookies.set('id', ss, { // 1,2,5
-                        expires: 7
+
+                        ss += JSON.stringify(item) + '*';
                     })
 
+
+                    localStorage.setItem('cart', ss);
+
                 },
-                delete_cookie() {
-                    Cookies.remove('id')
+                delete_storage() {
+
+                    localStorage.removeItem('cart');
                 },
-                receive_cookie() {
-                    let get_id = Cookies.get('id');
-                    // alert(get_id);
-                    let get_id_arr = get_id.split(',');
+                receive_storage() {
 
+                    let get_id = localStorage.getItem('cart');
 
-                    for (i = 0; i < this.category.length; i++) {
+                    let get_id_arr = get_id.split('*');
 
-                        for (j = 0; j < this.category[i].courses.length; j++) {
+                    get_id_arr.forEach(course => {
+                        let course_item = JSON.parse(course);
+                        this.cart_items.push(course_item);
 
-                            get_id_arr.forEach(id => {
+                    });
 
-                                if (id == this.category[i].courses[j].id) {
-                                    this.cart_items.push(this.category[i].courses[j]);
-                                };
-                            });
-
-                        }
-                    }
                 },
                 add_cart(item) {
                     if (this.cart_items.length == 0) {
                         this.cart_items.push(item);
-                        // this.add_cookie(item.id);
-
-
                     } else {
                         let check = true;
                         for (i = 0; i < this.cart_items.length; i++) {
@@ -576,35 +559,15 @@
 
                         if (check) {
                             this.cart_items.push(item);
-                            // this.add_cookie(item.id);
+
                         }
                     }
-                    this.add_cookie();
-
-
-                    // 1.明天處理個別刪除
-
-                    // 2.別的葉面 (先做撈出ID)
-
-                    // 3.DB
-
-
-
-                    // let ids = Cookies.get('id'); // 1,3,5
-                    // if (ids == null || ids == undefined) {
-                    //     ids = "";
-                    // }
-                    // ids += item.id + ","; // 1,3,5,8,
-
-                    // Cookies.set('id', ids, { // 1,3,5,8
-                    //         expires: 7
-                    //     })
-                    // 7天後這個Cookie就過期
+                    this.add_storage();
 
                 },
                 remove_item(index) {
                     this.cart_items.splice(index, 1);
-                    this.add_cookie();
+                    this.add_storage();
                 }
 
             },
@@ -632,30 +595,11 @@
             },
 
             mounted() {
-                this.receive_cookie();
-
-
-                // let get_id = Cookies.get('id');
-                // // alert(get_id);
-                // let get_id_arr = get_id.split(',');
-
-
-                // for (i = 0; i < this.category.length; i++) {
-
-                //     for (j = 0; j < this.category[i].courses.length; j++) {
-
-                //         get_id_arr.forEach(id => {
-
-                //             if (id == this.category[i].courses[j].id) {
-                //                 this.order_lists.push(this.category[i].courses[j]);
-                //             };
-                //         });
-
-                //     }
-                // }
+                this.receive_storage();
             },
         })
     </script>
+
 
 
 </body>
