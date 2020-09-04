@@ -2,7 +2,7 @@
 var myFullpage = new fullpage('.fullpage', {
     menu: '.header_wrap',
     sectionSelector: 'section',
-    paddingTop: '80px',
+    paddingTop: '100px',
     easing: 'easeInCirc',
     navigation: true,
     navigationPosition: 'right',
@@ -209,7 +209,7 @@ $(document).ready(function() {
     })
 });
 
-//課程輪播
+//課程&post card輪播
 $(document).ready(function() {
     $('.screen_carousel').slick({
         slidesToShow: 3,
@@ -239,6 +239,12 @@ $(document).ready(function() {
             }
 
         ]
+    });
+    $('#img').slick({
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: false,
     });
 });
 
@@ -348,12 +354,15 @@ $(document).ready(function() {
 //postcard
 Vue.component('cards', {
     template: `
-  <div class="card card--animated col-4">
-    <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+  <div class="cards">
+    <div class="line"></div>
+    <div class="card card--animated">
+        <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+    </div>
   </div> `,
 });
 
 new Vue({
-    el: '#cards',
+    el: '#img',
 
 })
