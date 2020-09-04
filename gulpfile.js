@@ -75,8 +75,12 @@ gulp.task("json", function() {
 gulp.task("php", function() {
     return gulp.src(["php_Use/*.php"]).pipe(gulp.dest("dest/php"));
 });
-//使用Control + C 可以停止監看，如果要重新監看就要再重新執行gulp
-//執行到這邊應該會自動開瀏覽器了，請確認一下dest中的html有沒有連接到對的路徑，若不知道如何設定，可以參考原檔中(非dest中的)的index.html
+
+gulp.task('bgPhp', function() {
+        return gulp.src(["backstage/php/*.php"]).pipe(gulp.dest("backstage/php"));
+    })
+    //使用Control + C 可以停止監看，如果要重新監看就要再重新執行gulp
+    //執行到這邊應該會自動開瀏覽器了，請確認一下dest中的html有沒有連接到對的路徑，若不知道如何設定，可以參考原檔中(非dest中的)的index.html
 
 //============================================================================================================
 //下面指令都已包含在default中，除非有必要不然不要個別下指令，但也不可以刪掉！！！
