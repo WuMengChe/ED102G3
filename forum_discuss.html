@@ -77,8 +77,14 @@
 
         <div class="bulletin">
           <marquee class="blink_text">
-            <span>公告</span>目前推出課程買二打八折
-            <span>公告</span>目前推出課程買二打八折
+            <div class="bulletin_text_wrap">
+              <span>公告</span>
+              <span class="bulletin_tex">目前推出課程買二打八折，優惠價格持續到2020年底喔！這麼好康的活動，趕快通知親朋好友一起來上課哦！</span>
+
+              <span>公告</span>
+              <span class="bulletin_tex">轉職是不是不知道該怎麼開始呢？快來看看大家的經驗分享吧！</span>
+            </div>
+
           </marquee>
         </div>
 
@@ -91,7 +97,7 @@
                   <div class="img_div">
                     <img :src="messages.d_img" alt="" class="dis_img" />
                   </div>
-                  <div class="dis_name">{{messages.d_name}}{{accuseIsOpen}}</div>
+                  <div class="dis_name">{{messages.d_name}}</div>
                   <div class="dis_date">{{messages.d_data}}</div>
                 </div>
                 <div class="tags_list">
@@ -309,9 +315,9 @@
   <script>
 
 
-    $(function () {
-      $(".marquee>div").width($("span").width());
-    });
+    // $(function () {
+    //   $(".marquee>div").width($("span").width());
+    // });
 
 
 
