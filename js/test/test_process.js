@@ -7,6 +7,8 @@ setInterval(
     nowtime=nowtime+1;
     $(".timimg").text(nowtime);
   }
-,1000)
+,1000);
+
+
 
 

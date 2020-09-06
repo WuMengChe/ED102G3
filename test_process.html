@@ -13,7 +13,7 @@
 </head>
 <body>
     @@include('app/header.html')
-    <div class="during_test_wrap ">
+    <div class="during_test_wrap " id="testProcess">
         <main class="main_during_test container">
             <div class="question_bx">
                  <!-- 時間去哪了呢 -->
@@ -24,22 +24,22 @@
                  <div class="topic_bx">
                 <div class="img_bx"><img src="./img/test/host.svg"alt=""></div>
                 <div class="question">
-                <P class="topic">Q1:你是貓派還是狗派?</P>
+                <P class="topic">{{ options[index].question }}</P>
             </div>
         </div>
         </div>
             <div class="answer_option_wrap">
 
-                <div class="answer_option option1">
-                        <img class="cat cat_r " src="./img/test/cat.svg"  alt="">
-                        <p class="a1">當然是貓派</p>
-                </div>
+                <a class="answer_option option1" v-on:click="changeIndex(1)"  >
+                        <img class="cat cat_r " :src="options[index].src1"  alt="">
+                        <p class="a1">{{ options[index].answer1 }}</p>
+                </a>
                 <div class="compare">
                    <p>VS</p>
                 </div>
-                <a href="./test_result.html" class="answer_option option2">
-                    <img class=" cat cat_l" src="./img/test/cat2.svg"  alt="">
-                    <p class="a2">多貓派</p>
+                <a class="answer_option option2"  v-on:click="changeIndex(1)">
+                    <img class=" cat cat_l" :src="options[index].src2"  alt="">
+                    <p class="a2">{{ options[index].answer2 }}</p>
                 </a>
             </div>
             <div class="progress_bar_bx">
@@ -53,10 +53,10 @@
         @@include('app/script.html')
     </div>
   
-    <script type="text/javascript" src="./js/test/jquery-3.5.1.min.js"></script>
-
-<script type="text/javascript">
-
+    <script type="text/javascript" src="./js/test/jquery-3.5.1.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
+   
+<script>
 // 計時器
 var nowtime=0
 setInterval(
@@ -64,25 +64,39 @@ setInterval(
     nowtime=nowtime+1;
     $(".timimg").text(nowtime);
   }
-,1000)
+,1000);
 
-$(document).ready(function(){
-			$(".answer_option").click(function(){
-                $(".cat_l").attr('src',"./img/test/cat3.svg"); 
-                $(".cat_r").attr('src',"./img/test/cat4.svg"); 
-                $(".a1").text("賓士黑");
-                $(".a2").text("暹羅貓");
-                $(".topic").text("Q18:哪一種黑眼圈更可愛?");
-                $(".progress_bar").css({
-                    'width':'90%'
-                });
-                $(".prg").text("17/18");
-			});
-		});
+// vueHere
+let data ={
+  question : 'Q1:在閒暇之餘，你喜歡做什麼事？',
+  src1:'./img/test/answerimg/0101.svg',
+  src2:'./img/test/answerimg/0102.svg',
+  answer1:'畫圖',
+  answer2:'拼圖',
+  index:0,
+  options:[
+      {question:'在閒暇之餘你喜歡做什麼事？', src1:'./img/test/answerimg/0101.svg',
+      src2:'./img/test/answerimg/0102.svg',answer1:'畫圖',answer2:'拼圖'},
+      {question:'身為大四生的你只差一門課就畢業，你會選擇什麼樣的課程？', src1:'./img/test/answerimg/0201.svg',
+      src2:'./img/test/answerimg/0202.svg',answer1:'寫作',answer2:'國際貿易'},
+      {question:'有天你跟著家人來到一座森林裡野餐，心情不好的你會：', src1:'./img/test/answerimg/0301.svg',
+      src2:'./img/test/answerimg/0302.svg',answer1:'到處走走看有沒有特別的昆蟲',answer2:'找個陰涼處坐下來欣賞美麗的景色'},
+      {question:'如果你在深山裡迷路了，你會？', src1:'./img/test/answerimg/0401.svg',
+      src2:'./img/test/answerimg/0402.svg',answer1:'寫作',answer2:'國際貿易'},
+      {question:'身為大四生的你只差一門課就畢業，你會選擇什麼樣的課程？', src1:'./img/test/answerimg/0501.svg',
+      src2:'./img/test/answerimg/0502.svg',answer1:'寫作',answer2:'國際貿易'}
 
-
-
-
+  ]
+}
+let  testtest = new Vue({
+  el: '#testProcess',
+  data: data,
+  methods: {
+      changeIndex(change){
+        this.index += change
+      }
+  },
+})
 </script>
 </body>
 </html>
