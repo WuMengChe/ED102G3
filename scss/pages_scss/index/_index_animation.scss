@@ -39,7 +39,7 @@
     }
 }
 
-@include keyframes(auditor) {
+@include keyframes(third) {
     from {
         top: 215px;
     }
@@ -48,7 +48,7 @@
     }
 }
 
-@include keyframes(teacher) {
+@include keyframes(second) {
     from {
         top: 215px;
     }
@@ -57,7 +57,7 @@
     }
 }
 
-@include keyframes(doctor) {
+@include keyframes(first) {
     from {
         top: 215px;
     }
@@ -112,5 +112,23 @@
     }
     100% {
         transform: rotate(0deg);
+    }
+}
+
+@include keyframes(stairDown) {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@include keyframes(stairUp) {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }

@@ -151,6 +151,17 @@ $(document).ready(function() {
 
 // });
 
+//career vue
+// new Vue({
+//     el: '.index_sal_img',
+//     data: {
+//         careers: [{
+//             img: './img/index/index_2nd/auditor.png',
+//             class: 'third',
+//             stage: './img/index/index_2nd/stage_block.png'
+//         }, ]
+//     },
+// })
 
 
 // 排行榜
@@ -209,8 +220,15 @@ $(document).ready(function() {
     })
 });
 
-//課程&post card輪播
+//論壇&課程&post card輪播
 $(document).ready(function() {
+    $('.message').slick({
+        vertical: true,
+        slidesToShow: 4,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: false,
+    });
     $('.screen_carousel').slick({
         slidesToShow: 3,
         autoplay: true,
@@ -226,25 +244,19 @@ $(document).ready(function() {
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
                     slidesToScroll: 1
                 }
             },
-            {
-                breakpoint: 576,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
-            }
 
         ]
     });
     $('#img').slick({
-        slidesToShow: 3,
+        slidesToShow: 1,
         autoplay: true,
         autoplaySpeed: 2000,
         arrows: false,
+        slidesToScroll: 1,
     });
 });
 
@@ -339,16 +351,7 @@ new Vue({
     },
 });
 
-//論壇--輪播
-$(document).ready(function() {
-    $('.message').slick({
-        vertical: true,
-        slidesToShow: 4,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows: false,
-    });
-});
+
 
 
 //postcard
@@ -356,8 +359,29 @@ Vue.component('cards', {
     template: `
   <div class="cards">
     <div class="line"></div>
-    <div class="card card--animated">
-        <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+    <div class="allCard">
+        <div class="card card--animated">
+            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+        </div>
+        <div class="card card--animated">
+            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+        </div>
+        <div class="card card--animated">
+            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+        </div>
+    </div>
+    <div class="allCard allCard_rwd">
+        <div class="card card--animated">
+            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+        </div>
+        <div class="card card--animated">
+            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+        </div>
+    </div>
+    <div class="allCard allCard_small">
+        <div class="card card--animated">
+            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+        </div>
     </div>
   </div> `,
 });
