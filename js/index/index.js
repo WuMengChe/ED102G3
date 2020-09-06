@@ -151,6 +151,17 @@ $(document).ready(function() {
 
 // });
 
+//career vue
+// new Vue({
+//     el: '.index_sal_img',
+//     data: {
+//         careers: [{
+//             img: './img/index/index_2nd/auditor.png',
+//             class: 'third',
+//             stage: './img/index/index_2nd/stage_block.png'
+//         }, ]
+//     },
+// })
 
 
 // 排行榜
@@ -233,17 +244,10 @@ $(document).ready(function() {
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
                     slidesToScroll: 1
                 }
             },
-            {
-                breakpoint: 576,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
-            }
 
         ]
     });

@@ -42,14 +42,14 @@ div.header_wrap {
 .fp-viewing-1 {
     // background-position: 0% 100%;
     .fp-tableCell {
-        .auditor {
-            @include animation(auditor)
+        .thirdSal {
+            @include animation(third)
         }
-        .teacher {
-            @include animation(teacher);
+        .secondSal {
+            @include animation(second);
         }
-        .doctor {
-            @include animation(doctor);
+        .firstSal {
+            @include animation(first);
         }
         .stages {
             .stageS {
@@ -229,20 +229,20 @@ div.header_wrap {
                     overflow: hidden;
                     padding: 0;
                     text-align: center;
-                    .auditor {
+                    .thirdSal {
                         @include position(100px, relative) {
                             top: 125px;
                             right: 5px;
                             z-index: 1;
                         }
                     }
-                    .teacher {
+                    .secondSal {
                         @include position(100px, relative) {
                             top: 75px;
                             z-index: 1;
                         }
                     }
-                    .doctor {
+                    .firstSal {
                         @include position(100px, relative) {
                             top: 20px;
                             z-index: 1;
@@ -308,15 +308,15 @@ div.header_wrap {
                         position: absolute;
                         top: 130px;
                         height: 480px;
-                        .auditor {
+                        .thirdSal {
                             @include position(80px, relative) {
                                 right: 20px;
                             }
                         }
-                        .teacher {
+                        .secondSal {
                             @include position(80px, relative) {}
                         }
-                        .doctor {
+                        .firstSal {
                             @include position(80px, relative) {
                                 left: 10px;
                             }
@@ -524,71 +524,138 @@ div.header_wrap {
                 // border: 1px solid #000;
                 @include screen;
                 .index_cour_text {
+                    // border: 1px solid red;
                     h1 {
-                        margin: $title 0;
+                        margin-top: $title;
+                        margin-bottom: 20px;
                     }
-                    .pad {
+                    .courseMain {
                         // border: 1px solid #000;
-                        width: 55%;
-                        margin: 0 auto;
-                        position: relative;
-                        &::before {
-                            content: "";
+                        width: 100%;
+                        text-align: center;
+                        padding-bottom: 10px;
+                        .pad {
                             // border: 1px solid #000;
-                            position: absolute;
-                            left: -7.5%;
-                            bottom: 0;
-                            background-image: url(../../../img/index/index_4th/leftboy.png);
-                            background-repeat: no-repeat;
-                            width: 100px;
-                            height: 350px;
-                        }
-                        .screen_bg {
-                            background-color: #727171;
-                            border-top-left-radius: 50px;
-                            border-top-right-radius: 50px;
-                            height: 430px;
-                            padding: 30px;
-                            box-shadow: $card_shadow;
-                            .screen {
-                                background-color: #fff;
+                            width: 70%;
+                            min-width: 440px;
+                            position: relative;
+                            display: inline-block;
+                            vertical-align: bottom;
+                            &::before {
+                                content: "";
+                                // border: 1px solid #000;
+                                position: absolute;
+                                left: -48px;
+                                bottom: 0;
+                                background-image: url(../../../img/index/index_4th/leftboy.png);
+                                background-repeat: no-repeat;
+                                width: 80px;
                                 height: 350px;
-                                position: relative;
-                                .screen_carousel {
-                                    .item {
-                                        display: inline-block;
-                                        border: 1px solid #ececec;
-                                        height: fit-content;
-                                        margin: 20px 0;
-                                        padding: 0 10px;
-                                        box-shadow: $card_shadow;
-                                        img {
-                                            width: 100%;
-                                        }
-                                        h5 {}
-                                        p {
-                                            overflow: hidden;
-                                            white-space: nowrap;
-                                            text-overflow: ellipsis;
-                                            margin: 10px 0;
+                            }
+                            .screen_bg {
+                                background-color: #C3C3C4;
+                                border-top-left-radius: 50px;
+                                border-top-right-radius: 50px;
+                                height: 430px;
+                                padding: 30px;
+                                box-shadow: $card_shadow;
+                                .screen {
+                                    background-color: #fff;
+                                    height: 350px;
+                                    margin-top: 10px;
+                                    border-radius: 20px;
+                                    overflow: hidden;
+                                    .screen_carousel {
+                                        // border: 1px solid #000;
+                                        .item {
+                                            display: inline-block;
+                                            // border: 1px solid #E8E8E8;
+                                            height: fit-content;
+                                            padding: 0 10px;
+                                            margin-top: 50px;
+                                            box-shadow: $card_shadow;
+                                            img {
+                                                width: 100%;
+                                            }
+                                            h5 {}
+                                            p {
+                                                overflow: hidden;
+                                                white-space: nowrap;
+                                                text-overflow: ellipsis;
+                                                margin: 10px 0;
+                                            }
                                         }
                                     }
                                 }
+                            }
+                            .screen_bt {
+                                background-color: #E8E8E8;
+                                border-bottom-left-radius: 50px;
+                                border-bottom-right-radius: 50px;
+                                height: 50px;
+                                box-shadow: $card_shadow;
                                 .btn_second {
                                     display: block;
                                     margin: 0 auto;
                                     // margin-top: 10px;
-                                    margin-bottom: 20px;
-                                    ;
                                 }
                             }
                         }
-                        .screen_bt {
-                            background-color: #c9caca;
-                            border-bottom-left-radius: 50px;
-                            border-bottom-right-radius: 50px;
-                            height: 50px;
-                            box-shadow: $card_shadow;
+                        @media screen and (max-width:767px) {
+                            .pad {
+                                &::before {
+                                    width: 0px;
+                                }
+                                .screen_bg {
+                                    .screen {
+                                        .screen_carousel {
+                                            margin-top: 0px;
+                                            .item {
+                                                margin-top: 10px;
+                                                box-shadow: none;
+                                                .img {
+                                                    width: 50%;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .stairBoy {
+                            display: inline-block;
+                            position: relative;
+                            // border: 1px solid #000;
+                            .stair {}
+                            .boys {
+                                // border: 1px solid #000;
+                                position: absolute;
+                                top: 0;
+                                left: 20px;
+                                .upBoy {
+                                    width: 75px;
+                                    opacity: 0;
+                                    @include animation(stairUp, infinite, 2s, linear) {}
+                                    img {
+                                        width: 100%;
+                                    }
+                                }
+                                .btBoy {
+                                    width: 80px;
+                                    // border: 1px solid #000;
+                                    margin-top: 35px;
+                                    opacity: 1;
+                                    @include animation(stairDown, infinite, 2s, linear) {}
+                                    img {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                        @media screen and (max-width:639px) {
+                            .stairBoy {
+                                display: none;
+                            }
                         }
                     }
                 }
