@@ -48,8 +48,7 @@
         <!-- --------------------正面開始 ------------------->
         <div class="postcard_front">
           <h2>正面</h2>
-          <form class="front_post" method="post" id="frontPost">
-            <input name="hidden_front" id="hidden_front" type="hidden" />
+          <div class="front_post" method="post" id="frontPost">
             <div class="mainStyle" id="frontCapture">
               <!-- 正面格式一 -->
               <label for="img1" class="style1" id="frontStyle1">
@@ -99,7 +98,7 @@
               </div>
 
             </div>
-          </form>
+          </div>
           <button id="toBack" class="btn_third" onclick="captureFront();">
             <!-- onclick="doCapture();" -->
             背面
@@ -148,7 +147,7 @@
               <i class="fas fa-arrow-left"></i>
               正面
             </button>
-            <a href="./post_date.html" id="choice_date" class="btn_third" onclick="captureBack();">選擇日期
+            <a href="javascript:;" id=" choice_date" class="btn_third" onclick="captureBack();">選擇日期
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>

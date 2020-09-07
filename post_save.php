@@ -1,9 +1,16 @@
 <?php
-// echo $_POST["image"];
-$image = $_POST["hidden_front"];
-$image = explode(";", $image);
-$image = explode(",", $image);
-$image = str_replace(" ", "+", $image);
-$image = base64_decode($image);
-file_put_contents("uploads/filename.jpeg", $image);
-echo "Done";
+//--------------------正面
+$image = str_replace('data:image/png;base64,', '', $_POST["img"]); //將檔案格式的資訊拿掉
+$image = str_replace(' ', '+', $image);
+$data = base64_decode($image);
+//準備好要存的filename
+$fileName = date("Ymd");  //或time()
+if(file_exists("uploads") === false){
+  mkdir("uploads");
+}
+
+$time = time();
+$filename = "uploads/{$time}.png";
+file_put_contents($filename, $data);
+echo $filename;
+//--------------------
