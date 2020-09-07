@@ -87,6 +87,9 @@ div.header_wrap {
 #fp-nav ul li:hover .fp-tooltip,
 #fp-nav.fp-show-active a.active+.fp-tooltip {
     color: black;
+    border: 1px solid #000;
+    height: fit-content;
+    font-size: 14px;
 }
 
 .index {

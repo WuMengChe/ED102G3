@@ -102,7 +102,7 @@ gulp.task('mysql', function() {
 
 });
 gulp.task("watch", function() {
-    gulp.watch("./scss/**/*.scss", ["sass"]); //監看sass的變動，等同於vue的watch sass功能
+    gulp.watch("./php/*", ["php"]);
 }); // gulp watch => 執行watch sass的功能
 //使用Control + C 可以停止監看，如果要重新監看就要再重新執行
 
