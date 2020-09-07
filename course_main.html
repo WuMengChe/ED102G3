@@ -535,12 +535,14 @@
                 receive_storage() {
 
                     let get_id = localStorage.getItem('cart');
-
                     let get_id_arr = get_id.split('*');
+                    get_id_arr.forEach((course, index) => {
 
-                    get_id_arr.forEach(course => {
-                        let course_item = JSON.parse(course);
-                        this.cart_items.push(course_item);
+                        if (index < get_id_arr.length - 1) {
+                            let course_item = JSON.parse(course);
+                            this.cart_items.push(course_item);
+                        }
+
 
                     });
 
