@@ -21,7 +21,7 @@ echo $filename;
 // $dataBack = base64_decode($imageBack);
 // //準備好要存的filename
 // $time = time();
-// $filenameBack = "../uploads/{$time}.png";
+// $filenameBack = "../php/uploads/{$time}back.png";
 // if (file_exists("uploads") === false) {
 //   mkdir("uploads");
 // }

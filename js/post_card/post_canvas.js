@@ -23,7 +23,7 @@ function captureFront() {
         sessionStorage["frontImg"] = this.responseText;
         // alert(this.responseText);
         // console.log(this.responseText);
-        // myFileName = this.responseText;
+        myFileName = this.responseText;
         // location.href = "post_date.html?filename=" + this.responseText;
         //-----------------
       }
@@ -46,7 +46,7 @@ function captureBack() {
   //   let dataURLBack = canvas.toDataURL("image/png", 1);
 
   //   var ajaxBack = new XMLHttpRequest();
-  //   ajaxBack.open("POST", "post_save.php", true);
+  //   ajaxBack.open("POST", "../php/post_save.php", true);
   //   ajaxBack.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   //   ajaxBack.send("imgBack=" + dataURLBack);
 
@@ -55,7 +55,7 @@ function captureBack() {
   //       sessionStorage["backImg"] = this.responseText;
   //       // alert(this.responseText);
   //       // console.log(this.responseText);
-  //       // myFileName = this.responseText;
+  //       myFileName = this.responseText;
   //       // location.href = "post_date.html?filename=" + this.responseText;
   //       //-----------------
   //     }
