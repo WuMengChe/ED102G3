@@ -1,41 +1,13 @@
 let carData = {
+    loadData:'',
+    loadDataTemp: new Array(),
     industry:[
-        {typeName: "實作型", class: "practical_bg_color", backgroundColor: "#79BBB5", detail: [
-            {name: "送貨人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "廚師", src: "./img/career/廚師.svg", isCheck: false},
-            {name: "引擎技術人員", src: "./img/career/引擎技術員.svg", isCheck: false},
-            {name: "餐飲服務生", src: "./img/career/餐飲服務員.svg", isCheck: false}
-        ]},
-        {typeName: "研究型", class: "research_bg_color", backgroundColor: "#a0cadb", detail: [
-            {name: "品檢人員", src: "./img/career/品檢員.svg", isCheck: false},
-            {name: "工程師", src: "./img/career/工程師.svg", isCheck: false},
-            {name: "研究人員", src: "./img/career/研究員.svg", isCheck: false},
-            {name: "醫生", src: "./img/career/醫生.svg", isCheck: false}
-        ]},
-        {typeName: "文藝型", class: "art_bg_color", backgroundColor: "#ccc5e3", detail: [
-            {name: "室內設計師", src: "./img/career/室內設計師.svg", isCheck: false},
-            {name: "攝影師", src: "./img/career/攝影師.svg", isCheck: false},
-            {name: "文字工作者", src: "./img/career/文字編輯.svg", isCheck: false},
-            {name: "髮型師", src: "./img/career/理髮師.svg", isCheck: false}
-        ]},
-        {typeName: "社會型", class: "social_bg_color", backgroundColor: "#f4c3c5", detail: [
-            {name: "牙科助理", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "社工", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "老師", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "醫護人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
-        ]},
-        {typeName: "企業型", class: "thing_bg_color", backgroundColor: "#e7995f", detail: [
-            {name: "保險業務", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "產品行銷人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "賣場管理人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "法務人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
-        ]},
-        {typeName: "事務型", class: "enterprise_bg_color", backgroundColor: "#f7ea92", detail: [
-            {name: "國貿人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "會計", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "行政人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "保全人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
-        ]}
+        {typeName: "", class: "practical_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "research_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "art_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "social_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "thing_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "enterprise_bg_color", backgroundColor: "", detail: new Array()}
     ],
     industryCourse: [
         {typeName: "實作型(R)", detail: [
@@ -90,13 +62,13 @@ let carData = {
         ]},
     ],
     careerPlot:{
-        industryRank: ['醫生', '老師', '品檢人員', '產品行銷人員', '保險業務'],
-        industrySalary: [90000, 49500, 46500, 44998, 44911],
+        industryRank: new Array(5),
+        industrySalary: new Array(5),
         crownSrc: "./img/career/crown.png"
     },
     sendDataTemp: [
-        {typeName: "", typeIndex: "", name: "", backgroundColor: "", industryIndex: ""},
-        {typeName: "", typeIndex: "", name: "", backgroundColor: "", industryIndex: ""}
+        {typeIndex: "", name: "", industryIndex: "", proNo: ""},
+        {typeIndex: "", name: "", industryIndex: "", proNo: ""}
     ],
     chooseIndustry: -1,
     myChart: '',
@@ -109,15 +81,86 @@ let careerVueContent = new Vue({
     el: '#car_vue',
     data: carData,
     mounted() {
+        axios
+        .post('./php/carreerLoadData.php')
+        .then((resp) => {
+            this.loadData = resp.data;
+            this.loadData = this.loadData.split(']');
+            for(var i = 0; i < this.loadData.length-1; i++){
+                this.loadData[i] = this.loadData[i] + ']';
+                this.loadDataTemp[i] = JSON.parse(this.loadData[i]);
+            }
+            var dataInsertControl = [0, 0, 0, 0, 0, 0];
+            for(var i = 0; i < this.loadDataTemp[0].length; i++){
+                if(this.loadDataTemp[0][i].IND_NO == 'R'){
+                    this.industry[0].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[0].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[0].detail.push(new Object());
+                    this.industry[0].detail[dataInsertControl[0]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[0].detail[dataInsertControl[0]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[0].detail[dataInsertControl[0]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[0].detail[dataInsertControl[0]].isCheck = false;
+                    dataInsertControl[0] = dataInsertControl[0] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'I'){
+                    this.industry[1].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[1].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[1].detail.push(new Object());
+                    this.industry[1].detail[dataInsertControl[1]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[1].detail[dataInsertControl[1]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[1].detail[dataInsertControl[1]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[1].detail[dataInsertControl[1]].isCheck = false;
+                    dataInsertControl[1] = dataInsertControl[1] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'A'){
+                    this.industry[2].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[2].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[2].detail.push(new Object());
+                    this.industry[2].detail[dataInsertControl[2]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[2].detail[dataInsertControl[2]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[2].detail[dataInsertControl[2]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[2].detail[dataInsertControl[2]].isCheck = false;
+                    dataInsertControl[2] = dataInsertControl[2] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'S'){
+                    this.industry[3].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[3].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[3].detail.push(new Object());
+                    this.industry[3].detail[dataInsertControl[3]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[3].detail[dataInsertControl[3]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[3].detail[dataInsertControl[3]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[3].detail[dataInsertControl[3]].isCheck = false;
+                    dataInsertControl[3] = dataInsertControl[3] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'E'){
+                    this.industry[4].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[4].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[4].detail.push(new Object());
+                    this.industry[4].detail[dataInsertControl[4]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[4].detail[dataInsertControl[4]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[4].detail[dataInsertControl[4]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[4].detail[dataInsertControl[4]].isCheck = false;
+                    dataInsertControl[4] = dataInsertControl[4] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'C'){
+                    this.industry[5].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[5].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[5].detail.push(new Object());
+                    this.industry[5].detail[dataInsertControl[5]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[5].detail[dataInsertControl[5]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[5].detail[dataInsertControl[5]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[5].detail[dataInsertControl[5]].isCheck = false;
+                    dataInsertControl[5] = dataInsertControl[5] + 1;
+                }
+            }
+            for(var i = 0; i < this.loadDataTemp[1].length; i++){
+                this.careerPlot.industryRank[i] = this.loadDataTemp[1][i].職業名稱;
+                this.careerPlot.industrySalary[i] = Math.round(this.loadDataTemp[1][i].薪資平均);
+            }
+            this.rankingPlot();
+        })
         this.screenWidth = document.documentElement.clientWidth;
-        this.rankingPlot();
     },
-    // watch: {
-    //     scrollHeight: function(val){
-    //         this.scrollHeight = document.documentElement.scrollTop;
-    //         console.log(this.scrollHeight)
-    //     }
-    // },
     created() {
         window.addEventListener('resize', this.changeWidth);
         window.addEventListener('resize', this.rankingPlot);
@@ -176,18 +219,8 @@ let careerVueContent = new Vue({
                 grid: {
                     left: gridUse
                 },
-                // toolbox: {
-                //     show: true,
-                //     feature: {
-                //         saveAsImage: {}
-                //     }
-                // },
                 xAxis: {
                     type: 'value',
-                    // name: 'NTD',
-                    max: function(value){
-                        return value.max + 10000;
-                    },
                     axisLabel: {
                         formatter: '{value}'
                     }
@@ -195,27 +228,16 @@ let careerVueContent = new Vue({
                 yAxis: {
                     type: 'category',
                     inverse: true,
-                    data: ['醫生', '老師', '品檢人員', '產品行銷人員', '保險業務'],
+                    data: this.careerPlot.industryRank,
                     axisLabel: {
                         formatter: function (value) {
-                            // return '{' + value + '| }\n{value|' + value + '}';
                             return value;
                         },
                         margin: 5,
-                        // backgroundColor: "rgba(193, 45, 45, 1)",
                         rich: {
                             value: {
                                 align: 'center'
                             },
-                            // 醫生: {
-                            //     height: 40,
-                            //     align: 'center',
-                            //     backgroundColor: {
-                            //         width: 40,
-                            //         height: 40,
-                            //         image: '../img/career/crown.png'
-                            //     }
-                            // }
                         }
                     }
                 },
@@ -249,35 +271,39 @@ let careerVueContent = new Vue({
         },
         storeData(indIndex, proIndex){
             if(this.industry[indIndex].detail[proIndex].name == this.sendDataTemp[0].name){
-                this.sendDataTemp[0].typeName = "";
+                // this.sendDataTemp[0].typeName = "";
                 this.sendDataTemp[0].typeIndex = "";
-                this.sendDataTemp[0].backgroundColor = "";
+                // this.sendDataTemp[0].backgroundColor = "";
                 this.sendDataTemp[0].industryIndex = "";
                 this.sendDataTemp[0].name = "";
+                this.sendDataTemp[0].proNo = "";
                 this.industry[indIndex].detail[proIndex].isCheck = false;
             }
             else if(this.industry[indIndex].detail[proIndex].name == this.sendDataTemp[1].name){
-                this.sendDataTemp[1].typeName = "";
+                // this.sendDataTemp[1].typeName = "";
                 this.sendDataTemp[1].typeIndex = "";
-                this.sendDataTemp[1].backgroundColor = "";
+                // this.sendDataTemp[1].backgroundColor = "";
                 this.sendDataTemp[1].industryIndex = "";
                 this.sendDataTemp[1].name = "";
+                this.sendDataTemp[1].proNo = "";
                 this.industry[indIndex].detail[proIndex].isCheck = false;
             }else{
                 if(this.sendDataTemp[0].industryIndex.length == 0){
-                    this.sendDataTemp[0].typeName = this.industry[indIndex].typeName;
+                    // this.sendDataTemp[0].typeName = this.industry[indIndex].typeName;
                     this.sendDataTemp[0].typeIndex = proIndex;
-                    this.sendDataTemp[0].backgroundColor = this.industry[indIndex].backgroundColor;
+                    // this.sendDataTemp[0].backgroundColor = this.industry[indIndex].backgroundColor;
                     this.sendDataTemp[0].industryIndex = indIndex;
                     this.sendDataTemp[0].name = this.industry[indIndex].detail[proIndex].name;
+                    this.sendDataTemp[0].proNo = this.industry[indIndex].detail[proIndex].proNo;
                     this.industry[indIndex].detail[proIndex].isCheck = true;
                 }
                 else if(this.sendDataTemp[1].industryIndex.length == 0){
-                    this.sendDataTemp[1].typeName = this.industry[indIndex].typeName;
+                    // this.sendDataTemp[1].typeName = this.industry[indIndex].typeName;
                     this.sendDataTemp[1].typeIndex = proIndex;
-                    this.sendDataTemp[1].backgroundColor = this.industry[indIndex].backgroundColor;
+                    // this.sendDataTemp[1].backgroundColor = this.industry[indIndex].backgroundColor;
                     this.sendDataTemp[1].industryIndex = indIndex;
                     this.sendDataTemp[1].name = this.industry[indIndex].detail[proIndex].name;
+                    this.sendDataTemp[1].proNo = this.industry[indIndex].detail[proIndex].proNo;
                     this.industry[indIndex].detail[proIndex].isCheck = true;
                 }
                 else{
@@ -294,11 +320,12 @@ let careerVueContent = new Vue({
         removeData(index){
             var indIndex = this.sendDataTemp[index].industryIndex;
             var proIndex = this.sendDataTemp[index].typeIndex;
-            this.sendDataTemp[index].typeName = "";
+            // this.sendDataTemp[index].typeName = "";
             this.sendDataTemp[index].typeIndex = "";
-            this.sendDataTemp[index].backgroundColor = "";
+            // this.sendDataTemp[index].backgroundColor = "";
             this.sendDataTemp[index].industryIndex = "";
             this.sendDataTemp[index].name = "";
+            this.sendDataTemp[index].proNo = "";
             this.industry[indIndex].detail[proIndex].isCheck = false;
             if((this.sendDataTemp[0].name.length > 0) || (this.sendDataTemp[1].name.length > 0)){
                 this.sendData = true;
@@ -308,11 +335,10 @@ let careerVueContent = new Vue({
             }
         },
         viewPro(){
-            localStorage.clear();
-            localStorage.pro_industryIndex_1 = this.sendDataTemp[0].industryIndex;
-            localStorage.pro_typeIndex_1 = this.sendDataTemp[0].typeIndex;
-            localStorage.pro_industryIndex_2 = this.sendDataTemp[1].industryIndex;
-            localStorage.pro_typeIndex_2 = this.sendDataTemp[1].typeIndex;
+            localStorage.removeItem('proNo_1');
+            localStorage.removeItem('proNo_2');
+            localStorage.proNo_1 = this.sendDataTemp[0].proNo;
+            localStorage.proNo_2 = this.sendDataTemp[1].proNo;
             window.location.href = "./career_profession.html";
         }
     },
