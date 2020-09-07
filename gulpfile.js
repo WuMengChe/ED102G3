@@ -47,8 +47,7 @@ gulp.task("bootstrap", function() {
 
 //9. 壓縮圖並存入dest/img資料夾中，請在終端機中輸入：gulp img
 gulp.task("img", function() {
-    gulp
-        .src("./img/**/*")
+    return gulp.src("./img/**/*")
         // .pipe(imagemin())
         .pipe(gulp.dest("dest/img"));
 });
@@ -73,7 +72,7 @@ gulp.task("json", function() {
 });
 
 gulp.task("php", function() {
-    return gulp.src(["php_Use/*.php"]).pipe(gulp.dest("dest/php"));
+    return gulp.src(["ph/*.php"]).pipe(gulp.dest("dest/php"));
 });
 
 gulp.task('bgPhp', function() {
@@ -84,7 +83,7 @@ gulp.task('bgPhp', function() {
 
 //============================================================================================================
 //下面指令都已包含在default中，除非有必要不然不要個別下指令，但也不可以刪掉！！！
-gulp.task('sass', ['img', 'js', 'fileinclude'], function() {
+gulp.task('sass', ['img', 'js', 'fileinclude', 'php'], function() {
     return gulp.src('./scss/**/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass().on("error", sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
@@ -98,6 +97,10 @@ gulp.task('sass', ['img', 'js', 'fileinclude'], function() {
     .pipe(gulp.dest("./dest/css"));
 });
 
+gulp.task('mysql', function() {
+    return gulp.src(["./set_MySQL/*"]).pipe(gulp.dest("dest/set_MySQL"));
+
+});
 gulp.task("watch", function() {
     gulp.watch("./scss/**/*.scss", ["sass"]); //監看sass的變動，等同於vue的watch sass功能
 }); // gulp watch => 執行watch sass的功能
