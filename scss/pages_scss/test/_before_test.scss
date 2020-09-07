@@ -35,14 +35,14 @@ div.before_test_wrap{
                 letter-spacing: 2px;
                 padding: 1% 2%;
                 margin:  0;
-                // border: 3px solid $second_color1;
-                // box-shadow: 5px 5px 1px$second_color1;
                 display: flex;
                 align-items: center;
+                box-shadow: 0px 5px 0px $second_color1; 
             }
 
             p{
                 line-height: 30px;
+                padding-top: 2%;
                 letter-spacing: 1px;
             }
         }
@@ -52,9 +52,14 @@ div.before_test_wrap{
             .cards_wrap{
                 // border: 1px solid blue;
                 display: flex;
-                justify-content: space-evenly;
-            
-
+                align-items: center;
+                justify-content: space-between;
+                @media screen  and (max-width: 1140px){ 
+                    justify-content: center;
+                flex-wrap: wrap;
+                }
+          
+              
             .type_card{
                 border: 5px solid $practical_color;
                 display: flex;
@@ -65,6 +70,17 @@ div.before_test_wrap{
                 background: #ffffff;
                 transition: linear .4s;
                box-shadow: 2px 2px 12px  rgba(0, 0, 0, 0.199);
+                
+               @media screen  and (max-width: 1140px){ 
+                width: 80%;
+                height: 100px;
+                margin: 1%;
+               
+              }
+              @media screen  and (max-width: 996px){ 
+                width: 100%;
+                height: 100px;
+              }
                 cursor: pointer;
                 // box-shadow: 2px 0px 0px #ffffff;
                 position: relative;
@@ -86,13 +102,20 @@ div.before_test_wrap{
                     animation-iteration-count: infinite;
                     animation-timing-function: ease 1s;
                     animation-duration: 3s;
+                    @media screen  and (max-width: 1140px){ 
+                        width: 90%;
+                        height: 101%;
+                      }
+                      @media screen  and (max-width: 996px){ 
+                        display: none;
+                        animation: none;
+                      }
                 }
                 // 卡片內的內容
                 .card_content{
                     // border: 1px solid red;
                     width: 100%;
                     display: flex;
-                    //flex-direction: ;
 
                     // 左側圖片與大標
                     .type_capital_img{
@@ -107,6 +130,13 @@ div.before_test_wrap{
                         background-repeat: no-repeat;
                         background-position: bottom;
                         background-size: contain;
+                        @media screen  and (max-width: 1140px){ 
+                            width: 100%;
+                            height: 100%;
+                            flex-direction: row;
+                            background-image: none;
+                            justify-content: center;
+                        }
                         
                         h2{
                             font-weight: bolder;
@@ -147,18 +177,48 @@ div.before_test_wrap{
                 }
 
                 &.active{
-                        width: 50%;
+                        width: 420px;
                         padding: 1%;
-                        // height: auto;
                         transform: scale(1.05);
                         z-index: 20;
+                        @media screen  and (max-width: 1140px){ 
+                            width: 100%;
+                            height: 300px;
+                          transform: scale(1);
+                          }
+                          @media screen  and (max-width: 996px){ 
+                            width: 100%;
+                            height: 300px;
+                          }
+                    .card_content{
+                        @media screen  and (max-width: 1140px){ 
+                        flex-direction: column;
+                          }
+                
                        &::after{
                            display: none;
                        }
                        .type_capital_img{
-                           width: 40%;
-                         background-size: 80%;
+                         width: 40%;
+                         background-size: 50%;
+                         @media screen  and (max-width: 1140px){ 
+                            width: 100%;
+                            height: 20%;
+                            padding: 1% 0;
+                            flex-direction: row;
+                                }
+                                h2{
+                                    margin: 0 5%;
+                                }
+                      
                        }
+                       .type_intro{
+                        @media screen  and (max-width: 1140px){ 
+                            width: 100%;;
+                            height: 80%;
+                                }
+                       }
+                    }
                     }
 
                     &.stop{
@@ -173,6 +233,7 @@ div.before_test_wrap{
                 
             .card_I{
                 border: 5px solid $research_color;
+
                 &::after{
                     background: #ffffff;
                     border: 5px solid $research_color;
@@ -183,6 +244,14 @@ div.before_test_wrap{
                             background: $research_color;
                         }
                         background-image: url(../../../img/test/I_研究型/品檢員.svg);
+                        @media screen  and (max-width: 1140px){ 
+                            width: 100%;
+                            height: 100%;
+                            flex-direction: row;
+                            background-image: none;
+                            justify-content: center;
+                        }
+                        
                     }
                 .type_intro{
                 .p_small{
@@ -203,6 +272,13 @@ div.before_test_wrap{
                             background: $art_color;
                         }
                         background-image: url(../../../img/test/A_文藝型/理髮師.svg);
+                        @media screen  and (max-width: 1140px){ 
+                            width: 100%;
+                            height: 100%;
+                            flex-direction: row;
+                            background-image: none;
+                            justify-content: center;
+                        }
                     }
                 .type_intro{
                     .p_small{
@@ -223,6 +299,13 @@ div.before_test_wrap{
                             background: $social_color;
                         }
                         background-image: url(../../../img/test/S_社會/醫護人員.svg);
+                        @media screen  and (max-width: 1140px){ 
+                            width: 100%;
+                            height: 100%;
+                            flex-direction: row;
+                            background-image: none;
+                            justify-content: center;
+                        }
                     }
                 .type_intro{
                     .p_small{
@@ -243,6 +326,13 @@ div.before_test_wrap{
                             background: $enterprise_color;
                         }
                         background-image: url(../../../img/test/E_企業/商品行銷.svg);
+                        @media screen  and (max-width: 1140px){ 
+                            width: 100%;
+                            height: 100%;
+                            flex-direction: row;
+                            background-image: none;
+                            justify-content: center;
+                        }
                     }
                 .type_intro{
                     .p_small{
@@ -263,6 +353,13 @@ div.before_test_wrap{
                             background: $thing_color;
                         }
                         background-image: url(../../../img/test/C_事務/行政人員.svg);
+                        @media screen  and (max-width: 1140px){ 
+                            width: 100%;
+                            height: 100%;
+                            flex-direction: row;
+                            background-image: none;
+                            justify-content: center;
+                        }
                     }
                 .type_intro{
                     .p_small{
@@ -270,11 +367,13 @@ div.before_test_wrap{
                  }
                  }
             }
-        }
+        
+    
             }
             
         
         }
+    }
         }
         .wrap_of_btn_before_test{
             // border: 1px solid red;

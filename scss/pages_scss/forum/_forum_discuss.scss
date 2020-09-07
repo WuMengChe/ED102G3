@@ -190,16 +190,26 @@ $timing: 0.3s;
   min-height: 35px;
   margin-bottom: 10px;
   padding: 5px;
-  .blink_text {
+  .bulletin_text_wrap {
     animation-name: blinker;
     animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    display: inline-block;
+    .bulletin_tex {
+      background: transparent;
+      color: gray;
+      display: inline-block;
+      min-width: 200px;
+    }
     span {
+      display: inline-block;
       background: maroon;
       color: white;
       border-radius: 5px;
-      padding: 5px;
+      margin-right: 5px;
+      padding: 4px;
+      font-size: 10px;
     }
   }
 }
