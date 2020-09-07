@@ -87,19 +87,21 @@ div.header_wrap {
 #fp-nav ul li:hover .fp-tooltip,
 #fp-nav.fp-show-active a.active+.fp-tooltip {
     color: black;
+    border: 1px solid #000;
+    height: fit-content;
+    font-size: 14px;
 }
 
 .index {
     //第一屏
     .index_test {
         background-image: url(../../../img/index/index_1st/1st_bg.png);
-        background-size: contain;
+        background-size: 100%;
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-position: bottom;
         .oneBg {
             height: 100%;
-            // border: 1px solid #000;
             background-image: url(../../../img/index/index_1st/1st_bg2.png);
             background-size: 120%;
             background-position: 10% 110%;

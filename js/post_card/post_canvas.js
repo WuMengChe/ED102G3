@@ -1,3 +1,5 @@
+let myFileName;
+
 function captureFront() {
   var frontImg = document.getElementById("frontCapture");
   window.scrollTo(0, 0);
@@ -9,21 +11,21 @@ function captureFront() {
     dpi: window.devicePixelRatio * 2,
     scale: 2
   }).then(function (canvas) {
-    // canvas.width = 500;
-    // canvas.height = 300;
     let dataURL = canvas.toDataURL("image/png", 1);
-    document.getElementById('hidden_front').value = dataURL;
-    var frontData = new FormData(document.getElementById("frontPost"));
-    // console.log(dataURL);
     var ajaxFront = new XMLHttpRequest();
-    ajaxFront.open("POST", "post_save.php", true);
+    ajaxFront.open("POST", "../php/post_save.php", true);
 
     ajaxFront.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    ajaxFront.send(frontData);
+    ajaxFront.send("img=" + dataURL);
 
     ajaxFront.onreadystatechange = function () {
-      if (this.readyState == 4 && this == 200) {
-        console.log(this.responseText);
+      if (this.readyState == 4 && this.status == 200) {
+        sessionStorage["frontImg"] = this.responseText;
+        // alert(this.responseText);
+        // console.log(this.responseText);
+        myFileName = this.responseText;
+        // location.href = "post_date.html?filename=" + this.responseText;
+        //-----------------
       }
     };
   });
@@ -31,29 +33,34 @@ function captureFront() {
 };
 
 function captureBack() {
-  window.scrollTo(0, 0);
-  var backImg = document.getElementById("backCapture");
-  html2canvas(backImg, {
-    //解决頁面滾動後白邊問題
-    height: frontImg.offsetHeight,
-    width: frontImg.offsetWidth,
-    // 解决图片不清晰问题
-    dpi: window.devicePixelRatio * 2,
-    scale: 2
-  }).then(function (canvas) {
-    // canvas.width = 500;
-    // canvas.height = 300;
-    console.log(canvas.toDataURL("image/jpeg", 0.9));
-    // var ajaxFront = new XMLHttpRequest();
-    // ajaxFront.open("POST", "post_save.php", true);
-    // ajaxFront.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    // ajaxFront.send("img=" + canvas.toDataURL("image/jpeg", 0.9));
+  // window.scrollTo(0, 0);
+  // var backImg = document.getElementById("backCapture");
+  // html2canvas(backImg, {
+  //   //   //解决頁面滾動後白邊問題
+  //   height: backImg.offsetHeight,
+  //   width: backImg.offsetWidth,
+  //   //   // 解决图片不清晰问题
+  //   dpi: window.devicePixelRatio * 2,
+  //   scale: 2
+  // }).then(function (canvas) {
+  //   let dataURLBack = canvas.toDataURL("image/png", 1);
 
-    // ajaxFront.onreadystatechange = function () {
-    //   if (this.readyState == 4 && this == 200) {
-    //     console.log(this.responseText);
-    //   }
-    // };
-  });
+  //   var ajaxBack = new XMLHttpRequest();
+  //   ajaxBack.open("POST", "../php/post_save.php", true);
+  //   ajaxBack.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  //   ajaxBack.send("imgBack=" + dataURLBack);
+
+  //   ajaxBack.onreadystatechange = function () {
+  //     if (this.readyState == 4 && this.status == 200) {
+  //       sessionStorage["backImg"] = this.responseText;
+  //       // alert(this.responseText);
+  //       // console.log(this.responseText);
+  //       myFileName = this.responseText;
+  //       // location.href = "post_date.html?filename=" + this.responseText;
+  //       //-----------------
+  //     }
+  //   };
+  // });
+  location.href = "post_date.html?filename=" + myFileName;
 
 };

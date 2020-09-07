@@ -28,11 +28,13 @@
     <div class="view row">
       <div class="view_front col-md-6">
         <p>正面</p>
-        <img src="./img/post_card/front.png" alt="">
+        <!-- <img src="./img/post_card/front.png" alt=""> -->
+        <img src="" id="frontImg" alt="">
       </div>
       <div class="view_back col-md-6">
         <p>背面</p>
         <img src="./img/post_card/back.png" alt="">
+        <!-- <img src="./php/uploads/filename.png" id="backImg" alt=""> -->
       </div>
       <div class="send_date col">
         <div class="col-md-5 col-lg-4">
@@ -62,7 +64,12 @@
   @@include('app/script.html')
   <script src="./js/post_card/datedropper.pro.min.js"></script>
   <script src="./js/post_card/post_date.js"></script>
-
+  <script>
+    window.addEventListener("load", function () {
+      document.getElementById("frontImg").src = sessionStorage["frontImg"];
+      // document.getElementById("backImg").src = sessionStorage["backImg"];
+    })
+  </script>
 </body>
 
 </html>
