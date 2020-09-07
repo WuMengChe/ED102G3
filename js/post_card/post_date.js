@@ -58,8 +58,8 @@ $(function () {
     };
 
   });
-
-
+  // ------------抓正面圖
+  document.getElementById("frontImg").src = sessionStorage["frontImg"];
 
 
 
