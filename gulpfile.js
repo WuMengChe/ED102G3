@@ -72,7 +72,7 @@ gulp.task("json", function() {
 });
 
 gulp.task("php", function() {
-    return gulp.src(["ph/*.php"]).pipe(gulp.dest("dest/php"));
+    return gulp.src(["php/*.php"]).pipe(gulp.dest("dest/php"));
 });
 
 gulp.task('bgPhp', function() {
