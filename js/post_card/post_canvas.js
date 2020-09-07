@@ -13,7 +13,7 @@ function captureFront() {
   }).then(function (canvas) {
     let dataURL = canvas.toDataURL("image/png", 1);
     var ajaxFront = new XMLHttpRequest();
-    ajaxFront.open("POST", "post_save.php", true);
+    ajaxFront.open("POST", "../php/post_save.php", true);
 
     ajaxFront.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     ajaxFront.send("img=" + dataURL);
