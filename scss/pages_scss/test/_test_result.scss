@@ -1,19 +1,25 @@
 @import'../../_public_dontTouch/utils/variables';
+
 .test_result_wrap{
     background-image: url(../../../img/test/bg_resultttt.svg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+
     // 以下燈箱(會員登入) 
     .bg_of_lightbx{
         width: 100%;
-        height: 100%;
+        height: 100vh;
         background: rgba(0, 0, 0, 0.5);
         // border: 1px solid red;
         position: fixed;
-        z-index: 999;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        z-index: 99;
+        display: none;
     .lightbx_login{
-        // border: 2px solid #FFFFFF;
+        border: 2px solid #ffffff;
         display: flex;
         padding: 1%;
         max-width: 450px;
@@ -26,15 +32,27 @@
         transform: translate(-50%, -50%);
         top: 50%;
         left: 50%;
-        z-index: 1000;
+        z-index: 99;
         box-shadow: 0px 0px 5px #444444;
         .close_icon{
             width: 30px;
+            height: 30px;
             border-radius: 50%;;
             position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 35px;
+            top: 10px;
+            right: 10px;
+            font-size: 15px;
+            border: 2px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #119BEB;
+            color: white;
+            cursor: pointer;
+            transition: linear .2s;
+            &:hover{
+                background: #EE7002;
+            }
         }
         .cutie_top{
             width: 150px;
@@ -50,7 +68,7 @@
             color: #3f3f3f;
             padding: 1%;
         }
-        .input_bx{
+        .input_div{
           display: flex;
           margin: 0 auto;
           width: 100%;
@@ -71,7 +89,7 @@
               border-radius: 25px;
           }
       }
-      .input_btn{
+      .input_btn_bx{
         //   border: 1px solid red;
           display: flex;
           margin: 5% 0;
@@ -92,12 +110,12 @@
               padding: 1%;
               font-weight: bolder;
             //   letter-spacing: 1px;
-              color: rgb(24, 24, 187);
+              color: #119BEB;
+              
               transition: linear .3s;
               &:hover{
-                // color: #EE7002;
-                transform: scale(0.99);
-                box-shadow: 2px 2px 0px #EE7002;
+                // box-shadow: 2px 2px 0px #EE7002;
+                color: #EE7002;
               }
           }
       }
