@@ -20,7 +20,7 @@
         <div class="dis_side main_side_bar">
           <ul>
             <li @click="search('實作型')">
-              <a href="#"><span></span>實作型</a>
+              <a href="#"><span></span>實作型ff</a>
             </li>
             <li @click="search('研究型')">
               <a href="#"><span></span>研究型</a>
@@ -84,7 +84,6 @@
               <span>公告</span>
               <span class="bulletin_tex">轉職是不是不知道該怎麼開始呢？快來看看大家的經驗分享吧！</span>
             </div>
-
           </marquee>
         </div>
 
@@ -97,19 +96,19 @@
                   <div class="img_div">
                     <img :src="messages.d_img" alt="" class="dis_img" />
                   </div>
-                  <div class="dis_name">{{messages.d_name}}</div>
-                  <div class="dis_date">{{messages.d_data}}</div>
+                  <div class="dis_name">{{messages.MEM_NO}}</div>
+                  <div class="dis_date">{{messages.DIS_DATE}}</div>
                 </div>
                 <div class="tags_list">
-                  <span class="type_tag" :style="messages.d_color">{{messages.d_type}}</span>
-                  <span class="type_tag">{{messages.d_qu}}</span>
+                  <span class="type_tag" :style="messages.d_color">{{messages.DIS_DATE}}</span>
+                  <span class="type_tag">{{messages.DIS_LIK_NUM}}</span>
                 </div>
               </div>
               <div class="msg_title open_dialog" @click="openContent">
-                {{messages.d_title}}
+                {{messages.DIS_NAME}}
               </div>
               <div class="msg_textarea" @click="openContent">
-                {{messages.d_text}}
+                {{messages.DIS_NAME}}
               </div>
               <div class="msg_btn">
                 <button class="heart">
@@ -120,6 +119,7 @@
                 </button>
                 <button class="gray_btn" @click="collect_btn">
                   <i class="fas fa-bookmark"></i>
+                  {{messages.DIS_LIK_NUM}}
                 </button>
                 <button class="gray_btn" @click="accuse_btn">
                   <i class="fas fa-exclamation-circle"></i>

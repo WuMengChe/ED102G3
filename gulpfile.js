@@ -22,154 +22,169 @@ const clean = require("gulp-clean"); //清除dest中的資料（若不知道什�
 
 //6. 將html合併，請在終端機中輸入：gulp fileinclude
 gulp.task("fileinclude", function () {
-    return gulp
-        .src(["*.html"]) //來源
-        .pipe(
-            fileinclude({
-                prefix: "@@",
-                basepath: "@file",
-            })
-        )
-        .pipe(gulp.dest("./dest")); //目的地
+  return gulp
+    .src(["*.html"]) //來源
+    .pipe(
+      fileinclude({
+        prefix: "@@",
+        basepath: "@file",
+      })
+    )
+    .pipe(gulp.dest("./dest")); //目的地
 });
 
 //執行到這邊請看看有沒有產生dest資料夾，並且這資料夾中有產生html
 
 //7. 將js複製到dest資料夾中，請在終端機中輸入：gulp js
 gulp.task("js", function () {
-    return gulp.src(["./js/**/*.js"]).pipe(gulp.dest("dest/js"));
+  return gulp.src(["./js/**/*.js"]).pipe(gulp.dest("dest/js"));
 });
 
 //8. 將bootstrap資料夾複製到dest資料夾中：請在終端機中輸入：gulp bootstrap
 gulp.task("bootstrap", function () {
-    return gulp.src("bootstrap/*.css").pipe(gulp.dest("dest/bootstrap"));
+  return gulp.src("bootstrap/*.css").pipe(gulp.dest("dest/bootstrap"));
 });
 
 //9. 壓縮圖並存入dest/img資料夾中，請在終端機中輸入：gulp img
 gulp.task("img", function () {
-    return gulp.src("./img/**/*")
-        // .pipe(imagemin())
-        .pipe(gulp.dest("dest/img"));
+  return gulp.src("./img/**/*")
+    // .pipe(imagemin())
+    .pipe(gulp.dest("dest/img"));
 });
 
 //10. 瀏覽器同步，請在終端機中輸入：gulp
 gulp.task("default", function () {
-    //當名稱是default的時候在終端機中就打gulp就可以呼叫到
-    browserSync.init({
-        server: {
-            baseDir: "./dest",
-            index: "index.html",
-        },
-    });
-    gulp.watch("./scss/**/**/*.scss", ["sass"]).on("change", reload);
-    gulp.watch(["./*.html"], ["fileinclude"]).on("change", reload);
-    gulp.watch(["./js/**/*.js"], ["js"]).on("change", reload);
+  //當名稱是default的時候在終端機中就打gulp就可以呼叫到
+  browserSync.init({
+    server: {
+      baseDir: "./dest",
+      index: "index.html",
+    },
+  });
+  gulp.watch("./scss/**/**/*.scss", ["sass"]).on("change", reload);
+  gulp.watch(["./*.html"], ["fileinclude"]).on("change", reload);
+  gulp.watch(["./js/**/*.js"], ["js"]).on("change", reload);
 });
 
 //11. 將json複製到dest資料夾中，請在終端機中輸入：gulp json
 gulp.task("json", function () {
-    return gulp.src(["json/*.json"]).pipe(gulp.dest("dest/json"));
+  return gulp.src(["json/*.json"]).pipe(gulp.dest("dest/json"));
 });
 
 gulp.task("php", function () {
-    return gulp.src(["php/*.php"]).pipe(gulp.dest("dest/php"));
+  return gulp.src(["./php/*.php"]).pipe(gulp.dest("dest/php"));
 });
 
+
 gulp.task('bgPhp', function () {
-    return gulp.src(["backstage/php/*.php"]).pipe(gulp.dest("backstage/php"));
+  return gulp.src(["backstage/php/*.php"]).pipe(gulp.dest("backstage/php"));
 })
+
+gulp.task("html", function () {
+  return gulp.src(["./*.html"]).pipe(gulp.dest("dest/html"));
+});
+
+
 //使用Control + C 可以停止監看，如果要重新監看就要再重新執行gulp
 //執行到這邊應該會自動開瀏覽器了，請確認一下dest中的html有沒有連接到對的路徑，若不知道如何設定，可以參考原檔中(非dest中的)的index.html
 
 //============================================================================================================
 //下面指令都已包含在default中，除非有必要不然不要個別下指令，但也不可以刪掉！！！
 gulp.task('sass', ['img', 'js', 'fileinclude', 'php'], function () {
-    return gulp.src('./scss/**/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass().on("error", sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
-        .pipe(
-            cleanCSS({
-                compatibility: "ie8",
-            })
-        )
-        .pipe(sourcemaps.write())
+  return gulp.src('./scss/**/**/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on("error", sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
+    .pipe(
+      cleanCSS({
+        compatibility: "ie8",
+      })
+    )
+    .pipe(sourcemaps.write())
 
-        .pipe(gulp.dest("./dest/css"));
+    .pipe(gulp.dest("./dest/css"));
 });
 
 gulp.task('mysql', function () {
-    return gulp.src(["./set_MySQL/*"]).pipe(gulp.dest("dest/set_MySQL"));
+  return gulp.src(["./set_MySQL/*"]).pipe(gulp.dest("dest/set_MySQL"));
 
 });
+
+
 gulp.task("watch", function () {
-    gulp.watch("./php/*", ["php"]);
-}); // gulp watch => 執行watch sass的功能
+  gulp.watch("./php/*", ["php"]);
+  gulp.watch("./js/**/*.js", ["js"]);
+  gulp.watch("./*.html",["html"]);
+});
+
+// gulp watch => 執行watch sass的功能
 //使用Control + C 可以停止監看，如果要重新監看就要再重新執行
 
 //將自動產生的檔案刪掉：用在如果要修改已經產生的檔案，但直接修改不會覆蓋，就可以先刪掉再重新產生。或要打包原始檔案就可以先刪掉之後再產生
 gulp.task("clear", function () {
-    return gulp
-        .src("dest", {
-            read: false,
-            allowEmpty: true,
-        })
-        .pipe(clean());
+  return gulp
+    .src("dest", {
+      read: false,
+      allowEmpty: true,
+    })
+    .pipe(clean());
 });
 
 //將css合併
 gulp.task("concat", ["sass"], function () {
-    //do
-    return gulp
-        .src("dev/css/*.css") //來源
-        .pipe(concat("all.css")) //合併
-        .pipe(
-            cleanCSS({
-                compatibility: "ie8",
-            })
-        ) //壓縮
-        .pipe(gulp.dest("dest/css")); //目的地
+  //do
+  return gulp
+    .src("dev/css/*.css") //來源
+    .pipe(concat("all.css")) //合併
+    .pipe(
+      cleanCSS({
+        compatibility: "ie8",
+      })
+    ) //壓縮
+    .pipe(gulp.dest("dest/css")); //目的地
 });
 
 //backstage
 
 gulp.task('bgsass', ['bgimg', 'bgjs', 'bgfileinclude'], function () {
-    return gulp.src('./backstage/sass/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass().on("error", sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
-        .pipe(
-            cleanCSS({
-                compatibility: "ie8",
-            })
-        )
-        .pipe(sourcemaps.write())
+  return gulp.src('./backstage/sass/**/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on("error", sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
+    .pipe(
+      cleanCSS({
+        compatibility: "ie8",
+      })
+    )
+    .pipe(sourcemaps.write())
 
-        .pipe(gulp.dest("./dest/backstage/css"));
+    .pipe(gulp.dest("./dest/backstage/css"));
 });
 
 gulp.task("bgfileinclude", function () {
-    return gulp
-        .src(["./backstage/html/*.html"]) //來源
-        .pipe(
-            fileinclude({
-                prefix: "@@",
-                basepath: "@file",
-            })
-        )
-        .pipe(gulp.dest("./dest/backstage")); //目的地
+  return gulp
+    .src(["./backstage/html/*.html"]) //來源
+    .pipe(
+      fileinclude({
+        prefix: "@@",
+        basepath: "@file",
+      })
+    )
+    .pipe(gulp.dest("./dest/backstage")); //目的地
 });
 
 //執行到這邊請看看有沒有產生dest資料夾，並且這資料夾中有產生html
 
 //7. 將js複製到dest資料夾中，請在終端機中輸入：gulp js
 gulp.task("bgjs", function () {
-    return gulp.src(["./backstage/js/**/*.js"]).pipe(gulp.dest("dest/backstage/js"));
+  return gulp.src(["./backstage/js/**/*.js"]).pipe(gulp.dest("dest/backstage/js"));
 });
+
+
 
 
 //9. 壓縮圖並存入dest/img資料夾中，請在終端機中輸入：gulp img
 gulp.task("bgimg", function () {
-    gulp
-        .src("./backstage/img/**/*")
-        // .pipe(imagemin())
-        .pipe(gulp.dest("dest/backstage/img"));
+  gulp
+    .src("./backstage/img/**/*")
+    // .pipe(imagemin())
+    .pipe(gulp.dest("dest/backstage/img"));
 });

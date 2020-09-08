@@ -12,23 +12,19 @@ new Vue({
       type: 'all',
       select: '全部文章',
       stopScroll: false,
-      isAss: false,
     }
   },
   mounted() {
-
-    // fetch('./json/forum.json')
-
     fetch('./php/forum_discuss.php', {
       method: 'GET',
     })
       .then((res) => {
         return res.json();
-      }).then((jsonData) => {console.log(jsonData);
+      }).then((jsonData) => {
+      console.log(jsonData);
+      this.information = jsonData;
       this.searchResult = jsonData;
       })
-
-
   },
   watch: {
     stopScroll: function () {
