@@ -78,10 +78,6 @@ new Vue({
     },
     //側邊欄搜尋
     search(type) {
-      // event.target.siblings.children.classList.remove("add");
-      // event.target.children.classList.add("add");
-      // this.add = !add;
-      // this.searchResult = this.information;
       const result = this.information.filter(element => {
         return element.d_type == type
       });
@@ -134,7 +130,6 @@ new Vue({
       this.isOpen = !this.isOpen;
     },
     closeOverlay() {
-      // alert("124")
       this.contentIsOpen = false
       this.stopScroll = false
     }
