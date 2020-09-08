@@ -240,6 +240,7 @@ new Vue({
         delete_storage() {
 
             localStorage.removeItem('cart');
+
         },
         receive_storage() {
 
@@ -250,13 +251,15 @@ new Vue({
                 if (index < get_id_arr.length - 1) {
                     let course_item = JSON.parse(course);
                     this.cart_items.push(course_item);
+                    $(`#cus_${course_item.id}`).addClass('cart_clicked');
+
                 }
 
 
             });
 
         },
-        add_cart(item) {
+        add_cart(e, item) {
             if (this.cart_items.length == 0) {
                 this.cart_items.push(item);
             } else {
@@ -275,11 +278,14 @@ new Vue({
             }
             this.add_storage();
 
+            e.currentTarget.classList.add('cart_clicked');
+            // $(this).addClass('cart_clicked');
+
             // console.log(e.currentTarget);
-            // e.target.classList.add('cart_clicked');
 
         },
         remove_item(index) {
+            $(`#cus_${this.cart_items[index].id}`).removeClass('cart_clicked');
             this.cart_items.splice(index, 1);
             this.add_storage();
         },
@@ -316,5 +322,6 @@ new Vue({
 
     mounted() {
         this.receive_storage();
+
     },
 })
