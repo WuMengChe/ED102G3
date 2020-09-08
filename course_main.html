@@ -2,36 +2,29 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     @@include('app/link.html')
-    <link rel="stylesheet" href="./css/pages_scss/course/course.css">
-
-
-
-
+    <link rel="stylesheet" href="./css/pages_scss/course/course.css" />
 </head>
 
 <body>
-
-
-
     <div id="course_main">
         <!-- header -->
         <div class="header_wrap">
             <header class="header">
                 <div class="hamburger">
-                    <button class=" hamburger hamburger--spring btn_switch" type="button">
-                        <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                        </span>
-                    </button>
+                    <button class="hamburger hamburger--spring btn_switch" type="button">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </button>
                 </div>
                 <div class="logo">
                     <a href="front_index.html">
-                        <img src="img/LOGO_FINAL.svg" alt="">
+                        <img src="img/LOGO_FINAL.svg" alt="" />
                     </a>
                 </div>
                 <div class="header_nav">
@@ -42,39 +35,38 @@
                         <li><a href="course_main.html">探索課程</a></li>
                         <li><a href="post_intro.html">時光明信片</a></li>
                     </ul>
-
                 </div>
                 <div class="header_icon">
                     <div class="cart">
-                        <button href="#"><i class="fas fa-shopping-cart"></i>
-                            <div class="cart_num"><span>{{cart_items.length}}</span></div>
-                        </button>
-                        <!-- <div class="cart_num"><span>1</span></div> -->
+                        <button href="#">
+                <i class="fas fa-shopping-cart"></i>
+                <div class="cart_num"><span>{{cart_items.length}}</span></div>
+              </button>
                     </div>
 
-                    <div class="member"><a href="member.html"><i class="fas fa-user"></i></a></div>
+                    <div class="member">
+                        <a href="member.html"><i class="fas fa-user"></i></a>
+                    </div>
                 </div>
             </header>
-
         </div>
-
-
 
         <!-- cart -->
         <div class="side_cart cart_off">
             <div class="cart_close">
                 <span>購物車</span>
                 <button id="cart_close" class="btn_third">close</button>
-                <!-- <button class="btn_third" @click="delete_cookie">delete</button> -->
             </div>
             <div class="cart_course">
-                <p class="no_item" v-show="cart_items.length == 0">購物車內無添加課程</p>
+                <p class="no_item" v-show="cart_items.length == 0">
+                    購物車內無添加課程
+                </p>
                 <ul>
                     <li class="cart_item" v-for="(item,index) in cart_items">
                         <div class="cus_card">
                             <a href="#">
                                 <div class="card_img">
-                                    <img :src="item.img" alt="">
+                                    <img :src="item.img" alt="" />
                                 </div>
                                 <div class="card_content">
                                     <p>{{item.course_title}}</p>
@@ -83,8 +75,9 @@
                                         <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
                                     </div> -->
                                         <div class="card_content_msg">
-                                            <span class="card_type" :style="item.color">{{item.type}}</span>
-                                            <!-- <span class="card_time">總計3小時</span> -->
+                                            <span class="card_type" :class="item.color">{{item.type}}</span
+                        >
+                        <!-- <span class="card_time">總計3小時</span> -->
                                             <span class="card_price">$NT{{item.price}}</span>
                                         </div>
                                     </div>
@@ -92,13 +85,12 @@
                             </a>
                             <div class="remove">
                                 <button @click="remove_item(index)">
-                                    <!-- <i class="fas fa-minus-circle"></i> -->
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                    <!-- <i class="fas fa-minus-circle"></i> -->
+                    <i class="fas fa-trash"></i>
+                  </button>
                             </div>
                         </div>
                     </li>
-
                 </ul>
             </div>
 
@@ -108,12 +100,8 @@
                 </div>
                 <div class="price_check">
                     <ul>
-                        <li>
-                            <span>課程總金額:</span><span>NT${{add_total}}</span>
-                        </li>
-                        <li>
-                            <span>折扣金額:</span><span>NT${{discount}}</span>
-                        </li>
+                        <li><span>課程總金額:</span><span>NT${{add_total}}</span></li>
+                        <li><span>折扣金額:</span><span>NT${{discount}}</span></li>
                     </ul>
                 </div>
                 <div class="price_total_btn">
@@ -126,9 +114,6 @@
             </div>
         </div>
 
-
-
-
         <div class="container">
             <div class="row">
                 <!-- side_bar -->
@@ -137,473 +122,173 @@
                         <div class="main_side_bar">
                             <ul>
                                 <li v-for="type in category">
-                                    <a href="#" :id="type.link_from"><span></span>{{type.link_title}}</a>
-                                </li>
-                            </ul>
-                            <div class="side_bar_img">
-                                <img src="./img/side_bar.svg" alt="">
+                                    <a href="#" :id="type.link_from" @click="cart_click_bg"><span></span>{{type.link_title}}</a
+                    >
+                  </li>
+                </ul>
+                <div class="side_bar_img">
+                  <img src="./img/side_bar.svg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- container -->
+          <div class="col-xl-9 col-lg-9">
+            <div class="course_main_container">
+              <div class="course_main_second container">
+                <!-- go_test -->
+                <div id="go_test">
+                  <span>還不知道該選擇的課程嗎?</span>
+                  <a href="test_before.html" class="btn_primary">前往分析</a>
+                                    <button id="close_test">
+                    <i class="far fa-times-circle"></i>關閉
+                  </button>
+                        </div>
+
+                        <!-- parallax -->
+                        <div class="col-xl-12">
+                            <div class="background" id="para_bg">
+                                <!-- <img src="img/course/parallax_img/background.png" alt=""> -->
+                                <ul id="scene">
+                                    <li class="layer" style="z-index: 1">
+                                        <img src="./img/course/parallax_img/background.png" />
+                                    </li>
+                                    <li class="layer" style="z-index: 1">
+                                        <img src="./img/course/parallax_img/man.png" />
+                                    </li>
+                                    <li class="layer" style="z-index: 2">
+                                        <img src="./img/course/parallax_img/girl.png" />
+                                    </li>
+                                    <li class="layer" style="z-index: 3">
+                                        <img src="./img/course/parallax_img/tree.png" />
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+
+                        <!-- hot_course -->
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="hot_course">
+                                    <div class="course_session_title">
+                                        <h2>熱門課程</h2>
+                                    </div>
+                                    <ul class="auto_slider owl-carousel">
+                                        <li class="auto_slider_card" v-for="card in hot_course">
+                                            <a :href="card.href">
+                                                <div class="auto_slider_card_pic">
+                                                    <img :src="card.img" alt="" />
+                                                    <span class="course_type" :class="card.color">{{card.type}}</span
+                              >
+                            </div>
+                          </a>
+                          <div class="auto_slider_card_content">
+                            <a :href="card.href">
+                              <p>{{card.course_title}}</p>
+                            </a>
+                            <div class="card_content_scrb">
+                              <div class="card_content_join">
+                                <i class="fas fa-user-friends"></i
+                                ><span>{{card.join}}人已參與此課程</span>
+                                                </div>
+                                                <div class="card_content_msg">
+                                                    <span class="card_time">總計{{card.hour}}小時</span
+                                >
+                                <span class="card_price"
+                                  >NT${{card.price}}</span
+                                >
+                              </div>
+                            </div>
+                            <div class="add_cart_btn">
+                              <button @click="add_cart(card)">
+                                <i class="fas fa-shopping-cart"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
                     </div>
+                  </div>
                 </div>
 
-                <!-- container -->
-                <div class="col-xl-9 col-lg-9">
-                    <div class="course_main_container">
-                        <div class="course_main_second container">
-                            <!-- go_test -->
-                            <div id="go_test">
-                                <span>還不知道該選擇的課程嗎?</span>
-                                <a href="test_before.html" class="btn_primary">前往分析</a>
-                                <button id="close_test"><i class="far fa-times-circle"></i>關閉</button>
+                <!-- courses-->
+                <div class="row">
+                  <div
+                    class="practical_session courses_session"
+                    :id="section.link_to"
+                    v-for="section in category"
+                  >
+                    <div class="col-xl-12">
+                      <div class="course_session_title">
+                        <h2>{{section.link_title}}</h2>
+                      </div>
+                    </div>
+                    <div class="col-xl-12">
+                      <div class="course_session_contain">
+                        <ul>
+                          <li
+                            class="auto_slider_card"
+                            v-for="card in section.courses"
+                          >
+                            <div class="card_pic">
+                              <a :href="card.href">
+                                <img :src="card.img " alt=" " />
+                              </a>
                             </div>
-
-
-                            <!-- parallax -->
-                            <div class="col-xl-12">
-                                <div class="background" id="para_bg">
-                                    <!-- <img src="img/course/parallax_img/background.png" alt=""> -->
-                                    <ul id="scene">
-                                        <li class="layer" style="z-index:1 ;"><img src="./img/course/parallax_img/background.png">
-                                        </li>
-                                        <li class="layer" style="z-index:1 ;"><img src="./img/course/parallax_img/man.png">
-                                        </li>
-                                        <li class="layer" style="z-index:2 ;"><img src="./img/course/parallax_img/girl.png">
-                                        </li>
-                                        <li class="layer" style="z-index:3 ;"><img src="./img/course/parallax_img/tree.png">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-
-
-                            <!-- hot_course -->
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class=" hot_course">
-                                        <div class="course_session_title">
-                                            <h2>熱門課程</h2>
-                                        </div>
-                                        <ul class="auto_slider owl-carousel">
-                                            <li class="auto_slider_card " v-for="card in hot_course">
-                                                <a :href="card.href">
-                                                    <div class="auto_slider_card_pic">
-                                                        <img :src="card.img" alt="">
-                                                        <span class="course_type" :style="card.color">{{card.type}}</span>
-                                                    </div>
-                                                </a>
-                                                <div class="auto_slider_card_content">
-                                                    <a :href="card.href">
-                                                        <p>{{card.course_title}}</p>
-                                                    </a>
-                                                    <div class="card_content_scrb">
-                                                        <div class="card_content_join">
-                                                            <i class="fas fa-user-friends"></i><span>{{card.join}}人已參與此課程</span>
-                                                        </div>
-                                                        <div class="card_content_msg">
-                                                            <span class="card_time">總計{{card.hour}}小時</span>
-                                                            <span class="card_price">NT${{card.price}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="add_cart_btn">
-                                                        <button @click="add_cart(card)"><i
-                                                                class="fas fa-shopping-cart"></i></button>
-                                                    </div>
+                            <div class="card_content">
+                              <a :href="card.href">
+                                <p>{{card.course_title}}</p>
+                              </a>
+                              <div class="card_content_scrb">
+                                <div class="card_content_join">
+                                  <i class="fas fa-user-friends"></i
+                                  ><span>{{card.join}}人已參與此課程</span>
                                                 </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                                <div class="card_content_msg">
+                                                    <div class="type_time">
+                                                        <span class="card_type" :class="card.color">{{card.type}}</span
+                                    >
+                                    <span class="card_time"
+                                      >總計{{card.hour}}小時</span
+                                    >
+                                  </div>
 
+                                  <div class="price_btn">
+                                    <span class="card_price"
+                                      >NT${{card.price}}</span
+                                    >
+                                    <div class="add_cart_btn">
+                                      <button @click=" add_cart(card) ">
+                                        <i class="fas fa-shopping-cart"></i>
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
+                              </div>
                             </div>
-
-
-                            <!-- courses-->
-                            <div class="row">
-                                <div class="practical_session courses_session" :id="section.link_to" v-for="section in category">
-                                    <div class="col-xl-12">
-                                        <div class="course_session_title">
-                                            <h2>{{section.link_title}}</h2>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <div class="course_session_contain">
-                                            <ul>
-                                                <li class="auto_slider_card " v-for="card in section.courses">
-                                                    <div class="card_pic ">
-                                                        <a :href="card.href">
-                                                            <img :src="card.img " alt=" ">
-                                                        </a>
-                                                    </div>
-                                                    <div class="card_content ">
-                                                        <a :href="card.href">
-                                                            <p>{{card.course_title}}</p>
-                                                        </a>
-                                                        <div class="card_content_scrb ">
-                                                            <div class="card_content_join ">
-                                                                <i class="fas fa-user-friends "></i><span>{{card.join}}人已參與此課程</span>
-                                                            </div>
-                                                            <div class="card_content_msg ">
-                                                                <div class="type_time ">
-                                                                    <span class="card_type " :style="card.color ">{{card.type}}</span>
-                                                                    <span class="card_time ">總計{{card.hour}}小時</span>
-                                                                </div>
-
-                                                                <div class="price_btn ">
-                                                                    <span class="card_price ">NT${{card.price}}</span>
-                                                                    <div class="add_cart_btn ">
-                                                                        <button @click="add_cart(card)">
-                                                                            <i class="fas fa-shopping-cart "></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="add_cart_btn ">
+                            <!-- <div class="add_cart_btn ">
                                                 <button class="btn_primary ">加入購物車</button>
                                             </div> -->
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
+                  </div>
                 </div>
-
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        @@include('app/footer.html')
+      @@include('app/footer.html')
     </div>
-
 
     @@include('app/script.html')
     <script src="./js/course/owl_auto_slide.js "></script>
     <script src="./js/course/parallax_script.js "></script>
     <script src="./js/course/course_main.js "></script>
-
-
-    <script>
-        new Vue({
-            el: '#course_main',
-            data() {
-                return {
-                    message: 'hello',
-                    category: [{
-                        link_from: 'practical',
-                        link_to: 'practical_session',
-                        link_title: '實作型',
-                        // color: 'background: #79BBB5;',
-                        courses: [{
-                            id: 5,
-                            img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
-                            href: 'course_introduce.html',
-                            course_title: '九個步驟快速提昇簡報力',
-                            type: '實作型',
-                            color: 'background: #79BBB5;',
-                            join: 9999,
-                            hour: 3,
-                            price: 660,
-                        }, {
-                            id: 6,
-                            img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
-                            href: 'course_introduce.html',
-                            course_title: '九個步驟快速提昇簡報力',
-                            type: '實作型',
-                            color: 'background: #79BBB5;',
-                            join: 9999,
-                            hour: 3,
-                            price: 660,
-                        }, ],
-
-                    }, {
-                        link_from: 'research',
-                        link_to: 'research_session',
-                        link_title: '研究型',
-                        // color: 'background: #A0CADB;',
-                        courses: [{
-
-                            id: 7,
-                            img: 'img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg',
-                            href: 'course_introduce.html',
-                            course_title: '打造團隊好關係與高績效',
-                            type: '研究型',
-                            color: 'background:#A0CADB;',
-                            join: 7777,
-                            hour: 7,
-                            price: 770,
-                        }, {
-                            id: 8,
-                            img: 'img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg',
-                            href: 'course_introduce.html',
-                            course_title: '打造團隊好關係與高績效',
-                            type: '研究型',
-                            color: 'background:#A0CADB;',
-                            join: 7777,
-                            hour: 7,
-                            price: 770,
-                        }, ],
-
-                    }, {
-                        link_from: 'art',
-                        link_to: 'art_session',
-                        link_title: '文藝型',
-                        // color: 'background: #CCC5E3;',
-                        courses: [{
-                            id: 9,
-                            img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
-                            href: 'course_introduce.html',
-                            course_title: '行銷=內容x社群x商務',
-                            type: '文藝型',
-                            color: 'background:#CCC5E3;',
-                            join: 9999,
-                            hour: 9,
-                            price: 990,
-                        }, {
-                            id: 10,
-                            img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
-                            href: 'course_introduce.html',
-                            course_title: '行銷=內容x社群x商務',
-                            type: '藝術型',
-                            color: 'background:#CCC5E3;',
-                            join: 5555,
-                            hour: 5,
-                            price: 550,
-                        }, ],
-
-
-                    }, {
-                        link_from: 'social',
-                        link_to: 'social_session',
-                        link_title: '社會型',
-                        // color: 'background: #F4C3C5;',
-                        courses: [{
-                            id: 11,
-                            img: 'img/course/course_img/s/課程照片-社會心理學.png',
-                            href: 'course_introduce.html',
-                            course_title: '行銷=內容x社群x商務',
-                            type: '社會型',
-                            color: 'background:#F4C3C5;',
-                            join: 5555,
-                            hour: 5,
-                            price: 550,
-                        }, {
-                            id: 12,
-                            img: 'img/course/course_img/s/課程照片-社會心理學.png',
-                            href: 'course_introduce.html',
-                            course_title: '行銷=內容x社群x商務',
-                            type: '社會型',
-                            color: 'background:#F4C3C5;',
-                            join: 5555,
-                            hour: 5,
-                            price: 550,
-                        }, ],
-
-
-                    }, {
-                        link_from: 'enterprise',
-                        link_to: 'enterprise_session',
-                        link_title: '企業型',
-                        // color: 'background: #E7995F;',
-                        courses: [{
-                            id: 13,
-                            img: 'img/course/course_img/E/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
-                            href: 'course_introduce.html',
-                            course_title: '行銷=內容x社群x商務',
-                            type: '企業型',
-                            color: 'background:#E7995F;',
-                            join: 5555,
-                            hour: 5,
-                            price: 550,
-                        }, {
-                            id: 14,
-                            img: 'img/course/course_img/E/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
-                            href: 'course_introduce.html',
-                            course_title: '行銷=內容x社群x商務',
-                            type: '企業型',
-                            color: 'background:#E7995F;',
-                            join: 5555,
-                            hour: 5,
-                            price: 550,
-                        }, ],
-
-
-                    }, {
-                        link_from: 'thing',
-                        link_to: 'thing_session',
-                        link_title: '事務型',
-                        color: 'background: #F7EA92;',
-                        courses: [{
-                            id: 15,
-                            img: 'img/course/course_img/C/課程照片-職場技能提升：初級會計基礎班.jpg',
-                            href: 'course_introduce.html',
-                            course_title: '行銷=內容x社群x商務',
-                            type: '事務型',
-                            color: 'background:#F7EA92;',
-                            join: 5555,
-                            hour: 5,
-                            price: 550,
-                        }, {
-                            id: 16,
-                            img: 'img/course/course_img/C/課程照片-職場技能提升：初級會計基礎班.jpg',
-                            href: 'course_introduce.html',
-                            course_title: '行銷=內容x社群x商務',
-                            type: '事務型',
-                            color: 'background:#F7EA92;',
-                            join: 5555,
-                            hour: 5,
-                            price: 550,
-                        }, ],
-
-                    }],
-
-
-                    hot_course: [{
-                        id: 1,
-                        img: 'img/course/course_img/E/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
-                        href: 'course_introduce.html',
-                        course_title: '九個步驟快速提昇簡報力',
-                        type: '企業型',
-                        color: 'background: #E7995F;',
-                        join: 9999,
-                        hour: 3,
-                        price: 660,
-
-                    }, {
-                        id: 2,
-                        img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
-                        href: 'course_introduce.html',
-                        course_title: '行銷=內容x社群x商務',
-                        type: '文藝型',
-                        color: 'background:#CCC5E3;',
-                        join: 5555,
-                        hour: 5,
-                        price: 550,
-
-                    }, {
-                        id: 3,
-                        img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
-                        href: 'course_introduce.html',
-                        course_title: '打造團隊好關係與高績效',
-                        type: '實作型',
-                        color: 'background:#79BBB5;',
-                        join: 7777,
-                        hour: 7,
-                        price: 770,
-
-                    }, {
-                        id: 4,
-                        img: 'img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg',
-                        href: 'course_introduce.html',
-                        course_title: '打造團隊好關係與高績效',
-                        type: '研究型',
-                        color: 'background:#A0CADB;',
-                        join: 7777,
-                        hour: 7,
-                        price: 770,
-
-                    }, ],
-                    cart_items: [],
-
-
-                }
-
-
-            },
-            methods: {
-                add_storage() {
-
-                    let ss = "";
-                    this.cart_items.forEach(item => {
-
-                        ss += JSON.stringify(item) + '*';
-                    })
-
-
-                    localStorage.setItem('cart', ss);
-
-                },
-                delete_storage() {
-
-                    localStorage.removeItem('cart');
-                },
-                receive_storage() {
-
-                    let get_id = localStorage.getItem('cart');
-                    let get_id_arr = get_id.split('*');
-                    get_id_arr.forEach((course, index) => {
-
-                        if (index < get_id_arr.length - 1) {
-                            let course_item = JSON.parse(course);
-                            this.cart_items.push(course_item);
-                        }
-
-
-                    });
-
-                },
-                add_cart(item) {
-                    if (this.cart_items.length == 0) {
-                        this.cart_items.push(item);
-                    } else {
-                        let check = true;
-                        for (i = 0; i < this.cart_items.length; i++) {
-                            if (this.cart_items[i].id == item.id) {
-                                check = false;
-                                alert('購物車內已有此課程囉!');
-                            };
-                        }
-
-                        if (check) {
-                            this.cart_items.push(item);
-
-                        }
-                    }
-                    this.add_storage();
-
-                },
-                remove_item(index) {
-                    this.cart_items.splice(index, 1);
-                    this.add_storage();
-                }
-
-            },
-            computed: {
-                add_total() {
-                    let total = 0;
-                    for (i = 0; i < this.cart_items.length; i++) {
-                        total += this.cart_items[i].price;
-                    }
-                    return total;
-                },
-                discount() {
-                    if (this.cart_items.length >= 2) {
-                        let discount = this.add_total * 0.2;
-                        return discount;
-                    } else {
-                        return 0;
-                    }
-                },
-                final_price() {
-                    let final = this.add_total - this.discount;
-                    return final;
-                }
-
-            },
-
-            mounted() {
-                this.receive_storage();
-            },
-        })
-    </script>
-
-
-
-</body>
-
+    <script src="./js/course/course_vue.js"></script>
+  </body>
 </html>
