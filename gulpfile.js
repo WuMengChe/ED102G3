@@ -102,7 +102,7 @@ gulp.task('mysql', function () {
 
 });
 gulp.task("watch", function () {
-    return gulp.watch("./php/*", ["php"]);
+    gulp.watch("./php/*", ["php"]);
 }); // gulp watch => 執行watch sass的功能
 //使用Control + C 可以停止監看，如果要重新監看就要再重新執行
 
@@ -145,6 +145,7 @@ gulp.task('bgsass', ['bgimg', 'bgjs', 'bgfileinclude'], function () {
 
         .pipe(gulp.dest("./dest/backstage/css"));
 });
+
 gulp.task("bgfileinclude", function () {
     return gulp
         .src(["./backstage/html/*.html"]) //來源
