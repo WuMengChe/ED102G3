@@ -65,3 +65,4 @@ $(document).ready(function(anaValue){
         myChart.setOption(option);
     
 })
+
