@@ -13,7 +13,7 @@ function captureFront() {
   }).then(function (canvas) {
     let dataURL = canvas.toDataURL("image/png", 1);
     var ajaxFront = new XMLHttpRequest();
-    ajaxFront.open("POST", "../php/post_save.php", true);
+    ajaxFront.open("POST", "./php/post_save.php", true);
 
     ajaxFront.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     ajaxFront.send("img=" + dataURL);
@@ -55,7 +55,7 @@ function captureBack() {
   //       sessionStorage["backImg"] = this.responseText;
   //       // alert(this.responseText);
   //       // console.log(this.responseText);
-  //       myFileName = this.responseText;
+  // myFileName = this.responseText;
   //       // location.href = "post_date.html?filename=" + this.responseText;
   //       //-----------------
   //     }

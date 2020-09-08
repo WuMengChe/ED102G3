@@ -24,4 +24,9 @@ $('document').ready(function() {
     $('#close_test').click(function() {
         $('#go_test').addClass('_off');
     });
+
+    // cart_clicked
+    $('.add_cart_btn > button').click(function() {
+        $(this).addClass('cart_clicked');
+    });
 })

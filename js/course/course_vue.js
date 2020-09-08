@@ -7,7 +7,7 @@ new Vue({
                 link_from: 'practical',
                 link_to: 'practical_session',
                 link_title: '實作型',
-                // color: 'background: #79BBB5;',
+                color: 'practical_bg_color',
                 courses: [{
                     id: 5,
                     img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
@@ -34,7 +34,7 @@ new Vue({
                 link_from: 'research',
                 link_to: 'research_session',
                 link_title: '研究型',
-                // color: 'background: #A0CADB;',
+                color: 'research_bg_color',
                 courses: [{
 
                     id: 7,
@@ -62,7 +62,7 @@ new Vue({
                 link_from: 'art',
                 link_to: 'art_session',
                 link_title: '文藝型',
-                // color: 'background: #CCC5E3;',
+                color: 'art_bg_color',
                 courses: [{
                     id: 9,
                     img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
@@ -90,7 +90,7 @@ new Vue({
                 link_from: 'social',
                 link_to: 'social_session',
                 link_title: '社會型',
-                // color: 'background: #F4C3C5;',
+                color: 'social_bg_color',
                 courses: [{
                     id: 11,
                     img: 'img/course/course_img/s/課程照片-社會心理學.png',
@@ -118,7 +118,7 @@ new Vue({
                 link_from: 'enterprise',
                 link_to: 'enterprise_session',
                 link_title: '企業型',
-                // color: 'background: #E7995F;',
+                color: 'enterprise_bg_color',
                 courses: [{
                     id: 13,
                     img: 'img/course/course_img/E/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
@@ -146,7 +146,7 @@ new Vue({
                 link_from: 'thing',
                 link_to: 'thing_session',
                 link_title: '事務型',
-                color: 'background: #F7EA92;',
+                color: 'thing_bg_color',
                 courses: [{
                     id: 15,
                     img: 'img/course/course_img/C/課程照片-職場技能提升：初級會計基礎班.jpg',
@@ -275,12 +275,20 @@ new Vue({
             }
             this.add_storage();
 
+            // console.log(e.currentTarget);
+            // e.target.classList.add('cart_clicked');
+
         },
         remove_item(index) {
             this.cart_items.splice(index, 1);
             this.add_storage();
         },
-        cart_click_bg() {},
+        cart_click_bg(e) {
+            // $(`#${this.category[index].link_from}`).addClass('side_click');
+            $('.main_side_bar > ul> li > a').removeClass('side_click')
+            e.currentTarget.classList.add('side_click');
+
+        },
 
     },
     computed: {

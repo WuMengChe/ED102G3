@@ -11,18 +11,20 @@ new Vue({
       contentIsOpen: false,
       type: 'all',
       select: '全部文章',
-      stopScroll: false
+      stopScroll: false,
     }
   },
   mounted() {
-
-    fetch('./json/forum.json')
-      .then(res => res.json())
-      .then(information => {
-        this.information = information;
-        this.searchResult = information;
+    fetch('./php/forum_discuss.php', {
+      method: 'GET',
+    })
+      .then((res) => {
+        return res.json();
+      }).then((jsonData) => {
+      console.log(jsonData);
+      this.information = jsonData;
+      this.searchResult = jsonData;
       })
-
   },
   watch: {
     stopScroll: function () {
@@ -76,7 +78,6 @@ new Vue({
     },
     //側邊欄搜尋
     search(type) {
-      this.searchResult = this.information;
       const result = this.information.filter(element => {
         return element.d_type == type
       });
@@ -129,7 +130,6 @@ new Vue({
       this.isOpen = !this.isOpen;
     },
     closeOverlay() {
-      // alert("124")
       this.contentIsOpen = false
       this.stopScroll = false
     }

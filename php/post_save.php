@@ -4,15 +4,16 @@ $image = str_replace('data:image/png;base64,', '', $_POST["img"]); //將檔案�
 $image = str_replace(' ', '+', $image);
 $data = base64_decode($image);
 //準備好要存的filename
-$time = time();
-$filename = "../php/uploads/{$time}.png";
+
 if (file_exists("uploads") === false) {
   mkdir("uploads");
 }
 
-
+$time = time();
+$filename = "../uploads/{$time}.png";
+$filenameSend = "./uploads/{$time}.png";
 file_put_contents($filename, $data);
-echo $filename;
+echo $filenameSend;
 ?>
 <?php
 //--------------------背面
