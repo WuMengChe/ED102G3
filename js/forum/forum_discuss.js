@@ -21,9 +21,9 @@ new Vue({
       .then((res) => {
         return res.json();
       }).then((jsonData) => {
-      console.log(jsonData);
-      this.information = jsonData;
-      this.searchResult = jsonData;
+        console.log(jsonData);
+        this.information = jsonData;
+        this.searchResult = jsonData;
       })
   },
   watch: {
@@ -132,6 +132,13 @@ new Vue({
     closeOverlay() {
       this.contentIsOpen = false
       this.stopScroll = false
-    }
+    },
+    cart_click_bg(e) {
+      // $(`#${this.category[index].link_from}`).addClass('side_click');
+      $('.main_side_bar > ul> li > a').removeClass('side_click')
+      e.currentTarget.classList.add('side_click');
+
+    },
+
   },
 });
