@@ -173,8 +173,8 @@
                                 <div class="screen_bg">
                                     <div class="screen">
                                         <div class="screen_carousel">
-                                            <a :href="course.href" class="item" v-for="course in courses" id="indexCoures">
-                                                <img src="./img/index/index_4th/課程照片-翻轉課堂的職業講師祕訣.jpg" alt="">
+                                            <a href="" class="item" v-for="course in courses" id="indexCoures">
+                                                <img :src="course.src" alt="">
                                                 <h3>{{course.title}}</h3>
                                                 <p>課程時數: {{course.time}}</p>
                                                 <p>目前報名人數: {{course.person}}</p>
@@ -233,6 +233,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/easings.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <script src="./js/index/index.js"></script>
 </body>
 
