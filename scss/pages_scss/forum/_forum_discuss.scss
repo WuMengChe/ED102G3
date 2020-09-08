@@ -454,6 +454,7 @@ a.pencil_btn {
   top: 22%;
   left: 50%;
   max-width: 800px;
+  min-width: 600px;
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: scroll;
@@ -718,6 +719,11 @@ div.-on {
     }
   }
 }
+
+
+
+
+
 
 /* RWD */
 @media screen and (max-width: 992px) {

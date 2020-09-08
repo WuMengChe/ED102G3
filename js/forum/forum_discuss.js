@@ -1,3 +1,4 @@
+
 new Vue({
   el: "#forum_discuss",
   data() {
@@ -12,23 +13,20 @@ new Vue({
       type: 'all',
       select: '全部文章',
       stopScroll: false,
-      isAss: false,
+      msg:"",
     }
   },
   mounted() {
-
-    // fetch('./json/forum.json')
-
     fetch('./php/forum_discuss.php', {
       method: 'GET',
     })
       .then((res) => {
         return res.json();
-      }).then((jsonData) => {console.log(jsonData);
-      this.searchResult = jsonData;
+      }).then((jsonData) => {
+        console.log(jsonData);
+        this.information = jsonData;
+        this.searchResult = jsonData;
       })
-
-
   },
   watch: {
     stopScroll: function () {
@@ -62,30 +60,36 @@ new Vue({
   },
   methods: {
     //開啟燈箱按鈕
-    openContent() {
+    openContent(index) {
       if (this.contentIsOpen) {
         this.contentIsOpen = false
         this.stopScroll = false
+        // console.log(this.searchResult[index])
+        // this.msg = this.searchResult[index]
+        // console.log(msg)
+        this.msg = ""
       } else {
         this.contentIsOpen = true
         this.stopScroll = true
-        console.log(this.stopScroll)
+        console.log(this.searchResult[index])
+        this.msg = this.searchResult[index]
+        console.log(this.msg)
+        // console.log(this.stopScroll)
+        // this.msg = ""
       }
     },
     //關閉燈箱
     close_openContent() {
       if (this.contentIsOpen) {
         this.contentIsOpen = false
+          this.stopScroll = false
       } else {
         this.contentIsOpen = true
+          this.stopScroll = true
       }
     },
     //側邊欄搜尋
     search(type) {
-      // event.target.siblings.children.classList.remove("add");
-      // event.target.children.classList.add("add");
-      // this.add = !add;
-      // this.searchResult = this.information;
       const result = this.information.filter(element => {
         return element.d_type == type
       });
@@ -138,9 +142,15 @@ new Vue({
       this.isOpen = !this.isOpen;
     },
     closeOverlay() {
-      // alert("124")
       this.contentIsOpen = false
       this.stopScroll = false
-    }
+    },
+    cart_click_bg(e) {
+      // $(`#${this.category[index].link_from}`).addClass('side_click');
+      $('.main_side_bar > ul> li > a').removeClass('side_click')
+      e.currentTarget.classList.add('side_click');
+
+    },
+
   },
 });

@@ -20,22 +20,22 @@
         <div class="dis_side main_side_bar">
           <ul>
             <li @click="search('實作型')">
-              <a href="#"><span></span>實作型</a>
+              <a href="#" @click="cart_click_bg"><span></span>實作型</a>
             </li>
             <li @click="search('研究型')">
-              <a href="#"><span></span>研究型</a>
+              <a href="#" @click="cart_click_bg"><span></span>研究型</a>
             </li>
             <li @click="search('文藝型')">
-              <a href="#"><span></span>文藝型</a>
+              <a href="#" @click="cart_click_bg"><span></span>文藝型</a>
             </li>
             <li @click="search('社會型')">
-              <a href="#"><span></span>社會型</a>
+              <a href="#" @click="cart_click_bg"><span></span>社會型</a>
             </li>
             <li @click="search('企業型')">
-              <a href="#"><span></span>企業型</a>
+              <a href="#" @click="cart_click_bg"><span></span>企業型</a>
             </li>
             <li @click="search('事務型')">
-              <a href="#"><span></span>事務型</a>
+              <a href="#" @click="cart_click_bg"><span></span>事務型</a>
             </li>
           </ul>
           <div class="side_bar_img">
@@ -84,32 +84,31 @@
               <span>公告</span>
               <span class="bulletin_tex">轉職是不是不知道該怎麼開始呢？快來看看大家的經驗分享吧！</span>
             </div>
-
           </marquee>
         </div>
 
         <div class="dis_body">
           <!--瀏覽留言區-->
           <div class="tab_contents">
-            <div class="msg_content" v-for="messages in searchResult">
-              <div class="mem_info" @click="openContent">
+            <div class="msg_content" v-for="(messages,index) in searchResult">
+              <div class="mem_info" @click="openContent(index)">
                 <div class="info_list">
                   <div class="img_div">
                     <img :src="messages.d_img" alt="" class="dis_img" />
                   </div>
-                  <div class="dis_name">{{messages.d_name}}</div>
-                  <div class="dis_date">{{messages.d_data}}</div>
+                  <div class="dis_name">{{messages.MEM_NO}}</div>
+                  <div class="dis_date">{{messages.DIS_DATE}}</div>
                 </div>
                 <div class="tags_list">
-                  <span class="type_tag" :style="messages.d_color">{{messages.d_type}}</span>
-                  <span class="type_tag">{{messages.d_qu}}</span>
+                  <span class="type_tag" :style="messages.d_color">{{messages.IND_NO}}</span>
+                  <span class="type_tag">{{messages.DIS_CLASS}}</span>
                 </div>
               </div>
-              <div class="msg_title open_dialog" @click="openContent">
-                {{messages.d_title}}
+              <div class="msg_title open_dialog" @click="openContent(index)">
+                {{messages.DIS_NAME}}
               </div>
-              <div class="msg_textarea" @click="openContent">
-                {{messages.d_text}}
+              <div class="msg_textarea" @click="openContent(index)">
+                {{messages.DIS_CONTENT}}
               </div>
               <div class="msg_btn">
                 <button class="heart">
@@ -120,6 +119,7 @@
                 </button>
                 <button class="gray_btn" @click="collect_btn">
                   <i class="fas fa-bookmark"></i>
+                  {{messages.DIS_LIK_NUM}}
                 </button>
                 <button class="gray_btn" @click="accuse_btn">
                   <i class="fas fa-exclamation-circle"></i>
@@ -150,7 +150,7 @@
     <!--燈箱！！！-->
     <!--點擊留言板跳出的燈箱-->
     <div class="forum_overlay" :class="{'-open':contentIsOpen}" @click="closeOverlay">
-      <div class="forum_checkMsg">
+      <div class="forum_checkMsg" @click.stop>
         <div class="close_btn">
           <button type="button" class="btn_modal_close btn_third" @click="close_openContent">
             返回
@@ -162,23 +162,21 @@
             <div class="mem_info">
               <div class="info_list">
                 <div class="img_div">
-                  <img src="./img/forum/大頭照/headshot_10.jpg" alt="" class="dis_img" />
+                  <img :src="msg.MEM_NO" alt="" class="dis_img" />
                 </div>
-                <div class="dis_name">豬八戒</div>
-                <div class="dis_date">2020-07-28</div>
+                <div class="dis_name">{{msg.MEM_NO}}</div>
+                <div class="dis_date">{{msg.DIS_DATE}}</div>
               </div>
               <div class="tags_list">
-                <span class="type_tag">實作型</span>
-                <span class="type_tag">經驗分享</span>
+                <span class="type_tag">{{msg.IND_NO}}</span>
+                <span class="type_tag">{{msg.DIS_CLASS}}</span>
               </div>
             </div>
             <div class="msg_title open_dialog">
-              有人上過前端工程師學米私塾課嗎？
+           {{msg.DIS_NAME}}
             </div>
             <div class="msg_textarea">
-              覺得課程整套實在有點貴，
-              而且業務死不讓我看學生作品，讓我覺得很詭異
-              有人買過嗎？學起來如何呢？求經驗分享～
+            {{msg.DIS_CONTENT}}
             </div>
             <div class="msg_btn">
               <button class="heart">
@@ -313,12 +311,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="js/forum/forum_discuss.js"></script>
   <script>
-
-
-    // $(function () {
-    //   $(".marquee>div").width($("span").width());
-    // });
-
 
 
   </script>
