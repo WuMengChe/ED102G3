@@ -275,6 +275,9 @@ new Vue({
             }
             this.add_storage();
 
+            // console.log(e.currentTarget);
+            // e.target.classList.add('cart_clicked');
+
         },
         remove_item(index) {
             this.cart_items.splice(index, 1);
