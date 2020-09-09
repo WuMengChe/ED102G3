@@ -275,7 +275,7 @@
 					for($i = 1; $i < $number_of_orders; $i++){
 						$line = explode("\t", $orders[$i]);
 						if(!in_array($line[0], $re_value)){
-							$sql = "insert into `skill_class`(`SKI_NAME`, `IND_NO`, `SKI_PRICE`, `SKI_TIME`, `SKI_INTRO`, `SKI_LINK`, `SKI_IMG`, `SKI_TEC_IMG`, `SKI_TEC_NAME`, `SKI_TEC_INTRO`, `SKI_OUTLINE`, `SKI_STUD`) values('$line[0]', '$line[1]', '$line[4]', '$line[3]', '$line[5]', '$line[9]', '暫無圖片', '暫無圖片', '$line[7]', '$line[8]', '$line[2]', '$line[6]')";
+							$sql = "insert into `skill_class`(`SKI_NAME`, `IND_NO`, `SKI_PRICE`, `SKI_TIME`, `SKI_INTRO`, `SKI_LINK`, `SKI_IMG`, `SKI_TEC_IMG`, `SKI_TEC_NAME`, `SKI_TEC_INTRO`, `SKI_OUTLINE`, `SKI_STUD`) values('$line[0]', '$line[1]', '$line[4]', '$line[3]', '$line[5]', '$line[9]', '$line[10]', '$line[11]', '$line[7]', '$line[8]', '$line[2]', '$line[6]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
 							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";
@@ -430,11 +430,404 @@
 							$sql = "insert into `article_collect`(`MEM_NO`, `DIS_NO`) values('$line[1]', '$line[0]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
+							$sql_calc = "update `discuss_area` set `DIS_COL_NUM` = `DIS_COL_NUM` + 1 where `DIS_NO` = '$line[0]'";
+							echo "輸入收藏資料指令為 $sql_calc <br/>";
+							$pdo -> exec($sql_calc);
 							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
 						}
 					}
 				}
 				
+			}
+			
+			$orders = file("初始會員文章喜歡.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 初始會員文章喜歡.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 初始會員文章喜歡.txt 有資料</strong></p>";
+				$sql = "select * from `article_like`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value_mem = Array();
+				$cehek_value_ski = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value_mem[] = $row->	MEM_NO;
+					$cehek_value_ski[] = $row->	DIS_NO;
+				}
+				if($cehek_value_mem != 0){
+					foreach($cehek_value_mem as $key => $value){
+						if(deep_in_array($cehek_value_mem[$key], $orders, 1) && deep_in_array($cehek_value_ski[$key], $orders, 0)){
+							echo "主鍵值為".$cehek_value_mem[$key]."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[1], $re_value)){
+							$sql = "insert into `article_like`(`MEM_NO`, `DIS_NO`) values('$line[1]', '$line[0]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							$sql_calc = "update `discuss_area` set `DIS_LIK_NUM` = `DIS_LIK_NUM` + 1 where `DIS_NO` = '$line[0]'";
+							echo "輸入收藏資料指令為 $sql_calc <br/>";
+							$pdo -> exec($sql_calc);
+							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+				
+			}
+			
+			$orders = file("公告文章.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 公告文章.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 公告文章.txt 有資料</strong></p>";
+				$sql = "select * from `announcement`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value[] = $row->ANN_CONTENT;
+				}
+				if($cehek_value != 0){
+					foreach($cehek_value as $value){
+						if(deep_in_array($value, $orders, 0)){
+							echo "主鍵值為".$value."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[0], $re_value)){
+							$sql = "INSERT INTO `announcement`(`ANN_CONTENT`, `ANN_DATE`, `ANN_USE`) values('$line[0]', '$line[1]', '$line[2]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+			}
+			
+			$orders = file("初始會員留言喜歡.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 初始會員留言喜歡.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 初始會員留言喜歡.txt 有資料</strong></p>";
+				$sql = "select * from `message_like`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value_mem = Array();
+				$cehek_value_ski = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value_mem[] = $row->	MEM_NO;
+					$cehek_value_ski[] = $row->	DIS_MES_NO;
+				}
+				if($cehek_value_mem != 0){
+					foreach($cehek_value_mem as $key => $value){
+						if(deep_in_array($cehek_value_mem[$key], $orders, 1) && deep_in_array($cehek_value_ski[$key], $orders, 0)){
+							echo "主鍵值為".$cehek_value_mem[$key]."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[1], $re_value)){
+							$sql = "insert into `message_like`(`MEM_NO`, `DIS_MES_NO`) values('$line[1]', '$line[0]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							$sql_calc = "update `discuss_message` set `DIS_MES_LIK_NUM` = `DIS_MES_LIK_NUM` + 1 where `DIS_MES_NO` = '$line[0]'";
+							echo "輸入收藏資料指令為 $sql_calc <br/>";
+							$pdo -> exec($sql_calc);
+							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+			}
+			
+			$orders = file("初始會員分析結果.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 初始會員分析結果.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 初始會員分析結果.txt 有資料</strong></p>";
+				$sql = "select * from `quiz_result_analysis`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value_mem = Array();
+				$cehek_value_date = Array();
+				$cehek_value_fit = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value_mem[] = $row->	MEM_NO;
+					$cehek_value_date[] = $row-> QUIZ_RES_DATE;
+					$cehek_value_fit[] = $row-> QUIZ_RES_FIT_TYPE;
+				}
+				if($cehek_value_mem != 0){
+					foreach($cehek_value_mem as $key => $value){
+						if(deep_in_array($cehek_value_mem[$key], $orders, 0) && deep_in_array($cehek_value_date[$key], $orders, 7) && deep_in_array($cehek_value_fit[$key], $orders, 8)){
+							echo "主鍵值為".$cehek_value_mem[$key]."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[0], $re_value)){
+							$sql = "insert into `quiz_result_analysis`(`MEM_NO`, `QUIZ_RES_TYPE_A`, `QUIZ_RES_TYPE_C`, `QUIZ_RES_TYPE_E`, `QUIZ_RES_TYPE_I`, `QUIZ_RES_TYPE_R`, `QUIZ_RES_TYPE_S`, `QUIZ_RES_DATE`, `QUIZ_RES_FIT_TYPE`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]', '$line[5]', '$line[6]', '$line[7]', '$line[8]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+			}
+			
+			$orders = file("初始會員訂單.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 初始會員訂單.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 初始會員訂單.txt 有資料</strong></p>";
+				$sql = "select * from `order_mem`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value_mem = Array();
+				$cehek_value_date = Array();
+				$cehek_value_fit = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value_mem[] = $row->	MEM_NO;
+					$cehek_value_amount[] = $row-> ORD_AMOUNT;
+					$cehek_value_date[] = $row-> ORD_DATE;
+				}
+				if($cehek_value_mem != 0){
+					foreach($cehek_value_mem as $key => $value){
+						if(deep_in_array($cehek_value_mem[$key], $orders, 0) && deep_in_array($cehek_value_amount[$key], $orders, 2) && deep_in_array($cehek_value_date[$key], $orders, 4)){
+							echo "主鍵值為".$cehek_value_mem[$key]."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[0], $re_value)){
+							$sql = "insert into `order_mem`(`MEM_NO`, `ORD_DISCONT`, `ORD_AMOUNT`, `ORD_PAY`, `ORD_DATE`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+			}
+			
+			$orders = file("初始會員訂單明細.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 初始會員訂單明細.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 初始會員訂單明細.txt 有資料</strong></p>";
+				$sql = "select * from `order_detial`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value_ord = Array();
+				$cehek_value_ski = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value_ord[] = $row->	ORD_NO;
+					$cehek_value_ski[] = $row-> SKI_NO;
+				}
+				if($cehek_value_ord != 0){
+					foreach($cehek_value_ord as $key => $value){
+						if(deep_in_array($cehek_value_ord[$key], $orders, 0) && deep_in_array($cehek_value_ski[$key], $orders, 1)){
+							echo "主鍵值為".$cehek_value_ord[$key]."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[0], $re_value)){
+							$sql = "insert into `order_detial`(`ORD_NO`, `SKI_NO`, `ORD_DET_PRICE`) values('$line[0]', '$line[1]', '$line[2]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							$sql_calc = "update `skill_class` set `SKI_BUY_NUM` = `SKI_BUY_NUM` + 1 where `SKI_NO` = '$line[1]'";
+							echo "輸入收藏資料指令為 $sql_calc <br/>";
+							$pdo -> exec($sql_calc);
+							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+			}
+			
+			$orders = file("初始會員文章檢舉.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 初始會員文章檢舉.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 初始會員文章檢舉.txt 有資料</strong></p>";
+				$sql = "select * from `article_report`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value_mem = Array();
+				$cehek_value_dis = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value_mem[] = $row->	MEM_NO;
+					$cehek_value_dis[] = $row->	DIS_NO;
+				}
+				if($cehek_value_mem != 0){
+					foreach($cehek_value_mem as $key => $value){
+						if(deep_in_array($cehek_value_mem[$key], $orders, 1) && deep_in_array($cehek_value_dis[$key], $orders, 0)){
+							echo "主鍵值為".$cehek_value_mem[$key]."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[1], $re_value)){
+							$sql = "insert into `article_report`(`DIS_NO`, `MEM_NO`, `ART_REP_CONTENT`, `ART_REP_PASS`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+			}
+			
+			$orders = file("初始會員留言檢舉.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 初始會員留言檢舉.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 初始會員留言檢舉.txt 有資料</strong></p>";
+				$sql = "select * from `message_report`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value_mem = Array();
+				$cehek_value_dis = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value_mem[] = $row->	MEM_NO;
+					$cehek_value_dis[] = $row->	DIS_MES_NO;
+				}
+				if($cehek_value_mem != 0){
+					foreach($cehek_value_mem as $key => $value){
+						if(deep_in_array($cehek_value_mem[$key], $orders, 1) && deep_in_array($cehek_value_dis[$key], $orders, 0)){
+							echo "主鍵值為".$cehek_value_mem[$key]."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[1], $re_value)){
+							$sql = "insert into `message_report`(`DIS_MES_NO`, `MEM_NO`, `MES_REP_CONTENT`, `MES_REP_PASS`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+			}
+			
+			$orders = file("明信片素材.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 明信片素材.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 明信片素材.txt 有資料</strong></p>";
+				$sql = "select * from `postcard_material`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value[] = $row->POS_MAT_PIC;
+				}
+				if($cehek_value != 0){
+					foreach($cehek_value as $value){
+						if(deep_in_array($value, $orders, 1)){
+							echo "主鍵值為".$value."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[1], $re_value)){
+							$sql = "INSERT INTO `postcard_material`(`POS_MAT_NAME`, `POS_MAT_PIC`, `POS_MAT_USE`) values('$line[0]', '$line[1]', '$line[2]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
+			}
+			
+			$orders = file("初始會員明信片.txt");
+			$number_of_orders = count($orders);
+			
+			if ($number_of_orders == 0){
+				echo "<p><strong>檔案 初始會員明信片.txt 無資料</strong></p>";
+			}
+			else{
+				echo "<p><strong>檔案 初始會員明信片.txt 有資料</strong></p>";
+				$sql = "select * from `postcard`";
+				echo "搜尋指令為 $sql <br/><br/>";
+				$skill_class_all = $pdo -> query($sql);
+				$cehek_value_mem = Array();
+				$cehek_value_dis = Array();
+				$re_value = Array();
+				while($row=$skill_class_all->fetch(PDO::FETCH_OBJ)){
+					$cehek_value_mem[] = $row->	MEM_NO;
+					$cehek_value_dis[] = $row->	POS_CRE_DATE;
+				}
+				if($cehek_value_mem != 0){
+					foreach($cehek_value_mem as $key => $value){
+						if(deep_in_array($cehek_value_mem[$key], $orders, 0) && deep_in_array($cehek_value_dis[$key], $orders, 3)){
+							echo "主鍵值為".$cehek_value_mem[$key]."的資料已存入資料庫，勿重複輸入！<br/>";
+							$re_value[] = $value;
+						}
+					}
+					
+					for($i = 1; $i < $number_of_orders; $i++){
+						$line = explode("\t", $orders[$i]);
+						if(!in_array($line[0], $re_value)){
+							$sql = "insert into `postcard`(`MEM_NO`, `POS_PIC`, `POS_PIC_BACK`, `POS_CRE_DATE`, `POS_SEN_DATE`, `POS_SEND`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]', '$line[5]')";
+							echo "輸入資料指令為 $sql <br/>";
+							$pdo -> exec($sql);
+							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
+						}
+					}
+				}
 			}
 		}
 	}catch(PDOException $e){

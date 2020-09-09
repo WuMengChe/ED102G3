@@ -9,7 +9,7 @@ new Vue({
                 link_title: '實作型',
                 color: 'practical_bg_color',
                 courses: [{
-                    id: 5,
+                    id: 1,
                     img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
                     href: 'course_introduce.html',
                     course_title: '九個步驟快速提昇簡報力',
@@ -19,7 +19,7 @@ new Vue({
                     hour: 3,
                     price: 660,
                 }, {
-                    id: 6,
+                    id: 2,
                     img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
                     href: 'course_introduce.html',
                     course_title: '九個步驟快速提昇簡報力',
@@ -37,7 +37,7 @@ new Vue({
                 color: 'research_bg_color',
                 courses: [{
 
-                    id: 7,
+                    id: 3,
                     img: 'img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg',
                     href: 'course_introduce.html',
                     course_title: '打造團隊好關係與高績效',
@@ -47,7 +47,7 @@ new Vue({
                     hour: 7,
                     price: 770,
                 }, {
-                    id: 8,
+                    id: 4,
                     img: 'img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg',
                     href: 'course_introduce.html',
                     course_title: '打造團隊好關係與高績效',
@@ -64,7 +64,7 @@ new Vue({
                 link_title: '文藝型',
                 color: 'art_bg_color',
                 courses: [{
-                    id: 9,
+                    id: 5,
                     img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
                     href: 'course_introduce.html',
                     course_title: '行銷=內容x社群x商務',
@@ -74,11 +74,11 @@ new Vue({
                     hour: 9,
                     price: 990,
                 }, {
-                    id: 10,
+                    id: 6,
                     img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
                     href: 'course_introduce.html',
                     course_title: '行銷=內容x社群x商務',
-                    type: '藝術型',
+                    type: '文藝型',
                     color: 'art_bg_color',
                     join: 5555,
                     hour: 5,
@@ -92,7 +92,7 @@ new Vue({
                 link_title: '社會型',
                 color: 'social_bg_color',
                 courses: [{
-                    id: 11,
+                    id: 7,
                     img: 'img/course/course_img/s/課程照片-社會心理學.png',
                     href: 'course_introduce.html',
                     course_title: '行銷=內容x社群x商務',
@@ -102,7 +102,7 @@ new Vue({
                     hour: 5,
                     price: 550,
                 }, {
-                    id: 12,
+                    id: 8,
                     img: 'img/course/course_img/s/課程照片-社會心理學.png',
                     href: 'course_introduce.html',
                     course_title: '行銷=內容x社群x商務',
@@ -120,7 +120,7 @@ new Vue({
                 link_title: '企業型',
                 color: 'enterprise_bg_color',
                 courses: [{
-                    id: 13,
+                    id: 9,
                     img: 'img/course/course_img/E/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
                     href: 'course_introduce.html',
                     course_title: '行銷=內容x社群x商務',
@@ -130,7 +130,7 @@ new Vue({
                     hour: 5,
                     price: 550,
                 }, {
-                    id: 14,
+                    id: 10,
                     img: 'img/course/course_img/E/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
                     href: 'course_introduce.html',
                     course_title: '行銷=內容x社群x商務',
@@ -148,7 +148,7 @@ new Vue({
                 link_title: '事務型',
                 color: 'thing_bg_color',
                 courses: [{
-                    id: 15,
+                    id: 11,
                     img: 'img/course/course_img/C/課程照片-職場技能提升：初級會計基礎班.jpg',
                     href: 'course_introduce.html',
                     course_title: '行銷=內容x社群x商務',
@@ -158,7 +158,7 @@ new Vue({
                     hour: 5,
                     price: 550,
                 }, {
-                    id: 16,
+                    id: 12,
                     img: 'img/course/course_img/C/課程照片-職場技能提升：初級會計基礎班.jpg',
                     href: 'course_introduce.html',
                     course_title: '行銷=內容x社群x商務',
@@ -174,39 +174,17 @@ new Vue({
 
             hot_course: [{
                 id: 1,
-                img: 'img/course/course_img/E/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg',
+                img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
                 href: 'course_introduce.html',
                 course_title: '九個步驟快速提昇簡報力',
-                type: '企業型',
-                color: 'enterprise_bg_color',
+                type: '實作型',
+                color: 'practical_bg_color',
                 join: 9999,
                 hour: 3,
                 price: 660,
 
             }, {
-                id: 2,
-                img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
-                href: 'course_introduce.html',
-                course_title: '行銷=內容x社群x商務',
-                type: '文藝型',
-                color: 'art_bg_color',
-                join: 5555,
-                hour: 5,
-                price: 550,
-
-            }, {
                 id: 3,
-                img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
-                href: 'course_introduce.html',
-                course_title: '打造團隊好關係與高績效',
-                type: '實作型',
-                color: 'practical_bg_color',
-                join: 7777,
-                hour: 7,
-                price: 770,
-
-            }, {
-                id: 4,
                 img: 'img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg',
                 href: 'course_introduce.html',
                 course_title: '打造團隊好關係與高績效',
@@ -215,6 +193,28 @@ new Vue({
                 join: 7777,
                 hour: 7,
                 price: 770,
+
+            }, {
+                id: 5,
+                img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
+                href: 'course_introduce.html',
+                course_title: '行銷=內容x社群x商務',
+                type: '文藝型',
+                color: 'art_bg_color',
+                join: 9999,
+                hour: 9,
+                price: 990,
+
+            }, {
+                id: 7,
+                img: 'img/course/course_img/s/課程照片-社會心理學.png',
+                href: 'course_introduce.html',
+                course_title: '行銷=內容x社群x商務',
+                type: '社會型',
+                color: 'social_bg_color',
+                join: 5555,
+                hour: 5,
+                price: 550,
 
             }, ],
             cart_items: [],
@@ -237,11 +237,6 @@ new Vue({
             localStorage.setItem('cart', ss);
 
         },
-        delete_storage() {
-
-            localStorage.removeItem('cart');
-
-        },
         receive_storage() {
 
             let get_id = localStorage.getItem('cart');
@@ -251,7 +246,7 @@ new Vue({
                 if (index < get_id_arr.length - 1) {
                     let course_item = JSON.parse(course);
                     this.cart_items.push(course_item);
-                    $(`#cus_${course_item.id}`).addClass('cart_clicked');
+                    $(`.cus_${course_item.id}`).addClass('cart_clicked');
 
                 }
 
@@ -279,13 +274,11 @@ new Vue({
             this.add_storage();
 
             e.currentTarget.classList.add('cart_clicked');
-            // $(this).addClass('cart_clicked');
-
-            // console.log(e.currentTarget);
 
         },
         remove_item(index) {
-            $(`#cus_${this.cart_items[index].id}`).removeClass('cart_clicked');
+            $(`.cus_${this.cart_items[index].id}`).removeClass('cart_clicked');
+            // e.currentTarget.classList.remove('cart_clicked');
             this.cart_items.splice(index, 1);
             this.add_storage();
         },
