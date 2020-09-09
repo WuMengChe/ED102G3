@@ -30,7 +30,7 @@
         </div>
             <div class="answer_option_wrap">
 
-                <a class="answer_option option1" v-on:click="changeIndex(1);width===540?'':width+=30"  >
+                <a class="answer_option option1" v-on:click="changeIndex(1);changePage();width===540?'':width+=30"  >
                         <img class="cat cat_r " :src="options[index].src1"  alt="">
                         <p class="a1">{{ options[index].answer1 }}</p>
                 </a>
