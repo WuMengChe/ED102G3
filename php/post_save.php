@@ -21,13 +21,14 @@ echo $filenameSend;
 // $imageBack = str_replace(' ', '+', $imageBack);
 // $dataBack = base64_decode($imageBack);
 // //準備好要存的filename
-// $time = time();
-// $filenameBack = "../php/uploads/{$time}back.png";
+
 // if (file_exists("uploads") === false) {
 //   mkdir("uploads");
 // }
 
-
+// $timeBack = time();
+// $filenameBack = "../uploads/{$timeBack}.png";
+// $filenameBackSend = "./uploads/{$timeBack}.png";
 // file_put_contents($filenameBack, $dataBack);
-// echo $filenameBack;
+// echo $filenameBackSend;
 ?>
