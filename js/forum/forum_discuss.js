@@ -1,3 +1,4 @@
+
 new Vue({
   el: "#forum_discuss",
   data() {
@@ -12,6 +13,7 @@ new Vue({
       type: 'all',
       select: '全部文章',
       stopScroll: false,
+      msg:"",
     }
   },
   mounted() {
@@ -58,22 +60,32 @@ new Vue({
   },
   methods: {
     //開啟燈箱按鈕
-    openContent() {
+    openContent(index) {
       if (this.contentIsOpen) {
         this.contentIsOpen = false
         this.stopScroll = false
+        // console.log(this.searchResult[index])
+        // this.msg = this.searchResult[index]
+        // console.log(msg)
+        this.msg = ""
       } else {
         this.contentIsOpen = true
         this.stopScroll = true
-        console.log(this.stopScroll)
+        console.log(this.searchResult[index])
+        this.msg = this.searchResult[index]
+        console.log(this.msg)
+        // console.log(this.stopScroll)
+        // this.msg = ""
       }
     },
     //關閉燈箱
     close_openContent() {
       if (this.contentIsOpen) {
         this.contentIsOpen = false
+          this.stopScroll = false
       } else {
         this.contentIsOpen = true
+          this.stopScroll = true
       }
     },
     //側邊欄搜尋
