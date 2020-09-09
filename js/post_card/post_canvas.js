@@ -3,6 +3,7 @@ let myFileName;
 function captureFront() {
   var frontImg = document.getElementById("frontCapture");
   window.scrollTo(0, 0);
+
   html2canvas(frontImg, {
     //解决頁面滾動後白邊問題
     height: frontImg.offsetHeight,
@@ -12,6 +13,12 @@ function captureFront() {
     scale: 2
   }).then(function (canvas) {
     let dataURL = canvas.toDataURL("image/png", 1);
+
+
+    var context = canvas.getContext('2d');
+    var rect = $('#frontCapture').get(0).getBoundingClientRect(); //获取元素相对于视察的偏移量
+    context.translate(-rect.left - 3, -rect.top);
+
     var ajaxFront = new XMLHttpRequest();
     ajaxFront.open("POST", "./php/post_save.php", true);
 
@@ -46,7 +53,7 @@ function captureBack() {
   //   let dataURLBack = canvas.toDataURL("image/png", 1);
 
   //   var ajaxBack = new XMLHttpRequest();
-  //   ajaxBack.open("POST", "../php/post_save.php", true);
+  //   ajaxBack.open("POST", "./php/post_save.php", true);
   //   ajaxBack.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   //   ajaxBack.send("imgBack=" + dataURLBack);
 
@@ -55,7 +62,7 @@ function captureBack() {
   //       sessionStorage["backImg"] = this.responseText;
   //       // alert(this.responseText);
   //       // console.log(this.responseText);
-  // myFileName = this.responseText;
+  //       myFileName = this.responseText;
   //       // location.href = "post_date.html?filename=" + this.responseText;
   //       //-----------------
   //     }

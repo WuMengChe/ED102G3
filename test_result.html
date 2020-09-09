@@ -20,7 +20,7 @@
 
 
 
-    <div class="test_result_wrap ">
+    <div class="test_result_wrap " id="testResult">
 <!-- lightboxhere 會員登入燈箱在這裡 -->
 <div class="bg_of_lightbx">
     <div class="lightbx_login">
@@ -63,7 +63,7 @@
                         <h3>準確率60%</h3>
                     </div>
                     <div class="chart_bx"  >
-                        <div class="test_radar" style="width: 300px; height: 300px;border: 1px solid red;" @load="plotRadar()" ></div>
+                        <div class="test_radar" style="width: 500px; height: 500px;" ></div>
                     </div>
                 </div>
                 <div class="btn_save_bx">
@@ -203,25 +203,9 @@
 
     <script type="text/javascript" src="./js/test/jquery-3.5.1.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script> 
-    <script type="text/javascript" src="./js/test/test_result.js"></script>
+    <!-- <script type="text/javascript" src="./js/test/test_result_vue.js"></script> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js'></script>
- <script>
-     $(document).ready(function(){
-
-    /* Open lightbox on button click */
-    $('.result_save_btn').click(function(){
-    $('.bg_of_lightbx').css('display', 'block');
-});
-
-    /* Click to close lightbox */
-    $('.close_icon').click(function(){
-    $('.bg_of_lightbx').css('display', 'none');
-    });
-});
-
-
-
- </script>
+    <script type="text/javascript" src="./js/test/test_result.js"></script>
 </body>
 
 </html>

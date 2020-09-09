@@ -35,6 +35,7 @@ let carData = {
             {name: "初級會計基礎班", time: "12小時", price: 5000}
         ]},
     ],
+    industryForumTemp: new Array(),
     industryForum: [
         {typeName: "實作型(R)", detail: [
             {name: "酒及飲料調製"},
@@ -157,6 +158,77 @@ let careerVueContent = new Vue({
                 this.careerPlot.industryRank[i] = this.loadDataTemp[1][i].職業名稱;
                 this.careerPlot.industrySalary[i] = Math.round(this.loadDataTemp[1][i].薪資平均);
             }
+            var dataInsertControl = [0, 0, 0, 0, 0, 0];
+            for(var i = 0; i < this.loadDataTemp[2].length; i++){
+                if(this.loadDataTemp[2][i].IND_NO == 'R'){
+                    if(dataInsertControl[0] == 0){
+                        this.industryForumTemp.push(new Object());
+                        this.industryForumTemp[0].typeName = this.loadDataTemp[2][i].IND_CLASS;
+                        this.industryForumTemp[0].detail = new Array();
+                        this.industryForumTemp[0].detail.push(new Object());
+                        this.industryForumTemp[0].detail[0].name = 
+                    }
+                    this.industry[0].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[0].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[0].detail.push(new Object());
+                    this.industry[0].detail[dataInsertControl[0]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[0].detail[dataInsertControl[0]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[0].detail[dataInsertControl[0]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[0].detail[dataInsertControl[0]].isCheck = false;
+                    dataInsertControl[0] = dataInsertControl[0] + 1;
+                }
+                // else if(this.loadDataTemp[0][i].IND_NO == 'I'){
+                //     this.industry[1].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                //     this.industry[1].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                //     this.industry[1].detail.push(new Object());
+                //     this.industry[1].detail[dataInsertControl[1]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                //     this.industry[1].detail[dataInsertControl[1]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                //     this.industry[1].detail[dataInsertControl[1]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                //     this.industry[1].detail[dataInsertControl[1]].isCheck = false;
+                //     dataInsertControl[1] = dataInsertControl[1] + 1;
+                // }
+                // else if(this.loadDataTemp[0][i].IND_NO == 'A'){
+                //     this.industry[2].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                //     this.industry[2].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                //     this.industry[2].detail.push(new Object());
+                //     this.industry[2].detail[dataInsertControl[2]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                //     this.industry[2].detail[dataInsertControl[2]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                //     this.industry[2].detail[dataInsertControl[2]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                //     this.industry[2].detail[dataInsertControl[2]].isCheck = false;
+                //     dataInsertControl[2] = dataInsertControl[2] + 1;
+                // }
+                // else if(this.loadDataTemp[0][i].IND_NO == 'S'){
+                //     this.industry[3].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                //     this.industry[3].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                //     this.industry[3].detail.push(new Object());
+                //     this.industry[3].detail[dataInsertControl[3]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                //     this.industry[3].detail[dataInsertControl[3]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                //     this.industry[3].detail[dataInsertControl[3]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                //     this.industry[3].detail[dataInsertControl[3]].isCheck = false;
+                //     dataInsertControl[3] = dataInsertControl[3] + 1;
+                // }
+                // else if(this.loadDataTemp[0][i].IND_NO == 'E'){
+                //     this.industry[4].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                //     this.industry[4].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                //     this.industry[4].detail.push(new Object());
+                //     this.industry[4].detail[dataInsertControl[4]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                //     this.industry[4].detail[dataInsertControl[4]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                //     this.industry[4].detail[dataInsertControl[4]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                //     this.industry[4].detail[dataInsertControl[4]].isCheck = false;
+                //     dataInsertControl[4] = dataInsertControl[4] + 1;
+                // }
+                // else if(this.loadDataTemp[0][i].IND_NO == 'C'){
+                //     this.industry[5].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                //     this.industry[5].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                //     this.industry[5].detail.push(new Object());
+                //     this.industry[5].detail[dataInsertControl[5]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                //     this.industry[5].detail[dataInsertControl[5]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                //     this.industry[5].detail[dataInsertControl[5]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                //     this.industry[5].detail[dataInsertControl[5]].isCheck = false;
+                //     dataInsertControl[5] = dataInsertControl[5] + 1;
+                // }
+            }
+            console.log(this.loadDataTemp[2])
             this.rankingPlot();
         })
         this.screenWidth = document.documentElement.clientWidth;
