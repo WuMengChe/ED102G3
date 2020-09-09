@@ -1,3 +1,19 @@
+$(document).ready(function(){
+
+    /* Open lightbox on button click */
+    $('.result_save_btn').click(function(){
+    $('.bg_of_lightbx').css('display', 'block');
+});
+
+    /* Click to close lightbox */
+    $('.close_icon').click(function(){
+    $('.bg_of_lightbx').css('display', 'none');
+    });
+});
+
+
+
+
 var myChart = '';
 $(document).ready(function(anaValue){
         myChart = echarts.init(document.querySelector('.test_radar'), null, {renderer: 'svg'});
