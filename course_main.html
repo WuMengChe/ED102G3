@@ -68,9 +68,6 @@
                                 <div class="card_content">
                                     <p>{{item.course_title}}</p>
                                     <div class="card_content_scrb">
-                                        <!-- <div class="card_content_join">
-                                        <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
-                                    </div> -->
                                         <div class="card_content_msg">
                                             <span class="card_type" :class="item.color">{{item.type}}</span>
                                             <!-- <span class="card_time">總計3小時</span> -->
@@ -193,7 +190,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="add_cart_btn">
-                                                        <button @click="add_cart($event,card)">
+                                                        <button :class="'cus_' + card.id" @click="add_cart($event,card)">
                               <i class="fas fa-shopping-cart"></i>
                             </button>
                                                     </div>
@@ -238,7 +235,7 @@
                                                                 <div class="price_btn">
                                                                     <span class="card_price">NT${{card.price}}</span>
                                                                     <div class="add_cart_btn">
-                                                                        <button :id="'cus_' + card.id" @click="add_cart($event,card)">
+                                                                        <button :class="'cus_' + card.id" @click="add_cart($event,card)">
                                       <i class="fas fa-shopping-cart"></i>
                                     </button>
                                                                     </div>
