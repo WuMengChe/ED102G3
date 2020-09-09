@@ -37,7 +37,7 @@
                 <div class="compare">
                    <p>VS</p>
                 </div>
-                <a class="answer_option option2"  v-on:click="changeIndex(1);width===540?'':width+=30">
+                <a class="answer_option option2"  v-on:click="changeIndex(1);changePage();width===540?'':width+=30">
                     <img class=" cat cat_l" :src="options[index].src2"  alt="">
                     <p class="a2">{{ options[index].answer2 }}</p>
                 </a>
@@ -70,12 +70,7 @@ setInterval(
 
 // vueHere
 let data ={
-    width: 0,
-  // question : 'Q1:在閒暇之餘，你喜歡做什麼事？',
-  // src1:'./img/test/answerimg/0101.svg',
-  // src2:'./img/test/answerimg/0102.svg',
-  // answer1:'畫圖',
-  // answer2:'拼圖',
+  width: 0,
   index:0,
   options:[
       {question:'1. 在閒暇之餘你喜歡做什麼事？', src1:'./img/test/answerimg/0101.svg',
@@ -126,6 +121,11 @@ let testtest = new Vue({
       },
       divWidth(){
       console.log('click')
+    },
+    changePage(){
+      if( this.index === 17 ){
+        window.location.href = "./test_result.html";
+      }
     }
     
   },
