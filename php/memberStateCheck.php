@@ -7,6 +7,7 @@
         $user = $_SESSION["memNo"];
         $userName = $_SESSION["memName"];
         echo $user;
+        echo ";";
         echo $userName;
     }
     else{

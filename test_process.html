@@ -24,22 +24,22 @@
                  <div class="topic_bx">
                 <div class="img_bx"><img src="./img/test/host.svg"alt=""></div>
                 <div class="question">
-                <P class="topic">{{ options[index].question }}</P>
+                <P class="topic">{{ option1[index].question }}</P>
             </div>
         </div>
         </div>
             <div class="answer_option_wrap">
 
-                <a class="answer_option option1" v-on:click="changeIndex(1);changePage();width===540?'':width+=30"  >
-                        <img class="cat cat_r " :src="options[index].src1"  alt="">
-                        <p class="a1">{{ options[index].answer1[0] }}</p>
+                <a class="answer_option option1" v-on:click="changeIndex(1, option1[index].value);changePage();width===540?'':width+=30"  >
+                        <img class="cat cat_r " :src="option1[index].src1"  alt="">
+                        <p class="a1">{{ option1[index].answer1 }}</p>
                 </a>
                 <div class="compare">
                    <p>VS</p>
                 </div>
-                <a class="answer_option option2"  v-on:click="changeIndex(1);changePage();width===540?'':width+=30">
-                    <img class=" cat cat_l" :src="options[index].src2"  alt="">
-                    <p class="a2">{{ options[index].answer2 }}</p>
+                <a class="answer_option option2"  v-on:click="changeIndex(1, option2[index].value);changePage();width===540?'':width+=30">
+                    <img class=" cat cat_l" :src="option2[index].src2"  alt="">
+                    <p class="a2">{{ option2[index].answer2 }}</p>
                 </a>
             </div>
             <div class="progress_bar_bx">
