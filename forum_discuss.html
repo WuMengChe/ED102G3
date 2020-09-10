@@ -14,6 +14,7 @@
 <body>
 
   @@include('app/header.html')
+
   <div id="forum_discuss" class="container-fluid">
     <div class="wrap row">
       <div class="side_wrap col-lg-3">
@@ -64,7 +65,7 @@
           <marquee class="blink_text">
             <div class="bulletin_text_wrap" v-for="(ann,index) in announcement">
               <span>公告</span>
-              <span class="bulletin_tex">目前推出課程買二打八折，優惠價格持續到2020年底喔！這麼好康的活動，趕快通知親朋好友一起來上課哦！</span>
+              <span class="bulletin_tex">{{ann.ANN_CONTENT}}</span>
             </div>
           </marquee>
         </div>
