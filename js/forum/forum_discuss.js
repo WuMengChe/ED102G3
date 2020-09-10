@@ -16,7 +16,7 @@ new Vue({
       select: '全部文章',
       stopScroll: false,
       msg: "",
-      isheart: false,
+      isHeart: false,
       category: [{
         link_title: '實作型',
         color: 'practical_bg_color',
@@ -97,6 +97,8 @@ new Vue({
   },
   methods: {
     funcA() {
+      // return axios.get(`./php/forum_discuss.php?aaa=$
+      // {}1&bbb=222`)
       return axios.get('./php/forum_discuss.php')
     },
     funcB() {
@@ -170,7 +172,11 @@ new Vue({
     },
     //愛心
     heart_btn(e) {
-      this.isheart = !this.isheart
+      // alert("123")
+      this.isHeart = !this.isHeart
+      console.log(e);
+      this.msg = this.searchResult[index]
+      // document.querySelectorAll('.fa-heart')[e].classList.add('colorRed')
       // e.target.classList.toggle("colorRed")
     },
     //收藏
@@ -187,12 +193,17 @@ new Vue({
       this.contentIsOpen = false
       this.stopScroll = false
     },
+    //側邊欄點擊提示
     cart_click_bg(e) {
       // $(`#${this.category[index].link_from}`).addClass('side_click');
       $('.main_side_bar > ul> li > a').removeClass('side_click')
       e.currentTarget.classList.add('side_click');
-
     },
+    heart_btn_feedback(e){
+      this.isHeart = !this.isHeart
+      console.log(e);
+      // this.msg = this.searchResult[index]
+    }
 
   },
 });
