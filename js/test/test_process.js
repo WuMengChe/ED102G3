@@ -115,12 +115,14 @@ let testtest = new Vue({
         }else if(value ==='C'){
           this.totalScore[5] = this.totalScore[5]+1
         }
+        
       },
       divWidth(){
       console.log('click')
     },
     changePage(){
       if( this.index === 17 ){
+        localStorage.result = this.totalScore;
         window.location.href = "./test_result.html";
       }
     }
