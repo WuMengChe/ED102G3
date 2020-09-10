@@ -1,9 +1,9 @@
-let data = {
-    myChart: ''
+let resultData = {
+    myChart: '',
 }
 let resulttest = new Vue({
-    el: '#testResult',
-    data: data,
+    el: '.main_test_result',
+    data: resultData,
     methods: {
         plotRadar(anaValue){
             this.myChart = echarts.init(document.querySelector('.test_radar'), null, {renderer: 'svg'});
