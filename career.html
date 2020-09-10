@@ -56,12 +56,12 @@
                     <div class="col-md-12 car_course_list">
                         <div class="col-md-5 col-sm-5 col-6 car_course_list_info" v-for="(item, index) in industryCourse[chooseIndustry].detail">
                             <a class="car_course_list_info_img" href="./course_introduce.html">
-                                <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" />
+                                <img :src="item.picture"/>
                                 <span :style="{backgroundColor:industry[chooseIndustry].backgroundColor}">{{industry[chooseIndustry].typeName}}</span>
                             </a>
                             <a href="./course_introduce.html">
                                 <p>{{item.name}}</p>
-                                <span class="car_course_list_info_word"><i class="fas fa-user-friends "></i>123人已參與此課程</span>
+                                <span class="car_course_list_info_word"><i class="fas fa-user-friends "></i>{{item.num}}人已參與此課程</span>
                                 <span class="car_course_list_info_hour">時數：{{item.time}}</span>
                                 <span class="car_course_list_info_price">NT${{item.price}}</span>
                             </a>
@@ -76,7 +76,7 @@
                     <div class="col-md-12 car_course_list">
                         <div class="col-md-12 col-sm-12 col-12 car_forum_list_info" v-for="(item, index) in industryForum[chooseIndustry].detail" :style="{borderColor:industry[chooseIndustry].backgroundColor}">
                             <a href="./forum_discuss.html">
-                                <span :style="{backgroundColor:industry[chooseIndustry].backgroundColor}">經驗分享</span>
+                                <span :style="{backgroundColor:industry[chooseIndustry].backgroundColor}">{{item.disClass}}</span>
                                 <span>&ensp;{{item.name}}</span>
                             </a>
                         </div>

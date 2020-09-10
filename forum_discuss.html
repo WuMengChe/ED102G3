@@ -19,6 +19,14 @@
       <div class="side_wrap col-lg-3">
         <div class="dis_side main_side_bar">
           <ul>
+            <li v-for="(type, index) in category" @click="search(type)">
+              <a href="#" :class="'point' + index" @click="cart_click_bg"><span></span>{{type.link_title}}</a>
+            </li>
+          </ul>
+          <div class="side_bar_img">
+            <img src="./img/side_bar.svg" alt="" />
+          </div>
+          <!-- <ul>
             <li @click="search('實作型')">
               <a href="#" @click="cart_click_bg"><span></span>實作型</a>
             </li>
@@ -40,7 +48,7 @@
           </ul>
           <div class="side_bar_img">
             <img src="./img/side_bar.svg" alt="">
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -100,7 +108,7 @@
                   <div class="dis_date">{{messages.DIS_DATE}}</div>
                 </div>
                 <div class="tags_list">
-                  <span class="type_tag" :style="messages.d_color">{{messages.IND_NO}}</span>
+                  <span class="type_tag" :style="messages.d_color">實作型</span>
                   <span class="type_tag">{{messages.DIS_CLASS}}</span>
                 </div>
               </div>
@@ -173,14 +181,14 @@
               </div>
             </div>
             <div class="msg_title open_dialog">
-           {{msg.DIS_NAME}}
+              {{msg.DIS_NAME}}
             </div>
             <div class="msg_textarea">
-            {{msg.DIS_CONTENT}}
+              {{msg.DIS_CONTENT}}
             </div>
             <div class="msg_btn">
               <button class="heart">
-                <i class="fas fa-heart" @click="heart_btn"></i>
+                <i class="fas fa-heart" :class="{'colorRed':isheart}" @click="heart_btn"></i>
               </button>
               <button class="gray_btn">
                 <i class="far fa-comment-alt"></i>
