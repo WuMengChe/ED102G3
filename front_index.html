@@ -172,21 +172,31 @@
                             <div class="pad">
                                 <div class="screen_bg">
                                     <div class="screen">
-                                        <div class="screen_carousel">
-                                            <a href="" class="item" v-for="course in courses" id="indexCoures">
-                                                <img :src="course.src" alt="">
-                                                <h3>{{course.title}}</h3>
-                                                <p>課程時數: {{course.time}}</p>
-                                                <p>目前報名人數: {{course.person}}</p>
-                                                <p>課程費用: {{course.cost}}</p>
-                                            </a>
+                                        <div class="screen_carousel"  >
+                                            <div v-for="course in courses">
+
+                                                <a :href="course.href" class="item" id="indexCoures">
+                                                    <div class="course_img">
+                                                        <img :src="course.src" alt="">
+                                                        <div class="typeTag" :class="course.color">{{course.type}}</div>
+                                                    </div>
+                                                    <div class="course_text">
+                                                        <p class="courseTitle">{{course.title}}</p>
+                                                        <i class="fas fa-user-friends"></i><span>{{course.person}}人已參與此課程</span>
+                                                        <div class="courseInfo">
+                                                            <p class="courseHour">總計{{course.time}}小時</p>
+                                                            <p class="courseCost">NT${{course.cost}}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
                         </div>
                     </div>
                 </div>
-                <div class="screen_bt">
-                    <a href="./course_main.html" class="btn_second">探索更多課程</a>
+            </div>
+            <div class="screen_bt">
+                <a href="./course_main.html" class="btn_second">探索更多課程</a>
 
-                </div>
+            </div>
             </div>
             <div class="stairBoy">
                 <div class="stair">
@@ -233,7 +243,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/easings.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="./js/index/index_vue.js"></script>
     <script src="./js/index/index.js"></script>
 </body>
 
