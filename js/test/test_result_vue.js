@@ -2,7 +2,8 @@
 let Data = {
     register: false,
     signIn : true,
-    screenWidth : 0
+    screenWidth : 0,
+    myChart :''
 }
 let changeSignType = new Vue({
     el : '#testResult',
