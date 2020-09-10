@@ -170,6 +170,7 @@ new Vue({
                 }, ],
 
             }],
+            main_course: [],
 
 
             hot_course: [{
@@ -221,7 +222,18 @@ new Vue({
 
 
         }
-
+    },
+    mounted() {
+        this.receive_storage();
+        axios.get('./php/course_course_list.php')
+            .then(res => {
+                console.log(res);
+                this.main_course = res.data;
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        console.log(this.main_course);
 
     },
     methods: {
@@ -312,8 +324,5 @@ new Vue({
 
     },
 
-    mounted() {
-        this.receive_storage();
 
-    },
 })
