@@ -32,14 +32,14 @@
 
                 <a class="answer_option option1" v-on:click="changeIndex(1);changePage();width===540?'':width+=30"  >
                         <img class="cat cat_r " :src="options[index].src1"  alt="">
-                        <p class="a1">{{ options[index].answer1[0] }}</p>
+                        <p class="a1">{{ options[index].answer1 }}</p>
                 </a>
                 <div class="compare">
                    <p>VS</p>
                 </div>
                 <a class="answer_option option2"  v-on:click="changeIndex(1);changePage();width===540?'':width+=30">
-                    <img class=" cat cat_l" :src="options[index].src2"  alt="">
-                    <p class="a2">{{ options[index].answer2 }}</p>
+                    <img class=" cat cat_l" :src="option2[index].src2"  alt="">
+                    <p class="a2">{{ option2[index].answer2 }}</p>
                 </a>
             </div>
             <div class="progress_bar_bx">
