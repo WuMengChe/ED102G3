@@ -254,7 +254,7 @@ new Vue({
             });
 
         },
-        add_cart(e, item) {
+        add_cart(item) {
             if (this.cart_items.length == 0) {
                 this.cart_items.push(item);
             } else {
@@ -272,8 +272,7 @@ new Vue({
                 }
             }
             this.add_storage();
-
-            e.currentTarget.classList.add('cart_clicked');
+            $(`.cus_${item.id}`).addClass('cart_clicked');
 
         },
         remove_item(index) {
@@ -282,7 +281,7 @@ new Vue({
             this.cart_items.splice(index, 1);
             this.add_storage();
         },
-        cart_click_bg(e) {
+        side_click_bg(e) {
             // $(`#${this.category[index].link_from}`).addClass('side_click');
             $('.main_side_bar > ul> li > a').removeClass('side_click')
             e.currentTarget.classList.add('side_click');
