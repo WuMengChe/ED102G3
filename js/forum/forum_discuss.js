@@ -13,7 +13,29 @@ new Vue({
       type: 'all',
       select: '全部文章',
       stopScroll: false,
-      msg:"",
+      msg: "",
+      isheart: false,
+      category: [{
+        link_title: '實作型',
+        color: 'practical_bg_color',
+      }, {
+        link_title: '研究型',
+        color: 'research_bg_color',
+      }, {
+        link_title: '文藝型',
+        color: 'art_bg_color',
+      }, {
+        link_title: '社會型',
+        color: 'social_bg_color',
+      }, {
+
+        link_title: '企業型',
+        color: 'enterprise_bg_color',
+      }, {
+        link_title: '事務型',
+        color: 'thing_bg_color',
+      }],
+
     }
   },
   mounted() {
@@ -64,28 +86,23 @@ new Vue({
       if (this.contentIsOpen) {
         this.contentIsOpen = false
         this.stopScroll = false
-        // console.log(this.searchResult[index])
-        // this.msg = this.searchResult[index]
-        // console.log(msg)
         this.msg = ""
       } else {
         this.contentIsOpen = true
         this.stopScroll = true
-        console.log(this.searchResult[index])
+        // console.log(this.searchResult[index])
         this.msg = this.searchResult[index]
-        console.log(this.msg)
-        // console.log(this.stopScroll)
-        // this.msg = ""
+        // console.log(this.msg)
       }
     },
     //關閉燈箱
     close_openContent() {
       if (this.contentIsOpen) {
         this.contentIsOpen = false
-          this.stopScroll = false
+        this.stopScroll = false
       } else {
         this.contentIsOpen = true
-          this.stopScroll = true
+        this.stopScroll = true
       }
     },
     //側邊欄搜尋
@@ -129,7 +146,8 @@ new Vue({
     },
     //愛心
     heart_btn(e) {
-      e.target.classList.toggle("colorRed")
+      this.isheart = !this.isheart
+      // e.target.classList.toggle("colorRed")
     },
     //收藏
     collect_btn(e) {
