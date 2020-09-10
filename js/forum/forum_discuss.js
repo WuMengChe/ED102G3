@@ -5,6 +5,8 @@ new Vue({
     return {
       information: [],
       searchResult: [],
+      announcement: [],
+      box_msg: [],
       isOpen: false,
       filter: '',
       accuseIsOpen: false,
@@ -39,16 +41,29 @@ new Vue({
     }
   },
   mounted() {
-    fetch('./php/forum_discuss.php', {
-      method: 'GET',
-    })
-      .then((res) => {
-        return res.json();
-      }).then((jsonData) => {
-        console.log(jsonData);
-        this.information = jsonData;
-        this.searchResult = jsonData;
-      })
+    // axios.get('./php/forum_discuss.php')
+    //   .then(res => {
+    //     console.log(res);
+    //     this.information = res.data;
+    //     this.searchResult = res.data;
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    axios.all([this.funcA(), this.funcB(), this.funcC()])
+      .then(axios.spread((res1, res2, res3) => {
+        console.log(res1.data);
+        console.log(res2.data);
+        console.log(res3.data);
+        
+
+        this.information = res1.data;
+        this.searchResult = res1.data;
+        this.box_msg = res2.data;
+        this.announcement = res3.data;
+
+      }))
+      .catch((err) => { console.error(err) })
   },
   watch: {
     stopScroll: function () {
@@ -81,6 +96,15 @@ new Vue({
     }
   },
   methods: {
+    funcA() {
+      return axios.get('./php/forum_discuss.php')
+    },
+    funcB() {
+      return axios.get('./php/forum_discuss_msg.php')
+    },
+    funcC() {
+      return axios.get('./php/forum_discuss_ann.php')
+    },
     //開啟燈箱按鈕
     openContent(index) {
       if (this.contentIsOpen) {
@@ -108,7 +132,7 @@ new Vue({
     //側邊欄搜尋
     search(type) {
       const result = this.information.filter(element => {
-        return element.d_type == type
+        return element.IND_CLASS == type
       });
       this.searchResult = result;
       this.select = "選擇分類";
