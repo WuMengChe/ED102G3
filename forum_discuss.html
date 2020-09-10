@@ -19,36 +19,13 @@
       <div class="side_wrap col-lg-3">
         <div class="dis_side main_side_bar">
           <ul>
-            <li v-for="(type, index) in category" @click="search(type)">
+            <li v-for="(type, index) in category" @click="search(type.link_title)">
               <a href="#" :class="'point' + index" @click="cart_click_bg"><span></span>{{type.link_title}}</a>
             </li>
           </ul>
           <div class="side_bar_img">
             <img src="./img/side_bar.svg" alt="" />
           </div>
-          <!-- <ul>
-            <li @click="search('實作型')">
-              <a href="#" @click="cart_click_bg"><span></span>實作型</a>
-            </li>
-            <li @click="search('研究型')">
-              <a href="#" @click="cart_click_bg"><span></span>研究型</a>
-            </li>
-            <li @click="search('文藝型')">
-              <a href="#" @click="cart_click_bg"><span></span>文藝型</a>
-            </li>
-            <li @click="search('社會型')">
-              <a href="#" @click="cart_click_bg"><span></span>社會型</a>
-            </li>
-            <li @click="search('企業型')">
-              <a href="#" @click="cart_click_bg"><span></span>企業型</a>
-            </li>
-            <li @click="search('事務型')">
-              <a href="#" @click="cart_click_bg"><span></span>事務型</a>
-            </li>
-          </ul>
-          <div class="side_bar_img">
-            <img src="./img/side_bar.svg" alt="">
-          </div> -->
         </div>
       </div>
 
@@ -85,12 +62,9 @@
 
         <div class="bulletin">
           <marquee class="blink_text">
-            <div class="bulletin_text_wrap">
+            <div class="bulletin_text_wrap" v-for="(ann,index) in announcement">
               <span>公告</span>
               <span class="bulletin_tex">目前推出課程買二打八折，優惠價格持續到2020年底喔！這麼好康的活動，趕快通知親朋好友一起來上課哦！</span>
-
-              <span>公告</span>
-              <span class="bulletin_tex">轉職是不是不知道該怎麼開始呢？快來看看大家的經驗分享吧！</span>
             </div>
           </marquee>
         </div>
@@ -102,13 +76,13 @@
               <div class="mem_info" @click="openContent(index)">
                 <div class="info_list">
                   <div class="img_div">
-                    <img :src="messages.d_img" alt="" class="dis_img" />
+                    <img :src="messages.MEM_PIC" alt="pic" class="dis_img" />
                   </div>
-                  <div class="dis_name">{{messages.MEM_NO}}</div>
+                  <div class="dis_name">{{messages.MEM_NAME}}</div>
                   <div class="dis_date">{{messages.DIS_DATE}}</div>
                 </div>
                 <div class="tags_list">
-                  <span class="type_tag" :style="messages.d_color">實作型</span>
+                  <span class="type_tag" :style="messages.IND_COLOR">{{messages.IND_CLASS}}</span>
                   <span class="type_tag">{{messages.DIS_CLASS}}</span>
                 </div>
               </div>
@@ -127,7 +101,7 @@
                 </button>
                 <button class="gray_btn" @click="collect_btn">
                   <i class="fas fa-bookmark"></i>
-                  {{messages.DIS_LIK_NUM}}
+                  {{messages.DIS_COL_NUM}}
                 </button>
                 <button class="gray_btn" @click="accuse_btn">
                   <i class="fas fa-exclamation-circle"></i>
@@ -176,7 +150,7 @@
                 <div class="dis_date">{{msg.DIS_DATE}}</div>
               </div>
               <div class="tags_list">
-                <span class="type_tag">{{msg.IND_NO}}</span>
+                <span class="type_tag">{{msg.IND_CLASS}}</span>
                 <span class="type_tag">{{msg.DIS_CLASS}}</span>
               </div>
             </div>
@@ -205,56 +179,16 @@
         <div class="feedback_count">共5則回應</div>
         <!--回應留言區-->
         <div class="forum_feedback">
-          <div class="feedback_content">
+          <div class="feedback_content" v-for="(msg,index) in box_msg">
             <div class="info_list">
               <div class="img_div">
-                <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
+                <img :src="msg.MEM_PIC" alt="" class="dis_img" />
               </div>
-              <div class="dis_name">孫悟空</div>
-              <div class="dis_date">2020-07-28</div>
+              <div class="dis_name">{{msg.MEM_NAME}}</div>
+              <div class="dis_date">{{msg.DIS_MES_DATE}}</div>
             </div>
             <div class="msg_textarea">
-              我去上過覺得還好
-            </div>
-            <div class="msg_btn">
-              <button class="heart">
-                <i class="fas fa-heart" @click="heart_btn"></i>
-              </button>
-              <button class="gray_btn" @click="accuse_btn">
-                <i class="fas fa-exclamation-circle"></i>
-              </button>
-            </div>
-          </div>
-          <div class="feedback_content">
-            <div class="info_list">
-              <div class="img_div">
-                <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
-              </div>
-              <div class="dis_name">孫悟空</div>
-              <div class="dis_date">2020-07-28</div>
-            </div>
-            <div class="msg_textarea">
-              我去上過覺得還好
-            </div>
-            <div class="msg_btn">
-              <button class="heart">
-                <i class="fas fa-heart" @click="heart_btn"></i>
-              </button>
-              <button class="gray_btn" @click="accuse_btn">
-                <i class="fas fa-exclamation-circle"></i>
-              </button>
-            </div>
-          </div>
-          <div class="feedback_content">
-            <div class="info_list">
-              <div class="img_div">
-                <img src="./img/forum/大頭照/headshot_1.jpg" alt="" class="dis_img" />
-              </div>
-              <div class="dis_name">孫悟空</div>
-              <div class="dis_date">2020-07-28</div>
-            </div>
-            <div class="msg_textarea">
-              我去上過覺得還好
+              {{msg.DIS_MES_CONTENT}}}
             </div>
             <div class="msg_btn">
               <button class="heart">
@@ -311,12 +245,12 @@
     </div>
   </div>
 
-  @@include('app/script.html')
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
   <script src="js/forum/forum_discuss.js"></script>
   <script>
 
