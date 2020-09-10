@@ -5,7 +5,6 @@
     try{
         require_once("./connectMySql.php");
         if( $pdo != false ){
-
             $sql = "select * from `member` where MEM_EMAIL = :MEM_EMAIL";
             $member_all = $pdo -> prepare($sql);
             $member_all -> bindValue(":MEM_EMAIL",$_POST["memAccount"]);
