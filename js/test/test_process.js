@@ -9,7 +9,7 @@ setInterval(
 
 // vueHere
 let data ={
-  width: 0,
+  width:30,
   index:0,
   totalScore : [0,0,0,0,0,0],
   option1:[
@@ -114,8 +114,7 @@ let testtest = new Vue({
           this.totalScore[4] = this.totalScore[4]+1
         }else if(value ==='C'){
           this.totalScore[5] = this.totalScore[5]+1
-        }
-        
+        } 
       },
       divWidth(){
       console.log('click')
@@ -125,13 +124,12 @@ let testtest = new Vue({
         localStorage.result = this.totalScore;
         window.location.href = "./test_result.html";
       }
-    }
-    
+    } 
   },
   computed:{
     divStyle:function(){
       return {
-        width: this.width+'px'
+        width: this.width+'px',
       }
     }
   }

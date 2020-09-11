@@ -23,8 +23,8 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>職引960後台</title>
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="../bootstrap-grid.min.css">
+  <link rel="stylesheet" href="../bootstrap/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="../css/app_public.css">
   <link rel="stylesheet" href="./css/backstage_index.css">
 
 </head>
@@ -33,7 +33,7 @@ try {
   <header>
 
     <div class="logo">
-      <a href="./backstage_index.html">
+      <a href="../backstage_index.php">
         <img src="" alt="logo">
       </a>
     </div>
@@ -526,7 +526,7 @@ try {
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="./js/backstage_component.js"></script>
-  <script src="./js//backstage_index.js"></script>
+  <script src="./js/backstage_index.js"></script>
 
 </body>
 

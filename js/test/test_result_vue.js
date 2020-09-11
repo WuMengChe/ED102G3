@@ -2,14 +2,26 @@
 let Data = {
     register: false,
     signIn : true,
-    screenWidth : 0,
-    myChart :''
+    myChart :'',
+    index :0,
+    resultData : [
+        {typeName:'文藝型',
+        typeDscrp:'這些人通常直覺敏銳、善於表達和創新。他們希望藉由文字、聲音、色彩或形式來表達創造力和美的感受。生活的目的是創造美麗的事物。此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。這些人通常直覺敏銳、善於表達和創新。他們希望藉由文字、聲音、色彩或形式來表達創造力和美的感受。生活的目的是創造美麗的事物。此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。',
+        accuracy:'',
+    }
+    ],
+    relatedJob : [
+        {name:'理髮師', src:'./img/test/A_文藝型/理髮師.svg', link:''},
+        {name:'文字編輯', src:'./img/test/A_文藝型/文字編輯.svg', link:''},
+        {name:'攝影師', src:'./img/test/A_文藝型/攝影師.svg', link:''},
+        {name:'室內設計師', src:'./img/test/A_文藝型/室內設計師.svg', link:''}
+    ]
 }
-let changeSignType = new Vue({
+let testRult = new Vue({
     el : '#testResult',
     data : Data,
     methods: {
-        changePage(){
+        changeState(){
             var memAccount = document.querySelector('.input_div #account').value;
             var memCode = document.querySelector('.input_div #code').value;
             var formData = new FormData();
@@ -28,7 +40,7 @@ let changeSignType = new Vue({
                 }
                 console.table(resp.data)
             })
-
-        },              
-    }
+        }
+        }, 
+    
 })
