@@ -157,7 +157,7 @@ gulp.task('bgsass', ['bgimg', 'bgjs', 'bgfileinclude', 'bgphp'], function() {
     .pipe(gulp.dest("./dest/backstage/css"));
 });
 gulp.task("bgphp", function() {
-    return gulp.src(["./backstage/*.php"]).pipe(gulp.dest("dest/backstage"));
+    return gulp.src(["./backstage/php/*.php"]).pipe(gulp.dest("dest/backstage"));
 });
 gulp.task("bgimg", function() {
     return gulp.src("./backstage/img/**/*")

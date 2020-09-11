@@ -23,9 +23,9 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>職引960後台</title>
-  <link rel="stylesheet" href="../bootstrap/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="../css/app_public.css">
-  <link rel="stylesheet" href="./css/backstage_index.css">
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./css/app_public.css">
+  <link rel="stylesheet" href="./backstage/css/backstage_index.css">
 
 </head>
 
@@ -33,7 +33,7 @@ try {
   <header>
 
     <div class="logo">
-      <a href="../backstage_index.php">
+      <a href="./backstage_index.php">
         <img src="" alt="logo">
       </a>
     </div>
