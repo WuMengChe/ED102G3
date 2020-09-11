@@ -6,6 +6,7 @@ new Vue({
       information: [],
       searchResult: [],
       announcement: [],
+      memberCheck:[],
       box_msg: [],
       isOpen: false,
       filter: '',
@@ -18,7 +19,7 @@ new Vue({
       msg: "",
       isHeart: false,
       isCollect:false,
-      temp:"",
+      
       category: [{
         link_title: '實作型',
         color: 'practical_bg_color',
@@ -42,6 +43,20 @@ new Vue({
     }
   },
   mounted() {
+    axios.post('./php/memberStateCheck.php')
+    .then(res => {
+      console.log(res);
+      this.memberCheck = res.data;
+      if(this.memberCheck==0){
+        alert("請先登入會員");
+        window.location.href="./member_sign_in.html"
+      }else{
+        sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     // axios.get('./php/forum_discuss.php')
     //   .then(res => {
     //     console.log(res);
@@ -99,12 +114,15 @@ new Vue({
     funcA() {
       // return axios.get(`./php/forum_discuss.php?aaa=$
       // {}1&bbb=222`)
+      const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss.php')
     },
     funcB() {
+      const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss_msg.php')
     },
     funcC() {
+      const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss_ann.php')
     },
     //開啟燈箱按鈕
@@ -171,10 +189,11 @@ new Vue({
       }
     },
     //愛心
-    heart_btn(index) {
+    heart_btn(e) {
       // alert("123")
-      this.isHeart = this.temp[index]
       this.isHeart = !this.isHeart
+      console.log(e);
+      // this.msg = this.searchResult[index]
       // console.log(e);
      
       // document.querySelectorAll('.fa-heart')[e].classList.add('colorRed')
