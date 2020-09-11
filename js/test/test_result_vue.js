@@ -15,6 +15,20 @@ let Data = {
         {name:'文字編輯', src:'./img/test/A_文藝型/文字編輯.svg', link:''},
         {name:'攝影師', src:'./img/test/A_文藝型/攝影師.svg', link:''},
         {name:'室內設計師', src:'./img/test/A_文藝型/室內設計師.svg', link:''}
+    ],
+    relatedCourse : [
+        {courseName:'行銷=內容X社群X商務',
+        src:"./img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達 2.png",
+        numbers:'666',timimg:'2',
+        price:'550',
+       type:'文藝型'},
+
+        {courseName:'設計色彩學',
+        src:"./img/course/course_img/A/課程照片-設計色彩學：建立自己的色彩品味. 2.jpg",
+        numbers:'776',
+        timimg:'5',
+        price:'1990',
+        type:'文藝型'}
     ]
 }
 let testRult = new Vue({
