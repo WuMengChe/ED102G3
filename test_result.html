@@ -96,28 +96,38 @@
                     <h2>此類型相關課程</h2>
                 </div>
                 <div class="related_course">
-                    <ul class="course_card row">
-                        <li class="">
-                            <a href="">
-                                <img src="./img/test/course.png" alt="">
-                                <h3>應用ps－基礎I</h3>
-                                <p class="p_small">
-                                    <span>文藝型</span> 共計6小時 <br>
-                                </p>
-                                <span class="num_p"> 9999人已報名課程</span>
-                                <button class="btn_primary">立即報名</button>
-                            </a>
+                    <ul class="all_course_cards row">
+                        <li class="course_card" v-for="(item, index) in relatedCourse ">
+                             <span class="card_type" >{{item.type}}</span>
+                             <div class="course_pic">
+                                <a >
+                                    <img :src="item.src" alt=""/>
+                             
+                                </a>
+                            </div>
+                            <div class="card_content">
+                                    <p>{{item.courseName}}</p>
+                                <div class="card_content_scrb">
+                                    <div class="card_content_join">
+                                        <i class="fas fa-user-friends"></i>
+                                        <span>{{item.numbers}}人已參與課程</span>
+                                        </div>
+                                    </div>
+                                    <div class="card_course_detail"> 
+                                            <span class="card_time p_small">總計{{item.timimg}}小時</span>
+                                            <span class="card_price">NT${{item.price}}</span>
+                                    </div>
+                            </div>
                         </li>
-                        
-
-                    </ul>
+                     </ul> 
+                                </div>
+                            
+                            
                     <div class="btn_wrap">
                         <a href="./course_main.html" class="btn_second">
-                看更多
-               </a>
+                看更多</a>
                     </div>
-                </div>
-            </div>
+</div>
 
             <div class="check_forum">
 
