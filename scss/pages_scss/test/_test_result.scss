@@ -178,7 +178,7 @@ main.main_test_result{
         }
          .analysis_txt{
             //  border: 1px solid fuchsia;
-             width: 60%;
+             width: 50%;
              padding: 2%;
              h2{
                  margin: 3%;
@@ -194,17 +194,20 @@ main.main_test_result{
          }
          .chart_bx{
             // border: 1px solid goldenrod;
-            width: 40%;
+            width: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
           
 
             @media screen  and (max-width: 920px){ 
-            width: 60%;
+            width: 100%;
             padding: 2%;
             }
-     
+            .test_radar{
+                width: 400px;
+                height: 400px;
+            }
         }
      }
      .btn_save_bx{
@@ -324,7 +327,7 @@ main.main_test_result{
                  }
              }
     }
-        .more_course{
+        .more_course_wrap{
             // border: 1px solid rebeccapurple;
             background: rgba(255, 255, 255, 0.7);
             border-radius: 25px;
