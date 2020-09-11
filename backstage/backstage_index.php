@@ -25,7 +25,7 @@ try {
   <title>職引960後台</title>
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
-  <link rel="stylesheet" href="./backstage/css/backstage_index.css">
+  <link rel="stylesheet" href="./css/backstage_index.css">
 
 </head>
 
@@ -34,7 +34,7 @@ try {
 
     <div class="logo">
       <a href="./backstage_index.php">
-        <img src="" alt="logo">
+        <img src="./img/LOGO_FINAL.svg" alt="logo">
       </a>
     </div>
     <div class="bg_ad2">
