@@ -2,14 +2,26 @@
 let Data = {
     register: false,
     signIn : true,
-    screenWidth : 0,
-    myChart :''
+    myChart :'',
+    index :0,
+    resultData : [
+        {typeName:'文藝型',
+        typeDscrp:'這些人通常直覺敏銳、善於表達和創新。他們希望藉由文字、聲音、色彩或形式來表達創造力和美的感受。生活的目的是創造美麗的事物。此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。這些人通常直覺敏銳、善於表達和創新。他們希望藉由文字、聲音、色彩或形式來表達創造力和美的感受。生活的目的是創造美麗的事物。此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。',
+        accuracy:'',
+    }
+    ],
+    relatedJob : [
+        {name:'理髮師', src:'./img/test/A_文藝型/理髮師.svg', link:''},
+        {name:'文字編輯', src:'./img/test/A_文藝型/文字編輯.svg', link:''},
+        {name:'攝影師', src:'./img/test/A_文藝型/攝影師.svg', link:''},
+        {name:'室內設計師', src:'./img/test/A_文藝型/室內設計師.svg', link:''}
+    ]
 }
-let loginBox = new Vue({
+let testRult = new Vue({
     el : '#testResult',
     data : Data,
     methods: {
-        changePage(){
+        changeState(){
             var memAccount = document.querySelector('.input_div #account').value;
             var memCode = document.querySelector('.input_div #code').value;
             var formData = new FormData();
@@ -28,74 +40,7 @@ let loginBox = new Vue({
                 }
                 console.table(resp.data)
             })
-
-        },  
-        plotRadar(anaValue){
-                myChart = echarts.init(document.querySelector('.test_radar'), null, {renderer: 'svg'});
-                var option = {
-                    baseOption: {
-                        title: {
-                            text: '分析結果',
-                            show: false
-                        },
-                        tooltip: {},
-                        legend: {
-                            data: ['分析結果'],
-                            show: false
-                        },
-                        radar: {
-                            shape: 'circle',
-                            name: {
-                                textStyle: {
-                                    color: 'black',
-                                    backgroundColor: '#999',
-                                    borderRadius: 3,
-                                    padding: [3, 1]
-                                }
-                            },
-                            indicator: [
-                                { name: '實作型（R）', max: 100},
-                                { name: '研究型（I）', max: 100},
-                                { name: '文藝型（A）', max: 100},
-                                { name: '社會型（S）', max: 100},
-                                { name: '企業型（E）', max: 100},
-                                { name: '事務型（C）', max: 100}
-                            ]
-                        },
-                        series: [{
-                            name: '分析結果',
-                            type: 'radar',
-                            areaStyle: {normal: {}},
-                            data: [
-                                {
-                                    value: anaValue,
-                                    name: '分析結果'
-                                }
-                            ],
-                            lineStyle: {
-                                color: "rgba(50, 87, 200, 1)"
-                            },
-                            symbolSize: 10,
-                            symbol: "diamond"
-                        }]
-                    },
-                    media: [
-                        {
-                            query: {
-                                minWidth: 200,
-                                maxHeight: 300
-                            },
-                            option: {
-                                series:[{
-                                    center: ['50%', '50%']
-                                }]
-                            }
-                        }
-                    ]
-                };
-                this.myChart[index].setOption(option);
-            
-        }     
-    }   
+        }
+        }, 
     
 })
