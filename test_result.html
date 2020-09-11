@@ -38,7 +38,7 @@
                 <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code" value="1234567890">
             </div>
             <div class = "input_btn_bx">
-                <button class = "btn_primary login_btn" @click.prevent="changePage()">會員登入</button>
+                <button class = "btn_primary login_btn" @click.prevent="changeState()">會員登入</button>
             </div>
             <div class="go_sign_up">
                 <span>還不是會員嗎?</span><a href="./member_sign_in.html">立即註冊</a>
@@ -56,14 +56,13 @@
                 <div class="analysis_description ">
                     <div class="analysis_txt ">
                         <span>測驗結果出爐，您的類型是．．．</span>
-                        <h2 class="typeName">文藝型</h2>
+                        <h2 class="typeName">{{ resultData[index].typeName }}</h2>
                             &emsp;&emsp;&emsp;&emsp;
-                            <p class="type_descrp">這些人通常直覺敏銳、善於表達和創新。他們希望藉由文字、聲音、色彩或形式來表達創造力和美的感受。生活的目的是創造美麗的事物。此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。這些人通常直覺敏銳、善於表達和創新。他們希望藉由文字、聲音、色彩或形式來表達創造力和美的感受。生活的目的是創造美麗的事物。此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。
-                        </p>
-                        <h3 class="accuracy">準確率60%</h3>
+                            <p class="type_descrp">{{resultData[index].typeDscrp}}</p>
+                        <h3 class="accuracy">準確率{{ resultData[index].accuracy }} %</h3>
                     </div>
-                    <div class="chart_bx"  >
-                        <div class="test_radar" style="width: 500px; height: 500px;" ></div>
+                    <div class="chart_bx" >
+                        <div class="test_radar"></div>
                     </div>
                 </div>
                 <div class="btn_save_bx">
@@ -77,29 +76,10 @@
                 </div>
                 <div class="related_job">
                     <ul class="jobs row ">
-                        <li class="">
-                            <a href="">
-                                <img src="./img/test/理髮師.svg" alt="">
-                                <h3>髮型師</h3>
-                            </a>
-                        </li>
-
-                        <li class=" ">
-                            <a href="">
-                                <img src="./img/test/攝影師.svg" alt="">
-                                <h3>攝影師</h3>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="">
-                                <img src="./img/test/文字編輯.svg" alt="">
-                                <h3>文字編輯</h3>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="">
-                                <img src="./img/test/室內設計師.svg" alt="">
-                                <h3>室內設計師</h3>
+                        <li class="" v-for="(item, index) in relatedJob" :key="index"  >
+                            <a :href="item.link">
+                                <img :src="item.src" alt="">
+                                <h3>{{ item.name }}</h3>
                             </a>
                         </li>
                     </ul>
@@ -111,13 +91,13 @@
                 </div>
             </div>
 
-            <div class="more_course">
+            <div class="more_course_wrap">
                 <div class="title_bx">
                     <h2>此類型相關課程</h2>
                 </div>
                 <div class="related_course">
                     <ul class="course_card row">
-                        <li>
+                        <li class="">
                             <a href="">
                                 <img src="./img/test/course.png" alt="">
                                 <h3>應用ps－基礎I</h3>
@@ -128,42 +108,7 @@
                                 <button class="btn_primary">立即報名</button>
                             </a>
                         </li>
-                        <li>
-                            <a href="">
-                                <img src="./img/test/course.png" alt="">
-                                <h3>應用ps－基礎I</h3>
-                                <p class="p_small">
-                                    <span>文藝型</span> 共計6小時 <br>
-                                </p>
-                                <span class="num_p"> 9999人已報名課程</span>
-                                <button class="btn_primary">立即報名</button>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="">
-                                <img src="./img/test/course.png" alt="">
-                                <h3>應用ps－基礎I</h3>
-                                <p class="p_small">
-                                    <span>文藝型</span> 共計6小時 <br>
-                                </p>
-                                <span class="num_p"> 9999人已報名課程</span>
-                                <button class="btn_primary">立即報名</button>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="">
-                                <img src="./img/test/course.png" alt="">
-                                <h3>應用ps－基礎I</h3>
-                                <p class="p_small">
-                                    <span>文藝型</span> 共計6小時 <br>
-                                </p>
-                                <span class="num_p"> 9999人已報名課程</span>
-                                <button class="btn_primary">立即報名</button>
-                            </a>
-                        </li>
-
+                        
 
                     </ul>
                     <div class="btn_wrap">
@@ -205,7 +150,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js'></script>
     <script type="text/javascript" src="./js/test/test_result.js"></script>
-    <!-- <script type="text/javascript" src="./js/test/test_result_vue.js"></script> -->
+    <script type="text/javascript" src="./js/test/test_result_vue.js"></script>
     <script>
     
     </script>
