@@ -97,12 +97,12 @@
                 <button class="heart">
                   <i class="fas fa-heart" :class="{'colorRed':isHeart}" @click="heart_btn(index)"></i>
                 </button>
-                <button class="gray_btn">
+                <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
+                  <span>{{messages.DIS_COL_NUM}}</span>
                 </button>
-                <button class="gray_btn" @click="collect_btn">
+                <button class="gray_btn" :class="{'colorGray':isCollect}" @click="collect_btn(index)">
                   <i class="fas fa-bookmark"></i>
-                  {{messages.DIS_COL_NUM}}
                 </button>
                 <button class="gray_btn" @click="accuse_btn">
                   <i class="fas fa-exclamation-circle"></i>
@@ -145,7 +145,7 @@
             <div class="mem_info">
               <div class="info_list">
                 <div class="img_div">
-                  <img :src="msg.MEM_NO" alt="" class="dis_img" />
+                  <img :src="msg.MEM_PIC" alt="" class="dis_img" />
                 </div>
                 <div class="dis_name">{{msg.MEM_NO}}</div>
                 <div class="dis_date">{{msg.DIS_DATE}}</div>

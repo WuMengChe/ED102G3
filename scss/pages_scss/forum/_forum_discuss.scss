@@ -303,6 +303,12 @@ $timing: 0.3s;
             }
           }
         }
+        .count{
+          display: inline-flex;
+          line-height: 38px;
+          font-weight: 500;
+          color: rgb(173, 169, 169);
+        }
       }
     }
   }
@@ -547,7 +553,7 @@ a.pencil_btn {
           cursor: pointer;
           color: rgb(173, 169, 169);
           &.colorGray {
-            color: gray;
+            color: rgb(75, 71, 71);
           }
           &::before {
             line-height: 2;
@@ -556,6 +562,10 @@ a.pencil_btn {
       }
     }
   }
+}
+
+.colorGray{
+color:red;
 }
 
 /* 回應留言 */

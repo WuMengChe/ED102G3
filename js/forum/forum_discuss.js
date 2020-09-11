@@ -17,6 +17,8 @@ new Vue({
       stopScroll: false,
       msg: "",
       isHeart: false,
+      isCollect:false,
+      temp:"",
       category: [{
         link_title: '實作型',
         color: 'practical_bg_color',
@@ -37,7 +39,6 @@ new Vue({
         link_title: '事務型',
         color: 'thing_bg_color',
       }],
-
     }
   },
   mounted() {
@@ -55,7 +56,6 @@ new Vue({
         console.log(res1.data);
         console.log(res2.data);
         console.log(res3.data);
-        
 
         this.information = res1.data;
         this.searchResult = res1.data;
@@ -116,9 +116,9 @@ new Vue({
       } else {
         this.contentIsOpen = true
         this.stopScroll = true
-        // console.log(this.searchResult[index])
+        console.log(this.searchResult[index])
         this.msg = this.searchResult[index]
-        // console.log(this.msg)
+        console.log(this.msg)
       }
     },
     //關閉燈箱
@@ -171,19 +171,23 @@ new Vue({
       }
     },
     //愛心
-    heart_btn(e) {
+    heart_btn(index) {
       // alert("123")
+      this.isHeart = this.temp[index]
       this.isHeart = !this.isHeart
-      console.log(e);
-      this.msg = this.searchResult[index]
+      // console.log(e);
+     
       // document.querySelectorAll('.fa-heart')[e].classList.add('colorRed')
       // e.target.classList.toggle("colorRed")
     },
     //收藏
     collect_btn(e) {
-      e.target.classList.contains("colorGray")
-        ? e.target.classList.remove("colorGray")
-        : e.target.classList.add("colorGray");
+      this.isCollect = !this.isCollect
+      console.log(e);
+      this.msg = this.searchResult[index]
+      // e.target.classList.contains("colorGray")
+      //   ? e.target.classList.remove("colorGray")
+      //   : e.target.classList.add("colorGray");
     },
     //下拉選單
     toggleDropdown() {
@@ -199,10 +203,8 @@ new Vue({
       $('.main_side_bar > ul> li > a').removeClass('side_click')
       e.currentTarget.classList.add('side_click');
     },
-    heart_btn_feedback(e){
+    heart_btn_feedback(index){
       this.isHeart = !this.isHeart
-      console.log(e);
-      // this.msg = this.searchResult[index]
     }
 
   },
