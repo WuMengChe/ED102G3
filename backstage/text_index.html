@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>職引960後台</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="bootstrap-grid.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <link rel="stylesheet" href="./css/backstage_index.css">
+  <style>
+    .radio-group {
+      font-size: 0;
+      height: 26px;
+      line-height: 26px;
+    }
+
+    .radio-group>span {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 16px;
+      text-align: center;
+      width: 100px;
+    }
+
+    .cur {
+      color: #fff;
+      background-color: #20a0ff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="content='my-component1'">1</button>
+    <button @click="content='my-component2'">2</button>
+    <component :is="content"></component>
+  </div>
+
+  <script>
+    Vue.component('my-component1', {
+      template: `
+ <div>
+   <h3>--component1--</h3>
+   <select>
+     <option>0</option>
+     <option>1</option>
+     <option>2</option>
+   </select>
+ </div>`,
+    });
+
+    Vue.component('my-component2', {
+      template: `
+ <div>
+   <h3>--component2--</h3>
+ </div>
+ `
+    });
+
+    new Vue({
+      el: "#app",
+      data: {
+        content: 'my-component1'
+      }
+    });
+  </script>
+</body>
+
+</html>
