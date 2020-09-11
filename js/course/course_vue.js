@@ -171,54 +171,56 @@ new Vue({
 
             }],
             main_course: [],
-            hot_course: [],
 
+            // 接收資料庫的hot_course,記得先關掉假資料
+            // hot_course: [],
 
-            // hot_course: [{
-            //     id: 1,
-            //     img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
-            //     href: 'course_introduce.html',
-            //     course_title: '九個步驟快速提昇簡報力',
-            //     type: '實作型',
-            //     color: 'practical_bg_color',
-            //     join: 9999,
-            //     hour: 3,
-            //     price: 660,
+            // 假資料
+            hot_course: [{
+                id: 1,
+                img: 'img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg',
+                href: 'course_introduce.html',
+                course_title: '九個步驟快速提昇簡報力',
+                type: '實作型',
+                color: 'practical_bg_color',
+                join: 9999,
+                hour: 3,
+                price: 660,
 
-            // }, {
-            //     id: 3,
-            //     img: 'img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg',
-            //     href: 'course_introduce.html',
-            //     course_title: '打造團隊好關係與高績效',
-            //     type: '研究型',
-            //     color: 'research_bg_color',
-            //     join: 7777,
-            //     hour: 7,
-            //     price: 770,
+            }, {
+                id: 3,
+                img: 'img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg',
+                href: 'course_introduce.html',
+                course_title: '打造團隊好關係與高績效',
+                type: '研究型',
+                color: 'research_bg_color',
+                join: 7777,
+                hour: 7,
+                price: 770,
 
-            // }, {
-            //     id: 5,
-            //     img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
-            //     href: 'course_introduce.html',
-            //     course_title: '行銷=內容x社群x商務',
-            //     type: '文藝型',
-            //     color: 'art_bg_color',
-            //     join: 9999,
-            //     hour: 9,
-            //     price: 990,
+            }, {
+                id: 5,
+                img: 'img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png',
+                href: 'course_introduce.html',
+                course_title: '行銷=內容x社群x商務',
+                type: '文藝型',
+                color: 'art_bg_color',
+                join: 9999,
+                hour: 9,
+                price: 990,
 
-            // }, {
-            //     id: 7,
-            //     img: 'img/course/course_img/s/課程照片-社會心理學.png',
-            //     href: 'course_introduce.html',
-            //     course_title: '行銷=內容x社群x商務',
-            //     type: '社會型',
-            //     color: 'social_bg_color',
-            //     join: 5555,
-            //     hour: 5,
-            //     price: 550,
+            }, {
+                id: 7,
+                img: 'img/course/course_img/s/課程照片-社會心理學.png',
+                href: 'course_introduce.html',
+                course_title: '行銷=內容x社群x商務',
+                type: '社會型',
+                color: 'social_bg_color',
+                join: 5555,
+                hour: 5,
+                price: 550,
 
-            // }, ],
+            }],
             cart_items: [],
 
 
@@ -232,19 +234,19 @@ new Vue({
                 console.log(res);
                 this.main_course = res.data;
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
             });
 
         // hot_course
-        axios.get('./php/course_hot_course.php')
-            .then(res => {
-                console.log(res);
-                this.hot_course = res.data;
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        // axios.get('./php/course_hot_course.php')
+        //     .then(res => {
+        //         console.log(res);
+        //         this.hot_course = res.data;
+        //     })
+        //     .catch(function(error) {
+        //         console.log(error);
+        //     });
 
 
 
