@@ -38,28 +38,36 @@ try {
       </a>
     </div>
     <div class="bg_ad2">
-      <div class="profile">
-        <img src="" alt="大頭貼">
+      <div>
+        <p class="ad_name">Wu-Meng-Che</p>
+        <p>登出</p>
       </div>
-      <p class="ad_name">Wu-Meng-Che</p>
-      <p>登出</p>
+
     </div>
 
   </header>
   <div class="container backstage" id="bg_stage">
     <div class="row">
       <div class="side col-2">
-        <ul class="member_management">
-          <li class="title">人員管理</li>
-          <li v-for="(member,index) in members" @click="show(index)">{{member}}</li>
-        </ul>
-        <ul class="management">
-          <li class="title">前後台管理</li>
-          <li v-for="(list,index) in lists" @click="showBoard(index)">{{list}}</li>
-        </ul>
+        <div class="list">
+          <ul class="member_management">
+            <li class="title">人員管理</li>
+            <li v-for="(member,index) in members" @click="show(index)">{{member}}</li>
+          </ul>
+          <ul class="management">
+            <li class="title">前後台管理</li>
+            <li v-for="(list,index) in lists" @click="showBoard(index)">{{list}}</li>
+          </ul>
+        </div>
+        <div class="copyright">
+          <a href="https://coreui.io">職引960</a>
+          <span>
+            &copy;2020.
+          </span>
+        </div>
       </div>
 
-      <div class="main col-10">
+      <div class="main col-11">
         <!-- <component :is="member"></component> -->
         <div class="account" v-show="account">
           會員
@@ -515,14 +523,14 @@ try {
       </div>
     </div>
   </div>
-  <footer>
+  <!-- <footer>
     <div>
       <a href="https://coreui.io">職引960</a>
       <span>
         &copy;2020 Powered by direction.ALL Right Reserved.
       </span>
     </div>
-  </footer>
+  </footer> -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="./js/backstage_component.js"></script>
