@@ -76,9 +76,7 @@ gulp.task("php", function() {
 });
 
 
-gulp.task('bgPhp', function() {
-    return gulp.src(["backstage/php/*.php"]).pipe(gulp.dest("backstage/php"));
-})
+
 
 gulp.task("html", function() {
     return gulp.src(["./*.html"]).pipe(gulp.dest("dest/html"));
@@ -145,7 +143,7 @@ gulp.task("concat", ["sass"], function() {
 
 //backstage
 
-gulp.task('bgsass', ['bgimg', 'bgjs', 'bgfileinclude'], function() {
+gulp.task('bgsass', ['bgimg', 'bgjs', 'bgfileinclude', 'bgphp'], function() {
     return gulp.src('./backstage/sass/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass().on("error", sass.logError)) //Sass轉譯 -> 一個pipe是一個流程
@@ -158,10 +156,17 @@ gulp.task('bgsass', ['bgimg', 'bgjs', 'bgfileinclude'], function() {
 
     .pipe(gulp.dest("./dest/backstage/css"));
 });
-
+gulp.task("bgphp", function() {
+    return gulp.src(["./backstage/*.php"]).pipe(gulp.dest("dest/backstage"));
+});
+gulp.task("bgimg", function() {
+    return gulp.src("./backstage/img/**/*")
+        // .pipe(imagemin())
+        .pipe(gulp.dest("dest/img"));
+});
 gulp.task("bgfileinclude", function() {
     return gulp
-        .src(["./backstage/html/*.html"]) //來源
+        .src(["./backstage/*.html"]) //來源
         .pipe(
             fileinclude({
                 prefix: "@@",
