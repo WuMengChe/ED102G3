@@ -54,7 +54,17 @@ let testRult = new Vue({
                 }
                 console.table(resp.data)
             })
-        }
         }, 
-    
+        // saveResult(){
+        //     axios.
+        //     post('./php/memberStateCheck.php')
+        //     .then((resp) => {
+        //      if (this.memberCheck === 0){
+        //      alert("請先登入會員");
+        //       }
+          
+        //     })
+        // }
+        
+    }
 })
