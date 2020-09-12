@@ -23,8 +23,8 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>職引960後台</title>
-  <link rel="stylesheet" href="../bootstrap/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="../css/app_public.css">
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/backstage_index.css">
 
 </head>
@@ -33,33 +33,41 @@ try {
   <header>
 
     <div class="logo">
-      <a href="../backstage_index.php">
-        <img src="" alt="logo">
+      <a href="./backstage_index.php">
+        <img src="./img/LOGO_FINAL.svg" alt="logo">
       </a>
     </div>
     <div class="bg_ad2">
-      <div class="profile">
-        <img src="" alt="大頭貼">
+      <div>
+        <p class="ad_name">Wu-Meng-Che</p>
+        <p>登出</p>
       </div>
-      <p class="ad_name">Wu-Meng-Che</p>
-      <p>登出</p>
+
     </div>
 
   </header>
   <div class="container backstage" id="bg_stage">
     <div class="row">
       <div class="side col-2">
-        <ul class="member_management">
-          <li class="title">人員管理</li>
-          <li v-for="(member,index) in members" @click="show(index)">{{member}}</li>
-        </ul>
-        <ul class="management">
-          <li class="title">前後台管理</li>
-          <li v-for="(list,index) in lists" @click="showBoard(index)">{{list}}</li>
-        </ul>
+        <div class="list">
+          <ul class="member_management">
+            <li class="title">人員管理</li>
+            <li v-for="(member,index) in members" @click="show(index)">{{member}}</li>
+          </ul>
+          <ul class="management">
+            <li class="title">前後台管理</li>
+            <li v-for="(list,index) in lists" @click="showBoard(index)">{{list}}</li>
+          </ul>
+        </div>
+        <div class="copyright">
+          <a href="./index.html">職引960</a>
+          <span>
+            &copy;2020.
+          </span>
+        </div>
       </div>
 
-      <div class="main col-10">
+      <div class="main col-11">
         <!-- <component :is="member"></component> -->
         <div class="account" v-show="account">
           會員
@@ -93,6 +101,7 @@ try {
                     <option value="authority" <?php echo $memberRow["MEM_USE"] == 1 ? "selected" : "" ?>>是</option>
                     <option value="authority" <?php echo $memberRow["MEM_USE"] == 0 ? "selected" : "" ?>>否</option>
                   </select>
+                  <button>編輯</button>
                 </td>
               </tr>
             <?php
@@ -129,35 +138,32 @@ try {
             }
             ?>
           </table>
-          <div>
-            <table id="myForm" style="display: none;">
-              <tr class="title">
-                <th>編號</th>
-                <th>名稱</th>
-                <th>帳號</th>
-                <th>密碼</th>
-              </tr>
-              <tr class="new_administrator" style="display:none">
-                <td>2</td>
-                <td>
-                  <input type="text">
-                </td>
-                <td>
-                  <input type="text">
-                </td>
-                <td>
-                  <input type="text">
-                </td>
-                <td>
-                  <button>確認</button>
-                </td>
-              </tr>
-            </table>
-          </div>
+          <table id="myForm" style="display: none;">
+            <tr class="title">
+              <th>編號</th>
+              <th>名稱</th>
+              <th>帳號</th>
+              <th>密碼</th>
+            </tr>
+            <tr class="new_administrator" style="display:none">
+              <td>2</td>
+              <td>
+                <input type="text">
+              </td>
+              <td>
+                <input type="text">
+              </td>
+              <td>
+                <input type="text">
+              </td>
+              <td>
+                <button>確認</button>
+              </td>
+            </tr>
+          </table>
           <div id="adForm">
             <button id="newAdBtn">新增管理員</button>
           </div>
-
         </div>
         <div class="quiz" v-show="quiz">
           測驗題庫
@@ -209,7 +215,7 @@ try {
                   </select>
                 </td>
                 <td>
-                  <p><?= $quizRow["QUIZ_USE"] ?></p>
+                  <p><?php echo $quizRow["QUIZ_USE"] == 0 ? "否" : "是" ?></p>
                   <select name="authority" id="">
                     <option value="authority">是</option>
                     <option value="authority">否</option>
@@ -515,14 +521,7 @@ try {
       </div>
     </div>
   </div>
-  <footer>
-    <div>
-      <a href="https://coreui.io">職引960</a>
-      <span>
-        &copy;2020 Powered by direction.ALL Right Reserved.
-      </span>
-    </div>
-  </footer>
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="./js/backstage_component.js"></script>

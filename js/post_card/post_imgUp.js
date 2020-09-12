@@ -67,15 +67,17 @@ var width = $(window).width();
 
 //  進來先判斷
 if (width >= 1200) {
-  lenF.maxLength = 357;
+  // lenF.maxLength = 357;
+  lenF.innerText.length = 357;
+
 } else if (width < 1200 && width > 767) {
   let x = 21 - Math.ceil(1200 - width) / 50;
   let y = 17 - Math.ceil(1200 - width) / 70;
-  lenF.maxLength = x * y;
+  lenF.innerText.length = x * y;
 } else {
   let x = 18 - Math.ceil(767 - width) / 38;
   let y = 14 - Math.ceil(767 - width) / 50;
-  lenF.maxLength = x * y;
+  lenF.innerText.length = x * y;
 }
 
 //  resize再判斷一次

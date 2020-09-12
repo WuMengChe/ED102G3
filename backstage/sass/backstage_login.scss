@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #424965;
+}
+
 .container {
   height: 100vh;
   // border: 1px solid black;
@@ -13,19 +21,34 @@
     transform: translateY(-50%);
 
     .co1-6 {
-      border: 1px solid red;
+      // border: 1px solid red;
       margin: auto auto;
       border-radius: 20px;
       overflow: hidden;
+      background-color: #FFE56D;
+      border: 2px solid #ffffff;
 
-      p {
-        margin-bottom: 30px;
-        font-size: 22px;
+
+      .logo {
+        margin: 20px auto;
+        width: 35%;
+        padding: 0;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        // font-size: 22px;
+        font-weight: bold;
+        color: #3f3f3f;
       }
 
       div {
         padding: 10px;
-        border: 1px solid red;
+        // border: 1px solid red;
         font-size: 18px;
 
         input {
