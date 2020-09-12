@@ -120,22 +120,24 @@ new Vue({
     methods: {
         add_storage() {
             let ss = " ";
-            this.cart_items.forEach((item) => {
-                ss += JSON.stringify(item) + "*";
-            });
+            // this.cart_items.forEach((item) => {
+            //     ss += JSON.stringify(item) + "*";
+            // });
+            ss = JSON.stringify(this.cart_items);
 
             localStorage.setItem("cart", ss);
         },
         receive_storage() {
             let get_id = localStorage.getItem("cart");
-            let get_id_arr = get_id.split("*");
-            get_id_arr.forEach((course, index) => {
-                if (index < get_id_arr.length - 1) {
-                    let course_item = JSON.parse(course);
-                    this.cart_items.push(course_item);
-                    $(`.cus_${course_item.id}`).addClass("cart_clicked");
-                }
-            });
+            // let get_id_arr = get_id.split("*");
+            // get_id_arr.forEach((course, index) => {
+            //     if (index < get_id_arr.length - 1) {
+            //         let course_item = JSON.parse(course);
+            //         this.cart_items.push(course_item);
+            //         $(`.cus_${course_item.id}`).addClass("cart_clicked");
+            //     }
+            // });
+            JSON.parse(get_id);
         },
         add_cart(item) {
             if (this.cart_items.length == 0) {
