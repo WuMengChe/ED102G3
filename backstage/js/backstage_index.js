@@ -20,5 +20,17 @@ window.addEventListener("load", function () {
     $(this).siblings().removeClass("active");
     $(this).parent().siblings().children().removeClass("active");
     $(this).addClass("active");
-  })
+  });
+  //編輯按鈕
+
+  function edit() {
+    let editBtn = document.querySelector(".edit");
+    editBtn.innerText = "確認";
+    $('select').show();
+  }
+  document.querySelector(".edit").onclick = edit;
+
+
+
+
 });

@@ -6,6 +6,7 @@
     th,
     td {
       border: 1px solid black;
+      padding: 4px;
     }
   }
 }
@@ -61,6 +62,13 @@ body {
   font-family: "微軟正黑體";
   // height: 100vh;
   // overflow: hidden;
+}
+
+button.edit {
+  background-color: #EE7002;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
 }
 
 header {
@@ -200,6 +208,10 @@ header {
         p {
           display: inline-block;
         }
+
+        #MEM_USE {
+          display: none;
+        }
       }
 
       .administrator {
@@ -212,6 +224,8 @@ header {
         p {
           display: inline-block;
         }
+
+
       }
 
       .quiz {

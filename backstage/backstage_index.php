@@ -114,11 +114,11 @@ try {
                 <td>
                   <p class="memUse"> <?php echo $memberRow["MEM_USE"] == 0 ? "否" : "是" ?></p>
 
-                  <select name="authority" id="">
+                  <select name="authority" id="MEM_USE">
                     <option value="authority" <?php echo $memberRow["MEM_USE"] == 1 ? "selected" : "" ?>>是</option>
                     <option value="authority" <?php echo $memberRow["MEM_USE"] == 0 ? "selected" : "" ?>>否</option>
                   </select>
-                  <button>編輯</button>
+                  <button class="edit">編輯</button>
                 </td>
               </tr>
             <?php
@@ -143,12 +143,13 @@ try {
                 <td><?= $adminRow["AD_NAME"] ?></td>
                 <td><?= $adminRow["AD_ACCOUNT"] ?></td>
                 <td>
-                  <p>否</p>
-                  <?= $adminRow["AD_MAT_USE"] ?>
+                  <p><?php echo $adminRow["AD_MAT_USE"] == 1 ? "否" : "是" ?></p>
+
                   <select name="authority" id="">
                     <option value="authority">是</option>
                     <option value="authority">否</option>
                   </select>
+                  <button class="edit">編輯</button>
                 </td>
               </tr>
             <?php
