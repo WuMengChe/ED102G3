@@ -13,24 +13,22 @@
 <body>
     <div class="container">
         <div class="row">
-            <form class="co1-6">
+            <form class="co1-6" method="POST" action="backstage_index.php">
                 <div class="logo">
                     <img src="./img/LOGO_FINAL.svg" alt="">
                 </div>
                 <h2>後台登入</h2>
 
                 <div class="account">
-                    <label for="">帳號:</label>
-                    <input type="text">
+                    <label for="AD_ACCOUNT">帳號:</label>
+                    <input type="text" class="text" name="AD_ACCOUNT">
                 </div>
-                <div>
-                    <label for="">密碼:</label>
-                    <input type="password">
+                <div class="password">
+                    <label for="AD_PASSWORD">密碼:</label>
+                    <input type="password" class="text" name="AD_PASSWORD">
                 </div>
-                <div>
-                    <button class="btn_primary">登入
-                        <!-- <a href="./backstage_index.php">登入</a> -->
-                    </button>
+                <div class="login">
+                    <input type="submit" value="登入" class="btn_primary submit">
                 </div>
             </form>
 

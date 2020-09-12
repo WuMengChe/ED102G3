@@ -1,7 +1,12 @@
 <?php
 try {
   require_once("./connectMySql.php");
-
+  // 抓管理員資料
+  $AD_PASSWORD = $_POST["AD_PASSWORD"];
+  $AD_ACCOUNT = $_POST["AD_ACCOUNT"];
+  $ADSql = "select * from `administrator` where AD_ACCOUNT='$AD_ACCOUNT' and AD_PASSWORD='$AD_PASSWORD' ";
+  $AD = $pdo->query($ADSql);
+  //-------------------------------------------------
   $memSql = "select * from member";
   $adminSql = "select * from administrator";
   $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;
@@ -39,8 +44,20 @@ try {
     </div>
     <div class="bg_ad2">
       <div>
-        <p class="ad_name">Wu-Meng-Che</p>
-        <p>登出</p>
+        <p class="ad_name">
+          <?php
+          if ($AD->rowCount() == 0) {
+            //如果筆數是0 就是沒有這個帳密
+            echo "帳密錯誤";
+          } else {
+            $ADRow = $AD->fetch(PDO::FETCH_ASSOC);
+            echo $ADRow["AD_NAME"];
+          }
+          ?>
+        </p>
+        <p>
+          <a href="./backstage_login.html">登出</a>
+        </p>
       </div>
 
     </div>

@@ -1,3 +1,7 @@
+// @import'../../../scss/_public_dontTouch/utils/variables';
+// @import "../../scss/_public_dontTouch/utils/mixin";
+@import"../../scss/_public_dontTouch/components/buttons";
+
 * {
   box-sizing: border-box;
 }
@@ -46,16 +50,34 @@ body {
         color: #3f3f3f;
       }
 
-      div {
+      .account,
+      .password {
         padding: 10px;
         // border: 1px solid red;
         font-size: 18px;
 
-        input {
-          height: 21px;
-          font-size: 18px;
-          border: 1px solid gray;
+        input.text {
+          font-size: 16px;
+          border: none;
           outline: none;
+          color: black;
+          background-color: white;
+          border-radius: 20px;
+          padding: 5px 8px;
+        }
+      }
+
+      .login {
+        margin: 10px 0;
+        padding: 15px;
+
+        input.submit {
+          color: black;
+
+          &:hover {
+            color: rgb(255, 255, 255);
+
+          }
         }
       }
     }
