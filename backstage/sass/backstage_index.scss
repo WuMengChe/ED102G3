@@ -57,51 +57,46 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    background-color: aquamarine;
     height: 70px;
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8);
     .logo {
+        width: auto;
+        height: 60px;
         // border: 1px solid black;
         margin: 5px 15px;
+        display: inline-block;
         a {
             display: inline-block;
             // border: 1px solid rgb(248, 56, 56);
-            width: 150px;
-            height: 60px;
+            width: 100%;
+            height: 100%;
             img {
-                width: 90%;
+                // border: 1px solid rgb(56, 123, 248);
+                height: 100%;
             }
         }
     }
     .bg_ad2 {
         // border: 1px solid black;
         margin: 5px 15px;
-        .profile {
+        // display: inline-block;
+        div {
             display: inline-block;
-            border: 1px solid blue;
-            height: 50px;
-            width: 50px;
-            border-radius: 50px;
-            overflow: hidden;
-            vertical-align: middle;
-            margin-top: 4px;
-            img {
-                width: 100%;
+            // border: 1px solid red;
+            margin-top: 6%;
+            p.ad_name {
+                cursor: default;
             }
-        }
-        p.ad_name {
-            cursor: default;
-        }
-        p {
-            display: inline-block;
-            vertical-align: top;
-            margin-left: 20px;
-            vertical-align: middle;
-            border: 1px solid blue;
-            cursor: pointer;
-            padding: 5px;
+            p {
+                display: inline-block;
+                margin-left: 20px;
+                border: 1px solid blue;
+                cursor: pointer;
+                padding: 5px;
+            }
         }
     }
 }
@@ -110,46 +105,51 @@ header {
     // border: 1px solid black;
     min-width: 100%;
     .row {
-        // border: 1px solid pink;
-        // height: fit-content;
-        height: 100vh;
         .side {
-            background-color: rgb(172, 194, 255);
+            background-color: #424965;
             display: inline-block;
-            // height: 100%;
-            overflow-y: hidden;
-            // padding: 0;
-            .member_management {
-                // border: 1px solid red;
-                li.title {
+            height: calc(100vh - 70px);
+            position: fixed;
+            left: 0;
+            max-width: 190px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-right: 0;
+            .list {
+                // border: 1px solid yellow;
+                margin-top: 10%;
+                .member_management {
                     // border: 1px solid red;
-                    margin: 0 0 10px;
-                    font-size: 18px;
+                    // padding: 5px 0;
+                    @include listStyle();
                 }
-                li {
-                    padding: 5px 0;
-                    margin-left: 16px;
+                .management {
+                    margin-top: 10px;
+                    // padding: 5px 0;
+                    @include listStyle();
                 }
             }
-            .management {
-                // border: 1px solid red;
-                margin-top: 10px;
-                padding: 5px 0;
-                li.title {
-                    // border: 1px solid red;
-                    margin: 0 0 10px;
-                    font-size: 18px;
-                }
-                li {
-                    padding: 5px 0;
-                    margin-left: 16px;
+            .copyright {
+                // border: 1px solid yellow;
+                margin-bottom: 10%;
+                color: rgb(180, 180, 180);
+                text-align: center;
+                padding-right: 15px;
+                a {
+                    color: #3791c5;
                 }
             }
         }
         .main {
-            background-color: rgb(247, 189, 255);
+            background-color: #F6F3ED;
             display: inline-block;
+            position: fixed;
+            right: 0;
+            height: calc(100vh - 70px);
             overflow-y: scroll;
+            max-width: calc(100vw - 190px);
             // padding: 0;
             .account {
                 @include table();
@@ -187,9 +187,6 @@ header {
                 @include table();
                 border-bottom: 1px solid blue;
                 margin: 10px 0;
-                img {
-                    width: 10%;
-                }
             }
             .article_report {
                 @include table();
@@ -210,9 +207,6 @@ header {
                 @include table();
                 border-bottom: 1px solid blue;
                 margin: 10px 0;
-                img {
-                    width: 30%;
-                }
             }
             .announcement {
                 @include table();
@@ -220,16 +214,5 @@ header {
                 margin: 10px 0;
             }
         }
-    }
-}
-
-footer {
-    // height: 30px;
-    background-color: lightgray;
-    text-align: center;
-    div {
-        // border: 1px solid black;
-        line-height: 30px;
-        font-size: 14px;
     }
 }
