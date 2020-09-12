@@ -1,9 +1,7 @@
 window.addEventListener("load", function () {
-
-
-
+  // 增加新管理員
   function addAdministrator() {
-    let newAd_Table = document.getElementById("adForm");
+    let adForm = document.getElementById("adForm");
     let newAdBtn = document.getElementById("newAdBtn");
     let myForm = document.getElementById("myForm");
     let newAd = document.querySelector(".new_administrator");
@@ -13,20 +11,14 @@ window.addEventListener("load", function () {
     }
     let newAdministrator = newAd.cloneNode(true);
     newAdministrator.style.display = "";
-    newAd_Table.insertBefore(newAdministrator, newAdBtn);
+    adForm.insertBefore(newAdministrator, newAdBtn);
   }
 
-
-
-
   document.getElementById("newAdBtn").onclick = addAdministrator;
-
-
-
-  // //main position
-  // let sideWidth = $('.side').width();
-  // $(".main").css({
-  //   "marginLeft": sideWidth,
-  // })
-
+  // 側邊欄切換
+  $('.list li').click(function () {
+    $(this).siblings().removeClass("active");
+    $(this).parent().siblings().children().removeClass("active");
+    $(this).addClass("active");
+  })
 });
