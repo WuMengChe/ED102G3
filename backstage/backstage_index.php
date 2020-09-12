@@ -4,12 +4,29 @@ try {
 
   $memSql = "select * from member";
   $adminSql = "select * from administrator";
-  $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;
-";
+  $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
+  $careerSql = "";
+  $skillSql = "select a.*, b.IND_CLASS from SKILL_CLASS a join INDUSTRY_CLASS b on a.IND_NO = b.IND_NO order by SKI_NO";
+  $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO";
+  $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO ";
+  $orderDetailSql = "select a.*, b.*, c.SKI_NAME from ORDER_MEM a join ORDER_DETIAL b on a.ORD_NO = b.ORD_NO JOIN SKILL_CLASS c on b.SKI_NO = c.SKI_NO";
+  $orderSql = "select * from ORDER_MEM";
+  $materialSql = "select * from POSTCARD_MATERIAL ";
+  $announceSql = "select * from announcement;";
   // $indusSql = "select ";
   $member = $pdo->query($memSql);
   $administrator = $pdo->query($adminSql);
   $quiz = $pdo->query($quizSql);
+  $skill = $pdo->query($skillSql);
+  $ArReport = $pdo->query($ArReportSql);
+  $MgReport = $pdo->query($MgReportSql);
+  $orderDetail = $pdo->query($orderDetailSql);
+  $order = $pdo->query($orderSql);
+  $material = $pdo->query($materialSql);
+  $announce = $pdo->query($announceSql);
+
+  
+
 } catch (PDOException $e) {
   echo "錯誤原因:", $e->getMessage(), "<br>";
   echo "錯誤行號:", $e->getLine(), "<br>";
@@ -335,40 +352,39 @@ try {
               <th>是否隱藏</th>
               <th>修改</th>
             </tr>
+            <?php
+            while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)){
+            ?>
             <tr>
-              <td>1</td>
-              <td>增強抵抗力</td>
+              <td><?=$skillRow["SKI_NO"] ?></td>
+              <td><?=$skillRow["SKI_NAME"] ?></td>
               <td>
-                文藝型
+                <?=$skillRow["IND_CLASS"] ?>
                 <select name="" id="">
                   <option value="" v-for="type in types">{{type}}</option>
                 </select>
               </td>
-              <td>123</td>
-              <td>5600</td>
-              <td>90分鐘</td>
-              <td>這裡是介紹</td>
-              <td>連結</td>
+              <td><?=$skillRow["SKI_BUY_NUM"] ?></td>
+              <td><?=$skillRow["SKI_PRICE"] ?></td>
+              <td><?=$skillRow["SKI_TIME"] ?></td>
+              <td><?=$skillRow["SKI_INTRO"] ?></td>
+              <td><?=$skillRow["SKI_LINK"] ?></td>
               <td>
-                <img src="" alt="課程圖片">
+                <img src="<?=$skillRow["SKI_IMG"] ?>" alt="課程圖片">
               </td>
               <td>
-                <img src="" alt="講師圖片">
+                <img src="<?=$skillRow["SKI_TEC_IMG"] ?>" alt="講師圖片">
               </td>
-              <td>蕭景文</td>
-              <td>講師介紹</td>
+              <td><?=$skillRow["SKI_TEC_NAME"] ?></td>
+              <td><?=$skillRow["SKI_TEC_INTRO"] ?></td>
               <td>
                 <ul>
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                  <li>4</li>
-                  <li>5</li>
+                  <li><?=$skillRow["SKI_OUTLINE"] ?></li>
                 </ul>
               </td>
-              <td>對象??</td>
+              <td><?=$skillRow["SKI_STUD"] ?></td>
               <td>
-                否
+              <?=$skillRow["SKI_HIDDEN"] ?>
                 <select name="authority" id="">
                   <option value="authority">是</option>
                   <option value="authority">否</option>
@@ -378,6 +394,9 @@ try {
                 <button>編輯</button>
               </td>
             </tr>
+            <?php
+            }
+            ?>
           </table>
           <button>新增課程</button>
         </div>
@@ -388,15 +407,19 @@ try {
               <th>檢舉編號</th>
               <th>主題編號</th>
               <th>主題名稱</th>
+              <th>檢舉者</th>
               <th>檢舉內容</th>
               <th>審核</th>
             </tr>
+            <?php
+            while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)){
+            ?>
             <tr>
-              <td>1</td>
-              <td>11</td>
-              <td>今天星期幾</td>
-              <td>暴力言語</td>
-              <td>通過
+              <td><?=$ArReportRow["ART_REP_NO"] ?></td>
+              <td><?=$ArReportRow["DIS_NO"] ?></td>
+              <td><?=$ArReportRow["DIS_NAME"] ?></td>
+              <td><?=$ArReportRow["ART_REP_CONTENT"] ?></td>
+              <td><?=$ArReportRow["ART_REP_PASS"]?>
                 <select name="" id="">
                   <option value="">通過</option>
                   <option value="">未通過</option>
@@ -404,6 +427,9 @@ try {
                 </select>
               </td>
             </tr>
+            <?php
+            }
+            ?>
           </table>
         </div>
         <div class="message_report" v-show="message_report">
@@ -416,18 +442,24 @@ try {
               <th>檢舉內容</th>
               <th>審核</th>
             </tr>
+            <?php
+            while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)){
+            ?>
             <tr>
-              <td>1</td>
-              <td>22</td>
-              <td>1235@grgbr</td>
-              <td>暴力</td>
-              <td>
+              <td><?=$MgReportRow["MES_REP_NO"] ?></td>
+              <td><?=$MgReportRow["DIS_MES_NO"] ?></td>
+              <td><?=$MgReportRow["MEM_EMAIL"] ?></td>
+              <td><?=$MgReportRow["MES_REP_CONTENT"] ?></td>
+              <td><?=$MgReportRow["MES_REP_PASS"] ?>
                 <select name="" id="">
                   <option value="">通過</option>
                   <option value="">未通過</option>
 
                 </select>
               </td>
+              <?php
+              }
+              ?>
             </tr>
           </table>
         </div>
@@ -440,75 +472,103 @@ try {
               <th>總金額</th>
               <th>付款方式</th>
               <th>購買日期</th>
+              <th></th>
             </tr>
+              <?php
+              while ($orderRow = $order->fetch(PDO::FETCH_ASSOC)){
+              ?>
             <tr>
-              <td>1</td>
-              <td>1212</td>
-              <td>5000</td>
-              <td>信用卡</td>
-              <td>2020/10/5</td>
+              <td><?= $orderRow["ORD_NO"] ?></td>
+              <td><?= $orderRow["MEM_NO"] ?></td>
+              <td><?= $orderRow["ORD_AMOUNT"] ?></td>
+              <td><?= $orderRow["ORD_PAY"] ?></td>
+              <td><?= $orderRow["ORD_DATE"] ?></td>
+              <td><button>訂單明細</button></td>
             </tr>
-          </table>
-          <table>
+            <?php
+            }
+            ?>
+
             <tr>
               <th>訂單明細編號</th>
               <th>課程編號</th>
               <th>課程名稱</th>
               <th>價格</th>
             </tr>
+            <?php
+            while ($orderDetailRow = $orderDetail->fetch(PDO::FETCH_ASSOC)){
+            ?>
             <tr>
-              <td>156165</td>
-              <td>1651</td>
-              <td>如何賺大錢</td>
-              <td>5000</td>
+              <td><?= $orderDetailRow["ORD_DET_NO"] ?></td>
+              <td><?= $orderDetailRow["SKI_NO"] ?></td>
+              <td><?= $orderDetailRow["SKI_NAME"] ?></td>
+              <td><?= $orderDetailRow["ORD_DET_PRICE"] ?></td>
+              
             </tr>
+            <?php
+            }
+            ?>
           </table>
         </div>
         <div class="postcard_material" v-show="postcard_material">
           明信片素材
           <table>
+            
             <tr>
               <th>素材編號</th>
               <th>素材名稱</th>
               <th>素材圖片</th>
               <th>啟用</th>
             </tr>
+            <?php
+            while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)){
+            ?>
             <tr>
-              <td>123</td>
-              <td>郵票1號</td>
+              <td><?= $materialRow["POS_MAT_NO"] ?></td>
+              <td><?= $materialRow["POS_MAT_NAME"] ?></td>
               <td>
-                <img src="" alt="郵票1號">
+                <img src="<?=$materialRow["POS_MAT_PIC"] ?>" alt="<?=$materialRow["POS_MAT_NAME"]?>">
               </td>
-              <td>是
+              <td><?=$materialRow["POS_MAT_USE"]?>
                 <select name="" id="">
                   <option value="">是</option>
                   <option value="">否</option>
                 </select>
               </td>
             </tr>
+            <?php
+            }
+            ?>
           </table>
         </div>
         <div class="announcement" v-show="announcement">
           公告
           <table>
+
             <tr>
               <th>編號</th>
               <th>內容</th>
               <th>日期</th>
               <th>發布</th>
             </tr>
+            <?php
+            while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
+            ?>
             <tr>
-              <td>141</td>
-              <td>兩件八折</td>
-              <td>2020/10/5</td>
-              <td>是
+              <td><?=$announceRow["ANN_NO"] ?></td>
+              <td><?=$announceRow["ANN_CONTENT"] ?></td>
+              <td><?=$announceRow["ANN_DATE"] ?></td>
+              
+              <td><?=$announceRow["ANN_USE"]?>
                 <select name="" id="">
                   <option value="">是</option>
                   <option value="">否</option>
-
                 </select>
               </td>
             </tr>
+          <?php
+            }
+          ?>
           </table>
           <button>新增公告</button>
         </div>

@@ -143,6 +143,14 @@ gulp.task("concat", ["sass"], function() {
 
 //backstage
 
+gulp.task("watchbg", function() {
+    gulp.watch("./backstage/sass/**/*.scss", ["bgsass"]).on("change", reload);
+    gulp.watch("./backstage/*.php", ["bgphp"]).on("change", reload);
+    gulp.watch("./backstage/*.html", ["bgfileinclude"]).on("change", reload);
+    gulp.watch("./backstage/js/**/*.js", ["bgjs"]).on("change", reload);
+});
+
+
 gulp.task('bgsass', ['bgimg', 'bgjs', 'bgfileinclude', 'bgphp'], function() {
     return gulp.src('./backstage/sass/**/*.scss')
         .pipe(sourcemaps.init())
