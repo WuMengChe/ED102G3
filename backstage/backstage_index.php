@@ -60,7 +60,7 @@ try {
           </ul>
         </div>
         <div class="copyright">
-          <a href="https://coreui.io">職引960</a>
+          <a href="./index.html">職引960</a>
           <span>
             &copy;2020.
           </span>
@@ -101,6 +101,7 @@ try {
                     <option value="authority" <?php echo $memberRow["MEM_USE"] == 1 ? "selected" : "" ?>>是</option>
                     <option value="authority" <?php echo $memberRow["MEM_USE"] == 0 ? "selected" : "" ?>>否</option>
                   </select>
+                  <button>編輯</button>
                 </td>
               </tr>
             <?php
@@ -137,35 +138,32 @@ try {
             }
             ?>
           </table>
-          <div>
-            <table id="myForm" style="display: none;">
-              <tr class="title">
-                <th>編號</th>
-                <th>名稱</th>
-                <th>帳號</th>
-                <th>密碼</th>
-              </tr>
-              <tr class="new_administrator" style="display:none">
-                <td>2</td>
-                <td>
-                  <input type="text">
-                </td>
-                <td>
-                  <input type="text">
-                </td>
-                <td>
-                  <input type="text">
-                </td>
-                <td>
-                  <button>確認</button>
-                </td>
-              </tr>
-            </table>
-          </div>
+          <table id="myForm" style="display: none;">
+            <tr class="title">
+              <th>編號</th>
+              <th>名稱</th>
+              <th>帳號</th>
+              <th>密碼</th>
+            </tr>
+            <tr class="new_administrator" style="display:none">
+              <td>2</td>
+              <td>
+                <input type="text">
+              </td>
+              <td>
+                <input type="text">
+              </td>
+              <td>
+                <input type="text">
+              </td>
+              <td>
+                <button>確認</button>
+              </td>
+            </tr>
+          </table>
           <div id="adForm">
             <button id="newAdBtn">新增管理員</button>
           </div>
-
         </div>
         <div class="quiz" v-show="quiz">
           測驗題庫
@@ -217,7 +215,7 @@ try {
                   </select>
                 </td>
                 <td>
-                  <p><?= $quizRow["QUIZ_USE"] ?></p>
+                  <p><?php echo $quizRow["QUIZ_USE"] == 0 ? "否" : "是" ?></p>
                   <select name="authority" id="">
                     <option value="authority">是</option>
                     <option value="authority">否</option>
@@ -523,14 +521,7 @@ try {
       </div>
     </div>
   </div>
-  <!-- <footer>
-    <div>
-      <a href="https://coreui.io">職引960</a>
-      <span>
-        &copy;2020 Powered by direction.ALL Right Reserved.
-      </span>
-    </div>
-  </footer> -->
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="./js/backstage_component.js"></script>
