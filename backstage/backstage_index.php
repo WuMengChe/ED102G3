@@ -12,8 +12,8 @@ try {
   $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
   $careerSql = "";
   $skillSql = "select a.*, b.IND_CLASS from SKILL_CLASS a join INDUSTRY_CLASS b on a.IND_NO = b.IND_NO order by SKI_NO";
-  $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO";
-  $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO ";
+  $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
+  $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
   $orderDetailSql = "select a.*, b.*, c.SKI_NAME from ORDER_MEM a join ORDER_DETIAL b on a.ORD_NO = b.ORD_NO JOIN SKILL_CLASS c on b.SKI_NO = c.SKI_NO";
   $orderSql = "select * from ORDER_MEM";
   $materialSql = "select * from POSTCARD_MATERIAL ";
@@ -430,8 +430,9 @@ try {
               <th>檢舉編號</th>
               <th>主題編號</th>
               <th>主題名稱</th>
-              <th>檢舉者</th>
               <th>檢舉內容</th>
+              <th>檢舉者</th>
+              <th>檢舉原因</th>
               <th>審核</th>
             </tr>
             <?php
@@ -441,6 +442,8 @@ try {
               <td><?=$ArReportRow["ART_REP_NO"] ?></td>
               <td><?=$ArReportRow["DIS_NO"] ?></td>
               <td><?=$ArReportRow["DIS_NAME"] ?></td>
+              <td><?=$ArReportRow["DIS_CONTENT"] ?></td>
+              <td><?=$ArReportRow["MEM_EMAIL"] ?></td>
               <td><?=$ArReportRow["ART_REP_CONTENT"] ?></td>
               <td><?=$ArReportRow["ART_REP_PASS"]?>
                 <select name="" id="">
@@ -461,8 +464,9 @@ try {
             <tr>
               <th>檢舉編號</th>
               <th>留言編號</th>
-              <th>檢舉者</th>
               <th>檢舉內容</th>
+              <th>檢舉者</th>
+              <th>檢舉原因</th>
               <th>審核</th>
             </tr>
             <?php
@@ -471,6 +475,7 @@ try {
             <tr>
               <td><?=$MgReportRow["MES_REP_NO"] ?></td>
               <td><?=$MgReportRow["DIS_MES_NO"] ?></td>
+              <td><?=$MgReportRow["DIS_MES_CONTENT"] ?></td>
               <td><?=$MgReportRow["MEM_EMAIL"] ?></td>
               <td><?=$MgReportRow["MES_REP_CONTENT"] ?></td>
               <td><?=$MgReportRow["MES_REP_PASS"] ?>
