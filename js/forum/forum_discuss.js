@@ -123,6 +123,10 @@ new Vue({
       const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss_ann.php')
     },
+     funcD() {
+      const memNo = sessionStorage.getItem('memNo');
+      return axios.get('./php/forum_discuss_like.php')
+    },
     //開啟燈箱按鈕
     openContent(index) {
       if (this.contentIsOpen) {
