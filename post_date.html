@@ -24,17 +24,16 @@
         <input type="text" class="input" id="pickdate" data-dd-theme="calendar" placeholder="YYYY-MM-DD" />
       </div>
     </div>
-    <img src="" alt="" id="f_img_s1">
     <div class="view row">
       <div class="view_front col-md-6">
         <p>正面</p>
         <!-- <img src="./img/post_card/front.png" alt=""> -->
-        <img src="" id="frontImg" alt="">
+        <img src="" id="frontImg">
       </div>
       <div class="view_back col-md-6">
         <p>背面</p>
         <!-- <img src="./img/post_card/back.png" alt=""> -->
-        <img src="" id="backImg" alt="">
+        <img src="" id="backImg">
       </div>
       <div class="send_date col">
         <div class="col-md-5 col-lg-4">
@@ -43,7 +42,7 @@
             重新製作
           </a>
 
-          <button class="btn_primary" id="send">送出</button>
+          <button class="btn_primary" id="sendPost">送出</button>
         </div>
       </div>
 
@@ -65,12 +64,6 @@
   <script src="./js/post_card/datedropper.pro.min.js"></script>
   <script src="./js/post_card/post_date.js"></script>
   <script src="./js/post_card/post_canvas.js"></script>
-  <script>
-    window.addEventListener("load", function () {
-      document.getElementById("frontImg").src = sessionStorage["frontImg"];
-      document.getElementById("backImg").src = sessionStorage["backImg"];
-    })
-  </script>
 </body>
 
 </html>

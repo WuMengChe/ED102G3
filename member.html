@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>職引960-會員</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.js'></script>
     <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="./css/app_public.css"> -->
-    <!-- <link rel="stylesheet" href="./css/member_all.css"> -->
     @@include('app/link.html')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datedropper/2.0/datedropper.min.css">
     <link rel="stylesheet" href="./css/pages_scss/member/member_all.css">
 </head>
 
@@ -125,7 +124,7 @@
             </a>
             <div class="mem_img_area">
                 <div class="mem_img">
-                    <img v-bind:src="memImage" />
+                    <img v-bind:src="member.src" />
                 </div>
                 <span>{{member.name}}</span>
             </div>
@@ -171,7 +170,7 @@
                                 <td>生日：</td>
                                 <td>
                                     <span v-if="!fixMode">{{member.birthday}}</span>
-                                    <input type="text" v-model="member.birthday" v-if="fixMode">
+                                    <input type="text" v-model="member.birthday" v-if="fixMode" id="pickdate" data-dd-theme="calendar">
                                 </td>
                             </tr>
                             <tr>
@@ -262,7 +261,7 @@
                     <div class="col-md-12 col-sm-11 col-11 mem_cla_area" v-for="(memClass, index) in memberClass">
                         <a class="col-md-12 mem_cla_area" href="#">
                             <div class="col-md-6 col-sm-12 mem_cla">
-                                <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" />
+                                <img :src="memClass.src"/>
                             </div>
                             <div class="col-md-3 col-sm-12 mem_cla">{{memClass.name}}<br/>講師名稱：{{memClass.teacher}}</div>
                             <div class="col-md-3 col-sm-12 mem_cla">
@@ -289,10 +288,10 @@
                     </div>
                 </div>
                 <div class="col-md-11 mem_con_height" v-if="collecttionChange && checkMemClassCollection">
-                    <div class="col-md-12 col-sm-11 col-11 mem_cla_area" v-for="(memClass, index) in memberClass">
+                    <div class="col-md-12 col-sm-11 col-11 mem_cla_area" v-for="(memClass, index) in memberClassCollection">
                         <a class="col-md-12 mem_cla_area" href="#">
                             <div class="col-md-6 col-sm-12 mem_cla">
-                                <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" />
+                                <img :src="memClass.src"/>
                             </div>
                             <div class="col-md-6 col-sm-12 mem_cla">{{memClass.name}}<br/>講師名稱：{{memClass.teacher}}</div>
                         </a>
@@ -322,7 +321,6 @@
                             <a class="mem_pos_img" href="#" v-if="memPostCard.postSend">
                                 <i class="fas fa-search"></i>
                                 <span>查看</span>
-                                <!-- <img :src="memPostCard.postSrc"/> -->
                             </a>
                             <span v-if="!memPostCard.postSend">尚未寄發，敬請期待</span>
                         </div>
@@ -362,7 +360,7 @@
                             <div class="col-md-12 col-sm-12 mem_ord_det_con" v-for="(memOrderList, indexOrderList) in memberOrderList[index]">
                                 <a class="col-md-12" href="#">
                                     <div class="col-md-6 col-sm-6 mem_ord">
-                                        <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" />
+                                        <img :src="memOrderList.src"/>
                                     </div>
                                     <div class="col-md-6 col-sm-6 mem_ord">{{memOrderList.name}}<br/>講師名稱：{{memOrderList.teacher}}</div>
                                 </a>
@@ -374,7 +372,7 @@
                     <h3>您目前還沒有訂單紀錄喔</h3>
                 </div>
             </div>
-            <div class="container" v-if="currentPage == '訊息'">
+            <!-- <div class="container" v-if="currentPage == '訊息'">
                 <div class="col-md-11 mem_con_title" v-if="(screenWidth >= 975) && !(currentPage == '會員資料')">
                     <h1>{{currentPage}}</h1>
                 </div>
@@ -396,12 +394,14 @@
                 <div class="col-md-12 mam_no_data" v-if="!checkMemMessage">
                     <h3>您目前還沒有訊息喔</h3>
                 </div>
-            </div>
-            <!-- <button class="btn_third" v-if="(currentPage == '會員資料') && (screenWidth >= 768)" @click="fixMode = !fixMode">{{fixMode?'確認修改':'修改資料'}}</button> -->
+            </div> -->
         </div>
     </main>
     @@include('app/footer.html')
+    @@include('app/script.html')
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script type="text/javascript" src="./js/post_card/datedropper.pro.min.js"></script>
+    <script type="text/javascript" src="./js/member/member_date.js"></script>
     <script type="text/javascript" src="./js/member/member.js"></script>
     <script src="./js/header.js"></script>
 </body>

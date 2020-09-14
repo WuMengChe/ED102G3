@@ -120,7 +120,7 @@ let testtest = new Vue({
       console.log('click')
     },
     changePage(){
-      if( this.index === 17 ){
+      if( this.index === 18 ){
         localStorage.result = this.totalScore;
         window.location.href = "./test_result.html";
       }
