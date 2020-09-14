@@ -25,7 +25,7 @@
 <!-- lightboxhere 會員登入燈箱在這裡 -->
 <div class="bg_of_lightbx">
     <div class="lightbx_login">
-        <div class="close_icon fas  fa-times"></div>
+        <div class="close_icon fas  fa-times" id="closeBtn" v-on:click="btnClose" ></div>
         <img class="cutie_top" src="./img/上方探頭小人.svg"   alt="">
         <img  class="tiny_logo" src="./img/LOGO_FINAL.svg"  alt="">
         <h2>會員登入</h2>
@@ -67,7 +67,7 @@
                             </div>
                 </div>
                 <div class="btn_save_bx">
-                    <button class="result_save_btn btn_third"  v-on:click="saveResult()">儲存測驗結果</button>
+                    <button class="result_save_btn btn_third" @click="saveResult">儲存測驗結果</button>
                 </div>
             </div>
             <div class="related_job_wrap">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="related_job">
                     <ul class="jobs row ">
-                        <li class="" v-for="(item, index) in relatedJob[index]" :key="index"  >
+                        <li class="" v-for="(item, index) in relatedJob[0]" :key="index"  >
                             <a :href="item.link">
                                 <img :src="item.src" alt="">
                                 <h3>{{ item.name }}</h3>
@@ -97,8 +97,8 @@
                 </div>
                 <div class="related_course">
                     <ul class="all_course_cards row">
-                        <li class="course_card" v-for="(item, index) in relatedCourse[index] ">
-                             <span class="card_type" v-bind:style="" >{{item.type}}</span>
+                        <li class="course_card" v-for="(item, index) in relatedCourse" :key="index" >
+                             <span class="card_type" :style="{backgroundColor:relatedCourse[index].backgroundColor}" >{{item.type}}</span>
                              <div class="course_pic">
                                 <a >
                                     <img :src="item.src" alt=""/>

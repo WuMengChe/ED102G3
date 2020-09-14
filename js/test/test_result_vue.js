@@ -1,14 +1,14 @@
 
 let Data = {
-    register: false,
     signIn : true,
     myChart :'',
     index :0,
-    analysisResult: [
-        [43, 34, 48, 77, 60, 59],
-        [33, 14, 89, 47, 50, 59],
-        [23, 54, 58, 37, 44, 89]
-    ],
+    // analysisResult: [
+    //     [43, 34, 48, 77, 60, 59],
+    //     [33, 14, 89, 47, 50, 59],
+    //     [23, 54, 58, 37, 44, 89]
+    // ],
+    anaValue:[23, 54, 58, 37, 44, 89],
     typeColor : ['#79BBB5','#a0cadb','#ccc5e3','#f4c3c5','#e7995f','#f7ea92'],
     resultData : [
         {typeName:'實作型',
@@ -64,27 +64,50 @@ let Data = {
 
 ],
     relatedCourse : [
-    [  {courseName:'行銷=內容X社群X商務',
-        src:"./img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達 2.png",
+        {courseName:'酒及飲料調製',
+        src:"./img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg",
         numbers:'666',timimg:'2',
         price:'550',
-        type:'文藝型',
-         color:'#ccc5e3'},
-        {courseName:'設計色彩學',
-        src:"./img/course/course_img/A/課程照片-設計色彩學：建立自己的色彩品味. 2.jpg",
+        type:'實作型',
+        backgroundColor:'#79BBB5'
+        },
+        {courseName:'職場溝通管理學：打造團隊好關係與高績效',
+        src:"./img/course/course_img/R/課程照片-職場溝通管理學：打造團隊好關係與高績效.jpg",
         numbers:'776',
         timimg:'5',
         price:'1990',
-        type:'文藝型'}]
+        type:'實作型',
+        backgroundColor:'#79BBB5'},
+
     ]
 }
 let testRult = new Vue({
     el : '#testResult',
     data : Data,
-    mounted() {
-        this.myChart = Array(this.analysisResult.length);
+    created() {
+        window.addEventListener('load', this.plotRadar)
+        window.addEventListener('resize', this.plotRadar)
+    },
+    destroyed() {
+        window.removeEventListener('resize', this.plotRadar);
     },
     methods: {
+        saveResult(){
+            axios
+            .post('./php/memberStateCheck.php')
+            .then((resp) => {
+                if(resp.data == 0){
+                    alert('請先登入會員');
+                    document.querySelector('.bg_of_lightbx').style = "display:block";
+                }
+                else{
+                    alert('測驗結果已儲存');
+                    //這邊放把資料送去資料庫的東西喔//
+                }
+                // console.log(resp)
+            })
+            
+        },   
         changeState(){
             var memAccount = document.querySelector('.input_div #account').value;
             var memCode = document.querySelector('.input_div #code').value;
@@ -103,13 +126,19 @@ let testRult = new Vue({
                     //登入成功則燈箱移除
                     document.querySelector('.bg_of_lightbx').style = "display:none";
                     //將結果傳至會員儲存
+                    //這邊要寫把資料傳到資料庫的東西
                 }
-                console.table(resp.data)
             })
-        },   
-    plotRadar(anaValue){
+        },
+        btnClose(){
+            document.querySelector('.bg_of_lightbx').style = "display:none"; 
+        },
+    plotRadar(){
+        if (this.myChart != null && this.myChart != "" && this.myChart != undefined) {
+            this.myChart.dispose();//銷燬
+        }
         this.myChart = echarts.init(document.getElementById('testRadar'), null, {renderer: 'svg'});
-        var option = {
+        option = {
             baseOption: {
                 title: {
                     text: '分析結果',
@@ -145,7 +174,7 @@ let testRult = new Vue({
                     areaStyle: {normal: {}},
                     data: [
                         {
-                            value: anaValue,
+                            value: this.anaValue,
                             name: '分析結果'
                         }
                     ],
@@ -170,8 +199,9 @@ let testRult = new Vue({
                 }
             ]
         };
-        this.yChart.setOption(option);
-    }
+        this.myChart.setOption(option);
+    },
+  
    
 }
 })
