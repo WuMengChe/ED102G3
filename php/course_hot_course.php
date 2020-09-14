@@ -19,11 +19,11 @@ try {
             a.ski_buy_num,
             a.ski_time,
             a.ski_price,
-            a.ind_no,
+            b.ind_class,
             b.ind_color
             from skill_class a join industry_class b on a.ind_no = b.ind_no
             order by ski_buy_num desc
-            limit 5;";
+            limit 4;";
     $dis = $pdo->query($sql);
 
     if ($dis->rowCount() == 0) { //找不到

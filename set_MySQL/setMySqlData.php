@@ -85,7 +85,7 @@
 					for($i = 1; $i < $number_of_orders; $i++){
 						$line = explode("\t", $orders[$i]);
 						if(!in_array($line[5], $re_value)){
-							$sql = "insert into `member`(`MEM_NAME`, `MEM_CODE`, `MEM_PIC`, `MEM_BIR`, `MEM_TEL`, `MEM_EMAIL`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]', '$line[5]')";
+							$sql = "insert into `member`(`MEM_NAME`, `MEM_CODE`, `MEM_PIC`, `MEM_TEL`, `MEM_EMAIL`) values('$line[0]', '$line[1]', '$line[2]', '$line[4]', '$line[5]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
 							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";
@@ -590,7 +590,7 @@
 					for($i = 1; $i < $number_of_orders; $i++){
 						$line = explode("\t", $orders[$i]);
 						if(!in_array($line[0], $re_value)){
-							$sql = "insert into `quiz_result_analysis`(`MEM_NO`, `QUIZ_RES_TYPE_A`, `QUIZ_RES_TYPE_C`, `QUIZ_RES_TYPE_E`, `QUIZ_RES_TYPE_I`, `QUIZ_RES_TYPE_R`, `QUIZ_RES_TYPE_S`, `QUIZ_RES_DATE`, `QUIZ_RES_FIT_TYPE`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]', '$line[5]', '$line[6]', '$line[7]', '$line[8]')";
+							$sql = "insert into `quiz_result_analysis`(`MEM_NO`, `QUIZ_RES_TYPE_R`, `QUIZ_RES_TYPE_I`, `QUIZ_RES_TYPE_A`, `QUIZ_RES_TYPE_S`, `QUIZ_RES_TYPE_E`, `QUIZ_RES_TYPE_C`, `QUIZ_RES_DATE`, `QUIZ_RES_FIT_TYPE`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]', '$line[5]', '$line[6]', '$line[7]', '$line[8]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
 							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";
@@ -821,7 +821,7 @@
 					for($i = 1; $i < $number_of_orders; $i++){
 						$line = explode("\t", $orders[$i]);
 						if(!in_array($line[0], $re_value)){
-							$sql = "insert into `postcard`(`MEM_NO`, `POS_PIC`, `POS_PIC_BACK`, `POS_CRE_DATE`, `POS_SEN_DATE`, `POS_SEND`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]', '$line[5]')";
+							$sql = "insert into `postcard`(`MEM_NO`, `POS_PIC`, `POS_PIC_BACK`, `POS_CRE_DATE`, `POS_SEN_DATE`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
 							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
