@@ -3,7 +3,7 @@
         require_once("./connectMySql.php");
         if( $pdo != false ){
 
-            $sql = "select MEM_NO, MEM_NAME, MEM_CODE, MEM_PIC, MEM_BIR, MEM_TEL, MEM_EMAIL from `member` where MEM_NO = :memNo";
+            $sql = "select MEM_NO, MEM_NAME, MEM_CODE, MEM_PIC, MEM_TEL, MEM_EMAIL from `member` where MEM_NO = :memNo";
             $sqlAnalysis = "select i.IND_CLASS, i.IND_INFO, q.QUIZ_RES_TYPE_R, q.QUIZ_RES_TYPE_I, q.QUIZ_RES_TYPE_A, q.QUIZ_RES_TYPE_S, q.QUIZ_RES_TYPE_E, q.QUIZ_RES_TYPE_C, q.QUIZ_RES_DATE from `quiz_result_analysis` q join `industry_class` i on q.QUIZ_RES_FIT_TYPE = i.IND_NO where q.MEM_NO = :memNo";
             $sqlClassBuy = "select mem.MEM_NAME, skill.SKI_NAME, skill.SKI_IMG, skill.SKI_TEC_NAME from `order_detial` item join `order_mem` ord on item.ORD_NO = ord.ORD_NO join `member` mem on ord.MEM_NO = mem.MEM_NO join `skill_class` skill on item.SKI_NO = skill.SKI_NO where ord.MEM_NO = :memNo";
             $sqlClassCollection = "select mem.MEM_NO, skicol.SKI_NO, skill.SKI_NAME, skill.SKI_IMG, skill.SKI_TEC_NAME  from `skill_collect` skicol join `member` mem on skicol.MEM_NO = mem.MEM_NO join `skill_class` skill on skicol.SKI_NO = skill.SKI_NO where skicol.MEM_NO = :memNo";
