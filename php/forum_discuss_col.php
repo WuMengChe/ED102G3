@@ -1,13 +1,10 @@
 <?php
 try {
     require_once "connectMySql.php";
-    $sql = "select  ARTICLE_LIKE.DIS_NO, 
-                    ARTICLE_LIKE.MEM_NO, 
-                    ARTICLE_REPORT.DIS_NO, 
-                    ARTICLE_REPORT.MEM_NO, 
-                    ARTICLE_COLLECT.DIS_NO, 
-                    ARTICLE_COLLECT.MEM_NO  
-    from ARTICLE_LIKE join ARTICLE_COLLECT using(MEM_NO) join ARTICLE_REPORT using(MEM_NO);";
+    $sql = "SELECT * FROM ARTICLE_COLLECT
+            join member on member.MEM_NO = article_collect.MEM_NO
+            join discuss_area on discuss_area.DIS_NO = article_collect.DIS_NO
+            WHERE member.MEM_NO = 1 and discuss_area.DIS_HIDDEN = 1";
     $dis = $pdo->query($sql);
 
     if ($dis->rowCount() == 0) { //找不到

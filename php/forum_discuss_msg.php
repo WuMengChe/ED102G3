@@ -10,9 +10,9 @@ try {
                     from member
                     join DISCUSS_MESSAGE using(MEM_NO)
                     join discuss_area
-                    on ( discuss_area.DIS_NO = DISCUSS_MESSAGE.DIS_NO and DISCUSS_MESSAGE.DIS_NO = :DISNO )";
+                    on ( discuss_area.DIS_NO = DISCUSS_MESSAGE.DIS_NO and DISCUSS_MESSAGE.DIS_NO = :DIS_NO )";
     $dis = $pdo->prepare($sql);
-    $dis->bindValue(":DISNO", $_POST['DISNO']);
+    $dis->bindValue(":DIS_NO", $_POST['DIS_NO']);
     $dis->execute();
 
     if ($dis->rowCount() == 0) { //找不到
