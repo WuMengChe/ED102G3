@@ -19,7 +19,7 @@ try {
             a.ski_buy_num,
             a.ski_time,
             a.ski_price,
-            a.ind_no,
+            b.ind_class,
             b.ind_color
             from skill_class a join industry_class b on a.ind_no = b.ind_no;";
     $dis = $pdo->query($sql);
