@@ -58,14 +58,21 @@ $(function () {
     };
 
   });
-  // ------------抓正面圖
-  // document.getElementById("frontImg").src = sessionStorage["frontImg"];
+  // ------------抓正背面圖
+  window.addEventListener("load", function () {
+    document.getElementById("frontImg").src = sessionStorage["frontImg"];
+    document.getElementById("backImg").src = sessionStorage["backImg"];
+  });
+  //--------------送資料庫-------------------
+
+  function sendPost() {
+
+  };
 
 
 
 
 
-
-
+  document.getElementById("sendPost").onclick = sendPost;
 
 });
