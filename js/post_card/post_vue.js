@@ -20,38 +20,71 @@ Vue.component('front-style', {
 
 Vue.component('outline-style', {
   template: `<div class="style_all_outline">
-            <div class="outline_style row style_list">
-              <div class="style">
-                <img src="./img/post_card/a_outline0.png" alt="無邊框" id="outline0">
-                <p class="p_small">無邊框</p>
+            <div class="outline_style row style_list" >
+              <div class="style" v-for="(style,index) in outlineStyle">
+                <div @click="changeOutline(index)">
+                  <img :src="style.POS_MAT_PIC" :alt="style.POS_MAT_NAME" > 
+                  <p :class="['outline'+index]"></p>
+                </div>
               </div>
-              <div class="style">
-                <img src="./img/post_card/a_outline1.png" alt="紅藍邊框" id="outline1">
-              </div>
-              <div class="style">
-                <img src="./img/post_card/a_outline2.png" alt="黃藍邊框" id="outline2">
-              </div>
-            </div>
-            <div class="style_outline">
-
             </div>
           </div>`,
+  data() {
+    return {
+      outlineStyle: [],
+      frontOutline: '',
+    }
+  },
+  created() {
+    axios.get('./php/postcard_frontStyle.php')
+      .then(res => this.outlineStyle = res.data);
+    window.addEventListener('load', this.addNote);
+
+
+  },
+  methods: {
+    // 第一個加P標籤
+    addNote() {
+      document.querySelector('.outline0').innerText = '無邊框';
+
+    },
+    // 換正面外框
+    changeOutline(index) {
+      document.getElementById('mainImg').setAttribute('src', './img/post_card/a_outline' + index + '.png');
+    }
+  },
+
 });
 
 Vue.component('stamp-style', {
   template: `<div class="style_all_stamps">
               <div class="stamps_style row style_list">
-                <div class="style">
-                  <img src="./img/post_card/b_stamp1.png" alt="郵票1" id="stamp1">
-                </div>
-                <div class="style">
-                  <img src="./img/post_card/b_stamp2.png" alt="郵票2" id="stamp2">
-                </div>
-                <div class="style">
-                  <img src="./img/post_card/b_stamp3.png" alt="郵票3" id="stamp3">
+               <div class="style" v-for="(stamp,index) in stampStyle">
+                  <img :src ="stamp.POS_MAT_PIC" :alt="stamp.POS_MAT_NAME" @click = "changeStamp(index)" >
                 </div>
               </div>
             </div>`,
+  data() {
+    return {
+      stampStyle: [],
+      backStamp: '',
+    }
+  },
+  created() {
+    axios.get('./php/postcard_stampStyle.php')
+      .then(res => this.stampStyle = res.data)
+  },
+
+  methods: {
+    // 換背面郵票
+    changeStamp(index) {
+      let stamp = document.getElementById('mainStamp');
+      stamp.style.display = 'inline-block';
+      stamp.setAttribute('src', './img/post_card/b_stamp' + index + '.png');
+
+
+    }
+  },
 });
 Vue.component('postmark-style', {
   template: `<div class="style_all_postmarks">

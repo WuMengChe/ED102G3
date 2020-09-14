@@ -45,6 +45,9 @@ let vm = new Vue({
     }
   },
   mounted() {
+
+
+//登入
     axios.post('./php/memberStateCheck.php')
       .then(res => {
         console.log(res);
@@ -60,26 +63,17 @@ let vm = new Vue({
         console.log(error);
       });
 
-    axios.get('./php/forum_discuss.php')
-      .then(res => {
-        console.log(res);
-        this.information = res.data;
-        this.searchResult = res.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
 
-    axios.all([this.funcA(), this.funcB(), this.funcC(), this.funcD()])
-      .then(axios.spread((res1, res2, res3, res4) => {
+
+//其他載入php
+    axios.all([this.funcA(), this.funcC(), this.funcD()])
+      .then(axios.spread((res1, res3, res4) => {
         console.log(res1.data);
-        console.log(res2.data);
         console.log(res3.data);
         console.log(res4.data);
 
         this.information = res1.data;
         this.searchResult = res1.data;
-        this.box_msg = res2.data;
         this.announcement = res3.data;
         this.icon = res4.data;
 
@@ -123,10 +117,6 @@ let vm = new Vue({
       const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss.php')
     },
-    funcB() {
-      const memNo = sessionStorage.getItem('memNo');
-      return axios.post('./php/forum_discuss_msg.php', formData)
-    },
     funcC() {
       const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss_ann.php')
@@ -137,6 +127,22 @@ let vm = new Vue({
     },
     //開啟燈箱按鈕
     openContent(index) {
+
+    //留言回覆的訊息
+  var formData = new FormData ;
+      formData.append('DIS_NO', this.searchResult[index].DIS_NO);
+      console.log(formData)
+
+    axios.post('./php/forum_discuss_msg.php',formData)
+      .then(res => {
+        console.log(res.data);
+        this.box_msg = res.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
       this.aaa = index;
       if (this.contentIsOpen) {
         this.contentIsOpen = false
@@ -185,8 +191,10 @@ let vm = new Vue({
     btn_modal() {
       if (this.accuseIsOpen) {
         this.accuseIsOpen = false
+        this.stopScroll = false
       } else {
         this.accuseIsOpen = true
+         this.stopScroll = true
       }
     },
     //開啟檢舉燈箱

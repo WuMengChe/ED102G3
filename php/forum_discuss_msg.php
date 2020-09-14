@@ -1,7 +1,6 @@
 <?php
 try {
     require_once "connectMySql.php";
-    // require "memberStateCheck.php";
     $sql = "select  MEMBER.MEM_NAME,
                     MEMBER.MEM_PIC,
                     DISCUSS_MESSAGE.DIS_MES_CONTENT,
