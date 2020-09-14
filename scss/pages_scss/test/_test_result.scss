@@ -329,6 +329,7 @@ main.main_test_result{
                  }
              }
     }
+    //課程卡片從這開始，哈囉
         .more_course_wrap{
             // border: 1px solid rebeccapurple;
             background: rgba(255, 255, 255, 0.7);
@@ -373,7 +374,7 @@ main.main_test_result{
                 }
    
         .all_course_cards{
-            border: 1px solid blue;
+            // border: 1px solid blue;
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
@@ -385,7 +386,7 @@ main.main_test_result{
             li.course_card{
                 width: 300px;
                 height: 350px;
-                border: 1px solid red;
+                // border: 1px solid red;
                 background: #fff;
                 display: flex;
                 flex-direction: column;
@@ -394,7 +395,7 @@ main.main_test_result{
                 overflow: hidden;
                 position: relative;
                  .card_type{
-                     border: 1px solid green;
+                    //  border: 1px solid green;
                      padding: 2%;
                      position: absolute;
                  }
@@ -407,7 +408,7 @@ main.main_test_result{
                 }
                  .card_content {
                 height: 50%;
-                border: 1px  solid green;
+                // border: 1px  solid green;
                   padding: 10px;
                   flex-grow: 1;
                   display: flex;
@@ -415,7 +416,7 @@ main.main_test_result{
                   align-items: center;
                   justify-content: space-around;
                     p {
-                    border: 1px solid red;
+                    // border: 1px solid red;
                     font-weight: bold;
                      font-size: 20px;
                     }
@@ -430,7 +431,7 @@ main.main_test_result{
                     }
                 }
                 div.card_course_detail {
-                    border: 1px solid blue;
+                    // border: 1px solid blue;
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-end;

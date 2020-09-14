@@ -1,15 +1,15 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
-    /* Open lightbox on button click */
-    $('.result_save_btn').click(function(){
-    $('.bg_of_lightbx').css('display', 'block');
-});
+//     /* Open lightbox on button click */
+//     $('.result_save_btn').click(function(){
+//     $('.bg_of_lightbx').css('display', 'block');
+// });
 
-    /* Click to close lightbox */
-    $('.close_icon').click(function(){
-    $('.bg_of_lightbx').css('display', 'none');
-    });
-});
+//     /* Click to close lightbox */
+//     $('.close_icon').click(function(){
+//     $('.bg_of_lightbx').css('display', 'none');
+//     });
+// });
 
 
 
