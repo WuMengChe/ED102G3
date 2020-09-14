@@ -39,9 +39,6 @@ function captureFront() {
 //--------------------------背面
 function captureBack() {
   let backImg = document.getElementById("backCapture");
-
-  let leftWrite = document.getElementById("leftWrite");
-  leftWrite.innerHTML = leftWrite.innerHTML.replace(/\n/g, '<br>\n');
   window.scrollTo(0, 0);
   window.devicePixelRatio * 2;
   html2canvas(backImg, {
