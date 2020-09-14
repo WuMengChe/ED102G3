@@ -73,6 +73,6 @@ $(function () {
 
 
 
-  document.getElementById("sendPost").onclick = sendPost;
+  document.getElementById("send").onclick = sendPost;
 
 });
