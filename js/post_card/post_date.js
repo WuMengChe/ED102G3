@@ -31,6 +31,14 @@ $(function () {
 
   // 開啟 Modal 彈跳視窗
   $("#send").on("click", function () {
+    //燈箱
+    // 先判斷會員登入 沒登入跳燈箱
+    let xml = new XMLHttpRequest();
+    xml.open("POST", "./php/post_save.php", true);
+    // 有登入抓登入的會員是誰再存兩張圖 會員 創建日期 寄送日期
+    $('.bg_of_lightbx').css('display', 'block');
+
+
 
     //抓日期
     let date = $('#pickdate').val().split('-');
