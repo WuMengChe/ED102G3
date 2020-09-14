@@ -3,12 +3,14 @@ let Data = {
     signIn : true,
     myChart :'',
     index :0,
-    // analysisResult: [
-    //     [43, 34, 48, 77, 60, 59],
-    //     [33, 14, 89, 47, 50, 59],
-    //     [23, 54, 58, 37, 44, 89]
-    // ],
-    anaValue:[23, 54, 58, 37, 44, 89],
+    testResult : ' ',
+    R:' ',
+    I:' ',
+    A:' ',
+    S:' ',
+    E:' ',
+    C:' ',
+    anaValue:[0,0,0 ,0 ,0 ,0 ],
     typeColor : ['#79BBB5','#a0cadb','#ccc5e3','#f4c3c5','#e7995f','#f7ea92'],
     resultData : [
         {typeName:'實作型',
@@ -87,6 +89,25 @@ let testRult = new Vue({
     created() {
         window.addEventListener('load', this.plotRadar)
         window.addEventListener('resize', this.plotRadar)
+        this.testResult = localStorage.result;
+        this.R = this.testResult.substring(0,1);
+        this.I = this.testResult.substring(2,3);
+        this.A = this.testResult.substring(4,5);
+        this.S = this.testResult.substring(6,7);
+        this.E = this.testResult.substring(8,9);
+        this.C = this.testResult.substring(10,11);
+        this.anaValue =[ this.R, this.I, this.A, this.S, this.E, this.C];
+
+       for(i=0;i<this.anaValue.length;i++){
+
+           if(this.anaValue[i] > 4 ){
+           this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10);
+           }else{
+           this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10) + 20 
+           }
+          
+       }
+        
     },
     destroyed() {
         window.removeEventListener('resize', this.plotRadar);
@@ -160,12 +181,12 @@ let testRult = new Vue({
                         }
                     },
                     indicator: [
-                        { name: '文藝型（A）', max: 100},
-                        { name: '事務型（C）', max: 100},
-                        { name: '企業型（E）', max: 100},
-                        { name: '研究型（I）', max: 100},
                         { name: '實作型（R）', max: 100},
-                        { name: '社會型（S）', max: 100}
+                        { name: '研究型（I）', max: 100},
+                        { name: '文藝型（A）', max: 100},
+                        { name: '社會型（S）', max: 100},
+                        { name: '企業型（E）', max: 100},
+                        { name: '事務型（C）', max: 100}
                     ]
                 },
                 series: [{
@@ -205,3 +226,7 @@ let testRult = new Vue({
    
 }
 })
+//
+// Math.floor(1/(1 + Math.pow(Math.E, -(8-6))) * 100) + Math.floor(Math.random() * 10) 值大於四
+//Math.floor(1/(1 + Math.pow(Math.E, -(2-6))) * 100) + Math.floor(Math.random() * 10) + 20 值在四以下
+

@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <!-- @@include('app/header.html') -->
     <div id="course_main">
         <div class="header_wrap">
             <header class="header">
@@ -55,7 +56,6 @@
             <div class="cart_close">
                 <span>購物車</span>
                 <button id="cart_close" class="btn_third">close</button>
-                <!-- <button class="btn_third" @click="delete_cookie">delete</button> -->
             </div>
             <div class="cart_course">
                 <p class="no_item" v-show="cart_items.length == 0">

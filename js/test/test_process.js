@@ -104,9 +104,9 @@ let testtest = new Vue({
         // alert(value);
         if (value ==='R'){
           this.totalScore[0] = this.totalScore[0]+1
-        } else if(value ==='A'){
-          this.totalScore[1] = this.totalScore[1]+1
         } else if(value ==='I'){
+          this.totalScore[1] = this.totalScore[1]+1
+        } else if(value ==='A'){
           this.totalScore[2] = this.totalScore[2]+1
         }else if(value ==='S'){
           this.totalScore[3] = this.totalScore[3]+1

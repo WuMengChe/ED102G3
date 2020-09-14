@@ -1,4 +1,7 @@
 <?php
+
+include "memberStateCheck.php";
+
 try {
     require_once "connectMySql.php";
     $sql = "select  MEMBER.MEM_NAME,
@@ -13,6 +16,7 @@ try {
     $dis = $pdo->prepare($sql);
     $dis->bindValue(":DIS_NO", $_POST['DIS_NO']);
     $dis->execute();
+    $dis = $pdo->query($sql);
 
     if ($dis->rowCount() == 0) { //找不到
         //傳回空的JSON字串
