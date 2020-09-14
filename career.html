@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行業攻略</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.js'></script>
+    <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./css/app_public.css">
+    <link rel="stylesheet" href="./css/career_all.css"> -->
+    <!-- 套件 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+
+<!-- 基本盤 -->
+<link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
+<link rel="stylesheet" href="./css/app_public.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+    <link rel="stylesheet" href="./css/pages_scss/career/career_all.css">
+</head>
+
+<body class="car_body">
+    <!-- header -->
+<div class="header_wrap">
+    <header class="header">
+        <div class="hamburger">
+            <button class=" hamburger hamburger--spring btn_switch" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+        <div class="logo">
+            <a href="front_index.html">
+                <img src="img/LOGO_FINAL.svg" alt="">
+            </a>
+        </div>
+        <div class="header_nav">
+            <ul>
+                <li><a href="test_before.html" id="text_page">職涯分析</a></li>
+                <li><a href="career.html">行業攻略</a></li>
+                <li><a href="forum_discuss.html">職涯論壇</a></li>
+                <li><a href="course_main.html">探索課程</a></li>
+                <li><a href="post_intro.html">時光明信片</a></li>
+            </ul>
+
+        </div>
+        <div class="header_icon">
+            <div class="cart">
+                <button href="#"><i class="fas fa-shopping-cart"></i>
+                    <div class="cart_num"><span>1</span></div>
+                </button>
+                <!-- <div class="cart_num"><span>1</span></div> -->
+            </div>
+
+            <div class="member"><a href="member_sign_in.html"><i class="fas fa-user"></i></a></div>
+        </div>
+    </header>
+
+</div>
+
+
+<!-- cart -->
+<div class="side_cart cart_off">
+    <div class="cart_close">
+        <span>購物車</span>
+        <button id="cart_close" class="btn_third">close</button>
+    </div>
+    <div class="cart_course">
+        <ul>
+            <li class="cart_item">
+                <div class="cus_card">
+                    <a href="#">
+                        <div class="card_img">
+                            <img src="img/course/課程圖片.jpg" alt="">
+                        </div>
+                        <div class="card_content">
+                            <p>九個步驟快速提昇你的簡報力、溝通力</p>
+                            <div class="card_content_scrb">
+                                <!-- <div class="card_content_join">
+                                    <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
+                                </div> -->
+                                <div class="card_content_msg">
+                                    <span class="card_type">企業型</span>
+                                    <!-- <span class="card_time">總計3小時</span> -->
+                                    <span class="card_price">NT$660</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="remove">
+                        <button>
+                            <!-- <i class="fas fa-minus-circle"></i> -->
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="check_out_contain">
+        <div class="discount_title">
+            <p>購買兩堂課程，即享有8折優惠!</p>
+        </div>
+        <div class="price_check">
+            <ul>
+                <li>
+                    <span>課程總金額:</span><span>$660</span>
+                </li>
+                <li>
+                    <span>折扣金額:</span><span>$60</span>
+                </li>
+            </ul>
+        </div>
+        <div class="price_total_btn">
+            <div class="price_total">
+                <span>總計:$600</span>
+            </div>
+            <!-- <button class="check_out">結帳</button> -->
+            <a href="course_orderlist.html" class="check_out">結帳</a>
+        </div>
+    </div>
+</div>
+    <main class="car_con_width container" id="car_vue">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 car_title">
+            <div class="col-lg-2" v-if="screenWidth > 992"></div>
+            <span class="col-lg-4 col-md-5 col-sm-12 col-12">請選1~2個行業，最多選兩個行業做比對</span>
+            <div class="col-lg-3 col-md-4 col-sm-12 col-12">
+                <div class="choose_industry" v-for="(item, index) in sendDataTemp" v-if="item.name.length > 0">
+                    <i class="far fa-times-circle" @click="removeData(index)"></i>
+                    <span>{{item.name}}</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                <button class="btn_second" v-if="sendData" @click="viewPro">確認</button>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 car_con_area_all">
+            <div class="col-lg-8 col-md-12 car_con_area">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-12 car_con_list">
+                    <!-- <div class="col-lg-1 car_con_list_fix_use">
+                        <ul>
+                            <li v-if="992 > screenWidth" @click="changePlot">薪水排行</li>
+                            <li v-for="(item, index) in industry" @click="changeContent(index, item.backgroundColor)" :class = "item.class"><span></span>{{item.typeName}}</li>
+                        </ul>
+                        <div class="side_bar_img" v-if="screenWidth >= 992">
+                            <img class="side_bar_img_use" src="./img/side_bar.svg" alt="">
+                        </div>
+                    </div> -->
+                    <ul @touchmove="ulMove" @mousemove="ulMove()">
+                        <li v-if="992 > screenWidth" @click="changePlot">薪水排行</li>
+                        <li v-for="(item, index) in industry" @click="changeContent(index, item.backgroundColor)" :class="item.class"><span></span>{{item.typeName}}</li>
+                    </ul>
+                    <div class="side_bar_img" v-if="screenWidth >= 992">
+                        <img class="side_bar_img_use" src="./img/side_bar.svg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 car_con_pro" v-if="chooseIndustry >= 0">
+                    <div class="col-md-5 col-sm-5 col-6 car_con_pro_info" v-for="(itemDetail, index) in industry[chooseIndustry].detail" @click="storeData(chooseIndustry, index)">
+                        <img :src="itemDetail.src" />
+                        <span>{{itemDetail.name}}</span>
+                        <div class="car_con_pro_check">
+                            <i class="far fa-check-circle" v-if="itemDetail.isCheck"></i>
+                            <i class="far fa-times-circle" v-if="!itemDetail.isCheck"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class = "col-lg-2 col-md-12 col-sm-12 col-12 car_con_list">
+                <ul>
+                    <li v-if="992 > screenWidth" @click="changePlot">薪水排行</li>
+                    <li v-for="(item, index) in industry" @click="changeContent(index, item.backgroundColor)" :class = "item.class"><span></span>{{item.typeName}}</li>
+                </ul>
+                <div class="side_bar_img" v-if="screenWidth >= 992">
+                    <img class="side_bar_img_use" src="./img/side_bar.svg" alt="">
+                </div>
+            </div>
+            <div class = "col-lg-6 col-md-12 col-sm-12 col-12 car_con_pro" v-if="chooseIndustry >= 0">
+                <div class = "col-md-5 col-sm-5 col-6 car_con_pro_info" v-for="(itemDetail, index) in industry[chooseIndustry].detail" @click="storeData(chooseIndustry, index)">
+                    <img :src="itemDetail.src"/>
+                    <span>{{itemDetail.name}}</span>
+                    <div class = "car_con_pro_check">
+                        <i class="far fa-check-circle" v-if="itemDetail.isCheck"></i>
+                        <i class="far fa-times-circle" v-if="!itemDetail.isCheck"></i>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-lg-4 col-md-12 col-sm-11 col-11 car_con_plot_area" :class="{showPlot: showPlotControl}">
+                <h3>工作三到五年薪水排行</h3>
+                <div class="car_con_plot"></div>
+                <div class="side_bar_img" v-if="screenWidth >= 992">
+                    <img class="side_bar_img_use" src="./img/career/career_right_people.svg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-12 car_con_area car_course_area" v-if="chooseIndustry >= 0">
+                <h3>相關課程</h3>
+                <div class="col-md-12 car_course_list">
+                    <div class="col-md-5 col-sm-5 col-6 car_course_list_info" v-for="(item, index) in industryCourse[chooseIndustry].detail">
+                        <a class="car_course_list_info_img" href="./course_introduce.html">
+                            <img src="./img/course/course_img/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg" />
+                            <span :style="{backgroundColor:industry[chooseIndustry].backgroundColor}">{{industry[chooseIndustry].typeName}}</span>
+                        </a>
+                        <a href="./course_introduce.html">
+                            <p>{{item.name}}</p>
+                            <span class="car_course_list_info_word"><i class="fas fa-user-friends "></i>123人已參與此課程</span>
+                            <span class="car_course_list_info_hour">時數：{{item.time}}</span>
+                            <span class="car_course_list_info_price">NT${{item.price}}</span>
+                        </a>
+                        <!-- <p>{{item.name}}</p>
+                        <span class="car_course_list_info_word"><i class="fas fa-user-friends "></i>123人已參與此課程</span>
+                        <span class="car_course_list_info_hour">時數：{{item.time}}</span>
+                        <span class="car_course_list_info_price">NT${{item.price}}</span> -->
+                    </div>
+                </div>
+                <a href="./course_main.html">
+                    <button class="btn_primary">查看相關課程</button>
+                </a>
+                <!-- <button class = "btn_primary">查看相關課程</button> -->
+            </div>
+            <div class="col-lg-9 col-md-12 car_con_area car_forum_area" v-if="chooseIndustry >= 0">
+                <h3>相關論壇文章</h3>
+                <div class="col-md-12 car_course_list">
+                    <div class="col-md-12 col-sm-12 col-12 car_forum_list_info" v-for="(item, index) in industryForum[chooseIndustry].detail" :style="{borderColor:industry[chooseIndustry].backgroundColor}">
+                        <a href="./forum_discuss.html">
+                            <span :style="{backgroundColor:industry[chooseIndustry].backgroundColor}">經驗分享</span>
+                            <span>&ensp;{{item.name}}</span>
+                        </a>
+                        <!-- <span :style="{backgroundColor:industry[chooseIndustry].backgroundColor}">經驗分享</span>
+                        <span>&ensp;{{item.name}}</span> -->
+                    </div>
+                </div>
+                <a href="./forum_discuss.html">
+                    <button class="btn_primary">查看相關討論</button>
+                </a>
+                <!-- <button class = "btn_primary">查看相關討論</button> -->
+            </div>
+        </div>
+        <i class="fas fa-arrow-circle-up" @click="scrollToTop" v-if="screenWidth > 991"></i>
+    </main>
+    <!-- footer -->
+<div class="footer_wave">
+    <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18
+                    88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 229, 89,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="2" fill="rgba(160, 202, 219,0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="4" fill="rgba(121, 187, 181,0.6)" />
+                <use xlink:href="#gentle-wave" x="48" y="6" fill="rgba(255, 255, 255,0.8)" />
+            </g>
+        </svg>
+    </div>
+
+</div>
+
+
+<!--Content starts-->
+<div class="footer flex">
+    <p class="p_small">&copy2020 Powered by direction.ALL Right Reserved.
+    </p>
+</div> <!-- 基本盤 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+<script src="./js/header.js"></script>
+<!-- 套件 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
+
+<!-- <script src="./js/"></script> -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script type="text/javascript" src="./js/career/career.js"></script>
+    <!-- <script src="./js/header.js"></script> -->
+</body>
+
+</html>
