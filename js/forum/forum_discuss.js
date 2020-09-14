@@ -112,8 +112,6 @@ new Vue({
   },
   methods: {
     funcA() {
-      // return axios.get(`./php/forum_discuss.php?aaa=$
-      // {}1&bbb=222`)
       const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss.php')
     },
