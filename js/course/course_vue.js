@@ -98,6 +98,7 @@ new Vue({
         this.receive_storage();
         this.hot_course_api();
         this.main_course_api();
+        this.check_member_api();
         // main_course
         // axios
         //     .get("./php/course_course_list.php")
@@ -120,19 +121,21 @@ new Vue({
             localStorage.setItem("cart", ss);
         },
         receive_storage() {
-            let get_id = localStorage.getItem("cart");
-            // let get_id_arr = get_id.split("*");
-            // get_id_arr.forEach((course, index) => {
-            //     if (index < get_id_arr.length - 1) {
-            //         let course_item = JSON.parse(course);
-            //         this.cart_items.push(course_item);
-            //         $(`.cus_${course_item.id}`).addClass("cart_clicked");
-            //     }
-            // });
-            this.cart_items = JSON.parse(get_id);
-            this.cart_items.forEach((card, index) => {
-                $(`.cus_${this.cart_items[index].ski_no}`).addClass("cart_clicked");
-            });
+            if (localStorage.getItem("cart").length != 0) {
+                let get_id = localStorage.getItem("cart");
+                // let get_id_arr = get_id.split("*");
+                // get_id_arr.forEach((course, index) => {
+                //     if (index < get_id_arr.length - 1) {
+                //         let course_item = JSON.parse(course);
+                //         this.cart_items.push(course_item);
+                //         $(`.cus_${course_item.id}`).addClass("cart_clicked");
+                //     }
+                // });
+                this.cart_items = JSON.parse(get_id);
+                this.cart_items.forEach((card, index) => {
+                    $(`.cus_${this.cart_items[index].ski_no}`).addClass("cart_clicked");
+                });
+            }
             // for (let i = 0; i < this.cart_items.length; i++) {
             //     $(`.cus_${this.cart_items[i].ski_no}`).addClass("cart_clicked");
             // }
@@ -192,6 +195,22 @@ new Vue({
                     }
                     console.log(this.category);
                     // this.main_course = res.data;
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        },
+        check_member_api() {
+            axios
+                .get("./php/memberSigninCheck.php")
+                .then((res) => {
+                    if (res.status == 200) {
+                        console.log(res);
+                        // $("div.member").css("display", "none");
+                        // let memName = $_SESSION["memName"];
+                        $("div.member > a").text("JUDY");
+                    }
+                    // this.hot_course = res.data;
                 })
                 .catch(function(error) {
                     console.log(error);

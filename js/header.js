@@ -10,11 +10,13 @@ new Vue({
     },
     methods: {
         receive_storage() {
-            let get_id = localStorage.getItem("cart");
-            this.cart_items = JSON.parse(get_id);
-            this.cart_items.forEach((card, index) => {
-                $(`.cus_${this.cart_items[index].ski_no}`).addClass("cart_clicked");
-            });
+            if (localStorage.getItem("cart").length != 0) {
+                let get_id = localStorage.getItem("cart");
+                this.cart_items = JSON.parse(get_id);
+                this.cart_items.forEach((card, index) => {
+                    $(`.cus_${this.cart_items[index].ski_no}`).addClass("cart_clicked");
+                });
+            }
             // for (let i = 0; i < this.cart_items.length; i++) {
             //     $(`.cus_${this.cart_items[i].ski_no}`).addClass("cart_clicked");
             // }
