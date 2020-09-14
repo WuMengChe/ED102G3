@@ -104,7 +104,6 @@ let changeMemContent = new Vue({
                         this.loadDataTemp[i] = JSON.parse(this.loadData[i]);
                     }
                     this.member.name = this.loadDataTemp[0][0].MEM_NAME;
-                    this.member.birthday = this.loadDataTemp[0][0].MEM_BIR;
                     this.member.tel = this.loadDataTemp[0][0].MEM_TEL;
                     this.member.code = this.loadDataTemp[0][0].MEM_CODE;
                     this.member.email = this.loadDataTemp[0][0].MEM_EMAIL;

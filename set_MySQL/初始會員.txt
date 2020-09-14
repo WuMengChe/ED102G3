@@ -9,7 +9,7 @@ David	9654782310	./img/member/member_Img/member_01.jpg	1999/09/21	0975486213	dav
 江宛如	2365419870	./img/member/member_Img/member_01.jpg	1994/08/31	0925147863	iamjang@gmail.com	0
 Jim	4569871230	./img/member/member_Img/member_01.jpg	1998/03/08	0915874631	jimno1@gmail.com	0
 Allen	3569874120	./img/member/member_Img/member_01.jpg	2001/02/28	0925874163	allen0228@gmail.com	0
-Alice	1523698740	./img/member/member_Img/member_02.jpg	2003/03/11	0935216478	alicewang@gmail.com	0
+Alice	1523698740	./img/member/member_Img/member_02.png	2003/03/11	0935216478	alicewang@gmail.com	0
 小芹	5236981470	./img/member/member_Img/member_01.jpg	1987/04/09	0942365187	littlejim@gmail.com	0
 很黑的小白	9587463021	./img/member/member_Img/member_01.jpg	1992/11/02	0971236848	littlewhite@gmail.com	0
 曉娟	8520369741	./img/member/member_Img/member_01.jpg	1997/04/04	0955236874	little0404@gmail.com	0
