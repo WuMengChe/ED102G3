@@ -121,7 +121,7 @@ new Vue({
             localStorage.setItem("cart", ss);
         },
         receive_storage() {
-            if (localStorage.getItem("cart").length != 0) {
+            if (localStorage.getItem("cart")) {
                 let get_id = localStorage.getItem("cart");
                 // let get_id_arr = get_id.split("*");
                 // get_id_arr.forEach((course, index) => {

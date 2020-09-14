@@ -10,7 +10,7 @@ new Vue({
     },
     methods: {
         receive_storage() {
-            if (localStorage.getItem("cart").length != 0) {
+            if (localStorage.getItem("cart")) {
                 let get_id = localStorage.getItem("cart");
                 this.cart_items = JSON.parse(get_id);
                 this.cart_items.forEach((card, index) => {
