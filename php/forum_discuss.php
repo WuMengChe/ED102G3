@@ -10,7 +10,8 @@ try {
                     DISCUSS_AREA.DIS_CONTENT,
                     DISCUSS_AREA.DIS_DATE,
                     DISCUSS_AREA.DIS_COL_NUM,
-                    DISCUSS_AREA.DIS_LIK_NUM
+                    DISCUSS_AREA.DIS_LIK_NUM,
+                    DISCUSS_AREA.DIS_NO
     from member join discuss_area using(MEM_NO)
                 join industry_class using(IND_NO);";
     // $sql = "select * from discuss_area";
