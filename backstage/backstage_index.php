@@ -566,6 +566,7 @@ try {
             }
             ?>
           </table>
+          <button>新增素材</button>
         </div>
         <div class="announcement" v-show="announcement">
           公告
