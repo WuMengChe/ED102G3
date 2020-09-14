@@ -22,11 +22,6 @@ $(function () {
         $(this).parent().addClass("active");
     });
 
-
-    // $(".outline_style div p").click(function () {
-    //     var N = $(".outline_style div img").attr('id').substr(7);
-    //     $('#mainImg').attr('src', './img/post_card/outline' + N + '.png');
-    // });
     //桌機換格式的頁籤
     let deskLine = $(".post_desk .style_all_outline");
     let deskFront = $(".post_desk .front_style");
@@ -76,56 +71,63 @@ $(function () {
     //     $(this).parent().addClass("active");
     // });
     //換郵戳
-    $(".postmarks_style div img").click(function () {
-        var N = $(this).attr('id').substr(8);
-        $('#postmark').show();
-        $('#postmark').attr('src', './img/post_card/postmark' + N + '.png');
-        $(this).parent().siblings().removeClass("active");
-        $(this).parent().addClass("active");
-    });
+    // $(".postmarks_style div img").click(function () {
+    //     var N = $(this).attr('id').substr(8);
+    //     $('#postmark').show();
+    //     $('#postmark').attr('src', './img/post_card/postmark' + N + '.png');
+    //     $(this).parent().siblings().removeClass("active");
+    //     $(this).parent().addClass("active");
+    // });
 
-    //手機板加col-3 class
-    $('#phoneFrontAllStyle .front_all_style .front_style .style').addClass('col-3');
-    $('#phoneFrontAllStyle .style_all_outline .outline_style .style').addClass('col-3');
-    $('#phoneBackAllStyle .style_all_stamps .stamps_style .style').addClass('col-3');
-    $('#phoneBackAllStyle .style_all_postmarks .postmarks_style .style').addClass('col-3');
-});
-
-//一開始先顯示正面 背面先隱藏
-$(".postcard_back").hide();
-$("#backAllStyle").hide();
-
-// 按背面時隱藏正面
-$("#toBack").click(function () {
-    $(".postcard_front").hide();
-    $('#frontAllStyle').hide();
-    $(".postcard_back").show();
-    $("#backAllStyle").show();
+    //手機板加col-3 class 沒吃到
+    // $('#phoneFrontAllStyle .front_all_style .front_style .style').addClass('col-3');
+    // $('#phoneFrontAllStyle .style_all_outline .outline_style .style').addClass('col-3');
+    // $('#phoneBackAllStyle .style_all_stamps .stamps_style .style').addClass('col-3');
+    // $('#phoneBackAllStyle .style_all_postmarks .postmarks_style .style').addClass('col-3');
 
 
-});
-$("#toFront").click(function () {
+    //一開始先顯示正面 背面先隱藏
     $(".postcard_back").hide();
-    $('#frontAllStyle').show();
-    $(".postcard_front").show();
     $("#backAllStyle").hide();
-});
 
-//  進來先判斷
-if ($(window).width() < 575) {
-    $('.drag').text('點擊區塊上傳');
-} else {
-    $('.drag').text('拖曳或點擊此區塊上傳');
-};
+    // 按背面時隱藏正面
+    $("#toBack").click(function () {
+        $(".postcard_front").hide();
+        $('#frontAllStyle').hide();
+        $(".postcard_back").show();
+        $("#backAllStyle").show();
 
-//  resize再判斷一次
-$(window).resize(function () {
+
+    });
+    $("#toFront").click(function () {
+        $(".postcard_back").hide();
+        $('#frontAllStyle').show();
+        $(".postcard_front").show();
+        $("#backAllStyle").hide();
+    });
+    if ($(window).width() < 768) {
+        $('#phoneFrontAllStyle .front_all_style .front_style .style').addClass('col-3');
+        $('#phoneFrontAllStyle .style_all_outline .outline_style .style').addClass('col-3');
+        $('#phoneBackAllStyle .style_all_stamps .stamps_style .style').addClass('col-3');
+        $('#phoneBackAllStyle .style_all_postmarks .postmarks_style .style').addClass('col-3');
+    };
+    //  進來先判斷
     if ($(window).width() < 575) {
+
         $('.drag').text('點擊區塊上傳');
     } else {
         $('.drag').text('拖曳或點擊此區塊上傳');
     };
 
+    //  resize再判斷一次
+    $(window).resize(function () {
+        if ($(window).width() < 575) {
+            $('.drag').text('點擊區塊上傳');
+        } else {
+            $('.drag').text('拖曳或點擊此區塊上傳');
+        };
+
+    });
+    //拖曳郵戳
+    $('.mark_position').draggable();
 });
-//拖曳郵戳
-$('.mark_position').draggable();

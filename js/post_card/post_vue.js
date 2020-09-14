@@ -23,7 +23,7 @@ Vue.component('outline-style', {
             <div class="outline_style row style_list" >
               <div class="style" v-for="(style,index) in outlineStyle">
                 <div @click="changeOutline(index)">
-                  <img :src="style.POS_MAT_PIC" :alt="style.POS_MAT_NAME" > 
+                  <img :src="style.POS_MAT_PIC" :alt="style.POS_MAT_NAME" :id="['outline'+index]"> 
                   <p :class="['outline'+index]"></p>
                 </div>
               </div>
@@ -41,6 +41,7 @@ Vue.component('outline-style', {
     window.addEventListener('load', this.addNote);
 
 
+
   },
   methods: {
     // 第一個加P標籤
@@ -48,6 +49,7 @@ Vue.component('outline-style', {
       document.querySelector('.outline0').innerText = '無邊框';
 
     },
+
     // 換正面外框
     changeOutline(index) {
       document.getElementById('mainImg').setAttribute('src', './img/post_card/a_outline' + index + '.png');
@@ -59,8 +61,8 @@ Vue.component('outline-style', {
 Vue.component('stamp-style', {
   template: `<div class="style_all_stamps">
               <div class="stamps_style row style_list">
-               <div class="style" v-for="(stamp,index) in stampStyle">
-                  <img :src ="stamp.POS_MAT_PIC" :alt="stamp.POS_MAT_NAME" @click = "changeStamp(index)" >
+               <div class="style" :class="col-3" v-for="(stamp,index) in stampStyle">
+                  <img :src ="stamp.POS_MAT_PIC" :alt="stamp.POS_MAT_NAME" @click = "changeStamp(index)" :id="['stamp'+index]">
                 </div>
               </div>
             </div>`,
@@ -89,17 +91,34 @@ Vue.component('stamp-style', {
 Vue.component('postmark-style', {
   template: `<div class="style_all_postmarks">
               <div class="postmarks_style row style_list">
-                <div class="style">
-                  <img src="./img/post_card/c_postmark1.png" alt="郵戳1" id="postmark1">
-                </div>
-                <div class="style">
-                  <img src="./img/post_card/c_postmark2.png" alt="郵戳2" id="postmark2">
-                </div>
-                <div class="style">
-                  <img src="./img/post_card/c_postmark3.png" alt="郵戳3" id="postmark3">
+                <div class="style" v-for="(postmark,index) in postmarkStyle">
+                  <img :src ="postmark.POS_MAT_PIC" :alt="postmark.POS_MAT_NAME" @click="changePostmark(index)" :id="['postmark'+index]">
                 </div>
               </div>
             </div>`,
+  data() {
+    return {
+      postmarkStyle: [],
+      backPostmark: '',
+    }
+  },
+  created() {
+    axios.get('./php/postcard_postmarkStyle.php')
+      .then(res => this.postmarkStyle = res.data)
+  },
+
+  methods: {
+    // 換背面郵戳
+    changePostmark(index) {
+      let postmark = document.getElementById('postmark');
+      postmark.style.display = 'inline-block';
+      postmark.setAttribute('src', './img/post_card/c_postmark' + index + '.png');
+
+
+    }
+  },
+
+
 });
 new Vue({
   el: '#desk',
@@ -122,6 +141,18 @@ new Vue({
 });
 new Vue({
   el: '#phoneFrontAllStyle',
+  data: {
+
+  },
+  mounted() {
+    window.addEventListener('load', this.addPhoneClass);
+  },
+  computed: {
+    addPhoneClass() {
+      let phoneFrontAllStyle = document.getElementsById('phoneFrontAllStyle');
+      phoneFrontAllStyle.firstChild.firstChild.firstChild.classList.add("col-3");
+    },
+  }
 });
 new Vue({
   el: '#phoneBackAllStyle',
