@@ -8,7 +8,7 @@ let vm = new Vue({
       announcement: [],
       memberCheck: [],
       box_msg: [],
-      icon: [],
+      like_icon: [],
       isOpen: false,
       filter: '',
       accuseIsOpen: false,
@@ -44,8 +44,6 @@ let vm = new Vue({
     }
   },
   mounted() {
-
-
     //登入
     axios.post('./php/memberStateCheck.php')
       .then(res => {
@@ -62,38 +60,62 @@ let vm = new Vue({
         console.log(error);
       });
 
+ //其他載入php
+  axios.all([this.funcA(), this.funcC()])
+    .then(axios.spread((res1, res3) => {
+    console.log(res1.data);
+    console.log(res3.data);
+
+
+     this.information = res1.data;
+     this.searchResult = res1.data;
+    this.announcement = res3.data;
+    for(var j = 0; j < this.searchResult.length; j ++){
+      if(i == 0){
+        this.searchResult[j].isHeart = true;
+      }else{}
+      this.searchResult[j].isHeart = false;
+    }
+
+ }))
+ .catch((err) => { console.error(err) })
 
 
     //喜歡
-    var formData = new FormData;
-    formData.append('member', this.memberCheck.split(";")[0]);
+    all =[];
+    var formData = new FormData();
+    formData.append("member", sessionStorage.getItem("memNo"));
     console.log(formData)
 
     axios.post('./php/forum_discuss_like.php', formData)
       .then(res => {
         console.log(res.data);
         this.like_icon = res.data;
+        console.log(this.like_icon)
+        console.log(this.information)
+        // for(var j = 0; j < this.searchResult.length; j ++){
+        //  console.log(this.searchResult[j].DIS_NO);
+
+
+          // for(var i = 0; i < this.like_icon.length; i++){
+          //   console.log(this.like_icon[0].MEM_NO);
+            
+          //   if(i == 0){
+          //     this.searchResult[i].isHeart = true;
+          //   }else{
+          //   this.searchResult[i].isHeart = false;
+          // }
+            // this.searchResult[i].isHeart = true;
+          // }
+       
+        // }
+
       })
       .catch(function (error) {
         console.log(error);
       });
 
-
-
-    //其他載入php
-    axios.all([this.funcA(), this.funcC(), this.funcD()])
-      .then(axios.spread((res1, res3, res4) => {
-        console.log(res1.data);
-        console.log(res3.data);
-        console.log(res4.data);
-
-        this.information = res1.data;
-        this.searchResult = res1.data;
-        this.announcement = res3.data;
-        this.icon = res4.data;
-
-      }))
-      .catch((err) => { console.error(err) })
+  
   },
   watch: {
     stopScroll: function () {
@@ -136,15 +158,11 @@ let vm = new Vue({
       const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss_ann.php')
     },
-    funcD() {
-      const memNo = sessionStorage.getItem('memNo');
-      return axios.get('./php/forum_discuss_like.php')
-    },
     //開啟燈箱按鈕
     openContent(index) {
 
       //留言回覆的訊息
-      var formData = new FormData;
+      var formData = new FormData();
       formData.append('DIS_NO', this.searchResult[index].DIS_NO);
       console.log(formData)
 

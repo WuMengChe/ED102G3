@@ -9,7 +9,7 @@ try {
             WHERE member.MEM_NO = :member and discuss_area.DIS_HIDDEN = 1";
 
     $dis = $pdo->prepare($sql);
-    $dis->bindValue(":member", $_POST['member']);
+    $dis->bindValue(":member", $_POST["member"]);
     $dis->execute();
 
     if ($dis->rowCount() == 0) { //找不到
