@@ -234,7 +234,6 @@ let vm = new Vue({
                 ";"
               );
               _this.introduce_single.ski_intro.splice(0, 1);
-              切;
 
               _this.set_course_suggest();
             }
