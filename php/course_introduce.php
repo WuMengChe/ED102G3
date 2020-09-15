@@ -5,17 +5,23 @@ try {
 
     require_once "connectMySql.php";
 
-    $sql = "select a.ski_no , 
-            a.ski_name,
-            a.ski_img,
-            a.ski_buy_num,
-            a.ski_time,
-            a.ski_price,
-            b.ind_class,
-            b.ind_color
-            from skill_class a join industry_class b on a.ind_no = b.ind_no
-            order by ski_buy_num desc
-            limit 4;";
+    $sql = "select 
+    a.ski_no,
+    a.ski_name,
+    a.ski_buy_num,
+    a.ski_price,
+    a.ski_time,
+    a.ski_intro,
+    a.ski_img,
+    a.ski_tec_img,
+    a.ski_tec_name,
+    a.ski_tec_intro,
+    a.ski_outline,
+    a.ski_stud,
+    b.ind_no,
+    b.ind_class,
+    b.ind_color
+    from skill_class a join industry_class b on a.ind_no = b.ind_no;";
     $dis = $pdo->query($sql);
 
     if ($dis->rowCount() == 0) { //找不到
