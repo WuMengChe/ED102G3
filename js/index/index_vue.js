@@ -8,23 +8,23 @@ Vue.component('cards', {
     <div class="line"></div>
     <div class="allCard" v-for="card in postcards">
         <div class="card card--animated">
-            <img class="postCard" :src="{{cards.POS_PIC}}" alt="">
+            <img class="postCard" :src="card.POS_PIC" alt="">
         </div>
         <div class="card card--animated">
-            <img class="postCard" :src="{{cards.POS_PIC_BACK}}" alt="">
-        </div>
-    </div>
-    <div class="allCard allCard_rwd">
-        <div class="card card--animated">
-            <img class="postCard" :src="{{cards.POS_PIC}}" alt="">
-        </div>
-        <div class="card card--animated">
-            <img class="postCard" :src="{{cards.POS_PIC_BACK}}" alt="">
+            <img class="postCard" :src="card.POS_PIC_BACK" alt="">
         </div>
     </div>
-    <div class="allCard allCard_small">
+    <div class="allCard allCard_rwd" v-for="card in postcards">
         <div class="card card--animated">
-            <img class="postCard" :src="{{cards.POS_PIC}}" alt="">
+            <img class="postCard" :src="card.POS_PIC" alt="">
+        </div>
+        <div class="card card--animated" v-for="card in postcards">
+            <img class="postCard" :src="card.POS_PIC_BACK" alt="">
+        </div>
+    </div>
+    <div class="allCard allCard_small" v-for="card in postcards">
+        <div class="card card--animated">
+            <img class="postCard" :src="card.POS_PIC" alt="">
         </div>
     </div>
   </div> `,
@@ -33,7 +33,7 @@ Vue.component('cards', {
             postcards: []
         }
     },
-    created() {
+    mounted() {
         axios
             .get('./php/front_index_postcard.php')
             .then(res => this.postcards = res.data);

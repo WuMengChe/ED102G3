@@ -2,10 +2,11 @@
 try {
     require_once "connectMySql.php";
     $sql = "insert into article_like (DIS_NO,MEM_NO)
-    value ($_POST['DIS_NO'],$_POST['MEM_NO'])";
+    value (:DIS_NO,:MEM_NO)";
 
     $dis = $pdo->prepare($sql);
-    $dis->bindValue(":member", $_POST['member']);
+    $dis->bindValue(":DIS_NO", $_POST['DIS_NO']);
+    $dis->bindValue(":MEM_NO", $_POST['MEM_NO']);
     $dis->execute();
 
     if ($dis->rowCount() == 0) { //找不到

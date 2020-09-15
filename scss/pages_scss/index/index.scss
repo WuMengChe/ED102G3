@@ -742,6 +742,9 @@ div.header_wrap {
                                     margin: 0 5%;
                                     position: relative;
                                     bottom: 35px;
+                                    img {
+                                        width: 100%;
+                                    }
                                     .postCard {
                                         width: 100%;
                                         transform: rotate(3deg);
