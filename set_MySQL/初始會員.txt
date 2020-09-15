@@ -1,5 +1,5 @@
 會員名字	會員密碼	會員照片	會員生日	會員電話	電子郵件	別在意
-周伯通	1234567890	./img/member/member_Img/member_01.jpg	1994/01/01	0912345678	123456789@gmail.com	0
+周伯通	1234567890	./img/member/member_Img/member_00.png	1994/01/01	0912345678	123456789@gmail.com	0
 小豬	0987654321	./img/member/member_Img/member_01.jpg	1995/12/17	0956884567	littlepig@gmail.com	0
 均光	8904890456	./img/member/member_Img/member_01.jpg	1999/09/09	0963524125	hikari@gmail.com	0
 Ben	6654236512	./img/member/member_Img/member_01.jpg	2000/08/23	0985476325	benbeneben@gmail.com	0

@@ -74,7 +74,7 @@
           <!--瀏覽留言區-->
           <div class="tab_contents">
             <div class="msg_content" v-for="(messages,index) in searchResult">
-              <div class="mem_info" @click="openContent(index)">
+              <div class="mem_info" @click="openContent(index,1)">
                 <div class="info_list">
                   <div class="img_div">
                     <img :src="messages.MEM_PIC" alt="pic" class="dis_img" />
@@ -95,7 +95,7 @@
               </div>
               <div class="msg_btn">
                 <button class="heart">
-                  <i class="fas fa-heart" :class="{'colorRed':isHeart}" @click="heart_btn(index)"></i>
+                  <i class="fas fa-heart" :class="{'colorRed':messages.isHeart}" @click="heart_btn(index,1)"></i>
                 </button>
                 <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
@@ -163,7 +163,7 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                <i class="fas fa-heart" :class="{'colorRed':isHeart}" @click="heart_btn"></i>
+                <i class="fas fa-heart" :class="{'colorRed':isHeart}" @click="heart_btn(index,2)"></i>
               </button>
               <button class="gray_btn">
                 <i class="far fa-comment-alt"></i>
@@ -177,7 +177,7 @@
             </div>
           </div>
         </div>
-        <div class="feedback_count">共5則回應</div>
+        <div class="feedback_count">共{{msg.DIS_COL_NUM}}則回覆</div>
         <!--回應留言區-->
         <div class="forum_feedback">
           <div class="feedback_content" v-for="(msg,index) in box_msg">
@@ -247,7 +247,7 @@
   </div>
 
 
-
+ @@include('app/footer.html') @@include('app/script.html')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
