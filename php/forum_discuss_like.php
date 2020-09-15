@@ -1,14 +1,15 @@
 <?php
 try {
     require_once "connectMySql.php";
-    $sql = "SELECT * FROM article_like
+    $sql = "select * from article_like
 	        join member
             on member.MEM_NO = article_like.MEM_NO
 	        join discuss_area
             on discuss_area.DIS_NO = article_like.DIS_NO
-	        WHERE member.MEM_NO = :member and discuss_area.DIS_HIDDEN = 1";
+            WHERE member.MEM_NO = :member and discuss_area.DIS_HIDDEN = 1";
+
     $dis = $pdo->prepare($sql);
-    $dis->bindValue(":member", $_GET['member']);
+    $dis->bindValue(":member", $_POST['member']);
     $dis->execute();
 
     if ($dis->rowCount() == 0) { //找不到

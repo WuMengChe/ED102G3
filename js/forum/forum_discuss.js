@@ -1,4 +1,3 @@
-
 let vm = new Vue({
   el: "#forum_discuss",
   data() {
@@ -47,7 +46,7 @@ let vm = new Vue({
   mounted() {
 
 
-//登入
+    //登入
     axios.post('./php/memberStateCheck.php')
       .then(res => {
         console.log(res);
@@ -65,7 +64,23 @@ let vm = new Vue({
 
 
 
-//其他載入php
+    //喜歡
+    var formData = new FormData;
+    formData.append('member', this.memberCheck.split(";")[0]);
+    console.log(formData)
+
+    axios.post('./php/forum_discuss_like.php', formData)
+      .then(res => {
+        console.log(res.data);
+        this.like_icon = res.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+
+    //其他載入php
     axios.all([this.funcA(), this.funcC(), this.funcD()])
       .then(axios.spread((res1, res3, res4) => {
         console.log(res1.data);
@@ -128,19 +143,19 @@ let vm = new Vue({
     //開啟燈箱按鈕
     openContent(index) {
 
-    //留言回覆的訊息
-  var formData = new FormData ;
+      //留言回覆的訊息
+      var formData = new FormData;
       formData.append('DIS_NO', this.searchResult[index].DIS_NO);
       console.log(formData)
 
-    axios.post('./php/forum_discuss_msg.php',formData)
-      .then(res => {
-        console.log(res.data);
-        this.box_msg = res.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      axios.post('./php/forum_discuss_msg.php', formData)
+        .then(res => {
+          console.log(res.data);
+          this.box_msg = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
 
       this.aaa = index;
@@ -194,7 +209,7 @@ let vm = new Vue({
         this.stopScroll = false
       } else {
         this.accuseIsOpen = true
-         this.stopScroll = true
+        this.stopScroll = true
       }
     },
     //開啟檢舉燈箱
