@@ -53,7 +53,8 @@ let vm = new Vue({
       introduce_single: null,
       introduce_suggest: [],
 
-      //   introduce頁面接收到的網址編號
+      // 燈箱變數
+      signIn: true,
     };
   },
   mounted() {
@@ -104,6 +105,16 @@ let vm = new Vue({
     },
     // 購物車功能
     add_cart(item) {
+      axios.post("./php/memberStateCheck.php").then((resp) => {
+        if (resp.data == 0) {
+          document.querySelector(".bg_of_lightbx").style = "display:block";
+        } else {
+          alert("測驗結果已儲存");
+          //這邊放把資料送去資料庫的東西喔// 別忘了有會員編號、圖表、內容日期!
+        }
+        // console.log(resp)
+      });
+
       if (this.cart_items.length == 0) {
         this.cart_items.push(item);
       } else {
@@ -232,6 +243,31 @@ let vm = new Vue({
         .catch(function (error) {
           console.log(error);
         });
+    },
+
+    // 登入燈箱
+    changeState() {
+      var memAccount = document.querySelector(".input_div #account").value;
+      var memCode = document.querySelector(".input_div #code").value;
+      var formData = new FormData();
+      formData.append("memAccount", memAccount);
+      formData.append("memCode", memCode);
+      axios.post("./php/memberSignInCheck.php", formData).then((resp) => {
+        if (resp.data == 0) {
+          alert("帳號或密碼錯誤，請重新輸入");
+          document.querySelector(".input_div #code").value = "";
+        } else {
+          alert("會員登入成功");
+          //登入成功則燈箱移除
+          document.querySelector(".bg_of_lightbx").style = "display:none";
+          location.reload();
+          //將結果傳至會員儲存
+          //這邊要寫把資料傳到資料庫的東西
+        }
+      });
+    },
+    btnClose() {
+      document.querySelector(".bg_of_lightbx").style = "display:none";
     },
     // 其他功能
     side_click_bg(e) {
