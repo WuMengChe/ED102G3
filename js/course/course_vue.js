@@ -270,6 +270,7 @@ let vm = new Vue({
             if (res.data != 0) {
               let memName = res.data.split(";")[1];
               $("div.member > a").html("Hi," + memName);
+              $("div.member > a").attr("href", "member.html");
               $("#header_logOut").css("display", "block");
             }
           }
@@ -287,8 +288,7 @@ let vm = new Vue({
           if (res.status == 200) {
             location.reload();
             $("#header_logOut").css("display", "none");
-
-            // $("#header_logOut").css("display", "none");
+            $("div.member > a").attr("href", "member_sign_in.html");
           }
         })
         .catch(function (error) {
