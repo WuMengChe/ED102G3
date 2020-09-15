@@ -97,9 +97,9 @@ let vm = new Vue({
         this.hot_course_api();
         this.receive_storage();
         // parallax
-        script = document.createElement("script");
-        script.src = "./js/course/parallax_script.js";
-        document.body.appendChild(script);
+        // script = document.createElement("script");
+        // script.src = "./js/course/parallax_script.js";
+        // document.body.appendChild(script);
 
         // course_main
         script = document.createElement("script");
@@ -189,7 +189,6 @@ let vm = new Vue({
             axios
                 .get("./php/course_course_list.php")
                 .then((res) => {
-                    console.log("main_course_api = ");
                     console.log(res);
 
                     // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
@@ -198,7 +197,6 @@ let vm = new Vue({
                             (item) => item.ind_class == this.category[i].link_title
                         );
                     }
-                    console.log("this.category = ");
                     console.log(this.category);
                     // this.main_course = res.data;
                 })
