@@ -62,30 +62,6 @@ $(function () {
         $(this).addClass("active");
 
     });
-    //換郵票
-    // $(".stamps_style div img").click(function () {
-    //     var N = $(this).attr('id').substr(5);
-    //     $('#mainStamp').show();
-    //     $('#mainStamp').attr('src', './img/post_card/stamp' + N + '.png');
-    //     $(this).parent().siblings().removeClass("active");
-    //     $(this).parent().addClass("active");
-    // });
-    //換郵戳
-    // $(".postmarks_style div img").click(function () {
-    //     var N = $(this).attr('id').substr(8);
-    //     $('#postmark').show();
-    //     $('#postmark').attr('src', './img/post_card/postmark' + N + '.png');
-    //     $(this).parent().siblings().removeClass("active");
-    //     $(this).parent().addClass("active");
-    // });
-
-    //手機板加col-3 class 沒吃到
-    // $('#phoneFrontAllStyle .front_all_style .front_style .style').addClass('col-3');
-    // $('#phoneFrontAllStyle .style_all_outline .outline_style .style').addClass('col-3');
-    // $('#phoneBackAllStyle .style_all_stamps .stamps_style .style').addClass('col-3');
-    // $('#phoneBackAllStyle .style_all_postmarks .postmarks_style .style').addClass('col-3');
-
-
     //一開始先顯示正面 背面先隱藏
     $(".postcard_back").hide();
     $("#backAllStyle").hide();
@@ -105,12 +81,6 @@ $(function () {
         $(".postcard_front").show();
         $("#backAllStyle").hide();
     });
-    if ($(window).width() < 768) {
-        $('#phoneFrontAllStyle .front_all_style .front_style .style').addClass('col-3');
-        $('#phoneFrontAllStyle .style_all_outline .outline_style .style').addClass('col-3');
-        $('#phoneBackAllStyle .style_all_stamps .stamps_style .style').addClass('col-3');
-        $('#phoneBackAllStyle .style_all_postmarks .postmarks_style .style').addClass('col-3');
-    };
     //  進來先判斷
     if ($(window).width() < 575) {
 
