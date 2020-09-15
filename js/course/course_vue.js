@@ -43,15 +43,17 @@ let vm = new Vue({
 
       // 接收資料庫的hot_course,記得先關掉假資料
       hot_course: [],
+      cart_items: [],
 
+      // course_introduce接收連結號碼
+      introduce_no: null,
       //   課程介紹-課程總纜
       introduce_course: [],
       //   課程介紹-單一課程
       introduce_single: null,
-      cart_items: [],
+      introduce_suggest: [],
 
       //   introduce頁面接收到的網址編號
-      introduce_no: null,
     };
   },
   mounted() {
@@ -186,6 +188,12 @@ let vm = new Vue({
               }
             });
           }
+
+          this.introduce_course.forEach((course) => {
+            if (course.ind_class == this.introduce_single.ind_class) {
+              this.introduce_suggest.push(course);
+            }
+          });
         })
         .catch(function (error) {
           console.log(error);
