@@ -32,48 +32,9 @@ $(function () {
 
   }
 
-  function btnClose() {
-    document.querySelector('.bg_of_lightbx').style = "display:none";
-  };
   // 開啟 Modal 彈跳視窗
   $("#send").on("click", function () {
-    //董董------------------------------------------------------------------------
 
-    // let xml = new XMLHttpRequest();
-    // xml.open("GET", "./php/memberStateCheck.php", true);
-    // xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    // xml.send(null);
-    // xml.onload = function () {
-    //   // 先判斷會員登入 
-    //   if (xml.readyState == 4 && xml.status == 200) {
-    //     console.log(xml.responseXML);
-    //     if (xml.responseText == 0) {
-    //       alert('請登入會員');
-    //       //沒登入跳燈箱
-    //       $('.bg_of_lightbx').css('display', 'block');
-    //       $('#closeBtn').click(btnClose);
-    //     } else {
-    //       // 有登入抓登入的會員是誰再存兩張圖 會員 創建日期 寄送日期
-    //       console.log("------------", xml.responseText);
-    //       let arr = xml.responseText.split(";")
-    //       let memNo = arr[0];
-    //       console.log(memNo);
-    //       //---------------------------
-    //       // var memAccount = document.querySelector('.input_div #account').value;
-    //       // var memCode = document.querySelector('.input_div #code').value;
-    //       // var formData = new FormData();
-
-    //       // xml.open("post", "./php/memberStateCheck.php", true);
-    //       // xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    //       // xml.send(formData);
-    //       // xml.onload = function () {
-    //       //   if (memAccount = memNo && memCode = )
-    //       // }
-
-    //     }
-    //   }
-    // }
-    //董董------------------------------------------------------------------------
     function btnClose() {
       document.querySelector('.bg_of_lightbx').style = "display:none";
     };
@@ -136,8 +97,27 @@ $(function () {
             //登入成功則燈箱移除
             btnClose();
             //將結果傳至會員儲存
-            //這邊要寫把資料傳到資料庫的東西
+            //這邊要寫把資料傳到資料庫的東西 
+            //創建日期 送出日期 2張照片會員編號
+            let xml = new XMLHttpRequest();
+            xml.open("POST", "./php/post_save.php", true);
+            xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            let data_info = $('#pickdate').val();
+
+            xml.send(data_info);
+            xml.onload = function () {
+              if (xml.readyState == 4 && xml.status == 200) {
+                // console.log(xml.responseXML);
+              } else {
+                // let arr = xml.responseText.split(";")
+                //       let memNo = arr[0];
+                //       console.log(memNo);
+              }
+            }
+
           }
+          s
         });
     });
 
