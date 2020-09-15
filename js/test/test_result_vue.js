@@ -1,3 +1,4 @@
+// const { isConcatSpreadable } = require("core-js/fn/symbol");
 
 let Data = {
     signIn : true,
@@ -11,26 +12,22 @@ let Data = {
     E:' ',
     C:' ',
     anaValue:[0,0,0 ,0 ,0 ,0 ],
+    maxValue:'',
+    maxIndex:'',
     typeColor : ['#79BBB5','#a0cadb','#ccc5e3','#f4c3c5','#e7995f','#f7ea92'],
     resultData : [
         {typeName:'實作型',
-        typeDscrp:'此型分數較高的人通常喜歡從事機械、電子、土木建築、農業等相關工作。',
-        accuracy:''},
+        typeDscrp:'此型分數較高的人通常喜歡從事機械、電子、土木建築、農業等相關工作。'},
         {typeName:'研究型',
-        typeDscrp:'此型分數較高的人通常喜歡從事生物、化學、醫藥、數學、天文等需要研究與分析的工作。',
-        accuracy:''},
+        typeDscrp:'此型分數較高的人通常喜歡從事生物、化學、醫藥、數學、天文等需要研究與分析的工作。'},
         {typeName:'文藝型',
-        typeDscrp:'此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。',
-        accuracy:''},
+        typeDscrp:'此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。'},
         {typeName:'社會型',
-        typeDscrp:'此型分數較高的人通常喜歡從事教師、輔導、社會工作、醫護、宗教等相關工作。',
-        accuracy:''},
+        typeDscrp:'此型分數較高的人通常喜歡從事教師、輔導、社會工作、醫護、宗教等相關工作。'},
         {typeName:'企業型',
-        typeDscrp:'此型分數較高的人通常喜歡管理、銷售、司法、從政等相關工作。',
-        accuracy:''},
+        typeDscrp:'此型分數較高的人通常喜歡管理、銷售、司法、從政等相關工作。'},
         {typeName:'事務型',
-        typeDscrp:'此型分數較高的人通常喜歡從事銀行、金融、會計、秘書、行政等相關工作。',
-        accuracy:''},
+        typeDscrp:'此型分數較高的人通常喜歡從事銀行、金融、會計、秘書、行政等相關工作。'},
     ],
     relatedJob : [ 
         [{name:'送貨人員', src:'./img/test/R_實作型/送貨人員.svg', link:''},
@@ -81,9 +78,14 @@ let Data = {
         type:'實作型',
         backgroundColor:'#79BBB5'},
 
+    ],
+    relatedTopic :[
+        {category:'問題討論',title:'想要入教嗎?',backgroundColor:'#79BBB5'},
+        {category:'經驗分享',title:'資工學歷跟資策會出來哪個好?',backgroundColor:'#79BBB5'}
     ]
+
 }
-let testRult = new Vue({
+let testResult = new Vue({
     el : '#testResult',
     data : Data,
     created() {
@@ -98,16 +100,47 @@ let testRult = new Vue({
         this.C = this.testResult.substring(10,11);
         this.anaValue =[ this.R, this.I, this.A, this.S, this.E, this.C];
 
-       for(i=0;i<this.anaValue.length;i++){
+       for(i=0;i<this.anaValue.length;i++){    // 賦予六個值新的值
 
            if(this.anaValue[i] > 4 ){
            this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10);
            }else{
            this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10) + 20 
-           }
-          
+           };
+       };
+
+       this.maxValue = this.anaValue[0]; // 這邊開始找出最大值是誰?在哪?
+       for( i=0; i< this.anaValue.length; i++){
+        if(this.anaValue[i] > this.maxValue ){
+            this.maxValue = this.anaValue[i];
+            this.maxIndex = i; 
+        };
+        console.log(this.maxValue);
+        console.log(this.maxIndex);
+       }   
+      
+                                             //  [0,1,2,3,4,5]
+    //以下判定第幾個值是最大的決定要撈什麼資料:順序: [R,I,A,S,E,C]            
+       if ( this.maxIndex === 0 ){
+         alert('抓到了 第0個笨蛋')
+  
+       }else if( this.maxIndex === 1 ){
+        alert('抓到了 第1個笨蛋')
+
+       }else if( this.maxIndex === 2 ){
+        alert('抓到了 第2個笨蛋')
+   
+       }else if( this.maxIndex === 3 ){
+        alert('抓到了 第3個笨蛋')
+  
+       }else if( this.maxIndex === 4 ){
+        alert('抓到了 第4個笨蛋')
+    
+       }else if( this.maxIndex ===5 ){
+        alert('抓到了 第5個笨蛋') 
+             
        }
-        
+
     },
     destroyed() {
         window.removeEventListener('resize', this.plotRadar);
@@ -225,6 +258,7 @@ let testRult = new Vue({
   
    
 }
+
 })
 //
 // Math.floor(1/(1 + Math.pow(Math.E, -(8-6))) * 100) + Math.floor(Math.random() * 10) 值大於四
