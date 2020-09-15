@@ -8,36 +8,42 @@ let vm = new Vue({
           link_to: "practical_session",
           link_title: "實作型",
           color: "practical_bg_color",
+          courses: [],
         },
         {
           link_from: "research",
           link_to: "research_session",
           link_title: "研究型",
           color: "research_bg_color",
+          courses: [],
         },
         {
           link_from: "art",
           link_to: "art_session",
           link_title: "文藝型",
           color: "art_bg_color",
+          courses: [],
         },
         {
           link_from: "social",
           link_to: "social_session",
           link_title: "社會型",
           color: "social_bg_color",
+          courses: [],
         },
         {
           link_from: "enterprise",
           link_to: "enterprise_session",
           link_title: "企業型",
           color: "enterprise_bg_color",
+          courses: [],
         },
         {
           link_from: "thing",
           link_to: "thing_session",
           link_title: "事務型",
           color: "thing_bg_color",
+          courses: [],
         },
       ],
 
@@ -50,17 +56,37 @@ let vm = new Vue({
       //   課程介紹-課程總纜
       introduce_course: [],
       //   課程介紹-單一課程
-      introduce_single: null,
+      introduce_single: {
+        ski_no: "",
+        ski_name: "",
+        ski_buy_num: "",
+        ski_price: "",
+        ski_time: "",
+        ski_intro: "",
+        ski_img: "",
+        ski_tec_img: "",
+        ski_tec_name: "",
+        ski_tec_intro: "",
+        ski_outline: "",
+        ski_stud: "",
+        ind_no: "",
+        ind_class: "",
+        ind_color: "",
+      },
       introduce_suggest: [],
 
-      //   introduce頁面接收到的網址編號
+      // 燈箱變數
+      signIn: true,
     };
   },
   mounted() {
     this.main_course_api();
     this.hot_course_api();
     this.receive_storage();
-    this.introduce_course_api();
+    let localURL = new URL(document.location);
+    if (localURL.toString().includes("course_introduce")) {
+      this.introduce_course_api();
+    }
 
     // course_main
     script = document.createElement("script");
@@ -104,6 +130,16 @@ let vm = new Vue({
     },
     // 購物車功能
     add_cart(item) {
+      axios.post("./php/memberStateCheck.php").then((resp) => {
+        if (resp.data == 0) {
+          document.querySelector(".bg_of_lightbx").style = "display:block";
+        } else {
+          alert("測驗結果已儲存");
+          //這邊放把資料送去資料庫的東西喔// 別忘了有會員編號、圖表、內容日期!
+        }
+        // console.log(resp)
+      });
+
       if (this.cart_items.length == 0) {
         this.cart_items.push(item);
       } else {
@@ -164,36 +200,61 @@ let vm = new Vue({
           console.log(error);
         });
     },
+
+    set_course_suggest() {
+      this.category.forEach((type) => {
+        if (type.link_title == this.introduce_single.ind_class) {
+          this.introduce_suggest = type.courses;
+        }
+      });
+    },
+
     introduce_course_api() {
+      //   找網址
+      //   new URL(document.location) 尋找當前網址
+      //   localUrl.searchParams.get("ski_no")搜尋網址ski_no= 後的資料
+      let _this = this;
+      let localUrl = new URL(document.location);
+      this.introduce_no = localUrl.searchParams.get("ski_no");
+
+      var formData = new FormData();
+      formData.append("introduce_no", this.introduce_no);
       axios
-        .get("./php/course_introduce.php")
+        .post("./php/course_introduce.php", formData)
         .then((res) => {
           // 接收資料庫資料
           console.log("課程介紹");
-          console.log(res);
-          this.introduce_course = res.data;
-          //   找網址
-          //   new URL(document.location) 尋找當前網址
-          //   localUrl.searchParams.get("ski_no")搜尋網址ski_no= 後的資料
-          let localUrl = new URL(document.location);
-          this.introduce_no = localUrl.searchParams.get("ski_no");
+          // console.log(res);
+          if (res.status == 200) {
+            if (res.data != 0) {
+              _this.introduce_single = res.data[0];
 
-          // console.log(this.introduce_course[0].ski_no);
+              // 切課程介紹
+              _this.introduce_single.ski_intro = _this.introduce_single.ski_intro.split(
+                ";"
+              );
+              _this.introduce_single.ski_intro.splice(0, 1);
 
-          if (this.introduce_no != null) {
-            this.introduce_course.forEach((course) => {
-              if (this.introduce_no == course.ski_no) {
-                this.introduce_single = course;
-                // alert(this.introduce_single.ski_img);
-              }
-            });
+              _this.set_course_suggest();
+            }
           }
 
-          this.introduce_course.forEach((course) => {
-            if (course.ind_class == this.introduce_single.ind_class) {
-              this.introduce_suggest.push(course);
-            }
-          });
+          // // console.log(this.introduce_course[0].ski_no);
+
+          // if (this.introduce_no != null) {
+          //   this.introduce_course.forEach((course) => {
+          //     if (this.introduce_no == course.ski_no) {
+          //       this.introduce_single = course;
+          //       // alert(this.introduce_single.ski_img);
+          //     }
+          //   });
+          // }
+
+          // this.introduce_course.forEach((course) => {
+          //   if (course.ind_class == this.introduce_single.ind_class) {
+          //     this.introduce_suggest.push(course);
+          //   }
+          // });
         })
         .catch(function (error) {
           console.log(error);
@@ -208,6 +269,7 @@ let vm = new Vue({
             if (res.data != 0) {
               let memName = res.data.split(";")[1];
               $("div.member > a").html("Hi," + memName);
+              $("div.member > a").attr("href", "member.html");
               $("#header_logOut").css("display", "block");
             }
           }
@@ -225,13 +287,37 @@ let vm = new Vue({
           if (res.status == 200) {
             location.reload();
             $("#header_logOut").css("display", "none");
-
-            // $("#header_logOut").css("display", "none");
+            $("div.member > a").attr("href", "member_sign_in.html");
           }
         })
         .catch(function (error) {
           console.log(error);
         });
+    },
+
+    // 登入燈箱
+    changeState() {
+      var memAccount = document.querySelector(".input_div #account").value;
+      var memCode = document.querySelector(".input_div #code").value;
+      var formData = new FormData();
+      formData.append("memAccount", memAccount);
+      formData.append("memCode", memCode);
+      axios.post("./php/memberSignInCheck.php", formData).then((resp) => {
+        if (resp.data == 0) {
+          alert("帳號或密碼錯誤，請重新輸入");
+          document.querySelector(".input_div #code").value = "";
+        } else {
+          alert("會員登入成功");
+          //登入成功則燈箱移除
+          document.querySelector(".bg_of_lightbx").style = "display:none";
+          location.reload();
+          //將結果傳至會員儲存
+          //這邊要寫把資料傳到資料庫的東西
+        }
+      });
+    },
+    btnClose() {
+      document.querySelector(".bg_of_lightbx").style = "display:none";
     },
     // 其他功能
     side_click_bg(e) {
