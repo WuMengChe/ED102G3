@@ -9,7 +9,7 @@ let vm = new Vue({
       announcement: [],
       memberCheck: [],
       box_msg: [],
-      icon: [],
+      like_icon: [], //喜歡
       isOpen: false,
       filter: '',
       accuseIsOpen: false,
@@ -45,9 +45,7 @@ let vm = new Vue({
     }
   },
   mounted() {
-
-
-//登入
+    //登入
     axios.post('./php/memberStateCheck.php')
       .then(res => {
         console.log(res);
@@ -57,6 +55,20 @@ let vm = new Vue({
           window.location.href = "./member_sign_in.html"
         } else {
           sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+
+           //喜歡
+     var formData = new FormData ;
+      formData.append('member', this.memberCheck.split(";")[0]);
+      console.log(formData)
+
+      axios.post('./php/forum_discuss_like.php',formData)
+      .then(res => {
+        console.log(res.data);
+        this.like_icon = res.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
         }
       })
       .catch(function (error) {
@@ -64,18 +76,19 @@ let vm = new Vue({
       });
 
 
+   
 
+  
 //其他載入php
-    axios.all([this.funcA(), this.funcC(), this.funcD()])
-      .then(axios.spread((res1, res3, res4) => {
+    axios.all([this.funcA(), this.funcC()])
+      .then(axios.spread((res1, res3) => {
         console.log(res1.data);
         console.log(res3.data);
-        console.log(res4.data);
 
         this.information = res1.data;
         this.searchResult = res1.data;
         this.announcement = res3.data;
-        this.icon = res4.data;
+ 
 
       }))
       .catch((err) => { console.error(err) })
@@ -121,10 +134,8 @@ let vm = new Vue({
       const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss_ann.php')
     },
-    funcD() {
-      const memNo = sessionStorage.getItem('memNo');
-      return axios.get('./php/forum_discuss_like.php')
-    },
+
+
     //開啟燈箱按鈕
     openContent(index) {
 
@@ -173,6 +184,7 @@ let vm = new Vue({
       });
       this.searchResult = result;
       this.select = "選擇分類";
+      
     },
     //關鍵字搜尋
     searchContent() {
@@ -243,7 +255,7 @@ let vm = new Vue({
     },
     //側邊欄點擊提示
     cart_click_bg(e) {
-      // $(`#${this.category[index].link_from}`).addClass('side_click');
+    //   // $(`#${this.category[index].link_from}`).addClass('side_click');
       $('.main_side_bar > ul> li > a').removeClass('side_click')
       e.currentTarget.classList.add('side_click');
     },
