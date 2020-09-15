@@ -1,8 +1,7 @@
-new Vue({
+let vm = new Vue({
     el: "#course_main",
     data() {
         return {
-            message: "hello",
             category: [{
                     link_from: "practical",
                     link_to: "practical_session",
@@ -40,7 +39,6 @@ new Vue({
                     color: "thing_bg_color",
                 },
             ],
-            main_course: [],
 
             // 接收資料庫的hot_course,記得先關掉假資料
             hot_course: [],
@@ -95,53 +93,20 @@ new Vue({
         };
     },
     mounted() {
+        this.main_course_api();
+        this.hot_course_api();
         this.receive_storage();
-        // this.hot_course_api();
-        // this.main_course_api();
-        // this.check_member_api();
+        // parallax
+        // script = document.createElement("script");
+        // script.src = "./js/course/parallax_script.js";
+        // document.body.appendChild(script);
 
-        axios
-            .get("./php/memberSigninCheck.php")
-            .then((res) => {
-                if (res.status == 200) {
-                    console.log(res);
-                    // $("div.member").css("display", "none");
-                    // let memName = $_SESSION["memName"];
-                    $("div.member > a").text("JUDY");
-                }
-                // this.hot_course = res.data;
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
+        // course_main
+        script = document.createElement("script");
+        script.src = "./js/course/course_main.js";
+        document.body.appendChild(script);
 
-        axios
-            .get("./php/course_course_list.php")
-            .then((res) => {
-                console.log(res);
-
-                // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
-                for (let i = 0; i < this.category.length; i++) {
-                    this.category[i].courses = res.data.filter(
-                        (item) => item.ind_class == this.category[i].link_title
-                    );
-                }
-                console.log(this.category);
-                // this.main_course = res.data;
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-
-        axios
-            .get("./php/course_hot_course.php")
-            .then((res) => {
-                console.log(res);
-                this.hot_course = res.data;
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
+        this.check_member_api();
     },
     methods: {
         add_storage() {
@@ -165,9 +130,10 @@ new Vue({
                 //     }
                 // });
                 this.cart_items = JSON.parse(get_id);
-                this.cart_items.forEach((card, index) => {
-                    $(`.cus_${this.cart_items[index].ski_no}`).addClass("cart_clicked");
-                });
+                // this.cart_items.forEach((card) => {
+                //     $(`.cus_${card.ski_no}`).addClass("cart_clicked");
+                //     document.querySelector(".cus_4").classList.add(".cart_clicked");
+                // });
             }
             // for (let i = 0; i < this.cart_items.length; i++) {
             //     $(`.cus_${this.cart_items[i].ski_no}`).addClass("cart_clicked");
@@ -209,6 +175,11 @@ new Vue({
                 .then((res) => {
                     console.log(res);
                     this.hot_course = res.data;
+
+                    // OWL套件
+                    script = document.createElement("script");
+                    script.src = "./js/course/owl_auto_slide.js";
+                    document.body.appendChild(script);
                 })
                 .catch(function(error) {
                     console.log(error);
@@ -235,19 +206,54 @@ new Vue({
         },
         check_member_api() {
             axios
-                .get("./php/memberSigninCheck.php")
+                .get("./php/memberStateCheck.php")
                 .then((res) => {
                     if (res.status == 200) {
-                        console.log(res);
-                        // $("div.member").css("display", "none");
-                        // let memName = $_SESSION["memName"];
-                        $("div.member > a").text("JUDY");
+                        console.log(res.data);
+                        if (res.data != 0) {
+                            let memName = res.data.split(";")[1];
+                            $("div.member > a").html("Hi," + memName);
+                            $("#header_logOut").css("display", "block");
+                        }
                     }
                     // this.hot_course = res.data;
                 })
                 .catch(function(error) {
                     console.log(error);
                 });
+        },
+        header_logOut() {
+            axios
+                .get("./php/member_logOut.php")
+                .then((res) => {
+                    if (res.status == 200) {
+                        location.reload();
+                        $("#header_logOut").css("display", "none");
+
+                        // $("#header_logOut").css("display", "none");
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        },
+        owl_slide() {
+            $(".auto_slider").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    600: {
+                        items: 2,
+                    },
+                    1000: {
+                        items: 3,
+                    },
+                },
+            });
         },
     },
     computed: {

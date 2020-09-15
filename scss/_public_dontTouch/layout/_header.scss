@@ -218,9 +218,16 @@ div.header_wrap {
                 }
             }
             div.member {
+                display: flex;
+                align-items: center;
                 i {
                     font-size: $header_icon_i_size;
                     color: $header_icon_i_color;
+                }
+                button#header_logOut {
+                    font-size: 16px;
+                    color: $header_icon_i_color;
+                    display: none;
                 }
             }
         }

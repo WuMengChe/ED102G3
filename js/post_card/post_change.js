@@ -21,19 +21,12 @@ $(function () {
         $(this).parent().siblings().removeClass("active");
         $(this).parent().addClass("active");
     });
-    // 換正面外框
-    $(".outline_style div img").click(function () {
-        var N = $(this).attr('id').substr(7);
-        $('#mainImg').attr('src', './img/post_card/outline' + N + '.png');
-        $(this).parent().siblings().removeClass("active");
-        $(this).parent().addClass("active");
 
 
-    });
-    $(".outline_style div p").click(function () {
-        var N = $(".outline_style div img").attr('id').substr(7);
-        $('#mainImg').attr('src', './img/post_card/outline' + N + '.png');
-    });
+    // $(".outline_style div p").click(function () {
+    //     var N = $(".outline_style div img").attr('id').substr(7);
+    //     $('#mainImg').attr('src', './img/post_card/outline' + N + '.png');
+    // });
     //桌機換格式的頁籤
     let deskLine = $(".post_desk .style_all_outline");
     let deskFront = $(".post_desk .front_style");
@@ -75,13 +68,13 @@ $(function () {
 
     });
     //換郵票
-    $(".stamps_style div img").click(function () {
-        var N = $(this).attr('id').substr(5);
-        $('#mainStamp').show();
-        $('#mainStamp').attr('src', './img/post_card/stamp' + N + '.png');
-        $(this).parent().siblings().removeClass("active");
-        $(this).parent().addClass("active");
-    });
+    // $(".stamps_style div img").click(function () {
+    //     var N = $(this).attr('id').substr(5);
+    //     $('#mainStamp').show();
+    //     $('#mainStamp').attr('src', './img/post_card/stamp' + N + '.png');
+    //     $(this).parent().siblings().removeClass("active");
+    //     $(this).parent().addClass("active");
+    // });
     //換郵戳
     $(".postmarks_style div img").click(function () {
         var N = $(this).attr('id').substr(8);
