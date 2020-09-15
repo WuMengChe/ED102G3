@@ -2,7 +2,6 @@ let vm = new Vue({
     el: "#course_main",
     data() {
         return {
-            member_name: "",
             category: [{
                     link_from: "practical",
                     link_to: "practical_session",
@@ -40,7 +39,6 @@ let vm = new Vue({
                     color: "thing_bg_color",
                 },
             ],
-            // main_course: [],
 
             // 接收資料庫的hot_course,記得先關掉假資料
             hot_course: [],
@@ -95,8 +93,8 @@ let vm = new Vue({
         };
     },
     mounted() {
-        this.hot_course_api();
         this.main_course_api();
+        this.hot_course_api();
         this.receive_storage();
         // parallax
         script = document.createElement("script");
