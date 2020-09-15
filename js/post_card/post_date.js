@@ -10,6 +10,9 @@ $(function () {
     lock: 'from',
 
   });
+  // ------------抓正背面圖
+  document.getElementById("frontImg").src = sessionStorage["frontImg"];
+  document.getElementById("backImg").src = sessionStorage["backImg"];
   //頁面跳轉
   var count = 5;
   //寫一個方法，顯示倒數秒數  數到0後跳轉頁面  
@@ -29,58 +32,116 @@ $(function () {
 
   }
 
+  function btnClose() {
+    document.querySelector('.bg_of_lightbx').style = "display:none";
+  };
   // 開啟 Modal 彈跳視窗
   $("#send").on("click", function () {
-    //燈箱
-    // 先判斷會員登入 沒登入跳燈箱
-    let xml = new XMLHttpRequest();
-    xml.open("POST", "./php/post_save.php", true);
-    // 有登入抓登入的會員是誰再存兩張圖 會員 創建日期 寄送日期
-    $('.bg_of_lightbx').css('display', 'block');
+    //董董------------------------------------------------------------------------
 
+    // let xml = new XMLHttpRequest();
+    // xml.open("GET", "./php/memberStateCheck.php", true);
+    // xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // xml.send(null);
+    // xml.onload = function () {
+    //   // 先判斷會員登入 
+    //   if (xml.readyState == 4 && xml.status == 200) {
+    //     console.log(xml.responseXML);
+    //     if (xml.responseText == 0) {
+    //       alert('請登入會員');
+    //       //沒登入跳燈箱
+    //       $('.bg_of_lightbx').css('display', 'block');
+    //       $('#closeBtn').click(btnClose);
+    //     } else {
+    //       // 有登入抓登入的會員是誰再存兩張圖 會員 創建日期 寄送日期
+    //       console.log("------------", xml.responseText);
+    //       let arr = xml.responseText.split(";")
+    //       let memNo = arr[0];
+    //       console.log(memNo);
+    //       //---------------------------
+    //       // var memAccount = document.querySelector('.input_div #account').value;
+    //       // var memCode = document.querySelector('.input_div #code').value;
+    //       // var formData = new FormData();
 
+    //       // xml.open("post", "./php/memberStateCheck.php", true);
+    //       // xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //       // xml.send(formData);
+    //       // xml.onload = function () {
+    //       //   if (memAccount = memNo && memCode = )
+    //       // }
 
-    //抓日期
-    let date = $('#pickdate').val().split('-');
-    let y = date[0];
-    let m = date[1];
-    let d = date[2];
-    if ($('#pickdate').val() != '') {
-      $('.when_date').text(`將於${y}年${m}月${d}日寄出`);
-      // 開啟彈跳視窗
-      $(".overlay").addClass("-on");
-      countDown();
-      // 關閉 彈跳視窗
-      $(".close").on("click", function () {
-        $(".overlay").addClass("-opacity-zero");
-
-        // 設定隔500豪秒後，移除相關 class
-        setTimeout(function () {
-          $(".overlay").removeClass("-on -opacity-zero");
-        }, 500);
-
-      });
-    } else {
-      alert("尚未選取日期歐~");
-
+    //     }
+    //   }
+    // }
+    //董董------------------------------------------------------------------------
+    function btnClose() {
+      document.querySelector('.bg_of_lightbx').style = "display:none";
     };
 
+    axios
+      .post('./php/memberStateCheck.php')
+      .then((resp) => {
+        if (resp.data == 0) {
+          alert('請先登入會員');
+          document.querySelector('.bg_of_lightbx').style = "display:block";
+          $('#closeBtn').click(function () {
+            document.querySelector('.bg_of_lightbx').style = "display:none";
+          });
+
+
+
+        } else {
+          //抓日期
+          let date = $('#pickdate').val().split('-');
+          let y = date[0];
+          let m = date[1];
+          let d = date[2];
+          if ($('#pickdate').val() != '') {
+            $('.when_date').text(`將於${y}年${m}月${d}日寄出`);
+            // 開啟彈跳視窗
+            $(".overlay").addClass("-on");
+            countDown();
+            // 關閉 彈跳視窗
+            $(".close").on("click", function () {
+              $(".overlay").addClass("-opacity-zero");
+
+              // 設定隔500豪秒後，移除相關 class
+              setTimeout(function () {
+                $(".overlay").removeClass("-on -opacity-zero");
+              }, 500);
+
+            });
+          } else {
+            alert("尚未選取日期歐~");
+
+          };
+
+        }
+        // console.log(resp)
+      });
+    $('.login_btn').click(function () {
+      var memAccount = document.querySelector('.input_div #account').value;
+      var memCode = document.querySelector('.input_div #code').value;
+      var formData = new FormData();
+      formData.append('memAccount', memAccount);
+      formData.append('memCode', memCode);
+      axios
+        .post('./php/memberSignInCheck.php', formData)
+        .then((resp) => {
+          if (resp.data == 0) {
+            alert('帳號或密碼錯誤，請重新輸入');
+            document.querySelector('.input_div #code').value = "";
+          } else {
+            alert('會員登入成功');
+            //登入成功則燈箱移除
+            btnClose();
+            //將結果傳至會員儲存
+            //這邊要寫把資料傳到資料庫的東西
+          }
+        });
+    });
+
+
   });
-  // ------------抓正背面圖
-  window.addEventListener("load", function () {
-    document.getElementById("frontImg").src = sessionStorage["frontImg"];
-    document.getElementById("backImg").src = sessionStorage["backImg"];
-  });
-  //--------------送資料庫-------------------
-
-  function sendPost() {
-
-  };
-
-
-
-
-
-  document.getElementById("send").onclick = sendPost;
 
 });
