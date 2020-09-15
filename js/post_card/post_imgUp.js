@@ -65,20 +65,19 @@ function changed(e) {
 var lenF = document.getElementById('leftWrite');
 var width = $(window).width();
 
-// let temp = 0;
+
 lenF.addEventListener('focus', function () {
-  lenF.innerText = '';
+  let count = 0;
+  if (count == 0) {
+    lenF.innerText = '';
+    count++;
+  } else {
+    count = 1;
+  }
+
 
 });
-lenF.addEventListener('keyup', function () {
-  lenF.maxLength = 20;
-  // if (temp <= 20) {
-  //   temp++;
-  // } else {
-  //   lenF.innerText = lenF.innerText.substr(0, 20);
 
-  // }
-});
 
 
 
@@ -88,6 +87,15 @@ if (width >= 1200) {
   // lenF.innerText.length = 357;
   // lenF.innerText = lenF.innerText.substr(0, 20);
   // alert(lenF.innerText.substr(0, 5));
+  lenF.addEventListener('keyup', function () {
+    // lenF.maxLength = 20;
+    // if (temp <= 20) {
+    //   temp++;
+    // } else {
+    lenF.innerText = lenF.innerText.substr(0, 20);
+
+    // }
+  });
 
 
 } else if (width < 1200 && width > 767) {

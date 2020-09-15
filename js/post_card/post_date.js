@@ -100,12 +100,20 @@ $(function () {
             //這邊要寫把資料傳到資料庫的東西 
             //創建日期 送出日期 2張照片會員編號
             let xml = new XMLHttpRequest();
+
             xml.open("POST", "./php/post_save.php", true);
             xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            let data_info = new FormData();
+            let sendDate = $('#pickdate').val();
+            let arr = xml.responseText.split(";")
+            let memNo = arr[0];
+            let d = new Date();
+            let createDate = d.toLocaleDateString();
+            data_info.append(memNo, sendDate, createDate);
 
-            let data_info = $('#pickdate').val();
 
             xml.send(data_info);
+            // return false;
             xml.onload = function () {
               if (xml.readyState == 4 && xml.status == 200) {
                 // console.log(xml.responseXML);
@@ -117,7 +125,7 @@ $(function () {
             }
 
           }
-          s
+
         });
     });
 
