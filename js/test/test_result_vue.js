@@ -1,7 +1,6 @@
 // const { isConcatSpreadable } = require("core-js/fn/symbol");
 
-const { post } = require("jquery");
-
+// const { post } = require("jquery");
 let Data = {
     signIn : true,
     myChart :'',
@@ -131,6 +130,7 @@ let testResult = new Vue({
     //以下判定第幾個值是最大的決定要撈什麼資料:順序: [R,I,A,S,E,C]            
        if ( this.maxIndex === 0 ){
          this.maxIndex = 'R';
+         alert('')
        }else if( this.maxIndex === 1 ){
         this.maxIndex = 'I';
        }else if( this.maxIndex === 2 ){
@@ -148,7 +148,7 @@ let testResult = new Vue({
        formData.append('userType', this.maxIndex);
        axios
        .post('./testResultData.php',formData)
-       .then((resp) => {
+       .then((res) => {
          this.maxIndex = resp.data
          console.log(res)
        });
@@ -191,6 +191,8 @@ let testResult = new Vue({
                     alert('會員登入成功');
                     //登入成功則燈箱移除
                     document.querySelector('.bg_of_lightbx').style = "display:none";
+                    document.getElementById('member_icon').innerText = "Hi," + resp.data;
+
                     //將結果傳至會員儲存
                     //這邊要寫把資料傳到資料庫的東西
                 }
