@@ -1,5 +1,7 @@
 // const { isConcatSpreadable } = require("core-js/fn/symbol");
 
+const { post } = require("jquery");
+
 let Data = {
     signIn : true,
     myChart :'',
@@ -88,6 +90,12 @@ let Data = {
 let testResult = new Vue({
     el : '#testResult',
     data : Data,
+    mounted() {
+        // axios
+        // .post('./testResultData.php',this.maxIndex)
+        // .then(resp)
+ 
+    },
     created() {
         window.addEventListener('load', this.plotRadar)
         window.addEventListener('resize', this.plotRadar)
@@ -115,31 +123,35 @@ let testResult = new Vue({
             this.maxValue = this.anaValue[i];
             this.maxIndex = i; 
         };
-        console.log(this.maxValue);
-        console.log(this.maxIndex);
+        // console.log(this.maxValue);
+        // console.log(this.maxIndex);
        }   
       
                                              //  [0,1,2,3,4,5]
     //以下判定第幾個值是最大的決定要撈什麼資料:順序: [R,I,A,S,E,C]            
        if ( this.maxIndex === 0 ){
-         alert('抓到了 第0個笨蛋')
-  
+         this.maxIndex = 'R';
        }else if( this.maxIndex === 1 ){
-        alert('抓到了 第1個笨蛋')
-
+        this.maxIndex = 'I';
        }else if( this.maxIndex === 2 ){
-        alert('抓到了 第2個笨蛋')
-   
+        this.maxIndex = 'A';
        }else if( this.maxIndex === 3 ){
-        alert('抓到了 第3個笨蛋')
-  
+        this.maxIndex = 'S';
        }else if( this.maxIndex === 4 ){
-        alert('抓到了 第4個笨蛋')
-    
-       }else if( this.maxIndex ===5 ){
-        alert('抓到了 第5個笨蛋') 
-             
+        this.maxIndex = 'E';
+       }else if( this.maxIndex === 5 ){
+        this.maxIndex = 'C'; 
        }
+
+       
+       var formData = new FormData();
+       formData.append('userType', this.maxIndex);
+       axios
+       .post('./testResultData.php',formData)
+       .then((resp) => {
+         this.maxIndex = resp.data
+         console.log(res)
+       });
 
     },
     destroyed() {
@@ -156,7 +168,7 @@ let testResult = new Vue({
                 }
                 else{
                     alert('測驗結果已儲存');
-                    //這邊放把資料送去資料庫的東西喔//
+                    //這邊放把資料送去資料庫的東西喔// 別忘了有會員編號、圖表、內容日期!
                 }
                 // console.log(resp)
             })
