@@ -43,64 +43,24 @@ let vm = new Vue({
 
       // 接收資料庫的hot_course,記得先關掉假資料
       hot_course: [],
-
-      // 假資料
-      // hot_course: [{
-      //         id: 1,
-      //         img: "img/course/course_img/R/課程照片-線上實作：酒及飲料調製.jpg",
-      //         href: "course_introduce.html",
-      //         course_title: "九個步驟快速提昇簡報力",
-      //         type: "實作型",
-      //         color: "practical_bg_color",
-      //         join: 9999,
-      //         hour: 3,
-      //         price: 660,
-      //     },
-      //     {
-      //         id: 3,
-      //         img: "img/course/course_img/i/課程照片-人工智慧TENSORFLOW上手實作班 .jpg",
-      //         href: "course_introduce.html",
-      //         course_title: "打造團隊好關係與高績效",
-      //         type: "研究型",
-      //         color: "research_bg_color",
-      //         join: 7777,
-      //         hour: 7,
-      //         price: 770,
-      //     },
-      //     {
-      //         id: 5,
-      //         img: "img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png",
-      //         href: "course_introduce.html",
-      //         course_title: "行銷=內容x社群x商務",
-      //         type: "文藝型",
-      //         color: "art_bg_color",
-      //         join: 9999,
-      //         hour: 9,
-      //         price: 990,
-      //     },
-      //     {
-      //         id: 7,
-      //         img: "img/course/course_img/s/課程照片-社會心理學.png",
-      //         href: "course_introduce.html",
-      //         course_title: "行銷=內容x社群x商務",
-      //         type: "社會型",
-      //         color: "social_bg_color",
-      //         join: 5555,
-      //         hour: 5,
-      //         price: 550,
-      //     },
-      // ],
       cart_items: [],
+
+      // course_introduce接收連結號碼
+      introduce_no: null,
+      //   課程介紹-課程總纜
+      introduce_course: [],
+      //   課程介紹-單一課程
+      introduce_single: null,
+      introduce_suggest: [],
+
+      //   introduce頁面接收到的網址編號
     };
   },
   mounted() {
     this.main_course_api();
     this.hot_course_api();
     this.receive_storage();
-    // parallax
-    // script = document.createElement("script");
-    // script.src = "./js/course/parallax_script.js";
-    // document.body.appendChild(script);
+    this.introduce_course_api();
 
     // course_main
     script = document.createElement("script");
@@ -110,6 +70,7 @@ let vm = new Vue({
     this.check_member_api();
   },
   methods: {
+    // localStorage
     add_storage() {
       let ss = " ";
       // this.cart_items.forEach((item) => {
@@ -141,6 +102,7 @@ let vm = new Vue({
         }
       }
     },
+    // 購物車功能
     add_cart(item) {
       if (this.cart_items.length == 0) {
         this.cart_items.push(item);
@@ -166,11 +128,7 @@ let vm = new Vue({
       this.cart_items.splice(index, 1);
       this.add_storage();
     },
-    side_click_bg(e) {
-      // $(`#${this.category[index].link_from}`).addClass('side_click');
-      $(".main_side_bar > ul> li > a").removeClass("side_click");
-      e.currentTarget.classList.add("side_click");
-    },
+    // 資料庫載入
     hot_course_api() {
       axios
         .get("./php/course_hot_course.php")
@@ -206,6 +164,41 @@ let vm = new Vue({
           console.log(error);
         });
     },
+    introduce_course_api() {
+      axios
+        .get("./php/course_introduce.php")
+        .then((res) => {
+          // 接收資料庫資料
+          console.log("課程介紹");
+          console.log(res);
+          this.introduce_course = res.data;
+          //   找網址
+          //   new URL(document.location) 尋找當前網址
+          //   localUrl.searchParams.get("ski_no")搜尋網址ski_no= 後的資料
+          let localUrl = new URL(document.location);
+          this.introduce_no = localUrl.searchParams.get("ski_no");
+
+          // console.log(this.introduce_course[0].ski_no);
+
+          if (this.introduce_no != null) {
+            this.introduce_course.forEach((course) => {
+              if (this.introduce_no == course.ski_no) {
+                this.introduce_single = course;
+                // alert(this.introduce_single.ski_img);
+              }
+            });
+          }
+
+          this.introduce_course.forEach((course) => {
+            if (course.ind_class == this.introduce_single.ind_class) {
+              this.introduce_suggest.push(course);
+            }
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
     check_member_api() {
       axios
         .get("./php/memberStateCheck.php")
@@ -224,6 +217,7 @@ let vm = new Vue({
           console.log(error);
         });
     },
+    // header登出
     header_logOut() {
       axios
         .get("./php/member_logOut.php")
@@ -238,6 +232,12 @@ let vm = new Vue({
         .catch(function (error) {
           console.log(error);
         });
+    },
+    // 其他功能
+    side_click_bg(e) {
+      // $(`#${this.category[index].link_from}`).addClass('side_click');
+      $(".main_side_bar > ul> li > a").removeClass("side_click");
+      e.currentTarget.classList.add("side_click");
     },
     owl_slide() {
       $(".auto_slider").owlCarousel({

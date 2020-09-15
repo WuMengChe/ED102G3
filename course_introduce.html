@@ -41,13 +41,16 @@
             <div class="cart">
               <button href="#">
                 <i class="fas fa-shopping-cart"></i>
-                <div class="cart_num"><span>{{cart_items.length}}</span></div>
+                <div class="cart_num">
+                  <span>{{cart_items.length}}</span>
+                </div>
               </button>
-              <!-- <div class="cart_num"><span>1</span></div> -->
             </div>
-
             <div class="member">
-              <a href="member_sign_in.html"><i class="fas fa-user"></i></a>
+              <a id="member_icon" href="member_sign_in.html"
+                ><i class="fas fa-user"></i
+              ></a>
+              <button id="header_logOut" @click="header_logOut">登出</button>
             </div>
           </div>
         </header>
@@ -57,7 +60,6 @@
         <div class="cart_close">
           <span>購物車</span>
           <button id="cart_close" class="btn_third">close</button>
-          <!-- <button class="btn_third" @click="delete_cookie">delete</button> -->
         </div>
         <div class="cart_course">
           <p class="no_item" v-show="cart_items.length == 0">
@@ -66,19 +68,20 @@
           <ul>
             <li class="cart_item" v-for="(item,index) in cart_items">
               <div class="cus_card">
-                <a href="#">
+                <a :href="'./course_introduce.html?ski_no=' + item.ski_no">
                   <div class="card_img">
-                    <img :src="item.img" alt="" />
+                    <img :src="item.ski_img" alt="" />
                   </div>
                   <div class="card_content">
-                    <p>{{item.course_title}}</p>
+                    <p>{{item.ski_name}}</p>
                     <div class="card_content_scrb">
                       <div class="card_content_msg">
-                        <span class="card_type" :class="item.color"
-                          >{{item.type}}</span
+                        <span
+                          class="card_type"
+                          :style="'background:' + item.ind_color + ';'"
+                          >{{item.ind_class}}</span
                         >
-                        <!-- <span class="card_time">總計3小時</span> -->
-                        <span class="card_price">NT${{item.price}}</span>
+                        <span class="card_price">NT${{item.ski_price}}</span>
                       </div>
                     </div>
                   </div>
@@ -120,17 +123,18 @@
               <div class="intro_banner">
                 <div class="intro_banner_pic">
                   <div class="banner_img">
-                    <img
-                      src="img/course/course_img/E/課程照片-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg"
-                      alt=""
-                    />
+                    <img :src="introduce_single.ski_img" alt="" />
                   </div>
                   <div class="banner_type_btn">
                     <div class="banner_type">
-                      <span>企業型</span>
+                      <span>{{introduce_single.ind_class}}</span>
                     </div>
-                    <div class="banner_btn">
-                      <button class="add_cart btn_intro_addcart">
+                    <div class="add_cart_btn">
+                      <button
+                        class="btn_intro_addcart"
+                        :class="'cus_' + introduce_single.ski_no"
+                        @click="add_cart(introduce_single)"
+                      >
                         <i class="fas fa-shopping-cart"></i>
 
                         加入購物車
@@ -145,29 +149,23 @@
                 </div>
                 <div class="intro_banner_content">
                   <div class="banner_title">
-                    <h1>九個步驟快速提昇你的簡報力、溝通力</h1>
+                    <h1>{{introduce_single.ski_name}}</h1>
                     <div class="banner_teacher_price">
                       <div class="banner_teacher_container">
                         <a href="#teacher">
                           <div class="banner_teacher_img">
-                            <img
-                              src="img/course/course_img/E/講師-課程-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg"
-                              alt=""
-                            />
+                            <img :src="introduce_single.ski_tec_img" alt="" />
                           </div>
-                          <span>講師:Leo</span>
+                          <span>講師:{{introduce_single.ski_tec_name}}</span>
                         </a>
                       </div>
                       <div class="banner_price">
-                        <p><span>價格:</span>$660</p>
+                        <p><span>價格:</span>${{introduce_single.ski_price}}</p>
                       </div>
                     </div>
                   </div>
                   <div class="banner_describe">
-                    <p>
-                      一位負責任的簡報者除了具備應有的專業內容，更需要有多元的教學法來提昇參與者的學習效益。
-                      這堂課專注在課綱上的編排、六大學習領域的平衡、內容的舖陳與呈現、簡報技巧的運用。
-                    </p>
+                    <p>{{introduce_single.ski_intro}}</p>
                   </div>
                 </div>
               </div>
@@ -221,18 +219,12 @@
         <div class="cus_teacher row">
           <div class="teacher_img col-xl-4">
             <div class="teacher_profile">
-              <img
-                src="img/course/course_img/E/講師-課程-提昇你的簡報力：九個步驟快速提昇你的簡報力、溝通力.jpg"
-                alt=""
-              />
+              <img :src="introduce_single.ski_tec_img" alt="" />
             </div>
           </div>
           <div class="teacher_intro col-xl-8">
-            <h2>講師:<span>Leo</span></h2>
-            <p>
-              台南出生、高雄長大。讀了造船工程科卻跑去當了三年的職業軍人。當職業軍人的同時又成為義務張老師電話諮詢志工。從業績掛單到月收入20萬時跑去開餐廳。在一無所有的時候走入了五術命理的領域。
-              才發現，這些過去是為了奠定現在的我。
-            </p>
+            <h2>講師:<span>{{introduce_single.ski_tec_name}}</span></h2>
+            <p>{{introduce_single.ski_tec_intro}}</p>
           </div>
         </div>
 
@@ -245,7 +237,7 @@
                 <h2>推薦課程</h2>
               </div>
               <ul class="auto_slider owl-carousel" v-if="hot_course.length > 0">
-                <li class="auto_slider_card" v-for="card in hot_course">
+                <li class="auto_slider_card" v-for="card in introduce_suggest">
                   <a href="course_introduce.html">
                     <div class="auto_slider_card_pic">
                       <img :src="card.ski_img" alt="" />
@@ -289,7 +281,7 @@
     </div>
 
     @@include('app/script.html')
-    <script src="./js/course/owl_auto_slide.js"></script>
+    <!-- <script src="./js/course/owl_auto_slide.js"></script> -->
     <script src="./js/course/course_vue.js"></script>
   </body>
 </html>
