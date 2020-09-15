@@ -10,6 +10,9 @@ $(function () {
     lock: 'from',
 
   });
+  // ------------抓正背面圖
+  document.getElementById("frontImg").src = sessionStorage["frontImg"];
+  document.getElementById("backImg").src = sessionStorage["backImg"];
   //頁面跳轉
   var count = 5;
   //寫一個方法，顯示倒數秒數  數到0後跳轉頁面  
@@ -32,11 +35,24 @@ $(function () {
   // 開啟 Modal 彈跳視窗
   $("#send").on("click", function () {
     //燈箱
-    // 先判斷會員登入 沒登入跳燈箱
     let xml = new XMLHttpRequest();
-    xml.open("POST", "./php/post_save.php", true);
+    xml.open("GET", "./php/memberStateCheck.php", true);
+    xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xml.send(null);
+    if (xml.readyState == 4 && xml.status == 200) {
+      console.log(xml.responseXML);
+      if (xml.responseXML == 0) {
+        alert('請登入會員');
+      } else {
+
+      }
+    }
+    // 先判斷會員登入 沒登入跳燈箱
+
+
+    // xml.open("POST", "./php/post_save.php", true);
     // 有登入抓登入的會員是誰再存兩張圖 會員 創建日期 寄送日期
-    $('.bg_of_lightbx').css('display', 'block');
+    // $('.bg_of_lightbx').css('display', 'block');
 
 
 
@@ -66,21 +82,8 @@ $(function () {
     };
 
   });
-  // ------------抓正背面圖
-  window.addEventListener("load", function () {
-    document.getElementById("frontImg").src = sessionStorage["frontImg"];
-    document.getElementById("backImg").src = sessionStorage["backImg"];
-  });
+
   //--------------送資料庫-------------------
 
-  function sendPost() {
-
-  };
-
-
-
-
-
-  document.getElementById("send").onclick = sendPost;
 
 });
