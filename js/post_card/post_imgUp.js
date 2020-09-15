@@ -65,10 +65,30 @@ function changed(e) {
 var lenF = document.getElementById('leftWrite');
 var width = $(window).width();
 
+// let temp = 0;
+lenF.addEventListener('focus', function () {
+  lenF.innerText = '';
+
+});
+lenF.addEventListener('keyup', function () {
+  lenF.maxLength = 20;
+  // if (temp <= 20) {
+  //   temp++;
+  // } else {
+  //   lenF.innerText = lenF.innerText.substr(0, 20);
+
+  // }
+});
+
+
+
 //  進來先判斷
 if (width >= 1200) {
   // lenF.maxLength = 357;
-  lenF.innerText.length = 357;
+  // lenF.innerText.length = 357;
+  // lenF.innerText = lenF.innerText.substr(0, 20);
+  // alert(lenF.innerText.substr(0, 5));
+
 
 } else if (width < 1200 && width > 767) {
   let x = 21 - Math.ceil(1200 - width) / 50;

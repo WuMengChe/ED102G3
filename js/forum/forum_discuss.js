@@ -1,12 +1,14 @@
-new Vue({
+let vm = new Vue({
     el: "#forum_discuss",
     data() {
         return {
+            aaa: "",
             information: [],
             searchResult: [],
             announcement: [],
             memberCheck: [],
             box_msg: [],
+            icon: [],
             isOpen: false,
             filter: '',
             accuseIsOpen: false,
@@ -42,6 +44,9 @@ new Vue({
         }
     },
     mounted() {
+
+
+        //登入
         axios.post('./php/memberStateCheck.php')
             .then(res => {
                 console.log(res);
@@ -56,25 +61,20 @@ new Vue({
             .catch(function(error) {
                 console.log(error);
             });
-        // axios.get('./php/forum_discuss.php')
-        //   .then(res => {
-        //     console.log(res);
-        //     this.information = res.data;
-        //     this.searchResult = res.data;
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        //   });
-        axios.all([this.funcA(), this.funcB(), this.funcC()])
-            .then(axios.spread((res1, res2, res3) => {
+
+
+
+        //其他載入php
+        axios.all([this.funcA(), this.funcC(), this.funcD()])
+            .then(axios.spread((res1, res3, res4) => {
                 console.log(res1.data);
-                console.log(res2.data);
                 console.log(res3.data);
+                console.log(res4.data);
 
                 this.information = res1.data;
                 this.searchResult = res1.data;
-                this.box_msg = res2.data;
                 this.announcement = res3.data;
+                this.icon = res4.data;
 
             }))
             .catch((err) => { console.error(err) })
@@ -116,16 +116,33 @@ new Vue({
             const memNo = sessionStorage.getItem('memNo');
             return axios.get('./php/forum_discuss.php')
         },
-        funcB() {
-            const memNo = sessionStorage.getItem('memNo');
-            return axios.get('./php/forum_discuss_msg.php')
-        },
         funcC() {
             const memNo = sessionStorage.getItem('memNo');
             return axios.get('./php/forum_discuss_ann.php')
         },
+        funcD() {
+            const memNo = sessionStorage.getItem('memNo');
+            return axios.get('./php/forum_discuss_like.php')
+        },
         //開啟燈箱按鈕
         openContent(index) {
+
+            //留言回覆的訊息
+            var formData = new FormData;
+            formData.append('DIS_NO', this.searchResult[index].DIS_NO);
+            console.log(formData)
+
+            axios.post('./php/forum_discuss_msg.php', formData)
+                .then(res => {
+                    console.log(res.data);
+                    this.box_msg = res.data;
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+
+
+            this.aaa = index;
             if (this.contentIsOpen) {
                 this.contentIsOpen = false
                 this.stopScroll = false
@@ -173,8 +190,10 @@ new Vue({
         btn_modal() {
             if (this.accuseIsOpen) {
                 this.accuseIsOpen = false
+                this.stopScroll = false
             } else {
                 this.accuseIsOpen = true
+                this.stopScroll = true
             }
         },
         //開啟檢舉燈箱
@@ -188,24 +207,30 @@ new Vue({
             }
         },
         //愛心
-        heart_btn(e) {
+        heart_btn(e, num) {
             // alert("123")
-            this.isHeart = !this.isHeart
-            console.log(e);
-            // this.msg = this.searchResult[index]
-            // console.log(e);
-
-            // document.querySelectorAll('.fa-heart')[e].classList.add('colorRed')
-            // e.target.classList.toggle("colorRed")
+            // this.isHeart = !this.isHeart
+            if (num == 1) {
+                $(".msg_content .fa-heart").eq(e).toggleClass("colorRed");
+                $(".check_content .fa-heart").eq(e).toggleClass("colorRed");
+                console.log(e);
+            } else {
+                console.log(this.aaa)
+                event.target.classList.toggle("colorRed");
+                $(".msg_content .fa-heart").eq(vm.$data.aaa).toggleClass("colorRed")
+            }
         },
         //收藏
-        collect_btn(e) {
-            this.isCollect = !this.isCollect
-            console.log(e);
-            this.msg = this.searchResult[index]
-                // e.target.classList.contains("colorGray")
-                //   ? e.target.classList.remove("colorGray")
-                //   : e.target.classList.add("colorGray");
+        collect_btn(e, num) {
+            if (num == 1) {
+                $(".msg_content .fa-bookmark").eq(e).toggleClass("colorGray");
+                $(".check_content .fa-bookmark").eq(e).toggleClass("colorGray");
+                console.log(e);
+            } else {
+                console.log(this.aaa)
+                event.target.classList.toggle("colorGray");
+                $(".msg_content .fa-bookmark").eq(vm.$data.aaa).toggleClass("colorGray")
+            }
         },
         //下拉選單
         toggleDropdown() {
@@ -222,7 +247,8 @@ new Vue({
             e.currentTarget.classList.add('side_click');
         },
         heart_btn_feedback(index) {
-            this.isHeart = !this.isHeart
+
+
         }
 
     },
