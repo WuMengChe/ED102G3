@@ -46,7 +46,9 @@
               </button>
                     </div>
                     <div class="member">
-                        <a href="member_sign_in.html"><i class="fas fa-user"></i></a>
+                        <a id="member_icon" href="member_sign_in.html"><i class="fas fa-user"></i
+              ></a>
+                        <button id="header_logOut" @click="header_logOut">登出</button>
                     </div>
                 </div>
             </header>
@@ -167,7 +169,7 @@
                                         <div class="course_session_title">
                                             <h2>熱門課程</h2>
                                         </div>
-                                        <ul class="auto_slider owl-carousel">
+                                        <ul class="auto_slider owl-carousel" v-if="hot_course.length > 0">
                                             <li class="auto_slider_card" v-for="card in hot_course">
                                                 <a href="course_introduce.html">
                                                     <div class="auto_slider_card_pic">
@@ -224,8 +226,9 @@
                       <div class="course_session_contain">
                         <ul>
                           <li
+                            :key="index"
                             class="auto_slider_card"
-                            v-for="card in section.courses"
+                            v-for="(card,index) in section.courses"
                           >
                             <div class="card_pic">
                               <a href="course_introduce.html">
@@ -284,9 +287,9 @@
     </div>
 
     @@include('app/footer.html') @@include('app/script.html')
-    <script src="./js/course/owl_auto_slide.js "></script>
-    <script src="./js/course/parallax_script.js "></script>
-    <script src="./js/course/course_main.js "></script>
+    <!-- <script src="./js/course/owl_auto_slide.js "></script> -->
+    <!-- <script src="./js/course/parallax_script.js "></script> -->
+    <!-- <script src="./js/course/course_main.js "></script> -->
     <script src="./js/course/course_vue.js"></script>
   </body>
 </html>

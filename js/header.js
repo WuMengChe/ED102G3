@@ -7,6 +7,7 @@ new Vue({
     },
     mounted() {
         this.receive_storage();
+        this.check_member_api();
     },
     methods: {
         receive_storage() {
@@ -36,6 +37,39 @@ new Vue({
             // e.currentTarget.classList.remove('cart_clicked');
             this.cart_items.splice(index, 1);
             this.add_storage();
+        },
+        check_member_api() {
+            axios
+                .get("./php/memberStateCheck.php")
+                .then((res) => {
+                    if (res.status == 200) {
+                        console.log(res.data);
+                        if (res.data != 0) {
+                            let memName = res.data.split(";")[1];
+                            $("div.member > a").html("Hi," + memName);
+                            $("#header_logOut").css("display", "block");
+                        }
+                    }
+                    // this.hot_course = res.data;
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        },
+        header_logOut() {
+            axios
+                .get("./php/member_logOut.php")
+                .then((res) => {
+                    if (res.status == 200) {
+                        location.reload();
+                        $("#header_logOut").css("display", "none");
+
+                        // $("#header_logOut").css("display", "none");
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
         },
     },
     computed: {

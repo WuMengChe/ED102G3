@@ -23,7 +23,8 @@ let changeSignType = new Vue({
             var memAccount = document.querySelector('.input_div #account').value;
             var memCode = document.querySelector('.input_div #code').value;
             var formData = new FormData();
-            formData.append('DIS_NO', memAccount);
+            formData.append('memAccount', memAccount);
+            formData.append('memCode', memCode);
             axios
             .post('./php/memberSignInCheck.php',formData)
             .then((resp) => {

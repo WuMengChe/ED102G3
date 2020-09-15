@@ -1,40 +1,4 @@
 //課程vue--要套資料
-new Vue({
-    el: '.screen',
-    data: {
-        courses: [],
-    },
-    created() {
-
-        axios
-            .get('../json/index_course.json')
-            .then(res => this.courses = res.data);
-    },
-    mounted() {
-
-    }
-});
-
-
-
-//論壇vue--要套資料
-new Vue({
-    el: '.message',
-    data: {
-        messages: [],
-    },
-    created() {
-
-        axios
-            .get('../json/index_forum.json')
-            .then(res => this.messages = res.data);
-    },
-    mounted() {
-
-    }
-});
-
-
 
 
 //postcard
@@ -42,34 +6,58 @@ Vue.component('cards', {
     template: `
   <div class="cards">
     <div class="line"></div>
-    <div class="allCard">
+    <div class="allCard" v-for="card in postcards">
         <div class="card card--animated">
-            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+            <img class="postCard" :src="{{cards.POS_PIC}}" alt="">
         </div>
         <div class="card card--animated">
-            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
-        </div>
-        <div class="card card--animated">
-            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+            <img class="postCard" :src="{{cards.POS_PIC_BACK}}" alt="">
         </div>
     </div>
     <div class="allCard allCard_rwd">
         <div class="card card--animated">
-            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+            <img class="postCard" :src="{{cards.POS_PIC}}" alt="">
         </div>
         <div class="card card--animated">
-            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+            <img class="postCard" :src="{{cards.POS_PIC_BACK}}" alt="">
         </div>
     </div>
     <div class="allCard allCard_small">
         <div class="card card--animated">
-            <img class="postCard" src="./img/index/index_5th/postCard.png" alt="">
+            <img class="postCard" :src="{{cards.POS_PIC}}" alt="">
         </div>
     </div>
   </div> `,
+    data() {
+        return {
+            postcards: []
+        }
+    },
+    created() {
+        axios
+            .get('./php/front_index_postcard.php')
+            .then(res => this.postcards = res.data);
+
+    },
+
 });
 
 new Vue({
-    el: '#img',
+    el: 'main.index',
+    data: {
+        courses: [],
+        messages: [],
 
-})
+    },
+    mounted() {
+        axios
+            .get('./php/front_index_course.php')
+            .then(res => this.courses = res.data);
+
+        axios
+            .get('./php/front_index_forum.php')
+            .then(res => this.messages = res.data);
+
+
+    }
+});
