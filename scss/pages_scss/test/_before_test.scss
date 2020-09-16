@@ -84,33 +84,33 @@ div.before_test_wrap{
                 cursor: pointer;
                 // box-shadow: 2px 0px 0px #ffffff;
                 position: relative;
-                &::after{
-                    content: " ";
-                    display: block;
-                    width: 120px;
-                    height: 320px;
-                    border-radius: 25px;
-                    border: 5px solid $practical_color;
-                    position: absolute;
-                    right: 0px;
-                    top: -5px;
-                    z-index: -1;
-                    // background: $practical_color;
-                    background: #ffffff;
-                    animation: shadow ;
-                    animation-duration: 2s;
-                    animation-iteration-count: infinite;
-                    animation-timing-function: ease 1s;
-                    animation-duration: 3s;
-                    @media screen  and (max-width: 1140px){ 
-                        width: 90%;
-                        height: 101%;
-                      }
-                      @media screen  and (max-width: 996px){ 
-                        display: none;
-                        animation: none;
-                      }
-                }
+                //  &::after{
+                //     content: " ";
+                //     display: block;
+                //     width: 120px;
+                //     height: 320px;
+                //     border-radius: 25px;
+                //     border: 5px solid $practical_color;
+                //     position: absolute;
+                //     right: 0px;
+                //     top: -5px;
+                //     z-index: -1;
+                //     // background: $practical_color;
+                //     background: #ffffff;
+                //     animation: shadow ;
+                //     animation-duration: 2s;
+                //     animation-iteration-count: infinite;
+                //     animation-timing-function: ease 1s;
+                //     animation-duration: 3s;
+                //     @media screen  and (max-width: 1140px){ 
+                //         width: 90%;
+                //         height: 101%;
+                //       }
+                //       @media screen  and (max-width: 996px){ 
+                //         display: none;
+                //         animation: none;
+                //       }
+                // }
                 // 卡片內的內容
                 .card_content{
                     // border: 1px solid red;
@@ -172,7 +172,7 @@ div.before_test_wrap{
                             border-radius:20px;
                             background: $practical_color;
                         }
-                        display: none;
+                        // display: none;
                     }
                 }
 

@@ -25,77 +25,89 @@
 
       <div class="all_type_card_before_test" >
           <div class="cards_wrap">
-     
-            <div class="card_R type_card ">
+            <!-- <div class="card_R type_card " v-for="(item, index) in cardType" :class="{'active':item.isActive}" @click="$forceUpdate(), item.isActive = !item.isActive, test(index)">
+                <template v-if="item.IND_NO">
+                    <div class="card_content">
+                        <div class="type_capital_img ">
+                            <h2>{{item.IND_NO}}</h2>
+                            <h3>{{item.IND_CLASS}}</h3>
+                        </div>
+                        <div class="type_intro" v-if="item.isActive">
+                            <p class="p_small">{{item.IND_INFO}}</p>
+                        </div>
+                    </div>
+                </template>
+            </div> -->
+            <div class="card_R type_card " :class="{'active':cardType[4].isActive}" @click="$forceUpdate(), cardType[4].isActive = !cardType[4].isActive, test(4)">
                 <div class="card_content">
                     <div class="type_capital_img ">
-                        <h2>{{ cardR.symbol }}</h2>
-                        <h3>{{cardR.name}}</h3>
+                        <h2>{{cardType[4].IND_NO}}</h2>
+                        <h3>{{cardType[4].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">{{cardR.dscrp}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card_I type_card "> 
-                <div class="card_content">
-                    <div class="type_capital_img">
-                        <h2>{{cardI.symbol}}</h2>
-                        <h3>{{cardI.name}}</h3>
-                    </div>
-                    <div class="type_intro">
-                        <p class="p_small">{{cardI.dscrp}}</p>
+                    <div class="type_intro" v-if="cardType[4].isActive">
+                        <p class="p_small">{{cardType[4].IND_INFO}}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="card_A type_card">
+            <div class="card_I type_card " :class="{'active':cardType[3].isActive}" @click="$forceUpdate(), cardType[3].isActive = !cardType[3].isActive, test(3)"> 
                 <div class="card_content">
                     <div class="type_capital_img">
-                        <h2>{{cardA.symbol}}</h2>
-                        <h3>{{cardA.name}}</h3>
+                        <h2>{{cardType[3].IND_NO}}</h2>
+                        <h3>{{cardType[3].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">{{cardA.dscrp}}</p>
+                    <div class="type_intro" v-if="cardType[3].isActive">
+                        <p class="p_small">{{cardType[3].IND_INFO}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card_A type_card" :class="{'active':cardType[0].isActive}" @click="$forceUpdate(), cardType[0].isActive = !cardType[0].isActive, test(0)" >
+                <div class="card_content">
+                    <div class="type_capital_img">
+                        <h2>{{cardType[0].IND_NO}}</h2>
+                        <h3>{{cardType[0].IND_CLASS}}</h3>
+                    </div>
+                    <div class="type_intro" v-if="cardType[0].isActive" >
+                        <p class="p_small">{{cardType[0].IND_INFO}}</p>
                     </div>
                 </div>
             </div>
 
 
-            <div class="card_S type_card">
+            <div class="card_S type_card" :class="{'active':cardType[5].isActive}" @click="$forceUpdate(), cardType[5].isActive = !cardType[5].isActive, test(5)" >
                 <div class="card_content">
                     <div class="type_capital_img">
-                        <h2>{{cardS.symbol}}</h2>
-                        <h3>{{cardS.name}}</h3>
+                        <h2>{{cardType[5].IND_NO}}</h2>
+                        <h3>{{cardType[5].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">{{cardS.dscrp}}</p>
+                    <div class="type_intro" v-if="cardType[5].isActive" >
+                        <p class="p_small">{{cardType[5].IND_INFO}}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="card_E type_card">
+            <div class="card_E type_card" :class="{'active':cardType[2].isActive}" @click="$forceUpdate(), cardType[2].isActive = !cardType[2].isActive, test(2)" >
                 <div class="card_content">
                     <div class="type_capital_img">
-                        <h2>{{cardE.symbol}}</h2>
-                        <h3>{{cardE.name}}</h3>
+                        <h2>{{cardType[2].IND_NO}}</h2>
+                        <h3>{{cardType[2].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">{{cardE.dscrp}}
+                    <div class="type_intro" v-if="cardType[2].isActive" >
+                        <p class="p_small">{{cardType[2].IND_INFO}}
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="card_C type_card">
+            <div class="card_C type_card" :class="{'active':cardType[1].isActive}" @click="$forceUpdate(), cardType[1].isActive = !cardType[1].isActive, test(1)" >
                 <div class="card_content">
                     <div class="type_capital_img">
-                        <h2>{{cardC.symbol}}</h2>
-                        <h3>{{cardC.name}}</h3>
+                        <h2>{{cardType[1].IND_NO}}</h2>
+                        <h3>{{cardType[1].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">{{cardC.dscrp}}</p>
+                    <div class="type_intro" v-if="cardType[1].isActive" >
+                        <p class="p_small">{{cardType[1].IND_INFO}}</p>
                     </div>
                 </div>
             </div>
@@ -116,8 +128,19 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js'></script>
     <script type="text/javascript" src="./js/test/jquery-3.5.1.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
-    <script type="text/javascript" src="./js/test/test_before_vue.js"></script>
     <script type="text/javascript" src="./js/test/test_before.js"></script>
+    <script type="text/javascript" src="./js/test/test_before_vue.js"></script>
+<!--     
+    <script type="text/javascript">
+
+$(document).ready(function(){
+  $('.type_card').click(function(){
+      $('.type_card').addClass('stop');
+      })
+    });
+    </script> -->
+    <!-- <script type="text/javascript" src="./js/test/test_before.js"></script> -->
+
 </body>
 
 </html>

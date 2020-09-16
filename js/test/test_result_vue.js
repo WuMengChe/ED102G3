@@ -115,6 +115,18 @@ let testResult = new Vue({
            this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10) + 20 
            };
        };
+    
+//  要傳上面這個array的值到php的話，不用一次傳整個陣列，用 this.anaValue[index]的方式一個一個傳到php 的方式
+ 
+        var formData = new FormData();
+        formData.append('typeR', this.anaValue[0]);
+        axios
+        .post('./testResultData.php',formData)
+        .then((res) => {
+        console.log(res)
+        });
+        
+// 以上傳六個值出去
 
        this.maxValue = this.anaValue[0]; // 這邊開始找出最大值是誰?在哪?
        for( i=0; i< this.anaValue.length; i++){
@@ -125,7 +137,7 @@ let testResult = new Vue({
         // console.log(this.maxValue);
         // console.log(this.maxIndex);
        }   
-      
+      //這邊這個最大值也要傳到php喔
                                              //  [0,1,2,3,4,5]
     //以下判定第幾個值是最大的決定要撈什麼資料:順序: [R,I,A,S,E,C]            
        if ( this.maxIndex === 0 ){
@@ -172,8 +184,9 @@ let testResult = new Vue({
                     document.querySelector('.bg_of_lightbx').style = "display:block";
                 }
                 else{
+                    console.log(resp.data)
                     alert('測驗結果已儲存');
-                    
+                    // 執行testResultData.php
                     //這邊放把資料送去資料庫的東西喔
                     // 會員編號、圖表、六類分數、最高分類型、日期!
                 }
