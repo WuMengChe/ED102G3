@@ -80,9 +80,11 @@ let vm = new Vue({
     };
   },
   mounted() {
+    // 熱門課程/category課程
     this.all_course_api();
-
     let localURL = new URL(document.location);
+
+    // 判斷在course_introduce頁面才執行
     if (localURL.toString().includes("course_introduce")) {
       this.introduce_course_api();
     }
@@ -146,7 +148,7 @@ let vm = new Vue({
       this.cart_items.splice(index, 1);
       this.add_storage();
     },
-    // 資料庫載入
+    // (hot course/ category course 資料庫載入)
     all_course_api() {
       axios
         .all([
@@ -155,6 +157,7 @@ let vm = new Vue({
         ])
         .then(
           axios.spread((res1, res2) => {
+            // 熱門課程資料
             console.log(res1);
             this.hot_course = res1.data;
 
@@ -164,6 +167,7 @@ let vm = new Vue({
             document.body.appendChild(script);
 
             // ===================
+            // category課程資料
             console.log(res2);
 
             // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
@@ -173,55 +177,53 @@ let vm = new Vue({
               );
             }
             console.log(this.category);
-            // this.main_course = res.data;
-            this.receive_storage();
           })
         )
         .then(() => {
           this.receive_storage();
         })
-        .catch((res) => {
+        .catch((err) => {
           console.log(err);
         });
     },
-    hot_course_api() {
-      axios
-        .get("./php/course_hot_course.php")
-        .then((res) => {
-          console.log(res);
-          this.hot_course = res.data;
+    // hot_course_api() {
+    //   axios
+    //     .get("./php/course_hot_course.php")
+    //     .then((res) => {
+    //       console.log(res);
+    //       this.hot_course = res.data;
 
-          // OWL套件
-          script = document.createElement("script");
-          script.src = "./js/course/owl_auto_slide.js";
-          document.body.appendChild(script);
-          this.receive_storage();
-        })
-        // .than(this.receive_storage())
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
-    main_course_api() {
-      axios
-        .get("./php/course_course_list.php")
-        .then((res) => {
-          console.log(res);
+    //       // OWL套件
+    //       script = document.createElement("script");
+    //       script.src = "./js/course/owl_auto_slide.js";
+    //       document.body.appendChild(script);
+    //       this.receive_storage();
+    //     })
+    //     // .than(this.receive_storage())
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // },
+    // main_course_api() {
+    //   axios
+    //     .get("./php/course_course_list.php")
+    //     .then((res) => {
+    //       console.log(res);
 
-          // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
-          for (let i = 0; i < this.category.length; i++) {
-            this.category[i].courses = res.data.filter(
-              (item) => item.ind_class == this.category[i].link_title
-            );
-          }
-          console.log(this.category);
-          // this.main_course = res.data;
-          this.receive_storage();
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
+    //       // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
+    //       for (let i = 0; i < this.category.length; i++) {
+    //         this.category[i].courses = res.data.filter(
+    //           (item) => item.ind_class == this.category[i].link_title
+    //         );
+    //       }
+    //       console.log(this.category);
+    //       // this.main_course = res.data;
+    //       this.receive_storage();
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // },
     introduce_course_api() {
       //   找網址
       //   new URL(document.location) 尋找當前網址
@@ -230,37 +232,50 @@ let vm = new Vue({
       let localUrl = new URL(document.location);
       this.introduce_no = localUrl.searchParams.get("ski_no");
 
+      // FormData建立變數傳給php
       var formData = new FormData();
       formData.append("introduce_no", this.introduce_no);
+
       axios
-        .post("./php/course_introduce.php", formData)
-        .then((res) => {
-          // 接收資料庫資料
-          if (res.status == 200) {
-            if (res.data != 0) {
-              _this.introduce_single = res.data[0];
+        .all([axios.post("./php/course_introduce.php", formData)])
+        .then(
+          axios.spread((res1, res2) => {
+            // 接收資料庫資料
+            if (res1.status == 200) {
+              if (res1.data != 0) {
+                _this.introduce_single = res1.data[0];
 
-              // 切課程介紹
-              _this.introduce_single.ski_intro = _this.introduce_single.ski_intro.split(
-                ";"
-              );
-              _this.introduce_single.ski_intro.splice(0, 1);
-
-              _this.set_course_suggest();
+                // 切課程介紹
+                _this.introduce_single.ski_intro = _this.introduce_single.ski_intro.split(
+                  ";"
+                );
+                _this.introduce_single.ski_intro.splice(0, 1);
+              }
             }
-          }
+          })
+        )
+        .then(() => {
+          // _this.set_course_suggest();
+          this.category.forEach((type) => {
+            if (type.link_title == this.introduce_single.ind_class) {
+              this.introduce_suggest = type.courses;
+            }
+          });
         })
-        .catch(function (error) {
-          console.log(error);
+        .then(() => {
+          _this.receive_storage();
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
-    set_course_suggest() {
-      this.category.forEach((type) => {
-        if (type.link_title == this.introduce_single.ind_class) {
-          this.introduce_suggest = type.courses;
-        }
-      });
-    },
+    // set_course_suggest() {
+    //   this.category.forEach((type) => {
+    //     if (type.link_title == this.introduce_single.ind_class) {
+    //       this.introduce_suggest = type.courses;
+    //     }
+    //   });
+    // },
     check_member_api() {
       axios
         .get("./php/memberStateCheck.php")
