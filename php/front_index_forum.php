@@ -1,7 +1,7 @@
 <?php
 try {
     require_once "connectMySql.php";
-    $forumSql = "select a.*, b.mes_num from DISCUSS_AREA a join (SELECT dis_no, count(*) mes_num FROM DISCUSS_MESSAGE group by DIS_NO) b on a.DIS_NO = b.DIS_NO group by DIS_NO ";
+    $forumSql = "select a.*, b.mes_num from DISCUSS_AREA a join (SELECT dis_no, count(*) mes_num FROM DISCUSS_MESSAGE group by DIS_NO) b on a.DIS_NO = b.DIS_NO group by DIS_NO order by DIS_LIK_NUM desc limit 10";
     $forum = $pdo->query($forumSql);
 
     if ($forum->rowCount() == 0) { //找不到

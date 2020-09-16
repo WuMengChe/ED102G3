@@ -95,7 +95,7 @@
               </div>
               <div class="msg_btn">
                 <button class="heart">
-                  <i class="fas fa-heart" :class="{'colorRed':messages.isHeart}" @click="heart_btn(index,1)"></i>
+               <i class="fas fa-heart" :class="{'colorRed':messages.CURRENT_USER_CLICKED}" @click="heart_btn(index,1)"></i>
                 </button>
                 <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
@@ -127,7 +127,6 @@
         </div>
       </div>
     </div>
-    @@include('app/footer.html')
 
 
     <!--燈箱！！！-->

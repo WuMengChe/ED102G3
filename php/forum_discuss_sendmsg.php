@@ -4,31 +4,20 @@ include "memberStateCheck.php";
 
 try {
     require_once "connectMySql.php";
-    $sql = "select  MEMBER.MEM_NAME,
-                    MEMBER.MEM_PIC,
-                    DISCUSS_MESSAGE.DIS_MES_CONTENT,
-                    DISCUSS_MESSAGE.DIS_MES_DATE,
-                    DISCUSS_MESSAGE.DIS_MES_LIK_NUM
-                    from member
-                    join DISCUSS_MESSAGE using(MEM_NO)
-                    join discuss_area
-                    on ( discuss_area.DIS_NO = DISCUSS_MESSAGE.DIS_NO and DISCUSS_MESSAGE.DIS_NO = :DIS_NO )";
-    $dis = $pdo->prepare($sql);
-    $dis->bindValue(":DIS_NO", $_POST['DIS_NO']);
-    $dis->execute();
-    $dis = $pdo->query($sql);
-
-    if ($dis->rowCount() == 0) { //找不到
-        //傳回空的JSON字串
-        echo "{}";
-
-    } else { //找得到
-        //取回一筆資料
-        $disRow = $dis->fetchAll(PDO::FETCH_ASSOC);
-
-        //送出json字串
-        echo json_encode($disRow);
-
+    if($pdo!=false){
+      $sql = "insert into DISCUSS_MESSAGE
+      (DIS_NO,MEM_NO,DIS_MES_CONTENT,DIS_MES_DATE)
+      values(:DIS_NO,:MEM_NO,:DIS_MES_CONTENT,curdate())";
+      $sendmsg = $pdo->prepare($sql);
+      $sendmsg->bindValue(":DIS_NO", $_POST['DIS_NO']);
+      $sendmsg->bindValue(":MEM_NO", $_POST['MEM_NO']);
+      $sendmsg->bindValue(":DIS_MES_CONTENT", $_POST['DIS_MES_CONTENT']);
+      $sendmsg->bindValue(":DIS_MES_DATE", $_POST['DIS_MES_DATE']);
+      $sendmsg->execute();
+      $sendmsgRow = $sendmsg->fetch(PDO::FETCH_ASSOC); 
+      echo 0;
+    }else{
+        echo 1;
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

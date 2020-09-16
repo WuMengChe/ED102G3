@@ -130,14 +130,11 @@ let vm = new Vue({
     },
     // 購物車功能
     add_cart(item) {
+      // 登入燈箱
       axios.post("./php/memberStateCheck.php").then((resp) => {
         if (resp.data == 0) {
           document.querySelector(".bg_of_lightbx").style = "display:block";
-        } else {
-          alert("測驗結果已儲存");
-          //這邊放把資料送去資料庫的東西喔// 別忘了有會員編號、圖表、內容日期!
         }
-        // console.log(resp)
       });
 
       if (this.cart_items.length == 0) {
@@ -223,8 +220,6 @@ let vm = new Vue({
         .post("./php/course_introduce.php", formData)
         .then((res) => {
           // 接收資料庫資料
-          console.log("課程介紹");
-          // console.log(res);
           if (res.status == 200) {
             if (res.data != 0) {
               _this.introduce_single = res.data[0];
@@ -238,23 +233,6 @@ let vm = new Vue({
               _this.set_course_suggest();
             }
           }
-
-          // // console.log(this.introduce_course[0].ski_no);
-
-          // if (this.introduce_no != null) {
-          //   this.introduce_course.forEach((course) => {
-          //     if (this.introduce_no == course.ski_no) {
-          //       this.introduce_single = course;
-          //       // alert(this.introduce_single.ski_img);
-          //     }
-          //   });
-          // }
-
-          // this.introduce_course.forEach((course) => {
-          //   if (course.ind_class == this.introduce_single.ind_class) {
-          //     this.introduce_suggest.push(course);
-          //   }
-          // });
         })
         .catch(function (error) {
           console.log(error);
