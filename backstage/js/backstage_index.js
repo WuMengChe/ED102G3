@@ -12,9 +12,6 @@ window.addEventListener("load", function () {
     let newAdministrator = newAd.cloneNode(true);
     newAdministrator.style.display = "";
     adForm.insertBefore(newAdministrator, newAdBtn);
-
-
-
   }
 
   document.getElementById("newAdBtn").onclick = addAdministrator;
@@ -27,7 +24,7 @@ window.addEventListener("load", function () {
   //編輯按鈕
 
   function edit() {
-    let editBtn = document.querySelector(".edit");
+    let editBtn = document.querySelectorAll(".edit");
     editBtn.innerText = "確認";
     $('select').show();
   }

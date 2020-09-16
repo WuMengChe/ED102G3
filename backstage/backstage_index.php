@@ -10,7 +10,7 @@ try {
   $memSql = "select * from member";
   $adminSql = "select * from administrator";
   $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
-  $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE) IND_SAL_STEP_DISTANCE ,GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
+  $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_INTRO,i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
 
   $skillSql = "select a.*, b.IND_CLASS from SKILL_CLASS a join INDUSTRY_CLASS b on a.IND_NO = b.IND_NO order by SKI_NO";
   $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
@@ -40,8 +40,10 @@ try {
   echo "錯誤行號:", $e->getLine(), "<br>";
 }
 
-$orderArray = array();
-
+$careerArrayH = array();
+$careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
+$careerArrayL = array();
+$careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
 
 ?>
 
@@ -319,45 +321,54 @@ $orderArray = array();
                 <td><?= $careerRow["IND_INT_SKILL"] ?></td>
                 <td>
                   <p>最低月薪:
-                    <span><?= $careerRow["IND_SAL_LOW"] ?></span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[0] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= $careerRow["IND_SAL_HIGH"] ?></span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[0] ?></span>
                   </p>
 
                 </td>
+
                 <td>
                   <p>最低月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[1] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[1] ?></span>
                   </p>
+
                 </td>
+
                 <td>
                   <p>最低月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[2] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[2] ?></span>
                   </p>
+
                 </td>
+
                 <td>
                   <p>最低月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[3] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[3] ?></span>
                   </p>
+
                 </td>
+
                 <td>
                   <p>最低月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[4] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[4] ?></span>
                   </p>
+
                 </td>
+
                 <td>
 
                   <button class="edit">編輯</button>
