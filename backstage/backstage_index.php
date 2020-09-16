@@ -10,14 +10,15 @@ try {
   $memSql = "select * from member";
   $adminSql = "select * from administrator";
   $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
-  $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_SKILL, s.IND_SAL_STEP_DISTANCE,s.IND_SAL_LOW,s.IND_SAL_HIGH from industry_introduce i
-join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO order by i.IND_INT_NO;";
+  $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE) IND_SAL_STEP_DISTANCE ,GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
 
   $skillSql = "select a.*, b.IND_CLASS from SKILL_CLASS a join INDUSTRY_CLASS b on a.IND_NO = b.IND_NO order by SKI_NO";
   $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
   $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
-  $orderDetailSql = "select a.*, b.*, c.SKI_NAME from ORDER_MEM a join ORDER_DETIAL b on a.ORD_NO = b.ORD_NO JOIN SKILL_CLASS c on b.SKI_NO = c.SKI_NO";
-  $orderSql = "select * from ORDER_MEM";
+
+  $orderSql = "select mem.MEM_NO, ord.ORD_NO, ord.ORD_DATE, ord.ORD_AMOUNT,ord.ORD_PAY, orddet.ORD_DET_NO, orddet.ORD_DET_PRICE, ski.SKI_NAME, ski.SKI_IMG, ski.SKI_TEC_NAME, ski.SKI_NO from order_mem ord join member mem on ord.MEM_NO = mem.MEM_NO join order_detial orddet on ord.ORD_NO = orddet.ORD_NO join skill_class ski on ski.SKI_NO = orddet.SKI_NO where ord.ORD_NO = 1 order by ord.ORD_NO asc";
+  // $orderSql = "select * from ORDER_MEM";
+
   $materialSql = "select * from POSTCARD_MATERIAL ";
   $announceSql = "select * from announcement;";
   // $indusSql = "select ";
@@ -25,18 +26,23 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
   $administrator = $pdo->query($adminSql);
   $quiz = $pdo->query($quizSql);
   $career = $pdo->query($careerSql);
-  $salary = $pdo->query($salarySql);
   $skill = $pdo->query($skillSql);
   $ArReport = $pdo->query($ArReportSql);
   $MgReport = $pdo->query($MgReportSql);
-  $orderDetail = $pdo->query($orderDetailSql);
+
   $order = $pdo->query($orderSql);
+  // $order = $pdo->query($orderSql);
+
   $material = $pdo->query($materialSql);
   $announce = $pdo->query($announceSql);
 } catch (PDOException $e) {
   echo "錯誤原因:", $e->getMessage(), "<br>";
   echo "錯誤行號:", $e->getLine(), "<br>";
 }
+
+$orderArray = array();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -104,17 +110,20 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
 
       <div class="main col-11">
         <!-- <component :is="member"></component> -->
+        <!-- member -->
         <div class="account" v-show="account">
-          會員
+          <p class="title">會員管理</p>
           <form>
-            <input type="text">
-            <button>查詢</button>
+            <div>
+              <input type="text" class="search_input">
+              <button class="search">查詢</button>
+            </div>
+
           </form>
           <table>
             <tr>
               <th>編號</th>
               <th>名稱</th>
-              <th>生日</th>
               <th>電話</th>
               <th>電子郵件</th>
               <th>是否停權</th>
@@ -126,7 +135,6 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
 
                 <td><?= $memberRow["MEM_NO"] ?></td>
                 <td><?= $memberRow["MEM_NAME"] ?></td>
-                <td><?= $memberRow["MEM_BIR"] ?></td>
                 <td><?= $memberRow["MEM_TEL"] ?></td>
                 <td><?= $memberRow["MEM_EMAIL"] ?></td>
                 <td>
@@ -145,7 +153,8 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
         </div>
 
-        <div class="administrator" v-show="administrator">管理員
+        <div class="administrator" v-show="administrator">
+          <p class="title">管理員管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -193,7 +202,7 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
                 <input type="text">
               </td>
               <td>
-                <button>確認</button>
+                <button class="edit">確認</button>
               </td>
             </tr>
           </table>
@@ -201,8 +210,10 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
             <button id="newAdBtn">新增管理員</button>
           </div>
         </div>
+
+        <!-- quiz -->
         <div class="quiz" v-show="quiz">
-          測驗題庫
+          <p class="title">測驗題庫</p>
           <table>
             <tr>
               <th>編號</th>
@@ -267,8 +278,10 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
           <button>新增題目</button>
         </div>
+
+        <!-- industry -->
         <div class="industry" v-show="industry">
-          行業管理
+          <p class="title">行業管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -293,7 +306,7 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
                 <td><?= $careerRow["IND_INT_NAME"] ?></td>
                 <td>這是簡短介紹</td>
                 <td>
-                  <img src="" alt="行業圖片">
+                  <img src="<?= $careerRow["IND_INT_PICTURE"] ?>" alt="行業圖片">
                 </td>
                 <td>
                   文藝型
@@ -304,27 +317,18 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
                 <td>這是內容</td>
                 <td>
                   <ul>
-                    <li>技能1</li>
-                    <li>技能2</li>
-                    <li>技能3</li>
-                    <li>技能4</li>
-                    <li>技能5</li>
-                    <li>技能6</li>
+                    <li><?= $careerRow["IND_INT_SKILL"] ?></li>
+
                   </ul>
                 </td>
                 <td>
-                  <?php
-                  while ($salaryRow = $salary->fetch(PDO::FETCH_ASSOC)) {
-                  ?>
-                    <p>最低月薪:
-                      <span><?= $salaryRow["IND_SAL_LOW"] ?></span>
-                    </p>
-                    <p>最高月薪:
-                      <span>20000</span>
-                    </p>
-                  <?php
-                  }
-                  ?>
+                  <p>最低月薪:
+                    <span><?= $careerRow["IND_SAL_LOW"] ?></span>
+                  </p>
+                  <p>最高月薪:
+                    <span><?= $careerRow["IND_SAL_HIGH"] ?></span>
+                  </p>
+
                 </td>
                 <td>
                   <p>最低月薪:
@@ -369,8 +373,10 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
           <button>新增行業</button>
         </div>
+
+        <!-- skill_class -->
         <div class="skill_class" v-show="skill_class">
-          課程
+          <p class="title">課程管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -438,8 +444,11 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
           <button>新增課程</button>
         </div>
+
+        <!-- article_report -->
         <div class="article_report" v-show="article_report">
-          主題檢舉
+          <p class="title">主題檢舉</p>
+
           <table>
             <tr>
               <th>檢舉編號</th>
@@ -473,8 +482,11 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
             ?>
           </table>
         </div>
+
+        <!-- message_report -->
         <div class="message_report" v-show="message_report">
-          留言檢舉
+          <p class="title">留言檢舉</p>
+
           <table>
             <tr>
               <th>檢舉編號</th>
@@ -506,8 +518,17 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
               </tr>
           </table>
         </div>
+
+        <!-- order_mem -->
         <div class="order_mem" v-show="order_mem">
-          訂單
+          <p class="title">訂單管理</p>
+          <form>
+            <div>
+              <input type="text" class="search_input">
+              <button class="search">查詢</button>
+            </div>
+
+          </form>
           <table>
             <tr>
               <th>編號</th>
@@ -528,24 +549,18 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
                 <td><?= $orderRow["ORD_DATE"] ?></td>
                 <td><button>訂單明細</button></td>
               </tr>
-            <?php
-            }
-            ?>
-
-            <tr>
-              <th>訂單明細編號</th>
-              <th>課程編號</th>
-              <th>課程名稱</th>
-              <th>價格</th>
-            </tr>
-            <?php
-            while ($orderDetailRow = $orderDetail->fetch(PDO::FETCH_ASSOC)) {
-            ?>
               <tr>
-                <td><?= $orderDetailRow["ORD_DET_NO"] ?></td>
-                <td><?= $orderDetailRow["SKI_NO"] ?></td>
-                <td><?= $orderDetailRow["SKI_NAME"] ?></td>
-                <td><?= $orderDetailRow["ORD_DET_PRICE"] ?></td>
+                <th>訂單明細編號</th>
+                <th>課程編號</th>
+                <th>課程名稱</th>
+                <th>價格</th>
+              </tr>
+
+              <tr>
+                <td><?= $orderRow["ORD_DET_NO"] ?></td>
+                <td><?= $orderRow["SKI_NO"] ?></td>
+                <td><?= $orderRow["SKI_NAME"] ?></td>
+                <td><?= $orderRow["ORD_DET_PRICE"] ?></td>
 
               </tr>
             <?php
@@ -553,8 +568,11 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
             ?>
           </table>
         </div>
+
+        <!-- postcard_material -->
         <div class="postcard_material" v-show="postcard_material">
-          明信片素材
+          <p class="title">明信片素材管理</p>
+
           <table>
 
             <tr>
@@ -585,8 +603,11 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
           <button>新增素材</button>
         </div>
+
+        <!-- announcement -->
         <div class="announcement" v-show="announcement">
-          公告
+          <p class="title">公告管理</p>
+
           <table>
 
             <tr>

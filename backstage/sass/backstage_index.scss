@@ -1,15 +1,58 @@
+$main_color:#A0CADB;
+$a_color:#3791c5;
+$side_color:#424965;
+
 @mixin table {
   #{'table'} {
-    border: 1px solid black;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
 
-    th,
-    td {
-      border: 1px solid black;
-      padding: 4px;
-      min-width: 90px;
+    tr {
+      // background-color: whitesmoke;
+      // border: 3px solid transparent;
+      // border-radius: 5px;
+
     }
 
+    th {
+      // border: 1px solid black;
+      padding: 4px;
+      min-width: 90px;
+      background-color: #F4C3C5;
+      border: 1px solid $main_color;
+      border-bottom: 3px solid $main_color;
+    }
+
+
+    td {
+      // border: 1px solid rgb(228, 41, 41);
+      padding: 4px;
+      background-color: white;
+      border: 1px solid $main_color;
+      border-bottom: 3px solid $main_color;
+    }
+
+    /*第一欄第一列：左上*/
+    tr:first-child th:first-child {
+      border-top-left-radius: 10px;
+      // border-bottom-left-radius: 10px;
+    }
+
+    /*第一欄最後列：左下*/
+    tr:last-child td:first-child {
+      border-bottom-left-radius: 10px;
+    }
+
+    /*最後欄第一列：右上*/
+    tr:first-child th:last-child {
+      border-top-right-radius: 10px;
+      // border-bottom-right-radius: 10px;
+    }
+
+    /*最後欄第一列：右下*/
+    tr:last-child td:last-child {
+      border-bottom-right-radius: 10px;
+    }
 
   }
 }
@@ -21,14 +64,14 @@
     margin: 5px 0;
 
     &:hover {
-      background-color: #F6F3ED;
-      color: #424965;
+      background-color: $main_color;
+      color: $side_color;
       border-radius: 20px 0px 0px 20px;
     }
 
     &.active {
-      background-color: #F6F3ED;
-      color: #424965;
+      background-color: $main_color;
+      color: $side_color;
       border-radius: 20px 0px 0px 20px;
     }
 
@@ -39,19 +82,62 @@
       padding: 8px 0;
 
       &:hover {
-        background-color: #424965;
-        color: #F6F3ED;
+        background-color: $side_color;
+        color: white;
         border-radius: 20px 0px 0px 20px;
       }
 
       &.active {
-        background-color: #424965;
-        color: #F6F3ED;
+        background-color: $side_color;
+        color: white;
         border-radius: 20px 0px 0px 20px;
       }
     }
   }
 }
+
+@mixin form {
+  #{'form'} {
+    margin-bottom: 10px;
+
+    div {
+      // border: 1px solid black;
+      display: inline-block;
+      background-color: white;
+      overflow: hidden;
+      border-radius: 8px;
+
+
+
+      input.search_input {
+        outline: none;
+        border: none;
+        // border: 1px solid red;
+        // border-radius: 8px;
+        min-width: 450px;
+        height: 28px;
+        font-size: 18px;
+        padding: 2px 6px;
+        background-color: white;
+        display: inline-block;
+      }
+
+      button.search {
+        width: 50px;
+        background-color: $side_color;
+        color: white;
+        padding: 5px;
+        height: 28px;
+        display: inline-block;
+      }
+    }
+
+  }
+}
+
+
+
+
 
 //---------------------------------------------------------------------------
 * {
@@ -69,8 +155,21 @@ button.edit {
   color: white;
   padding: 2px 5px;
   border-radius: 5px;
+
+  &:hover {
+    background-color: #ff9335;
+  }
 }
 
+p.title {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+
+
+
+//----------------------------------------
 header {
   display: flex;
   justify-content: space-between;
@@ -117,9 +216,18 @@ header {
       p {
         display: inline-block;
         margin-left: 20px;
-        border: 1px solid blue;
+        // border: 1px solid blue;
         cursor: pointer;
         padding: 5px;
+        color: gray;
+
+        a {
+          color: $a_color;
+
+          &:hover {
+            color: $main_color;
+          }
+        }
       }
     }
 
@@ -136,7 +244,7 @@ header {
 
   .row {
     .side {
-      background-color: #424965;
+      background-color: $side_color;
       display: inline-block;
       height: calc(100vh - 70px);
       position: fixed;
@@ -173,13 +281,13 @@ header {
         padding-right: 15px;
 
         a {
-          color: #3791c5;
+          color: $a_color;
         }
       }
     }
 
     .main {
-      background-color: #F6F3ED;
+      background-color: $main_color;
       display: inline-block;
       position: fixed;
       right: 0;
@@ -189,6 +297,7 @@ header {
 
       // padding: 0;
       .account {
+        @include form();
         @include table();
         // border-bottom: 1px solid blue;
         margin: 10px 0;
@@ -263,6 +372,7 @@ header {
       }
 
       .order_mem {
+        @include form();
         @include table();
         margin: 10px 0;
       }
