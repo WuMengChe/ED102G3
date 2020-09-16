@@ -6,8 +6,8 @@ $image = str_replace(' ', '+', $image);
 $data = base64_decode($image);
 //準備好要存的filename
 
-if (file_exists("uploads") === false) {
-  mkdir("uploads");
+if (file_exists("../uploads") === false) {
+  mkdir("../uploads");
 }
 
 $time = time();
