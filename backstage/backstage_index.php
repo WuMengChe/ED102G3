@@ -104,10 +104,13 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
       <div class="main col-11">
         <!-- <component :is="member"></component> -->
         <div class="account" v-show="account">
-          會員
+          <p class="title">會員管理</p>
           <form>
-            <input type="text">
-            <button>查詢</button>
+            <div>
+              <input type="text" class="search_input">
+              <button class="search">查詢</button>
+            </div>
+
           </form>
           <table>
             <tr>
@@ -142,7 +145,8 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
         </div>
 
-        <div class="administrator" v-show="administrator">管理員
+        <div class="administrator" v-show="administrator">
+          <p class="title">管理員管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -190,7 +194,7 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
                 <input type="text">
               </td>
               <td>
-                <button>確認</button>
+                <button class="edit">確認</button>
               </td>
             </tr>
           </table>
@@ -199,7 +203,7 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </div>
         </div>
         <div class="quiz" v-show="quiz">
-          測驗題庫
+          <p class="title">測驗題庫</p>
           <table>
             <tr>
               <th>編號</th>
@@ -265,7 +269,7 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           <button>新增題目</button>
         </div>
         <div class="industry" v-show="industry">
-          行業管理
+          <p class="title">行業管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -363,7 +367,7 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           <button>新增行業</button>
         </div>
         <div class="skill_class" v-show="skill_class">
-          課程
+          <p class="title">課程管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -432,7 +436,8 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           <button>新增課程</button>
         </div>
         <div class="article_report" v-show="article_report">
-          主題檢舉
+          <p class="title">主題檢舉</p>
+
           <table>
             <tr>
               <th>檢舉編號</th>
@@ -467,7 +472,8 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
         </div>
         <div class="message_report" v-show="message_report">
-          留言檢舉
+          <p class="title">留言檢舉</p>
+
           <table>
             <tr>
               <th>檢舉編號</th>
@@ -500,7 +506,14 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
         </div>
         <div class="order_mem" v-show="order_mem">
-          訂單
+          <p class="title">訂單管理</p>
+          <form>
+            <div>
+              <input type="text" class="search_input">
+              <button class="search">查詢</button>
+            </div>
+
+          </form>
           <table>
             <tr>
               <th>編號</th>
@@ -547,7 +560,8 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           </table>
         </div>
         <div class="postcard_material" v-show="postcard_material">
-          明信片素材
+          <p class="title">明信片素材管理</p>
+
           <table>
 
             <tr>
@@ -579,7 +593,8 @@ join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT
           <button>新增素材</button>
         </div>
         <div class="announcement" v-show="announcement">
-          公告
+          <p class="title">公告管理</p>
+
           <table>
 
             <tr>
