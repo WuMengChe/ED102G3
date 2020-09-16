@@ -9,7 +9,9 @@ setInterval(
 
 // vueHere
 let data ={
-  width:30,
+  quizData:[],
+  quizNo:[],
+  width:0,
   index:0,
   totalScore : [0,0,0,0,0,0],
   option1:[
@@ -98,6 +100,13 @@ let data ={
 let testtest = new Vue({
   el: '#testProcess',
   data: data,
+  mounted() {
+    axios
+    .get('./php/test_content.php')
+    .then((res) =>{
+        this.quizData = res.data
+    });
+  },
   methods: {
       changeIndex(change, value){
         this.index += change;
