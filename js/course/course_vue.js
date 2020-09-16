@@ -46,15 +46,11 @@ let vm = new Vue({
           courses: [],
         },
       ],
-
-      // 接收資料庫的hot_course,記得先關掉假資料
       hot_course: [],
       cart_items: [],
 
       // course_introduce接收連結號碼
       introduce_no: null,
-      //   課程介紹-課程總纜
-      introduce_course: [],
       //   課程介紹-單一課程
       introduce_single: {
         ski_no: "",
@@ -235,12 +231,16 @@ let vm = new Vue({
       // FormData建立變數傳給php
       var formData = new FormData();
       formData.append("introduce_no", this.introduce_no);
+      // formData.append("suggest_no", this.introduce_single.ind_no);
 
       axios
-        .all([axios.post("./php/course_introduce.php", formData)])
+        .all([
+          axios.post("./php/course_introduce.php", formData),
+          axios.post("./php/course_introduce_suggest.php", formData),
+        ])
         .then(
           axios.spread((res1, res2) => {
-            // 接收資料庫資料
+            // 課程介紹資料
             if (res1.status == 200) {
               if (res1.data != 0) {
                 _this.introduce_single = res1.data[0];
@@ -252,16 +252,19 @@ let vm = new Vue({
                 _this.introduce_single.ski_intro.splice(0, 1);
               }
             }
+
+            // =================
+            // 推薦課程資料
+            console.log(res2.status);
+            if (res2.status == 200) {
+              if (res2.data != 0) {
+                console.log("推薦課程1：" + res2.data);
+                _this.introduce_suggest = res2.data;
+                console.log("推薦課程2：" + _this.introduce_suggest);
+              }
+            }
           })
         )
-        .then(() => {
-          // _this.set_course_suggest();
-          this.category.forEach((type) => {
-            if (type.link_title == this.introduce_single.ind_class) {
-              this.introduce_suggest = type.courses;
-            }
-          });
-        })
         .then(() => {
           _this.receive_storage();
         })
