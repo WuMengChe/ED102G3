@@ -130,17 +130,22 @@ let testResult = new Vue({
     //以下判定第幾個值是最大的決定要撈什麼資料:順序: [R,I,A,S,E,C]            
        if ( this.maxIndex === 0 ){
          this.maxIndex = 'R';
-         alert('')
+         alert('哈~ R 最大')
        }else if( this.maxIndex === 1 ){
         this.maxIndex = 'I';
+        alert('哈~ I 最大(愛最大!!)')
        }else if( this.maxIndex === 2 ){
         this.maxIndex = 'A';
+        alert('哈~ A 最大~')
        }else if( this.maxIndex === 3 ){
         this.maxIndex = 'S';
+        alert('哈~ S 最大~')
        }else if( this.maxIndex === 4 ){
         this.maxIndex = 'E';
+        alert('哈~ E 最大~')
        }else if( this.maxIndex === 5 ){
         this.maxIndex = 'C'; 
+        alert('哈~ C 最大~')
        }
 
        
@@ -168,7 +173,9 @@ let testResult = new Vue({
                 }
                 else{
                     alert('測驗結果已儲存');
-                    //這邊放把資料送去資料庫的東西喔// 別忘了有會員編號、圖表、內容日期!
+                    
+                    //這邊放把資料送去資料庫的東西喔
+                    // 會員編號、圖表、六類分數、最高分類型、日期!
                 }
                 // console.log(resp)
             })
