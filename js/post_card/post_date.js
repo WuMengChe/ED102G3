@@ -15,7 +15,7 @@ $(function () {
     document.getElementById("backImg").src = sessionStorage["backImg"];
     //頁面跳轉
     var count = 5;
-    //寫一個方法，顯示倒數秒數  數到0後跳轉頁面  
+    //顯示倒數秒數  數到0後跳轉頁面  
     function countDown() {
         //將count顯示在div中
         document.getElementById("sec").innerHTML = `${count}秒後自動跳轉首頁`;
@@ -32,55 +32,85 @@ $(function () {
 
     }
 
-    // 開啟 Modal 彈跳視窗
-    $("#send").on("click", function () {
 
-        function btnClose() {
-            document.querySelector('.bg_of_lightbx').style = "display:none";
+    // 按叉叉關閉會員視窗
+    function btnClose() {
+        document.querySelector('.bg_of_lightbx').style = "display:none";
+    };
+
+    function sendToDb() {
+        //創建日期 送出日期 2張照片會員編號  傳到資料庫 ------------------
+        let card = {};
+        card.frontImg = sessionStorage["frontImg"];
+        card.backImg = sessionStorage["backImg"];
+        card.senDate = document.getElementById('pickdate').value;
+        let json = JSON.stringify(card);
+        // alert(json);
+        // console.log(json);
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // alert(xhr.responseText);
+                console.log(xhr.responseText);
+            } else {
+                // alert(xhr.status);
+            }
+
+        }
+        xhr.open("POST", "./php/postToDb.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(`json=${json}`);
+    };
+
+    function dateCheck() {
+        //抓日期
+        let date = $('#pickdate').val().split('-');
+        let y = date[0];
+        let m = date[1];
+        let d = date[2];
+        if ($('#pickdate').val() != '') {
+            $('.when_date').text(`將於${y}年${m}月${d}日寄出`);
+            // 開啟彈跳視窗
+            $(".overlay").addClass("-on");
+            countDown();
+            // 關閉 彈跳視窗
+            $(".close").on("click", function () {
+                $(".overlay").addClass("-opacity-zero");
+
+
+
+                // 設定隔500豪秒後，移除相關 class
+                setTimeout(function () {
+                    $(".overlay").removeClass("-on -opacity-zero");
+                }, 500);
+
+            });
+        } else {
+            alert("尚未選取日期歐~");
+
         };
-
+    }
+    // 按送出按鈕
+    $("#send").on("click", function () {
         axios
             .post('./php/memberStateCheck.php')
             .then((resp) => {
+                // 沒登入跳視窗
                 if (resp.data == 0) {
-                    alert('請先登入會員');
+                    // alert('請先登入會員');
+                    // 開啟登入會員彈跳視窗
                     document.querySelector('.bg_of_lightbx').style = "display:block";
+                    // 關閉登入會員彈跳視窗
                     $('#closeBtn').click(function () {
                         document.querySelector('.bg_of_lightbx').style = "display:none";
                     });
-
-
-
                 } else {
-                    //抓日期
-                    let date = $('#pickdate').val().split('-');
-                    let y = date[0];
-                    let m = date[1];
-                    let d = date[2];
-                    if ($('#pickdate').val() != '') {
-                        $('.when_date').text(`將於${y}年${m}月${d}日寄出`);
-                        // 開啟彈跳視窗
-                        $(".overlay").addClass("-on");
-                        countDown();
-                        // 關閉 彈跳視窗
-                        $(".close").on("click", function () {
-                            $(".overlay").addClass("-opacity-zero");
-
-
-
-                            // 設定隔500豪秒後，移除相關 class
-                            setTimeout(function () {
-                                $(".overlay").removeClass("-on -opacity-zero");
-                            }, 500);
-
-                        });
-                    } else {
-                        alert("尚未選取日期歐~");
-
-                    };
+                    // 已經有登入
+                    sendToDb();
+                    // 判斷有沒有選日期
+                    dateCheck();
 
                 }
-                // console.log(resp)
             });
         $('.login_btn').click(function () {
             var memAccount = document.querySelector('.input_div #account').value;
@@ -95,36 +125,13 @@ $(function () {
                         alert('帳號或密碼錯誤，請重新輸入...........');
                         document.querySelector('.input_div #code').value = "";
                     } else {
-                        alert('會員登入成功');
+                        // alert('會員登入成功');
                         //登入成功則燈箱移除
                         btnClose();
-                        alert("close");
-                        //創建日期 送出日期 2張照片會員編號  傳到資料庫 
-                        //-----------------------------------------------------
-
-
-                        let card = {};
-                        card.frontImg = sessionStorage["frontImg"];
-                        card.backImg = sessionStorage["backImg"];
-                        card.senDate = document.getElementById('pickdate').value;
-                        let json = JSON.stringify(card);
-                        alert(json);
-                        console.log(json);
-                        let xhr = new XMLHttpRequest();
-                        xhr.onload = function () {
-                            if (xhr.status == 200) {
-                                alert(xhr.responseText);
-                                console.log(xhr.responseText);
-                            } else {
-                                alert(xhr.status);
-                            }
-
-                        }
-                        xhr.open("POST", "./php/postToDb.php", true);
-                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        xhr.send(`json=${json}`);
-                        //-----------------------------------------------------
-
+                        // 已經有登入
+                        sendToDb();
+                        // 判斷有沒有選日期
+                        dateCheck();
                     }
                 });
         });
