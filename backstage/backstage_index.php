@@ -26,7 +26,6 @@ try {
   $administrator = $pdo->query($adminSql);
   $quiz = $pdo->query($quizSql);
   $career = $pdo->query($careerSql);
-  // $salary = $pdo->query($salarySql);
   $skill = $pdo->query($skillSql);
   $ArReport = $pdo->query($ArReportSql);
   $MgReport = $pdo->query($MgReportSql);
@@ -122,7 +121,6 @@ $orderArray = array();
             <tr>
               <th>編號</th>
               <th>名稱</th>
-              <th>生日</th>
               <th>電話</th>
               <th>電子郵件</th>
               <th>是否停權</th>
@@ -134,7 +132,6 @@ $orderArray = array();
 
                 <td><?= $memberRow["MEM_NO"] ?></td>
                 <td><?= $memberRow["MEM_NAME"] ?></td>
-                <td><?= $memberRow["MEM_BIR"] ?></td>
                 <td><?= $memberRow["MEM_TEL"] ?></td>
                 <td><?= $memberRow["MEM_EMAIL"] ?></td>
                 <td>

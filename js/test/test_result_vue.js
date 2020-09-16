@@ -191,8 +191,7 @@ let testResult = new Vue({
                     alert('會員登入成功');
                     //登入成功則燈箱移除
                     document.querySelector('.bg_of_lightbx').style = "display:none";
-                    document.getElementById('member_icon').innerText = "Hi," + resp.data;
-
+                    // document.getElementById('member_icon').innerText = "Hi," + resp.data;
                     //將結果傳至會員儲存
                     //這邊要寫把資料傳到資料庫的東西
                 }
