@@ -40,10 +40,10 @@ try {
   echo "錯誤行號:", $e->getLine(), "<br>";
 }
 
-$careerArrayH = array();
-$careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
-$careerArrayL = array();
-$careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
+// $careerArrayH = array();
+// $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
+// $careerArrayL = array();
+// $careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
 
 ?>
 
