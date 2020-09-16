@@ -59,42 +59,8 @@ $(document).ready(function() {
             };
         })
         //論壇&課程&post card輪播
-    $('.message').slick({
-        vertical: true,
-        slidesToShow: 4,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows: false,
-    });
-    $('.screen_carousel').slick({
-        slidesToShow: 3,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows: false,
-        responsive: [{
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            },
 
-        ]
-    });
-    $('#img').slick({
-        slidesToShow: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows: false,
-        slidesToScroll: 1,
-    });
+
 });
 
 

@@ -165,7 +165,7 @@
                     </div>
                   </div>
                   <div class="banner_describe">
-                    <p>{{introduce_single.ski_intro}}</p>
+                    <p v-for="intro in introduce_single.ski_intro">{{intro}}</p>
                   </div>
                 </div>
               </div>
@@ -238,7 +238,7 @@
               </div>
               <ul class="auto_slider owl-carousel" v-if="hot_course.length > 0">
                 <li class="auto_slider_card" v-for="card in introduce_suggest">
-                  <a href="course_introduce.html">
+                  <a :href="'./course_introduce.html?ski_no=' + card.ski_no">
                     <div class="auto_slider_card_pic">
                       <img :src="card.ski_img" alt="" />
                       <span
@@ -249,7 +249,7 @@
                     </div>
                   </a>
                   <div class="auto_slider_card_content">
-                    <a href="course_introduce.html">
+                    <a :href="'./course_introduce.html?ski_no=' + card.ski_no">
                       <p>{{card.ski_name}}</p>
                     </a>
                     <div class="card_content_scrb">
