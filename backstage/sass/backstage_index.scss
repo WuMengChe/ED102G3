@@ -166,7 +166,12 @@ p.title {
   margin-bottom: 15px;
 }
 
-
+div.overflow {
+  height: 100px;
+  overflow-y: scroll;
+  width: 200px;
+  white-space: pre-wrap;
+}
 
 
 //----------------------------------------

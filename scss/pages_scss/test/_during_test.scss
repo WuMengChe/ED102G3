@@ -31,6 +31,7 @@ main.main_during_test{
                 @media screen  and (max-width: 767px){ 
                     width: 100%;
                    }
+                
                 p{
                 // border: 1px solid red;
                 display: flex;
@@ -67,14 +68,23 @@ main.main_during_test{
             }
             .question{
                 border: 1px solid black;
-            width: 350px;
-            line-height: 20px;
+                display: flex;
+                align-items: center;
+                width: 350px;
+                line-height: 20px;
                 background: $second_color1;
                 padding: 3%;
                 border-radius: 5px;
                 position: relative;
                 box-shadow:  2px 2px 2px black;
                 z-index: 2;
+                span{
+                    // border: 1px solid red;
+                    display: flex;
+                    padding: 1%;
+                    margin-right: 2%;
+
+                }
                 &:before{
                     content: "";
                     display: flex;
