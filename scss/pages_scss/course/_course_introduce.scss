@@ -39,7 +39,7 @@ div.course_introduce {
                     margin-top: -50px;
                     margin-bottom: 30px;
                     box-shadow: 0 15px 10px rgba(0, 0, 0, 0.3);
-                    transition: .6s ease-in-out;
+                    transition: 0.6s ease-in-out;
                     border-radius: 5px;
                     overflow: hidden;
                     img {
@@ -61,7 +61,7 @@ div.course_introduce {
                             // color: rgb(196, 195, 195);
                             color: $second_color2;
                             font-weight: bolder;
-                            text-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
+                            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
                         }
                     }
                     div.banner_btn {
@@ -75,8 +75,10 @@ div.course_introduce {
                                 // color: rgb(187, 187, 187);
                             }
                         }
-                        button.favorite {}
-                        button.add_cart {}
+                        button.favorite {
+                        }
+                        button.add_cart {
+                        }
                     }
                 }
             }
@@ -122,7 +124,7 @@ div.course_introduce {
                             p {
                                 font-size: 30px;
                                 span {
-                                    font-size: 18px
+                                    font-size: 18px;
                                 }
                             }
                         }
@@ -161,6 +163,7 @@ div.course_introduce {
             justify-content: center;
             h2 {
                 @include intro_h2;
+                margin: 0 20px;
             }
             p {
                 line-height: 1.5;
@@ -256,7 +259,8 @@ div.course_introduce {
                                 }
                             }
                             div.pro_introduce {
-                                span {}
+                                span {
+                                }
                             }
                         }
                     }
@@ -285,9 +289,8 @@ div.course_introduce {
                             padding: 10px;
                             position: relative;
                             width: fit-content;
-                            ;
                             &::before {
-                                content: '';
+                                content: "";
                                 display: inline-block;
                                 // border-top: 100px solid red;
                                 border-left: 10px solid transparent;
@@ -308,7 +311,7 @@ div.course_introduce {
 }
 
 // rwd
-@media(max-width:992px) {
+@media (max-width: 992px) {
     // 學習到
     div.suitable_list {
         margin-bottom: 30px;
@@ -317,9 +320,12 @@ div.course_introduce {
     div.course_introduce div.feedback div.pro_feedback ul {
         margin-top: 0px;
     }
+    div.course_introduce div.cus_teacher div.teacher_intro h2 {
+        @include intro_h2;
+    }
 }
 
-@media(max-width:920px) {
+@media (max-width: 920px) {
     // banner
     div.course_intro_banner {
         div.intro_banner {
@@ -328,13 +334,19 @@ div.course_introduce {
     }
 }
 
-@media(max-width:376px) {
+@media (max-width: 376px) {
     // banner
     div.course_introduce div.course_intro_banner div.intro_banner div.intro_banner_pic div.banner_type_btn {
         align-items: center;
         margin-bottom: 10px;
     }
-    div.course_introduce div.course_intro_banner div.intro_banner div.intro_banner_pic div.banner_type_btn div.banner_type span {
+    div.course_introduce
+        div.course_intro_banner
+        div.intro_banner
+        div.intro_banner_pic
+        div.banner_type_btn
+        div.banner_type
+        span {
         font-size: 20px;
     }
 }
