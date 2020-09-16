@@ -80,9 +80,8 @@ let vm = new Vue({
     };
   },
   mounted() {
-    this.main_course_api();
-    this.hot_course_api();
-    this.receive_storage();
+    this.all_course_api();
+
     let localURL = new URL(document.location);
     if (localURL.toString().includes("course_introduce")) {
       this.introduce_course_api();
@@ -99,30 +98,16 @@ let vm = new Vue({
     // localStorage
     add_storage() {
       let ss = " ";
-      // this.cart_items.forEach((item) => {
-      //     ss += JSON.stringify(item) + "*";
-      // });
       ss = JSON.stringify(this.cart_items);
-
       localStorage.setItem("cart", ss);
     },
     receive_storage() {
       if (localStorage.getItem("cart")) {
         let get_id = localStorage.getItem("cart");
-        // let get_id_arr = get_id.split("*");
-        // get_id_arr.forEach((course, index) => {
-        //     if (index < get_id_arr.length - 1) {
-        //         let course_item = JSON.parse(course);
-        //         this.cart_items.push(course_item);
-        //         $(`.cus_${course_item.id}`).addClass("cart_clicked");
-        //     }
-        // });
         this.cart_items = JSON.parse(get_id);
         if (this.cart_items.length > 0) {
-          //   this.cart_items.forEach((card) => {
-          //     $(`.cus_${card.ski_no}`).addClass("cart_clicked");
-          //   });
           for (let i = 0; i < this.cart_items.length; i++) {
+            console.log($(`.cus_${this.cart_items[1].ski_no}`));
             $(`.cus_${this.cart_items[i].ski_no}`).addClass("cart_clicked");
           }
         }
@@ -134,26 +119,26 @@ let vm = new Vue({
       axios.post("./php/memberStateCheck.php").then((resp) => {
         if (resp.data == 0) {
           document.querySelector(".bg_of_lightbx").style = "display:block";
+        } else {
+          if (this.cart_items.length == 0) {
+            this.cart_items.push(item);
+          } else {
+            let check = true;
+            for (i = 0; i < this.cart_items.length; i++) {
+              if (this.cart_items[i].ski_no == item.ski_no) {
+                check = false;
+                alert("購物車內已有此課程囉!");
+              }
+            }
+
+            if (check) {
+              this.cart_items.push(item);
+            }
+          }
+          this.add_storage();
+          $(`.cus_${item.ski_no}`).addClass("cart_clicked");
         }
       });
-
-      if (this.cart_items.length == 0) {
-        this.cart_items.push(item);
-      } else {
-        let check = true;
-        for (i = 0; i < this.cart_items.length; i++) {
-          if (this.cart_items[i].ski_no == item.ski_no) {
-            check = false;
-            alert("購物車內已有此課程囉!");
-          }
-        }
-
-        if (check) {
-          this.cart_items.push(item);
-        }
-      }
-      this.add_storage();
-      $(`.cus_${item.ski_no}`).addClass("cart_clicked");
     },
     remove_item(index) {
       $(`.cus_${this.cart_items[index].ski_no}`).removeClass("cart_clicked");
@@ -162,6 +147,43 @@ let vm = new Vue({
       this.add_storage();
     },
     // 資料庫載入
+    all_course_api() {
+      axios
+        .all([
+          axios.get("./php/course_hot_course.php"),
+          axios.get("./php/course_course_list.php"),
+        ])
+        .then(
+          axios.spread((res1, res2) => {
+            console.log(res1);
+            this.hot_course = res1.data;
+
+            // OWL套件
+            script = document.createElement("script");
+            script.src = "./js/course/owl_auto_slide.js";
+            document.body.appendChild(script);
+
+            // ===================
+            console.log(res2);
+
+            // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
+            for (let i = 0; i < this.category.length; i++) {
+              this.category[i].courses = res2.data.filter(
+                (item) => item.ind_class == this.category[i].link_title
+              );
+            }
+            console.log(this.category);
+            // this.main_course = res.data;
+            this.receive_storage();
+          })
+        )
+        .then(() => {
+          this.receive_storage();
+        })
+        .catch((res) => {
+          console.log(err);
+        });
+    },
     hot_course_api() {
       axios
         .get("./php/course_hot_course.php")
@@ -173,7 +195,9 @@ let vm = new Vue({
           script = document.createElement("script");
           script.src = "./js/course/owl_auto_slide.js";
           document.body.appendChild(script);
+          this.receive_storage();
         })
+        // .than(this.receive_storage())
         .catch(function (error) {
           console.log(error);
         });
@@ -192,20 +216,12 @@ let vm = new Vue({
           }
           console.log(this.category);
           // this.main_course = res.data;
+          this.receive_storage();
         })
         .catch(function (error) {
           console.log(error);
         });
     },
-
-    set_course_suggest() {
-      this.category.forEach((type) => {
-        if (type.link_title == this.introduce_single.ind_class) {
-          this.introduce_suggest = type.courses;
-        }
-      });
-    },
-
     introduce_course_api() {
       //   找網址
       //   new URL(document.location) 尋找當前網址
@@ -238,6 +254,13 @@ let vm = new Vue({
           console.log(error);
         });
     },
+    set_course_suggest() {
+      this.category.forEach((type) => {
+        if (type.link_title == this.introduce_single.ind_class) {
+          this.introduce_suggest = type.courses;
+        }
+      });
+    },
     check_member_api() {
       axios
         .get("./php/memberStateCheck.php")
@@ -257,6 +280,7 @@ let vm = new Vue({
           console.log(error);
         });
     },
+
     // header登出
     header_logOut() {
       axios
