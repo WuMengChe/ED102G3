@@ -10,15 +10,15 @@ try {
   $memSql = "select * from member";
   $adminSql = "select * from administrator";
   $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
-  $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW),GROUP_CONCAT(s.IND_SAL_HIGH) from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
+  $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_INTRO, i.INT_INT_CONTENT, i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
 
   $skillSql = "select a.*, b.IND_CLASS from SKILL_CLASS a join INDUSTRY_CLASS b on a.IND_NO = b.IND_NO order by SKI_NO";
   $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
   $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
-  
+
   $orderSql = "select mem.MEM_NO, ord.ORD_NO, ord.ORD_DATE, ord.ORD_AMOUNT,ord.ORD_PAY, orddet.ORD_DET_NO, orddet.ORD_DET_PRICE, ski.SKI_NAME, ski.SKI_IMG, ski.SKI_TEC_NAME, ski.SKI_NO from order_mem ord join member mem on ord.MEM_NO = mem.MEM_NO join order_detial orddet on ord.ORD_NO = orddet.ORD_NO join skill_class ski on ski.SKI_NO = orddet.SKI_NO where ord.ORD_NO = 1 order by ord.ORD_NO asc";
   // $orderSql = "select * from ORDER_MEM";
-  
+
   $materialSql = "select * from POSTCARD_MATERIAL ";
   $announceSql = "select * from announcement;";
   // $indusSql = "select ";
@@ -32,7 +32,7 @@ try {
 
   $order = $pdo->query($orderSql);
   // $order = $pdo->query($orderSql);
-  
+
   $material = $pdo->query($materialSql);
   $announce = $pdo->query($announceSql);
 } catch (PDOException $e) {
@@ -40,8 +40,10 @@ try {
   echo "錯誤行號:", $e->getLine(), "<br>";
 }
 
-$orderArray = array();
-
+// $careerArrayH = array();
+// $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
+// $careerArrayL = array();
+// $careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
 
 ?>
 
@@ -112,10 +114,13 @@ $orderArray = array();
         <!-- <component :is="member"></component> -->
         <!-- member -->
         <div class="account" v-show="account">
-          會員
+          <p class="title">會員管理</p>
           <form>
-            <input type="text">
-            <button>查詢</button>
+            <div>
+              <input type="text" class="search_input">
+              <button class="search">查詢</button>
+            </div>
+
           </form>
           <table>
             <tr>
@@ -150,8 +155,8 @@ $orderArray = array();
           </table>
         </div>
 
-        <!-- administrator -->
-        <div class="administrator" v-show="administrator">管理員
+        <div class="administrator" v-show="administrator">
+          <p class="title">管理員管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -180,37 +185,38 @@ $orderArray = array();
             }
             ?>
           </table>
-          <table id="myForm" style="display: none;">
-            <tr class="title">
-              <th>編號</th>
-              <th>名稱</th>
-              <th>帳號</th>
-              <th>密碼</th>
-            </tr>
-            <tr class="new_administrator" style="display:none">
-              <td>2</td>
-              <td>
-                <input type="text">
-              </td>
-              <td>
-                <input type="text">
-              </td>
-              <td>
-                <input type="text">
-              </td>
-              <td>
-                <button>確認</button>
-              </td>
-            </tr>
-          </table>
           <div id="adForm">
+            <table id="myForm" style="display: none;">
+              <tr class="title">
+                <th>編號</th>
+                <th>名稱</th>
+                <th>帳號</th>
+                <th>密碼</th>
+              </tr>
+              <tr class="new_administrator">
+                <td>2</td>
+                <td>
+                  <input type="text">
+                </td>
+                <td>
+                  <input type="text">
+                </td>
+                <td>
+                  <input type="text">
+                </td>
+                <td>
+                  <button class="edit">確認</button>
+                </td>
+              </tr>
+            </table>
+
             <button id="newAdBtn">新增管理員</button>
           </div>
         </div>
 
         <!-- quiz -->
         <div class="quiz" v-show="quiz">
-          測驗題庫
+          <p class="title">測驗題庫</p>
           <table>
             <tr>
               <th>編號</th>
@@ -278,7 +284,7 @@ $orderArray = array();
 
         <!-- industry -->
         <div class="industry" v-show="industry">
-          行業管理
+          <p class="title">行業管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -301,7 +307,7 @@ $orderArray = array();
               <tr>
                 <td><?= $careerRow["IND_INT_NO"] ?></td>
                 <td><?= $careerRow["IND_INT_NAME"] ?></td>
-                <td>這是簡短介紹</td>
+                <td><?= $careerRow["IND_INT_INTRO"] ?></td>
                 <td>
                   <img src="<?= $careerRow["IND_INT_PICTURE"] ?>" alt="行業圖片">
                 </td>
@@ -311,54 +317,58 @@ $orderArray = array();
                     <option value="" v-for="type in types">{{type}}</option>
                   </select>
                 </td>
-                <td>這是內容</td>
-                <td>
-                  <ul>
-                    <li><?= $careerRow["IND_INT_SKILL"] ?></li>
-                    
-                  </ul>
-                </td>
-                <td>
-                    <p>最低月薪:
-                      <span><?= $careerRow["IND_SAL_LOW"] ?></span>
-                    </p>
-                    <p>最高月薪:
-                      <span><?= $careerRow["IND_SAL_HIGH"] ?></span>
-                    </p>
-                  
-                </td>
+                <td><?= $careerRow["INT_INT_CONTENT"] ?></td>
+                <td><?= $careerRow["IND_INT_SKILL"] ?></td>
                 <td>
                   <p>最低月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[0] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[0] ?></span>
                   </p>
+
                 </td>
+
                 <td>
                   <p>最低月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[1] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[1] ?></span>
                   </p>
+
                 </td>
+
                 <td>
                   <p>最低月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[2] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[2] ?></span>
                   </p>
+
                 </td>
+
                 <td>
                   <p>最低月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[3] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span>20000</span>
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[3] ?></span>
                   </p>
+
                 </td>
+
+                <td>
+                  <p>最低月薪:
+                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[4] ?></span>
+                  </p>
+                  <p>最高月薪:
+                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[4] ?></span>
+                  </p>
+
+                </td>
+
                 <td>
 
                   <button class="edit">編輯</button>
@@ -373,7 +383,7 @@ $orderArray = array();
 
         <!-- skill_class -->
         <div class="skill_class" v-show="skill_class">
-          課程
+          <p class="title">課程管理</p>
           <table>
             <tr>
               <th>編號</th>
@@ -408,7 +418,9 @@ $orderArray = array();
                 <td><?= $skillRow["SKI_BUY_NUM"] ?></td>
                 <td><?= $skillRow["SKI_PRICE"] ?></td>
                 <td><?= $skillRow["SKI_TIME"] ?></td>
-                <td><?= $skillRow["SKI_INTRO"] ?></td>
+                <td>
+                  <div class="overflow"><?= $skillRow["SKI_INTRO"] ?></div>
+                </td>
                 <td><?= $skillRow["SKI_LINK"] ?></td>
                 <td>
                   <img src="<?= $skillRow["SKI_IMG"] ?>" alt="課程圖片">
@@ -418,11 +430,7 @@ $orderArray = array();
                 </td>
                 <td><?= $skillRow["SKI_TEC_NAME"] ?></td>
                 <td><?= $skillRow["SKI_TEC_INTRO"] ?></td>
-                <td>
-                  <ul>
-                    <li><?= $skillRow["SKI_OUTLINE"] ?></li>
-                  </ul>
-                </td>
+                <td><?= $skillRow["SKI_OUTLINE"] ?></td>
                 <td><?= $skillRow["SKI_STUD"] ?></td>
                 <td>
                   <?= $skillRow["SKI_HIDDEN"] ?>
@@ -444,7 +452,8 @@ $orderArray = array();
 
         <!-- article_report -->
         <div class="article_report" v-show="article_report">
-          主題檢舉
+          <p class="title">主題檢舉</p>
+
           <table>
             <tr>
               <th>檢舉編號</th>
@@ -481,7 +490,8 @@ $orderArray = array();
 
         <!-- message_report -->
         <div class="message_report" v-show="message_report">
-          留言檢舉
+          <p class="title">留言檢舉</p>
+
           <table>
             <tr>
               <th>檢舉編號</th>
@@ -516,7 +526,14 @@ $orderArray = array();
 
         <!-- order_mem -->
         <div class="order_mem" v-show="order_mem">
-          訂單
+          <p class="title">訂單管理</p>
+          <form>
+            <div>
+              <input type="text" class="search_input">
+              <button class="search">查詢</button>
+            </div>
+
+          </form>
           <table>
             <tr>
               <th>編號</th>
@@ -543,7 +560,7 @@ $orderArray = array();
                 <th>課程名稱</th>
                 <th>價格</th>
               </tr>
-            
+
               <tr>
                 <td><?= $orderRow["ORD_DET_NO"] ?></td>
                 <td><?= $orderRow["SKI_NO"] ?></td>
@@ -559,7 +576,8 @@ $orderArray = array();
 
         <!-- postcard_material -->
         <div class="postcard_material" v-show="postcard_material">
-          明信片素材
+          <p class="title">明信片素材管理</p>
+
           <table>
 
             <tr>
@@ -593,7 +611,8 @@ $orderArray = array();
 
         <!-- announcement -->
         <div class="announcement" v-show="announcement">
-          公告
+          <p class="title">公告管理</p>
+
           <table>
 
             <tr>
