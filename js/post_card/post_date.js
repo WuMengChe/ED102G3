@@ -103,6 +103,15 @@ $(function () {
 
             xml.open("POST", "./php/post_save.php", true);
             xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xml.onload = function () {
+              if (xml.readyState == 4 && xml.status == 200) {
+                // console.log(xml.responseXML);
+              } else {
+                // let arr = xml.responseText.split(";")
+                //       let memNo = arr[0];
+                //       console.log(memNo);
+              }
+            }
             let data_info = new FormData();
             let sendDate = $('#pickdate').val();
             let arr = xml.responseText.split(";")
@@ -113,16 +122,8 @@ $(function () {
 
 
             xml.send(data_info);
-            // return false;
-            xml.onload = function () {
-              if (xml.readyState == 4 && xml.status == 200) {
-                // console.log(xml.responseXML);
-              } else {
-                // let arr = xml.responseText.split(";")
-                //       let memNo = arr[0];
-                //       console.log(memNo);
-              }
-            }
+            return false;
+
 
           }
 
