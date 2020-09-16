@@ -48,6 +48,7 @@ let vm = new Vue({
       ],
       hot_course: [],
       cart_items: [],
+      favorite_items: [],
 
       // course_introduce接收連結號碼
       introduce_no: null,
@@ -105,7 +106,6 @@ let vm = new Vue({
         this.cart_items = JSON.parse(get_id);
         if (this.cart_items.length > 0) {
           for (let i = 0; i < this.cart_items.length; i++) {
-            console.log($(`.cus_${this.cart_items[1].ski_no}`));
             $(`.cus_${this.cart_items[i].ski_no}`).addClass("cart_clicked");
           }
         }
@@ -137,6 +137,40 @@ let vm = new Vue({
           $(`.cus_${item.ski_no}`).addClass("cart_clicked");
         }
       });
+    },
+    // 收藏功能
+    add_favorite(item) {
+      if (this.favorite_items.length == 0) {
+        this.favorite_items.push(item);
+        alert("已加入收藏");
+      } else {
+        let check = true;
+        for (let i = 0; i < this.favorite_items.length; i++) {
+          if (this.favorite_items[i].ski_no == item.ski_no) {
+            check = false;
+            alert("此課程已收藏過囉！");
+          }
+          if (check) {
+            this.favorite_items.push(item);
+            alert("已加入收藏");
+          }
+        }
+        // this.cart_items.forEach((card) => {
+        //   if (card.ski_no == item.ski_no) {
+        //     check = false;
+        //     alert("此課程已收藏過囉！");
+        //   }
+        //   if (check) {
+        //     this.favorite_items.push(item);
+        //     alert("已加入收藏");
+        //   }
+        // });
+      }
+
+      // console.log("我是favorite_items" + this.favorite_items);
+      let ss = " ";
+      ss = JSON.stringify(this.favorite_items);
+      localStorage.setItem("course_favorite", ss);
     },
     remove_item(index) {
       $(`.cus_${this.cart_items[index].ski_no}`).removeClass("cart_clicked");
@@ -258,9 +292,7 @@ let vm = new Vue({
             console.log(res2.status);
             if (res2.status == 200) {
               if (res2.data != 0) {
-                console.log("推薦課程1：" + res2.data);
                 _this.introduce_suggest = res2.data;
-                console.log("推薦課程2：" + _this.introduce_suggest);
               }
             }
           })
@@ -272,13 +304,6 @@ let vm = new Vue({
           console.log(err);
         });
     },
-    // set_course_suggest() {
-    //   this.category.forEach((type) => {
-    //     if (type.link_title == this.introduce_single.ind_class) {
-    //       this.introduce_suggest = type.courses;
-    //     }
-    //   });
-    // },
     check_member_api() {
       axios
         .get("./php/memberStateCheck.php")
