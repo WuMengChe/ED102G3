@@ -418,7 +418,9 @@ try {
                 <td><?= $skillRow["SKI_BUY_NUM"] ?></td>
                 <td><?= $skillRow["SKI_PRICE"] ?></td>
                 <td><?= $skillRow["SKI_TIME"] ?></td>
-                <td><?= $skillRow["SKI_INTRO"] ?></td>
+                <td>
+                  <div class="overflow"><?= $skillRow["SKI_INTRO"] ?></div>
+                </td>
                 <td><?= $skillRow["SKI_LINK"] ?></td>
                 <td>
                   <img src="<?= $skillRow["SKI_IMG"] ?>" alt="課程圖片">
