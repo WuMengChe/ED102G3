@@ -56,7 +56,6 @@ new Vue({
         types: ['實作型', '研究型', '文藝型', '社會型', '企業型', '事務型'],
         typeValues: ['R', 'I', 'A', 'S', 'E', 'C'],
 
-        orderList: [],
 
     },
     methods: {
