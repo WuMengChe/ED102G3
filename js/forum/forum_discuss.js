@@ -3,48 +3,47 @@ let vm = new Vue({
   data() {
     return {
       aaa: "",
-      information: [],
-      searchResult: [],
-      announcement: [],
-      memberCheck: [],
-      box_msg: [],
-      like_icon: [],
-      isOpen: false,
-      filter: '',
-      accuseIsOpen: false,
-      openLight: false,
-      contentIsOpen: false,
-      type: 'all',
-      select: '全部文章',
-      stopScroll: false,
-      msg: "",
-      isHeart: false,
-      isCollect: false,
+      information: [], //討論區所有文章PHP
+      searchResult: [], //點擊側邊欄，過濾後的資料
+      announcement: [], //公告PHP
+      memberCheck: [], //會員登入PHP
+      box_msg: [], //燈箱回覆留言的PHP
+      like_icon: [], //按愛心的PHP
+      isOpen: false, //下拉選單的綁定class的expand
+      filter: "", //綁定關鍵字搜尋input
+      accuseIsOpen: false, //檢舉燈箱
+      contentIsOpen: false, //點擊留言板的燈箱
+      type: "all", //側邊搜尋欄
+      select: "全部文章", //下拉選單預設
+      stopScroll: false, //開啟燈箱背景不可以動
+      msg: "", //點擊留言開啟燈箱，第一則文章要跟討論版的同步
+      isHeart: false, //點擊愛心 綁定的class顏色，但是未完成
+      isCollect: false, //點擊收藏 綁定的class顏色，但是未完成
 
       category: [{
         link_title: '實作型',
         color: 'practical_bg_color',
-      }, {
+        }, {
         link_title: '研究型',
         color: 'research_bg_color',
-      }, {
+        }, {
         link_title: '文藝型',
         color: 'art_bg_color',
-      }, {
+        }, {
         link_title: '社會型',
         color: 'social_bg_color',
-      }, {
+        }, {
 
         link_title: '企業型',
         color: 'enterprise_bg_color',
-      }, {
+        }, {
         link_title: '事務型',
         color: 'thing_bg_color',
-      }],
+        }],
     }
   },
   mounted() {
-    //登入
+    //會員登入PHP
     axios.post('./php/memberStateCheck.php')
       .then(res => {
         console.log(res);
@@ -60,62 +59,39 @@ let vm = new Vue({
         console.log(error);
       });
 
- //其他載入php
-  axios.all([this.funcA(), this.funcC()])
-    .then(axios.spread((res1, res3) => {
-    console.log(res1.data);
-    console.log(res3.data);
+    //討論區文章和公告PHP
+    axios.all([this.funcA(), this.funcC()])
+      .then(axios.spread((res1, res3) => {
+        console.log(res1.data);
+        console.log(res3.data);
+        this.information = res1.data;
+        this.searchResult = res1.data;
+        this.announcement = res3.data;
+      }))
+      .catch((err) => { console.error(err) 
+      })
 
-
-     this.information = res1.data;
-     this.searchResult = res1.data;
-    this.announcement = res3.data;
-    for(var j = 0; j < this.searchResult.length; j ++){
-      if(i == 0){
-        this.searchResult[j].isHeart = true;
-      }else{}
-      this.searchResult[j].isHeart = false;
-    }
-
- }))
- .catch((err) => { console.error(err) })
-
-
-    //喜歡
-    all =[];
+    //回覆留言PHP
     var formData = new FormData();
-    formData.append("member", sessionStorage.getItem("memNo"));
-    console.log(formData)
+    // var DIS_NO = "";
+    // var MEM_NO = "";
+    var DIS_MES_CONTENT = document.;
+    // var DIS_MES_DATE = new Date();
+    // formData.append("DIS_NO", DIS_NO);
+    // formData.append("MEM_NO", MEM_NO);
+    formData.append("DIS_MES_CONTENT", DIS_MES_CONTENT);
+    // formData.append("DIS_MES_DATE", DIS_MES_DATE);
+    console.log(formData);
 
-    axios.post('./php/forum_discuss_like.php', formData)
+    axios
+      .post("./php/forum_discuss_sendmsg.php", formData)
       .then(res => {
         console.log(res.data);
-        this.like_icon = res.data;
-        console.log(this.like_icon)
-        console.log(this.information)
-        // for(var j = 0; j < this.searchResult.length; j ++){
-        //  console.log(this.searchResult[j].DIS_NO);
-
-
-          // for(var i = 0; i < this.like_icon.length; i++){
-          //   console.log(this.like_icon[0].MEM_NO);
-            
-          //   if(i == 0){
-          //     this.searchResult[i].isHeart = true;
-          //   }else{
-          //   this.searchResult[i].isHeart = false;
-          // }
-            // this.searchResult[i].isHeart = true;
-          // }
-       
-        // }
-
+        this.sedmsg = res.data;
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
-
-  
   },
   watch: {
     stopScroll: function () {
@@ -148,34 +124,19 @@ let vm = new Vue({
     }
   },
   methods: {
+    //討論區文章(會員曾經按錯的愛心)PHP
     funcA() {
-      // return axios.get(`./php/forum_discuss.php?aaa=$
-      // {}1&bbb=222`)
       const memNo = sessionStorage.getItem('memNo');
-      return axios.get('./php/forum_discuss.php')
+      return axios.get('./php/forum_discuss.php?memNo=' + memNo)
     },
+    //討論區公告PHP
     funcC() {
       const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss_ann.php')
     },
+
     //開啟燈箱按鈕
     openContent(index) {
-
-      //留言回覆的訊息
-      var formData = new FormData();
-      formData.append('DIS_NO', this.searchResult[index].DIS_NO);
-      console.log(formData)
-
-      axios.post('./php/forum_discuss_msg.php', formData)
-        .then(res => {
-          console.log(res.data);
-          this.box_msg = res.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-
       this.aaa = index;
       if (this.contentIsOpen) {
         this.contentIsOpen = false
@@ -188,6 +149,19 @@ let vm = new Vue({
         this.msg = this.searchResult[index]
         console.log(this.msg)
       }
+      //留言回覆的訊息
+      var formData = new FormData;
+      formData.append('DIS_NO', this.searchResult[index].DIS_NO);
+      console.log(formData)
+
+      axios.post('./php/forum_discuss_msg.php', formData)
+        .then(res => {
+          console.log(res.data);
+          this.box_msg = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
     //關閉燈箱
     close_openContent() {
@@ -206,6 +180,7 @@ let vm = new Vue({
       });
       this.searchResult = result;
       this.select = "選擇分類";
+
     },
     //關鍵字搜尋
     searchContent() {
@@ -249,8 +224,8 @@ let vm = new Vue({
         $(".check_content .fa-heart").eq(e).toggleClass("colorRed");
         console.log(e);
       } else {
-        console.log(this.aaa)
-        event.target.classList.toggle("colorRed");
+        console.log(this.aaa);
+        e.target.classList.toggle("colorRed");
         $(".msg_content .fa-heart").eq(vm.$data.aaa).toggleClass("colorRed")
       }
     },
@@ -262,7 +237,7 @@ let vm = new Vue({
         console.log(e);
       } else {
         console.log(this.aaa)
-        event.target.classList.toggle("colorGray");
+        e.target.classList.toggle("colorGray");
         $(".msg_content .fa-bookmark").eq(vm.$data.aaa).toggleClass("colorGray")
       }
     },
@@ -276,7 +251,7 @@ let vm = new Vue({
     },
     //側邊欄點擊提示
     cart_click_bg(e) {
-      // $(`#${this.category[index].link_from}`).addClass('side_click');
+      //   // $(`#${this.category[index].link_from}`).addClass('side_click');
       $('.main_side_bar > ul> li > a').removeClass('side_click')
       e.currentTarget.classList.add('side_click');
     },
