@@ -183,30 +183,31 @@ $orderArray = array();
             }
             ?>
           </table>
-          <table id="myForm" style="display: none;">
-            <tr class="title">
-              <th>編號</th>
-              <th>名稱</th>
-              <th>帳號</th>
-              <th>密碼</th>
-            </tr>
-            <tr class="new_administrator" style="display:none">
-              <td>2</td>
-              <td>
-                <input type="text">
-              </td>
-              <td>
-                <input type="text">
-              </td>
-              <td>
-                <input type="text">
-              </td>
-              <td>
-                <button class="edit">確認</button>
-              </td>
-            </tr>
-          </table>
           <div id="adForm">
+            <table id="myForm" style="display: none;">
+              <tr class="title">
+                <th>編號</th>
+                <th>名稱</th>
+                <th>帳號</th>
+                <th>密碼</th>
+              </tr>
+              <tr class="new_administrator">
+                <td>2</td>
+                <td>
+                  <input type="text">
+                </td>
+                <td>
+                  <input type="text">
+                </td>
+                <td>
+                  <input type="text">
+                </td>
+                <td>
+                  <button class="edit">確認</button>
+                </td>
+              </tr>
+            </table>
+
             <button id="newAdBtn">新增管理員</button>
           </div>
         </div>
@@ -315,12 +316,7 @@ $orderArray = array();
                   </select>
                 </td>
                 <td>這是內容</td>
-                <td>
-                  <ul>
-                    <li><?= $careerRow["IND_INT_SKILL"] ?></li>
-
-                  </ul>
-                </td>
+                <td><?= $careerRow["IND_INT_SKILL"] ?></td>
                 <td>
                   <p>最低月薪:
                     <span><?= $careerRow["IND_SAL_LOW"] ?></span>
@@ -421,11 +417,7 @@ $orderArray = array();
                 </td>
                 <td><?= $skillRow["SKI_TEC_NAME"] ?></td>
                 <td><?= $skillRow["SKI_TEC_INTRO"] ?></td>
-                <td>
-                  <ul>
-                    <li><?= $skillRow["SKI_OUTLINE"] ?></li>
-                  </ul>
-                </td>
+                <td><?= $skillRow["SKI_OUTLINE"] ?></td>
                 <td><?= $skillRow["SKI_STUD"] ?></td>
                 <td>
                   <?= $skillRow["SKI_HIDDEN"] ?>

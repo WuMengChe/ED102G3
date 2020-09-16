@@ -12,6 +12,9 @@ window.addEventListener("load", function () {
     let newAdministrator = newAd.cloneNode(true);
     newAdministrator.style.display = "";
     adForm.insertBefore(newAdministrator, newAdBtn);
+
+
+
   }
 
   document.getElementById("newAdBtn").onclick = addAdministrator;
