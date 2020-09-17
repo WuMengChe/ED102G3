@@ -1,13 +1,11 @@
 <?php
+session_start();
 try {
   require_once("./connectMySql.php");
-  // 抓管理員資料
-  $AD_PASSWORD = $_POST["AD_PASSWORD"];
-  $AD_ACCOUNT = $_POST["AD_ACCOUNT"];
-  $ADSql = "select * from `administrator` where AD_ACCOUNT='$AD_ACCOUNT' and AD_PASSWORD='$AD_PASSWORD' ";
-  $AD = $pdo->query($ADSql);
+
   //-------------------------------------------------
   $memSql = "select * from member";
+  $memSearchSql = "select * from `member` where MEM_NO = 3";
   $adminSql = "select * from administrator";
   $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
   $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_INTRO, i.INT_INT_CONTENT, i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
@@ -19,6 +17,7 @@ try {
   $materialSql = "select * from POSTCARD_MATERIAL ";
   $announceSql = "select * from announcement;";
   $member = $pdo->query($memSql);
+  $memSearch = $pdo->query($memSearchSql);
   $administrator = $pdo->query($adminSql);
   $quiz = $pdo->query($quizSql);
   $career = $pdo->query($careerSql);
@@ -50,6 +49,7 @@ try {
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/backstage_index.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
 </head>
 
@@ -65,13 +65,7 @@ try {
       <div>
         <p class="ad_name">
           <?php
-          if ($AD->rowCount() == 0) {
-            //如果筆數是0 就是沒有這個帳密
-            echo "帳密錯誤";
-          } else {
-            $ADRow = $AD->fetch(PDO::FETCH_ASSOC);
-            echo $ADRow["AD_NAME"];
-          }
+          echo $_SESSION["AD_NAME"];
           ?>
         </p>
         <p>
@@ -108,14 +102,17 @@ try {
         <!-- member -->
         <div class="account" v-show="account">
           <p class="title">會員管理</p>
-          <form>
+          <form id="search_mem_form" action="./backstage_memberSearch.php">
             <div>
-              <input type="text" class="search_input">
-              <button class="search">查詢</button>
+              <input type="text" class="search_input" id="MemSearch" name="MEM_NO">
+              <button type="button" class="search" @click="SearchMEM" id="search_mem_no">查詢</button>
             </div>
-
           </form>
-          <table>
+          <!-- 找會員資料 -->
+          <table id="oneMem">
+          </table>
+          <!-- 全部會員 -->
+          <table id="allMem">
             <tr>
               <th>編號</th>
               <th>名稱</th>
@@ -230,16 +227,22 @@ try {
             ?>
               <tr>
                 <td><?= $quizRow["QUIZ_NO"] ?></td>
-                <td><?= $quizRow["QUIZ_CON"] ?></td>
+                <td>
+                  <div id="QUIZ_CON<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_CON"] ?></div>
+                </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1">
-                  <input type="file" name="" id="">
+                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>">
+                  <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+
                 </td>
-                <td><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></td>
+                <td>
+                  <div id="QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
+                </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
 
-                  <select name="" id="">
+                  <select name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="R" <?php echo $quizRow["firstType"] == "實作型" ? "selected" : "" ?>>實作型</option>
                     <option value="I" <?php echo $quizRow["firstType"] == "研究型" ? "selected" : "" ?>>研究型</option>
                     <option value="A" <?php echo $quizRow["firstType"] == "文藝型" ? "selected" : "" ?>>文藝型</option>
@@ -250,24 +253,27 @@ try {
                 </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2">
-                  <input type="file" name="" id="">
+                  <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                 </td>
-                <td><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></td>
+                <td>
+                  <div id="QUIZ_TWO_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
+                </td>
                 <td>
                   <p><?= $quizRow["secondType"] ?></p>
-                  <select name="" id="">
+                  <select name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="" v-for="type in types" <?php echo $quizRow["secondType"] == "{{type}}" ? "selected" : "" ?>>{{type}}</option>
                   </select>
                 </td>
                 <td>
                   <p><?php echo $quizRow["QUIZ_USE"] == 0 ? "否" : "是" ?></p>
-                  <select name="authority" id="">
+                  <select name="authority" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="authority">是</option>
                     <option value="authority">否</option>
                   </select>
                 </td>
                 <td>
-                  <button class="edit">編輯</button>
+                  <button class="edit" id="quizEdit<?= $quizRow["QUIZ_NO"] ?>">編輯</button>
+                  <button class="cancel" id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">取消</button>
                 </td>
               </tr>
             <?php

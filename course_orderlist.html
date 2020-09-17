@@ -110,7 +110,7 @@
             <div class="price_total">
               <span>總計:${{final_price}}</span>
             </div>
-            <a href="course_orderlist.html" class="check_out">結帳</a>
+            <a href="course_orderlist.html" class="check_out">前往結帳</a>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@
                             <img :src="card.ski_img" alt="" />
                           </div>
                           <div class="card_content">
-                            <p>{{card.ski_name}}</p>
+                            <p id="ski_name">{{card.ski_name}}</p>
                             <div class="card_content_scrb">
                               <div class="card_content_join">
                                 <i class="fas fa-user-friends"></i
@@ -268,7 +268,12 @@
                     </form>
                   </div>
                   <div class="check_out_btn">
-                    <a href="course_check.html" class="btn_primary">結帳</a>
+                    <a
+                      href="course_check.html"
+                      class="btn_primary"
+                      @click="orderListSend"
+                      >結帳</a
+                    >
                   </div>
                 </div>
               </div>

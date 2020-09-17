@@ -275,7 +275,7 @@
 					for($i = 1; $i < $number_of_orders; $i++){
 						$line = explode("\t", $orders[$i]);
 						if(!in_array($line[0], $re_value)){
-							$sql = "insert into `skill_class`(`SKI_NAME`, `IND_NO`, `SKI_PRICE`, `SKI_TIME`, `SKI_INTRO`, `SKI_LINK`, `SKI_IMG`, `SKI_TEC_IMG`, `SKI_TEC_NAME`, `SKI_TEC_INTRO`, `SKI_OUTLINE`, `SKI_STUD`) values('$line[0]', '$line[1]', '$line[4]', '$line[3]', '$line[5]', '$line[9]', '$line[10]', '$line[11]', '$line[7]', '$line[8]', '$line[2]', '$line[6]')";
+							$sql = "insert into `skill_class`(`SKI_NAME`, `IND_NO`, `SKI_PRICE`, `SKI_TIME`, `SKI_INTRO`, `SKI_LINK`, `SKI_IMG`, `SKI_TEC_IMG`, `SKI_TEC_NAME`, `SKI_TEC_INTRO`, `SKI_OUTLINE`, `SKI_STUD`, `SKI_HARVEST`) values('$line[0]', '$line[1]', '$line[4]', '$line[3]', '$line[12]', '$line[9]', '$line[10]', '$line[11]', '$line[7]', '$line[8]', '$line[2]', '$line[6]', '$line[5]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
 							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";

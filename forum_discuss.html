@@ -92,10 +92,12 @@
               </div>
               <div class="msg_textarea" @click="openContent(index)">
                 {{messages.DIS_CONTENT}}
+                ＰＰＰＰ
+                {{messages.DIS_NO}}
               </div>
               <div class="msg_btn">
                 <button class="heart">
-               <i class="fas fa-heart" :class="{'colorRed':messages.CURRENT_USER_CLICKED}" @click="heart_btn(index,1)"></i>
+               <i class="fas fa-heart" :class="{'colorRed':isHeart[index]}"@click="heart_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
                 <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
@@ -162,7 +164,7 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                <i class="fas fa-heart" :class="{'colorRed':isHeart}" @click="heart_btn(index,2)"></i>
+                <i class="fas fa-heart" :class="{'colorRed':isHeart[msg.index]}"  @click="$forceUpdate(), heart_btn(msg.index,msg.DIS_NO, 1)"></i>
               </button>
               <button class="gray_btn">
                 <i class="far fa-comment-alt"></i>
@@ -188,7 +190,7 @@
               <div class="dis_date">{{msg.DIS_MES_DATE}}</div>
             </div>
             <div class="msg_textarea">
-              {{msg.DIS_MES_CONTENT}}}
+              {{msg.DIS_MES_CONTENT}}
             </div>
             <div class="msg_btn">
               <button class="heart">
@@ -205,7 +207,7 @@
               <textarea name="" id="send_msg" placeholder="請輸入訊息..."></textarea>
             </div>
             <div class="confirm_send_btn">
-              <input type="submit" value="送出" class="btn_third" id="send_msg_btn" />
+              <input type="submit" value="送出" class="btn_third" id="send_msg_btn" @click="sendMsg(msg.DIS_NO)"/>
             </div>
           </div>
         </div>

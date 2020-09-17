@@ -30,8 +30,36 @@ window.addEventListener("load", function() {
     }
     document.querySelector(".edit").onclick = edit;
 
+    //   var MEM_NO = document.querySelector('.search_input').value;
+    //   var formData = new FormData();
+    //   formData.append('MEM_NO', MEM_NO);
+    //   axios.post('backstage_memberSearch.php', formData)
+    //     .then((resp) => {
+    //       // 沒
+    //       if (resp.data == 0) {
+    //         alert('查無此會員，請重新輸入');
 
     $(".orderHide").hide();
 
+    // 更改行業資料
+    $('.quizShow1').hide();
+    // $('#quizCancel1').hide();
 
+    let quizEdit1 = document.getElementById('quizEdit1');
+    quizEdit1.addEventListener('click', function() {
+        $('.quizShow1').show();
+        // $('#quizCancel1').show();
+        let quizCon = $("#QUIZ_CON1").text();
+        let quizOneContent = $("#QUIZ_ONE_CONTENT1").text();
+        let quizTwoContent = $("#QUIZ_TWO_CONTENT1").text();
+        let quizId = $("#QUIZ_CON1").attr('id');
+        let QUIZ_One_CONTENTId = $("#QUIZ_ONE_CONTENT1").attr('id');
+        let QUIZ_TWO_CONTENTId = $("#QUIZ_TWO_CONTENT1").attr('id');
+        // let quizClass = $("#quiz_up1").attr('class');
+        $("#QUIZ_CON1").replaceWith(`<textarea id="${quizId}" cols="25" rows="5">${quizCon}</textarea>`);
+        $("#QUIZ_ONE_CONTENT1").replaceWith(`<textarea id="${QUIZ_One_CONTENTId}" cols="25" rows="5">${quizOneContent}</textarea>`);
+        $("#QUIZ_TWO_CONTENT1").replaceWith(`<textarea id="${QUIZ_TWO_CONTENTId}" cols="25" rows="5">${quizTwoContent}</textarea>`);
+        quizEdit1.innerText = '確認';
+
+    });
 });

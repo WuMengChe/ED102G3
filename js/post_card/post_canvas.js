@@ -28,8 +28,7 @@ function captureFront() {
         sessionStorage["frontImg"] = ajaxFront.responseText;
         // alert(this.responseText);
         myFileName = ajaxFront.responseText;
-        alert(myFileName);
-        // location.href = `post_date.html?myFileName=${myFileName}`;
+        // alert(myFileName);
       }
     };
 
@@ -60,9 +59,10 @@ function captureBack() {
         sessionStorage["backImg"] = ajaxBack.responseText;
         // alert(this.responseText);
         myFileName2 = ajaxBack.responseText;
-        alert(myFileName2);
+        // alert(myFileName2);
 
-        location.href = `post_date.html?myFileName=${myFileName}&myFileName2=${myFileName2}`;
+        // location.href = `post_date.html?myFileName=${myFileName}&myFileName2=${myFileName2}`;
+        location.href = "./post_date.html";
       }
     };
 

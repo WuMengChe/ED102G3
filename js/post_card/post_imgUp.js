@@ -65,14 +65,14 @@ function changed(e) {
 var lenF = document.getElementById('leftWrite');
 var width = $(window).width();
 
-
+var count = 0;
 lenF.addEventListener('focus', function () {
-  let count = 0;
+  // lenF.innerText = '';
   if (count == 0) {
-    lenF.innerText = '';
-    count++;
+    document.getElementById('leftWrite').innerText = '';
+    count += 1;
   } else {
-    count = 1;
+    document.getElementById('leftWrite').value = document.getElementById('leftWrite').innerText;
   }
 
 
@@ -83,19 +83,44 @@ lenF.addEventListener('focus', function () {
 
 //  進來先判斷
 if (width >= 1200) {
+  lenF.addEventListener('keyup', function () {
+    var lenF = $('#leftWrite'),
+      cutCount = 30,
+      openTxt = '…超過字數';
+    lenF.each(function () {
+      var self = $(this),
+        selfText = self.text(),
+        textLength = selfText.length,
+        textTrim = selfText.substr(0, cutCount);
+
+      function textTrimming() {
+        self.html(textTrim + '<span style="color:#ccc;">' + openTxt + '</span>').css({
+          visibility: 'visible'
+        });
+      }
+
+      if (cutCount < textLength) {
+        textTrimming();
+      } else if (cutCount >= textLength) {
+        self.css({
+          visibility: 'visible'
+        });
+      }
+    });
+  });
   // lenF.maxLength = 357;
   // lenF.innerText.length = 357;
   // lenF.innerText = lenF.innerText.substr(0, 20);
   // alert(lenF.innerText.substr(0, 5));
-  lenF.addEventListener('keyup', function () {
-    // lenF.maxLength = 20;
-    // if (temp <= 20) {
-    //   temp++;
-    // } else {
-    lenF.innerText = lenF.innerText.substr(0, 20);
 
-    // }
-  });
+  //   // lenF.maxLength = 20;
+  //   // if (temp <= 20) {
+  //   //   temp++;
+  //   // } else {
+  //   lenF.innerText = lenF.innerText.substr(0, 20);
+
+  //   // }
+
 
 
 } else if (width < 1200 && width > 767) {
