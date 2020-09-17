@@ -69,7 +69,7 @@ try {
       <div>
         <p class="ad_name">
           <?php
-          // echo $_SESSION["AD_NAME"];
+          echo $_SESSION["AD_NAME"];
           ?>
         </p>
         <p>
