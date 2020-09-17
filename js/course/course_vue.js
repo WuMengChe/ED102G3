@@ -2,6 +2,12 @@ let vm = new Vue({
   el: "#course_main",
   data() {
     return {
+      // 共用
+      cart_items: [],
+      // 燈箱變數
+      signIn: true,
+
+      // course_main
       category: [
         {
           link_from: "practical",
@@ -47,12 +53,9 @@ let vm = new Vue({
         },
       ],
       hot_course: [],
-      cart_items: [],
-      favorite_items: [],
 
-      // course_introduce接收連結號碼
+      // course_introduce
       introduce_no: null,
-      //   課程介紹-單一課程
       introduce_single: {
         ski_no: "",
         ski_name: "",
@@ -71,26 +74,24 @@ let vm = new Vue({
         ind_color: "",
       },
       introduce_suggest: [],
-
-      // 燈箱變數
-      signIn: true,
+      favorite_items: [],
     };
   },
   mounted() {
-    // 熱門課程/category課程
+    // course_main - 熱門課程/category課程
     this.all_course_api();
-    let localURL = new URL(document.location);
-
-    // 判斷在course_introduce頁面才執行
-    if (localURL.toString().includes("course_introduce")) {
-      this.introduce_course_api();
-    }
-
-    // course_main
+    // course_main - script
     script = document.createElement("script");
     script.src = "./js/course/course_main.js";
     document.body.appendChild(script);
 
+    // course_introduce
+    let localURL = new URL(document.location);
+    if (localURL.toString().includes("course_introduce")) {
+      this.introduce_course_api();
+    }
+
+    // 共用
     this.check_member_api();
   },
   methods: {
@@ -172,7 +173,6 @@ let vm = new Vue({
         // });
       }
 
-      // console.log("我是favorite_items" + this.favorite_items);
       let ss = " ";
       ss = JSON.stringify(this.favorite_items);
       localStorage.setItem("course_favorite", ss);
