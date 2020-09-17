@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <form class="co1-6" method="POST" action="backstage_index.php">
+            <form class="co1-6" method="POST" action="backstage_loginCheck.php">
                 <div class="logo">
                     <img src="./img/LOGO_FINAL.svg" alt="">
                 </div>
@@ -28,12 +28,29 @@
                     <input type="password" class="text" name="AD_PASSWORD">
                 </div>
                 <div class="login">
-                    <input type="submit" value="登入" class="btn_primary submit">
+                    <input type="submit" value="登入" class="btn_primary submit" id="bg_login">
                 </div>
             </form>
 
         </div>
     </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script>
+        $('#bg_login').click(function () {
+            axios.get('backstage_loginCheck.php')
+                .then((resp) => {
+                    // 沒登入跳視窗
+                    if (resp.data == 0) {
+                        alert('帳號或密碼錯誤，請重新輸入');
+
+                    } else {
+                        // 已經有登入
+                        window.location.href = "backstage_index.php";
+
+                    }
+                });
+        });
+    </script>
 </body>
 
 </html>

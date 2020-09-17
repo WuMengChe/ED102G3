@@ -122,7 +122,7 @@ $(function () {
                 .post('./php/memberSignInCheck.php', formData)
                 .then((resp) => {
                     if (resp.data == 0) {
-                        alert('帳號或密碼錯誤，請重新輸入...........');
+                        alert('帳號或密碼錯誤，請重新輸入');
                         document.querySelector('.input_div #code').value = "";
                     } else {
                         // alert('會員登入成功');

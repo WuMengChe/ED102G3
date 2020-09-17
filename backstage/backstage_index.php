@@ -1,11 +1,8 @@
 <?php
+session_start();
 try {
   require_once("./connectMySql.php");
-  // 抓管理員資料
-  $AD_PASSWORD = $_POST["AD_PASSWORD"];
-  $AD_ACCOUNT = $_POST["AD_ACCOUNT"];
-  $ADSql = "select * from `administrator` where AD_ACCOUNT='$AD_ACCOUNT' and AD_PASSWORD='$AD_PASSWORD' ";
-  $AD = $pdo->query($ADSql);
+
   //-------------------------------------------------
   $memSql = "select * from member";
   $adminSql = "select * from administrator";
@@ -72,13 +69,7 @@ try {
       <div>
         <p class="ad_name">
           <?php
-          if ($AD->rowCount() == 0) {
-            //如果筆數是0 就是沒有這個帳密
-            echo "帳密錯誤";
-          } else {
-            $ADRow = $AD->fetch(PDO::FETCH_ASSOC);
-            echo $ADRow["AD_NAME"];
-          }
+          // echo $_SESSION["AD_NAME"];
           ?>
         </p>
         <p>
