@@ -65,18 +65,15 @@ function changed(e) {
 var lenF = document.getElementById('leftWrite');
 var width = $(window).width();
 
-let count = 0;
+var count = 0;
 lenF.addEventListener('focus', function () {
-  lenF.innerText = '';
-  // if (count == 0) {
-  //   lenF.innerText = '';
-  count += 1;
-  if (count == 1) {
-    lenF.value = lenF.innerText;
+  // lenF.innerText = '';
+  if (count == 0) {
+    document.getElementById('leftWrite').innerText = '';
+    count += 1;
+  } else {
+    document.getElementById('leftWrite').value = document.getElementById('leftWrite').innerText;
   }
-  // } else {
-  //   count = 1;
-  // }
 
 
 });
