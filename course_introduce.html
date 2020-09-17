@@ -169,7 +169,7 @@
                     </div>
                   </div>
                   <div class="banner_describe">
-                    <p v-for="intro in introduce_single.ski_intro">{{intro}}</p>
+                    <p>{{introduce_single.ski_intro}}</p>
                   </div>
                 </div>
               </div>
@@ -193,10 +193,9 @@
             <div class="learn_list">
               <h2>我將從這堂課學到什麼?</h2>
               <ul>
-                <li v-for="(learn,index) in introduce_single.ski_intro">
+                <li v-for="(learn,index) in introduce_single.ski_harvest">
                   {{index+1}}.{{learn}}
                 </li>
-                <li>2.瞭解在進行行銷活動時，時間與金錢之前的關聯性。</li>
               </ul>
             </div>
           </div>
