@@ -231,13 +231,15 @@ try {
                   <div id="QUIZ_CON<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_CON"] ?></div>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1">
-                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>">
-                  <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgOne">
+                  <label class="quizShow<?= $quizRow["QUIZ_NO"] ?>">選擇檔案
+                    <input type="file" name="QUIZ_PIC_ONE" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>" style="display:none;">
+                  </label>
 
                 </td>
                 <td>
-                  <div id="QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
+                  <div id=" QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?>
+                  </div>
                 </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
@@ -252,8 +254,10 @@ try {
                   </select>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2">
-                  <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgTwo">
+                  <label for="QUIZ_PIC_Two">
+                    <input type="file" name="QUIZ_PIC_Two" id="QUIZ_PIC_Two<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  </label>
                 </td>
                 <td>
                   <div id="QUIZ_TWO_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
