@@ -16,12 +16,8 @@ try {
   $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
   $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
 
-  $orderSql = "select mem.MEM_NO, ord.ORD_NO, ord.ORD_DATE, ord.ORD_AMOUNT,ord.ORD_PAY, orddet.ORD_DET_NO, orddet.ORD_DET_PRICE, ski.SKI_NAME, ski.SKI_IMG, ski.SKI_TEC_NAME, ski.SKI_NO from order_mem ord join member mem on ord.MEM_NO = mem.MEM_NO join order_detial orddet on ord.ORD_NO = orddet.ORD_NO join skill_class ski on ski.SKI_NO = orddet.SKI_NO where ord.ORD_NO = 1 order by ord.ORD_NO asc";
-  // $orderSql = "select * from ORDER_MEM";
-
   $materialSql = "select * from POSTCARD_MATERIAL ";
   $announceSql = "select * from announcement;";
-  // $indusSql = "select ";
   $member = $pdo->query($memSql);
   $administrator = $pdo->query($adminSql);
   $quiz = $pdo->query($quizSql);
@@ -29,9 +25,10 @@ try {
   $skill = $pdo->query($skillSql);
   $ArReport = $pdo->query($ArReportSql);
   $MgReport = $pdo->query($MgReportSql);
+  
+  
 
-  $order = $pdo->query($orderSql);
-  // $order = $pdo->query($orderSql);
+  // $ordCount = $pdo->query($ordCountSql);
 
   $material = $pdo->query($materialSql);
   $announce = $pdo->query($announceSql);
@@ -40,10 +37,6 @@ try {
   echo "錯誤行號:", $e->getLine(), "<br>";
 }
 
-// $careerArrayH = array();
-// $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
-// $careerArrayL = array();
-// $careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
 
 ?>
 
@@ -182,7 +175,9 @@ try {
                 </td>
               </tr>
             <?php
-            }
+            }  
+
+          
             ?>
           </table>
           <div id="adForm">
@@ -303,6 +298,10 @@ try {
             </tr>
             <?php
             while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
+              $careerArrayH = array();
+              $careerArrayL = array();
+              $careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
+              $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
             ?>
               <tr>
                 <td><?= $careerRow["IND_INT_NO"] ?></td>
@@ -321,50 +320,50 @@ try {
                 <td><?= $careerRow["IND_INT_SKILL"] ?></td>
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[0] ?></span>
+                    <span><?=$careerArrayL[0] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[0] ?></span>
+                    <span><?=$careerArrayH[0] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[1] ?></span>
+                    <span><?=$careerArrayL[1] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[1] ?></span>
+                    <span><?=$careerArrayH[1] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[2] ?></span>
+                    <span><?=$careerArrayL[2] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[2] ?></span>
+                    <span><?=$careerArrayH[2] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[3] ?></span>
+                    <span><?=$careerArrayL[3] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[3] ?></span>
+                    <span><?=$careerArrayH[3] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[4] ?></span>
+                    <span><?=$careerArrayL[4] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[4] ?></span>
+                    <span><?=$careerArrayH[4] ?></span>
                   </p>
 
                 </td>
@@ -534,7 +533,7 @@ try {
             </div>
 
           </form>
-          <table>
+          <table v-for="item in orders">
             <tr>
               <th>編號</th>
               <th>會員編號</th>
@@ -543,34 +542,30 @@ try {
               <th>購買日期</th>
               <th></th>
             </tr>
-            <?php
-            while ($orderRow = $order->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+            
               <tr>
-                <td><?= $orderRow["ORD_NO"] ?></td>
-                <td><?= $orderRow["MEM_NO"] ?></td>
-                <td><?= $orderRow["ORD_AMOUNT"] ?></td>
-                <td><?= $orderRow["ORD_PAY"] ?></td>
-                <td><?= $orderRow["ORD_DATE"] ?></td>
-                <td><button>訂單明細</button></td>
+                <td>{{item.ORD_NO}}</td>
+                <td>{{item.MEM_NO}}</td>
+                <td>{{item.ORD_AMOUNT}}</td>
+                <td>{{item.ORD_PAY}}</td>
+                <td>{{item.ORD_DATE}}</td>
+                <td><button @click="detail">查看訂單明細</button></td>
               </tr>
-              <tr>
+
+              <tr class="orderHide" :class="['orderDetail'+item.ORD_NO]">
                 <th>訂單明細編號</th>
                 <th>課程編號</th>
                 <th>課程名稱</th>
                 <th>價格</th>
               </tr>
-
-              <tr>
-                <td><?= $orderRow["ORD_DET_NO"] ?></td>
-                <td><?= $orderRow["SKI_NO"] ?></td>
-                <td><?= $orderRow["SKI_NAME"] ?></td>
-                <td><?= $orderRow["ORD_DET_PRICE"] ?></td>
-
+             
+              <tr class="orderHide" :class="['orderDetail'+item.ORD_NO]">
+                <td>{{item.ORD_DET_NO}}</td>
+                <td>{{item.SKI_NO}}</td>
+                <td>{{item.SKI_NAME}}</td>
+                <td>{{item.ORD_DET_PRICE}}</td>
               </tr>
-            <?php
-            }
-            ?>
+            
           </table>
         </div>
 
@@ -648,6 +643,8 @@ try {
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
 
