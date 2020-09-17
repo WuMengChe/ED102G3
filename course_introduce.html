@@ -193,7 +193,9 @@
             <div class="learn_list">
               <h2>我將從這堂課學到什麼?</h2>
               <ul>
-                <li>1.掌握內容、社群跟商務三者對於行銷活動的重要性。</li>
+                <li v-for="(learn,index) in introduce_single.ski_intro">
+                  {{index+1}}.{{learn}}
+                </li>
                 <li>2.瞭解在進行行銷活動時，時間與金錢之前的關聯性。</li>
               </ul>
             </div>
@@ -254,7 +256,7 @@
                         <span>{{card.ski_buy_num}}人已參與此課程</span>
                       </div>
                       <div class="card_content_msg">
-                        <span class="card_time">總計{{card.ski_time}}小時</span>
+                        <span class="card_time">總計{{card.ski_time}}</span>
                         <span class="card_price">NT${{card.ski_price}}</span>
                       </div>
                     </div>
