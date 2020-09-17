@@ -12,6 +12,7 @@ let Data = {
     S:' ',
     E:' ',
     C:' ',
+    userId:'',
     anaValue:[0,0,0 ,0 ,0 ,0 ],
     maxValue:'',
     maxIndex:'',
@@ -117,15 +118,19 @@ let testResult = new Vue({
        };
     
 //  要傳上面這個array的值到php的話，不用一次傳整個陣列，用 this.anaValue[index]的方式一個一個傳到php 的方式
- 
+        
         var formData = new FormData();
         formData.append('typeR', this.anaValue[0]);
+        formData.append('typeI', this.anaValue[1]);
+        formData.append('typeA', this.anaValue[2]);
+        formData.append('typeS', this.anaValue[3]);
+        formData.append('typeE', this.anaValue[4]);
+        formData.append('typeC', this.anaValue[5]);
         axios
-        .post('./testResultData.php',formData)
-        .then((res) => {
-        console.log(res)
+        .post('./php/testResultData.php',formData)
+        .then((resp) => {
+          console.log(resp.data)
         });
-        
 // 以上傳六個值出去
 
        this.maxValue = this.anaValue[0]; // 這邊開始找出最大值是誰?在哪?
@@ -138,6 +143,7 @@ let testResult = new Vue({
         // console.log(this.maxIndex);
        }   
       //這邊這個最大值也要傳到php喔
+  
                                              //  [0,1,2,3,4,5]
     //以下判定第幾個值是最大的決定要撈什麼資料:順序: [R,I,A,S,E,C]            
        if ( this.maxIndex === 0 ){
@@ -160,14 +166,13 @@ let testResult = new Vue({
         alert('哈~ C 最大~')
        }
 
-       
+       //送出最大的
        var formData = new FormData();
        formData.append('userType', this.maxIndex);
        axios
-       .post('./testResultData.php',formData)
-       .then((res) => {
-         this.maxIndex = resp.data
-         console.log(res)
+       .post('./php/testResultData.php',formData)
+       .then((resp) => {
+         console.log(resp.data)
        });
 
     },
@@ -175,25 +180,29 @@ let testResult = new Vue({
         window.removeEventListener('resize', this.plotRadar);
     },
     methods: {
-        saveResult(){
+        saveResult(){  //儲存結果功能
             axios
-            .post('./php/memberStateCheck.php')
+            .post('./php/memberStateCheck.php')  // 送去檢查使用者當前狀態
             .then((resp) => {
                 if(resp.data == 0){
-                    alert('請先登入會員');
+                    alert('請先登入會員才能儲存'); // 不是，就跳燈箱請他登入會員
                     document.querySelector('.bg_of_lightbx').style = "display:block";
                 }
                 else{
                     console.log(resp.data)
-                    alert('測驗結果已儲存');
+                    alert('測驗結果已儲存'); // 在登入狀態了，就直接存進資料庫 (之後要記得加防呆)
                     // 執行testResultData.php
-                    //這邊放把資料送去資料庫的東西喔
-                    // 會員編號、圖表、六類分數、最高分類型、日期!
+                    this.userId = resp.data; 
+                    var formData = new FormData();
+                    formData.append('userId', this.userId);
+                    axios
+                    .post('./php/testResultData.php',formData)
                 }
                 // console.log(resp)
             })
             
         },   
+        // 以下為會員燈入用
         changeState(){
             var memAccount = document.querySelector('.input_div #account').value;
             var memCode = document.querySelector('.input_div #code').value;
@@ -211,15 +220,14 @@ let testResult = new Vue({
                     alert('會員登入成功');
                     //登入成功則燈箱移除
                     document.querySelector('.bg_of_lightbx').style = "display:none";
-                    // document.getElementById('member_icon').innerText = "Hi," + resp.data;
-                    //將結果傳至會員儲存
-                    //這邊要寫把資料傳到資料庫的東西
+                    console.log(resp.data)
                 }
             })
         },
         btnClose(){
             document.querySelector('.bg_of_lightbx').style = "display:none"; 
         },
+        // 以下圖表
     plotRadar(){
         if (this.myChart != null && this.myChart != "" && this.myChart != undefined) {
             this.myChart.dispose();//銷燬
