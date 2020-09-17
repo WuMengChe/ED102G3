@@ -31,14 +31,14 @@
         </div>
             <div class="answer_option_wrap">
 
-                <a class="answer_option option1" v-on:click="changeIndex(1, option1[index].value);changePage();width===540?'':width+=30"  >
+                <a class="answer_option option1" v-on:click="changeIndex(1, quizData[index].QUIZ_SEL_ONE_CLASS);changePage();width===540?'':width+=30"  >
                         <img class="cat" :src="quizData[index].QUIZ_PIC_ONE"  alt="">
                         <p class="a1">{{ quizData[index].QUIZ_SEL_ONE_CONTENT }}</p>
                 </a>
                 <div class="compare">
                    <p>VS</p>
                 </div>
-                <a class="answer_option option2"  v-on:click="changeIndex(1, option2[index].value);changePage();width===540?'':width+=30">
+                <a class="answer_option option2"  v-on:click="changeIndex(1, quizData[index].QUIZ_SEL_TWO_CLASS);changePage();width===540?'':width+=30">
                     <img class="cat" :src="quizData[index].QUIZ_PIC_TWO"  alt="">
                     <p class="a2">{{ quizData[index].QUIZ_SEL_TWO_CONTENT }}</p>
                 </a>

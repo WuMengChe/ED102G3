@@ -17,8 +17,9 @@
                 $member_row=$member_all->fetch(PDO::FETCH_ASSOC);
                 $_SESSION["memNo"] = $member_row["MEM_NO"];
                 $_SESSION["memName"] = $member_row["MEM_NAME"];
-                echo 1; 
-                // echo $member_row["MEM_NAME"];
+                // echo 1;
+                echo $member_row["MEM_NO"];
+                
 
             }
         }
