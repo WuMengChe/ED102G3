@@ -232,7 +232,6 @@ let vm = new Vue({
       // FormData建立變數傳給php
       var formData = new FormData();
       formData.append("introduce_no", this.introduce_no);
-      // formData.append("suggest_no", this.introduce_single.ind_no);
 
       axios
         .all([
@@ -290,12 +289,12 @@ let vm = new Vue({
             console.log(res.data);
             if (res.data != 0) {
               let memName = res.data.split(";")[1];
+
               $("div.member > a").html("Hi," + memName);
               $("div.member > a").attr("href", "member.html");
               $("#header_logOut").css("display", "block");
             }
           }
-          // this.hot_course = res.data;
         })
         .catch(function (error) {
           console.log(error);
@@ -304,8 +303,30 @@ let vm = new Vue({
 
     // orderList傳訂單到資料庫
     orderListSend() {
-      let ski_name = $("#ski_name").text();
-      alert(ski_name);
+      let d_ord_amount = $(".final_price").text(); //總金額
+      let d_ord_pay = "信用卡"; //付款方式
+      let d_ord_discount = 0; //是否折扣
+      if (this.cart_items.length > 1) {
+        d_ord_discount = 1;
+      }
+      let d_course_arr = [];
+
+      this.cart_items.forEach((item) => {
+        //課程資訊
+        d_course_arr.push({
+          ski_no: item.ski_no,
+          ski_name: item.ski_name,
+          ski_price: item.ski_price,
+        });
+      });
+
+      // 建立php的變數
+      var formData = new FormData();
+      formData.append("ord_amount", d_ord_amount);
+      formData.append("ord_pay", d_ord_pay);
+      formData.append("ord_discount", d_ord_discount);
+      formData.append("course_arr", d_course_arr);
+      console.log(formData.ord_amount);
     },
 
     // header登出
