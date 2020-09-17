@@ -118,14 +118,19 @@ let vm = new Vue({
         if (resp.data == 0) {
           document.querySelector(".bg_of_lightbx").style = "display:block";
         } else {
+          // 若購物車內無商品
           if (this.cart_items.length == 0) {
             this.cart_items.push(item);
           } else {
             let check = true;
             for (i = 0; i < this.cart_items.length; i++) {
+              // 若購物車內已有此商品
               if (this.cart_items[i].ski_no == item.ski_no) {
                 check = false;
-                alert("購物車內已有此課程囉!");
+                // alert("購物車內已有此課程囉!");
+                $(`.cus_${item.ski_no}`).removeClass("cart_clicked");
+                this.cart_items.splice(i, 1);
+                return;
               }
             }
 
@@ -174,7 +179,6 @@ let vm = new Vue({
     },
     remove_item(index) {
       $(`.cus_${this.cart_items[index].ski_no}`).removeClass("cart_clicked");
-      // e.currentTarget.classList.remove('cart_clicked');
       this.cart_items.splice(index, 1);
       this.add_storage();
     },
@@ -216,6 +220,11 @@ let vm = new Vue({
           console.log(err);
         });
     },
+    splitItem(item) {
+      item = item.split(";");
+      item.splice(0, 1);
+    },
+
     // hot_course_api() {
     //   axios
     //     .get("./php/course_hot_course.php")
@@ -280,10 +289,21 @@ let vm = new Vue({
                 _this.introduce_single = res1.data[0];
 
                 // 切課程介紹
+
+                // this.splitItem(this.introduce_single.ski_intro);
+                // this.splitItem(this.introduce_single.ski_stud);
+
                 _this.introduce_single.ski_intro = _this.introduce_single.ski_intro.split(
                   ";"
                 );
                 _this.introduce_single.ski_intro.splice(0, 1);
+
+                // 切適合對象
+                _this.introduce_single.ski_stud = _this.introduce_single.ski_stud.split(
+                  ";"
+                );
+                _this.introduce_single.ski_stud.splice(0, 1);
+                console.log("切對象:" + _this.introduce_single.ski_stud);
               }
             }
 
