@@ -85,7 +85,7 @@ lenF.addEventListener('focus', function () {
 if (width >= 1200) {
   lenF.addEventListener('keyup', function () {
     var lenF = $('#leftWrite'),
-      cutCount = 30,
+      cutCount = 350,
       openTxt = '…超過字數';
     lenF.each(function () {
       var self = $(this),
@@ -108,29 +108,64 @@ if (width >= 1200) {
       }
     });
   });
-  // lenF.maxLength = 357;
-  // lenF.innerText.length = 357;
-  // lenF.innerText = lenF.innerText.substr(0, 20);
-  // alert(lenF.innerText.substr(0, 5));
-
-  //   // lenF.maxLength = 20;
-  //   // if (temp <= 20) {
-  //   //   temp++;
-  //   // } else {
-  //   lenF.innerText = lenF.innerText.substr(0, 20);
-
-  //   // }
-
-
 
 } else if (width < 1200 && width > 767) {
-  let x = 21 - Math.ceil(1200 - width) / 50;
-  let y = 17 - Math.ceil(1200 - width) / 70;
-  lenF.innerText.length = x * y;
+  var lenF = $('#leftWrite'),
+    openTxt = '…超過字數',
+    x = 21 - Math.ceil(1200 - width) / 50,
+    y = 17 - Math.ceil(1200 - width) / 70,
+    cutCount = x * y;
+  lenF.addEventListener('keyup', function () {
+
+    lenF.each(function () {
+      var self = $(this),
+        selfText = self.text(),
+        textLength = selfText.length,
+        textTrim = selfText.substr(0, cutCount);
+
+      function textTrimming() {
+        self.html(textTrim + '<span style="color:#ccc;">' + openTxt + '</span>').css({
+          visibility: 'visible'
+        });
+      }
+
+      if (cutCount < textLength) {
+        textTrimming();
+      } else if (cutCount >= textLength) {
+        self.css({
+          visibility: 'visible'
+        });
+      }
+    });
+  });
 } else {
-  let x = 18 - Math.ceil(767 - width) / 38;
-  let y = 14 - Math.ceil(767 - width) / 50;
-  lenF.innerText.length = x * y;
+  var lenF = $('#leftWrite'),
+    openTxt = '…超過字數',
+    x = 18 - Math.ceil(767 - width) / 38,
+    y = 14 - Math.ceil(767 - width) / 50,
+    cutCount = x * y;
+  lenF.addEventListener('keyup', function () {
+    lenF.each(function () {
+      var self = $(this),
+        selfText = self.text(),
+        textLength = selfText.length,
+        textTrim = selfText.substr(0, cutCount);
+
+      function textTrimming() {
+        self.html(textTrim + '<span style="color:#ccc;">' + openTxt + '</span>').css({
+          visibility: 'visible'
+        });
+      }
+
+      if (cutCount < textLength) {
+        textTrimming();
+      } else if (cutCount >= textLength) {
+        self.css({
+          visibility: 'visible'
+        });
+      }
+    });
+  });
 }
 
 //  resize再判斷一次

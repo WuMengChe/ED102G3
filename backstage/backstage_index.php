@@ -24,8 +24,8 @@ try {
   $skill = $pdo->query($skillSql);
   $ArReport = $pdo->query($ArReportSql);
   $MgReport = $pdo->query($MgReportSql);
-  
-  
+
+
 
   // $ordCount = $pdo->query($ordCountSql);
 
@@ -172,9 +172,9 @@ try {
                 </td>
               </tr>
             <?php
-            }  
+            }
 
-          
+
             ?>
           </table>
           <div id="adForm">
@@ -273,7 +273,7 @@ try {
                 </td>
                 <td>
                   <button class="edit" id="quizEdit<?= $quizRow["QUIZ_NO"] ?>">編輯</button>
-                  <button class="cancel" id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">取消</button>
+                  <button id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?> cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -326,50 +326,50 @@ try {
                 <td><?= $careerRow["IND_INT_SKILL"] ?></td>
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[0] ?></span>
+                    <span><?= $careerArrayL[0] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[0] ?></span>
+                    <span><?= $careerArrayH[0] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[1] ?></span>
+                    <span><?= $careerArrayL[1] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[1] ?></span>
+                    <span><?= $careerArrayH[1] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[2] ?></span>
+                    <span><?= $careerArrayL[2] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[2] ?></span>
+                    <span><?= $careerArrayH[2] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[3] ?></span>
+                    <span><?= $careerArrayL[3] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[3] ?></span>
+                    <span><?= $careerArrayH[3] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[4] ?></span>
+                    <span><?= $careerArrayL[4] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[4] ?></span>
+                    <span><?= $careerArrayH[4] ?></span>
                   </p>
 
                 </td>
@@ -548,30 +548,30 @@ try {
               <th>購買日期</th>
               <th></th>
             </tr>
-            
-              <tr>
-                <td>{{item.ORD_NO}}</td>
-                <td>{{item.MEM_NO}}</td>
-                <td>{{item.ORD_AMOUNT}}</td>
-                <td>{{item.ORD_PAY}}</td>
-                <td>{{item.ORD_DATE}}</td>
-                <td><button @click="detail">查看訂單明細</button></td>
-              </tr>
 
-              <tr class="orderHide" :class="['orderDetail'+item.ORD_NO]">
-                <th>訂單明細編號</th>
-                <th>課程編號</th>
-                <th>課程名稱</th>
-                <th>價格</th>
-              </tr>
-             
-              <tr class="orderHide" :class="['orderDetail'+item.ORD_NO]">
-                <td>{{item.ORD_DET_NO}}</td>
-                <td>{{item.SKI_NO}}</td>
-                <td>{{item.SKI_NAME}}</td>
-                <td>{{item.ORD_DET_PRICE}}</td>
-              </tr>
-            
+            <tr>
+              <td>{{item.ORD_NO}}</td>
+              <td>{{item.MEM_NO}}</td>
+              <td>{{item.ORD_AMOUNT}}</td>
+              <td>{{item.ORD_PAY}}</td>
+              <td>{{item.ORD_DATE}}</td>
+              <td><button @click="detail">查看訂單明細</button></td>
+            </tr>
+
+            <tr class="orderHide" :class="['orderDetail'+item.ORD_NO]">
+              <th>訂單明細編號</th>
+              <th>課程編號</th>
+              <th>課程名稱</th>
+              <th>價格</th>
+            </tr>
+
+            <tr class="orderHide" :class="['orderDetail'+item.ORD_NO]">
+              <td>{{item.ORD_DET_NO}}</td>
+              <td>{{item.SKI_NO}}</td>
+              <td>{{item.SKI_NAME}}</td>
+              <td>{{item.ORD_DET_PRICE}}</td>
+            </tr>
+
           </table>
         </div>
 
