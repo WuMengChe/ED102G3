@@ -249,13 +249,13 @@ let vm = new Vue({
                 let splitItem = function (str) {
                   return str.split(";").splice(1, str.split(";").length - 1);
                 };
-                // 切割課程介紹
-                _this.introduce_single.ski_intro = splitItem(
-                  _this.introduce_single.ski_intro
-                );
                 // 切割適合對象
                 _this.introduce_single.ski_stud = splitItem(
                   _this.introduce_single.ski_stud
+                );
+                // 切割學到什麼
+                _this.introduce_single.ski_harvest = splitItem(
+                  _this.introduce_single.ski_harvest
                 );
                 // 切割課程大綱
                 _this.introduce_single.ski_outline = splitItem(
