@@ -72,7 +72,7 @@
             </div>
             <div class="related_job_wrap">
                 <div class="title_bx">
-                    <h2>此類型相關工作{{anaValue}}</h2>
+                    <h2>此類型相關工作</h2>
                 </div>
                 <div class="related_job">
                     <ul class="jobs row ">
@@ -101,21 +101,21 @@
                              <span class="card_type" :style="{backgroundColor:relatedCourse[index].backgroundColor}" >{{item.type}}</span>
                              <div class="course_pic">
                                 <a >
-                                    <img :src="item.src" alt=""/>
+                                    <img :src="item.IND_INT_PICTURE" alt=""/>
                              
                                 </a>
                             </div>
                             <div class="card_content">
-                                    <p>{{item.courseName}}</p>
+                                    <p>{{item.IND_INT_NAME}}</p>
                                 <div class="card_content_scrb">
                                     <div class="card_content_join">
                                         <i class="fas fa-user-friends"></i>
-                                        <span>{{item.numbers}}人已參與課程</span>
+                                        <span>{{item.SKI_BUY_NUM}}人已參與課程</span>
                                         </div>
                                     </div>
                                     <div class="card_course_detail"> 
-                                            <span class="card_time p_small">總計{{item.timimg}}小時</span>
-                                            <span class="card_price">NT${{item.price}}</span>
+                                            <span class="card_time p_small">總計{{item.SKI_TIME}}小時</span>
+                                            <span class="card_price">NT${{item.SKI_PRICE}}</span>
                                     </div>
                             </div>
                         </li>
@@ -156,7 +156,6 @@
     <script type="text/javascript" src="./js/test/jquery-3.5.1.min.js"></script> 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js'></script>
-    <script type="text/javascript" src="./js/test/test_result.js"></script>
     <script type="text/javascript" src="./js/test/test_result_vue.js"></script>
     <script>
     
