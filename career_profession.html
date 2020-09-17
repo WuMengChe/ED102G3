@@ -4,164 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>行業</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.js'></script>
     <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="./css/app_public.css"> -->
-    <!-- <link rel="stylesheet" href="./css/career_all.css"> -->
-    <!-- 套件 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-
-<!-- 基本盤 -->
-<link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
-<link rel="stylesheet" href="./css/app_public.css">
-<script src='https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js'></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+    @@include('app/link.html')
     <link rel="stylesheet" href="./css/pages_scss/career/career_all.css">
 </head>
 <body class="car_pro_body">
-    <!-- header -->
-<div class="header_wrap">
-    <header class="header">
-        <div class="hamburger">
-            <button class=" hamburger hamburger--spring btn_switch" type="button">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </button>
-        </div>
-        <div class="logo">
-            <a href="front_index.html">
-                <img src="img/LOGO_FINAL.svg" alt="">
-            </a>
-        </div>
-        <div class="header_nav">
-            <ul>
-                <li><a href="test_before.html" id="text_page">職涯分析</a></li>
-                <li><a href="career.html">行業攻略</a></li>
-                <li><a href="forum_discuss.html">職涯論壇</a></li>
-                <li><a href="course_main.html">探索課程</a></li>
-                <li><a href="post_intro.html">時光明信片</a></li>
-            </ul>
-
-        </div>
-        <div class="header_icon">
-            <div class="cart">
-                <button href="#"><i class="fas fa-shopping-cart"></i>
-                    <div class="cart_num"><span>1</span></div>
-                </button>
-                <!-- <div class="cart_num"><span>1</span></div> -->
-            </div>
-
-            <div class="member"><a href="member_sign_in.html"><i class="fas fa-user"></i></a></div>
-        </div>
-    </header>
-
-</div>
-
-
-<!-- cart -->
-<div class="side_cart cart_off">
-    <div class="cart_close">
-        <span>購物車</span>
-        <button id="cart_close" class="btn_third">close</button>
-    </div>
-    <div class="cart_course">
-        <ul>
-            <li class="cart_item">
-                <div class="cus_card">
-                    <a href="#">
-                        <div class="card_img">
-                            <img src="img/course/課程圖片.jpg" alt="">
-                        </div>
-                        <div class="card_content">
-                            <p>九個步驟快速提昇你的簡報力、溝通力</p>
-                            <div class="card_content_scrb">
-                                <!-- <div class="card_content_join">
-                                    <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
-                                </div> -->
-                                <div class="card_content_msg">
-                                    <span class="card_type">企業型</span>
-                                    <!-- <span class="card_time">總計3小時</span> -->
-                                    <span class="card_price">NT$660</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="remove">
-                        <button>
-                            <!-- <i class="fas fa-minus-circle"></i> -->
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            </li>
-
-        </ul>
-    </div>
-
-    <div class="check_out_contain">
-        <div class="discount_title">
-            <p>購買兩堂課程，即享有8折優惠!</p>
-        </div>
-        <div class="price_check">
-            <ul>
-                <li>
-                    <span>課程總金額:</span><span>$660</span>
-                </li>
-                <li>
-                    <span>折扣金額:</span><span>$60</span>
-                </li>
-            </ul>
-        </div>
-        <div class="price_total_btn">
-            <div class="price_total">
-                <span>總計:$600</span>
-            </div>
-            <!-- <button class="check_out">結帳</button> -->
-            <a href="course_orderlist.html" class="check_out">結帳</a>
-        </div>
-    </div>
-</div>
+    @@include('app/header.html')
     <main class = "car_pro_con_width container" id = "car_pro_vue">
         <div class = "col-md-12 car_pro_title" v-if="(768 > screenWidth && isDouble)">
-            <div class="col-sm-6 col-6 btn_third" v-for="(item, index) in sendData" @click="changeProfession(index)">
-                {{industry[item.industryIndex].detail[item.typeIndex].name}}
+            <div class="col-sm-6 col-6 btn_third" v-for="(item, index) in industry" @click="changeProfession(index)">
+                {{item.name}}
             </div>
         </div>
         <div class = "car_pro_con" :class="{'col-lg-12':isDouble, 'col-lg-9':!isDouble, 'col-md-12':isDouble, 'col-md-9':!isDouble}">
-            <div class="col-lg-6 col-md-6 car_pro_info" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                <h1>{{industry[item.industryIndex].detail[item.typeIndex].name}}</h1>
-                <img :src="industry[item.industryIndex].detail[item.typeIndex].src" :style="{borderColor:industry[item.industryIndex].backgroundColor}">
+            <div class="car_pro_info" v-for="(item, index) in industry" v-if="(screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-6':isDouble, 'col-lg-4':!isDouble, 'col-md-6':isDouble, 'col-md-4':!isDouble}">
+                <template v-if="item.typeName">
+                    <h1>{{item.name}}</h1>
+                    <img :src="item.src" :style="{borderColor:item.backgroundColor}">
+                </template>
             </div>
-            <div class="col-lg-6 col-md-6 car_pro_info" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                <h3>{{industry[item.industryIndex].typeName}}</h3>
-                <h3 class="car_pro_info_title car_pro_info_img">職業介紹</h3>
-                <p>{{industry[item.industryIndex].detail[item.typeIndex].info}}</p>
-            </div>
-            <div class="col-sm-12 car_pro_info car_pro_single" :class="{'col-lg-12':isDouble, 'col-lg-9':!isDouble, 'col-md-12':isDouble, 'col-md-12':!isDouble}">
-                <div class="car_pro_info car_pro_info_con" :class="{'col-lg-6':isDouble, 'col-lg-12':!isDouble, 'col-md-6':isDouble, 'col-md-12':!isDouble}" v-for="(item, index) in chooeseProfession" v-if="(item.content && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                    <h3 class="car_pro_info_title">職業內容</h3>
-                    <ul>
-                        <li v-for="(liItem, liIndex) in item.content">
-                            <span class="car_li_color" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}"></span>
-                            <span class="car_li_content">{{liItem}}</span>
-                        </li>
-                    </ul>
+            <div class="car_pro_con_area" :class="{'col-lg-12':isDouble, 'col-lg-8':!isDouble, 'col-md-12':isDouble, 'col-md-8':!isDouble, 'car_pro_con_pad':!isDouble}">
+                <div class="col-lg-12 col-md-12 car_pro_con_area">
+                    <span class="col-lg-2 col-md-2 col-sm-3 col-3 car_pro_con_span car_pro_con_mar" v-if="isDouble" :class="{'order_double':screenWidth > 768}">型別</span>
+                    <div class="car_pro_con_area car_pro_con_mar" v-for="(item, index) in industry" v-if="(screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-5':isDouble, 'col-lg-12':!isDouble, 'col-md-5':isDouble, 'col-md-12':!isDouble, 'col-sm-9':isDouble, 'col-sm-12':!isDouble, 'col-9':isDouble, 'col-12':!isDouble, 'order_first':(isDouble && index == 0 && screenWidth > 768), 'order_second':(isDouble && index == 1 && screenWidth > 768)}">
+                        <template v-if="item.typeName">
+                            <div class="col-lg-12 col-md-12 car_pro_con_area">
+                                <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">型別</span>
+                                <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
+                                    <h3 class="car_pro_con_cen" :style="{backgroundColor:item.backgroundColor}">{{item.typeName}}</h3>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
                 </div>
-                <!-- <h3 class="car_pro_info_title">職業內容</h3>
-                <ul>
-                    <li v-for="(liItem, liIndex) in item.content"><span class="car_li_color" :style="{backgroundColor:industry[sendData[index].industryIndex].backgroundColor}"></span>{{liItem}}</li>
-                </ul> -->
+                <div class="col-lg-12 col-md-12 car_pro_con_area">
+                    <span class="col-lg-2 col-md-2 col-sm-3 col-3 car_pro_con_span car_pro_con_mar" v-if="isDouble" :class="{'order_double':screenWidth > 768}">職業介紹</span>
+                    <div class="car_pro_con_area car_pro_con_mar" v-for="(item, index) in industry" v-if="(screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-5':isDouble, 'col-lg-12':!isDouble, 'col-md-5':isDouble, 'col-md-12':!isDouble, 'col-sm-9':isDouble, 'col-sm-12':!isDouble, 'col-9':isDouble, 'col-12':!isDouble, 'order_first':(isDouble && index == 0 && screenWidth > 768), 'order_second':(isDouble && index == 1 && screenWidth > 768)}">
+                        <template v-if="item.typeName">
+                            <div class="col-lg-12 col-md-12 car_pro_con_area">
+                                <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">職業介紹</span>
+                                <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
+                                    <h3 :style="{backgroundColor:item.backgroundColor}">{{item.info}}</h3>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-9 col-md-12 car_pro_info car_pro_skill">
-                <div class="col-md-12 car_pro_skill_area" v-for="(item, index) in sendData" v-if="(item.typeIndex && screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)">
-                    <h3 class="col-md-12 car_pro_info_title">相關技能 - {{industry[item.industryIndex].detail[item.typeIndex].name}}</h3>
-                    <span class="col-md-4 col-sm-4 col-4"v-for="(skillItem, skillIndex) in chooeseProfession[index].skill" :style="{backgroundColor:industry[item.industryIndex].backgroundColor}">{{skillItem}}</span>
+            <div class="col-lg-12 col-md-12 car_pro_con_area">
+                <span class="col-lg-2 col-md-2 col-sm-3 col-3 car_pro_con_span car_pro_con_mar" v-if="isDouble" :class="{'order_double':screenWidth > 768}">職業內容</span>
+                <div class="car_pro_con_area car_pro_con_mar" v-for="(item, index) in industry" v-if="(screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-5':isDouble, 'col-lg-12':!isDouble, 'col-md-5':isDouble, 'col-md-12':!isDouble, 'col-sm-9':isDouble, 'col-sm-12':!isDouble, 'col-9':isDouble, 'col-12':!isDouble, 'order_first':(isDouble && index == 0 && screenWidth > 768), 'order_second':(isDouble && index == 1 && screenWidth > 768)}">
+                    <template v-if="item.typeName">
+                        <div class="col-lg-12 col-md-12 car_pro_con_area">
+                            <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">職業內容</span>
+                            <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
+                                <ul :style="{backgroundColor:item.backgroundColor}">
+                                    <li v-for="(liItem, liIndex) in item.content">
+                                        <span class="car_li_color" :style="{backgroundColor:'white'}"></span>
+                                        <span class="car_li_content">{{liItem}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 car_pro_con_area">
+                <span class="col-lg-2 col-md-2 col-sm-3 col-3 car_pro_con_span car_pro_con_mar" v-if="isDouble" :class="{'order_double':screenWidth > 768}">相關技能</span>
+                <div class="car_pro_con_area car_pro_con_mar" v-for="(item, index) in industry" v-if="(screenWidth >= 768) || (768 > screenWidth && rwbChangeProfession == index)" :class="{'col-lg-5':isDouble, 'col-lg-12':!isDouble, 'col-md-5':isDouble, 'col-md-12':!isDouble, 'col-sm-9':isDouble, 'col-sm-12':!isDouble, 'col-9':isDouble, 'col-12':!isDouble, 'order_first':(isDouble && index == 0 && screenWidth > 768), 'order_second':(isDouble && index == 1 && screenWidth > 768)}">
+                    <template v-if="item.typeName">
+                        <div class="col-lg-12 col-md-12 car_pro_con_area">
+                            <span class="col-lg-3 col-md-3 col-sm-3 col-3 car_pro_con_span" v-if="!isDouble">相關技能</span>
+                            <div class="col-sm-9 col-9 car_pro_con_area" :class="{'col-lg-9':!isDouble, 'col-md-9':!isDouble, 'col-sm-9':!isDouble, 'col-9':!isDouble, 'col-sm-12':isDouble, 'col-12':isDouble}">
+                                <ul :style="{backgroundColor:item.backgroundColor}">
+                                    <li v-for="(skillItem, skillIndex) in item.skill">
+                                        <span class="car_li_color" :style="{backgroundColor:'white'}"></span>
+                                        <span class="car_li_content">{{skillItem}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
             <div class = "col-lg-9 col-md-12 car_pro_lhs_plot_area">
@@ -174,44 +100,8 @@
             </div>
         </div>
     </main>
-    <!-- footer -->
-<div class="footer_wave">
-    <div>
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-            <defs>
-                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18
-                    88 18 v44h-352z" />
-            </defs>
-            <g class="parallax">
-                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 229, 89,0.5)" />
-                <use xlink:href="#gentle-wave" x="48" y="2" fill="rgba(160, 202, 219,0.7)" />
-                <use xlink:href="#gentle-wave" x="48" y="4" fill="rgba(121, 187, 181,0.6)" />
-                <use xlink:href="#gentle-wave" x="48" y="6" fill="rgba(255, 255, 255,0.8)" />
-            </g>
-        </svg>
-    </div>
-
-</div>
-
-
-<!--Content starts-->
-<div class="footer flex">
-    <p class="p_small">&copy2020 Powered by direction.ALL Right Reserved.
-    </p>
-</div>
-    <!-- 基本盤 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
-<script src="./js/header.js"></script>
-<!-- 套件 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-
-
-<!-- <script src="./js/"></script> -->
+    @@include('app/footer.html')
+    @@include('app/script.html')
     <script type="text/javascript" src="./js/career/career_profession.js"></script>
 </body>
 </html>

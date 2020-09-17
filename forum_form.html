@@ -8,116 +8,10 @@
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
   <link rel="stylesheet" href="./css/app_public.css" />
   <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
-  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
-  <!-- <script src="./js/forum/forum_form.js"></script> -->
 </head>
 
 <body>
-  <!-- header -->
-<div class="header_wrap">
-    <header class="header">
-        <div class="hamburger">
-            <button class=" hamburger hamburger--spring btn_switch" type="button">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </button>
-        </div>
-        <div class="logo">
-            <a href="front_index.html">
-                <img src="img/LOGO_FINAL.svg" alt="">
-            </a>
-        </div>
-        <div class="header_nav">
-            <ul>
-                <li><a href="test_before.html" id="text_page">職涯分析</a></li>
-                <li><a href="career.html">行業攻略</a></li>
-                <li><a href="forum_discuss.html">職涯論壇</a></li>
-                <li><a href="course_main.html">探索課程</a></li>
-                <li><a href="post_intro.html">時光明信片</a></li>
-            </ul>
-
-        </div>
-        <div class="header_icon">
-            <div class="cart">
-                <button href="#"><i class="fas fa-shopping-cart"></i>
-                    <div class="cart_num"><span>1</span></div>
-                </button>
-                <!-- <div class="cart_num"><span>1</span></div> -->
-            </div>
-
-            <div class="member"><a href="member_sign_in.html"><i class="fas fa-user"></i></a></div>
-        </div>
-    </header>
-
-</div>
-
-
-<!-- cart -->
-<div class="side_cart cart_off">
-    <div class="cart_close">
-        <span>購物車</span>
-        <button id="cart_close" class="btn_third">close</button>
-    </div>
-    <div class="cart_course">
-        <ul>
-            <li class="cart_item">
-                <div class="cus_card">
-                    <a href="#">
-                        <div class="card_img">
-                            <img src="img/course/課程圖片.jpg" alt="">
-                        </div>
-                        <div class="card_content">
-                            <p>九個步驟快速提昇你的簡報力、溝通力</p>
-                            <div class="card_content_scrb">
-                                <!-- <div class="card_content_join">
-                                    <i class="fas fa-user-friends"></i><span>6124人已參與此課程</span>
-                                </div> -->
-                                <div class="card_content_msg">
-                                    <span class="card_type">企業型</span>
-                                    <!-- <span class="card_time">總計3小時</span> -->
-                                    <span class="card_price">NT$660</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="remove">
-                        <button>
-                            <!-- <i class="fas fa-minus-circle"></i> -->
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            </li>
-
-        </ul>
-    </div>
-
-    <div class="check_out_contain">
-        <div class="discount_title">
-            <p>購買兩堂課程，即享有8折優惠!</p>
-        </div>
-        <div class="price_check">
-            <ul>
-                <li>
-                    <span>課程總金額:</span><span>$660</span>
-                </li>
-                <li>
-                    <span>折扣金額:</span><span>$60</span>
-                </li>
-            </ul>
-        </div>
-        <div class="price_total_btn">
-            <div class="price_total">
-                <span>總計:$600</span>
-            </div>
-            <!-- <button class="check_out">結帳</button> -->
-            <a href="course_orderlist.html" class="check_out">結帳</a>
-        </div>
-    </div>
-</div>
+  @@include('app/header.html')
   <div id="forum_form" class="container-fluid">
     <div class="title form-group row">
       <h3>發表文章</h3>
@@ -129,33 +23,31 @@
         <input type="text" name="" id="text_topic" />
       </div>
     </div>
-    <div class="form-group row">
+    <div class="second_fix form-group row">
       <!--職業分類-->
       <div class="select_name">六大分類</div>
-
-      <div class="dropdown-el" @click="typeDropdown">
-        <input type="radio" name="sortType" value="Relevance" checked="checked" id="sort-relevance" /><label
-          for="type_R">實用型</label>
-        <input type="radio" name="sortType" value="Popularity" id="type_I" />
+      <div class="dropdown-el" @click="typeDropdown()" :class="{'expanded': isOpen}">
+        <input type="radio" name="sortType" value="type_R" id="type_R" @click="selectType('實用型')"
+          checked="checked" /><label for="type_R">實用型</label>
+        <input type="radio" name="sortType" value="type_I" id="type_I" @click="selectType('研究型')" />
         <label for="type_I">研究型</label>
-        <input type="radio" name="sortType" value="PriceIncreasing" id="type_A" />
+        <input type="radio" name="sortType" value="type_A" id="type_A" @click="selectType('文藝型')" />
         <label for="type_A">文藝型</label>
-        <input type="radio" name="sortType" value="PriceDecreasing" id="type_S" />
+        <input type="radio" name="sortType" value="type_S" id="type_S" @click="selectType('社會型')" />
         <label for="type_S">社會型</label>
-        <input type="radio" name="sortType" value="ProductBrand" id="type_E" />
+        <input type="radio" name="sortType" value="type_E" id="type_E" @click="selectType('企業型')" />
         <label for="type_E">企業型</label>
-        <input type="radio" name="sortType" value="ProductName" id="type_C" />
+        <input type="radio" name="sortType" value="type_C" id="type_C" @click="selectType('事務型')" />
         <label for="type_C">事務型</label>
-
       </div>
       <!--問題分類-->
       <div class="qu_space"></div>
       <div class="select_name">問題分類</div>
 
-      <div class="dropdown_share" @click="shareDropdown">
-        <input type="radio" name="quType" value="Relevance" checked="checked" id="type_qu" />
+      <div class="dropdown_share" @click="shareDropdown()" :class="{'expanded_share': isShareOpen}">
+        <input type="radio" name="quType" value="Relevance" checked="checked" id="type_qu" @click="selectQU('問題討論')" />
         <label for="type_qu">問題討論</label>
-        <input type="radio" name="quType" value="Popularity" id="type_experience" />
+        <input type="radio" name="quType" value="Popularity" id="type_experience" @click="selectQU('經驗分享')" />
         <label for="type_experience">經驗分享</label>
 
       </div>
@@ -174,64 +66,14 @@
     </div>
 
   </div>
-  <!-- footer -->
-<div class="footer_wave">
-    <div>
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-            <defs>
-                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18
-                    88 18 v44h-352z" />
-            </defs>
-            <g class="parallax">
-                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 229, 89,0.5)" />
-                <use xlink:href="#gentle-wave" x="48" y="2" fill="rgba(160, 202, 219,0.7)" />
-                <use xlink:href="#gentle-wave" x="48" y="4" fill="rgba(121, 187, 181,0.6)" />
-                <use xlink:href="#gentle-wave" x="48" y="6" fill="rgba(255, 255, 255,0.8)" />
-            </g>
-        </svg>
-    </div>
+  @@include('app/footer.html')
 
-</div>
-
-
-<!--Content starts-->
-<div class="footer flex">
-    <p class="p_small">&copy2020 Powered by direction.ALL Right Reserved.
-    </p>
-</div>
-
+  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="./js/forum/forum_form.js"></script>
   <script>
-    new Vue({
-      el: "#forum_form",
-      data: {
 
-      },
-      methods: {
-        typeDropdown() {
-          $('.dropdown-el').click(function (e) {
-            // e.preventDefault();
-            e.stopPropagation();
-            $(this).toggleClass('expanded');
-            $('#' + $(e.target).attr('for')).prop('checked', true);
-          });
-          $(document).click(function () {
-            $('.dropdown-el').removeClass('expanded');
-          });
-        },
-        shareDropdown() {
-          $('.dropdown_share').click(function (e) {
-            // e.preventDefault();
-            e.stopPropagation();
-            $(this).toggleClass('expanded_share');
-            $('#' + $(e.target).attr('for')).prop('checked', true);
-          });
-          $(document).click(function () {
-            $('.dropdown_share').removeClass('expanded_share');
-          });
-        }
-      },
-    });
   </script>
 
 </body>

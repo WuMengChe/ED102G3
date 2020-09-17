@@ -13,7 +13,6 @@
 // 社會型 social
 // 事務型 thing
 // 企業型 enterprise
-
 .practical_bg_color {
     background: #79bbb5;
 }
@@ -50,4 +49,11 @@
 
 .second_color3 {
     background: #bceaff;
+}
+
+// -------------
+// 購物車按鈕
+button.cart_clicked {
+    background: #ed7007 !important;
+    color: #fff;
 }

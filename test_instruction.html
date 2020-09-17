@@ -4,47 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>測驗說明</title>
+    @@include('app/link.html')
     <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
     <link rel="stylesheet" href="./css/app_public.css">
-    <link rel="stylesheet" href="./css/test.css">
+    <link rel="stylesheet" href="./css/pages_scss/test/test.css">
     <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
 
-    <div class="header_wrap">
-        <header class="header">
-            <div class="logo">
-                <a href="#">
-                    <img src="img/logo.svg" alt="">
-                </a>
-            </div>
-            <div class="header_nav">
-                <ul>
-                    <li><a href="#">職涯分析</a></li>
-                    <li><a href="#">行業攻略</a></li>
-                    <li><a href="#">職涯論壇</a></li>
-                    <li><a href="#">探索課程</a></li>
-                    <li><a href="#">明信片</a></li>
-                </ul>
-            </div>
-            <div class="header_icon">
-                <div class="cart">
-                    <a href="#"><i class="fas fa-shopping-cart"></i>
-                        <div class="cart_num"><span>1</span></div>
-                    </a>
-                    <!-- <div class="cart_num"><span>1</span></div> -->
-                </div>
-
-                <div class="member"><a href="#"><i class="fas fa-user"></i></a></div>
-            </div>
-        </header>  
-    </div>
-
-<!-- header-ending -->
+    @@include('app/header.html')
   
-    <div class="instruction_test_wrap container-fluid">
+    <div class="instruction_test_wrap ">
         <main class="main_instruction_wrap container">
+            <div class="circle_bg"></div>
             <div class="instruction_test_txt">
                 <h3>測驗說明</h3>
                 <ol>
@@ -55,14 +28,17 @@
                     <li>五、 合宜的身心狀態 (避免疲勞、情緒起伏等)。</li>
                     <li>六、 降低外界干擾，避免受外務影響。</li>
                 </ol>
+                
             </div>
             <div class="wrap_of_btn_instruction_of_test" >
-                <button class="btn_test_now_before_test btn_primary">
+  
                     <a href="./test_process.html" class="btn_primary">
                         開始作答</a>
-                </button>
             </div>
         </main>
+        @@include('app/footer.html')
+        @@include('app/script.html')
     </div>
+
 </body>
 </html>

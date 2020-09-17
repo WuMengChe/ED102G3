@@ -1,3 +1,12 @@
+body.mem{
+    // height: 100vh;
+    min-height: 100vh;
+    background-color: #F6F3ED;
+    background-image: url('../../../img/member/member.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 .mem_con_width{
     display: flex;
     padding: 0;
@@ -7,8 +16,8 @@
     div.mem_list{
         height: 100%;
         min-height: calc(100vh - 130px);
-        background-color: #BCEAFF;
-        border-radius: 30px;
+        background-color: transparent;
+        border-radius: 25px;
         .mem_img_area{
             display: flex;
             height: fit-content;
@@ -64,14 +73,33 @@
                 }
             }
         }
+        a.mem_con_ind_rwd{
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            z-index: 10;
+            i{
+                display: flex;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+            }
+            .fa-arrow-left:before{
+                font-size: 32px;
+            }
+        }
     }
     div.mem_con_area{
         display: flex;
         padding: 0;
         min-height: calc(100% - 130px);
         flex-direction: column;
-        background-color: #ffffff;
-        border-radius: 30px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 25px;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
         .mem_con_title{
             display: flex;
             margin: 50px auto 0;
@@ -118,7 +146,7 @@
                 display: flex;
                 height: 100%;
                 // min-height: calc(100vh - 130px);
-                background-color: #BCEAFF;
+                background-color: #A0CADB;
                 border-radius: 25px;
                 flex-direction: column;
                 justify-content: center;
@@ -171,16 +199,30 @@
                         text-align: start;
                     }
                     td{
-                        width: 50%;
+                        // width: 50%;
                         text-align: start;
                         vertical-align: middle;
                         input{
                             width: 100%;
                             height: 100%;
                         }
+                        input.new_code{
+                            width: 50%;
+                        }
                     }
-                    button{
-                        margin-left: calc(100% - 150px);
+                    td:first-child {
+                        width: 120px;
+                    }
+                    .mem_det_btn_use{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        button{
+                            margin: 0;
+                        }
+                        button:last-child{
+                            margin-left: 50px;
+                        }
                     }
                 }
             }
@@ -194,7 +236,7 @@
                 width: 100%;
                 border-top: 1px black solid;
                 border-bottom: 1px black solid;
-                background-color: #BCEAFF;
+                background-color: #A0CADB;
                 .mem_title{
                     display: inline-flex;
                     padding: 0px 0px 0px 30px;
@@ -255,10 +297,12 @@
                         height: fit-content;
                     }
                     img{
-                        // margin: 0 auto;
-                        width: 360px;
-                        height: 200px;
-                        background-color: gray;
+                        margin: 0 auto;
+                        width: 100%;
+                        max-width: 360px;
+                        height: 100%;
+                        max-height: 200px;
+                        // background-color: gray;
                     }
                 }
                 .mem_ord_det{
@@ -327,12 +371,13 @@
                 .mem_cla{
                     margin-top: 5px;
                 }
-                a.mem_art_area{
+                a.mem_art_area, a.mem_cla_area{
                     display: flex;
+                    border: 0px;
                     // flex-direction: column;
                     .mem_art{
                         margin: 5px auto;
-                        padding: 0 5px;
+                        padding: 0px 0px 0px 30px;
                         width: fit-content;
                         height: fit-content;
                     }
@@ -376,6 +421,10 @@
                 justify-content: center;
                 h3{
                     margin: 0 auto 20px;
+                    width: fit-content;
+                }
+                a{
+                    margin: 0 auto;
                     width: fit-content;
                 }
             }
