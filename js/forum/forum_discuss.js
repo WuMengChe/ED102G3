@@ -8,6 +8,7 @@ let vm = new Vue({
       announcement: [], //公告PHP
       memberCheck: [], //會員登入PHP
       box_msg: [], //燈箱回覆留言的PHP
+      showlike: [],
       like_icon: [], //按愛心的PHP
       isOpen: false, //下拉選單的綁定class的expand
       filter: "", //綁定關鍵字搜尋input
@@ -17,7 +18,8 @@ let vm = new Vue({
       select: "全部文章", //下拉選單預設
       stopScroll: false, //開啟燈箱背景不可以動
       msg: "", //點擊留言開啟燈箱，第一則文章要跟討論版的同步
-      isHeart: false, //點擊愛心 綁定的class顏色，但是未完成
+      // isHeart: false, //點擊愛心 綁定的class顏色，但是未完成
+      isHeart: [], //點擊愛心 綁定的class顏色，但是未完成
       isCollect: false, //點擊收藏 綁定的class顏色，但是未完成
 
       category: [{
@@ -43,7 +45,6 @@ let vm = new Vue({
     }
   },
   mounted() {
-   
     //討論區文章和公告PHP
     axios.all([this.getAllDisscuss(), this.getAnnouncement()])
       .then(axios.spread((res1, res3) => {
@@ -55,8 +56,42 @@ let vm = new Vue({
         console.error(err)
       })
 
+    //會員登入後可到曾經點過喜歡的按鈕
+    axios.post('./php/memberStateCheck.php')
+      .then(res => {
+        console.log(res);
+        this.memberCheck = res.data;
+        if (this.memberCheck !== 0) {
+          sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+          const memNo = sessionStorage.getItem('memNo');
+          axios.get('./php/forum_discuss.php?action=showLike&MEM_NO=' + memNo)
+            .then(res => {
+              console.log(res.data);
+              this.showlike = res.data;
+              // this.showlike = res.data[0].DIS_NO.split(',');
 
-
+              for (let i = 0; i < this.information.length; i++) {
+                console.log(this.information[i].DIS_NO);
+                console.log(typeof this.information);
+                console.log(this.showlike)
+                console.log(this.showlike.length)
+                // console.log(JSON.parse(this.showlike))
+                console.log(typeof this.showlike)
+                // console.log(typeof this.showlike)
+                var disNo = this.information[i].DIS_NO;
+                if (this.showlike.find(function(item){return item.DIS_NO == disNo})) {
+                  // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
+                  // this.isHeart[i] = true;
+                  this.isHeart.push(true);
+                }
+                else{
+                  this.isHeart.push(false);
+                }
+              }
+              console.log(this.isHeart)
+            })
+        }
+      })
   },
   watch: {
     stopScroll: function () {
@@ -65,7 +100,6 @@ let vm = new Vue({
         document.body.classList.add('noScroll');
       } else {
         document.body.classList.remove('noScroll');
-
       }
     },
     filter: function (value) {
@@ -89,7 +123,7 @@ let vm = new Vue({
     }
   },
   methods: {
-       //討論區文章(會員曾經按錯的愛心)PHP
+    //討論區文章(會員曾經按錯的愛心)PHP
     getAllDisscuss() {
       const memNo = sessionStorage.getItem('memNo');
       return axios.get('./php/forum_discuss.php?action=getAllDiscuss&MEM_NO=' + memNo);
@@ -110,12 +144,13 @@ let vm = new Vue({
         this.stopScroll = true
         console.log(this.searchResult[index])
         this.msg = this.searchResult[index]
+        this.msg.index = index;
         console.log(this.msg)
       }
 
       const memNo = sessionStorage.getItem('memNo');
-      axios.get('./php/forum_discuss.php?action=getMsg&DIS_NO='+this.searchResult[index].DIS_NO+'&MEM_NO=' + memNo)
-      .then(res => {
+      axios.get('./php/forum_discuss.php?action=getMsg&DIS_NO=' + this.searchResult[index].DIS_NO + '&MEM_NO=' + memNo)
+        .then(res => {
           console.log(res.data);
           this.box_msg = res.data;
         })
@@ -176,25 +211,39 @@ let vm = new Vue({
       }
     },
     //愛心
-    heart_btn(index, disNo) {
+    heart_btn(index, disNo, conNum) {
+      if(this.isHeart[index]){
+        document.querySelectorAll('.tab_contents .heart i')[index].classList.remove('colorRed');
+        document.querySelectorAll('.tab_contents .heart i')[index].style.color = '#ada9a9';
+      }
+      else if(!this.isHeart[index]){
+        document.querySelectorAll('.tab_contents .heart i')[index].classList.add('colorRed');
+        document.querySelectorAll('.tab_contents .heart i')[index].style.color = 'red';
+      }
+      // else if(conNum == 0){
+      //   document.querySelectorAll('.tab_contents .heart i')[index].style.color = '';
+      // }
+      this.isHeart[index] = !this.isHeart[index];
+      // this.$set(this.isHeart, index, !this.isHeart[index]);
       //會員登入PHP
-    axios.post('./php/memberStateCheck.php')
-      .then(res => {
-        console.log(res);
-        this.memberCheck = res.data;
-        if (this.memberCheck == 0) {
-          alert("請先登入會員");
-          window.location.href = "./member_sign_in.html"
-        } else {
-          const memNo = sessionStorage.getItem('memNo');
-          $(".msg_content .fa-heart").eq(index).toggleClass("colorRed");
-          axios.post('./php/forum_discuss.php?action=addFavor&DIS_NO=' + disNo + '&MEM_NO=' + memNo)
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    
+      axios.post('./php/memberStateCheck.php')
+        .then(res => {
+          console.log(res);
+          this.memberCheck = res.data;
+          if (this.memberCheck == 0) {
+            alert("請先登入會員");
+            window.location.href = "./member_sign_in.html"
+          } else {
+            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+            const memNo = sessionStorage.getItem('memNo');
+            $(".msg_content .fa-heart").eq(index).toggleClass("colorRed");
+            axios.post('./php/forum_discuss.php?action=addFavor&DIS_NO=' + disNo + '&MEM_NO=' + memNo)
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
     },
     //收藏
     collect_btn(e, num) {
@@ -225,9 +274,9 @@ let vm = new Vue({
 
 
     },
- 
 
-//回覆留言PHP
+
+    //回覆留言PHP
     sendMsg(msg_DIS_NO) {
       const content = document.getElementById("send_msg").value;
       if (content.length <= 0) {
@@ -236,28 +285,28 @@ let vm = new Vue({
       }
 
       axios.post('./php/memberStateCheck.php')
-      .then(res => {
-        console.log(res);
-        this.memberCheck = res.data;
-        if (this.memberCheck == 0) {
-          alert("請先登入會員");
-          window.location.href = "./member_sign_in.html"
-        } else {
-          sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
-          sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
-          const memNo = sessionStorage.getItem('memNo');
-          const memName = sessionStorage.getItem('memName');
-          axios.post('./php/forum_discuss.php?action=addReplay&DIS_NO=' + msg_DIS_NO + '&MEM_NO=' + memNo+"&content="+content)
-          .then(res=>{
-            console.log(res.data)
-            document.getElementById("send_msg").value = "";
-            this.box_msg.push(res.data[0]);
-          })
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        .then(res => {
+          console.log(res);
+          this.memberCheck = res.data;
+          if (this.memberCheck == 0) {
+            alert("請先登入會員");
+            window.location.href = "./member_sign_in.html"
+          } else {
+            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+            sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
+            const memNo = sessionStorage.getItem('memNo');
+            const memName = sessionStorage.getItem('memName');
+            axios.post('./php/forum_discuss.php?action=addReplay&DIS_NO=' + msg_DIS_NO + '&MEM_NO=' + memNo + "&content=" + content)
+              .then(res => {
+                console.log(res.data)
+                document.getElementById("send_msg").value = "";
+                this.box_msg.push(res.data[0]);
+              })
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
       // if (DIS_MES_CONTENT.length > 0) {
 
@@ -293,15 +342,14 @@ let vm = new Vue({
       //   alert("請輸入留言內容");
       // }
 
-    
+
 
 
 
     }
 
-    
+
 
 
   },
 });
-
