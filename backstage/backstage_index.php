@@ -5,6 +5,7 @@ try {
 
   //-------------------------------------------------
   $memSql = "select * from member";
+  $memSearchSql = "select * from `member` where MEM_NO = 3";
   $adminSql = "select * from administrator";
   $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
   $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_INTRO, i.INT_INT_CONTENT, i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
@@ -20,6 +21,7 @@ try {
   $announceSql = "select * from announcement;";
   // $indusSql = "select ";
   $member = $pdo->query($memSql);
+  $memSearch = $pdo->query($memSearchSql);
   $administrator = $pdo->query($adminSql);
   $quiz = $pdo->query($quizSql);
   $career = $pdo->query($careerSql);
@@ -54,6 +56,7 @@ try {
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
   <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/backstage_index.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
 </head>
 
@@ -106,15 +109,15 @@ try {
         <!-- member -->
         <div class="account" v-show="account">
           <p class="title">會員管理</p>
-          <form>
+          <form id="search_mem_form" action="./backstage_memberSearch.php">
             <div>
-              <input type="text" class="search_input" name="MEM_NO">
-              <button class="search" id="search_mem_no">查詢</button>
+              <input type="text" class="search_input" id="MemSearch" name="MEM_NO">
+              <button type="button" class="search" @click="SearchMEM" id="search_mem_no">查詢</button>
             </div>
-
           </form>
           <!-- 找會員資料 -->
-
+          <table id="oneMem">
+          </table>
           <!-- 全部會員 -->
           <table id="allMem">
             <tr>
@@ -234,7 +237,9 @@ try {
                 </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1">
+                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>">
                   <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+
                 </td>
                 <td>
                   <div id="QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
@@ -273,6 +278,7 @@ try {
                 </td>
                 <td>
                   <button class="edit" id="quizEdit<?= $quizRow["QUIZ_NO"] ?>">編輯</button>
+                  <button class="cancel" id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">取消</button>
                 </td>
               </tr>
             <?php

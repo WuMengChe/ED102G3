@@ -187,7 +187,21 @@ new Vue({
                     break;
             }
 
-        }
+        },
+        SearchMEM: function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'backstage_memberSearch.php',
+                type: "POST",
+                data: new FormData(document.getElementById("search_mem_form")),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    $("#oneMem").html(data)
+                },
+            })
+        },
         // if (index == 0) {
         //   this.quiz = true;
         //   this.account = false;

@@ -52,9 +52,12 @@ window.addEventListener("load", function () {
 
   // 更改行業資料
   $('.quizShow1').hide();
+  // $('#quizCancel1').hide();
+
   let quizEdit1 = document.getElementById('quizEdit1');
   quizEdit1.addEventListener('click', function () {
     $('.quizShow1').show();
+    // $('#quizCancel1').show();
     let quizCon = $("#QUIZ_CON1").text();
     let quizOneContent = $("#QUIZ_ONE_CONTENT1").text();
     let quizTwoContent = $("#QUIZ_TWO_CONTENT1").text();
@@ -65,6 +68,7 @@ window.addEventListener("load", function () {
     $("#QUIZ_CON1").replaceWith(`<textarea id="${quizId}" cols="25" rows="5">${quizCon}</textarea>`);
     $("#QUIZ_ONE_CONTENT1").replaceWith(`<textarea id="${QUIZ_One_CONTENTId}" cols="25" rows="5">${quizOneContent}</textarea>`);
     $("#QUIZ_TWO_CONTENT1").replaceWith(`<textarea id="${QUIZ_TWO_CONTENTId}" cols="25" rows="5">${quizTwoContent}</textarea>`);
+    quizEdit1.innerText = '確認';
 
   });
 });
