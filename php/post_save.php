@@ -6,12 +6,12 @@ $image = str_replace(' ', '+', $image);
 $data = base64_decode($image);
 //準備好要存的filename
 
-if (file_exists("uploads") === false) {
-  mkdir("uploads");
+if (file_exists("../php/uploads") === false) {
+  mkdir("../php/uploads");
 }
 
 $time = time();
-$filename = "../uploads/{$time}.png";
-$filenameSend = "./uploads/{$time}.png";
+$filename = "../php/uploads/{$time}.png";
+$filenameSend = "./php/uploads/{$time}.png";
 file_put_contents($filename, $data);
 echo $filenameSend;
