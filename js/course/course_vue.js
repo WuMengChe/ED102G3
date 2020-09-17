@@ -220,49 +220,7 @@ let vm = new Vue({
           console.log(err);
         });
     },
-    splitItem(item) {
-      item = item.split(";");
-      item.splice(0, 1);
-    },
-
-    // hot_course_api() {
-    //   axios
-    //     .get("./php/course_hot_course.php")
-    //     .then((res) => {
-    //       console.log(res);
-    //       this.hot_course = res.data;
-
-    //       // OWL套件
-    //       script = document.createElement("script");
-    //       script.src = "./js/course/owl_auto_slide.js";
-    //       document.body.appendChild(script);
-    //       this.receive_storage();
-    //     })
-    //     // .than(this.receive_storage())
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // },
-    // main_course_api() {
-    //   axios
-    //     .get("./php/course_course_list.php")
-    //     .then((res) => {
-    //       console.log(res);
-
-    //       // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
-    //       for (let i = 0; i < this.category.length; i++) {
-    //         this.category[i].courses = res.data.filter(
-    //           (item) => item.ind_class == this.category[i].link_title
-    //         );
-    //       }
-    //       console.log(this.category);
-    //       // this.main_course = res.data;
-    //       this.receive_storage();
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // },
+    // （課程介紹/推薦課程  資料庫載入）
     introduce_course_api() {
       //   找網址
       //   new URL(document.location) 尋找當前網址
@@ -288,22 +246,22 @@ let vm = new Vue({
               if (res1.data != 0) {
                 _this.introduce_single = res1.data[0];
 
-                // 切課程介紹
-
-                // this.splitItem(this.introduce_single.ski_intro);
-                // this.splitItem(this.introduce_single.ski_stud);
-
-                _this.introduce_single.ski_intro = _this.introduce_single.ski_intro.split(
-                  ";"
+                // 切割資料
+                let splitItem = function (str) {
+                  return str.split(";").splice(1, str.split(";").length - 1);
+                };
+                // 切割課程介紹
+                _this.introduce_single.ski_intro = splitItem(
+                  _this.introduce_single.ski_intro
                 );
-                _this.introduce_single.ski_intro.splice(0, 1);
-
-                // 切適合對象
-                _this.introduce_single.ski_stud = _this.introduce_single.ski_stud.split(
-                  ";"
+                // 切割適合對象
+                _this.introduce_single.ski_stud = splitItem(
+                  _this.introduce_single.ski_stud
                 );
-                _this.introduce_single.ski_stud.splice(0, 1);
-                console.log("切對象:" + _this.introduce_single.ski_stud);
+                // 切割課程大綱
+                _this.introduce_single.ski_outline = splitItem(
+                  _this.introduce_single.ski_outline
+                );
               }
             }
 

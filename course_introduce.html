@@ -183,9 +183,8 @@
             <div class="suitable_list">
               <h2>這門課適合對象:</h2>
               <ul>
-                <li>
-                  1.
-                  如果您想要學習更高階簡報設計或者更複雜的技巧，本課程可能並不適合你。
+                <li v-for="(stud,index) in introduce_single.ski_stud">
+                  {{index+1}}.{{stud}}
                 </li>
               </ul>
             </div>
@@ -205,12 +204,9 @@
           <div class="cus_outline_contain col-xl-12">
             <h2>課程大綱</h2>
             <ol>
-              <li>章節一 | 奠定表達基礎</li>
-              <li>章節二 | 培養自信竅門</li>
-              <li>章節三 | 善用情緒表達</li>
-              <li>章節四 | 掌握聲音與肢體</li>
-              <li>章節五 | 開啟對話能力</li>
-              <li>章節六 | 建立個人風格</li>
+              <li v-for="(outline,index) in introduce_single.ski_outline">
+                章節{{index+1}} | {{outline}}
+              </li>
             </ol>
           </div>
         </div>
