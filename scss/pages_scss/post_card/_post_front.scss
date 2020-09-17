@@ -119,6 +119,7 @@ div.postcard_main {
   padding-top: 20px;
   max-width: 1200px;
   margin-top: 30px;
+  min-height: calc(100vh - 230px);
 
   .postcard,
   .row {
