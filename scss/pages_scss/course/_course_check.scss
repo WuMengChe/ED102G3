@@ -42,10 +42,16 @@ div#check_order {
                             th {
                                 // border-right: $outline1;
                                 padding: 10px 30px;
+                                vertical-align: middle;
                             }
                             td {
                                 // border: $outline1;
                                 padding: 10px 30px;
+                                ul {
+                                    li {
+                                        margin: 5px 0;
+                                    }
+                                }
                             }
                         }
                     }
@@ -63,7 +69,7 @@ div#check_order {
     }
 }
 
-@media(max-width:400px) {
+@media (max-width: 400px) {
     div#check_order div.check_bg div.check_order_center div.check_order_contain fieldset table tr th {
         padding: 0;
         vertical-align: middle;

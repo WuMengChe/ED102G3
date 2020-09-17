@@ -11,17 +11,39 @@ if ($action == "getAllDiscuss") {
     getReplay();
 } elseif ($action == "getMsg") {
     getMsg();
-}elseif ($action == "addReplay") {
+} elseif ($action == "addReplay") {
     addReplay();
+}elseif($action =="showLike"){
+    showLike();
 }
 
-function addReplay(){
+
+function showLike(){
+    try {
+        require_once "connectMySql.php";
+        $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
+        $sql = "select DIS_NO from ARTICLE_LIKE where ART_LIK_STATE =1 and MEM_NO = $mem_no;";
+        // $sql = "select group_concat(DIS_NO)'DIS_NO' from ARTICLE_LIKE where ART_LIK_STATE =1 and MEM_NO = $mem_no group by MEM_NO;";
+        $article_like_sql_result = $pdo->prepare($sql);
+        $article_like_sql_result->execute();
+
+        $result = $article_like_sql_result->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($result);
+    } catch (PDOException $e) {
+        echo json_encode($e->getMessage());
+    }
+}
+
+
+
+function addReplay()
+{
     try {
         require_once "connectMySql.php";
         $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
         $dis_no = isset($_POST["DIS_NO"]) ? $_POST["DIS_NO"] : $_GET["DIS_NO"];
         $content = isset($_POST["content"]) ? $_POST["content"] : $_GET["content"];
-        $sql = "insert into DISCUSS_MESSAGE (DIS_NO, MEM_NO, DIS_MES_CONTENT, DIS_MES_DATE) values (" . $dis_no . "," . $mem_no . ", '".$content."',CURDATE())";
+        $sql = "insert into DISCUSS_MESSAGE (DIS_NO, MEM_NO, DIS_MES_CONTENT, DIS_MES_DATE) values (" . $dis_no . "," . $mem_no . ", '" . $content . "',CURDATE())";
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $id = $pdo->lastInsertId();
@@ -33,7 +55,7 @@ function addReplay(){
                 DISCUSS_MESSAGE.DIS_MES_LIK_NUM
                 from member
                 join DISCUSS_MESSAGE using(MEM_NO)
-                where DISCUSS_MESSAGE.DIS_MES_NO = ".$id;
+                where DISCUSS_MESSAGE.DIS_MES_NO = " . $id;
         $result = $pdo->query($sql);
         $response = $result->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($response);
@@ -42,8 +64,8 @@ function addReplay(){
     }
 }
 
-function getMsg(){
-
+function getMsg()
+{
     try {
         require_once "connectMySql.php";
         $DIS_NO = isset($_POST["DIS_NO"]) ? $_POST["DIS_NO"] : $_GET["DIS_NO"];
@@ -57,7 +79,7 @@ function getMsg(){
         from member
         join DISCUSS_MESSAGE using(MEM_NO)
         join discuss_area
-        on ( discuss_area.DIS_NO = DISCUSS_MESSAGE.DIS_NO and DISCUSS_MESSAGE.DIS_NO = ".$DIS_NO." )";
+        on ( discuss_area.DIS_NO = DISCUSS_MESSAGE.DIS_NO and DISCUSS_MESSAGE.DIS_NO = " . $DIS_NO . " )";
         $dis = $pdo->query($sql);
         if ($dis->rowCount() == 0) { //找不到
             //傳回空的JSON字串
@@ -73,7 +95,8 @@ function getMsg(){
     }
 }
 
-function getReplay(){
+function getReplay()
+{
     try {
         require_once "connectMySql.php";
         $sql = "select ANN_CONTENT from ANNOUNCEMENT";
@@ -172,20 +195,39 @@ function getAnn()
 function addFavor()
 {
     try {
-        
+
         require_once "connectMySql.php";
         $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
         $dis_no = isset($_POST["DIS_NO"]) ? $_POST["DIS_NO"] : $_GET["DIS_NO"];
 
-        $article_like_sql = "select * from ARTICLE_LIKE where MEM_NO = '" . $mem_no . "' and DIS_NO = '" . $dis_no . "'";
+        $article_like_sql = "select ART_LIK_STATE 
+                             from ARTICLE_LIKE 
+                             where MEM_NO = '" . $mem_no . "' 
+                             and DIS_NO = '" . $dis_no . "';";
+
         $article_like_sql_result = $pdo->query($article_like_sql);
-        // 找不到就是沒點過 沒點過就新增 點過就刪除
+        $result = $article_like_sql_result->fetch(PDO::FETCH_ASSOC);
+
+      
+
+        //找不到就是沒點過 沒點過就新增 點過就刪除
         if ($article_like_sql_result->rowCount() == 0) {
             $sql = "insert into ARTICLE_LIKE (DIS_NO, MEM_NO) values (" . $dis_no . "," . $mem_no . ")";
+            $sql_calc = "update DISCUSS_AREA set DIS_LIK_NUM = DIS_LIK_NUM + 1 where DIS_NO = " . $dis_no;
         } else {
-            $sql = "delete from ARTICLE_LIKE where DIS_NO = " . $dis_no . " and MEM_NO = " . $mem_no . "";
+            $data_result = $result["ART_LIK_STATE"] || 0;
+            if ($data_result == 0) {
+                $sql = "update ARTICLE_LIKE set ART_LIK_STATE =1 where DIS_NO = " . $dis_no . " and MEM_NO = " . $mem_no . "";
+                $sql_calc = "update DISCUSS_AREA set DIS_LIK_NUM = DIS_LIK_NUM + 1 where DIS_NO = " . $dis_no;
+            } else {
+                $sql = "update ARTICLE_LIKE set ART_LIK_STATE =0 where DIS_NO = " . $dis_no . " and MEM_NO = " . $mem_no . "";
+                $sql_calc = "update DISCUSS_AREA set DIS_LIK_NUM = DIS_LIK_NUM - 1 where DIS_NO = " . $dis_no;
+            }
+
         }
         $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $statement = $pdo->prepare($sql_calc);
         $statement->execute();
         echo 'ok';
     } catch (PDOException $e) {

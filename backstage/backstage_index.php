@@ -69,7 +69,7 @@ try {
       <div>
         <p class="ad_name">
           <?php
-          // echo $_SESSION["AD_NAME"];
+          echo $_SESSION["AD_NAME"];
           ?>
         </p>
         <p>
@@ -108,12 +108,15 @@ try {
           <p class="title">會員管理</p>
           <form>
             <div>
-              <input type="text" class="search_input">
-              <button class="search">查詢</button>
+              <input type="text" class="search_input" name="MEM_NO">
+              <button class="search" id="search_mem_no">查詢</button>
             </div>
 
           </form>
-          <table>
+          <!-- 找會員資料 -->
+
+          <!-- 全部會員 -->
+          <table id="allMem">
             <tr>
               <th>編號</th>
               <th>名稱</th>
@@ -226,16 +229,20 @@ try {
             ?>
               <tr>
                 <td><?= $quizRow["QUIZ_NO"] ?></td>
-                <td><?= $quizRow["QUIZ_CON"] ?></td>
+                <td>
+                  <div id="QUIZ_CON<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_CON"] ?></div>
+                </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1">
-                  <input type="file" name="" id="">
+                  <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                 </td>
-                <td><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></td>
+                <td>
+                  <div id="QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
+                </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
 
-                  <select name="" id="">
+                  <select name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="R" <?php echo $quizRow["firstType"] == "實作型" ? "selected" : "" ?>>實作型</option>
                     <option value="I" <?php echo $quizRow["firstType"] == "研究型" ? "selected" : "" ?>>研究型</option>
                     <option value="A" <?php echo $quizRow["firstType"] == "文藝型" ? "selected" : "" ?>>文藝型</option>
@@ -246,24 +253,26 @@ try {
                 </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2">
-                  <input type="file" name="" id="">
+                  <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                 </td>
-                <td><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></td>
+                <td>
+                  <div id="QUIZ_TWO_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
+                </td>
                 <td>
                   <p><?= $quizRow["secondType"] ?></p>
-                  <select name="" id="">
+                  <select name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="" v-for="type in types" <?php echo $quizRow["secondType"] == "{{type}}" ? "selected" : "" ?>>{{type}}</option>
                   </select>
                 </td>
                 <td>
                   <p><?php echo $quizRow["QUIZ_USE"] == 0 ? "否" : "是" ?></p>
-                  <select name="authority" id="">
+                  <select name="authority" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="authority">是</option>
                     <option value="authority">否</option>
                   </select>
                 </td>
                 <td>
-                  <button class="edit">編輯</button>
+                  <button class="edit" id="quizEdit<?= $quizRow["QUIZ_NO"] ?>">編輯</button>
                 </td>
               </tr>
             <?php
