@@ -302,6 +302,12 @@ let vm = new Vue({
         });
     },
 
+    // orderList傳訂單到資料庫
+    orderListSend() {
+      let ski_name = $("#ski_name").text();
+      alert(ski_name);
+    },
+
     // header登出
     header_logOut() {
       axios
