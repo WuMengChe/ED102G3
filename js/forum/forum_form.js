@@ -64,6 +64,7 @@ new Vue({
                   document.getElementById("content").value="";
                   document.getElementById("text_topic").value="";
                   this.sendmsg.push(res.data[0]);
+                  window.location.href = "./forum_discuss.html";
                 }) 
               }
             }

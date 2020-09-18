@@ -29,20 +29,14 @@ if ($action == "getAllDiscuss") {
 function accuse(){
 
     try {
-
         require_once "connectMySql.php";
         $DIS_NO = $_REQUEST["DIS_NO"];
         $MEM_NO = $_REQUEST["MEM_NO"];
         $ART_REP_CONTENT = $_REQUEST["ART_REP_CONTENT"];
         // echo $DIS_NAME;
-
-        if($article_rep_sql_result->rowCount() == 0){
-            $sql = "insert into ARTICLE_REPORT (DIS_NO,MEM_NO,ART_REP_CONTENT)
-            values ('" . $DIS_NO . "'," . $MEM_NO . ", '" . $ART_REP_CONTENT . "')";   
-            $sql_calc = "update DISCUSS_AREA set DIS_REP_NUM = DIS__NUM + 1 where DIS_NO = " . $dis_no;
-        }else{
-            echo "0";
-        }
+        
+        $sql = "insert into ARTICLE_REPORT (DIS_NO,MEM_NO,ART_REP_CONTENT)
+        values ('" . $DIS_NO . "'," . $MEM_NO . ", '" . $ART_REP_CONTENT . "')";
         $sendMsg = $pdo->prepare($sql);
         $sendMsg->execute();
   
@@ -215,25 +209,27 @@ function getMsg()
     }
 }
 
-function getReplay()
-{
-    try {
-        require_once "connectMySql.php";
-        $sql = "select ANN_CONTENT from ANNOUNCEMENT";
-        $dis = $pdo->query($sql);
-        if ($dis->rowCount() == 0) { //找不到
-            //傳回空的JSON字串
-            echo "{}";
-        } else { //找得到
-            //取回一筆資料
-            $disRow = $dis->fetchAll(PDO::FETCH_ASSOC);
-            //送出json字串
-            echo json_encode($disRow);
-        }
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-}
+// function getReplay()
+// {
+//     try {
+//         require_once "connectMySql.php";
+//         $sql = "select ANN_CONTENT from ANNOUNCEMENT";
+//         $dis = $pdo->query($sql);
+//         if ($dis->rowCount() == 0) { //找不到
+//             //傳回空的JSON字串
+//             echo "{}";
+//         } else { //找得到
+//             //取回一筆資料
+//             $disRow = $dis->fetchAll(PDO::FETCH_ASSOC);
+//             //送出json字串
+//             echo json_encode($disRow);
+//         }
+//     } catch (PDOException $e) {
+//         echo $e->getMessage();
+//     }
+// }
+
+
 function getAllDiscuss()
 {
     try {
@@ -250,7 +246,7 @@ function getAllDiscuss()
             DISCUSS_AREA.DIS_LIK_NUM,
             DISCUSS_AREA.DIS_NO
             from MEMBER join DISCUSS_AREA using(MEM_NO)
-            join INDUSTRY_CLASS using(IND_NO);";
+            join INDUSTRY_CLASS using(IND_NO) order by  DISCUSS_AREA.DIS_NO desc;";
 
         $dis = $pdo->query($sql);
         if ($dis->rowCount() == 0) { //找不到
