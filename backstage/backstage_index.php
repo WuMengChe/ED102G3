@@ -46,8 +46,7 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>職引960後台</title>
-  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="./css/app_public.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/backstage_index.css">
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
@@ -168,7 +167,7 @@ try {
                     <option value="authority">是</option>
                     <option value="authority">否</option>
                   </select>
-                  <button class="edit">編輯</button>
+                  <button class="edit adEdit<?= $adminRow["AD_NO"] ?>" @click="edit">編輯</button>
                 </td>
               </tr>
             <?php
@@ -555,24 +554,28 @@ try {
                 <td>{{item.ORD_AMOUNT}}</td>
                 <td>{{item.ORD_PAY}}</td>
                 <td>{{item.ORD_DATE}}</td>
-                <td><button @click="detail">查看訂單明細</button></td>
+                <td><button data-toggle="collapse" :data-target="['#multiCollapseExample'+ item.ORD_NO]" aria-expanded="false" :aria-controls="['multiCollapseExample'+ item.ORD_NO]">查看訂單明細</button></td>
               </tr>
-
-              <tr class="orderHide" :class="['orderDetail'+item.ORD_NO]">
-                <th>訂單明細編號</th>
-                <th>課程編號</th>
-                <th>課程名稱</th>
-                <th>價格</th>
-              </tr>
-             
-              <tr class="orderHide" :class="['orderDetail'+item.ORD_NO]">
-                <td>{{item.ORD_DET_NO}}</td>
-                <td>{{item.SKI_NO}}</td>
-                <td>{{item.SKI_NAME}}</td>
-                <td>{{item.ORD_DET_PRICE}}</td>
-              </tr>
-            
           </table>
+          <div v-for="detail in orderList">
+            <table class="collapse multi-collapse" :id="['multiCollapseExample'+detail.ORD_NO]">
+                <tr>
+                  <th>訂單明細編號</th>
+                  <th>課程編號</th>
+                  <th>課程名稱</th>
+                  <th>價格</th>
+                </tr>
+               
+                <tr>
+                  <td>{{detail.ORD_DET_NO}}</td>
+                  <td>{{detail.SKI_NO}}</td>
+                  <td>{{detail.SKI_NAME}}</td>
+                  <td>{{detail.ORD_DET_PRICE}}</td>
+                </tr>
+              
+            </table>
+
+          </div>
         </div>
 
         <!-- postcard_material -->
@@ -650,7 +653,8 @@ try {
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
 

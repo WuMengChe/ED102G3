@@ -1,40 +1,3 @@
-// Vue.component('account', {
-//   template: `
-//     <div class="account" v-show="account">
-//           會員
-//           <form>
-//             <input type="text">
-//             <button>查詢</button>
-//           </form>
-//           <table>
-//             <tr>
-//               <th>編號</th>
-//               <th>名稱</th>
-//               <th>生日</th>
-//               <th>電話</th>
-//               <th>電子郵件</th>
-//               <th>停權</th>
-//             </tr>
-//             <tr>
-//               <td>123</td>
-//               <td>王先生</td>
-//               <td>1993/7/15</td>
-//               <td>0919123456</td>
-//               <td>123@gmail.com</td>
-//               <td>無
-//                 <select name="authority" id="">
-//                   <option value="authority">是</option>
-//                   <option value="authority">否</option>
-//                 </select>
-//               </td>
-//             </tr>
-//           </table>
-//          </div>
-//   `,
-// });
-
-
-
 new Vue({
     el: '#bg_stage',
     data: {
@@ -55,6 +18,7 @@ new Vue({
         typeValues: ['R', 'I', 'A', 'S', 'E', 'C'],
 
         orders: [],
+        orderList: [],
 
 
 
@@ -203,25 +167,24 @@ new Vue({
                 },
             })
         },
-        // if (index == 0) {
-        //   this.quiz = true;
-        //   this.account = false;
-        //   this.administrator = false;
 
-        // } else {
-        //   this.account = false;
-        //   this.administrator = true;
-        // }
 
-        detail() {
-            $(".orderDetail1").show();
-        },
+        // detail() {
+        //     $(".orderDetail1").show();
+        // },
+        edit(e) {
+            e.target.innerText = "確認";
+            $('select').show();
+        }
 
     },
     mounted() {
         axios
-            .get('../backstage_order.php')
+            .get('../backstage_order.php?{ORD_NO}')
             .then((res) => { this.orders = res.data; });
+        axios
+            .get('../backstage_orderDetail.php')
+            .then((res) => { this.orderList = res.data; });
     },
     computed: {
 

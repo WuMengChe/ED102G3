@@ -23,12 +23,8 @@ window.addEventListener("load", function() {
     });
     //編輯按鈕
 
-    function edit() {
-        let editBtn = document.querySelectorAll(".edit");
-        editBtn.innerText = "確認";
-        $('select').show();
-    }
-    document.querySelector(".edit").onclick = edit;
+
+
 
     //   var MEM_NO = document.querySelector('.search_input').value;
     //   var formData = new FormData();
@@ -39,7 +35,7 @@ window.addEventListener("load", function() {
     //       if (resp.data == 0) {
     //         alert('查無此會員，請重新輸入');
 
-    $(".orderHide").hide();
+    // $(".orderHide").hide();
 
     // 更改行業資料
     $('.quizShow1').hide();
