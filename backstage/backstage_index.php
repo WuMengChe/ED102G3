@@ -24,8 +24,8 @@ try {
   $skill = $pdo->query($skillSql);
   $ArReport = $pdo->query($ArReportSql);
   $MgReport = $pdo->query($MgReportSql);
-  
-  
+
+
 
   // $ordCount = $pdo->query($ordCountSql);
 
@@ -110,6 +110,7 @@ try {
           <!-- 找會員資料 -->
           <table id="oneMem">
           </table>
+          <button class="back" @click="backAllMem" id="backAllMem" style="display: none;">返回全部列表</button>
           <!-- 全部會員 -->
           <table id="allMem">
             <tr>
@@ -171,21 +172,20 @@ try {
                 </td>
               </tr>
             <?php
-            }  
+            }
 
-          
+
             ?>
           </table>
           <div id="adForm">
             <table id="myForm" style="display: none;">
               <tr class="title">
-                <th>編號</th>
                 <th>名稱</th>
                 <th>帳號</th>
                 <th>密碼</th>
+                <th></th>
               </tr>
-              <tr class="new_administrator">
-                <td>2</td>
+              <tr class="new_administrator" style="display: none;">
                 <td>
                   <input type="text">
                 </td>
@@ -230,13 +230,15 @@ try {
                   <div id="QUIZ_CON<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_CON"] ?></div>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1">
-                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>">
-                  <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgOne">
+                  <label class="quizShow<?= $quizRow["QUIZ_NO"] ?>">選擇檔案
+                    <input type="file" name="QUIZ_PIC_ONE" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>" style="display:none;">
+                  </label>
 
                 </td>
                 <td>
-                  <div id="QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
+                  <div id=" QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?>
+                  </div>
                 </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
@@ -251,8 +253,10 @@ try {
                   </select>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2">
-                  <input type="file" name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgTwo">
+                  <label for="QUIZ_PIC_Two">
+                    <input type="file" name="QUIZ_PIC_Two" id="QUIZ_PIC_Two<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  </label>
                 </td>
                 <td>
                   <div id="QUIZ_TWO_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
@@ -272,7 +276,7 @@ try {
                 </td>
                 <td>
                   <button class="edit" id="quizEdit<?= $quizRow["QUIZ_NO"] ?>">編輯</button>
-                  <button class="cancel" id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">取消</button>
+                  <button id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?> cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -325,50 +329,50 @@ try {
                 <td><?= $careerRow["IND_INT_SKILL"] ?></td>
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[0] ?></span>
+                    <span><?= $careerArrayL[0] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[0] ?></span>
+                    <span><?= $careerArrayH[0] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[1] ?></span>
+                    <span><?= $careerArrayL[1] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[1] ?></span>
+                    <span><?= $careerArrayH[1] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[2] ?></span>
+                    <span><?= $careerArrayL[2] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[2] ?></span>
+                    <span><?= $careerArrayH[2] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[3] ?></span>
+                    <span><?= $careerArrayL[3] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[3] ?></span>
+                    <span><?= $careerArrayH[3] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[4] ?></span>
+                    <span><?= $careerArrayL[4] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[4] ?></span>
+                    <span><?= $careerArrayH[4] ?></span>
                   </p>
 
                 </td>

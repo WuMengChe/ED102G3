@@ -10,6 +10,7 @@
             a.ski_price,
             a.ski_time,
             a.ski_intro,
+            a.ski_harvest,
             a.ski_img,
             a.ski_tec_img,
             a.ski_tec_name,

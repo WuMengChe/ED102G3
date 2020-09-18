@@ -232,7 +232,6 @@ let vm = new Vue({
       // FormData建立變數傳給php
       var formData = new FormData();
       formData.append("introduce_no", this.introduce_no);
-      // formData.append("suggest_no", this.introduce_single.ind_no);
 
       axios
         .all([
@@ -250,13 +249,13 @@ let vm = new Vue({
                 let splitItem = function (str) {
                   return str.split(";").splice(1, str.split(";").length - 1);
                 };
-                // 切割課程介紹
-                _this.introduce_single.ski_intro = splitItem(
-                  _this.introduce_single.ski_intro
-                );
                 // 切割適合對象
                 _this.introduce_single.ski_stud = splitItem(
                   _this.introduce_single.ski_stud
+                );
+                // 切割學到什麼
+                _this.introduce_single.ski_harvest = splitItem(
+                  _this.introduce_single.ski_harvest
                 );
                 // 切割課程大綱
                 _this.introduce_single.ski_outline = splitItem(
@@ -290,12 +289,12 @@ let vm = new Vue({
             console.log(res.data);
             if (res.data != 0) {
               let memName = res.data.split(";")[1];
+
               $("div.member > a").html("Hi," + memName);
               $("div.member > a").attr("href", "member.html");
               $("#header_logOut").css("display", "block");
             }
           }
-          // this.hot_course = res.data;
         })
         .catch(function (error) {
           console.log(error);
@@ -304,8 +303,47 @@ let vm = new Vue({
 
     // orderList傳訂單到資料庫
     orderListSend() {
-      let ski_name = $("#ski_name").text();
-      alert(ski_name);
+      let d_ord_amount = $(".final_price").text().split("$")[1]; //總金額
+      let d_ord_pay = "信用卡"; //付款方式
+      let d_ord_discount = 0; //是否折扣
+      if (this.cart_items.length > 1) {
+        d_ord_discount = 1;
+      }
+      let arr = [];
+
+      this.cart_items.forEach((item) => {
+        //課程資訊
+        arr.push({
+          ski_no: item.ski_no,
+          ski_price: item.ski_price,
+        });
+      });
+
+      let d_course_arr = JSON.stringify(arr);
+
+      // 建立php的變數
+      var formData = new FormData();
+      formData.append("ord_amount", d_ord_amount);
+      formData.append("ord_pay", d_ord_pay);
+      formData.append("ord_discount", d_ord_discount);
+      formData.append("course_arr", d_course_arr);
+
+      // -------------
+      // 連結php
+
+      axios
+        .all([axios.post("./php/course_send_ord_mem.php", formData)])
+        .then(
+          axios.spread((res1, res2) => {
+            rr = res1.data;
+            console.log(rr);
+            // alert("訂單完成");
+          })
+        )
+
+        .catch((err) => {
+          console.log(err);
+        });
     },
 
     // header登出

@@ -165,7 +165,15 @@ new Vue({
                 success: function(data) {
                     $("#oneMem").html(data)
                 },
-            })
+            });
+            $('#allMem').hide();
+            $('#backAllMem').show();
+            $('#oneMem').show();
+        },
+        backAllMem() {
+            $('#backAllMem').hide();
+            $('#allMem').show();
+            $('#oneMem').hide();
         },
 
 
