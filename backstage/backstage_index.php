@@ -111,6 +111,7 @@ try {
           <!-- 找會員資料 -->
           <table id="oneMem">
           </table>
+          <button class="back" @click="backAllMem" id="backAllMem" style="display: none;">返回全部列表</button>
           <!-- 全部會員 -->
           <table id="allMem">
             <tr>
@@ -180,13 +181,12 @@ try {
           <div id="adForm">
             <table id="myForm" style="display: none;">
               <tr class="title">
-                <th>編號</th>
                 <th>名稱</th>
                 <th>帳號</th>
                 <th>密碼</th>
+                <th></th>
               </tr>
-              <tr class="new_administrator">
-                <td>2</td>
+              <tr class="new_administrator" style="display: none;">
                 <td>
                   <input type="text">
                 </td>
