@@ -392,6 +392,10 @@ main.main_test_result{
                 border-radius: 5px;
                 overflow: hidden;
                 position: relative;
+                a.link_wrap{
+                    border: 1px solid red;
+                    width: 300px;
+                    height: 300px;
                  .card_type{
                     //  border: 1px solid green;
                      padding: 2%;
@@ -442,7 +446,7 @@ main.main_test_result{
             } 
             }
        
-       
+        }
     
                  
                 }              
