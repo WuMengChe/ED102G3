@@ -5,8 +5,6 @@ try{
     require_once "./connectMySql.php";
 // 送進去
 $sendResultSql = " insert into `quiz_result_analysis`(`MEM_NO`,`QUIZ_RES_TYPE_R`,`QUIZ_RES_TYPE_I`,`QUIZ_RES_TYPE_A`,`QUIZ_RES_TYPE_S`,`QUIZ_RES_TYPE_E`,`QUIZ_RES_TYPE_C`,`QUIZ_RES_DATE`,`QUIZ_RES_FIT_TYPE`)VALUES( :MEM_NO, :QUIZ_RES_TYPE_R, :QUIZ_RES_TYPE_I, :QUIZ_RES_TYPE_A, :QUIZ_RES_TYPE_S, :QUIZ_RES_TYPE_E, :QUIZ_RES_TYPE_C, curdate(), :QUIZ_RES_FIT_TYPE) ";
-// $sendResultSql = " insert into `quiz_result_analysis`(`MEM_NO`,`QUIZ_RES_TYPE_R`,`QUIZ_RES_TYPE_I`,`QUIZ_RES_TYPE_A`,`QUIZ_RES_TYPE_S`,`QUIZ_RES_TYPE_E`,`QUIZ_RES_TYPE_C`,`QUIZ_RES_DATE`,`QUIZ_RES_FIT_TYPE`)VALUES( ':MEM_NO', ':QUIZ_RES_TYPE_R', ':QUIZ_RES_TYPE_I', ':QUIZ_RES_TYPE_A', ':QUIZ_RES_TYPE_S', ':QUIZ_RES_TYPE_E', ':QUIZ_RES_TYPE_C', curdate(), ':QUIZ_RES_FIT_TYPE') ";
-// $sendResultSql = " insert into `quiz_result_analysis`(`MEM_NO`,`QUIZ_RES_TYPE_R`,`QUIZ_RES_TYPE_I`,`QUIZ_RES_TYPE_A`,`QUIZ_RES_TYPE_S`,`QUIZ_RES_TYPE_E`,`QUIZ_RES_TYPE_C`,`QUIZ_RES_DATE`,`QUIZ_RES_FIT_TYPE`)VALUES( 1, 12, 13, 4, 63, 45, 66, '2019-03-04','A') ";
 $resultDetail = $pdo->prepare($sendResultSql);
 $resultDetail ->bindValue(":MEM_NO",$_SESSION["memNo"]);
 $resultDetail ->bindValue(":QUIZ_RES_TYPE_R",$_POST["typeR"]);

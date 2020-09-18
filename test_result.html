@@ -15,8 +15,8 @@
 </head>
 
 <body>
+    <script>console.log('???')</script>
     @@include('app/header.html')
-
 
 
 
@@ -57,13 +57,13 @@
                 <div class="analysis_description ">
                     <div class="analysis_txt ">
                         <span>測驗結果出爐，您的類型是．．．</span>
-                        <h2 class="typeName">{{ resultData[index].typeName }}</h2>
+                        <h2 style="color: blcak;" class="typeName">{{ anaTypeResult[0].IND_CLASS }}</h2>
                             &emsp;&emsp;&emsp;&emsp;
-                            <p class="type_descrp">{{resultData[index].typeDscrp}}</p>
+                            <p class="type_descrp">{{ anaTypeResult[0].IND_INFO }}</p>
                         <!-- <h3 class="accuracy">準確率{{ resultData[index].accuracy }} %</h3> -->
                     </div>
                            <div class="chart_bx">
-                              <div class="test_radar" id="testRadar" style="border: 1px solid red; width:500px;"></div>
+                              <div class="test_radar" id="testRadar" style="width:500px;"></div>
                             </div>
                 </div>
                 <div class="btn_save_bx">
@@ -76,10 +76,10 @@
                 </div>
                 <div class="related_job">
                     <ul class="jobs row ">
-                        <li class="" v-for="(item, index) in relatedJob[0]" :key="index"  >
-                            <a :href="item.link">
-                                <img :src="item.src" alt="">
-                                <h3>{{ item.name }}</h3>
+                        <li class="" v-for="(item, index) in relatedJob" :key="index"  >
+                            <a href="">
+                                <img :src="item.IND_INT_PICTURE" alt="">
+                                <h3>{{ item.IND_INT_NAME }}</h3>
                             </a>
                         </li>
                     </ul>
@@ -95,18 +95,19 @@
                 <div class="title_bx">
                     <h2>此類型相關課程</h2>
                 </div>
+                <!-- :style="{backgroundColor:relatedCourse[index].backgroundColor}" -->
                 <div class="related_course">
                     <ul class="all_course_cards row">
                         <li class="course_card" v-for="(item, index) in relatedCourse" :key="index" >
-                             <span class="card_type" :style="{backgroundColor:relatedCourse[index].backgroundColor}" >{{item.type}}</span>
+                             <span class="card_type" :style="{backgroundColor:item.IND_COLOR}" >{{item.IND_CLASS}}</span>
                              <div class="course_pic">
                                 <a >
-                                    <img :src="item.IND_INT_PICTURE" alt=""/>
+                                    <img :src="item.SKI_IMG" alt=""/>
                              
                                 </a>
                             </div>
                             <div class="card_content">
-                                    <p>{{item.IND_INT_NAME}}</p>
+                                    <p>{{item.SKI_NAME}}</p>
                                 <div class="card_content_scrb">
                                     <div class="card_content_join">
                                         <i class="fas fa-user-friends"></i>
@@ -136,8 +137,8 @@
                 </div>
                 <div class="article_wrap">
                     <ul class="articles" >
-                        <li v-for="(item, index) in relatedTopic" :key="index" :style="{borderColor:item.backgroundColor}" ><a>
-                            <span :style="{backgroundColor:item.backgroundColor}" >{{item.category}}</span>{{item.title}}</a></li>
+                        <li v-for="(item, index) in relatedDiscuss" :key="index" :style="{borderColor:item.IND_COLOR}" ><a>
+                            <span :style="{backgroundColor:item.IND_COLOR}" >{{item.DIS_CLASS}}</span>{{item.DIS_NAME}}</a></li>
                     </ul>
                     <div class="btn_wrap">
                         <a href="./forum_discuss.html" class="btn_second">
