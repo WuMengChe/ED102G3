@@ -327,17 +327,18 @@ let vm = new Vue({
       formData.append("ord_pay", d_ord_pay);
       formData.append("ord_discount", d_ord_discount);
       formData.append("course_arr", d_course_arr);
+      // formData.append("course_arr", arr);
 
       // -------------
       // 連結php
 
       axios
-        .all([axios.post("./php/course_send_ord_mem.php", formData)])
+        .all([axios.post("./php/course_send_ordList.php", formData)])
         .then(
           axios.spread((res1, res2) => {
             rr = res1.data;
-            console.log(rr);
-            // alert("訂單完成");
+            // console.log(rr);
+            alert("訂單完成");
           })
         )
 
