@@ -1,7 +1,7 @@
 <?php
 session_start();
 try {
-  require_once("./connectMySql.php");
+  require_once "./connectMySql.php";
 
   //-------------------------------------------------
   $memSql = "select * from member";
@@ -25,8 +25,6 @@ try {
   $ArReport = $pdo->query($ArReportSql);
   $MgReport = $pdo->query($MgReportSql);
 
-
-
   // $ordCount = $pdo->query($ordCountSql);
 
   $material = $pdo->query($materialSql);
@@ -35,7 +33,6 @@ try {
   echo "錯誤原因:", $e->getMessage(), "<br>";
   echo "錯誤行號:", $e->getLine(), "<br>";
 }
-
 
 ?>
 
@@ -175,7 +172,6 @@ try {
             <?php
             }
 
-
             ?>
           </table>
           <div id="adForm">
@@ -311,7 +307,9 @@ try {
               <tr>
                 <td><?= $careerRow["IND_INT_NO"] ?></td>
                 <td><?= $careerRow["IND_INT_NAME"] ?></td>
-                <td><?= $careerRow["IND_INT_INTRO"] ?></td>
+                <td>
+                  <div class="overflow"><?= $careerRow["IND_INT_INTRO"] ?></div>
+                </td>
                 <td>
                   <img src="<?= $careerRow["IND_INT_PICTURE"] ?>" alt="行業圖片">
                 </td>
@@ -321,8 +319,12 @@ try {
                     <option value="" v-for="type in types">{{type}}</option>
                   </select>
                 </td>
-                <td><?= $careerRow["INT_INT_CONTENT"] ?></td>
-                <td><?= $careerRow["IND_INT_SKILL"] ?></td>
+                <td>
+                  <div class="overflow"><?= $careerRow["INT_INT_CONTENT"] ?></div>
+                </td>
+                <td>
+                  <div class="overflow"><?= $careerRow["IND_INT_SKILL"] ?></div>
+                </td>
                 <td>
                   <p>最低月薪:
                     <span><?= $careerArrayL[0] ?></span>
@@ -437,11 +439,17 @@ try {
                   <img src="<?= $skillRow["SKI_TEC_IMG"] ?>" alt="講師圖片">
                 </td>
                 <td><?= $skillRow["SKI_TEC_NAME"] ?></td>
-                <td><?= $skillRow["SKI_TEC_INTRO"] ?></td>
-                <td><?= $skillRow["SKI_OUTLINE"] ?></td>
-                <td><?= $skillRow["SKI_STUD"] ?></td>
                 <td>
-                  <?= $skillRow["SKI_HIDDEN"] ?>
+                  <div class="overflow"><?= $skillRow["SKI_TEC_INTRO"] ?></div>
+                </td>
+                <td>
+                  <div class="overflow"><?= $skillRow["SKI_OUTLINE"] ?></div>
+                </td>
+                <td>
+                  <div class="overflow"><?= $skillRow["SKI_STUD"] ?>
+                </td>
+                <td>
+                  <p><?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?></p>
                   <select name="authority" id="">
                     <option value="authority">是</option>
                     <option value="authority">否</option>
@@ -482,7 +490,8 @@ try {
                 <td><?= $ArReportRow["DIS_CONTENT"] ?></td>
                 <td><?= $ArReportRow["MEM_EMAIL"] ?></td>
                 <td><?= $ArReportRow["ART_REP_CONTENT"] ?></td>
-                <td><?= $ArReportRow["ART_REP_PASS"] ?>
+                <td>
+                  <?php echo $ArReportRow["ART_REP_PASS"] == 1 ? "不通過" : "通過" ?>
                   <select name="" id="">
                     <option value="">通過</option>
                     <option value="">未通過</option>
@@ -518,7 +527,9 @@ try {
                 <td><?= $MgReportRow["DIS_MES_CONTENT"] ?></td>
                 <td><?= $MgReportRow["MEM_EMAIL"] ?></td>
                 <td><?= $MgReportRow["MES_REP_CONTENT"] ?></td>
-                <td><?= $MgReportRow["MES_REP_PASS"] ?>
+                <td>
+                  <?php echo $MgReportRow["MES_REP_PASS"] == 1 ? "不通過" : "通過" ?>
+
                   <select name="" id="">
                     <option value="">通過</option>
                     <option value="">未通過</option>
@@ -603,7 +614,8 @@ try {
                 <td>
                   <img src="<?= $materialRow["POS_MAT_PIC"] ?>" alt="<?= $materialRow["POS_MAT_NAME"] ?>">
                 </td>
-                <td><?= $materialRow["POS_MAT_USE"] ?>
+                <td>
+                  <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
                   <select name="" id="">
                     <option value="">是</option>
                     <option value="">否</option>
@@ -637,7 +649,10 @@ try {
                 <td><?= $announceRow["ANN_CONTENT"] ?></td>
                 <td><?= $announceRow["ANN_DATE"] ?></td>
 
-                <td><?= $announceRow["ANN_USE"] ?>
+                <td>
+
+                  <?php echo $announceRow["ANN_USE"] == 1 ? "是" : "否" ?>
+
                   <select name="" id="">
                     <option value="">是</option>
                     <option value="">否</option>

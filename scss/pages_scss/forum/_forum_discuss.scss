@@ -296,14 +296,14 @@ $timing: 0.3s;
             cursor: pointer;
             color: rgb(173, 169, 169);
             &.colorGray {
-              color: gray;
+              color: rgb(31, 30, 30);
             }
             &::before {
               line-height: 2;
             }
           }
         }
-        .count{
+        .count {
           display: inline-flex;
           line-height: 38px;
           font-weight: 500;
@@ -553,7 +553,7 @@ a.pencil_btn {
           cursor: pointer;
           color: rgb(173, 169, 169);
           &.colorGray {
-            color: rgb(75, 71, 71);
+            color: rgb(31, 30, 30);
           }
           &::before {
             line-height: 2;
@@ -564,8 +564,8 @@ a.pencil_btn {
   }
 }
 
-.colorGray{
-color:red;
+.colorGray {
+  color: red;
 }
 
 /* 回應留言 */
@@ -630,7 +630,7 @@ color:red;
         cursor: pointer;
         color: rgb(173, 169, 169);
         &.colorGray {
-          color: gray;
+          color: rgb(31, 30, 30);
         }
         &::before {
           line-height: 2;
@@ -729,11 +729,6 @@ div.-on {
     }
   }
 }
-
-
-
-
-
 
 /* RWD */
 @media screen and (max-width: 992px) {
