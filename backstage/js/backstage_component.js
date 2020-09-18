@@ -153,7 +153,7 @@ new Vue({
             }
 
         },
-        SearchMEM: function(e) {
+        SearchMEM: function (e) {
             e.preventDefault();
             $.ajax({
                 url: 'backstage_memberSearch.php',
@@ -162,7 +162,7 @@ new Vue({
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     $("#oneMem").html(data)
                 },
             });
@@ -188,11 +188,15 @@ new Vue({
     },
     mounted() {
         axios
-            .get('../backstage_order.php?{ORD_NO}')
-            .then((res) => { this.orders = res.data; });
+            .get('./backstage_order.php?{ORD_NO}')
+            .then((res) => {
+                this.orders = res.data;
+            });
         axios
-            .get('../backstage_orderDetail.php')
-            .then((res) => { this.orderList = res.data; });
+            .get('./backstage_orderDetail.php')
+            .then((res) => {
+                this.orderList = res.data;
+            });
     },
     computed: {
 
