@@ -78,18 +78,20 @@ let vm = new Vue({
     };
   },
   mounted() {
-    // course_main - 熱門課程/category課程
+    // course_main.html - 熱門課程/category課程
     this.all_course_api();
-    // course_main - script
+    // course_main.html - script
     script = document.createElement("script");
     script.src = "./js/course/course_main.js";
     document.body.appendChild(script);
 
-    // course_introduce
+    // course_introduce.html
     let localURL = new URL(document.location);
     if (localURL.toString().includes("course_introduce")) {
       this.introduce_course_api();
     }
+
+    //course_check.html
 
     // 共用
     this.check_member_api();
@@ -302,49 +304,53 @@ let vm = new Vue({
     },
 
     // orderList傳訂單到資料庫
-    orderListSend() {
-      let d_ord_amount = $(".final_price").text().split("$")[1]; //總金額
-      let d_ord_pay = "信用卡"; //付款方式
-      let d_ord_discount = 0; //是否折扣
-      if (this.cart_items.length > 1) {
-        d_ord_discount = 1;
+    orderListSend(item) {
+      if (item.length > 0) {
+        let d_ord_amount = $(".final_price").text().split("$")[1]; //總金額
+        let d_ord_pay = "信用卡"; //付款方式
+        let d_ord_discount = 0; //是否折扣
+        if (item.length > 1) {
+          d_ord_discount = 1;
+        }
+        let arr = [];
+
+        item.forEach((key) => {
+          //課程資訊
+          arr.push({
+            ski_no: key.ski_no,
+            ski_price: key.ski_price,
+          });
+        });
+
+        let d_course_arr = JSON.stringify(arr);
+
+        // 建立php的變數
+        var formData = new FormData();
+        formData.append("ord_amount", d_ord_amount);
+        formData.append("ord_pay", d_ord_pay);
+        formData.append("ord_discount", d_ord_discount);
+        formData.append("course_arr", d_course_arr);
+
+        // -------------
+        // 連結php
+        axios
+          .all([axios.post("./php/course_send_ordList.php", formData)])
+          .then(
+            axios.spread((res1, res2) => {
+              alert("訂單完成");
+              let ord_no = res1.data[0].ord_no;
+              // window.location.href = "'./course_check.html?ord_no=' + ord_no";
+              window.location.href = "./course_check.html?ord_no=" + ord_no;
+            })
+          )
+
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        alert("購物車內無課程，請先挑選課程唷！");
+        window.location.href = "./course_main.html";
       }
-      let arr = [];
-
-      this.cart_items.forEach((item) => {
-        //課程資訊
-        arr.push({
-          ski_no: item.ski_no,
-          ski_price: item.ski_price,
-        });
-      });
-
-      let d_course_arr = JSON.stringify(arr);
-
-      // 建立php的變數
-      var formData = new FormData();
-      formData.append("ord_amount", d_ord_amount);
-      formData.append("ord_pay", d_ord_pay);
-      formData.append("ord_discount", d_ord_discount);
-      formData.append("course_arr", d_course_arr);
-      // formData.append("course_arr", arr);
-
-      // -------------
-      // 連結php
-
-      axios
-        .all([axios.post("./php/course_send_ordList.php", formData)])
-        .then(
-          axios.spread((res1, res2) => {
-            rr = res1.data;
-            // console.log(rr);
-            alert("訂單完成");
-          })
-        )
-
-        .catch((err) => {
-          console.log(err);
-        });
     },
 
     // header登出
