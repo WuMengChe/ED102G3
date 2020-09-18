@@ -316,7 +316,9 @@ try {
               <tr>
                 <td><?= $careerRow["IND_INT_NO"] ?></td>
                 <td><?= $careerRow["IND_INT_NAME"] ?></td>
-                <td><?= $careerRow["IND_INT_INTRO"] ?></td>
+                <td>
+                  <div class="overflow"><?= $careerRow["IND_INT_INTRO"] ?></div>
+                </td>
                 <td>
                   <img src="<?= $careerRow["IND_INT_PICTURE"] ?>" alt="行業圖片">
                 </td>
@@ -326,8 +328,12 @@ try {
                     <option value="" v-for="type in types">{{type}}</option>
                   </select>
                 </td>
-                <td><?= $careerRow["INT_INT_CONTENT"] ?></td>
-                <td><?= $careerRow["IND_INT_SKILL"] ?></td>
+                <td>
+                  <div class="overflow" ><?= $careerRow["INT_INT_CONTENT"] ?></div>
+                </td>
+                <td>
+                  <div class="overflow"><?= $careerRow["IND_INT_SKILL"] ?></div>
+                </td>
                 <td>
                   <p>最低月薪:
                     <span><?= $careerArrayL[0] ?></span>
@@ -442,9 +448,15 @@ try {
                   <img src="<?= $skillRow["SKI_TEC_IMG"] ?>" alt="講師圖片">
                 </td>
                 <td><?= $skillRow["SKI_TEC_NAME"] ?></td>
-                <td><?= $skillRow["SKI_TEC_INTRO"] ?></td>
-                <td><?= $skillRow["SKI_OUTLINE"] ?></td>
-                <td><?= $skillRow["SKI_STUD"] ?></td>
+                <td>
+                <div class="overflow"><?= $skillRow["SKI_TEC_INTRO"] ?></div>
+                </td>
+                <td>
+                  <div class="overflow"><?= $skillRow["SKI_OUTLINE"] ?></div>
+                </td>
+                <td>
+                  <div class="overflow"><?= $skillRow["SKI_STUD"] ?> 
+                </td>
                 <td>
                   <?= $skillRow["SKI_HIDDEN"] ?>
                   <select name="authority" id="">
