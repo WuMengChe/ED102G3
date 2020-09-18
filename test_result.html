@@ -99,12 +99,11 @@
                 <div class="related_course">
                     <ul class="all_course_cards row">
                         <li class="course_card" v-for="(item, index) in relatedCourse" :key="index" >
-                            <a :href=" './course_introduce.html?ski_no=' + item.SKI_NO  ">
-                            <span class="card_type" :style="{backgroundColor:item.IND_COLOR}" >{{item.IND_CLASS}}</span>
+                            <a class="link_wrap" :href=" './course_introduce.html?ski_no=' + item.SKI_NO  ">
+                            <span class="card_type" :style="{backgroundColor:item.IND_COLOR}">{{item.IND_CLASS}}</span>
                              <div class="course_pic">
                                 <a >
                                     <img :src="item.SKI_IMG" alt=""/>
-                             
                                 </a>
                             </div>
                             <div class="card_content">
