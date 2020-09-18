@@ -189,7 +189,7 @@ new Vue({
             }
 
         },
-        SearchMEM: function(e) {
+        SearchMEM: function (e) {
             e.preventDefault();
             $.ajax({
                 url: 'backstage_memberSearch.php',
@@ -198,30 +198,31 @@ new Vue({
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     $("#oneMem").html(data)
                 },
-            })
+            });
+            $('#allMem').hide();
+            $('#backAllMem').show();
+            $('#oneMem').show();
         },
-        // if (index == 0) {
-        //   this.quiz = true;
-        //   this.account = false;
-        //   this.administrator = false;
-
-        // } else {
-        //   this.account = false;
-        //   this.administrator = true;
-        // }
-
+        backAllMem() {
+            $('#backAllMem').hide();
+            $('#allMem').show();
+            $('#oneMem').hide();
+        },
         detail() {
             $(".orderDetail1").show();
+
         },
 
     },
     mounted() {
         axios
             .get('../backstage_order.php')
-            .then((res) => { this.orders = res.data; });
+            .then((res) => {
+                this.orders = res.data;
+            });
     },
     computed: {
 
