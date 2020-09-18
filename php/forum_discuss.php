@@ -15,10 +15,130 @@ if ($action == "getAllDiscuss") {
     addReplay();
 }elseif($action =="showLike"){
     showLike();
+}elseif($action =="sendMsg"){
+    sendMsg();
+}elseif($action=="addCol"){
+    addCol();
+}elseif($action =="showCollect"){
+    showCollect();
+}elseif($action =="accuse"){
+    accuse();
 }
 
 
-function showLike(){
+function accuse(){
+
+    try {
+
+        require_once "connectMySql.php";
+        $DIS_NO = $_REQUEST["DIS_NO"];
+        $MEM_NO = $_REQUEST["MEM_NO"];
+        $ART_REP_CONTENT = $_REQUEST["ART_REP_CONTENT"];
+        // echo $DIS_NAME;
+
+        if($article_rep_sql_result->rowCount() == 0){
+            $sql = "insert into ARTICLE_REPORT (DIS_NO,MEM_NO,ART_REP_CONTENT)
+            values ('" . $DIS_NO . "'," . $MEM_NO . ", '" . $ART_REP_CONTENT . "')";   
+            $sql_calc = "update DISCUSS_AREA set DIS_REP_NUM = DIS__NUM + 1 where DIS_NO = " . $dis_no;
+        }else{
+            echo "0";
+        }
+        $sendMsg = $pdo->prepare($sql);
+        $sendMsg->execute();
+  
+        } catch (PDOException $e) {
+            echo json_encode($e->getMessage());
+    }   
+
+
+}
+
+
+function showCollect(){
+
+    try {
+        require_once "connectMySql.php";
+        $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
+        $sql = "select DIS_NO from ARTICLE_COLLECT where ART_COL_STATE =1 and MEM_NO = $mem_no;";
+
+        $article_col_sql_result = $pdo->prepare($sql);
+        $article_col_sql_result->execute();
+
+        $result = $article_col_sql_result->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($result);
+     } catch (PDOException $e) {
+        echo json_encode($e->getMessage());
+    }
+
+}
+
+
+function addCol(){
+
+    try {
+        require_once "connectMySql.php";
+        $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
+        $dis_no = isset($_POST["DIS_NO"]) ? $_POST["DIS_NO"] : $_GET["DIS_NO"];
+
+        $article_col_sql = "select ART_COL_STATE 
+                             from ARTICLE_COLLECT 
+                             where MEM_NO = '" . $mem_no . "' 
+                             and DIS_NO = '" . $dis_no . "';";
+
+        $article_col_sql_result = $pdo->query($article_col_sql);
+        $result = $article_col_sql_result->fetch(PDO::FETCH_ASSOC);
+
+      
+
+        //找不到就是沒點過 沒點過就新增 點過就刪除
+        if ($article_col_sql_result->rowCount() == 0) {
+            $sql = "insert into ARTICLE_COLLECT (DIS_NO, MEM_NO) values (" . $dis_no . "," . $mem_no . ")";
+            $sql_calc = "update DISCUSS_AREA set DIS_COL_NUM = DIS_COL_NUM + 1 where DIS_NO = " . $dis_no;
+        } else {
+            $data_result = $result["ART_COL_STATE"] || 0;
+            if ($data_result == 0) {
+                $sql = "update ARTICLE_COLLECT set ART_COL_STATE =1 where DIS_NO = " . $dis_no . " and MEM_NO = " . $mem_no . "";
+                $sql_calc = "update DISCUSS_AREA set DIS_COL_NUM = DIS_COL_NUM + 1 where DIS_NO = " . $dis_no;
+            } else {
+                $sql = "update ARTICLE_COLLECT set ART_COL_STATE =0 where DIS_NO = " . $dis_no . " and MEM_NO = " . $mem_no . "";
+                $sql_calc = "update DISCUSS_AREA set DIS_COL_NUM = DIS_COL_NUM - 1 where DIS_NO = " . $dis_no;
+            }
+
+        }
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $statement = $pdo->prepare($sql_calc);
+        $statement->execute();
+        echo 'ok';
+    } catch (PDOException $e) {
+        echo json_encode($e->getMessage());
+    }
+
+}
+
+function sendMsg()
+{
+    try {
+        require_once "connectMySql.php";
+        $DIS_NAME = $_REQUEST["DIS_NAME"];
+        $DIS_CLASS = $_REQUEST["DIS_CLASS"];
+        $IND_NO = $_REQUEST["IND_NO"];
+        $DIS_CONTENT = $_REQUEST["DIS_CONTENT"];
+        $MEM_NO = $_REQUEST["MEM_NO"];
+// echo $DIS_NAME;
+        $sql = "insert into DISCUSS_AREA(DIS_NAME, DIS_CLASS, IND_NO, DIS_CONTENT, MEM_NO, DIS_DATE) 
+        values ('" . $DIS_NAME . "','" . $DIS_CLASS . "', '" . $IND_NO . "','" . $DIS_CONTENT . "','" . $MEM_NO ."',CURDATE())";
+        $sendMsg = $pdo->prepare($sql);
+        $sendMsg->execute();
+  
+        } catch (PDOException $e) {
+            echo json_encode($e->getMessage());
+    }   
+}
+
+
+function showLike()
+{
     try {
         require_once "connectMySql.php";
         $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
@@ -29,7 +149,7 @@ function showLike(){
 
         $result = $article_like_sql_result->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($result);
-    } catch (PDOException $e) {
+     } catch (PDOException $e) {
         echo json_encode($e->getMessage());
     }
 }
@@ -183,6 +303,7 @@ function getAnn()
             echo "{}";
         } else { //找得到
             //取回一筆資料
+
             $disRow = $dis->fetchAll(PDO::FETCH_ASSOC);
             //送出json字串
             echo json_encode($disRow);

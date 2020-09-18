@@ -97,16 +97,16 @@
               </div>
               <div class="msg_btn">
                 <button class="heart">
-               <i class="fas fa-heart" :class="{'colorRed':isHeart[index]}"@click="heart_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
+               <i class="fas fa-heart" :class="{'colorRed':isHeart[index]}" @click="heart_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
                 <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
                   <span>{{messages.DIS_COL_NUM}}</span>
                 </button>
-                <button class="gray_btn" :class="{'colorGray':isCollect}" @click="collect_btn(index)">
-                  <i class="fas fa-bookmark"></i>
+                <button class="gray_btn collect_btn">
+                  <i class="fas fa-bookmark" :class="{'colorGray':isCollect[index]}" @click="collect_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
-                <button class="gray_btn" @click="accuse_btn">
+                <button class="gray_btn" @click="accuse_btn(index), repNo = messages.DIS_NO">
                   <i class="fas fa-exclamation-circle"></i>
                 </button>
               </div>
@@ -169,8 +169,8 @@
               <button class="gray_btn">
                 <i class="far fa-comment-alt"></i>
               </button>
-              <button class="gray_btn" @click="collect_btn">
-                <i class="fas fa-bookmark"></i>
+              <button class="gray_btn collect_btn">
+                <i class="fas fa-bookmark" :class="{'colorGray':isCollect[msg.index]}" @click="$forceUpdate(),collect_btn(msg.index,msg.DIS_NO, 1)"></i>
               </button>
               <button class="gray_btn" @click="accuse_btn">
                 <i class="fas fa-exclamation-circle"></i>
@@ -225,23 +225,14 @@
         </div>
         <h3>檢舉這篇文章的原因？</h3>
         <div class="accuse_wrap">
-          <p>
-            <input type="radio" name="accuse" id="" />
-            重傷、歧視、挑釁、謾罵他人
+          <p v-for="(item, index) in memberAccuse">
+             <label @click="repIndex = index">
+                 <input type="radio" name="accuse" class="radio"/>{{item}}
+             </label>
           </p>
-          <p><input type="radio" name="accuse" id="" /> 交換個人資料</p>
-          <p><input type="radio" name="accuse" id="" /> 惡意洗版、重複張貼</p>
-          <p>
-            <input type="radio" name="accuse" id="" />
-            包含色情、露點、性騷擾之內容
-          </p>
-          <p>
-            <input type="radio" name="accuse" id="" /> 包含廣告、商業宣傳之內容
-          </p>
-          <p><input type="radio" name="accuse" id="" /> 其他原因</p>
         </div>
         <div class="accuse_send_btn">
-          <button class="impeachment_send_btn btn_third">送出</button>
+          <button class="impeachment_send_btn btn_third" @click="sendAccuse()">送出</button>
         </div>
       </article>
     </div>
