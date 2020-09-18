@@ -401,6 +401,7 @@ try {
               <th>價格</th>
               <th>總時數</th>
               <th>介紹</th>
+              <th>學習內容</th>
               <th>課程連結</th>
               <th>課程圖片</th>
               <th>講師圖片</th>
@@ -428,6 +429,9 @@ try {
                 <td><?= $skillRow["SKI_TIME"] ?></td>
                 <td>
                   <div class="overflow"><?= $skillRow["SKI_INTRO"] ?></div>
+                </td>
+                <td>
+                  <div class="overflow"><?= $skillRow["SKI_HARVEST"] ?></div>
                 </td>
                 <td><?= $skillRow["SKI_LINK"] ?></td>
                 <td>
