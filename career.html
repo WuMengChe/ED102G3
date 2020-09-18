@@ -20,7 +20,7 @@
             <div class="col-lg-3 col-md-12 car_con_area">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 car_con_list">
                     <ul @touchmove="ulMove" @mousemove="ulMove()">
-                        <li class="salary_rank" @click="changePlot" :class="{select_li: chooseIndustry == -1}"><span></span>薪水排行</li>
+                        <li class = "salary_rank" @click="changePlot" :class="{select_li: chooseIndustry == -1}"><span></span>薪水排行</li>
                         <li v-for="(item, index) in industry" @click="changeContent(index, item.backgroundColor)" :class="[item.class, {select_li: chooseIndustry == index}]"><span></span>{{item.typeName}}</li>
                     </ul>
                     <div class="side_bar_img" v-if="screenWidth >= 992">
@@ -56,7 +56,7 @@
                     <div class="col-md-12 car_course_list">
                         <div class="col-md-5 col-sm-5 col-6 car_course_list_info" v-for="(item, index) in industryCourse[chooseIndustry].detail">
                             <a class="car_course_list_info_img" href="./course_introduce.html">
-                                <img :src="item.picture" />
+                                <img :src="item.picture"/>
                                 <span :style="{backgroundColor:industry[chooseIndustry].backgroundColor}">{{industry[chooseIndustry].typeName}}</span>
                             </a>
                             <a href="./course_introduce.html">
@@ -92,7 +92,8 @@
             </div>
         </div>
     </main>
-    @@include('app/footer.html') @@include('app/script.html')
+    @@include('app/footer.html')
+    @@include('app/script.html')
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
     <script type="text/javascript" src="./js/career/career.js"></script>
 </body>

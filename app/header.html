@@ -49,7 +49,12 @@
       <!-- <button class="btn_third" @click="delete_cookie">delete</button> -->
     </div>
     <div class="cart_course">
-      <p class="no_item" v-show="cart_items.length == 0">購物車內無添加課程</p>
+      <p class="no_item" v-show="cart_items.length == 0">
+        <span>尚未添加課程，</span><br />
+        <span
+          >前去<a href="course_main.html" class="btn_second">探索課程</a></span
+        >
+      </p>
       <ul>
         <li class="cart_item" v-for="(item,index) in cart_items">
           <div class="cus_card">
@@ -95,7 +100,7 @@
         <div class="price_total">
           <span>總計:${{final_price}}</span>
         </div>
-        <a href="course_orderlist.html" class="check_out">結帳</a>
+        <a href="course_orderlist.html" class="check_out">前往結帳</a>
       </div>
     </div>
   </div>

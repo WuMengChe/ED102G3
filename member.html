@@ -272,12 +272,117 @@
                     <h1>{{currentPage}} - {{collecttionChange? "課程" : "文章"}}</h1>
                 </div>
                 <div class="col-md-11 mem_con_height" v-if="!collecttionChange && checkMemArticle">
-                    <div class="col-md-12 col-sm-11 col-11 mem_art_area" v-for="(memArt, index) in memberArticle">
+                    <div class="col-md-12 col-sm-11 col-11 mem_art_area" v-for="(memArt, index) in memberArticle" :style="{borderColor:memArt.backgroundColor}" @click="openArtPage(index)" v-if="memArt.collect">
                         <a class="col-md-12 mem_art_area" href="#">
                             <div class="col-md-12 mem_art">
-                                <h3>{{memArt.title}}</h3>
+                                <span :style="{backgroundColor:memArt.backgroundColor}">{{memArt.disClass}}</span>
+                                <span>&ensp;{{memArt.title}}</span>
                             </div>
                         </a>
+                    </div>
+                    <div class="mem_overlay" @click="closeArtPage">
+                        <div class="mem_checkMsg" @click.stop>
+                            <div class="close_btn">
+                                <button type="button" class="btn_modal_close btn_third" @click="closeArtPage">
+                                    返回
+                                </button>
+                            </div>
+                            <div class="mem_wrap">
+                                <div class="mem_ove_info">
+                                    <div class="mem_ove_list">
+                                        <div class="mem_ove_img">
+                                            <img :src="memberArticleOverlay.artPic"/>
+                                        </div>
+                                        <div class="mem_ove_name">
+                                            {{memberArticleOverlay.art}}
+                                        </div>
+                                        <div class="mem_ove_date">
+                                            {{memberArticleOverlay.date}}
+                                        </div>
+                                    </div>
+                                    <div class="mem_ove_tags">
+                                        <span>{{memberArticleOverlay.indClass}}</span>
+                                        <span>{{memberArticleOverlay.disClass}}</span>
+                                    </div>
+                                </div>
+                                <div class="mem_ove_title">
+                                    {{memberArticleOverlay.title}}
+                                </div>
+                                <div class="mem_ove_textarea" v-for="(item, index) in memberArticleOverlay.content">
+                                    {{item}}
+                                </div>
+                                <div class="mem_ove_btn">
+                                    <button class="heart">
+                                        <i class="fas fa-heart" :class="{'colorRed':memberArticleOverlay.like}" @click="$forceUpdate(), memberArticleOverlay.like = !memberArticleOverlay.like, changeArticleLike(memberArticleOverlay.no)"></i>
+                                    </button>
+                                    <button class="gray_btn">
+                                        <i class="fas fa-bookmark"  :class="{'colorGray':memberArticleOverlay.collect}" @click="$forceUpdate(), memberArticleOverlay.collect = !memberArticleOverlay.collect, changeCollect(memberArticleOverlay.no)"></i>
+                                    </button>
+                                    <button class="gray_btn">
+                                        <i class="fas fa-exclamation-circle" @click="accuseIsOpen = !accuseIsOpen, repIndex = -1, repConNum = 0, repNo = memberArticleOverlay.no"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mem_ove_feedback_count">
+                                共{{memberArticleOverlay.mesLength}}則回覆
+                            </div>
+                            <div class="mem_ove_feedback">
+                                <div class="mem_ove_feedback_content" v-for="(item, index) in memberArticleMessage[memberArticleOverlay.index]">
+                                    <div class="mem_ove_info">
+                                        <div class="mem_ove_list">
+                                            <div class="mem_ove_img">
+                                                <img :src="item.src"/>
+                                            </div>
+                                            <div class="mem_ove_name">
+                                                {{item.name}}
+                                            </div>
+                                            <div class="mem_ove_date">
+                                                {{item.date}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mem_ove_textarea">
+                                        {{item.content}}
+                                    </div>
+                                    <div class="mem_ove_btn">
+                                        <button class="heart">
+                                            <i class="fas fa-heart" :class="{'colorRed':item.like}" @click="$forceUpdate(), item.like = !item.like, changeMessageLike(item.no)"></i>
+                                        </button>
+                                        <button class="gray_btn">
+                                            <i class="fas fa-exclamation-circle" @click="accuseIsOpen = !accuseIsOpen, repIndex = -1, repConNum = 1, repNo = item.no"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mem_ove_leave_msg">
+                                    <div class="mem_ove_leave_msg_content">
+                                        <textarea class="send_msg" placeholder="請輸入訊息..."></textarea>
+                                    </div>
+                                    <div class="mem_ove_msg_btn">
+                                        <input type="submit" value="送出" class="btn_third" id="send_msg_btn" @click="sendMessage(memberArticleOverlay.no, memberArticleOverlay.index, memberArticleOverlay.mesLength)"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impeachment_overlay" :class="{'-on':accuseIsOpen}" @click="accuseIsOpen = !accuseIsOpen, closeAccuse()">
+                        <article @click.stop>
+                            <div class="accuse_close_btn">
+                                <button type="button" class="impeachment_close_btn" @click="accuseIsOpen = !accuseIsOpen, closeAccuse()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <h3>檢舉這篇文章的原因？</h3>
+                            <div class="accuse_wrap">
+                                <p v-for="(item, index) in memberAccuse">
+                                    <label @click="repIndex = index">
+                                        <input type="radio" name="accuse" class="radio"/>{{item}}
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="accuse_send_btn">
+                                <button class="impeachment_send_btn btn_third" @click="sendReport(index)">送出</button>
+                            </div>
+                        </article>
                     </div>
                 </div>
                 <div class="col-md-11 mem_con_height" v-if="collecttionChange && checkMemClassCollection">

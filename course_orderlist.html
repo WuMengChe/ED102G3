@@ -63,7 +63,12 @@
         </div>
         <div class="cart_course">
           <p class="no_item" v-show="cart_items.length == 0">
-            購物車內無添加課程
+            <span>尚未添加課程，</span><br />
+            <span
+              >前去<a href="course_main.html" class="btn_second"
+                >探索課程</a
+              ></span
+            >
           </p>
           <ul>
             <li class="cart_item" v-for="(item,index) in cart_items">
@@ -110,7 +115,7 @@
             <div class="price_total">
               <span>總計:${{final_price}}</span>
             </div>
-            <a href="course_orderlist.html" class="check_out">結帳</a>
+            <a href="course_orderlist.html" class="check_out">前往結帳</a>
           </div>
         </div>
       </div>
@@ -141,7 +146,7 @@
                             <img :src="card.ski_img" alt="" />
                           </div>
                           <div class="card_content">
-                            <p>{{card.ski_name}}</p>
+                            <p id="ski_name">{{card.ski_name}}</p>
                             <div class="card_content_scrb">
                               <div class="card_content_join">
                                 <i class="fas fa-user-friends"></i
@@ -171,10 +176,10 @@
                     <span
                       class="final_price"
                       style="color: black"
-                      v-show="cart_items.length<2"
+                      v-if="cart_items.length<2"
                       >NT${{final_price}}</span
                     >
-                    <span class="final_price" v-show="cart_items.length>1"
+                    <span class="final_price" v-else="cart_items.length>1"
                       >NT${{final_price}}</span
                     >
                     <span class="origin_price" v-show="cart_items.length>1"
@@ -268,7 +273,12 @@
                     </form>
                   </div>
                   <div class="check_out_btn">
-                    <a href="course_check.html" class="btn_primary">結帳</a>
+                    <button
+                      class="btn_primary"
+                      @click="orderListSend(cart_items)"
+                    >
+                      結帳
+                    </button>
                   </div>
                 </div>
               </div>

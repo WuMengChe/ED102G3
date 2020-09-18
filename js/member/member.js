@@ -7,6 +7,7 @@ let memData = {
     liTitle: ['liDat', 'liAna', 'liClas', 'liCol', 'liPos', 'liOrd'],
     // liTitle: ['liDat', 'liAna', 'liClas', 'liCol', 'liPos', 'liOrd', 'liMes'],
     secTitle: ['文章', '課程'],
+    memberAccuse: ['重傷、歧視、挑釁、謾罵他人', '交換個人資料', '惡意洗版、重複張貼', '包含色情、露點、性騷擾之內容', '包含廣告、商業宣傳之內容', '其他原因'],
     member: new Object(),
     memberTemp: {
         name: '',
@@ -14,11 +15,15 @@ let memData = {
         tel: '',
         code: '',
     },
+    memberNo: '',
+    memberName: '',
     memberAnalysis: new Array(),
     analysisResult: new Array(),
     memberClass: new Array(),
     memberClassCollection: new Array(),
     memberArticle: new Array(),
+    memberArticleMessage: new Array(),
+    memberArticleOverlay: '',
     memberPostCard: new Array(),
     memberOrder: new Array(),
     memberOrderList: new Array(),
@@ -47,11 +52,12 @@ let memData = {
     //     ],
     //     [{name: '社會心理學', teacher: '劉威德'}]
     // ],
-    memberMessage: [
-        {sentDate: '109/05/20', title: '您有一封明信片！！'},
-        {sentDate: '109/05/22', title: '您的文章有人回復'},
-        {sentDate: '109/05/29', title: '您的文章被檢舉，已刪除'}
-    ],
+    // memberMessage: [
+    //     {sentDate: '109/05/20', title: '您有一封明信片！！'},
+    //     {sentDate: '109/05/22', title: '您的文章有人回復'},
+    //     {sentDate: '109/05/29', title: '您的文章被檢舉，已刪除'}
+    // ],
+    accuseIsOpen: false,
     currentPage: '會員資料',
     checkAnalysisResult: false,
     checkMemClass: false,
@@ -65,6 +71,9 @@ let memData = {
     myChart: '',
     rwdClickPage: false,
     rwdUse: false,
+    repIndex: -1,
+    repNo: -1,
+    repConNum: -1,
     fixMode: false,
     fixNewCode: false,
     newCodeEqual: false,
@@ -92,11 +101,14 @@ let changeMemContent = new Vue({
                 window.location.href="./member_sign_in.html"
             }
             else{
+                this.memberNo = this.memberCheck.split(';')[0];
+                this.memberName = this.memberCheck.split(';')[1];
                 var formData = new FormData();
                 formData.append('memNo', this.memberCheck.split(';')[0]);
                 axios
                 .post('./php/memberLoadData.php', formData)
                 .then((resp) => {
+                    // console.log(resp.data);
                     this.loadData = resp.data;
                     this.loadData = this.loadData.split(']');
                     for(var i = 0; i < this.loadData.length-1; i++){
@@ -139,10 +151,88 @@ let changeMemContent = new Vue({
                         this.memberClassCollection[i].src = this.loadDataTemp[3][i].SKI_IMG;
                         this.memberClassCollection[i].no = this.loadDataTemp[3][i].SKI_NO;
                     }
+                    var artNO = -1;
+                    var artMesNO = 0;
+                    var artNoCon = 0;
+                    var disNoTemp = 0;
+                    var mesNoTemp = 0;
                     for(var i = 0; i < this.loadDataTemp[4].length; i++){
-                        this.memberArticle.push(new Object());
-                        this.memberArticle[i].title = this.loadDataTemp[4][i].DIS_NAME;
-                        this.memberArticle[i].no = this.loadDataTemp[4][i].DIS_NO;
+                        if(artNoCon != parseInt(this.loadDataTemp[4][i].DIS_NO)){
+                            artNoCon = this.loadDataTemp[4][i].DIS_NO;
+                            artNO = artNO + 1;
+                            this.memberArticle.push(new Object());
+                            this.memberArticle[artNO].title = this.loadDataTemp[4][i].DIS_NAME;
+                            this.memberArticle[artNO].no = this.loadDataTemp[4][i].DIS_NO;
+                            this.memberArticle[artNO].art = this.loadDataTemp[4][i].MEM_NAME;
+                            this.memberArticle[artNO].artPic = this.loadDataTemp[4][i].MEM_PIC;
+                            this.memberArticle[artNO].collect = true;
+                            this.memberArticle[artNO].date = this.loadDataTemp[4][i].DIS_DATE;
+                            this.memberArticle[artNO].content = this.loadDataTemp[4][i].DIS_CONTENT.split(';');
+                            this.memberArticle[artNO].disClass = this.loadDataTemp[4][i].DIS_CLASS;
+                            this.memberArticle[artNO].disColNum = 0;
+                            this.memberArticle[artNO].backgroundColor = this.loadDataTemp[4][i].IND_COLOR;
+                            this.memberArticle[artNO].indClass = this.loadDataTemp[4][i].IND_CLASS;
+                            disNoTemp = this.loadDataTemp[4][i].DIS_NO;
+                            if(this.loadDataTemp[8].find(function(item, index, array){return item.DIS_NO == disNoTemp})){
+                                this.memberArticle[artNO].like = true;
+                            }
+                            else{
+                                this.memberArticle[artNO].like = false;
+                            }
+                            if(this.loadDataTemp[10].find(function(item, index, array){return item.DIS_NO == disNoTemp})){
+                                this.memberArticle[artNO].report = true;
+                            }
+                            else{
+                                this.memberArticle[artNO].report = false;
+                            }
+                            artMesNO = 0;
+                            this.memberArticleMessage.push(new Array());
+                            this.memberArticleMessage[artNO].push(new Object());
+                            this.memberArticleMessage[artNO][artMesNO].name = this.loadDataTemp[4][i].留言者;
+                            this.memberArticleMessage[artNO][artMesNO].no = this.loadDataTemp[4][i].DIS_MES_NO;
+                            this.memberArticleMessage[artNO][artMesNO].content = this.loadDataTemp[4][i].DIS_MES_CONTENT;
+                            this.memberArticleMessage[artNO][artMesNO].date = this.loadDataTemp[4][i].DIS_MES_DATE;
+                            this.memberArticleMessage[artNO][artMesNO].src = this.loadDataTemp[4][i].留言者照片;
+                            mesNoTemp = this.loadDataTemp[4][i].DIS_MES_NO;
+                            if(this.loadDataTemp[9].find(function(item, index, array){return item.DIS_MES_NO == mesNoTemp})){
+                                this.memberArticleMessage[artNO][artMesNO].like = true;
+                            }
+                            else{
+                                this.memberArticleMessage[artNO][artMesNO].like = false;
+                            }
+                            if(this.loadDataTemp[11].find(function(item){return item.DIS_MES_NO == mesNoTemp})){
+                                this.memberArticleMessage[artNO][artMesNO].report = true;
+                            }
+                            else{
+                                this.memberArticleMessage[artNO][artMesNO].report = false;
+                            }
+                            artMesNO = artMesNO + 1;
+                        }
+                        else{
+                            this.memberArticleMessage[artNO].push(new Object());
+                            this.memberArticleMessage[artNO][artMesNO].name = this.loadDataTemp[4][i].留言者;
+                            this.memberArticleMessage[artNO][artMesNO].no = this.loadDataTemp[4][i].DIS_MES_NO;
+                            this.memberArticleMessage[artNO][artMesNO].content = this.loadDataTemp[4][i].DIS_MES_CONTENT;
+                            this.memberArticleMessage[artNO][artMesNO].date = this.loadDataTemp[4][i].DIS_MES_DATE;
+                            this.memberArticleMessage[artNO][artMesNO].src = this.loadDataTemp[4][i].留言者照片;
+                            mesNoTemp = this.loadDataTemp[4][i].DIS_MES_NO;
+                            if(this.loadDataTemp[9].find(function(item, index, array){return item.DIS_MES_NO == mesNoTemp})){
+                                this.memberArticleMessage[artNO][artMesNO].like = true;
+                            }
+                            else{
+                                this.memberArticleMessage[artNO][artMesNO].like = false;
+                            }
+                            if(this.loadDataTemp[11].find(function(item){return item.DIS_MES_NO == mesNoTemp})){
+                                this.memberArticleMessage[artNO][artMesNO].report = true;
+                            }
+                            else{
+                                this.memberArticleMessage[artNO][artMesNO].report = false;
+                            }
+                            artMesNO = artMesNO + 1;
+                        }
+                    }
+                    for(var i = 0;i <  this.memberArticle.length; i++){
+                        this.memberArticle[i].mesLength = this.memberArticleMessage[i].length;
                     }
                     for(var i = 0; i < this.loadDataTemp[5].length; i++){
                         this.memberPostCard.push(new Object());
@@ -199,9 +289,10 @@ let changeMemContent = new Vue({
                         orderNoCon = orderNoCon + orderNo;
                     }
                     // console.log(resp.data);
-                    // console.log(this.loadDataTemp[6]);
-                    // console.log(this.loadDataTemp[7]);
-                    // console.log(this.analysisResult);
+                    console.log(this.loadDataTemp[4]);
+                    console.log(this.loadDataTemp);
+                    console.log(this.memberArticle);
+                    // console.log(this.memberArticleMessage);
 
                     this.screenWidth = document.documentElement.clientWidth;
                     this.myChart = Array(this.analysisResult.length);
@@ -233,9 +324,9 @@ let changeMemContent = new Vue({
                     if(this.memberOrder.length != 0){
                         this.checkMemOrder = true;
                     }
-                    if(this.memberMessage.length != 0){
-                        this.checkMemMessage = true;
-                    }
+                    // if(this.memberMessage.length != 0){
+                    //     this.checkMemMessage = true;
+                    // }
                 });
             }
         });
@@ -564,6 +655,92 @@ let changeMemContent = new Vue({
             else{
                 this.newCodeEqual = false;
             }
+        },
+        openArtPage(index){
+            document.querySelector('.mem_overlay').classList.add('artShow');
+            this.memberArticleOverlay = this.memberArticle[index];
+            this.memberArticleOverlay.index = index;
+        },
+        closeArtPage(){
+            document.querySelector('.mem_overlay').classList.remove('artShow');
+        },
+        sendMessage(DIS_NO, index, msgIndex){
+            var msgTemp = document.querySelector('.send_msg').value;
+            if(msgTemp.length == 0){
+                alert("請輸入訊息")
+            }
+            else{
+                var dateTemp = new Date().getFullYear() + '-' + (new Date().getMonth()+1<10 ? '0' : '') + parseInt(new Date().getMonth()+1) + '-' + (new Date().getDate()<10 ? '0' : '') + new Date().getDate();
+                this.memberArticleMessage[index].push(new Object());
+                this.memberArticleMessage[index][msgIndex].name = this.memberName;
+                this.memberArticleMessage[index][msgIndex].content = msgTemp;
+                this.memberArticleMessage[index][msgIndex].date = dateTemp;
+                this.memberArticleMessage[index][msgIndex].src = this.member.src;
+                this.memberArticleMessage[index][msgIndex].like = false;
+                this.memberArticleMessage[index][msgIndex].report = false;
+                this.memberArticle[index].mesLength = msgIndex + 1;
+                document.querySelector('.send_msg').value = "";
+                var mesData = new FormData();
+                mesData.append('DIS_NO', DIS_NO);
+                mesData.append('MEM_NO', this.memberNo);
+                mesData.append('DIS_MES_CONTENT', msgTemp);
+                mesData.append('DIS_MES_DATE', dateTemp);
+                axios
+                .post('./php/memberInsertMessage.php', mesData)
+                .then((resp) => {
+                    this.memberArticleMessage[index][msgIndex].no = resp.data;
+                })
+            }
+        },
+        changeCollect(DIS_NO){
+            var colData = new FormData();
+            colData.append('DIS_NO', DIS_NO);
+            colData.append('MEM_NO', this.memberNo);
+            axios
+            .post('./php/memberArticleCollect.php', colData)
+        },
+        changeArticleLike(DIS_NO){
+            var colData = new FormData();
+            colData.append('DIS_NO', DIS_NO);
+            colData.append('MEM_NO', this.memberNo);
+            axios
+            .post('./php/memberArticleLike.php', colData)
+        },
+        changeMessageLike(MES_NO){
+            var colData = new FormData();
+            colData.append('DIS_MES_NO', MES_NO);
+            colData.append('MEM_NO', this.memberNo);
+            axios
+            .post('./php/memberMessageLike.php', colData)
+            .then((resp) => {console.log(resp.data)})
+        },
+        closeAccuse(){
+            if(this.repIndex != -1){
+                document.querySelectorAll('.radio')[this.repIndex].checked = false;
+            }
+            this.repConNum = -1;
+            this.repNo = -1;
+        },
+        sendReport(){
+            var repData = new FormData();
+            repData.append('REP_CON_TEMP', this.repConNum);
+            repData.append('REP_NO', this.repNo);
+            repData.append('MEM_NO', this.memberNo);
+            repData.append('ART_REP_CONTENT', this.memberAccuse[this.repIndex]);
+            axios
+            .post('./php/memberReport.php', repData)
+            .then((resp) =>{
+                console.log(resp.data);
+                if(resp.data == 1){
+                    alert("感謝您的檢舉，我們將盡速處裡")
+                }
+                else{
+                    alert("您已經檢舉過了")
+                }
+            })
+            this.accuseIsOpen = false;
+            this.repConNum = -1;
+            this.repNo = -1;
         }
     },
 })

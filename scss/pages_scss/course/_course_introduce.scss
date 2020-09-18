@@ -90,7 +90,7 @@ div.course_introduce {
                     h1 {
                         // font-size: 20px;
                         line-height: 1.5;
-                        margin-bottom: 20px;
+                        margin: 20px 0;
                     }
                     div.banner_teacher_price {
                         display: flex;
@@ -122,7 +122,7 @@ div.course_introduce {
                         }
                         div.banner_price {
                             p {
-                                font-size: 30px;
+                                font-size: 25px;
                                 span {
                                     font-size: 18px;
                                 }
@@ -163,7 +163,7 @@ div.course_introduce {
             justify-content: center;
             h2 {
                 @include intro_h2;
-                margin: 0 20px;
+                margin: 0 0 20px;
             }
             p {
                 line-height: 1.5;
@@ -180,6 +180,7 @@ div.course_introduce {
             ul {
                 li {
                     padding: 5px;
+                    line-height: 1.5;
                 }
             }
         }
@@ -218,95 +219,7 @@ div.course_introduce {
             }
         }
     }
-    // feedback
-    div.feedback {
-        // background: #fff;
-        div.pro_feedback {
-            // border: $outline1;
-            h2 {
-                width: 300px;
-                border-bottom: 2px solid #e8c300;
-                padding-bottom: 10px;
-                margin: 50px 0 20px;
-            }
-            ul {
-                display: flex;
-                margin-top: 60px; // width: 500px;
-                li {
-                    // border: $outline2;
-                    background: $second_color1;
-                    border-radius: 10px;
-                    div.pro_contain {
-                        padding: 10px;
-                        p {
-                            line-height: 1.5;
-                            border-bottom: 2px solid #ededed;
-                            padding-bottom: 10px;
-                            margin-bottom: 20px;
-                        }
-                        div.pro_person {
-                            display: flex;
-                            align-items: center;
-                            div.pro_profile {
-                                width: 30px;
-                                height: 30px;
-                                border-radius: 50px;
-                                overflow: hidden;
-                                margin-right: 5px;
-                                img {
-                                    width: 100%;
-                                    vertical-align: middle;
-                                }
-                            }
-                            div.pro_introduce {
-                                span {
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        div.stu_feedback {
-            h2 {
-                width: 300px;
-                border-bottom: 2px solid #e8c300;
-                padding-bottom: 10px;
-                margin: 50px 0 20px;
-            }
-            div.stu_contain {
-                padding: 10px;
-                ul {
-                    li {
-                        margin: 10px 0;
-                        span {
-                            display: inline-block;
-                            margin-bottom: 20px;
-                        }
-                        p {
-                            background: #fff;
-                            border-radius: 10px;
-                            padding: 10px;
-                            position: relative;
-                            width: fit-content;
-                            &::before {
-                                content: "";
-                                display: inline-block;
-                                // border-top: 100px solid red;
-                                border-left: 10px solid transparent;
-                                border-right: 10px solid transparent;
-                                border-bottom: 10px solid #fff;
-                                position: absolute;
-                                left: 10px;
-                                top: 3px;
-                                transform: translateY(-100%);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+
     // 推薦課程
 }
 
@@ -316,10 +229,7 @@ div.course_introduce {
     div.suitable_list {
         margin-bottom: 30px;
     }
-    // feedback
-    div.course_introduce div.feedback div.pro_feedback ul {
-        margin-top: 0px;
-    }
+
     div.course_introduce div.cus_teacher div.teacher_intro h2 {
         @include intro_h2;
     }
@@ -331,6 +241,19 @@ div.course_introduce {
         div.intro_banner {
             flex-direction: column;
         }
+    }
+
+    div.course_introduce
+        div.course_intro_banner
+        div.intro_banner
+        div.intro_banner_pic
+        div.banner_type_btn
+        div.banner_type
+        span {
+        font-size: 30px;
+    }
+    div.course_introduce div.course_intro_banner div.intro_banner div.intro_banner_content div.banner_title h1 {
+        font-size: 30px;
     }
 }
 

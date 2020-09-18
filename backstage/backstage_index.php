@@ -5,6 +5,7 @@ try {
 
   //-------------------------------------------------
   $memSql = "select * from member";
+  $memSearchSql = "select * from `member` where MEM_NO = 3";
   $adminSql = "select * from administrator";
   $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
   $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_INTRO, i.INT_INT_CONTENT, i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
@@ -13,13 +14,10 @@ try {
   $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
   $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
 
-  $orderSql = "select mem.MEM_NO, ord.ORD_NO, ord.ORD_DATE, ord.ORD_AMOUNT,ord.ORD_PAY, orddet.ORD_DET_NO, orddet.ORD_DET_PRICE, ski.SKI_NAME, ski.SKI_IMG, ski.SKI_TEC_NAME, ski.SKI_NO from order_mem ord join member mem on ord.MEM_NO = mem.MEM_NO join order_detial orddet on ord.ORD_NO = orddet.ORD_NO join skill_class ski on ski.SKI_NO = orddet.SKI_NO where ord.ORD_NO = 1 order by ord.ORD_NO asc";
-  // $orderSql = "select * from ORDER_MEM";
-
   $materialSql = "select * from POSTCARD_MATERIAL ";
   $announceSql = "select * from announcement;";
-  // $indusSql = "select ";
   $member = $pdo->query($memSql);
+  $memSearch = $pdo->query($memSearchSql);
   $administrator = $pdo->query($adminSql);
   $quiz = $pdo->query($quizSql);
   $career = $pdo->query($careerSql);
@@ -27,8 +25,9 @@ try {
   $ArReport = $pdo->query($ArReportSql);
   $MgReport = $pdo->query($MgReportSql);
 
-  $order = $pdo->query($orderSql);
-  // $order = $pdo->query($orderSql);
+
+
+  // $ordCount = $pdo->query($ordCountSql);
 
   $material = $pdo->query($materialSql);
   $announce = $pdo->query($announceSql);
@@ -37,10 +36,6 @@ try {
   echo "錯誤行號:", $e->getLine(), "<br>";
 }
 
-// $careerArrayH = array();
-// $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
-// $careerArrayL = array();
-// $careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
 
 ?>
 
@@ -51,9 +46,10 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>職引960後台</title>
-  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
   <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/backstage_index.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
 </head>
 
@@ -69,7 +65,7 @@ try {
       <div>
         <p class="ad_name">
           <?php
-          // echo $_SESSION["AD_NAME"];
+          echo $_SESSION["AD_NAME"];
           ?>
         </p>
         <p>
@@ -106,14 +102,18 @@ try {
         <!-- member -->
         <div class="account" v-show="account">
           <p class="title">會員管理</p>
-          <form>
+          <form id="search_mem_form" action="./backstage_memberSearch.php">
             <div>
-              <input type="text" class="search_input">
-              <button class="search">查詢</button>
+              <input type="text" class="search_input" id="MemSearch" name="MEM_NO">
+              <button type="button" class="search" @click="SearchMEM" id="search_mem_no">查詢</button>
             </div>
-
           </form>
-          <table>
+          <!-- 找會員資料 -->
+          <table id="oneMem">
+          </table>
+          <button class="back" @click="backAllMem" id="backAllMem" style="display: none;">返回全部列表</button>
+          <!-- 全部會員 -->
+          <table id="allMem">
             <tr>
               <th>編號</th>
               <th>名稱</th>
@@ -169,23 +169,24 @@ try {
                     <option value="authority">是</option>
                     <option value="authority">否</option>
                   </select>
-                  <button class="edit">編輯</button>
+                  <button class="edit adEdit<?= $adminRow["AD_NO"] ?>" @click="edit">編輯</button>
                 </td>
               </tr>
             <?php
             }
+
+
             ?>
           </table>
           <div id="adForm">
             <table id="myForm" style="display: none;">
               <tr class="title">
-                <th>編號</th>
                 <th>名稱</th>
                 <th>帳號</th>
                 <th>密碼</th>
+                <th></th>
               </tr>
-              <tr class="new_administrator">
-                <td>2</td>
+              <tr class="new_administrator" style="display: none;">
                 <td>
                   <input type="text">
                 </td>
@@ -226,16 +227,24 @@ try {
             ?>
               <tr>
                 <td><?= $quizRow["QUIZ_NO"] ?></td>
-                <td><?= $quizRow["QUIZ_CON"] ?></td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1">
-                  <input type="file" name="" id="">
+                  <div id="QUIZ_CON<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_CON"] ?></div>
                 </td>
-                <td><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></td>
+                <td>
+                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgOne">
+                  <label class="quizShow<?= $quizRow["QUIZ_NO"] ?>">選擇檔案
+                    <input type="file" name="QUIZ_PIC_ONE" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>" style="display:none;">
+                  </label>
+
+                </td>
+                <td>
+                  <div id=" QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?>
+                  </div>
+                </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
 
-                  <select name="" id="">
+                  <select name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="R" <?php echo $quizRow["firstType"] == "實作型" ? "selected" : "" ?>>實作型</option>
                     <option value="I" <?php echo $quizRow["firstType"] == "研究型" ? "selected" : "" ?>>研究型</option>
                     <option value="A" <?php echo $quizRow["firstType"] == "文藝型" ? "selected" : "" ?>>文藝型</option>
@@ -245,25 +254,30 @@ try {
                   </select>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2">
-                  <input type="file" name="" id="">
+                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgTwo">
+                  <label for="QUIZ_PIC_Two">
+                    <input type="file" name="QUIZ_PIC_Two" id="QUIZ_PIC_Two<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  </label>
                 </td>
-                <td><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></td>
+                <td>
+                  <div id="QUIZ_TWO_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
+                </td>
                 <td>
                   <p><?= $quizRow["secondType"] ?></p>
-                  <select name="" id="">
+                  <select name="" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="" v-for="type in types" <?php echo $quizRow["secondType"] == "{{type}}" ? "selected" : "" ?>>{{type}}</option>
                   </select>
                 </td>
                 <td>
                   <p><?php echo $quizRow["QUIZ_USE"] == 0 ? "否" : "是" ?></p>
-                  <select name="authority" id="">
+                  <select name="authority" id="" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
                     <option value="authority">是</option>
                     <option value="authority">否</option>
                   </select>
                 </td>
                 <td>
-                  <button class="edit">編輯</button>
+                  <button class="edit" id="quizEdit<?= $quizRow["QUIZ_NO"] ?>">編輯</button>
+                  <button id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?> cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -294,6 +308,10 @@ try {
             </tr>
             <?php
             while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
+              $careerArrayH = array();
+              $careerArrayL = array();
+              $careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
+              $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
             ?>
               <tr>
                 <td><?= $careerRow["IND_INT_NO"] ?></td>
@@ -312,50 +330,50 @@ try {
                 <td><?= $careerRow["IND_INT_SKILL"] ?></td>
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[0] ?></span>
+                    <span><?= $careerArrayL[0] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[0] ?></span>
+                    <span><?= $careerArrayH[0] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[1] ?></span>
+                    <span><?= $careerArrayL[1] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[1] ?></span>
+                    <span><?= $careerArrayH[1] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[2] ?></span>
+                    <span><?= $careerArrayL[2] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[2] ?></span>
+                    <span><?= $careerArrayH[2] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[3] ?></span>
+                    <span><?= $careerArrayL[3] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[3] ?></span>
+                    <span><?= $careerArrayH[3] ?></span>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_LOW"])[4] ?></span>
+                    <span><?= $careerArrayL[4] ?></span>
                   </p>
                   <p>最高月薪:
-                    <span><?= mb_split(",", $careerRow["IND_SAL_HIGH"])[4] ?></span>
+                    <span><?= $careerArrayH[4] ?></span>
                   </p>
 
                 </td>
@@ -384,6 +402,7 @@ try {
               <th>價格</th>
               <th>總時數</th>
               <th>介紹</th>
+              <th>學習內容</th>
               <th>課程連結</th>
               <th>課程圖片</th>
               <th>講師圖片</th>
@@ -411,6 +430,9 @@ try {
                 <td><?= $skillRow["SKI_TIME"] ?></td>
                 <td>
                   <div class="overflow"><?= $skillRow["SKI_INTRO"] ?></div>
+                </td>
+                <td>
+                  <div class="overflow"><?= $skillRow["SKI_HARVEST"] ?></div>
                 </td>
                 <td><?= $skillRow["SKI_LINK"] ?></td>
                 <td>
@@ -525,7 +547,7 @@ try {
             </div>
 
           </form>
-          <table>
+          <table v-for="item in orders">
             <tr>
               <th>編號</th>
               <th>會員編號</th>
@@ -534,35 +556,35 @@ try {
               <th>購買日期</th>
               <th></th>
             </tr>
-            <?php
-            while ($orderRow = $order->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+            
               <tr>
-                <td><?= $orderRow["ORD_NO"] ?></td>
-                <td><?= $orderRow["MEM_NO"] ?></td>
-                <td><?= $orderRow["ORD_AMOUNT"] ?></td>
-                <td><?= $orderRow["ORD_PAY"] ?></td>
-                <td><?= $orderRow["ORD_DATE"] ?></td>
-                <td><button>訂單明細</button></td>
+                <td>{{item.ORD_NO}}</td>
+                <td>{{item.MEM_NO}}</td>
+                <td>{{item.ORD_AMOUNT}}</td>
+                <td>{{item.ORD_PAY}}</td>
+                <td>{{item.ORD_DATE}}</td>
+                <td><button data-toggle="collapse" :data-target="['#multiCollapseExample'+ item.ORD_NO]" aria-expanded="false" :aria-controls="['multiCollapseExample'+ item.ORD_NO]">查看訂單明細</button></td>
               </tr>
-              <tr>
-                <th>訂單明細編號</th>
-                <th>課程編號</th>
-                <th>課程名稱</th>
-                <th>價格</th>
-              </tr>
-
-              <tr>
-                <td><?= $orderRow["ORD_DET_NO"] ?></td>
-                <td><?= $orderRow["SKI_NO"] ?></td>
-                <td><?= $orderRow["SKI_NAME"] ?></td>
-                <td><?= $orderRow["ORD_DET_PRICE"] ?></td>
-
-              </tr>
-            <?php
-            }
-            ?>
           </table>
+          <div v-for="detail in orderList">
+            <table class="collapse multi-collapse" :id="['multiCollapseExample'+detail.ORD_NO]">
+                <tr>
+                  <th>訂單明細編號</th>
+                  <th>課程編號</th>
+                  <th>課程名稱</th>
+                  <th>價格</th>
+                </tr>
+               
+                <tr>
+                  <td>{{detail.ORD_DET_NO}}</td>
+                  <td>{{detail.SKI_NO}}</td>
+                  <td>{{detail.SKI_NAME}}</td>
+                  <td>{{detail.ORD_DET_PRICE}}</td>
+                </tr>
+              
+            </table>
+
+          </div>
         </div>
 
         <!-- postcard_material -->
@@ -639,6 +661,9 @@ try {
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
 
