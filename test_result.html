@@ -99,7 +99,8 @@
                 <div class="related_course">
                     <ul class="all_course_cards row">
                         <li class="course_card" v-for="(item, index) in relatedCourse" :key="index" >
-                             <span class="card_type" :style="{backgroundColor:item.IND_COLOR}" >{{item.IND_CLASS}}</span>
+                            <a :href=" './course_introduce.html?ski_no=' + item.SKI_NO  ">
+                            <span class="card_type" :style="{backgroundColor:item.IND_COLOR}" >{{item.IND_CLASS}}</span>
                              <div class="course_pic">
                                 <a >
                                     <img :src="item.SKI_IMG" alt=""/>
@@ -119,6 +120,7 @@
                                             <span class="card_price">NT${{item.SKI_PRICE}}</span>
                                     </div>
                             </div>
+                          </a>
                         </li>
                      </ul> 
                                 </div>
