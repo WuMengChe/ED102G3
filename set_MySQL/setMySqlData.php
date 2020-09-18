@@ -630,7 +630,7 @@
 					for($i = 1; $i < $number_of_orders; $i++){
 						$line = explode("\t", $orders[$i]);
 						if(!in_array($line[0], $re_value)){
-							$sql = "insert into `order_mem`(`MEM_NO`, `ORD_DISCONT`, `ORD_AMOUNT`, `ORD_PAY`, `ORD_DATE`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]')";
+							$sql = "insert into `order_mem`(`MEM_NO`, `ORD_DISCOUNT`, `ORD_AMOUNT`, `ORD_PAY`, `ORD_DATE`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]', '$line[4]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
 							echo "主鍵值為".$line[0]."的資料已成功存入資料庫！<br/><br/>";
@@ -647,7 +647,7 @@
 			}
 			else{
 				echo "<p><strong>檔案 初始會員訂單明細.txt 有資料</strong></p>";
-				$sql = "select * from `order_detial`";
+				$sql = "select * from `order_detail`";
 				echo "搜尋指令為 $sql <br/><br/>";
 				$skill_class_all = $pdo -> query($sql);
 				$cehek_value_ord = Array();
@@ -668,7 +668,7 @@
 					for($i = 1; $i < $number_of_orders; $i++){
 						$line = explode("\t", $orders[$i]);
 						if(!in_array($line[0], $re_value)){
-							$sql = "insert into `order_detial`(`ORD_NO`, `SKI_NO`, `ORD_DET_PRICE`) values('$line[0]', '$line[1]', '$line[2]')";
+							$sql = "insert into `order_detail`(`ORD_NO`, `SKI_NO`, `ORD_DET_PRICE`) values('$line[0]', '$line[1]', '$line[2]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
 							$sql_calc = "update `skill_class` set `SKI_BUY_NUM` = `SKI_BUY_NUM` + 1 where `SKI_NO` = '$line[1]'";
