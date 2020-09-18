@@ -303,22 +303,23 @@ let vm = new Vue({
 
     // orderList傳訂單到資料庫
     orderListSend() {
-      let d_ord_amount = $(".final_price").text(); //總金額
+      let d_ord_amount = $(".final_price").text().split("$")[1]; //總金額
       let d_ord_pay = "信用卡"; //付款方式
       let d_ord_discount = 0; //是否折扣
       if (this.cart_items.length > 1) {
         d_ord_discount = 1;
       }
-      let d_course_arr = [];
+      let arr = [];
 
       this.cart_items.forEach((item) => {
         //課程資訊
-        d_course_arr.push({
+        arr.push({
           ski_no: item.ski_no,
-          ski_name: item.ski_name,
           ski_price: item.ski_price,
         });
       });
+
+      let d_course_arr = JSON.stringify(arr);
 
       // 建立php的變數
       var formData = new FormData();
@@ -326,7 +327,23 @@ let vm = new Vue({
       formData.append("ord_pay", d_ord_pay);
       formData.append("ord_discount", d_ord_discount);
       formData.append("course_arr", d_course_arr);
-      console.log(formData.ord_amount);
+
+      // -------------
+      // 連結php
+
+      axios
+        .all([axios.post("./php/course_send_ord_mem.php", formData)])
+        .then(
+          axios.spread((res1, res2) => {
+            rr = res1.data;
+            console.log(rr);
+            // alert("訂單完成");
+          })
+        )
+
+        .catch((err) => {
+          console.log(err);
+        });
     },
 
     // header登出
