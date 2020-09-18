@@ -97,16 +97,16 @@
               </div>
               <div class="msg_btn">
                 <button class="heart">
-               <i class="fas fa-heart" :class="{'colorRed':isHeart[index]}"@click="heart_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
+               <i class="fas fa-heart" :class="{'colorRed':isHeart[index]}" @click="heart_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
                 <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
                   <span>{{messages.DIS_COL_NUM}}</span>
                 </button>
-                <button class="gray_btn" :class="{'colorGray':isCollect}" @click="collect_btn(index)">
-                  <i class="fas fa-bookmark"></i>
+                <button class="gray_btn collect_btn">
+                  <i class="fas fa-bookmark" :class="{'colorGray':isCollect[index]}" @click="collect_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
-                <button class="gray_btn" @click="accuse_btn">
+                <button class="gray_btn" @click="accuse_btn(index)">
                   <i class="fas fa-exclamation-circle"></i>
                 </button>
               </div>
@@ -169,8 +169,8 @@
               <button class="gray_btn">
                 <i class="far fa-comment-alt"></i>
               </button>
-              <button class="gray_btn" @click="collect_btn">
-                <i class="fas fa-bookmark"></i>
+              <button class="gray_btn collect_btn">
+                <i class="fas fa-bookmark" :class="{'colorGray':isCollect[msg.index]}" @click="$forceUpdate(),collect_btn(msg.index,msg.DIS_NO, 1)"></i>
               </button>
               <button class="gray_btn" @click="accuse_btn">
                 <i class="fas fa-exclamation-circle"></i>
