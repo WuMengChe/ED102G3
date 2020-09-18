@@ -132,7 +132,7 @@
                       <table>
                         <tr>
                           <th>訂單編號:</th>
-                          <td>#6941</td>
+                          <td>#{{final_order_list.ord_no}}</td>
                         </tr>
                         <!-- <tr>
                           <th>課程名稱:</th>
@@ -146,15 +146,15 @@
                         </tr> -->
                         <tr>
                           <th>訂單金額:</th>
-                          <td>＄30000</td>
+                          <td>＄{{final_order_list.ord_amount}}</td>
                         </tr>
                         <tr>
                           <th>付款方式:</th>
-                          <td>信用卡(末四碼:3811)</td>
+                          <td>{{final_order_list.ord_pay}}</td>
                         </tr>
                         <tr>
                           <th>訂單成立:</th>
-                          <td>2020-5-5 14:20</td>
+                          <td>{{final_order_list.ord_date}}</td>
                         </tr>
                       </table>
                     </fieldset>

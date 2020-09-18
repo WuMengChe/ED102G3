@@ -7,7 +7,7 @@ let vm = new Vue({
       // 燈箱變數
       signIn: true,
 
-      // course_main
+      // course_main.html
       category: [
         {
           link_from: "practical",
@@ -54,7 +54,7 @@ let vm = new Vue({
       ],
       hot_course: [],
 
-      // course_introduce
+      // course_introduce.html
       introduce_no: null,
       introduce_single: {
         ski_no: "",
@@ -75,6 +75,9 @@ let vm = new Vue({
       },
       introduce_suggest: [],
       favorite_items: [],
+
+      //course_check.html
+      final_order_list: [],
     };
   },
   mounted() {
@@ -358,17 +361,33 @@ let vm = new Vue({
     load_order_list() {
       // 清空購物車
       window.localStorage.removeItem("cart");
-      console.log(this.cart_items.length);
       // 擷取網址內的變數
       let localUrl = new URL(document.location);
       let url_ord_no = localUrl.searchParams.get("ord_no");
-      alert(url_ord_no); //okok
+      // alert(url_ord_no); //okok
 
       //變成php變數
       let formData = new FormData();
       formData.append("ord_no", url_ord_no);
 
       // 與php連結
+      axios
+        .all([axios.post("./php/course_receive_ordList.php", formData)])
+        .then(
+          axios.spread((res1) => {
+            // 課程介紹資料
+            if (res1.status == 200) {
+              if (res1.data != 0) {
+                this.final_order_list = res1.data[0];
+                // console.log("訂單資訊：" + this.final_order_list.ord_no);
+              }
+            }
+          })
+        )
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
     },
 
     // header登出
