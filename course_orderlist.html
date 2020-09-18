@@ -171,10 +171,10 @@
                     <span
                       class="final_price"
                       style="color: black"
-                      v-show="cart_items.length<2"
+                      v-if="cart_items.length<2"
                       >NT${{final_price}}</span
                     >
-                    <span class="final_price" v-show="cart_items.length>1"
+                    <span class="final_price" v-else="cart_items.length>1"
                       >NT${{final_price}}</span
                     >
                     <span class="origin_price" v-show="cart_items.length>1"
@@ -268,12 +268,9 @@
                     </form>
                   </div>
                   <div class="check_out_btn">
-                    <a
-                      href="course_check.html"
-                      class="btn_primary"
-                      @click="orderListSend"
-                      >結帳</a
-                    >
+                    <button class="btn_primary" @click="orderListSend">
+                      結帳
+                    </button>
                   </div>
                 </div>
               </div>

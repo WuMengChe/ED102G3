@@ -1,7 +1,7 @@
 <?php
 try {
   require_once "./connectMySql.php";
-  $stampSql = "select * from postcard_material where POS_MAT_PIC like '%stamp%';";
+  $stampSql = "select * from postcard_material where POS_MAT_PIC like '%stamp%' and POS_MAT_USE =1;";
 
   $stamp = $pdo->query($stampSql);
 

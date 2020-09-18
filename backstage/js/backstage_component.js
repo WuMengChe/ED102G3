@@ -51,10 +51,11 @@ new Vue({
         order_mem: false,
         postcard_material: false,
         announcement: false,
-
-
         types: ['實作型', '研究型', '文藝型', '社會型', '企業型', '事務型'],
         typeValues: ['R', 'I', 'A', 'S', 'E', 'C'],
+
+        orders: [],
+
 
 
     },
@@ -187,7 +188,21 @@ new Vue({
                     break;
             }
 
-        }
+        },
+        SearchMEM: function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'backstage_memberSearch.php',
+                type: "POST",
+                data: new FormData(document.getElementById("search_mem_form")),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#oneMem").html(data)
+                },
+            })
+        },
         // if (index == 0) {
         //   this.quiz = true;
         //   this.account = false;
@@ -197,6 +212,18 @@ new Vue({
         //   this.account = false;
         //   this.administrator = true;
         // }
+
+        detail() {
+            $(".orderDetail1").show();
+        },
+
+    },
+    mounted() {
+        axios
+            .get('../backstage_order.php')
+            .then((res) => { this.orders = res.data; });
+    },
+    computed: {
 
     },
 

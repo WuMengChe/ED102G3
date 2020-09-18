@@ -119,6 +119,7 @@ div.postcard_main {
   padding-top: 20px;
   max-width: 1200px;
   margin-top: 30px;
+  min-height: calc(100vh - 230px);
 
   .postcard,
   .row {
@@ -477,13 +478,13 @@ div.postcard_main {
                   border-right: 2px solid #cccccc;
                   resize: none;
                   width: 95%;
-                  // padding-bottom: 100%;
+                  padding-bottom: 100%;
                   outline: none;
                   line-height: 30px;
                   font-size: 18px;
                   background: transparent;
                   overflow: hidden;
-                  border: 1px solid blue;
+                  // border: 1px solid blue;
                   // height: 0;
                   // color: rgb(179, 35, 35);
                   word-break: break-word;
@@ -546,7 +547,7 @@ div.postcard_main {
                     background-size: 100% 30px;
                     overflow: hidden;
                     border: none;
-                    border: 1px solid blue;
+                    // border: 1px solid blue;
 
                   }
                 }
