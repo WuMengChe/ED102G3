@@ -233,7 +233,7 @@ try {
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgOne">
                   <label class="quizShow<?= $quizRow["QUIZ_NO"] ?>">選擇檔案
-                    <input type="file" name="QUIZ_PIC_ONE" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>" style="display:none;" accept="image/svg">
+                    <input type="file" name="QUIZ_PIC_ONE" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>" style="display:none;">
                   </label>
 
                 </td>
@@ -274,7 +274,6 @@ try {
                   <button id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?> cancel">取消</button>
                 </td>
               </tr>
-
             <?php
             }
             ?>

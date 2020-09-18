@@ -50,10 +50,10 @@ $(function () {
         let xhr = new XMLHttpRequest();
         xhr.onload = function () {
             if (xhr.status == 200) {
-                // alert(xhr.responseText);
+                alert(xhr.responseText);
                 console.log(xhr.responseText);
             } else {
-                // alert(xhr.status);
+                alert(xhr.status);
             }
 
         }
