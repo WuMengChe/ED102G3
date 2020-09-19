@@ -194,7 +194,7 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                <i class="fas fa-heart" :class="{'colorRed':feedBoxHeart[msg.index]}" @click="heart_btn_feedback(msg.index)"></i>
+                <i class="fas fa-heart" :class="{'colorRed':feedBoxHeart}" @click="heart_btn_feedback()"></i>
               </button>
               <button class="gray_btn" @click="accuse_btn">
                 <i class="fas fa-exclamation-circle"></i>
