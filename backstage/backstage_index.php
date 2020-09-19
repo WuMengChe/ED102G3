@@ -198,7 +198,7 @@ try {
               </tr>
             </table>
 
-            <button id="newAdBtn">新增管理員</button>
+            <button id="newAdBtn" class="add">新增管理員</button>
           </div>
         </div>
 
@@ -275,7 +275,7 @@ try {
             }
             ?>
           </table>
-          <button>新增題目</button>
+          <button class="add">新增題目</button>
         </div>
 
         <!-- industry -->
@@ -384,7 +384,7 @@ try {
             }
             ?>
           </table>
-          <button>新增行業</button>
+          <button class="add">新增行業</button>
         </div>
 
         <!-- skill_class -->
@@ -463,7 +463,7 @@ try {
             }
             ?>
           </table>
-          <button>新增課程</button>
+          <button class="add">新增課程</button>
         </div>
 
         <!-- article_report -->
@@ -626,7 +626,7 @@ try {
             }
             ?>
           </table>
-          <button>新增素材</button>
+          <button class="add">新增素材</button>
         </div>
 
         <!-- announcement -->
@@ -663,7 +663,7 @@ try {
             }
             ?>
           </table>
-          <button>新增公告</button>
+          <button class="add">新增公告</button>
         </div>
       </div>
     </div>
