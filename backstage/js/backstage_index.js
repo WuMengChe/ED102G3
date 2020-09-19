@@ -139,8 +139,9 @@ window.addEventListener("load", function () {
                     $("#QUIZ_TWO_CONTENT1").replaceWith(`<div id="${QUIZ_TWO_CONTENTId}" cols="20" rows="5">${quizTwoContent}</div>`);
                     $('#quiz1ImgOne').attr("src", quizImgOneSrc1);
                     $('#quiz1ImgTwo').attr("src", quizImgTwoSrc1);
-                    // alert(quizImgOneSrc1);
-                    // quizImgTwo1.src = oldSrc;
+                    QUIZ_PIC_Two1.value = "";
+                    QUIZ_PIC_ONE1.value = "";
+
                 });
             } else {
 
