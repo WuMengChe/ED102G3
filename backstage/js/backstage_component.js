@@ -39,7 +39,9 @@ new Vue({
 
         orders: [],
         orderList: [],
-
+        adminName: '名稱',
+        adminId: 'id',
+        adminPw: '密碼',
 
 
     },
@@ -223,6 +225,7 @@ new Vue({
                 this.orderList = res.data;
             });
     },
+
     computed: {
 
     },

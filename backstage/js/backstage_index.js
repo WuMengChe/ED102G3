@@ -28,7 +28,9 @@ window.addEventListener("load", function () {
         let newAdministrator = newAd.cloneNode(true);
         newAdministrator.style.display = "";
         myForm.appendChild(newAdministrator);
-        document.getElementsByClassName('cancelAd').onclick = addNewAd;
+
+        // document.getElementsByClassName("insertToDb").onclick = insertToDb;
+
 
 
 
@@ -43,15 +45,6 @@ window.addEventListener("load", function () {
     // }
 
     //--------------------------------------------------------------------
-    // $('.adNew').click(function() {
-    // alert('111')
-    // let adminName = $('.adminName').val(),
-    //     adminId = $('.adminId').val(),
-    //     adminPw = $('.adminPw').val();
-    // adminName = adminName;
-    // adminId = adminId;
-    // adminPw = adminPw;
-    // console.log(adminName, adminId, admin);
 
     // var formData = new FormData();
     // formData.append('adminName', adminName);

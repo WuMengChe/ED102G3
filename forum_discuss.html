@@ -39,6 +39,7 @@
             <button id="search_btn" @click="searchContent()">搜尋</button>
           </div>
         </div>
+
         <!-- 下拉選單 -->
         <div class="select">
           <div class="select_wrap">
@@ -83,8 +84,8 @@
                   <div class="dis_date">{{messages.DIS_DATE}}</div>
                 </div>
                 <div class="tags_list">
-                  <span class="type_tag" :style="messages.IND_COLOR">{{messages.IND_CLASS}}</span>
-                  <span class="type_tag">{{messages.DIS_CLASS}}</span>
+                  <span class="type_tag" :style="'background:' + messages.IND_COLOR + ';'">{{messages.IND_CLASS}}</span>
+                  <span class="type_tag share_color">{{messages.DIS_CLASS}}</span>
                 </div>
               </div>
               <div class="msg_title open_dialog" @click="openContent(index)">
@@ -115,10 +116,9 @@
             <!--頁碼-->
             <div class="pagination_block">
               <ul class="pagination">
-                <li><a href="#">‹</a></li>
-                <li><a href="#" class="-on">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">›</a></li>
+                <li v-for="(number,index) in totalPages" :class="currentPage == number? 'actived':''" @click="getAllDisscuss(number)">
+                  <a href="#">{{number}}</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -152,7 +152,7 @@
                 <div class="dis_date">{{msg.DIS_DATE}}</div>
               </div>
               <div class="tags_list">
-                <span class="type_tag">{{msg.IND_CLASS}}</span>
+                <span class="type_tag" :style="'background:' + msg.IND_COLOR + ';'">{{msg.IND_CLASS}}</span>
                 <span class="type_tag">{{msg.DIS_CLASS}}</span>
               </div>
             </div>
@@ -194,7 +194,7 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                <i class="fas fa-heart" :class="{'colorRed':feedBoxHeart}" @click="heart_btn_feedback()"></i>
+                <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="heart_btn_feedback(index)"></i>
               </button>
               <button class="gray_btn" @click="accuse_btn">
                 <i class="fas fa-exclamation-circle"></i>
