@@ -184,16 +184,16 @@ try {
               </tr>
               <tr class="new_administrator" style="display: none;">
                 <td>
-                  <input type="text">
+                  <input type="text" class="adminName">
                 </td>
                 <td>
-                  <input type="text">
+                  <input type="text" class="adminId">
                 </td>
                 <td>
-                  <input type="text">
+                  <input type="text" class="adminPw">
                 </td>
                 <td>
-                  <button class="edit">確認</button>
+                  <button class="edit adNew">確認</button>
                 </td>
               </tr>
             </table>
@@ -562,35 +562,42 @@ try {
               <th>購買日期</th>
               <th></th>
             </tr>
+            
+              <tr>
+                <td>{{item.ORD_NO}}</td>
+                <td>{{item.MEM_NO}}</td>
+                <td>{{item.ORD_AMOUNT}}</td>
+                <td>{{item.ORD_PAY}}</td>
+                <td>{{item.ORD_DATE}}</td>
+                <td><button data-toggle="collapse" :data-target="['#multiCollapseExample'+ item.ORD_NO]" aria-expanded="false" :aria-controls="['multiCollapseExample'+ item.ORD_NO]">查看訂單明細</button></td>
+              </tr>
 
-            <tr>
-              <td>{{item.ORD_NO}}</td>
-              <td>{{item.MEM_NO}}</td>
-              <td>{{item.ORD_AMOUNT}}</td>
-              <td>{{item.ORD_PAY}}</td>
-              <td>{{item.ORD_DATE}}</td>
-              <td><button data-toggle="collapse" :data-target="['#multiCollapseExample'+ item.ORD_NO]" aria-expanded="false" :aria-controls="['multiCollapseExample'+ item.ORD_NO]">查看訂單明細</button></td>
-            </tr>
+              <tr>
+                <td> 
+                  <div v-for="detail in orderList">
+                    <table class="collapse multi-collapse" :id="['multiCollapseExample'+detail.ORD_NO]">
+                      <tr>
+                        <th>訂單明細編號</th>
+                        <th>課程編號</th>
+                        <th>課程名稱</th>
+                        <th>價格</th>
+                      </tr>
+                      
+                      <tr>
+                        <td>{{detail.ORD_DET_NO}}</td>
+                        <td>{{detail.SKI_NO}}</td>
+                        <td>{{detail.SKI_NAME}}</td>
+                        <td>{{detail.ORD_DET_PRICE}}</td>
+                      </tr>
+                    </table>
+
+                  </div>
+                </td>
+              </tr>
+                
+             
           </table>
-          <div v-for="detail in orderList">
-            <table class="collapse multi-collapse" :id="['multiCollapseExample'+detail.ORD_NO]">
-              <tr>
-                <th>訂單明細編號</th>
-                <th>課程編號</th>
-                <th>課程名稱</th>
-                <th>價格</th>
-              </tr>
-
-              <tr>
-                <td>{{detail.ORD_DET_NO}}</td>
-                <td>{{detail.SKI_NO}}</td>
-                <td>{{detail.SKI_NAME}}</td>
-                <td>{{detail.ORD_DET_PRICE}}</td>
-              </tr>
-
-            </table>
-
-          </div>
+          
         </div>
 
         <!-- postcard_material -->
