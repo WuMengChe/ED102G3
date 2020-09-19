@@ -165,6 +165,18 @@ button.edit {
   }
 }
 
+button.add {
+  outline: none;
+  background-color: $side_color;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #586083;
+  }
+}
+
 p.title {
   font-size: 20px;
   margin-bottom: 15px;
