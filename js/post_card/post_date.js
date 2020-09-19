@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
     $("#pickdate").dateDropper({
         animate: false,
         format: 'Y-m-d',
@@ -48,7 +48,7 @@ $(function () {
         // alert(json);
         // console.log(json);
         let xhr = new XMLHttpRequest();
-        xhr.onload = function () {
+        xhr.onload = function() {
             if (xhr.status == 200) {
                 // alert(xhr.responseText);
                 console.log(xhr.responseText);
@@ -74,13 +74,13 @@ $(function () {
             $(".overlay").addClass("-on");
             countDown();
             // 關閉 彈跳視窗
-            $(".close").on("click", function () {
+            $(".close").on("click", function() {
                 $(".overlay").addClass("-opacity-zero");
 
 
 
                 // 設定隔500豪秒後，移除相關 class
-                setTimeout(function () {
+                setTimeout(function() {
                     $(".overlay").removeClass("-on -opacity-zero");
                 }, 500);
 
@@ -91,7 +91,7 @@ $(function () {
         };
     }
     // 按送出按鈕
-    $("#send").on("click", function () {
+    $("#send").on("click", function() {
         axios
             .post('./php/memberStateCheck.php')
             .then((resp) => {
@@ -101,7 +101,7 @@ $(function () {
                     // 開啟登入會員彈跳視窗
                     document.querySelector('.bg_of_lightbx').style = "display:block";
                     // 關閉登入會員彈跳視窗
-                    $('#closeBtn').click(function () {
+                    $('#closeBtn').click(function() {
                         document.querySelector('.bg_of_lightbx').style = "display:none";
                     });
                 } else {
@@ -112,7 +112,7 @@ $(function () {
 
                 }
             });
-        $('.login_btn').click(function () {
+        $('.login_btn').click(function() {
             var memAccount = document.querySelector('.input_div #account').value;
             var memCode = document.querySelector('.input_div #code').value;
             var formData = new FormData();
