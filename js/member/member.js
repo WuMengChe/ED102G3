@@ -69,6 +69,7 @@ let memData = {
     collecttionChange: false,
     liSecondArrow: -1,
     myChart: '',
+    posTemp: '',
     rwdClickPage: false,
     rwdUse: false,
     repIndex: -1,
@@ -143,6 +144,7 @@ let changeMemContent = new Vue({
                         this.memberClass[i].name = this.loadDataTemp[2][i].SKI_NAME;
                         this.memberClass[i].teacher = this.loadDataTemp[2][i].SKI_TEC_NAME;
                         this.memberClass[i].src = this.loadDataTemp[2][i].SKI_IMG;
+                        this.memberClass[i].no = this.loadDataTemp[2][i].SKI_NO;
                     }
                     for(var i = 0; i < this.loadDataTemp[3].length; i++){
                         this.memberClassCollection.push(new Object());
@@ -239,6 +241,7 @@ let changeMemContent = new Vue({
                         this.memberPostCard[i].creatDate = this.loadDataTemp[5][i].POS_CRE_DATE;
                         this.memberPostCard[i].sentDate = this.loadDataTemp[5][i].POS_SEN_DATE;
                         this.memberPostCard[i].postSrc = this.loadDataTemp[5][i].POS_PIC;
+                        this.memberPostCard[i].no = this.loadDataTemp[5][i].POS_NO;
                         this.memberPostCard[i].postSrcBack = this.loadDataTemp[5][i].POS_PIC_BACK;
                         if(new Date(this.loadDataTemp[5][i].POS_SEN_DATE) <= new Date()){
                             this.memberPostCard[i].postSend = true;
@@ -289,9 +292,9 @@ let changeMemContent = new Vue({
                         orderNoCon = orderNoCon + orderNo;
                     }
                     // console.log(resp.data);
-                    console.log(this.loadDataTemp[4]);
-                    console.log(this.loadDataTemp);
-                    console.log(this.memberArticle);
+                    // console.log(this.loadDataTemp[4]);
+                    // console.log(this.loadDataTemp);
+                    // console.log(this.memberClass);
                     // console.log(this.memberArticleMessage);
 
                     this.screenWidth = document.documentElement.clientWidth;
@@ -661,8 +664,18 @@ let changeMemContent = new Vue({
             this.memberArticleOverlay = this.memberArticle[index];
             this.memberArticleOverlay.index = index;
         },
+        openPosPage(index){
+            console.log(index)
+            console.log(this.memberPostCard[index].postSrc)
+            this.posTemp = this.memberPostCard[index];
+            document.querySelector('.ove_pos').classList.add('artShow');
+        },
         closeArtPage(){
             document.querySelector('.mem_overlay').classList.remove('artShow');
+        },
+        closePosPage(){
+            document.querySelector('.ove_pos').classList.remove('artShow');
+            this.posNo = -1;
         },
         sendMessage(DIS_NO, index, msgIndex){
             var msgTemp = document.querySelector('.send_msg').value;
@@ -741,6 +754,9 @@ let changeMemContent = new Vue({
             this.accuseIsOpen = false;
             this.repConNum = -1;
             this.repNo = -1;
+        },
+        goToClass(no){
+            window.location.href="./course_introduce.html?ski_no=" + no
         }
     },
 })

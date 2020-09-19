@@ -252,13 +252,13 @@
                 </div>
                 <div class="col-md-11 mem_con_height" v-if="checkMemClass">
                     <div class="col-md-12 col-sm-11 col-11 mem_cla_area" v-for="(memClass, index) in memberClass">
-                        <a class="col-md-12 mem_cla_area" href="#">
+                        <a class="col-md-12 mem_cla_area">
                             <div class="col-md-6 col-sm-12 mem_cla">
                                 <img :src="memClass.src"/>
                             </div>
                             <div class="col-md-3 col-sm-12 mem_cla">{{memClass.name}}<br/>講師名稱：{{memClass.teacher}}</div>
                             <div class="col-md-3 col-sm-12 mem_cla">
-                                <button class="btn_third">上課去</button>
+                                <button class="btn_third" @click="goToClass(memClass.no)">上課去</button>
                             </div>
                         </a>
                     </div>
@@ -387,7 +387,7 @@
                 </div>
                 <div class="col-md-11 mem_con_height" v-if="collecttionChange && checkMemClassCollection">
                     <div class="col-md-12 col-sm-11 col-11 mem_cla_area" v-for="(memClass, index) in memberClassCollection">
-                        <a class="col-md-12 mem_cla_area" href="#">
+                        <a class="col-md-12 mem_cla_area" :href="'./course_introduce.html?ski_no=' + memClass.no">
                             <div class="col-md-6 col-sm-12 mem_cla">
                                 <img :src="memClass.src"/>
                             </div>
@@ -416,11 +416,24 @@
                         <div class="col-md-3 col-sm-12 mem_pos">{{rwdUse?'創建日期：':''}}{{memPostCard.creatDate}}</div>
                         <div class="col-md-3 col-sm-12 mem_pos">{{rwdUse?'寄送日期：':''}}{{memPostCard.sentDate}}</div>
                         <div class="col-md-6 col-sm-12 mem_pos">
-                            <a class="mem_pos_img" href="#" v-if="memPostCard.postSend">
+                            <a class="mem_pos_img" href="#" v-if="memPostCard.postSend" @click="openPosPage(index)">
                                 <i class="fas fa-search"></i>
                                 <span>查看</span>
                             </a>
                             <span v-if="!memPostCard.postSend">尚未寄發，敬請期待</span>
+                        </div>
+                    </div>
+                    <div class="mem_overlay ove_pos" @click="closePosPage">
+                        <div class="mem_checkMsg" @click.stop>
+                            <div class="close_btn">
+                                <button type="button" class="btn_modal_close btn_third" @click="closePosPage">
+                                    返回
+                                </button>
+                            </div>
+                            <div class="mem_wrap">
+                                <img :src="posTemp.postSrc"/>
+                                <img :src="posTemp.postSrcBack"/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -456,7 +469,7 @@
                         </div>
                         <div class="col-md-12 col-sm-11 col-11 mem_ord_det">
                             <div class="col-md-12 col-sm-12 mem_ord_det_con" v-for="(memOrderList, indexOrderList) in memberOrderList[index]">
-                                <a class="col-md-12" href="#">
+                                <a class="col-md-12" :href="'./course_introduce.html?ski_no=' + memOrderList.no">
                                     <div class="col-md-6 col-sm-6 mem_ord">
                                         <img :src="memOrderList.src"/>
                                     </div>
