@@ -193,7 +193,7 @@ try {
                   <input type="text" class="adminPw">
                 </td>
                 <td>
-                  <button class="edit adNew">確認</button>
+                  <button class="edit adNew" id="adNew">確認</button>
                 </td>
               </tr>
             </table>

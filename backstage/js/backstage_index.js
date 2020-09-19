@@ -11,44 +11,48 @@ window.addEventListener("load", function() {
         let newAdministrator = newAd.cloneNode(true);
         newAdministrator.style.display = "";
         myForm.appendChild(newAdministrator);
-        //insert資料到資料庫
+
+
+
 
 
     }
     document.getElementById("newAdBtn").onclick = addAdministrator;
 
     //--------------------------------------------------------------------
-    // $('.adNew').click(    function () {
+    // $('.adNew').click(function() {
+    // alert('111')
+    // let adminName = $('.adminName').val(),
+    //     adminId = $('.adminId').val(),
+    //     adminPw = $('.adminPw').val();
+    // adminName = adminName;
+    // adminId = adminId;
+    // adminPw = adminPw;
+    // console.log(adminName, adminId, admin);
 
-    //     let adminName = $('.adminName').val(),
-    //         adminId = $('.adminId').val(),
-    //         adminPw = $('.adminPw').val();
-    //     adminName = adminName;
-    //     adminId = adminId;
-    //     adminPw = adminPw;
-    //     console.log(adminName, adminId, admin);
+    // var formData = new FormData();
+    // formData.append('adminName', adminName);
+    // formData.append('adminId', adminId);
+    // formData.append('adminPw', adminPw);
+    // axios.post('backstage_insertAD.php', formData)
+    //     .then((resp) => {
 
-    //     // var formData = new FormData();
-    //     // formData.append('adminName', adminName);
-    //     // formData.append('adminId', adminId);
-    //     // formData.append('adminPw', adminPw);
-    //     // axios.post('backstage_insertAD.php', formData)
-    //     //     .then((resp) => {
+    //         if (resp.data == 0) {
+    //             alert('沒有抓到資料');
 
-    //     //         if (resp.data == 0) {
-    //     //             alert('沒有抓到資料');
-
-    //     //         } else {
-    //     //             alert('成功新增！')
+    //         } else {
+    //             alert('成功新增！')
 
 
-    //     //         }
-    //     //     });
+    //         }
+    //     });
 
-    // }
-    // )
+    // })
 
     //insert資料到資料庫
+    document.getElementById("adNew").onclick = function() {
+        alert('111')
+    };
 
 
 
