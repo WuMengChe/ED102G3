@@ -184,16 +184,16 @@ try {
               </tr>
               <tr class="new_administrator" style="display: none;">
                 <td>
-                  <input type="text" class="adminName">
+                  <input type="text" name="adminName" v-model="adminName">
                 </td>
                 <td>
-                  <input type="text" class="adminId">
+                  <input type="text" class="adminId" v-model="adminId">
                 </td>
                 <td>
-                  <input type="text" class="adminPw">
+                  <input type="text" class="adminPw" v-model="adminPw">
                 </td>
                 <td>
-                  <button class="edit adNew" id="adNew">確認</button>
+                  <button class="edit insertToDb" onClick="adNew();">確認</button>
                 </td>
               </tr>
             </table>
@@ -683,7 +683,39 @@ try {
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
+  <!-- <script src="./js/backstage_insert.js"></script> -->
+<script>
+  // function adNew() {
+  //        alert($("*[name='name']").val())
+         
+          // let adminName = $('.adminName').val();
+              // adminId = $('.adminId').val(),
+         //      adminPw = $('.adminPw').val();
+         //  adminName = adminName;
+         //  adminId = adminId;
+         //  adminPw = adminPw;
+          // console.log($('.adminName').val());
 
+         // var formData = new FormData();
+         // formData.append('adminName', adminName);
+         // formData.append('adminId', adminId);
+         // formData.append('adminPw', adminPw);
+         // axios.post('backstage_insertAD.php', formData)
+         //     .then((resp) => {
+
+         //         if (resp.data == 0) {
+         //             alert('沒有抓到資料');
+
+         //         } else {
+         //             alert('成功新增！')
+
+
+         //         }
+         //     });
+
+    //  }
+</script>
 </body>
+
 
 </html>

@@ -39,7 +39,9 @@ new Vue({
 
         orders: [],
         orderList: [],
-
+        adminName: '名稱',
+        adminId: 'id',
+        adminPw: '密碼',
 
 
     },
@@ -173,7 +175,7 @@ new Vue({
             }
 
         },
-        SearchMEM: function (e) {
+        SearchMEM: function(e) {
             e.preventDefault();
             $.ajax({
                 url: 'backstage_memberSearch.php',
@@ -182,7 +184,7 @@ new Vue({
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function (data) {
+                success: function(data) {
                     $("#oneMem").html(data)
                 },
             });
@@ -203,7 +205,8 @@ new Vue({
         edit(e) {
             e.target.innerText = "確認";
             $('select').show();
-        }
+        },
+
 
     },
     mounted() {
@@ -218,6 +221,7 @@ new Vue({
                 this.orderList = res.data;
             });
     },
+
     computed: {
 
     },
