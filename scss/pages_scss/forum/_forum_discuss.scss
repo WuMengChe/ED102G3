@@ -398,6 +398,15 @@ div.pagination_block > ul.pagination > li > a {
 //   color: #0056b3;
 // }
 
+.actived {
+  background-color: #e9ecef !important;
+  color: #0056b3 !important;
+  border-radius: 50% !important;
+  a {
+    color: #000 !important;
+  }
+}
+
 div.pagination_block > ul.pagination > li > a:hover {
   background-color: #e9ecef;
   color: #0056b3;
@@ -564,6 +573,9 @@ a.pencil_btn {
   }
 }
 
+.colorGray {
+  color: red;
+}
 
 /* 回應留言 */
 .forum_feedback {
