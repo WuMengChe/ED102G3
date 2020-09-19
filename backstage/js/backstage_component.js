@@ -203,12 +203,17 @@ new Vue({
         edit(e) {
             e.target.innerText = "確認";
             $('select').show();
+        },
+        test: function(e){
+            e.preventDefault()
+            console.log($(e.target).parent().parent().parent().find(".OrderDetail")); 
+            $(e.target).parent().parent().parent().find(".OrderDetail").css("display","block")
         }
 
     },
     mounted() {
         axios
-            .get('./backstage_order.php?{ORD_NO}')
+            .get('./backstage_order.php')
             .then((res) => {
                 this.orders = res.data;
             });
