@@ -129,7 +129,10 @@ try {
                 <td><?= $memberRow["MEM_EMAIL"] ?></td>
                 <td>
                   <p class="memUse"> <?php echo $memberRow["MEM_USE"] == 0 ? "否" : "是" ?></p>
-
+                  <!-- <select name="authority"  class="select_member_edit">
+                    <option value="authority" <?php echo $memberRow["MEM_USE"] == 1 ? "selected" : "" ?>>是</option>
+                    <option value="authority" <?php echo $memberRow["MEM_USE"] == 0 ? "selected" : "" ?>>否</option>
+                  </select> -->
                   <select name="authority" id="MEM_USE">
                     <option value="authority" <?php echo $memberRow["MEM_USE"] == 1 ? "selected" : "" ?>>是</option>
                     <option value="authority" <?php echo $memberRow["MEM_USE"] == 0 ? "selected" : "" ?>>否</option>
@@ -569,13 +572,13 @@ try {
                 <td>{{item.ORD_AMOUNT}}</td>
                 <td>{{item.ORD_PAY}}</td>
                 <td>{{item.ORD_DATE}}</td>
-                <td><button data-toggle="collapse" :data-target="['#multiCollapseExample'+ item.ORD_NO]" aria-expanded="false" :aria-controls="['multiCollapseExample'+ item.ORD_NO]">查看訂單明細</button></td>
+                <td><button @click="test" :name="item.ORD_NO">查看訂單明細</button></td>
               </tr>
 
               <tr>
-                <td> 
-                  <div v-for="detail in orderList">
-                    <table class="collapse multi-collapse" :id="['multiCollapseExample'+detail.ORD_NO]">
+                <td class="OrderDetail" style="display: none;"> 
+                  <div v-for="detail in orderList" class="OrderDetail" style="display: none;">
+                    <table>
                       <tr>
                         <th>訂單明細編號</th>
                         <th>課程編號</th>
