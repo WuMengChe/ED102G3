@@ -7,7 +7,6 @@ window.addEventListener("load", function() {
         if (myForm.style.display == "none") {
             myForm.style.display = "";
         }
-
         let newAdministrator = newAd.cloneNode(true);
         newAdministrator.style.display = "";
         myForm.appendChild(newAdministrator);
@@ -26,6 +25,7 @@ window.addEventListener("load", function() {
 
 
 
+    document.getElementById("newAdBtn").onclick = addAdministrator;
     // 側邊欄切換
     $('.list li').click(function() {
         $(this).siblings().removeClass("active");
@@ -33,6 +33,13 @@ window.addEventListener("load", function() {
         $(this).addClass("active");
     });
     //編輯按鈕
+
+
+
+
+
+
+    // $(".orderHide").hide();
 
     // 更改行業資料
     $('.quizShow1').hide();
@@ -43,7 +50,6 @@ window.addEventListener("load", function() {
     quizEdit1.addEventListener('click',
         function() {
             if (quizEdit1.innerText == "編輯") {
-                let quizEditBtn = quizEdit1.innerText;
 
                 quizEdit1.innerText = '確認';
                 $('.quizShow1').show();
@@ -55,12 +61,13 @@ window.addEventListener("load", function() {
                 let quizId = $("#QUIZ_CON1").attr('id');
                 let QUIZ_One_CONTENTId = $("#QUIZ_ONE_CONTENT1").attr('id');
                 let QUIZ_TWO_CONTENTId = $("#QUIZ_TWO_CONTENT1").attr('id');
+                let quizImgOneSrc1 = $('#quiz1ImgOne').attr("src");
+                let quizImgTwoSrc1 = $('#quiz1ImgTwo').attr("src");
                 // let quizClass = $("#quiz_up1").attr('class');
                 //將所有div改成文字框
                 $("#QUIZ_CON1").replaceWith(`<textarea id="${quizId}" cols="20" rows="5">${quizCon}</textarea>`);
                 $("#QUIZ_ONE_CONTENT1").replaceWith(`<textarea id="${QUIZ_One_CONTENTId}" cols="20" rows="5">${quizOneContent}</textarea>`);
                 $("#QUIZ_TWO_CONTENT1").replaceWith(`<textarea id="${QUIZ_TWO_CONTENTId}" cols="20" rows="5">${quizTwoContent}</textarea>`);
-
                 //換照片選項一
                 document.getElementById('QUIZ_PIC_ONE1').onchange = quiz1Img1Change;
 
@@ -69,9 +76,12 @@ window.addEventListener("load", function() {
                     let readFile = new FileReader();
                     readFile.readAsDataURL(QUIZ_PIC_ONE1);
                     readFile.addEventListener('load', function() {
-                        let quizImg1 = document.getElementById('quiz1ImgOne');
-                        quizImg1.src = readFile.result;
-                        quizImg1.style.maxHeight = '75px';
+                        let quizImgOne1 = document.getElementById('quiz1ImgOne');
+                        quizImgOne1.src = readFile.result;
+                        // quizImgOne1.style.maxHeight = '75px';
+                        quizImgOne1.style.height = '90px';
+                        quizImgOne1.style.width = 'auto';
+                        QUIZ_PIC_ONE_name1 = QUIZ_PIC_ONE1.name;
 
                     });
                 };
@@ -83,60 +93,66 @@ window.addEventListener("load", function() {
                     let readFile = new FileReader();
                     readFile.readAsDataURL(QUIZ_PIC_Two1);
                     readFile.addEventListener('load', function() {
-                        let quizImg1 = document.getElementById('quiz1ImgTwo');
-                        quizImg1.src = readFile.result;
-                        quizImg1.style.maxHeight = '75px';
-
+                        let quizImgTwo1 = document.getElementById('quiz1ImgTwo');
+                        quizImgTwo1.src = readFile.result;
+                        quizImgTwo1.style.maxHeight = '90px';
+                        quizImgTwo1.style.width = 'auto';
+                        QUIZ_PIC_Two_name1 = QUIZ_PIC_Two1.name;
                     });
                 };
-                console.log(quizEditBtn);
-            } else {
-                let quizEditBtn = quizEdit1.innerText;
+                $('.cancel').click(function() {
+                    $('.quizShow1').hide();
+                    quizEdit1.innerText = '編輯';
+                    $("#QUIZ_CON1").replaceWith(`<div id="${quizId}" cols="20" rows="5">${quizCon}</div>`);
+                    $("#QUIZ_ONE_CONTENT1").replaceWith(`<div id="${QUIZ_One_CONTENTId}" cols="20" rows="5">${quizOneContent}</div>`);
+                    $("#QUIZ_TWO_CONTENT1").replaceWith(`<div id="${QUIZ_TWO_CONTENTId}" cols="20" rows="5">${quizTwoContent}</div>`);
+                    $('#quiz1ImgOne').attr("src", quizImgOneSrc1);
+                    $('#quiz1ImgTwo').attr("src", quizImgTwoSrc1);
+                    QUIZ_PIC_Two1.value = "";
+                    QUIZ_PIC_ONE1.value = "";
 
-                console.log(quizEditBtn);
-                let QUIZ_CON1Txt = $('#QUIZ_CON1').val();
-                // let QUIZ_ONE1Txt = $("#QUIZ_ONE_CONTENT1").val();
-                // let QUIZ_TWO1Txt = $("#QUIZ_TWO_CONTENT1").val();
-                console.log(QUIZ_CON1Txt);;
+                });
+            } else {
+
+
+                // let quizImgOneSrc1 = document.getElementById('quiz1ImgOne').src;
+                // let quizImgTwoSrc2 = document.getElementById('quiz1ImgTwo').src;
+                let quiz = {};
+                quiz.QUIZ_CONTxt1 = $('#QUIZ_CON1').val();
+                quiz.QUIZ_ONETxt1 = $("#QUIZ_ONE_CONTENT1").val();
+                quiz.QUIZ_TWOTxt1 = $("#QUIZ_TWO_CONTENT1").val();
+                quiz.stOutput1 = $('#firstType1').val();
+                quiz.ndOutput1 = $('#secondType1').val();
+                quiz.QUIZ_USE1 = $('#QUIZ_USE1').val();
+                quiz.quizImgOneSrc1 = $('#quiz1ImgOne').attr("src");
+                quiz.quizImgTwoSrc1 = $('#quiz1ImgTwo').attr("src");
+                quiz.quizImgOneName1 = QUIZ_PIC_ONE_name1;
+                quiz.quizImgTwoName1 = QUIZ_PIC_Two_name1;
+
+                // console.log(quiz);
+
+
+                let json = JSON.stringify(quiz);
+                let quizXhr = new XMLHttpRequest();
+                quizXhr.onload = function() {
+                    if (quizXhr.status == 200) {
+                        alert(quizXhr.responseText);
+                        location.reload();
+                        // console.log(quizXhr.responseText);
+                    } else {
+                        // alert(quizXhr.status);
+                    }
+
+                }
+                quizXhr.open("POST", "backstage_quiz.php", true);
+                quizXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                quizXhr.send(`json=${json}`);
+
+
+
             }
 
-            // if (quizEdit1.innerText == "確認") {
 
-            //     // var formData = new FormData();
-            // } else {
-
-            // }
-        });
-
-    //insert資料到資料庫
-    // function insertToDb() {
-    //     alert('111')
-    //         // let adminName = $('.adminName').val(),
-    //         //     adminId = $('.adminId').val(),
-    //         //     adminPw = $('.adminPw').val();
-    //         // adminName = adminName;
-    //         // adminId = adminId;
-    //         // adminPw = adminPw;
-    //         // console.log(adminName, adminId, admin);
-
-    //     // var formData = new FormData();
-    //     // formData.append('adminName', adminName);
-    //     // formData.append('adminId', adminId);
-    //     // formData.append('adminPw', adminPw);
-    //     // axios.post('backstage_insertAD.php', formData)
-    //     //     .then((resp) => {
-
-    //     //         if (resp.data == 0) {
-    //     //             alert('沒有抓到資料');
-
-    //     //         } else {
-    //     //             alert('成功新增！')
-
-
-    //     //         }
-    //     //     });
-
-    // }
-
+        })
 
 });
