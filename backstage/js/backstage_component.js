@@ -39,7 +39,9 @@ new Vue({
 
         orders: [],
         orderList: [],
-
+        adminName: '名稱',
+        adminId: 'id',
+        adminPw: '密碼',
 
 
     },
@@ -204,10 +206,10 @@ new Vue({
             e.target.innerText = "確認";
             $('select').show();
         },
-        test: function(e){
+        test: function (e) {
             e.preventDefault()
-            console.log($(e.target).parent().parent().parent().find(".OrderDetail")); 
-            $(e.target).parent().parent().parent().find(".OrderDetail").css("display","block")
+            console.log($(e.target).parent().parent().parent().find(".OrderDetail"));
+            $(e.target).parent().parent().parent().find(".OrderDetail").css("display", "block")
         }
 
     },
@@ -223,6 +225,7 @@ new Vue({
                 this.orderList = res.data;
             });
     },
+
     computed: {
 
     },

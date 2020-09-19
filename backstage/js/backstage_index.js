@@ -1,5 +1,23 @@
 window.addEventListener("load", function () {
+    //清空會員查詢值
+    document.getElementById('search_mem_no').addEventListener('click', function () {
+        document.getElementById('MemSearch').value = '';
+
+    });
     // 增加新管理員
+
+    // document.getElementById("newAd").onclick = addNewAd;
+
+    // function addNewAd() {
+    //     alert();
+    // }
+
+    // document.getElementsByClassName('cancelAd').onclick = addNewAd;
+
+    // function addNewAd() {
+    //     alert();
+    // }
+
     function addAdministrator() {
         let myForm = document.getElementById("myForm");
         let newAd = document.querySelector(".new_administrator");
@@ -11,6 +29,7 @@ window.addEventListener("load", function () {
         newAdministrator.style.display = "";
         myForm.appendChild(newAdministrator);
 
+        // document.getElementsByClassName("insertToDb").onclick = insertToDb;
 
 
 
@@ -18,16 +37,14 @@ window.addEventListener("load", function () {
     }
     document.getElementById("newAdBtn").onclick = addAdministrator;
 
+    function addNewAd() {
+        alert();
+    }
+    // function addNewAd() {
+    //     alert();
+    // }
+
     //--------------------------------------------------------------------
-    // $('.adNew').click(function() {
-    // alert('111')
-    // let adminName = $('.adminName').val(),
-    //     adminId = $('.adminId').val(),
-    //     adminPw = $('.adminPw').val();
-    // adminName = adminName;
-    // adminId = adminId;
-    // adminPw = adminPw;
-    // console.log(adminName, adminId, admin);
 
     // var formData = new FormData();
     // formData.append('adminName', adminName);
@@ -47,11 +64,11 @@ window.addEventListener("load", function () {
     //     });
 
     // })
-
+    //-------------------------------------------------------
     //insert資料到資料庫
-    document.getElementById("adNew").onclick = function () {
-        alert('111')
-    };
+    // document.getElementById("adNew").onclick = function () {
+    //     alert('111')
+    // };
 
 
 
@@ -81,7 +98,6 @@ window.addEventListener("load", function () {
     quizEdit1.addEventListener('click',
         function () {
             if (quizEdit1.innerText == "編輯") {
-                let quizEditBtn = quizEdit1.innerText;
 
                 quizEdit1.innerText = '確認';
                 $('.quizShow1').show();
@@ -93,6 +109,8 @@ window.addEventListener("load", function () {
                 let quizId = $("#QUIZ_CON1").attr('id');
                 let QUIZ_One_CONTENTId = $("#QUIZ_ONE_CONTENT1").attr('id');
                 let QUIZ_TWO_CONTENTId = $("#QUIZ_TWO_CONTENT1").attr('id');
+                let quizImgOneSrc1 = $('#quiz1ImgOne').attr("src");
+                let quizImgTwoSrc1 = $('#quiz1ImgTwo').attr("src");
                 // let quizClass = $("#quiz_up1").attr('class');
                 //將所有div改成文字框
                 $("#QUIZ_CON1").replaceWith(`<textarea id="${quizId}" cols="20" rows="5">${quizCon}</textarea>`);
@@ -130,8 +148,20 @@ window.addEventListener("load", function () {
                         QUIZ_PIC_Two_name1 = QUIZ_PIC_Two1.name;
                     });
                 };
+                $('.cancel').click(function () {
+                    $('.quizShow1').hide();
+                    quizEdit1.innerText = '編輯';
+                    $("#QUIZ_CON1").replaceWith(`<div id="${quizId}" cols="20" rows="5">${quizCon}</div>`);
+                    $("#QUIZ_ONE_CONTENT1").replaceWith(`<div id="${QUIZ_One_CONTENTId}" cols="20" rows="5">${quizOneContent}</div>`);
+                    $("#QUIZ_TWO_CONTENT1").replaceWith(`<div id="${QUIZ_TWO_CONTENTId}" cols="20" rows="5">${quizTwoContent}</div>`);
+                    $('#quiz1ImgOne').attr("src", quizImgOneSrc1);
+                    $('#quiz1ImgTwo').attr("src", quizImgTwoSrc1);
+                    QUIZ_PIC_Two1.value = "";
+                    QUIZ_PIC_ONE1.value = "";
 
+                });
             } else {
+
 
                 // let quizImgOneSrc1 = document.getElementById('quiz1ImgOne').src;
                 // let quizImgTwoSrc2 = document.getElementById('quiz1ImgTwo').src;
@@ -142,27 +172,23 @@ window.addEventListener("load", function () {
                 quiz.stOutput1 = $('#firstType1').val();
                 quiz.ndOutput1 = $('#secondType1').val();
                 quiz.QUIZ_USE1 = $('#QUIZ_USE1').val();
-                // quiz.quizImgOneSrc1 = sessionStorage["quizImgOneSrc1"];
-                // quiz.quizImgTwoSrc2 = sessionStorage["quizImgTwoSrc2"];
                 quiz.quizImgOneSrc1 = $('#quiz1ImgOne').attr("src");
                 quiz.quizImgTwoSrc1 = $('#quiz1ImgTwo').attr("src");
                 quiz.quizImgOneName1 = QUIZ_PIC_ONE_name1;
                 quiz.quizImgTwoName1 = QUIZ_PIC_Two_name1;
 
-                console.log(quiz);
-                // quizImgOne1Src = sessionStorage["quizImgOne1"];
-                // quizImgTwo1.src = sessionStorage["quizImgTwo1"];
-                // console.log(QUIZ_CONTxt1, QUIZ_ONETxt1, QUIZ_TWOTxt1, stOutput1, ndOutput1, QUIZ_USE1, QUIZ_PIC_ONE_name1, QUIZ_PIC_Two_name1, quizImgOne1Src);
-                // console.log(QUIZ_CONTxt1, QUIZ_ONETxt1, QUIZ_TWOTxt1, stOutput1, ndOutput1, QUIZ_USE1, quizImgOneSrc1, quizImgTwoSrc2);
+                // console.log(quiz);
+
 
                 let json = JSON.stringify(quiz);
                 let quizXhr = new XMLHttpRequest();
                 quizXhr.onload = function () {
                     if (quizXhr.status == 200) {
                         alert(quizXhr.responseText);
-                        console.log(quizXhr.responseText);
+                        location.reload();
+                        // console.log(quizXhr.responseText);
                     } else {
-                        alert(quizXhr.status);
+                        // alert(quizXhr.status);
                     }
 
                 }
@@ -170,10 +196,11 @@ window.addEventListener("load", function () {
                 quizXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 quizXhr.send(`json=${json}`);
 
+
+
             }
 
 
         })
 
 });
-

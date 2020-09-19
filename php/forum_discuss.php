@@ -21,13 +21,10 @@ if ($action == "getAllDiscuss") {
     showCollect();
 }elseif($action =="accuse"){
     accuse();
-}elseif($action =="pages"){
-    pages();
 }
 
 function pages(){
     try {
-        
         require_once "connectMySql.php";
         //------------取得總筆數
         $sql = "select count(*) totalCount from DISCUSS_AREA";
@@ -38,24 +35,25 @@ function pages(){
         $recPerPage = 5;
         //------------算出總共有幾頁
         $totalPages = ceil($totalRecords / $recPerPage);
-    
+
         //目前要顯示哪一頁
         $pageNo = isset($_GET["pageNo"]) ? $_GET["pageNo"] : 1;
-    
+
         //取回資料
-        $start = ($pageNo-1) * $recPerPage;	
-        $sql = "select * from products limit $start, $recPerPage";
-        $products = $pdo->query($sql);
-        $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
-        array_push($prodRows,$totalPages);
-        echo json_encode($prodRows);
-    
+        $start = ($pageNo-1) * $recPerPage;
+        $sql = "select * from DISCUSS_AREA limit $start, $recPerPage";
+        $results = $pdo->query($sql);
+        $response = $results->fetchAll(PDO::FETCH_ASSOC);
+        array_push($response, $totalPages);
+        header('Content-Type: application/json');
+        echo json_encode($response);
+
     } catch (PDOException $e) {
         echo "錯誤原因 : ", $e->getMessage(), "<br>";
         echo "錯誤行號 : ", $e->getLine(), "<br>";
     }
 
-    
+
 }
 
 
@@ -107,18 +105,18 @@ function accuse(){
                 $member_rep -> execute();
                 $member_rep_num = $pdo -> prepare($sql_calc);
                 $member_rep_num -> bindValue(":DIS_MES_NO",$_POST["REP_NO"]);
-                $member_rep_num -> execute(); 
+                $member_rep_num -> execute();
             }else{
                 echo 0;
             }
-         
+
         }
-       
-   
-  
+
+
+
         } catch (PDOException $e) {
             echo json_encode($e->getMessage());
-    }   
+    }
 
 
 }
@@ -150,15 +148,15 @@ function addCol(){
         $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
         $dis_no = isset($_POST["DIS_NO"]) ? $_POST["DIS_NO"] : $_GET["DIS_NO"];
 
-        $article_col_sql = "select ART_COL_STATE 
-                             from ARTICLE_COLLECT 
-                             where MEM_NO = '" . $mem_no . "' 
+        $article_col_sql = "select ART_COL_STATE
+                             from ARTICLE_COLLECT
+                             where MEM_NO = '" . $mem_no . "'
                              and DIS_NO = '" . $dis_no . "';";
 
         $article_col_sql_result = $pdo->query($article_col_sql);
         $result = $article_col_sql_result->fetch(PDO::FETCH_ASSOC);
 
-      
+
 
         //找不到就是沒點過 沒點過就新增 點過就刪除
         if ($article_col_sql_result->rowCount() == 0) {
@@ -196,14 +194,14 @@ function sendMsg()
         $DIS_CONTENT = $_REQUEST["DIS_CONTENT"];
         $MEM_NO = $_REQUEST["MEM_NO"];
 // echo $DIS_NAME;
-        $sql = "insert into DISCUSS_AREA(DIS_NAME, DIS_CLASS, IND_NO, DIS_CONTENT, MEM_NO, DIS_DATE) 
+        $sql = "insert into DISCUSS_AREA(DIS_NAME, DIS_CLASS, IND_NO, DIS_CONTENT, MEM_NO, DIS_DATE)
         values ('" . $DIS_NAME . "','" . $DIS_CLASS . "', '" . $IND_NO . "','" . $DIS_CONTENT . "','" . $MEM_NO ."',CURDATE())";
         $sendMsg = $pdo->prepare($sql);
         $sendMsg->execute();
-  
+
         } catch (PDOException $e) {
             echo json_encode($e->getMessage());
-    }   
+    }
 }
 
 
@@ -294,7 +292,19 @@ function getAllDiscuss()
 {
     try {
         require_once "connectMySql.php";
-        
+        //------------取得總筆數
+        $sql = "select count(*) totalCount from DISCUSS_AREA";
+        $stmt = $pdo->query($sql);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $totalRecords = $row["totalCount"];
+        //------------每頁要印幾筆
+        $recPerPage = 5;
+        //------------算出總共有幾頁
+        $totalPages = ceil($totalRecords / $recPerPage);
+        //目前要顯示哪一頁
+        $pageNo = isset($_GET["pageNo"]) ? $_GET["pageNo"] : 1;
+        //取回資料
+        $start = ($pageNo-1) * $recPerPage;
         $sql = "select  MEMBER.MEM_NAME,
             MEMBER.MEM_PIC,
             INDUSTRY_CLASS.IND_CLASS,
@@ -307,13 +317,14 @@ function getAllDiscuss()
             DISCUSS_AREA.DIS_LIK_NUM,
             DISCUSS_AREA.DIS_NO
             from MEMBER join DISCUSS_AREA using(MEM_NO)
-            join INDUSTRY_CLASS using(IND_NO) order by  DISCUSS_AREA.DIS_NO desc;";
+            join INDUSTRY_CLASS using(IND_NO) order by DISCUSS_AREA.DIS_NO desc limit $start, $recPerPage;";
 
         $dis = $pdo->query($sql);
         if ($dis->rowCount() == 0) { //找不到
             //傳回空的JSON字串
             echo "{}";
         } else {
+
             //找得到
             $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
             $disRow = $dis->fetchAll(PDO::FETCH_ASSOC);
@@ -339,9 +350,13 @@ function getAllDiscuss()
                 } else {
                     $data["CURRENT_USER_CLICKED"] = true;
                 }
+                $data["TOTAL_PAGES"] = $totalPages;
+                $data["CURRENT_PAGE"] = intval($pageNo);
                 array_push($response, $data);
             }
+
             //送出json字串
+            header('Content-Type: application/json');
             echo json_encode($response);
         }
     } catch (Exception $e) {
@@ -378,15 +393,15 @@ function addFavor()
         $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
         $dis_no = isset($_POST["DIS_NO"]) ? $_POST["DIS_NO"] : $_GET["DIS_NO"];
 
-        $article_like_sql = "select ART_LIK_STATE 
-                             from ARTICLE_LIKE 
-                             where MEM_NO = '" . $mem_no . "' 
+        $article_like_sql = "select ART_LIK_STATE
+                             from ARTICLE_LIKE
+                             where MEM_NO = '" . $mem_no . "'
                              and DIS_NO = '" . $dis_no . "';";
 
         $article_like_sql_result = $pdo->query($article_like_sql);
         $result = $article_like_sql_result->fetch(PDO::FETCH_ASSOC);
 
-      
+
 
         //找不到就是沒點過 沒點過就新增 點過就刪除
         if ($article_like_sql_result->rowCount() == 0) {
