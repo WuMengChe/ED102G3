@@ -2,7 +2,6 @@ let vm = new Vue({
   el: "#forum_discuss",
   data() {
     return {
-      // aaa: "",
       signIn: true,
       information: [], //討論區所有文章PHP
       searchResult: [], //點擊側邊欄，過濾後的資料
@@ -424,7 +423,7 @@ let vm = new Vue({
         document.querySelectorAll(".tab_contents .collect_btn i")[
           index
         ].style.color =
-          "gray";
+          "black";
       }
 
       this.isCollect[index] = !this.isCollect[index];

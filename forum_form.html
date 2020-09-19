@@ -45,9 +45,9 @@
       <div class="select_name">問題分類</div>
 
       <div class="dropdown_share" @click="shareDropdown()" :class="{'expanded_share': isShareOpen}">
-        <input type="radio" name="quType" value="Relevance" checked="checked" id="type_qu" @click="selectQU('問題討論')" />
+        <input type="radio" name="quType" value="問題討論" checked="checked" id="type_qu" @click="selectQU('問題討論')" />
         <label for="type_qu">問題討論</label>
-        <input type="radio" name="quType" value="Popularity" id="type_experience" @click="selectQU('經驗分享')" />
+        <input type="radio" name="quType" value="經驗分享" id="type_experience" @click="selectQU('經驗分享')" />
         <label for="type_experience">經驗分享</label>
 
       </div>
