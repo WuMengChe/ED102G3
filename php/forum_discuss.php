@@ -7,8 +7,6 @@ if ($action == "getAllDiscuss") {
     getAnn();
 } elseif ($action == "addFavor") {
     addFavor();
-} elseif ($action == "getReplay") {
-    getReplay();
 } elseif ($action == "getMsg") {
     getMsg();
 } elseif ($action == "addReplay") {
@@ -23,6 +21,41 @@ if ($action == "getAllDiscuss") {
     showCollect();
 }elseif($action =="accuse"){
     accuse();
+}elseif($action =="pages"){
+    pages();
+}
+
+function pages(){
+    try {
+        
+        require_once "connectMySql.php";
+        //------------取得總筆數
+        $sql = "select count(*) totalCount from DISCUSS_AREA";
+        $stmt = $pdo->query($sql);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $totalRecords = $row["totalCount"];
+        //------------每頁要印幾筆
+        $recPerPage = 5;
+        //------------算出總共有幾頁
+        $totalPages = ceil($totalRecords / $recPerPage);
+    
+        //目前要顯示哪一頁
+        $pageNo = isset($_GET["pageNo"]) ? $_GET["pageNo"] : 1;
+    
+        //取回資料
+        $start = ($pageNo-1) * $recPerPage;	
+        $sql = "select * from products limit $start, $recPerPage";
+        $products = $pdo->query($sql);
+        $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
+        array_push($prodRows,$totalPages);
+        echo json_encode($prodRows);
+    
+    } catch (PDOException $e) {
+        echo "錯誤原因 : ", $e->getMessage(), "<br>";
+        echo "錯誤行號 : ", $e->getLine(), "<br>";
+    }
+
+    
 }
 
 
@@ -30,15 +63,58 @@ function accuse(){
 
     try {
         require_once "connectMySql.php";
+        $conNUM = $_POST["repChange"];
         $DIS_NO = $_REQUEST["DIS_NO"];
         $MEM_NO = $_REQUEST["MEM_NO"];
         $ART_REP_CONTENT = $_REQUEST["ART_REP_CONTENT"];
         // echo $DIS_NAME;
-        
-        $sql = "insert into ARTICLE_REPORT (DIS_NO,MEM_NO,ART_REP_CONTENT)
-        values ('" . $DIS_NO . "'," . $MEM_NO . ", '" . $ART_REP_CONTENT . "')";
-        $sendMsg = $pdo->prepare($sql);
-        $sendMsg->execute();
+        if(conNUM==0){
+            $sql = "select * from `article_report` where DIS_NO = :DIS_NO and MEM_NO = :MEM_NO";
+            $member_rep = $pdo -> prepare($sql);
+            $member_rep -> bindValue(":DIS_NO",$_POST["REP_NO"]);
+            $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
+            $member_rep -> execute();
+            if($member_rep -> rowCount() == 0){
+                $sql = "insert into ARTICLE_REPORT (DIS_NO,MEM_NO,ART_REP_CONTENT)
+                values ('" . $DIS_NO . "'," . $MEM_NO . ", '" . $ART_REP_CONTENT . "')";
+                $sql_calc = "update `discuss_area` set `DIS_REP_NUM` = `DIS_REP_NUM` + 1 where DIS_NO = :DIS_NO";
+                $member_rep = $pdo -> prepare($sql);
+                $member_rep -> bindValue(":DIS_NO",$_POST["REP_NO"]);
+                $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
+                $member_rep -> bindValue(":ART_REP_CONTENT",$_POST["ART_REP_CONTENT"]);
+                $member_rep -> execute();
+                $member_rep_num = $pdo -> prepare($sql_calc);
+                $member_rep_num -> bindValue(":DIS_NO",$_POST["REP_NO"]);
+                $member_rep_num -> execute();
+            }else{
+                echo 0;
+            }
+
+        }else{
+            $sql = "select * from `message_report` where DIS_MES_NO = :DIS_MES_NO and MEM_NO = :MEM_NO";
+            $member_rep = $pdo -> prepare($sql);
+            $member_rep -> bindValue(":DIS_MES_NO",$_POST["REP_NO"]);
+            $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
+            $member_rep -> execute();
+            if($member_rep -> rowCount() == 0){
+                $sql = "insert into MESSAGE_REPORT (DIS_NO,MEM_NO,MES_REP_CONTENT)
+                values ('" . $DIS_NO . "'," . $MEM_NO . ", '" . $MES_REP_CONTENT . "')";
+                $sql_calc = "update `discuss_message` set `DIS_MES_REP_NUM` = `DIS_MES_REP_NUM` + 1 where DIS_MES_NO = :DIS_MES_NO";
+                $member_rep = $pdo -> prepare($sql);
+                $member_rep -> bindValue(":DIS_MES_NO",$_POST["REP_NO"]);
+                $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
+                $member_rep -> bindValue(":MES_REP_CONTENT",$_POST["ART_REP_CONTENT"]);
+                $member_rep -> execute();
+                $member_rep_num = $pdo -> prepare($sql_calc);
+                $member_rep_num -> bindValue(":DIS_MES_NO",$_POST["REP_NO"]);
+                $member_rep_num -> execute(); 
+            }else{
+                echo 0;
+            }
+         
+        }
+       
+   
   
         } catch (PDOException $e) {
             echo json_encode($e->getMessage());
@@ -163,15 +239,17 @@ function addReplay()
         $id = $pdo->lastInsertId();
         $sql = "select  MEMBER.MEM_NAME,
                 MEMBER.MEM_PIC,
+                DISCUSS_MESSAGE.DIS_MES_NO,
                 DISCUSS_MESSAGE.DIS_NO,
                 DISCUSS_MESSAGE.DIS_MES_CONTENT,
                 DISCUSS_MESSAGE.DIS_MES_DATE,
                 DISCUSS_MESSAGE.DIS_MES_LIK_NUM
                 from member
                 join DISCUSS_MESSAGE using(MEM_NO)
-                where DISCUSS_MESSAGE.DIS_MES_NO = " . $id;
+                where DISCUSS_MESSAGE.DIS_NO = $dis_no order by  DISCUSS_MESSAGE.DIS_MES_NO desc";
         $result = $pdo->query($sql);
         $response = $result->fetchAll(PDO::FETCH_ASSOC);
+        // exit($sql);
         echo json_encode($response);
     } catch (PDOException $e) {
         echo $e->getMessage();
@@ -209,31 +287,14 @@ function getMsg()
     }
 }
 
-// function getReplay()
-// {
-//     try {
-//         require_once "connectMySql.php";
-//         $sql = "select ANN_CONTENT from ANNOUNCEMENT";
-//         $dis = $pdo->query($sql);
-//         if ($dis->rowCount() == 0) { //找不到
-//             //傳回空的JSON字串
-//             echo "{}";
-//         } else { //找得到
-//             //取回一筆資料
-//             $disRow = $dis->fetchAll(PDO::FETCH_ASSOC);
-//             //送出json字串
-//             echo json_encode($disRow);
-//         }
-//     } catch (PDOException $e) {
-//         echo $e->getMessage();
-//     }
-// }
+
 
 
 function getAllDiscuss()
 {
     try {
         require_once "connectMySql.php";
+        
         $sql = "select  MEMBER.MEM_NAME,
             MEMBER.MEM_PIC,
             INDUSTRY_CLASS.IND_CLASS,

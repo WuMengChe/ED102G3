@@ -1,4 +1,4 @@
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     // 增加新管理員
     function addAdministrator() {
         let myForm = document.getElementById("myForm");
@@ -7,7 +7,6 @@ window.addEventListener("load", function() {
         if (myForm.style.display == "none") {
             myForm.style.display = "";
         }
-
         let newAdministrator = newAd.cloneNode(true);
         newAdministrator.style.display = "";
         myForm.appendChild(newAdministrator);
@@ -50,20 +49,28 @@ window.addEventListener("load", function() {
     // })
 
     //insert資料到資料庫
-    document.getElementById("adNew").onclick = function() {
+    document.getElementById("adNew").onclick = function () {
         alert('111')
     };
 
 
 
 
+    document.getElementById("newAdBtn").onclick = addAdministrator;
     // 側邊欄切換
-    $('.list li').click(function() {
+    $('.list li').click(function () {
         $(this).siblings().removeClass("active");
         $(this).parent().siblings().children().removeClass("active");
         $(this).addClass("active");
     });
     //編輯按鈕
+
+
+
+
+
+
+    // $(".orderHide").hide();
 
     // 更改行業資料
     $('.quizShow1').hide();
@@ -72,7 +79,7 @@ window.addEventListener("load", function() {
     // let quizEditBtn = quizEdit1.innerText;
 
     quizEdit1.addEventListener('click',
-        function() {
+        function () {
             if (quizEdit1.innerText == "編輯") {
                 let quizEditBtn = quizEdit1.innerText;
 
@@ -91,7 +98,6 @@ window.addEventListener("load", function() {
                 $("#QUIZ_CON1").replaceWith(`<textarea id="${quizId}" cols="20" rows="5">${quizCon}</textarea>`);
                 $("#QUIZ_ONE_CONTENT1").replaceWith(`<textarea id="${QUIZ_One_CONTENTId}" cols="20" rows="5">${quizOneContent}</textarea>`);
                 $("#QUIZ_TWO_CONTENT1").replaceWith(`<textarea id="${QUIZ_TWO_CONTENTId}" cols="20" rows="5">${quizTwoContent}</textarea>`);
-
                 //換照片選項一
                 document.getElementById('QUIZ_PIC_ONE1').onchange = quiz1Img1Change;
 
@@ -99,10 +105,13 @@ window.addEventListener("load", function() {
                     let QUIZ_PIC_ONE1 = document.getElementById('QUIZ_PIC_ONE1').files[0];
                     let readFile = new FileReader();
                     readFile.readAsDataURL(QUIZ_PIC_ONE1);
-                    readFile.addEventListener('load', function() {
-                        let quizImg1 = document.getElementById('quiz1ImgOne');
-                        quizImg1.src = readFile.result;
-                        quizImg1.style.maxHeight = '75px';
+                    readFile.addEventListener('load', function () {
+                        let quizImgOne1 = document.getElementById('quiz1ImgOne');
+                        quizImgOne1.src = readFile.result;
+                        // quizImgOne1.style.maxHeight = '75px';
+                        quizImgOne1.style.height = '90px';
+                        quizImgOne1.style.width = 'auto';
+                        QUIZ_PIC_ONE_name1 = QUIZ_PIC_ONE1.name;
 
                     });
                 };
@@ -113,34 +122,58 @@ window.addEventListener("load", function() {
                     let QUIZ_PIC_Two1 = document.getElementById('QUIZ_PIC_Two1').files[0];
                     let readFile = new FileReader();
                     readFile.readAsDataURL(QUIZ_PIC_Two1);
-                    readFile.addEventListener('load', function() {
-                        let quizImg1 = document.getElementById('quiz1ImgTwo');
-                        quizImg1.src = readFile.result;
-                        quizImg1.style.maxHeight = '75px';
-
+                    readFile.addEventListener('load', function () {
+                        let quizImgTwo1 = document.getElementById('quiz1ImgTwo');
+                        quizImgTwo1.src = readFile.result;
+                        quizImgTwo1.style.maxHeight = '90px';
+                        quizImgTwo1.style.width = 'auto';
+                        QUIZ_PIC_Two_name1 = QUIZ_PIC_Two1.name;
                     });
                 };
-                console.log(quizEditBtn);
-            } else {
-                let quizEditBtn = quizEdit1.innerText;
 
-                console.log(quizEditBtn);
-                let QUIZ_CON1Txt = $('#QUIZ_CON1').val();
-                // let QUIZ_ONE1Txt = $("#QUIZ_ONE_CONTENT1").val();
-                // let QUIZ_TWO1Txt = $("#QUIZ_TWO_CONTENT1").val();
-                console.log(QUIZ_CON1Txt);;
+            } else {
+
+                // let quizImgOneSrc1 = document.getElementById('quiz1ImgOne').src;
+                // let quizImgTwoSrc2 = document.getElementById('quiz1ImgTwo').src;
+                let quiz = {};
+                quiz.QUIZ_CONTxt1 = $('#QUIZ_CON1').val();
+                quiz.QUIZ_ONETxt1 = $("#QUIZ_ONE_CONTENT1").val();
+                quiz.QUIZ_TWOTxt1 = $("#QUIZ_TWO_CONTENT1").val();
+                quiz.stOutput1 = $('#firstType1').val();
+                quiz.ndOutput1 = $('#secondType1').val();
+                quiz.QUIZ_USE1 = $('#QUIZ_USE1').val();
+                // quiz.quizImgOneSrc1 = sessionStorage["quizImgOneSrc1"];
+                // quiz.quizImgTwoSrc2 = sessionStorage["quizImgTwoSrc2"];
+                quiz.quizImgOneSrc1 = $('#quiz1ImgOne').attr("src");
+                quiz.quizImgTwoSrc1 = $('#quiz1ImgTwo').attr("src");
+                quiz.quizImgOneName1 = QUIZ_PIC_ONE_name1;
+                quiz.quizImgTwoName1 = QUIZ_PIC_Two_name1;
+
+                console.log(quiz);
+                // quizImgOne1Src = sessionStorage["quizImgOne1"];
+                // quizImgTwo1.src = sessionStorage["quizImgTwo1"];
+                // console.log(QUIZ_CONTxt1, QUIZ_ONETxt1, QUIZ_TWOTxt1, stOutput1, ndOutput1, QUIZ_USE1, QUIZ_PIC_ONE_name1, QUIZ_PIC_Two_name1, quizImgOne1Src);
+                // console.log(QUIZ_CONTxt1, QUIZ_ONETxt1, QUIZ_TWOTxt1, stOutput1, ndOutput1, QUIZ_USE1, quizImgOneSrc1, quizImgTwoSrc2);
+
+                let json = JSON.stringify(quiz);
+                let quizXhr = new XMLHttpRequest();
+                quizXhr.onload = function () {
+                    if (quizXhr.status == 200) {
+                        alert(quizXhr.responseText);
+                        console.log(quizXhr.responseText);
+                    } else {
+                        alert(quizXhr.status);
+                    }
+
+                }
+                quizXhr.open("POST", "backstage_quiz.php", true);
+                quizXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                quizXhr.send(`json=${json}`);
+
             }
 
-            // if (quizEdit1.innerText == "確認") {
 
-            //     // var formData = new FormData();
-            // } else {
-
-            // }
         })
 
 });
 
-$(document).ready(function(){
-
-});

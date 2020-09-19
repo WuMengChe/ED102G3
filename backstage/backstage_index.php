@@ -380,7 +380,7 @@ try {
 
                 <td>
 
-                  <button class="edit">編輯</button>
+                  <button class="edit ">編輯</button>
                 </td>
               </tr>
             <?php
@@ -600,7 +600,7 @@ try {
                 
              
           </table>
-          
+
         </div>
 
         <!-- postcard_material -->
