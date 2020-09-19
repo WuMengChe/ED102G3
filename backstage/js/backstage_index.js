@@ -1,5 +1,23 @@
 window.addEventListener("load", function () {
+    //清空會員查詢值
+    document.getElementById('search_mem_no').addEventListener('click', function () {
+        document.getElementById('MemSearch').value = '';
+
+    });
     // 增加新管理員
+
+    // document.getElementById("newAd").onclick = addNewAd;
+
+    // function addNewAd() {
+    //     alert();
+    // }
+
+    // document.getElementsByClassName('cancelAd').onclick = addNewAd;
+
+    // function addNewAd() {
+    //     alert();
+    // }
+
     function addAdministrator() {
         let myForm = document.getElementById("myForm");
         let newAd = document.querySelector(".new_administrator");
@@ -10,13 +28,19 @@ window.addEventListener("load", function () {
         let newAdministrator = newAd.cloneNode(true);
         newAdministrator.style.display = "";
         myForm.appendChild(newAdministrator);
-
-
+        document.getElementsByClassName('cancelAd').onclick = addNewAd;
 
 
 
     }
     document.getElementById("newAdBtn").onclick = addAdministrator;
+
+    function addNewAd() {
+        alert();
+    }
+    // function addNewAd() {
+    //     alert();
+    // }
 
     //--------------------------------------------------------------------
     // $('.adNew').click(function() {
@@ -47,11 +71,11 @@ window.addEventListener("load", function () {
     //     });
 
     // })
-
+    //-------------------------------------------------------
     //insert資料到資料庫
-    document.getElementById("adNew").onclick = function () {
-        alert('111')
-    };
+    // document.getElementById("adNew").onclick = function () {
+    //     alert('111')
+    // };
 
 
 
@@ -187,4 +211,3 @@ window.addEventListener("load", function () {
         })
 
 });
-

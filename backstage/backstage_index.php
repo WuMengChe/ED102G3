@@ -185,7 +185,7 @@ try {
                 <th>密碼</th>
                 <th></th>
               </tr>
-              <tr class="new_administrator" style="display: none;">
+              <tr class="new_administrator">
                 <td>
                   <input type="text" class="adminName">
                 </td>
@@ -196,7 +196,10 @@ try {
                   <input type="text" class="adminPw">
                 </td>
                 <td>
-                  <button class="edit adNew" id="adNew">確認</button>
+                  <div>
+                    <button class="edit new_ad">確認</button>
+                    <button class="cancelAd">取消</button>
+                  </div>
                 </td>
               </tr>
             </table>
@@ -565,40 +568,40 @@ try {
               <th>購買日期</th>
               <th></th>
             </tr>
-            
-              <tr>
-                <td>{{item.ORD_NO}}</td>
-                <td>{{item.MEM_NO}}</td>
-                <td>{{item.ORD_AMOUNT}}</td>
-                <td>{{item.ORD_PAY}}</td>
-                <td>{{item.ORD_DATE}}</td>
-                <td><button @click="test" :name="item.ORD_NO">查看訂單明細</button></td>
-              </tr>
 
-              <tr>
-                <td class="OrderDetail" style="display: none;"> 
-                  <div v-for="detail in orderList" class="OrderDetail" style="display: none;">
-                    <table>
-                      <tr>
-                        <th>訂單明細編號</th>
-                        <th>課程編號</th>
-                        <th>課程名稱</th>
-                        <th>價格</th>
-                      </tr>
-                      
-                      <tr>
-                        <td>{{detail.ORD_DET_NO}}</td>
-                        <td>{{detail.SKI_NO}}</td>
-                        <td>{{detail.SKI_NAME}}</td>
-                        <td>{{detail.ORD_DET_PRICE}}</td>
-                      </tr>
-                    </table>
+            <tr>
+              <td>{{item.ORD_NO}}</td>
+              <td>{{item.MEM_NO}}</td>
+              <td>{{item.ORD_AMOUNT}}</td>
+              <td>{{item.ORD_PAY}}</td>
+              <td>{{item.ORD_DATE}}</td>
+              <td><button @click="test" :name="item.ORD_NO">查看訂單明細</button></td>
+            </tr>
 
-                  </div>
-                </td>
-              </tr>
-                
-             
+            <tr>
+              <td class="OrderDetail" style="display: none;">
+                <div v-for="detail in orderList" class="OrderDetail" style="display: none;">
+                  <table>
+                    <tr>
+                      <th>訂單明細編號</th>
+                      <th>課程編號</th>
+                      <th>課程名稱</th>
+                      <th>價格</th>
+                    </tr>
+
+                    <tr>
+                      <td>{{detail.ORD_DET_NO}}</td>
+                      <td>{{detail.SKI_NO}}</td>
+                      <td>{{detail.SKI_NAME}}</td>
+                      <td>{{detail.ORD_DET_PRICE}}</td>
+                    </tr>
+                  </table>
+
+                </div>
+              </td>
+            </tr>
+
+
           </table>
 
         </div>
