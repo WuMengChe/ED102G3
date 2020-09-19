@@ -228,9 +228,9 @@ try {
                 </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgOne">
-                  <label class="quizShow<?= $quizRow["QUIZ_NO"] ?>">選擇檔案
-                    <input type="file" name="QUIZ_PIC_ONE" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>" style="display:none;" accept="image/svg">
-                  </label>
+
+                  <input type="file" name="QUIZ_PIC_ONE" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>" accept="image/svg+xml">
+
 
                 </td>
                 <td>
@@ -245,9 +245,9 @@ try {
                 </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgTwo">
-                  <label for="QUIZ_PIC_Two">
-                    <input type="file" name="QUIZ_PIC_Two" id="QUIZ_PIC_Two<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
-                  </label>
+
+                  <input type="file" name="QUIZ_PIC_Two" id="QUIZ_PIC_Two<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+
                 </td>
                 <td>
                   <div id="QUIZ_TWO_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
@@ -316,7 +316,7 @@ try {
                 <td>
                   文藝型
                   <select name="" id="">
-                    <option value="" v-for="type in types">{{type}}</option>
+                    <option value="" v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
@@ -419,7 +419,7 @@ try {
                 <td>
                   <?= $skillRow["IND_CLASS"] ?>
                   <select name="" id="">
-                    <option value="" v-for="type in types">{{type}}</option>
+                    <option :value="type.value" v-for="type in types">{{type.type}}</option>
                   </select>
                 </td>
                 <td><?= $skillRow["SKI_BUY_NUM"] ?></td>
@@ -446,7 +446,7 @@ try {
                   <div class="overflow"><?= $skillRow["SKI_OUTLINE"] ?></div>
                 </td>
                 <td>
-                  <div class="overflow"><?= $skillRow["SKI_STUD"] ?>
+                  <div class="overflow"><?= $skillRow["SKI_STUD"] ?></div>
                 </td>
                 <td>
                   <p><?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?></p>

@@ -64,13 +64,11 @@ window.addEventListener("load", function () {
                     readFile.addEventListener('load', function () {
                         let quizImgOne1 = document.getElementById('quiz1ImgOne');
                         quizImgOne1.src = readFile.result;
-                        quizImgOne1.style.maxHeight = '75px';
+                        // quizImgOne1.style.maxHeight = '75px';
+                        quizImgOne1.style.height = '90px';
+                        quizImgOne1.style.width = 'auto';
                         QUIZ_PIC_ONE_name1 = QUIZ_PIC_ONE1.name;
-                        // console.log(QUIZ_PIC_ONE1);
-                        // console.log("------------");
-                        // console.log(readFile.result);
-                        // console.log("------------");
-                        // quizImgOne1Src = quizImgOne1.src;
+
                     });
                 };
                 //換照片選項二
@@ -83,7 +81,8 @@ window.addEventListener("load", function () {
                     readFile.addEventListener('load', function () {
                         let quizImgTwo1 = document.getElementById('quiz1ImgTwo');
                         quizImgTwo1.src = readFile.result;
-                        quizImgTwo1.style.maxHeight = '75px';
+                        quizImgTwo1.style.maxHeight = '90px';
+                        quizImgTwo1.style.width = 'auto';
                         QUIZ_PIC_Two_name1 = QUIZ_PIC_Two1.name;
                     });
                 };
