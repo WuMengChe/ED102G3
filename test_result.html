@@ -95,33 +95,24 @@
                 <div class="title_bx">
                     <h2>此類型相關課程</h2>
                 </div>
-                <!-- :style="{backgroundColor:relatedCourse[index].backgroundColor}" -->
-                <div class="related_course">
-                    <ul class="all_course_cards row">
-                        <li class="course_card" v-for="(item, index) in relatedCourse" :key="index" >
-                             <span class="card_type" :style="{backgroundColor:item.IND_COLOR}" >{{item.IND_CLASS}}</span>
-                             <div class="course_pic">
-                                <a >
-                                    <img :src="item.SKI_IMG" alt=""/>
-                             
-                                </a>
-                            </div>
-                            <div class="card_content">
-                                    <p>{{item.SKI_NAME}}</p>
-                                <div class="card_content_scrb">
-                                    <div class="card_content_join">
-                                        <i class="fas fa-user-friends"></i>
-                                        <span>{{item.SKI_BUY_NUM}}人已參與課程</span>
-                                        </div>
-                                    </div>
-                                    <div class="card_course_detail"> 
-                                            <span class="card_time p_small">總計{{item.SKI_TIME}}小時</span>
-                                            <span class="card_price">NT${{item.SKI_PRICE}}</span>
-                                    </div>
-                            </div>
-                        </li>
-                     </ul> 
-                                </div>
+                
+<ul class = "allCourseCards">
+    <li class="courseCard"  >
+        <a href="">
+        <img src="./img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png" alt="">
+        <span class="card_type">文藝型</span>
+
+        <h3>我是課程名稱</h3>
+        <p>
+            <i class="fas fa-user-friends"></i>
+            <span>人已參與課程</span>
+        </p>
+        <span >總計小時</span>
+        <span>NT$</span>
+        </a>
+
+ </li>
+</ul>
                             
                             
                     <div class="btn_wrap">

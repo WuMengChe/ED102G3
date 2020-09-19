@@ -11,11 +11,11 @@
 
 </head>
 
-<body>
+<body >
 
   @@include('app/header.html')
-
   <div id="forum_discuss" class="container-fluid">
+@@include('app/lightbox_login.html')
     <div class="wrap row">
       <div class="side_wrap col-lg-3">
         <div class="dis_side main_side_bar">
@@ -194,7 +194,7 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                <i class="fas fa-heart" @click="heart_btn_feedback"></i>
+                <i class="fas fa-heart" :class="{'colorRed':feedBoxHeart[msg.index]}" @click="heart_btn_feedback(msg.index)"></i>
               </button>
               <button class="gray_btn" @click="accuse_btn">
                 <i class="fas fa-exclamation-circle"></i>

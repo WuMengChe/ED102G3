@@ -14,8 +14,28 @@ new Vue({
         order_mem: false,
         postcard_material: false,
         announcement: false,
-        types: ['實作型', '研究型', '文藝型', '社會型', '企業型', '事務型'],
-        typeValues: ['R', 'I', 'A', 'S', 'E', 'C'],
+        types: [{
+                type: '實作型',
+                value: 'R'
+            }, {
+                type: '研究型',
+                value: 'I'
+            }, {
+                type: '文藝型',
+                value: 'A'
+            }, {
+                type: '社會型',
+                value: 'S'
+            }, {
+                type: '企業型',
+                value: 'E'
+            }, {
+                type: '事務型',
+                value: 'C'
+            },
+
+        ],
+
 
         orders: [],
         orderList: [],
