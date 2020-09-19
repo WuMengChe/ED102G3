@@ -83,11 +83,6 @@ let memData = {
     screenWidth : 0
 }
 
-let headerHidden = new Vue({
-    el: '.header_wrap',
-    data: memData
-})
-
 let changeMemContent = new Vue({
     el: '#mem_change',
     data: memData,
@@ -337,6 +332,22 @@ let changeMemContent = new Vue({
     created() {
         window.addEventListener('resize', this.changeWidth);
         window.addEventListener('resize', this.plotRadarReSize);
+        window.addEventListener('load', function(){
+            if(document.documentElement.clientWidth > 991){
+                document.querySelector("#header_cart").style.display = "block";
+            }
+            else{
+                document.querySelector("#header_cart").style.display = "none";
+            }
+        });
+        window.addEventListener('resize', function(){
+            if(document.documentElement.clientWidth > 991){
+                document.querySelector("#header_cart").style.display = "block";
+            }
+            else{
+                document.querySelector("#header_cart").style.display = "none";
+            }
+        });
     },
     destroyed() {
         window.removeEventListener('resize', this.changeWidth);
