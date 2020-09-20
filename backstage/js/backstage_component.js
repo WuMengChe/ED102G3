@@ -175,7 +175,7 @@ new Vue({
             }
 
         },
-        SearchMEM: function(e) {
+        SearchMEM: function (e) {
             e.preventDefault();
             $.ajax({
                 url: 'backstage_memberSearch.php',
@@ -184,7 +184,7 @@ new Vue({
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     $("#oneMem").html(data)
                 },
             });
@@ -206,7 +206,7 @@ new Vue({
             e.target.innerText = "確認";
             $('select').show();
         },
-        test: function(e) {
+        test: function (e) {
             e.preventDefault()
             console.log($(e.target).parent().parent().parent().find(".OrderDetail"));
             $(e.target).parent().parent().parent().find(".OrderDetail").css("display", "block")

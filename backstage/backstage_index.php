@@ -185,7 +185,7 @@ try {
                 <th>密碼</th>
                 <th></th>
               </tr>
-              <tr class="new_administrator" style="display: none;">
+              <tr class="new_administrator">
                 <td>
                   <input type="text" name="adminName" v-model="adminName">
                 </td>
@@ -197,6 +197,7 @@ try {
                 </td>
                 <td>
                   <button class="edit insertToDb" onClick="adNew();">確認</button>
+                  <button class="cancelAd">取消</button>
                 </td>
               </tr>
             </table>
@@ -562,15 +563,6 @@ try {
               <th>購買日期</th>
               <th></th>
             </tr>
-            
-              <tr>
-                <td>{{item.ORD_NO}}</td>
-                <td>{{item.MEM_NO}}</td>
-                <td>{{item.ORD_AMOUNT}}</td>
-                <td>{{item.ORD_PAY}}</td>
-                <td>{{item.ORD_DATE}}</td>
-                <td><button @click="test" :name="item.ORD_NO">查看訂單明細</button></td>
-              </tr>
 
               <tr>
                 <td class="OrderDetail" style="display: none;"> 
@@ -683,37 +675,37 @@ try {
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
   <!-- <script src="./js/backstage_insert.js"></script> -->
-<script>
-  // function adNew() {
-  //        alert($("*[name='name']").val())
-         
-          // let adminName = $('.adminName').val();
-              // adminId = $('.adminId').val(),
-         //      adminPw = $('.adminPw').val();
-         //  adminName = adminName;
-         //  adminId = adminId;
-         //  adminPw = adminPw;
-          // console.log($('.adminName').val());
+  <script>
+    // function adNew() {
+    //        alert($("*[name='name']").val())
 
-         // var formData = new FormData();
-         // formData.append('adminName', adminName);
-         // formData.append('adminId', adminId);
-         // formData.append('adminPw', adminPw);
-         // axios.post('backstage_insertAD.php', formData)
-         //     .then((resp) => {
+    // let adminName = $('.adminName').val();
+    // adminId = $('.adminId').val(),
+    //      adminPw = $('.adminPw').val();
+    //  adminName = adminName;
+    //  adminId = adminId;
+    //  adminPw = adminPw;
+    // console.log($('.adminName').val());
 
-         //         if (resp.data == 0) {
-         //             alert('沒有抓到資料');
+    // var formData = new FormData();
+    // formData.append('adminName', adminName);
+    // formData.append('adminId', adminId);
+    // formData.append('adminPw', adminPw);
+    // axios.post('backstage_insertAD.php', formData)
+    //     .then((resp) => {
 
-         //         } else {
-         //             alert('成功新增！')
+    //         if (resp.data == 0) {
+    //             alert('沒有抓到資料');
+
+    //         } else {
+    //             alert('成功新增！')
 
 
-         //         }
-         //     });
+    //         }
+    //     });
 
     //  }
-</script>
+  </script>
 </body>
 
 

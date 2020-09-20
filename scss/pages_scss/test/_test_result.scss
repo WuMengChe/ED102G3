@@ -372,27 +372,54 @@ main.main_test_result{
                 }
    
                 ul.allCourseCards{
-                    border: 1px solid red;
+                    // border: 1px solid red;
                     list-style: none;
+                    display: flex;
+                    justify-content: space-evenly;
                     li.courseCard{
-                        border: 1px solid blue;
+                        // border: 1px solid blue;
                         border-radius: 5px;
                         overflow: hidden;
-                        width: 300px;
-                        height: 350px;
+                        width: 320px;
+                        height: 340px;
                         position: relative;
                         background: #ffffff;
+                        box-shadow: $card_shadow;
+                        a.link_to_course{
+                            // border: 1px solid goldenrod;
+                            // background: goldenrod;
+                            height: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            flex-direction: column;
+                            h3.courseTitle{
+                                text-align: center;
+                                font-weight: bolder;
+                            }
+                            p.courseDetail{
+                                text-align: center;
+                            }
+                            p.courseCount{
+                                // border: 1px solid red;
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 5%;
+                                span.coursePrice{
+                                    font-weight: bolder;
+                                }
+                            }
                         span.card_type{
-                            border: 1px solid salmon;
-                            background-color:sandybrown ;
+                            // border: 1px solid salmon;
+                            // background-color:sandybrown ;
                             position: absolute;
-                            padding: 1%;
+                            padding: 1% 2%;
                             left: 0;
+                            border-bottom-right-radius: 5px;
                         }
                         img{
                             width: 100%;
                         }
-                    
+                     }
                     }
                 }
             // border: 1px solid blue;

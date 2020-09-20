@@ -298,7 +298,7 @@ function getAllDiscuss()
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $totalRecords = $row["totalCount"];
         //------------每頁要印幾筆
-        $recPerPage = 5;
+        $recPerPage = 10;
         //------------算出總共有幾頁
         $totalPages = ceil($totalRecords / $recPerPage);
         //目前要顯示哪一頁
@@ -400,8 +400,6 @@ function addFavor()
 
         $article_like_sql_result = $pdo->query($article_like_sql);
         $result = $article_like_sql_result->fetch(PDO::FETCH_ASSOC);
-
-
 
         //找不到就是沒點過 沒點過就新增 點過就刪除
         if ($article_like_sql_result->rowCount() == 0) {

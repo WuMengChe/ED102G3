@@ -1,5 +1,23 @@
 window.addEventListener("load", function() {
+    //清空會員查詢值
+    document.getElementById('search_mem_no').addEventListener('click', function() {
+        document.getElementById('MemSearch').value = '';
+
+    });
     // 增加新管理員
+
+    // document.getElementById("newAd").onclick = addNewAd;
+
+    // function addNewAd() {
+    //     alert();
+    // }
+
+    // document.getElementsByClassName('cancelAd').onclick = addNewAd;
+
+    // function addNewAd() {
+    //     alert();
+    // }
+
     function addAdministrator() {
         let myForm = document.getElementById("myForm");
         let newAd = document.querySelector(".new_administrator");
@@ -19,8 +37,38 @@ window.addEventListener("load", function() {
     }
     document.getElementById("newAdBtn").onclick = addAdministrator;
 
+    function addNewAd() {
+        alert();
+    }
+    // function addNewAd() {
+    //     alert();
+    // }
+
     //--------------------------------------------------------------------
 
+    // var formData = new FormData();
+    // formData.append('adminName', adminName);
+    // formData.append('adminId', adminId);
+    // formData.append('adminPw', adminPw);
+    // axios.post('backstage_insertAD.php', formData)
+    //     .then((resp) => {
+
+    //         if (resp.data == 0) {
+    //             alert('沒有抓到資料');
+
+    //         } else {
+    //             alert('成功新增！')
+
+
+    //         }
+    //     });
+
+    // })
+    //-------------------------------------------------------
+    //insert資料到資料庫
+    // document.getElementById("adNew").onclick = function () {
+    //     alert('111')
+    // };
 
 
 

@@ -97,18 +97,22 @@
                 </div>
                 
 <ul class = "allCourseCards">
-    <li class="courseCard"  >
-        <a href="">
-        <img src="./img/course/course_img/A/課程照片-行銷必上文案課：受眾溝通與表達.png" alt="">
-        <span class="card_type">文藝型</span>
+    <li class="courseCard" v-for="(item, index) in relatedCourse" :key="index"  >
+        <a class="link_to_course" :href="'./course_introduce.html?ski_no=' + item.SKI_NO ">
+        <img :src="item.SKI_IMG" alt="">
+        <span class="card_type" :style="{backgroundColor:item.IND_COLOR}"> 
+            {{item.IND_CLASS}}
+        </span>
 
-        <h3>我是課程名稱</h3>
-        <p>
+        <h3 class="courseTitle">{{ item.SKI_NAME }}</h3>
+        <p class="courseDetail">
             <i class="fas fa-user-friends"></i>
-            <span>人已參與課程</span>
+            <span>{{item.SKI_BUY_NUM}}人已參與課程</span>
         </p>
-        <span >總計小時</span>
-        <span>NT$</span>
+        <p class="courseCount">
+             <span >總計{{item.SKI_TIME}}</span>
+             <span class="coursePrice">NT${{item.SKI_PRICE}}</span>
+        </p>
         </a>
 
  </li>
