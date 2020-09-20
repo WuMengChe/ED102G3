@@ -617,9 +617,9 @@ try {
         <div class="postcard_material" v-show="postcard_material">
           <div class="title">
             <p class="title">明信片素材管理</p>
-            <button class="add">新增素材</button>
+            <button class="add" id="newPostBtn">新增素材</button>
           </div>
-          <table>
+          <table id="postTable">
 
             <tr>
               <th>素材編號</th>
@@ -642,13 +642,44 @@ try {
                     <option value="">是</option>
                     <option value="">否</option>
                   </select>
+                  <button class="edit pos_edit">編輯</button>
+                  <button class="pos_cancel">取消</button>
                 </td>
               </tr>
             <?php
             }
             ?>
           </table>
-
+          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm">
+            <div>
+              <p class="post_type">素材類型</p>
+            </div>
+            <div>
+              <input type="radio" name="POS_MAT_NAME" id="outline" value="outline">
+              <label for="outline">外框</label>
+              <input type="radio" name="POS_MAT_NAME" id="stamp" value="stamp">
+              <label for="stamp">郵票</label>
+              <input type="radio" name="POS_MAT_NAME" id="postmark" value="postmark">
+              <label for="postmark">郵戳</label>
+            </div>
+            <div>
+              <label for="postImg" class="postImg">上傳檔案
+                <input type="file" name="POS_MAT_PIC" id="postImg">
+              </label>
+              <span>
+                注意只能上傳png檔
+              </span>
+            </div>
+            <div class="postImg_show">
+              <img src="./" alt="預覽照片" class="postNew">
+            </div>
+            <div>
+              <button type="submit" class="submit" id="newAdSubmit">送出</button>
+            </div>
+          </form>
+          <div>
+            <button class="back" id="backPost">返回全部列表</button>
+          </div>
         </div>
 
         <!-- announcement -->

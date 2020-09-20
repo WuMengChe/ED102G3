@@ -140,8 +140,6 @@ $side_color:#424965;
 
 @mixin addForm {
   #{'form'} {
-
-    border: 2px solid #424965;
     display: inline-block;
     background-color: #424965;
     border-radius: 10px;
@@ -150,7 +148,7 @@ $side_color:#424965;
     div {
 
       // border: 1px solid blue;
-      margin: 10px;
+      margin: 15px;
 
       label {
         background-color: #F4C3C5;
@@ -492,12 +490,47 @@ header {
 
       .postcard_material {
         @include table();
+        @include addForm();
         margin: 10px 0;
 
         img {
           height: 75px;
           width: auto;
         }
+
+        form {
+          color: white;
+
+          div {
+            span {
+              color: #ff9335;
+            }
+
+            label {
+              background-color: transparent;
+            }
+
+            input[type=file] {
+              display: none;
+            }
+
+            label.postImg {
+              background-color: #F4C3C5;
+              border-radius: 5px;
+              color: black;
+            }
+
+          }
+
+          div.postImg_show {
+            border: 2px solid $main_color;
+            border-radius: 10px;
+            width: 270px;
+            height: 200px;
+            padding: 8px;
+          }
+        }
+
       }
 
       .announcement {

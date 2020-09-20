@@ -167,5 +167,20 @@ window.addEventListener("load", function () {
 
 
         })
-
+    //新增明信片
+    $('#newPosForm').hide();
+    $('#backPost').hide();
+    $('#newPostBtn').click(function () {
+        $('#newPosForm').show();
+        $('#backPost').show();
+        $('#postTable').hide();
+        $('#newPostBtn').hide();
+    });
+    //返回全部明信片
+    $('#backPost').click(function () {
+        $('#newPosForm').hide();
+        $('#backPost').hide();
+        $('#postTable').show();
+        $('#newPostBtn').show();
+    });
 });
