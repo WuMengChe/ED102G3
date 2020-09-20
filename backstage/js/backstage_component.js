@@ -14,12 +14,34 @@ new Vue({
         order_mem: false,
         postcard_material: false,
         announcement: false,
-        types: ['實作型', '研究型', '文藝型', '社會型', '企業型', '事務型'],
-        typeValues: ['R', 'I', 'A', 'S', 'E', 'C'],
+        types: [{
+                type: '實作型',
+                value: 'R'
+            }, {
+                type: '研究型',
+                value: 'I'
+            }, {
+                type: '文藝型',
+                value: 'A'
+            }, {
+                type: '社會型',
+                value: 'S'
+            }, {
+                type: '企業型',
+                value: 'E'
+            }, {
+                type: '事務型',
+                value: 'C'
+            },
+
+        ],
+
 
         orders: [],
         orderList: [],
-
+        adminName: '名稱',
+        adminId: 'id',
+        adminPw: '密碼',
 
 
     },
@@ -183,12 +205,17 @@ new Vue({
         edit(e) {
             e.target.innerText = "確認";
             $('select').show();
+        },
+        test: function (e) {
+            e.preventDefault()
+            console.log($(e.target).parent().parent().parent().find(".OrderDetail"));
+            $(e.target).parent().parent().parent().find(".OrderDetail").css("display", "block")
         }
 
     },
     mounted() {
         axios
-            .get('./backstage_order.php?{ORD_NO}')
+            .get('./backstage_order.php')
             .then((res) => {
                 this.orders = res.data;
             });
@@ -198,6 +225,7 @@ new Vue({
                 this.orderList = res.data;
             });
     },
+
     computed: {
 
     },

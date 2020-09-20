@@ -371,97 +371,81 @@ main.main_test_result{
                   }
                 }
    
-        .all_course_cards{
-            // border: 1px solid blue;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-       
-            @media screen and (max-width: 560px){ 
-                flex-direction: column;
-                align-items: center;
-                  }
-            li.course_card{
-                width: 300px;
-                height: 350px;
-                // border: 1px solid red;
-                background: #fff;
-                display: flex;
-                flex-direction: column;
-                box-shadow: $card_shadow;
-                border-radius: 5px;
-                overflow: hidden;
-                position: relative;
-                a.link_wrap{
-                    border: 1px solid red;
-                    width: 300px;
-                    height: 300px;
-                 .card_type{
-                    //  border: 1px solid green;
-                     padding: 2%;
-                     position: absolute;
-                 }
-                div.course_pic {
-                    width: 100%;
-                    height: 50%;
-                    img {
-                        width: 100%;
-                    }
-                }
-                 .card_content {
-                height: 50%;
-                // border: 1px  solid green;
-                  padding: 10px;
-                  flex-grow: 1;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  justify-content: space-around;
-                    p {
+                ul.allCourseCards{
                     // border: 1px solid red;
-                    font-weight: bold;
-                     font-size: 20px;
-                    }
-                div.card_content_scrb {
-                     div.card_content_join {
-                     i {
-                      margin-right: 5px;
-                     }
-                     span {
-                    font-size: 16px;
+                    list-style: none;
+                    display: flex;
+                    justify-content: space-evenly;
+                    li.courseCard{
+                        // border: 1px solid blue;
+                        border-radius: 5px;
+                        overflow: hidden;
+                        width: 320px;
+                        height: 340px;
+                        position: relative;
+                        background: #ffffff;
+                        box-shadow: $card_shadow;
+                        a.link_to_course{
+                            // border: 1px solid goldenrod;
+                            // background: goldenrod;
+                            height: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            flex-direction: column;
+                            h3.courseTitle{
+                                text-align: center;
+                                font-weight: bolder;
+                            }
+                            p.courseDetail{
+                                text-align: center;
+                            }
+                            p.courseCount{
+                                // border: 1px solid red;
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 5%;
+                                span.coursePrice{
+                                    font-weight: bolder;
+                                }
+                            }
+                        span.card_type{
+                            // border: 1px solid salmon;
+                            // background-color:sandybrown ;
+                            position: absolute;
+                            padding: 1% 2%;
+                            left: 0;
+                            border-bottom-right-radius: 5px;
+                        }
+                        img{
+                            width: 100%;
+                        }
                      }
                     }
                 }
-                div.card_course_detail {
-                    // border: 1px solid blue;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-end;
-              
-                    .card_price{
-                        font-weight: bolder;
-                        font-size: 18px;
-                    }
-    
-            } 
-            }
+            // border: 1px solid blue;
+            // display: flex;
+            // flex-direction: row;
+            // justify-content: space-evenly;
        
-        }
-    
-                 
-                }              
-     }
-     }
-
-    }
+            // @media screen and (max-width: 560px){ 
+            //     flex-direction: column;
+            //     align-items: center;
+                  
+         }
     .btn_wrap{
         // border: 1px solid red;
         padding: 2% 3% 3% 3%;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: flex-end;                
+     }
+     
+     }
+
+   
+       
     }  
-}
+
         .check_forum{
             background: rgba(255, 255, 255, 0.7);
             border-radius: 25px;

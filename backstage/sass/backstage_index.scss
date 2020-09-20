@@ -159,9 +159,22 @@ button.edit {
   color: white;
   padding: 2px 5px;
   border-radius: 5px;
+  outline: none;
 
   &:hover {
     background-color: #ff9335;
+  }
+}
+
+button.add {
+  outline: none;
+  background-color: $side_color;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #586083;
   }
 }
 
