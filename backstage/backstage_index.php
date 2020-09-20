@@ -442,7 +442,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                 <td><?=$skillRow["SKI_OUTLINE"]?></td>
                 <td><?=$skillRow["SKI_STUD"]?></td>
                 <td>
-                <p><?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?></p>
+                <?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?>
                   <select name="authority" id="">
                     <option value="authority">是</option>
                     <option value="authority">否</option>
