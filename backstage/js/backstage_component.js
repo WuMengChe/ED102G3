@@ -39,9 +39,9 @@ new Vue({
 
         orders: [],
         orderList: [],
-        adminName: '名稱',
-        adminId: 'id',
-        adminPw: '密碼',
+        // adminName: '',
+        // adminId: '',
+        // adminPw: '',
 
 
     },
@@ -197,6 +197,7 @@ new Vue({
             $('#allMem').show();
             $('#oneMem').hide();
         },
+        //-----------------------------
 
 
         // detail() {

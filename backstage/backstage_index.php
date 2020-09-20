@@ -95,10 +95,12 @@ try {
       </div>
 
       <div class="main col-11">
-        <!-- <component :is="member"></component> -->
         <!-- member -->
         <div class="account" v-show="account">
-          <p class="title">會員管理</p>
+          <div class="title">
+            <p class="title">會員管理</p>
+          </div>
+
           <form id="search_mem_form" action="./backstage_memberSearch.php">
             <div>
               <input type="text" class="search_input" id="MemSearch" name="MEM_NO">
@@ -129,13 +131,9 @@ try {
                 <td><?= $memberRow["MEM_EMAIL"] ?></td>
                 <td>
                   <p class="memUse"> <?php echo $memberRow["MEM_USE"] == 0 ? "否" : "是" ?></p>
-                  <!-- <select name="authority"  class="select_member_edit">
-                    <option value="authority" <?php echo $memberRow["MEM_USE"] == 1 ? "selected" : "" ?>>是</option>
-                    <option value="authority" <?php echo $memberRow["MEM_USE"] == 0 ? "selected" : "" ?>>否</option>
-                  </select> -->
-                  <select name="authority" id="MEM_USE">
-                    <option value="authority" <?php echo $memberRow["MEM_USE"] == 1 ? "selected" : "" ?>>是</option>
-                    <option value="authority" <?php echo $memberRow["MEM_USE"] == 0 ? "selected" : "" ?>>否</option>
+                  <select name="MEM_USE" id="MEM_USE">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
                   </select>
                   <button class="edit">編輯</button>
                 </td>
@@ -147,8 +145,11 @@ try {
         </div>
 
         <div class="administrator" v-show="administrator">
-          <p class="title">管理員管理</p>
-          <table>
+          <div class="title">
+            <p class="title">管理員管理</p>
+            <button id="newAdBtn" class="add">新增管理員</button>
+          </div>
+          <table id="adTable">
             <tr>
               <th>編號</th>
               <th>名稱</th>
@@ -176,39 +177,41 @@ try {
             }
 
             ?>
-          </table>
-          <div id="adForm">
-            <table id="myForm" style="display: none;">
-              <tr class="title">
-                <th>名稱</th>
-                <th>帳號</th>
-                <th>密碼</th>
-                <th></th>
-              </tr>
-              <tr class="new_administrator">
-                <td>
-                  <input type="text" name="adminName" v-model="adminName">
-                </td>
-                <td>
-                  <input type="text" class="adminId" v-model="adminId">
-                </td>
-                <td>
-                  <input type="text" class="adminPw" v-model="adminPw">
-                </td>
-                <td>
-                  <button class="edit insertToDb" onClick="adNew();">確認</button>
-                  <button class="cancelAd">取消</button>
-                </td>
-              </tr>
-            </table>
 
-            <button id="newAdBtn" class="add">新增管理員</button>
+          </table>
+          <form action="./backstage_add_administrator.php" method="post" id="newAdForm">
+            <div>
+              <label for="AD_NAME">名稱:</label>
+              <input type="text" class="form" name="AD_NAME" placeholder="請輸入小於20個字" maxlength="20">
+            </div>
+            <div>
+              <label for="AD_ACCOUNT">帳號:</label>
+              <input type="text" class="form" name="AD_ACCOUNT" placeholder="請輸入小於10個字" maxlength="10">
+            </div>
+            <div>
+              <label for="AD_PASSWORD">密碼:</label>
+              <input type="password" class="form" name="AD_PASSWORD" placeholder="請輸入小於10個字" maxlength="10" id="AD_PASSWORD">
+              <span>
+                <i class="far fa-eye" id="showPassword"></i>
+              </span>
+
+            </div>
+            <div>
+              <button type="submit" class="submit" id="newAdSubmit">送出</button>
+            </div>
+          </form>
+          <div>
+            <button class="back" id="backAd">返回全部列表</button>
           </div>
+
         </div>
 
         <!-- quiz -->
         <div class="quiz" v-show="quiz">
-          <p class="title">測驗題庫</p>
+          <div class="title">
+            <p class="title">測驗題庫</p>
+            <button class="add">新增題目</button>
+          </div>
           <table>
             <tr>
               <th>編號</th>
@@ -279,12 +282,15 @@ try {
             }
             ?>
           </table>
-          <button class="add">新增題目</button>
+
         </div>
 
         <!-- industry -->
         <div class="industry" v-show="industry">
-          <p class="title">行業管理</p>
+          <div class="title">
+            <p class="title">行業管理</p>
+            <button class="add">新增行業</button>
+          </div>
           <table>
             <tr>
               <th>編號</th>
@@ -388,12 +394,15 @@ try {
             }
             ?>
           </table>
-          <button class="add">新增行業</button>
+
         </div>
 
         <!-- skill_class -->
         <div class="skill_class" v-show="skill_class">
-          <p class="title">課程管理</p>
+          <div class="title">
+            <p class="title">課程管理</p>
+            <button class="add">新增課程</button>
+          </div>
           <table>
             <tr>
               <th>編號</th>
@@ -467,7 +476,7 @@ try {
             }
             ?>
           </table>
-          <button class="add">新增課程</button>
+
         </div>
 
         <!-- article_report -->
@@ -606,8 +615,10 @@ try {
 
         <!-- postcard_material -->
         <div class="postcard_material" v-show="postcard_material">
-          <p class="title">明信片素材管理</p>
-
+          <div class="title">
+            <p class="title">明信片素材管理</p>
+            <button class="add">新增素材</button>
+          </div>
           <table>
 
             <tr>
@@ -637,7 +648,7 @@ try {
             }
             ?>
           </table>
-          <button class="add">新增素材</button>
+
         </div>
 
         <!-- announcement -->
@@ -681,44 +692,14 @@ try {
   </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
-  <!-- <script src="./js/backstage_insert.js"></script> -->
-  <script>
-    // function adNew() {
-    //        alert($("*[name='name']").val())
 
-    // let adminName = $('.adminName').val();
-    // adminId = $('.adminId').val(),
-    //      adminPw = $('.adminPw').val();
-    //  adminName = adminName;
-    //  adminId = adminId;
-    //  adminPw = adminPw;
-    // console.log($('.adminName').val());
-
-    // var formData = new FormData();
-    // formData.append('adminName', adminName);
-    // formData.append('adminId', adminId);
-    // formData.append('adminPw', adminPw);
-    // axios.post('backstage_insertAD.php', formData)
-    //     .then((resp) => {
-
-    //         if (resp.data == 0) {
-    //             alert('沒有抓到資料');
-
-    //         } else {
-    //             alert('成功新增！')
-
-
-    //         }
-    //     });
-
-    //  }
-  </script>
 </body>
 
 

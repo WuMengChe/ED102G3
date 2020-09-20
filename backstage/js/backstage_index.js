@@ -5,75 +5,40 @@ window.addEventListener("load", function () {
 
     });
     // 增加新管理員
+    $('#newAdForm').hide();
+    $('#backAd').hide();
+    $('#newAdBtn').click(function () {
+        $('#newAdForm').show();
+        $('#adTable').hide();
+        $('#backAd').show();
+        $('#newAdBtn').hide();
+        //密碼小眼睛
+        $('#showPassword').click(function () {
+            showHide();
+        });
 
-    // document.getElementById("newAd").onclick = addNewAd;
+    });
+    //密碼小眼睛
+    let pwd = document.getElementById('AD_PASSWORD');
+    let eye = document.getElementById('showPassword');
 
-    // function addNewAd() {
-    //     alert();
-    // }
+    function showHide() {
 
-    // document.getElementsByClassName('cancelAd').onclick = addNewAd;
-
-    // function addNewAd() {
-    //     alert();
-    // }
-
-    function addAdministrator() {
-        let myForm = document.getElementById("myForm");
-        let newAd = document.querySelector(".new_administrator");
-
-        if (myForm.style.display == "none") {
-            myForm.style.display = "";
+        if (pwd.type == "password") {
+            pwd.type = "text";
+            eye.className = 'far fa-eye-slash';
+        } else {
+            pwd.type = "password";
+            eye.className = 'far fa-eye';
         }
-        let newAdministrator = newAd.cloneNode(true);
-        newAdministrator.style.display = "";
-        myForm.appendChild(newAdministrator);
-
-        // document.getElementsByClassName("insertToDb").onclick = insertToDb;
-
-
-
-
-    }
-    document.getElementById("newAdBtn").onclick = addAdministrator;
-
-    function addNewAd() {
-        alert();
-    }
-    // function addNewAd() {
-    //     alert();
-    // }
-
-    //--------------------------------------------------------------------
-
-    // var formData = new FormData();
-    // formData.append('adminName', adminName);
-    // formData.append('adminId', adminId);
-    // formData.append('adminPw', adminPw);
-    // axios.post('backstage_insertAD.php', formData)
-    //     .then((resp) => {
-
-    //         if (resp.data == 0) {
-    //             alert('沒有抓到資料');
-
-    //         } else {
-    //             alert('成功新增！')
-
-
-    //         }
-    //     });
-
-    // })
-    //-------------------------------------------------------
-    //insert資料到資料庫
-    // document.getElementById("adNew").onclick = function () {
-    //     alert('111')
-    // };
-
-
-
-
-    document.getElementById("newAdBtn").onclick = addAdministrator;
+    };
+    //返回全部管理員
+    $('#backAd').click(function () {
+        $('#newAdBtn').show();
+        $('#adTable').show();
+        $('#newAdForm').hide();
+        $('#backAd').hide();
+    });
     // 側邊欄切換
     $('.list li').click(function () {
         $(this).siblings().removeClass("active");
