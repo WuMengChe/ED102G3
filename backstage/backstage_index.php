@@ -227,50 +227,47 @@ try {
               <tr>
                 <td><?= $quizRow["QUIZ_NO"] ?></td>
                 <td>
-                  <div id="QUIZ_CON<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_CON"] ?></div>
+                  <div class="QUIZ_CON"><?= $quizRow["QUIZ_CON"] ?></div>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgOne">
-
-                  <input type="file" name="QUIZ_PIC_ONE" id="QUIZ_PIC_ONE<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>" accept="image/svg+xml">
+                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" class="quizImgOne">
+                  <input type="file" name="QUIZ_PIC_ONE" class="quizShow QUIZ_PIC_ONE">
 
 
                 </td>
                 <td>
-                  <div id="QUIZ_ONE_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
+                  <div class="QUIZ_ONE_CONTENT"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
                 </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
 
-                  <select name="firstType<?= $quizRow["QUIZ_NO"] ?>" id="firstType<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  <select name="firstType<?= $quizRow["QUIZ_NO"] ?>" class="quizShow firstType">
                     <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2" id="quiz<?= $quizRow["QUIZ_NO"] ?>ImgTwo">
-
-                  <input type="file" name="QUIZ_PIC_Two" id="QUIZ_PIC_Two<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
-
+                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2" class="quizImgTwo">
+                  <input type="file" name="QUIZ_PIC_Two" class="quizShow QUIZ_PIC_TWO">
                 </td>
                 <td>
-                  <div id="QUIZ_TWO_CONTENT<?= $quizRow["QUIZ_NO"] ?>"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
+                  <div class="QUIZ_TWO_CONTENT"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
                 </td>
                 <td>
                   <p><?= $quizRow["secondType"] ?></p>
-                  <select name="secondType<?= $quizRow["QUIZ_NO"] ?>" id="secondType<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  <select name="secondType<?= $quizRow["QUIZ_NO"] ?>" class="quizShow secondType">
                     <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
                   <p><?php echo $quizRow["QUIZ_USE"] == 0 ? "否" : "是" ?></p>
-                  <select name="QUIZ_USE<?= $quizRow["QUIZ_NO"] ?>" id="QUIZ_USE<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?>">
+                  <select name="QUIZ_USE<?= $quizRow["QUIZ_NO"] ?>" class="quizShow QUIZ_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
                 </td>
                 <td>
-                  <button class="edit" id="quizEdit<?= $quizRow["QUIZ_NO"] ?>">編輯</button>
-                  <button id="quizCancel<?= $quizRow["QUIZ_NO"] ?>" class="quizShow<?= $quizRow["QUIZ_NO"] ?> cancel">取消</button>
+                  <button class="edit quizEdit">編輯</button>
+                  <button class="quizShow cancel">取消</button>
                 </td>
               </tr>
 
@@ -577,7 +574,7 @@ try {
 
               <tr>
                 <td class="OrderDetail" style="display: none;"> 
-                  <div v-for="detail in orderList" class="OrderDetail" style="display: none;">
+                  <div class="OrderDetail" style="display: none;">
                     <table>
                       <tr>
                         <th>訂單明細編號</th>
@@ -586,14 +583,13 @@ try {
                         <th>價格</th>
                       </tr>
                       
-                      <tr>
+                      <tr v-for="detail in orderList">
                         <td>{{detail.ORD_DET_NO}}</td>
                         <td>{{detail.SKI_NO}}</td>
                         <td>{{detail.SKI_NAME}}</td>
                         <td>{{detail.ORD_DET_PRICE}}</td>
                       </tr>
                     </table>
-
                   </div>
                 </td>
               </tr>
