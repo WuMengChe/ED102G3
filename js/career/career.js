@@ -514,15 +514,15 @@ let careerVueContent = new Vue({
             axios
             .post('./php/carreerDiscussData.php', colData)
             .then((resp) =>{
-                console.log(resp.data)
-                console.log(resp.data.split('*;'))
-                if(resp.data.split(';')[0] == 1){
+                // console.log(resp.data)
+                // console.log(resp.data.split('*;'))
+                if(parseInt(resp.data.split('*;')[0]) == 1){
                     this.industryForum[indClass].detail[index].collect = true;
-                    console.log(this.industryForum[indClass].detail[index].collect);
+                    // console.log(this.industryForum[indClass].detail[index].collect);
                 }
-                if(resp.data.split('*;')[1] == 1){
+                if(parseInt(resp.data.split('*;')[1]) == 1){
                     this.industryForum[indClass].detail[index].like = true;
-                    console.log(this.industryForum[indClass].detail[index].like);
+                    // console.log(this.industryForum[indClass].detail[index].like);
                 }
                 this.industryForumMessage = this.industryForum[indClass].detail[index];
                 if(parseInt(resp.data.split('*;')[2]) == 0){
@@ -551,9 +551,9 @@ let careerVueContent = new Vue({
                             }
                         }
                     }
-                    console.log(this.memberArticleMessage)
+                    // console.log(this.memberArticleMessage)
                 }
-                console.log(this.industryForumMessage)
+                // console.log(this.industryForumMessage)
             })
             // console.log(this.industryForumMessage)
             document.querySelector('.mem_overlay').classList.add('artShow');

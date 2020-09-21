@@ -215,7 +215,7 @@ try {
         <div class="quiz" v-show="quiz">
           <div class="title">
             <p class="title">測驗題庫</p>
-            <button class="add">新增題目</button>
+            <button class="add" @click="addForm">新增題目</button>
           </div>
           <table>
             <tr>
@@ -291,7 +291,7 @@ try {
         <div class="industry" v-show="industry">
           <div class="title">
             <p class="title">行業管理</p>
-            <button class="add">新增行業</button>
+            <button class="add" @click="addForm">新增行業</button>
           </div>
           <table>
             <tr>
@@ -444,7 +444,6 @@ try {
                 </td>
                 <td id="ski_buy_num">
                   <?= $skillRow["SKI_BUY_NUM"] ?>
-                  <p><input type="number" min="0"></p>
                 </td>
                 <td id="ski_price">
                   <?= $skillRow["SKI_PRICE"] ?>
@@ -531,7 +530,9 @@ try {
             </div>
             <div>
               <label for="">總時數</label>
-              <input type="number" min="0" class="ski_time form" name="ski_time" placeholder="ex:3小時">
+              <input type="text" class="ski_time" name="ski_time" placeholder="ex:3小時">
+              <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
+
             </div>
             <div>
               <label for="">介紹</label>
