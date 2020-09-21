@@ -517,11 +517,13 @@ header {
           div {
             span {
               color: #ff9335;
+              vertical-align: middle;
             }
 
             label {
               background-color: transparent;
               cursor: pointer;
+              width: 60px;
             }
 
             input[type=file] {
@@ -531,6 +533,7 @@ header {
             label.postImg {
               background-color: #F4C3C5;
               border-radius: 5px;
+              width: 100px;
               color: black;
               cursor: pointer;
             }

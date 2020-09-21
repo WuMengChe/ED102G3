@@ -228,22 +228,18 @@ new Vue({
             }
         },
         addForm(e) {
-            switch (e.target.innerText) {
-                case "新增課程":
-                    e.target.innerText = "取消新增";
-                    $("form").show();
-
-                    break;
-                case "取消新增":
-                    e.target.innerText = "新增課程";
-                    $("form").hide();
-
-                    break;
-            }
+            $(e.target).hide();
+            $(e.target).parent().parent().find('table').hide();
+            $(e.target).parent().parent().find('form').show();
+            $(e.target).parent().parent().find('.back').show();
         },
         cancel_add(e) {
             e.preventDefault();
-            $("form").hide();
+            $(e.target).hide();
+            $(e.target).parent().parent().find('table').show();
+            $(e.target).parent().parent().find('form').hide();
+            $(e.target).parent().parent().find('.add').show();
+            //   window.scrollTo(0, 0);
         },
         test: function(e) {
             e.preventDefault();
