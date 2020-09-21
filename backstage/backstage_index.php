@@ -415,8 +415,8 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
               <th>修改</th>
             </tr>
             <?php
-while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
-    ?>
+              while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
+            ?>
               <tr>
                 <td id="ski_no"><?=$skillRow["SKI_NO"]?></td>
                 <td id="ski_name">
