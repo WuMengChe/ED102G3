@@ -136,6 +136,7 @@ try {
                     <option value="0">否</option>
                   </select>
                   <button class="edit">編輯</button>
+                  <button class="cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -154,7 +155,7 @@ try {
               <th>編號</th>
               <th>名稱</th>
               <th>帳號</th>
-              <th>停權</th>
+              <th>是否停權</th>
             </tr>
             <?php
             while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
@@ -166,11 +167,12 @@ try {
                 <td>
                   <p><?php echo $adminRow["AD_MAT_USE"] == 1 ? "否" : "是" ?></p>
 
-                  <select name="authority" id="">
-                    <option value="authority">是</option>
-                    <option value="authority">否</option>
+                  <select name="AD_MAT_USE" id="">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
                   </select>
                   <button class="edit adEdit<?= $adminRow["AD_NO"] ?>" @click="edit">編輯</button>
+                  <button class="cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -470,6 +472,7 @@ try {
                 </td>
                 <td>
                   <button class="edit">編輯</button>
+                  <button class="cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -504,12 +507,17 @@ try {
                 <td><?= $ArReportRow["MEM_EMAIL"] ?></td>
                 <td><?= $ArReportRow["ART_REP_CONTENT"] ?></td>
                 <td>
-                  <?php echo $ArReportRow["ART_REP_PASS"] == 1 ? "不通過" : "通過" ?>
+                  <p>
+                    <?php echo $ArReportRow["ART_REP_PASS"] == 1 ? "不通過" : "通過" ?>
+                  </p>
+
                   <select name="" id="">
-                    <option value="">通過</option>
-                    <option value="">未通過</option>
+                    <option value="1">通過</option>
+                    <option value="0">未通過</option>
 
                   </select>
+                  <button class="edit pos_edit">編輯</button>
+                  <button class="pos_cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -541,13 +549,16 @@ try {
                 <td><?= $MgReportRow["MEM_EMAIL"] ?></td>
                 <td><?= $MgReportRow["MES_REP_CONTENT"] ?></td>
                 <td>
-                  <?php echo $MgReportRow["MES_REP_PASS"] == 1 ? "不通過" : "通過" ?>
-
+                  <p>
+                    <?php echo $MgReportRow["MES_REP_PASS"] == 1 ? "不通過" : "通過" ?>
+                  </p>
                   <select name="" id="">
-                    <option value="">通過</option>
-                    <option value="">未通過</option>
+                    <option value="1">通過</option>
+                    <option value="0">未通過</option>
 
                   </select>
+                  <button class="edit pos_edit">編輯</button>
+                  <button class="pos_cancel">取消</button>
                 </td>
               <?php
             }
@@ -637,7 +648,10 @@ try {
                   <img src="<?= $materialRow["POS_MAT_PIC"] ?>" alt="<?= $materialRow["POS_MAT_NAME"] ?>">
                 </td>
                 <td>
-                  <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
+                  <p class="POS_USE">
+                    <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
+                  </p>
+
                   <select name="" id="">
                     <option value="">是</option>
                     <option value="">否</option>
@@ -651,6 +665,10 @@ try {
             ?>
           </table>
           <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm">
+            <div class="postName">
+              <!-- <label for="">素材名稱:</label>
+              <input type="text" class="form"> -->
+            </div>
             <div>
               <p class="post_type">素材類型</p>
             </div>
@@ -664,17 +682,17 @@ try {
             </div>
             <div>
               <label for="postImg" class="postImg">上傳檔案
-                <input type="file" name="POS_MAT_PIC" id="postImg">
+                <input type="file" name="POS_MAT_PIC" id="postImg" accept="image/png">
               </label>
               <span>
                 注意只能上傳png檔
               </span>
             </div>
-            <div class="postImg_show">
-              <img src="./" alt="預覽照片" class="postNew">
+            <div class=" postImg_show">
+              <img src="" alt="" id="postNew">
             </div>
             <div>
-              <button type="submit" class="submit" id="newAdSubmit">送出</button>
+              <button type="submit" class="submit" id="newPostSubmit">送出</button>
             </div>
           </form>
           <div>

@@ -182,5 +182,22 @@ window.addEventListener("load", function () {
         $('#backPost').hide();
         $('#postTable').show();
         $('#newPostBtn').show();
-    });
+    })
+    //明信片預覽照片
+    document.getElementById('postImg').onchange = postImg1Change;
+
+    function postImg1Change() {
+        let postImg = document.getElementById('postImg').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(postImg);
+        readFile.addEventListener('load', function () {
+            let postNew = document.getElementById('postNew');
+            let postImg_show = document.querySelector('.postImg_show');
+            postNew.src = readFile.result;
+            postImg_show.style.height = 'auto';
+            postImgName = postImg.name;
+
+        });
+    };
+
 });
