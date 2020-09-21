@@ -405,7 +405,7 @@ try {
         <div class="skill_class" v-show="skill_class">
           <div class="title">
             <p class="title">課程管理</p>
-            <button class="add">新增課程</button>
+            <button class="add" @click="addForm">新增課程</button>
           </div>
           <table>
             <tr>
@@ -428,7 +428,7 @@ try {
               <th>修改</th>
             </tr>
             <?php
-              while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
+            while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
                 <td id="ski_no"><?= $skillRow["SKI_NO"] ?></td>
@@ -513,12 +513,11 @@ try {
             }
             ?>
           </table>
-          <button class="add" @click="addForm">新增課程</button>
           <!-- 新增課程form -->
           <form action="backstage_skillClass_add.php" method="post" style="display:none;">
             <div>
               <label for="">名稱</label>
-              <input type="text" class="ski_name" name="ski_name" placeholder="輸入課程名稱">
+              <input type="text" class="ski_name form" name="ski_name" placeholder="輸入課程名稱">
             </div>
             <div>
               <label for="">類別</label>
@@ -538,11 +537,11 @@ try {
             </div> -->
             <div>
               <label for="">價格</label>
-              <input type="number" min="0" class="ski_price" name="ski_price" placeholder="ex:3000">
+              <input type="number" min="0" class="ski_price form" name="ski_price" placeholder="ex:3000">
             </div>
             <div>
               <label for="">總時數</label>
-              <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
+              <input type="number" min="0" class="ski_time form" name="ski_time" placeholder="ex:3小時">
             </div>
             <div>
               <label for="">介紹</label>
@@ -554,19 +553,19 @@ try {
             </div>
             <div>
               <label for="">課程連結</label>
-              <input type="text" class="ski_link" name="ski_link" placeholder="ex:youtube.com">
+              <input type="text" class="ski_link form" name="ski_link" placeholder="ex:youtube.com">
             </div>
             <div>
               <label for="">課程圖片</label>
-              <input type="file" class="ski_img" name="ski_img">
+              <input type="file" class="ski_img form" name="ski_img">
             </div>
             <div>
               <label for="">講師圖片</label>
-              <input type="file" class="ski_tec_img" name="ski_tec_img">
+              <input type="file" class="ski_tec_img form" name="ski_tec_img">
             </div>
             <div>
               <label for="">講師名稱</label>
-              <input type="text" class="ski_tec_name" name="ski_tec_name" placeholder="ex:廣仲">
+              <input type="text" class="ski_tec_name form" name="ski_tec_name" placeholder="ex:廣仲">
             </div>
             <div>
               <label for="">講師介紹</label>
@@ -578,7 +577,7 @@ try {
             </div>
             <div>
               <label for="">上課對象</label>
-              <input type="text" class="ski_stud" name="ski_stud" placeholder="ex:學生">
+              <input type="text" class="ski_stud form" name="ski_stud" placeholder="ex:學生">
               <button class="stud_add">新增</button>
             </div>
             <div>
@@ -590,9 +589,12 @@ try {
 
             <div>
               <button type="submit" class="submit">送出</button>
-              <button @click="cancel_add">取消</button>
             </div>
+
           </form>
+          <div>
+            <button class="back" id="backAd" @click="cancel_add">返回全部列表</button>
+          </div>
         </div>
 
         <!-- article_report -->
