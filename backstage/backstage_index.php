@@ -443,12 +443,7 @@ try {
                   </select>
                 </td>
                 <td id="ski_buy_num">
-<<<<<<< HEAD
                   <?=$skillRow["SKI_BUY_NUM"]?>
-=======
-                  <?= $skillRow["SKI_BUY_NUM"] ?>
-                  <p><input type="number" min="0"></p>
->>>>>>> 1933d936e3831833e782901185d60b549ec3d42f
                 </td>
                 <td id="ski_price">
                   <?= $skillRow["SKI_PRICE"] ?>
@@ -536,16 +531,14 @@ try {
             </div>
             <div>
               <label for="">總時數</label>
-<<<<<<< HEAD
               <input
                 type="text"
                 class="ski_time"
                 name="ski_time"
                 placeholder="ex:3小時"
               >
-=======
               <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
->>>>>>> 1933d936e3831833e782901185d60b549ec3d42f
+
             </div>
             <div>
               <label for="">介紹</label>
