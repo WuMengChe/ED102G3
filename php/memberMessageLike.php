@@ -8,13 +8,13 @@
             $member_col -> bindValue(":DIS_MES_NO",$_POST["DIS_MES_NO"]);
             $member_col -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
             $member_col -> execute();
-            $row = $member_col -> fetch(PDO::FETCH_OBJ);
-            $colState = $row->MES_LIK_STATE;
             if($member_col -> rowCount() == 0){
                 $sql = "insert into `message_like`(`DIS_MES_NO`, `MEM_NO`) values(:DIS_MES_NO, :MEM_NO)";
                 $sql_calc = "update `discuss_message` set `DIS_MES_LIK_NUM` = `DIS_MES_LIK_NUM` + 1 where DIS_MES_NO = :DIS_MES_NO";
             }
             else{
+                $row = $member_col -> fetch(PDO::FETCH_OBJ);
+                $colState = $row->MES_LIK_STATE;
                 if($colState == 0){
                     $sql = "update `message_like` set MES_LIK_STATE = 1 where DIS_MES_NO = :DIS_MES_NO and MEM_NO = :MEM_NO";
                     $sql_calc = "update `discuss_message` set `DIS_MES_LIK_NUM` = `DIS_MES_LIK_NUM` + 1 where DIS_MES_NO = :DIS_MES_NO";
