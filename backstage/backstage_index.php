@@ -234,8 +234,8 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
                   <div class="QUIZ_CON"><?=$quizRow["QUIZ_CON"]?></div>
                 </td>
                 <td>
-                  <img src="<?=$quizRow['QUIZ_PIC_ONE']?>" alt="photo1" class="quizImgOne">
-                  <input type="file" name="QUIZ_PIC_ONE" class="quizShow QUIZ_PIC_ONE">
+                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" class="quizImgOne" id="quizImgOne1">
+                  <input type="file" name="QUIZ_PIC_ONE" class="editShow QUIZ_PIC_ONE">
 
 
                 </td>
@@ -245,33 +245,33 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
                 <td>
                   <p> <?=$quizRow["firstType"]?></p>
 
-                  <select name="firstType<?=$quizRow["QUIZ_NO"]?>" class="quizShow firstType">
+                  <select name="firstType<?= $quizRow["QUIZ_NO"] ?>" class="editShow firstType">
                     <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
-                  <img src="<?=$quizRow['QUIZ_PIC_TWO']?>" alt="photo2" class="quizImgTwo">
-                  <input type="file" name="QUIZ_PIC_Two" class="quizShow QUIZ_PIC_TWO">
+                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2" class="quizImgTwo">
+                  <input type="file" name="QUIZ_PIC_TWO" class="editShow QUIZ_PIC_TWO">
                 </td>
                 <td>
                   <div class="QUIZ_TWO_CONTENT"><?=$quizRow["QUIZ_SEL_TWO_CONTENT"]?></div>
                 </td>
                 <td>
-                  <p><?=$quizRow["secondType"]?></p>
-                  <select name="secondType<?=$quizRow["QUIZ_NO"]?>" class="quizShow secondType">
+                  <p><?= $quizRow["secondType"] ?></p>
+                  <select name="secondType<?= $quizRow["QUIZ_NO"] ?>" class="editShow secondType">
                     <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
                   <p><?php echo $quizRow["QUIZ_USE"] == 0 ? "否" : "是" ?></p>
-                  <select name="QUIZ_USE<?=$quizRow["QUIZ_NO"]?>" class="quizShow QUIZ_USE">
+                  <select name="QUIZ_USE<?= $quizRow["QUIZ_NO"] ?>" class="editShow QUIZ_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
                 </td>
                 <td>
-                  <button class="edit quizEdit">編輯</button>
-                  <button class="quizShow cancel">取消</button>
+                  <button class="edit">編輯</button>
+                  <button class="editShow cancel">取消</button>
                 </td>
               </tr>
 
@@ -309,79 +309,79 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
     $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
     ?>
               <tr>
-                <td><?=$careerRow["IND_INT_NO"]?></td>
-                <td><?=$careerRow["IND_INT_NAME"]?></td>
+                <td><?= $careerRow["IND_INT_NO"] ?></td>
+                <td><div class="indName"><?= $careerRow["IND_INT_NAME"] ?></div></td>
                 <td>
-                  <div class="overflow"><?=$careerRow["IND_INT_INTRO"]?></div>
+                  <div class="overflow indIntro"><?= $careerRow["IND_INT_INTRO"] ?></div>
                 </td>
                 <td>
-                  <img src="<?=$careerRow["IND_INT_PICTURE"]?>" alt="行業圖片">
+                  <img src="<?= $careerRow["IND_INT_PICTURE"] ?>" alt="行業圖片" class="indImg">
+                  <input type="file" name="indPic" class="editShow indPic">
                 </td>
                 <td>
                   文藝型
-                  <select name="" id="">
-                    <option value="" v-for="type in types" :value="type.value">{{type.type}}</option>
+                  <select name="" id="" class="editShow indType">
+                    <option value="" v-for="type in types" :value="type.value" >{{type.type}}</option>
                   </select>
                 </td>
                 <td>
-                  <div class="overflow"><?=$careerRow["INT_INT_CONTENT"]?></div>
+                  <div class="overflow indContent"><?= $careerRow["INT_INT_CONTENT"] ?></div>
                 </td>
                 <td>
-                  <div class="overflow"><?=$careerRow["IND_INT_SKILL"]?></div>
+                  <div class="overflow indSkill"><?= $careerRow["IND_INT_SKILL"] ?></div>
                 </td>
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[0]?></span>
+                    <div class="firstYearLow"><?= $careerArrayL[0] ?></div>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[0]?></span>
-                  </p>
-
-                </td>
-
-                <td>
-                  <p>最低月薪:
-                    <span><?=$careerArrayL[1]?></span>
-                  </p>
-                  <p>最高月薪:
-                    <span><?=$careerArrayH[1]?></span>
+                    <div class="firstYearHigh"><?= $careerArrayH[0] ?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[2]?></span>
+                    <div class="thirdYearLow"><?= $careerArrayL[1] ?></div>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[2]?></span>
+                    <div class="thirdYearHigh"><?= $careerArrayH[1] ?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[3]?></span>
+                    <div class="fifthYearLow"><?= $careerArrayL[2] ?></div>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[3]?></span>
+                    <div class="fifthYearHigh"><?= $careerArrayH[2] ?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <span><?=$careerArrayL[4]?></span>
+                    <div class="tenYearLow"><?= $careerArrayL[3] ?></div>
                   </p>
                   <p>最高月薪:
-                    <span><?=$careerArrayH[4]?></span>
+                    <div class="tenYearHigh"><?= $careerArrayH[3] ?></div>
                   </p>
 
                 </td>
 
                 <td>
+                  <p>最低月薪:
+                    <div class="upYearLow"><?= $careerArrayL[4] ?></div>
+                  </p>
+                  <p>最高月薪:
+                    <div class="upYearHigh"><?= $careerArrayH[4] ?></div>
+                  </p>
 
-                  <button class="edit ">編輯</button>
+                </td>
+                <td>
+                  <button class="edit">編輯</button>
+                  <button class="editShow cancel">取消</button>
                 </td>
               </tr>
             <?php
