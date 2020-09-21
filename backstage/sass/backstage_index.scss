@@ -7,13 +7,6 @@ $side_color:#424965;
     border-collapse: separate;
     border-spacing: 0;
 
-    tr {
-      // background-color: whitesmoke;
-      // border: 3px solid transparent;
-      // border-radius: 5px;
-
-    }
-
     th {
       // border: 1px solid black;
       padding: 4px;
@@ -138,6 +131,63 @@ $side_color:#424965;
   }
 }
 
+@mixin addForm {
+  #{'form'} {
+    display: inline-block;
+    background-color: #424965;
+    border-radius: 10px;
+    padding: 10px;
+
+    div {
+
+      // border: 1px solid blue;
+      margin: 15px;
+
+      label {
+        background-color: #F4C3C5;
+        padding: 6px;
+
+        display: inline-block;
+        border-radius: 5px 0 0 5px;
+        font-size: 18px;
+      }
+
+      input.form {
+        padding: 5px;
+        border-radius: 0 5px 5px 0;
+        outline: none;
+        border: none;
+      }
+
+      textarea {
+        border: none;
+        outline: none;
+      }
+
+      &:last-child {
+        text-align: center;
+        margin-top: 20px;
+
+        button.submit {
+          margin: 0 auto;
+          width: 70px;
+          background-color:
+            #EE7002;
+          color: white;
+          padding: 8px;
+          border-radius: 5px;
+          outline: none;
+
+          &:hover {
+            background-color: #ff9335;
+          }
+        }
+      }
+
+
+    }
+  }
+}
 
 
 
@@ -178,9 +228,15 @@ button.add {
   }
 }
 
-p.title {
-  font-size: 20px;
+div.title {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 15px;
+
+  p.title {
+    font-size: 20px;
+
+  }
 }
 
 div.overflow {
@@ -194,20 +250,16 @@ textarea {
   resize: none;
 }
 
-label {
-  border: 1px solid black;
-  background-color: #EE7002;
-  color: white;
-  padding: 2px 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  display: inline-block;
+button.back {
+  margin-top: 20px;
+  color: $side_color;
+  outline: none;
 
   &:hover {
-    background-color: #ff9335;
+    text-decoration: underline;
   }
-
 }
+
 
 //----------------------------------------
 header {
@@ -271,9 +323,6 @@ header {
       }
     }
 
-    #MEM_USE {
-      display: none;
-    }
   }
 
 }
@@ -347,28 +396,34 @@ header {
           display: inline-block;
         }
 
-        select {
-          display: none;
-        }
       }
 
       .administrator {
         @include table();
+        @include addForm();
         // border-bottom: 1px solid blue;
         margin: 10px 0;
+
+        span {
+          width: 23px;
+          display: inline-block;
+          cursor: pointer;
+
+          i.far {
+            color: white;
+            width: 100%;
+          }
+        }
 
         p {
           display: inline-block;
         }
 
-        select {
-          display: none;
-        }
       }
 
       .quiz {
         @include table();
-
+        @include addForm();
         margin: 10px 0;
 
         img {
@@ -382,11 +437,13 @@ header {
 
       .industry {
         @include table();
+        @include addForm();
         margin: 10px 0;
       }
 
       .skill_class {
         @include table();
+        @include addForm();
         margin: 10px 0;
 
         td {
@@ -405,11 +462,19 @@ header {
       .article_report {
         @include table();
         margin: 10px 0;
+
+        p {
+          display: inline-block;
+        }
       }
 
       .message_report {
         @include table();
         margin: 10px 0;
+
+        p {
+          display: inline-block;
+        }
       }
 
       .order_mem {
@@ -420,16 +485,76 @@ header {
 
       .postcard_material {
         @include table();
+        @include addForm();
         margin: 10px 0;
 
         img {
           height: 75px;
           width: auto;
         }
+
+        p.POS_USE {
+          display: inline-block;
+        }
+
+
+
+        form {
+          color: white;
+
+          div {
+            span {
+              color: #ff9335;
+            }
+
+            label {
+              background-color: transparent;
+              cursor: pointer;
+            }
+
+            input[type=file] {
+              display: none;
+            }
+
+            label.postImg {
+              background-color: #F4C3C5;
+              border-radius: 5px;
+              color: black;
+              cursor: pointer;
+            }
+
+          }
+
+          div.postImg_show {
+            border: 2px solid $main_color;
+            border-radius: 10px;
+            width: 270px;
+            height: 200px;
+            padding: 8px;
+
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          div.postName {
+            label {
+              background-color: #F4C3C5;
+              padding: 6px;
+              color: black;
+              display: inline-block;
+              border-radius: 5px 0 0 5px;
+              font-size: 18px;
+            }
+          }
+        }
+
       }
 
       .announcement {
         @include table();
+        @include addForm();
         margin: 10px 0;
       }
     }

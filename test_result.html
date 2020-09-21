@@ -74,10 +74,10 @@
                 <div class="title_bx">
                     <h2>此類型相關工作</h2>
                 </div>
-                <div class="related_job">
+                <div class="related_job"  >
                     <ul class="jobs row ">
-                        <li class="" v-for="(item, index) in relatedJob" :key="index"  >
-                            <a href="">
+                        <li class="" v-for="(item, index) in relatedJob" :key="index" v-on:click="jobPage(item.IND_INT_NO)" >
+                            <a>
                                 <img :src="item.IND_INT_PICTURE" alt="">
                                 <h3>{{ item.IND_INT_NAME }}</h3>
                             </a>

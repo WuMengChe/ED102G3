@@ -1,7 +1,7 @@
 <?php
 try {
     require_once "connectMySql.php";
-    $postcardSql = "select * from POSTCARD";
+    $postcardSql = "select * from POSTCARD where POS_SEN_DATE < CURRENT_DATE";
     $postcard = $pdo->query($postcardSql);
 
     if ($postcard->rowCount() == 0) { //找不到
