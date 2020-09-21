@@ -49,6 +49,7 @@ let carData = {
     sendData: false,
     showPlotControl: true,
     screenWidth: 0,
+    signIn : true,
 }
 
 let careerVueContent = new Vue({
@@ -563,6 +564,7 @@ let careerVueContent = new Vue({
         sendMessage(DIS_NO, msgIndex){
             if(this.memberCheck == 0){
                 alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
                 var msgTemp = document.querySelector('.send_msg').value;
@@ -601,6 +603,7 @@ let careerVueContent = new Vue({
         changeCollect(data){
             if(this.memberCheck == 0){
                 alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
                 data.collect = !data.collect;
@@ -614,6 +617,7 @@ let careerVueContent = new Vue({
         changeArticleLike(data){
             if(this.memberCheck == 0){
                 alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
                 data.like = !data.like;
@@ -627,6 +631,7 @@ let careerVueContent = new Vue({
         changeMessageLike(MES_NO){
             if(this.memberCheck == 0){
                 alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
                 var colData = new FormData();
@@ -639,6 +644,7 @@ let careerVueContent = new Vue({
         openAccuse(){
             if(this.memberCheck == 0){
                 alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
                 this.accuseIsOpen = !this.accuseIsOpen;
@@ -672,6 +678,31 @@ let careerVueContent = new Vue({
             this.repConNum = -1;
             this.repNo = -1;
             document.querySelectorAll('.radio')[this.repIndex].checked = false;
+        },
+        changeState(){
+            var memAccount = document.querySelector('.input_div #account').value;
+            var memCode = document.querySelector('.input_div #code').value;
+            var formData = new FormData();
+            formData.append('memAccount', memAccount);
+            formData.append('memCode', memCode);
+            axios
+            .post('./php/memberSignInCheck.php',formData)
+            .then((resp) => {
+                if(resp.data == 0){
+                    alert('帳號或密碼錯誤，請重新輸入');
+                    document.querySelector('.input_div #code').value = "";
+                }
+                else{
+                    alert('會員登入成功，請再次點擊儲存結果!');
+                    //登入成功則燈箱移除
+                    document.querySelector('.bg_of_lightbx').style = "display:none";
+                    console.log(resp.data)
+                    window.location.reload();
+                }
+            })
+        },
+        btnClose(){
+            document.querySelector('.bg_of_lightbx').style = "display:none"; 
         },
     }
 })
