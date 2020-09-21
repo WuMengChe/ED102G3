@@ -170,13 +170,13 @@ let changeMemContent = new Vue({
                             this.memberArticle[artNO].backgroundColor = this.loadDataTemp[4][i].IND_COLOR;
                             this.memberArticle[artNO].indClass = this.loadDataTemp[4][i].IND_CLASS;
                             disNoTemp = this.loadDataTemp[4][i].DIS_NO;
-                            if(this.loadDataTemp[8].find(function(item, index, array){return item.DIS_NO == disNoTemp})){
+                            if(this.loadDataTemp[8].find(function(item){return item.DIS_NO == disNoTemp})){
                                 this.memberArticle[artNO].like = true;
                             }
                             else{
                                 this.memberArticle[artNO].like = false;
                             }
-                            if(this.loadDataTemp[10].find(function(item, index, array){return item.DIS_NO == disNoTemp})){
+                            if(this.loadDataTemp[10].find(function(item){return item.DIS_NO == disNoTemp})){
                                 this.memberArticle[artNO].report = true;
                             }
                             else{
@@ -191,7 +191,7 @@ let changeMemContent = new Vue({
                             this.memberArticleMessage[artNO][artMesNO].date = this.loadDataTemp[4][i].DIS_MES_DATE;
                             this.memberArticleMessage[artNO][artMesNO].src = this.loadDataTemp[4][i].留言者照片;
                             mesNoTemp = this.loadDataTemp[4][i].DIS_MES_NO;
-                            if(this.loadDataTemp[9].find(function(item, index, array){return item.DIS_MES_NO == mesNoTemp})){
+                            if(this.loadDataTemp[9].find(function(item){return item.DIS_MES_NO == mesNoTemp})){
                                 this.memberArticleMessage[artNO][artMesNO].like = true;
                             }
                             else{
@@ -213,7 +213,7 @@ let changeMemContent = new Vue({
                             this.memberArticleMessage[artNO][artMesNO].date = this.loadDataTemp[4][i].DIS_MES_DATE;
                             this.memberArticleMessage[artNO][artMesNO].src = this.loadDataTemp[4][i].留言者照片;
                             mesNoTemp = this.loadDataTemp[4][i].DIS_MES_NO;
-                            if(this.loadDataTemp[9].find(function(item, index, array){return item.DIS_MES_NO == mesNoTemp})){
+                            if(this.loadDataTemp[9].find(function(item){return item.DIS_MES_NO == mesNoTemp})){
                                 this.memberArticleMessage[artNO][artMesNO].like = true;
                             }
                             else{
@@ -288,9 +288,9 @@ let changeMemContent = new Vue({
                     }
                     // console.log(resp.data);
                     // console.log(this.loadDataTemp[4]);
-                    // console.log(this.loadDataTemp);
+                    console.log(this.loadDataTemp);
                     // console.log(this.memberClass);
-                    // console.log(this.memberArticleMessage);
+                    console.log(this.memberArticleMessage);
 
                     this.screenWidth = document.documentElement.clientWidth;
                     this.myChart = Array(this.analysisResult.length);
