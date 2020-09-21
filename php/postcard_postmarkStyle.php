@@ -1,7 +1,7 @@
 <?php
 try {
   require_once "./connectMySql.php";
-  $postmarkSql = "select * from postcard_material where POS_MAT_PIC like '%postmark%' and POS_MAT_USE =1;";
+  $postmarkSql = "select * from postcard_material where POS_MAT_PIC like '%postmark%' and POS_MAT_USE =1 limit 3;";
 
   $postmark = $pdo->query($postmarkSql);
 

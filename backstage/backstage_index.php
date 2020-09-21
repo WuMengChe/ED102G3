@@ -245,7 +245,7 @@ try {
                 </td>
                 <td>
                   <div class="QUIZ_ONE_CONTENT"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
-                  <textarea class="QUIZ_ONE_CONTENT editShow editValue"cols="20" rows="5"></textarea>
+                  <textarea class="QUIZ_ONE_CONTENT editShow editValue" cols="20" rows="5"></textarea>
                 </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
@@ -759,20 +759,20 @@ try {
             }
             ?>
           </table>
-          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm">
+          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm" enctype="multipart/form-data">
             <div class="postName">
-              <!-- <label for="">素材名稱:</label>
-              <input type="text" class="form"> -->
+              <label for="POS_MAT_NAME">名稱:</label>
+              <input type="text" class="form" name="POS_MAT_NAME" id="POS_MAT_NAME">
             </div>
             <div>
               <p class="post_type">素材類型</p>
             </div>
             <div>
-              <input type="radio" name="POS_MAT_NAME" id="outline" value="outline">
+              <input type="radio" name="post_type" id="outline" value="outline">
               <label for="outline">外框</label>
-              <input type="radio" name="POS_MAT_NAME" id="stamp" value="stamp">
+              <input type="radio" name="post_type" id="stamp" value="stamp">
               <label for="stamp">郵票</label>
-              <input type="radio" name="POS_MAT_NAME" id="postmark" value="postmark">
+              <input type="radio" name="post_type" id="postmark" value="postmark">
               <label for="postmark">郵戳</label>
             </div>
             <div>
