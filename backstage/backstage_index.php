@@ -215,7 +215,7 @@ while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
         <div class="quiz" v-show="quiz">
           <div class="title">
             <p class="title">測驗題庫</p>
-            <button class="add">新增題目</button>
+            <button class="add" @click="addForm">新增題目</button>
           </div>
           <table>
             <tr>
@@ -291,7 +291,7 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
         <div class="industry" v-show="industry">
           <div class="title">
             <p class="title">行業管理</p>
-            <button class="add">新增行業</button>
+            <button class="add" @click="addForm">新增行業</button>
           </div>
           <table>
             <tr>
