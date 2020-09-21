@@ -21,7 +21,47 @@ if ($action == "getAllDiscuss") {
     showCollect();
 }elseif($action =="accuse"){
     accuse();
+}elseif($action =="accuse_inner_btn"){
+    accuse_inner_btn();
 }
+
+function accuse_inner_btn(){
+    try {
+      
+        require_once "connectMySql.php";
+    
+        $DIS_MES_NO = $_REQUEST["DIS_MES_NO"];
+        $MEM_NO = $_REQUEST["MEM_NO"];
+        $MES_REP_CONTENT = $_REQUEST["MES_REP_CONTENT"];
+        // echo $DIS_NAME;
+
+        $sql = "select * from `message_report` where DIS_MES_NO = :DIS_MES_NO and MEM_NO = :MEM_NO";
+        $member_rep = $pdo -> prepare($sql);
+        $member_rep -> bindValue(":DIS_MES_NO",$_POST["DIS_MES_NO"]);
+        $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
+        $member_rep -> execute();
+        if($member_rep -> rowCount() == 0){
+            $sql = "insert into MESSAGE_REPORT (DIS_MES_NO,MEM_NO,MES_REP_CONTENT)
+            values ('" . $DIS_MES_NO . "'," . $MEM_NO . ", '" . $MES_REP_CONTENT . "')";
+            $sql_calc = "update `discuss_message` set `DIS_MES_REP_NUM` = `DIS_MES_REP_NUM` + 1 where DIS_MES_NO = :DIS_MES_NO";
+            $member_rep = $pdo -> prepare($sql);
+            $member_rep -> bindValue(":DIS_MES_NO",$_POST["DIS_MES_NO"]);
+            $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
+            $member_rep -> bindValue(":MES_REP_CONTENT",$_POST["MES_REP_CONTENT"]);
+            $member_rep -> execute();
+            $member_rep_num = $pdo -> prepare($sql_calc);
+            $member_rep_num -> bindValue(":DIS_MES_NO",$_POST["DIS_MES_NO"]);
+            $member_rep_num -> execute();
+        }else{
+            echo 0;
+        }
+
+        } catch (PDOException $e) {
+            echo json_encode($e->getMessage());
+    }
+}
+
+
 
 function pages(){
     try {
@@ -61,15 +101,15 @@ function accuse(){
 
     try {
         require_once "connectMySql.php";
-        $conNUM = $_POST["repChange"];
+
         $DIS_NO = $_REQUEST["DIS_NO"];
         $MEM_NO = $_REQUEST["MEM_NO"];
         $ART_REP_CONTENT = $_REQUEST["ART_REP_CONTENT"];
         // echo $DIS_NAME;
-        if(conNUM==0){
+  
             $sql = "select * from `article_report` where DIS_NO = :DIS_NO and MEM_NO = :MEM_NO";
             $member_rep = $pdo -> prepare($sql);
-            $member_rep -> bindValue(":DIS_NO",$_POST["REP_NO"]);
+            $member_rep -> bindValue(":DIS_NO",$_POST["DIS_NO"]);
             $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
             $member_rep -> execute();
             if($member_rep -> rowCount() == 0){
@@ -87,32 +127,6 @@ function accuse(){
             }else{
                 echo 0;
             }
-
-        }else{
-            $sql = "select * from `message_report` where DIS_MES_NO = :DIS_MES_NO and MEM_NO = :MEM_NO";
-            $member_rep = $pdo -> prepare($sql);
-            $member_rep -> bindValue(":DIS_MES_NO",$_POST["REP_NO"]);
-            $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
-            $member_rep -> execute();
-            if($member_rep -> rowCount() == 0){
-                $sql = "insert into MESSAGE_REPORT (DIS_NO,MEM_NO,MES_REP_CONTENT)
-                values ('" . $DIS_NO . "'," . $MEM_NO . ", '" . $MES_REP_CONTENT . "')";
-                $sql_calc = "update `discuss_message` set `DIS_MES_REP_NUM` = `DIS_MES_REP_NUM` + 1 where DIS_MES_NO = :DIS_MES_NO";
-                $member_rep = $pdo -> prepare($sql);
-                $member_rep -> bindValue(":DIS_MES_NO",$_POST["REP_NO"]);
-                $member_rep -> bindValue(":MEM_NO",$_POST["MEM_NO"]);
-                $member_rep -> bindValue(":MES_REP_CONTENT",$_POST["ART_REP_CONTENT"]);
-                $member_rep -> execute();
-                $member_rep_num = $pdo -> prepare($sql_calc);
-                $member_rep_num -> bindValue(":DIS_MES_NO",$_POST["REP_NO"]);
-                $member_rep_num -> execute();
-            }else{
-                echo 0;
-            }
-
-        }
-
-
 
         } catch (PDOException $e) {
             echo json_encode($e->getMessage());
@@ -262,6 +276,7 @@ function getMsg()
 
         $sql = "select  MEMBER.MEM_NAME,
         MEMBER.MEM_PIC,
+        DISCUSS_MESSAGE.DIS_MES_NO,
         DISCUSS_MESSAGE.DIS_NO,
         DISCUSS_MESSAGE.DIS_MES_CONTENT,
         DISCUSS_MESSAGE.DIS_MES_DATE,
