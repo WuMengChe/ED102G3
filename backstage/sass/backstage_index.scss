@@ -146,10 +146,12 @@ $side_color:#424965;
       label {
         background-color: #F4C3C5;
         padding: 6px;
-
+        width: 110px;
+        text-align: center;
         display: inline-block;
         border-radius: 5px 0 0 5px;
         font-size: 18px;
+        vertical-align: top;
       }
 
       input.form {
@@ -157,11 +159,20 @@ $side_color:#424965;
         border-radius: 0 5px 5px 0;
         outline: none;
         border: none;
+        min-width: 220px;
+      }
+
+      input[type=radio] {
+        vertical-align: middle;
+        color: white;
       }
 
       textarea {
         border: none;
         outline: none;
+        padding: 5px;
+        border-radius: 0 5px 5px 5px;
+        min-width: 220px;
       }
 
       &:last-child {
@@ -222,6 +233,7 @@ button.add {
   color: white;
   padding: 5px;
   border-radius: 5px;
+  margin-left: 30px;
 
   &:hover {
     background-color: #586083;
@@ -230,7 +242,7 @@ button.add {
 
 div.title {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 15px;
 
   p.title {

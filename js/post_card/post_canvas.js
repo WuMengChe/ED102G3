@@ -11,10 +11,6 @@ function captureFront() {
     scale: 2,
     useCORS: true,
   }).then(function (canvas) {
-
-    var ctx = canvas.getContext("2d");
-
-    ctx.fillText("Hello World", 10, 50);
     let dataURL = canvas.toDataURL("image/png", 1);
 
     let ajaxFront = new XMLHttpRequest();
