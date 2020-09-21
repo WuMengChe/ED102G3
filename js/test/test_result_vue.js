@@ -16,7 +16,16 @@ let Data = {
     anaValue:[0,0,0 ,0 ,0 ,0 ],
     maxValue:'',
     maxIndex:'',
+    memberCheck: '',
+    memberName: '',
+    memberPic: '',
+    memberAccuse: ['重傷、歧視、挑釁、謾罵他人', '交換個人資料', '惡意洗版、重複張貼', '包含色情、露點、性騷擾之內容', '包含廣告、商業宣傳之內容', '其他原因'],
+    industryForumMessage: new Array(),
     anaTypeResult:[],
+    accuseIsOpen: false,
+    repIndex: -1,
+    repNo: -1,
+    repConNum: -1,
     relatedCourse:[],
     relatedJob:[],
     relatedDiscuss:[],
@@ -225,8 +234,183 @@ let testResult = new Vue({
             };
             this.myChart.setOption(option);
         },
-  
-   
+        openArtPage(index){
+            console.log(index)
+            console.log(this.relatedDiscuss[index].DIS_NO)
+            console.log(this.memberCheck)
+            var colData = new FormData();
+            colData.append('DIS_NO', this.relatedDiscuss[index].DIS_NO);
+            colData.append('MEM_NO', this.memberCheck);
+            colData.append('controlNum', 0);
+
+            axios
+            .post('./php/carreerDiscussData.php', colData)
+            .then((resp) =>{
+                console.log(resp.data)
+                console.log(resp.data.split('*;'))
+                if(resp.data.split(';')[0] == 1){
+                    this.relatedDiscuss[index].collect = true;
+                    console.log(this.relatedDiscuss[index].collect);
+                }
+                if(resp.data.split('*;')[1] == 1){
+                    this.relatedDiscuss[index].like = true;
+                    console.log(this.relatedDiscuss[index].like);
+                }
+                this.industryForumMessage = this.relatedDiscuss[index];
+                if(parseInt(resp.data.split('*;')[2]) == 0){
+                    this.industryForumMessage.length = 0;
+                }
+                else{
+                    var messageDataTemp = JSON.parse(resp.data.split('*;')[2]);
+                    this.industryForumMessage.length = messageDataTemp.length;
+                    this.industryForumMessage.index = index;
+                    this.memberArticleMessage = messageDataTemp;
+                    if(JSON.parse(resp.data.split('*;')[3]) == 0){
+                        for(var i = 0; i < messageDataTemp.length; i++){
+                            this.memberArticleMessage[i].like = false;
+                        }
+                    }
+                    else{
+                        var mesNoTemp = 0;
+                        for(var i = 0; i < messageDataTemp.length; i++){
+                            this.memberArticleMessage[i].like = false;
+                            mesNoTemp = this.memberArticleMessage[i].DIS_MES_NO;
+                            if(JSON.parse(resp.data.split('*;')[3]).find(function(item){return item.DIS_MES_NO == mesNoTemp})){
+                                this.memberArticleMessage[i].like = true;
+                            }
+                            else{
+                                this.memberArticleMessage[i].like = false;
+                            }
+                        }
+                    }
+                    console.log(this.memberArticleMessage)
+                }
+                console.log(this.industryForumMessage)
+            })
+            // console.log(this.industryForumMessage)
+            document.querySelector('.mem_overlay').classList.add('artShow');
+        },
+        closeArtPage(){
+            document.querySelector('.mem_overlay').classList.remove('artShow');
+        },
+        sendMessage(DIS_NO, msgIndex){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                var msgTemp = document.querySelector('.send_msg').value;
+                if(msgTemp.length == 0){
+                    alert("請輸入訊息")
+                }
+                else{
+                    var dateTemp = new Date().getFullYear() + '-' + (new Date().getMonth()+1<10 ? '0' : '') + parseInt(new Date().getMonth()+1) + '-' + (new Date().getDate()<10 ? '0' : '') + new Date().getDate();
+                    console.log(this.memberName, this.memberPic, dateTemp, msgIndex, DIS_NO)
+                    console.log(this.memberArticleMessage)
+                    console.log(DIS_NO)
+                    if(!this.memberArticleMessage){
+                        this.memberArticleMessage = new Array();
+                    }
+                    this.memberArticleMessage.push(new Object());
+                    this.memberArticleMessage[msgIndex].MEM_NAME = this.memberName;
+                    this.memberArticleMessage[msgIndex].DIS_MES_CONTENT = msgTemp;
+                    this.memberArticleMessage[msgIndex].DIS_MES_DATE = dateTemp;
+                    this.memberArticleMessage[msgIndex].MEM_PIC = this.memberPic;
+                    this.memberArticleMessage[msgIndex].like = false;
+                    this.industryForumMessage.length = this.industryForumMessage.length + 1;
+                    document.querySelector('.send_msg').value = "";
+                    var mesData = new FormData();
+                    mesData.append('DIS_NO', DIS_NO);
+                    mesData.append('MEM_NO', this.memberCheck);
+                    mesData.append('DIS_MES_CONTENT', msgTemp);
+                    mesData.append('DIS_MES_DATE', dateTemp);
+                    axios
+                    .post('./php/memberInsertMessage.php', mesData)
+                    .then((resp) => {
+                        this.memberArticleMessage[msgIndex].DIS_MES_NO = resp.data;
+                    })
+                }
+            }
+        },
+        changeCollect(data){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                data.collect = !data.collect;
+                var colData = new FormData();
+                colData.append('DIS_NO', data.DIS_NO);
+                colData.append('MEM_NO', this.memberCheck);
+                axios
+                .post('./php/memberArticleCollect.php', colData)
+            }
+        },
+        changeArticleLike(data){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                data.like = !data.like;
+                var colData = new FormData();
+                colData.append('DIS_NO', data.DIS_NO);
+                colData.append('MEM_NO', this.memberCheck);
+                axios
+                .post('./php/memberArticleLike.php', colData)
+            }
+        },
+        changeMessageLike(MES_NO){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                var colData = new FormData();
+                colData.append('DIS_MES_NO', MES_NO);
+                colData.append('MEM_NO', this.memberCheck);
+                axios
+                .post('./php/memberMessageLike.php', colData)
+            }
+        },
+        openAccuse(){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                this.accuseIsOpen = !this.accuseIsOpen;
+            }
+        },
+        closeAccuse(){
+            if(this.repIndex != -1){
+                document.querySelectorAll('.radio')[this.repIndex].checked = false;
+            }
+            this.repConNum = -1;
+            this.repNo = -1;
+        },
+        sendReport(){
+            var repData = new FormData();
+            repData.append('REP_CON_TEMP', this.repConNum);
+            repData.append('REP_NO', this.repNo);
+            repData.append('MEM_NO', this.memberCheck);
+            repData.append('ART_REP_CONTENT', this.memberAccuse[this.repIndex]);
+            axios
+            .post('./php/memberReport.php', repData)
+            .then((resp) =>{
+                console.log(resp.data);
+                if(resp.data == 1){
+                    alert("感謝您的檢舉，我們將盡速處裡")
+                }
+                else{
+                    alert("您已經檢舉過了")
+                }
+            })
+            this.accuseIsOpen = false;
+            this.repConNum = -1;
+            this.repNo = -1;
+            document.querySelectorAll('.radio')[this.repIndex].checked = false;
+        },
 },
 created() {
         window.addEventListener('load', this.plotRadar)
@@ -305,12 +489,29 @@ created() {
 },
     
 mounted() {
+    axios
+    .post('./php/memberStateCheck.php')
+    .then((resp) => {
+        if(resp.data != 0){
+            this.memberCheck = resp.data.split(';')[0]
+            this.memberName = resp.data.split(';')[1]
+            var colData = new FormData();
+            colData.append('MEM_NO', this.memberCheck);
+            axios
+            .post('./php/memberGetPicture.php', colData)
+            .then((resp) => {
+                if(resp.data != 0){
+                    this.memberPic = resp.data
+                }
+            })
+        }
+    })
     var formData = new FormData();
     formData.append('userType', this.maxIndex);
     axios
     .post('./php/testResultType.php',formData)
     .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         this.anaTypeResult= resp.data
        });
 
@@ -319,7 +520,7 @@ mounted() {
     axios
     .post('./php/testResultJob.php',formData)
     .then((resp) => {
-        console.log(resp.data)
+        // console.log(resp.data)
         this.relatedJob = resp.data
           });
 
@@ -328,7 +529,7 @@ mounted() {
     axios
     .post('./php/testResultCourse.php',formData)
     .then((resp) => {
-        console.log(resp.data)
+        // console.log(resp.data)
         this.relatedCourse = resp.data
         });
 
@@ -338,8 +539,14 @@ mounted() {
     .post('./php/testResultForum.php',formData)
     .then((resp) => {
         console.log(resp.data)
-        this.relatedDiscuss = resp.data
-                });
+        this.relatedDiscuss = resp.data;
+        for(var i = 0; i < this.relatedDiscuss.length; i++){
+            this.relatedDiscuss[i].DIS_CONTENT = this.relatedDiscuss[i].DIS_CONTENT.split(';');
+            this.relatedDiscuss[i].like = false;
+            this.relatedDiscuss[i].collect = false;
+        }
+        console.log(this.relatedDiscuss)
+    });
          
 
     
