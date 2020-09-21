@@ -164,17 +164,18 @@ let vm = new Vue({
         this.searchResult = this.information;
       }
     },
+    //下拉選單
     select: function (value) {
       this.searchResult = this.information;
       if (value == "全部文章") {
         this.searchResult = this.information;
       } else if (value == "熱門討論") {
         this.searchResult = this.information.sort(function (a, b) {
-          return a.d_heart < b.d_heart ? 1 : -1;
-        });
+          return a.DIS_LIK_NUM < b.DIS_LIK_NUM ? 1 : -1;
+        }); 
       } else {
         this.searchResult = this.information.filter(function (a, b) {
-          return a.d_qu == value;
+          return a.DIS_CLASS == value;
         });
       }
     }
@@ -320,7 +321,7 @@ let vm = new Vue({
     //送出檢舉內容到資料庫
     sendAccuse() {
       //檢舉PHP
-      axios
+      axiostoggleDropdown
         .post("./php/memberStateCheck.php")
         .then(res => {
           console.log(res);

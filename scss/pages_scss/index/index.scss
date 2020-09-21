@@ -271,13 +271,13 @@ div.header_wrap {
                             }
                             .Stext {
                                 position: relative;
-                                bottom: 80px;
-                                color: white;
+                                bottom: 60px;
+                                color: darkslategray;
                             }
                             .Stitle {
                                 position: relative;
-                                bottom: 50px;
-                                color: white;
+                                bottom: 55px;
+                                color: darkslategray;
                             }
                         }
                         .stageM {
@@ -287,13 +287,13 @@ div.header_wrap {
                             }
                             .Mtext {
                                 position: relative;
-                                bottom: 130px;
-                                color: white;
+                                bottom: 120px;
+                                color: darkslategray;
                             }
                             .Mtitle {
                                 position: relative;
-                                bottom: 50px;
-                                color: white;
+                                bottom: 60px;
+                                color: darkslategray;
                             }
                         }
                         .stageL {
@@ -303,13 +303,13 @@ div.header_wrap {
                             }
                             .Ltext {
                                 position: relative;
-                                bottom: 180px;
-                                color: white;
+                                bottom: 160px;
+                                color: darkslategray;
                             }
                             .Ltitle {
                                 position: relative;
-                                bottom: 50px;
-                                color: white;
+                                bottom: 60px;
+                                color: darkslategray;
                             }
                         }
                     }
@@ -469,9 +469,20 @@ div.header_wrap {
                                         width: 98%;
                                         color: lightgrey;
                                     }
-                                    p {
-                                        font-size: 12px;
-                                        color: rgb(42, 169, 219)
+                                    .megBelow {
+                                        display: flex;
+                                        margin-left: 5px;
+                                        .member {
+                                            font-size: 14px;
+                                            line-height: 10px;
+                                            font-weight: bold;
+                                            margin-right: 10px;
+                                        }
+                                        .date {
+                                            font-size: 12px;
+                                            line-height: 10px;
+                                            color: rgb(42, 169, 219);
+                                        }
                                     }
                                 }
                             }
@@ -605,10 +616,10 @@ div.header_wrap {
                                             }
                                             .course_text {
                                                 padding: 30px 10px 20px;
-                                                .couseTitle {
+                                                .courseTitle {
                                                     font-size: 18px;
                                                     font-weight: bold;
-                                                    margin-bottom: 20px;
+                                                    margin-bottom: 10px;
                                                 }
                                                 i {
                                                     margin-right: 5px;
@@ -617,15 +628,16 @@ div.header_wrap {
                                                     font-size: 13px;
                                                 }
                                                 .courseInfo {
+                                                    margin-top: 10px;
                                                     display: flex;
+                                                    justify-content: space-around;
                                                     .courseHour {
                                                         font-size: 16px;
-                                                        margin-right: auto;
                                                     }
                                                     .courseCost {
                                                         font-size: 18px;
                                                         font-weight: bold;
-                                                        margin-left: auto;
+                                                        // margin-left: auto;
                                                     }
                                                 }
                                             }
@@ -782,7 +794,7 @@ div.header_wrap {
                 .index_card_text {
                     // border: 1px solid #000;
                     position: absolute;
-                    bottom: 10%;
+                    bottom: 10px;
                     right: 15%;
                     width: fit-content;
                     .postText {
