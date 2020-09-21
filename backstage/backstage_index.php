@@ -796,12 +796,12 @@ try {
           </div>
         </div>
 
-        <!-- announcement -->
-        <div class="announcement" v-show="announcement">
+    
+     <!-- announcement -->
+     <div class="announcement" v-show="announcement">
           <p class="title">公告管理</p>
 
           <table>
-
             <tr>
               <th>編號</th>
               <th>內容</th>
@@ -817,13 +817,13 @@ try {
                 <td><?= $announceRow["ANN_DATE"] ?></td>
 
                 <td>
-
                   <?php echo $announceRow["ANN_USE"] == 1 ? "是" : "否" ?>
 
-                  <select name="" id="">
+                  <select name="" id="" class="editShow">
                     <option value="">是</option>
                     <option value="">否</option>
                   </select>
+                  <button class="edit" @click="edit">編輯</button> <button class="editShow cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -831,7 +831,58 @@ try {
             ?>
           </table>
           <button class="add">新增公告</button>
+
+          <form
+            action="backstage_announcement_add.php"
+            method="post"   
+          >
+       <div>
+              <label for="">公告日期</label>
+              <input
+                type="text"
+                class="form"
+                name="ANN_DATE"
+                placeholder="YYYY-MM-DD"
+              >
+            </div>
+            <div>
+              <label for="">公告內容</label>
+              <textarea
+                class="form"
+                name="ANN_CONTENT"
+                cols="20"
+                rows="5"
+                placeholder="限制最多30字"
+                maxlength="30"
+              ></textarea>
+            </div>
+        
+            <div>
+               <select name="ANN_USE" id="">
+                  <option value="1">是</option>
+                  <option value="0">否</option>
+                </select>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="submit"
+              >送出</button>
+              <button
+                @click="cancel_add"
+              >取消</button>
+            </div>
+          </form>
+
         </div>
+
+
+      </div>
+
+
+
+
       </div>
     </div>
   </div>
