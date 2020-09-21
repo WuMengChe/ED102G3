@@ -152,6 +152,10 @@ let testResult = new Vue({
         btnClose(){
             document.querySelector('.bg_of_lightbx').style = "display:none"; 
         },
+        jobPage(proNo){
+            localStorage.proNo_1 = proNo;
+            window.location.href = "./career_profession.html";
+        },
         // 以下圖表
         plotRadar(){
             if (this.myChart != null && this.myChart != "" && this.myChart != undefined) {
@@ -297,7 +301,6 @@ created() {
        }
 
        //送出最大的
-       
 
 },
     
