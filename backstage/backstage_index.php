@@ -237,15 +237,15 @@ try {
                 <td><?= $quizRow["QUIZ_NO"] ?></td>
                 <td>
                   <div class="QUIZ_CON"><?= $quizRow["QUIZ_CON"] ?></div>
+                  <textarea class="QUIZ_CON editShow" cols="20" rows="5"></textarea>
                 </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" class="quizImgOne" id="quizImgOne1">
                   <input type="file" name="QUIZ_PIC_ONE" class="editShow QUIZ_PIC_ONE">
-
-
                 </td>
                 <td>
                   <div class="QUIZ_ONE_CONTENT"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
+                  <textarea class="QUIZ_ONE_CONTENT editShow editValue"cols="20" rows="5"></textarea>
                 </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
@@ -525,16 +525,6 @@ try {
                 <option :value="type.value" v-for="type in types">{{type.type}}</option>
               </select>
             </div>
-            <!-- <div>
-              <label for="">購買人數</label>
-              <input
-                type="number"
-                name="ski_buy_num"
-                min="0"
-                class="ski_buy_num"
-                value="0"
-              >
-            </div> -->
             <div>
               <label for="">價格</label>
               <input type="number" min="0" class="ski_price form" name="ski_price" placeholder="ex:3000">
