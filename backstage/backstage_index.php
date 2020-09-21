@@ -237,15 +237,15 @@ try {
                 <td><?= $quizRow["QUIZ_NO"] ?></td>
                 <td>
                   <div class="QUIZ_CON"><?= $quizRow["QUIZ_CON"] ?></div>
+                  <textarea class="QUIZ_CON editShow" cols="20" rows="5"></textarea>
                 </td>
                 <td>
                   <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" class="quizImgOne" id="quizImgOne1">
                   <input type="file" name="QUIZ_PIC_ONE" class="editShow QUIZ_PIC_ONE">
-
-
                 </td>
                 <td>
                   <div class="QUIZ_ONE_CONTENT"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
+                  <textarea class="QUIZ_ONE_CONTENT editShow editValue"cols="20" rows="5"></textarea>
                 </td>
                 <td>
                   <p> <?= $quizRow["firstType"] ?></p>
@@ -443,12 +443,8 @@ try {
                   </select>
                 </td>
                 <td id="ski_buy_num">
-<<<<<<< HEAD
-                  <?=$skillRow["SKI_BUY_NUM"]?>
-=======
                   <?= $skillRow["SKI_BUY_NUM"] ?>
                   <p><input type="number" min="0"></p>
->>>>>>> 1933d936e3831833e782901185d60b549ec3d42f
                 </td>
                 <td id="ski_price">
                   <?= $skillRow["SKI_PRICE"] ?>
@@ -536,16 +532,7 @@ try {
             </div>
             <div>
               <label for="">總時數</label>
-<<<<<<< HEAD
-              <input
-                type="text"
-                class="ski_time"
-                name="ski_time"
-                placeholder="ex:3小時"
-              >
-=======
               <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
->>>>>>> 1933d936e3831833e782901185d60b549ec3d42f
             </div>
             <div>
               <label for="">介紹</label>
