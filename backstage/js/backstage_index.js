@@ -1,81 +1,46 @@
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     //清空會員查詢值
-    document.getElementById('search_mem_no').addEventListener('click', function() {
+    document.getElementById('search_mem_no').addEventListener('click', function () {
         document.getElementById('MemSearch').value = '';
 
     });
     // 增加新管理員
+    $('#newAdForm').hide();
+    $('#backAd').hide();
+    $('#newAdBtn').click(function () {
+        $('#newAdForm').show();
+        $('#adTable').hide();
+        $('#backAd').show();
+        $('#newAdBtn').hide();
+        //密碼小眼睛
+        $('#showPassword').click(function () {
+            showHide();
+        });
 
-    // document.getElementById("newAd").onclick = addNewAd;
+    });
+    //密碼小眼睛
+    let pwd = document.getElementById('AD_PASSWORD');
+    let eye = document.getElementById('showPassword');
 
-    // function addNewAd() {
-    //     alert();
-    // }
+    function showHide() {
 
-    // document.getElementsByClassName('cancelAd').onclick = addNewAd;
-
-    // function addNewAd() {
-    //     alert();
-    // }
-
-    function addAdministrator() {
-        let myForm = document.getElementById("myForm");
-        let newAd = document.querySelector(".new_administrator");
-
-        if (myForm.style.display == "none") {
-            myForm.style.display = "";
+        if (pwd.type == "password") {
+            pwd.type = "text";
+            eye.className = 'far fa-eye-slash';
+        } else {
+            pwd.type = "password";
+            eye.className = 'far fa-eye';
         }
-        let newAdministrator = newAd.cloneNode(true);
-        newAdministrator.style.display = "";
-        myForm.appendChild(newAdministrator);
-
-        // document.getElementsByClassName("insertToDb").onclick = insertToDb;
-
-
-
-
-    }
-    document.getElementById("newAdBtn").onclick = addAdministrator;
-
-    function addNewAd() {
-        alert();
-    }
-    // function addNewAd() {
-    //     alert();
-    // }
-
-    //--------------------------------------------------------------------
-
-    // var formData = new FormData();
-    // formData.append('adminName', adminName);
-    // formData.append('adminId', adminId);
-    // formData.append('adminPw', adminPw);
-    // axios.post('backstage_insertAD.php', formData)
-    //     .then((resp) => {
-
-    //         if (resp.data == 0) {
-    //             alert('沒有抓到資料');
-
-    //         } else {
-    //             alert('成功新增！')
-
-
-    //         }
-    //     });
-
-    // })
-    //-------------------------------------------------------
-    //insert資料到資料庫
-    // document.getElementById("adNew").onclick = function () {
-    //     alert('111')
-    // };
-
-
-
-
-    document.getElementById("newAdBtn").onclick = addAdministrator;
+    };
+    //返回全部管理員
+    $('#backAd').click(function () {
+        $('#newAdBtn').show();
+        $('#adTable').show();
+        $('#newAdForm').hide();
+        $('#backAd').hide();
+    });
     // 側邊欄切換
-    $('.list li').click(function() {
+    $('.list li').click(function () {
         $(this).siblings().removeClass("active");
         $(this).parent().siblings().children().removeClass("active");
         $(this).addClass("active");
@@ -88,7 +53,7 @@ window.addEventListener("load", function() {
 
 
 
-    $('.edit').click(function(e) {
+    $('.edit').click(function (e) {
         let editBtn = e.target;
         let td = $(editBtn).parent().siblings()
         if (editBtn.innerText == "編輯") {
@@ -172,7 +137,7 @@ window.addEventListener("load", function() {
                 quizImgTwo,
                 indPic,
                 indImg;
-            td.children('.QUIZ_PIC_ONE').change(function(e) {
+            td.children('.QUIZ_PIC_ONE').change(function (e) {
                 // console.log(e.target);
                 // console.log(e.target.files[0]);
                 QUIZ_PIC_ONE = e.target.files[0];
@@ -180,17 +145,17 @@ window.addEventListener("load", function() {
                 quizImgOne = $(this).parent().children('.quizImgOne');
                 let readFile = new FileReader();
                 readFile.readAsDataURL(QUIZ_PIC_ONE);
-                readFile.onload = function() {
+                readFile.onload = function () {
                     quizImgOne.attr('src', readFile.result);
                 }
                 QUIZ_PIC_ONE_name = QUIZ_PIC_ONE.name;
             });
 
-            td.children('.QUIZ_PIC_TWO').change(function(e) {
+            td.children('.QUIZ_PIC_TWO').change(function (e) {
                 QUIZ_PIC_TWO = e.target.files[0];
                 quizImgTwo = $(this).parent().children('.quizImgTwo')
                 let readFile = new FileReader();
-                readFile.onload = function() {
+                readFile.onload = function () {
                     quizImgTwo.attr('src', readFile.result);
 
                 }
@@ -199,7 +164,7 @@ window.addEventListener("load", function() {
             })
 
             //career換圖
-            td.children('.indPic').change(function(e) {
+            td.children('.indPic').change(function (e) {
                 // console.log(e.target);
                 // console.log(e.target.files[0]);
                 indPic = e.target.files[0];
@@ -207,7 +172,7 @@ window.addEventListener("load", function() {
                 indImg = $(this).parent().children('.indImg');
                 let readFile = new FileReader();
                 readFile.readAsDataURL(indPic);
-                readFile.onload = function() {
+                readFile.onload = function () {
                     indImg.attr('src', readFile.result);
                 }
                 indPic_name = indPic.name;
@@ -217,7 +182,7 @@ window.addEventListener("load", function() {
 
 
 
-            $('.cancel').click(function() {
+            $('.cancel').click(function () {
                 $(this).parent().children('.editShow').hide();
                 $(this).parent().siblings().children('.editShow').hide();
                 // console.log($(this).parent().children('.quizShow'));
@@ -260,7 +225,7 @@ window.addEventListener("load", function() {
             quizXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             quizXhr.send(`json=${quizJson}`);
 
-            quizXhr.onload = function() {
+            quizXhr.onload = function () {
                 if (quizXhr.status == 200) {
                     alert(quizXhr.responseText);
                     location.reload();
@@ -300,7 +265,7 @@ window.addEventListener("load", function() {
             careerXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             careerXhr.send(`json=${careerJson}`);
 
-            careerXhr.onload = function() {
+            careerXhr.onload = function () {
                 if (careerXhr.status == 200) {
                     alert(careerXhr.responseText);
                     location.reload();
@@ -308,10 +273,43 @@ window.addEventListener("load", function() {
                 } else {
                     alert(careerXhr.status);
                 }
-
             }
 
         }
+
+    });
+
+    //新增明信片
+    $('#newPosForm').hide();
+    $('#backPost').hide();
+    $('#newPostBtn').click(function () {
+        $('#newPosForm').show();
+        $('#backPost').show();
+        $('#postTable').hide();
+        $('#newPostBtn').hide();
+    });
+    //返回全部明信片
+    $('#backPost').click(function () {
+        $('#newPosForm').hide();
+        $('#backPost').hide();
+        $('#postTable').show();
+        $('#newPostBtn').show();
     })
+    //明信片預覽照片
+    document.getElementById('postImg').onchange = postImg1Change;
+
+    function postImg1Change() {
+        let postImg = document.getElementById('postImg').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(postImg);
+        readFile.addEventListener('load', function () {
+            let postNew = document.getElementById('postNew');
+            let postImg_show = document.querySelector('.postImg_show');
+            postNew.src = readFile.result;
+            postImg_show.style.height = 'auto';
+            postImgName = postImg.name;
+
+        });
+    };
 
 });
