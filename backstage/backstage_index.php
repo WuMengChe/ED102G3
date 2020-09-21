@@ -51,6 +51,9 @@ try {
 </head>
 
 <body>
+  <div class="delete_confirm">
+
+  </div>
   <header>
 
     <div class="logo">
@@ -415,32 +418,108 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
 while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
     ?>
               <tr>
-                <td><?=$skillRow["SKI_NO"]?></td>
-                <td><?=$skillRow["SKI_NAME"]?></td>
-                <td>
+                <td id="ski_no"><?=$skillRow["SKI_NO"]?></td>
+                <td id="ski_name">
+                  <?=$skillRow["SKI_NAME"]?>
+                  <p><input type="text" placeholder="名稱" value="<?=$skillRow["SKI_NAME"]?>"></p>
+                </td>
+                <td id="ind_no">
                   <?=$skillRow["IND_CLASS"]?>
                   <select name="" id="">
                     <option :value="type.value" v-for="type in types">{{type.type}}</option>
                   </select>
                 </td>
-                <td><?=$skillRow["SKI_BUY_NUM"]?></td>
-                <td><?=$skillRow["SKI_PRICE"]?></td>
-                <td><?=$skillRow["SKI_TIME"]?></td>
-                <td>
-                  <div class="overflow"><?=$skillRow["SKI_INTRO"]?></div>
+                <td id="ski_buy_num">
+                  <?=$skillRow["SKI_BUY_NUM"]?>
+                  <p><input type="number" min="0"></p>
                 </td>
-                <td>
+                <td id="ski_price">
+                  <?=$skillRow["SKI_PRICE"]?>
+                  <p><input type="number" min="0"></p>
+                </td>
+                <td id="ski_time"><?=$skillRow["SKI_TIME"]?></td>
+                <td id="ski_intro">
+                  <div class="overflow">
+                    <?=$skillRow["SKI_INTRO"]?>
+                  </div>
+                  <div>
+                    <textarea
+                    name="ski_intro"
+                    cols="20"
+                    rows="5"
+                    placeholder="限制最多100字"
+                    maxlength="100"
+                   ></textarea>
+                  </div>
+                </td>
+                <td id="ski_harvest">
                   <div class="overflow"><?=$skillRow["SKI_HARVEST"]?></div>
+                  <div>
+                    <textarea
+                    name="ski_harvest"
+                    cols="20"
+                    rows="5"
+                    placeholder="限制最多30字"
+                    maxlength="30"
+                   ></textarea>
+                  </div>
                 </td>
-                <td><?=$skillRow["SKI_LINK"]?></td>
-                <td>
+                <td id="ski_line"><?=$skillRow["SKI_LINK"]?><p><input type="number" min="0"></p></td>
+                <td id="ski_img">
                   <img src="<?=$skillRow["SKI_IMG"]?>" alt="課程圖片">
+                  <p><input
+                type="file"
+                class="ski_img"
+                name="ski_img"
+              ></p>
                 </td>
-                <td>
+                <td id="ski_tec_img">
                   <img src="<?=$skillRow["SKI_TEC_IMG"]?>" alt="講師圖片">
+                  <p><input
+                type="file"
+                class="ski_tec_img"
+                name="ski_tec_img"
+              ></p>
                 </td>
-                <td><?=$skillRow["SKI_TEC_NAME"]?></td>
+                <td id="ski_tec_name">
+                  <?=$skillRow["SKI_TEC_NAME"]?>
+                  <p><input type="number" min="0"></p>
+                </td>
+                <td id="ski_tec_intro">
+                  <div class="overflow"><?=$skillRow["SKI_TEC_INTRO"]?></div>
+                  <div>
+                    <textarea
+                    name="ski_tec_intro"
+                    cols="20"
+                    rows="5"
+                    placeholder="限制最多250字"
+                    maxlength="250"
+                   ></textarea>
+                  </div>
+                </td>
+                <td id="ski_outline">
+                  <div class="overflow"><?=$skillRow["SKI_OUTLINE"]?></div>
+                  <div>
+                    <textarea
+                    name="ski_outline"
+                    cols="20"
+                    rows="5"
+                    placeholder="限制最多30字"
+                    maxlength="30"
+                   ></textarea>
+                  </div>
+                </td>
+
+                <td id="ski_stud">
+                <div class="overflow"><?=$skillRow["SKI_STUD"]?></div>
+                <p> <input
+                type="text"
+                class="ski_stud"
+                name="ski_stud"
+                placeholder="ex:學生"></p>
+              </td>
                 <td>
+
                 <?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?>
                   <select name="authority" id="">
                     <option value="authority">是</option>
@@ -448,14 +527,170 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                   </select>
                 </td>
                 <td>
-                  <button class="edit">編輯</button>
+                  <button class="edit" @click="edit">編輯</button>
+                  <button class="edit" @click="deleteSki">刪除</button>
                 </td>
               </tr>
             <?php
 }
 ?>
           </table>
-          <button class="add">新增課程</button>
+          <button class="add" @click="addForm">新增課程</button>
+          <!-- 新增課程form -->
+          <form
+            action="backstage_skillClass_add.php"
+            method="post"
+            style="display:none;"
+          >
+            <div>
+              <label for="">名稱</label>
+              <input
+                type="text"
+                class="ski_name"
+                name="ski_name"
+                placeholder="輸入課程名稱"
+              >
+            </div>
+            <div>
+              <label for="">類別</label>
+              <select name="ind_no" id="">
+                    <option :value="type.value" v-for="type in types">{{type.type}}</option>
+              </select>
+            </div>
+            <!-- <div>
+              <label for="">購買人數</label>
+              <input
+                type="number"
+                name="ski_buy_num"
+                min="0"
+                class="ski_buy_num"
+                value="0"
+              >
+            </div> -->
+            <div>
+              <label for="">價格</label>
+              <input
+                type="number"
+                min="0"
+                class="ski_price"
+                name="ski_price"
+                placeholder="ex:3000"
+              >
+            </div>
+            <div>
+              <label for="">總時數</label>
+              <input
+                type="number"
+                min="0"
+                class="ski_time"
+                name="ski_time"
+                placeholder="ex:3小時"
+              >
+            </div>
+            <div>
+              <label for="">介紹</label>
+              <textarea
+                class="ski_intro"
+                name="ski_intro"
+                cols="20"
+                rows="5"
+                placeholder="限制最多100字"
+                maxlength="100"
+              ></textarea>
+            </div>
+            <div>
+              <label for="">學習內容</label>
+              <textarea
+                class="ski_harvest"
+                name="ski_harvest"
+                cols="20"
+                rows="5"
+                placeholder="限制最多30字"
+                maxlength="30"
+              ></textarea><button class="harvest_add">新增</button>
+            </div>
+            <div>
+              <label for="">課程連結</label>
+              <input
+                type="text"
+                class="ski_link"
+                name="ski_link"
+                placeholder="ex:youtube.com"
+              >
+            </div>
+            <div>
+              <label for="">課程圖片</label>
+              <input
+                type="file"
+                class="ski_img"
+                name="ski_img"
+              >
+            </div>
+            <div>
+              <label for="">講師圖片</label>
+              <input
+                type="file"
+                class="ski_tec_img"
+                name="ski_tec_img"
+              >
+            </div>
+            <div>
+              <label for="">講師名稱</label>
+              <input
+                type="text"
+                class="ski_tec_name"
+                name="ski_tec_name"
+                placeholder="ex:廣仲"
+              >
+            </div>
+            <div>
+              <label for="">講師介紹</label>
+              <textarea
+                class="ski_tec_intro"
+                name="ski_tec_intro"
+                cols="20"
+                rows="5"
+                placeholder="限制最多250字"
+                maxlength="250"
+              ></textarea>
+            </div>
+            <div>
+              <label for="">大綱</label>
+              <textarea
+                class="ski_outline"
+                name="ski_outline"
+                cols="20"
+                rows="5"
+                placeholder="限制最多30字"
+                maxlength="30"
+              ></textarea><button class="outline_add">新增</button>
+            </div>
+            <div>
+              <label for="">上課對象</label>
+              <input
+                type="text"
+                class="ski_stud"
+                name="ski_stud"
+                placeholder="ex:學生">
+              <button class="stud_add">新增</button>
+            </div>
+            <div>
+              <label for="">是否隱藏</label>
+              <input type="radio" name="ski_hidden" value="1" checked>否
+              <input type="radio" name="ski_hidden" value="0">是
+            </div>
+
+
+            <div>
+              <button
+                type="submit"
+                class="submit"
+              >送出</button>
+              <button
+                @click="cancel_add"
+              >取消</button>
+            </div>
+          </form>
         </div>
 
         <!-- article_report -->
