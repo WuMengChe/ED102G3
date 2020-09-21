@@ -235,9 +235,6 @@ let testResult = new Vue({
             this.myChart.setOption(option);
         },
         openArtPage(index){
-            console.log(index)
-            console.log(this.relatedDiscuss[index].DIS_NO)
-            console.log(this.memberCheck)
             var colData = new FormData();
             colData.append('DIS_NO', this.relatedDiscuss[index].DIS_NO);
             colData.append('MEM_NO', this.memberCheck);
@@ -246,15 +243,15 @@ let testResult = new Vue({
             axios
             .post('./php/carreerDiscussData.php', colData)
             .then((resp) =>{
-                console.log(resp.data)
-                console.log(resp.data.split('*;'))
-                if(resp.data.split(';')[0] == 1){
+                // console.log(resp.data)
+                // console.log(resp.data.split('*;'))
+                if(parseInt(resp.data.split('*;')[0]) == 1){
                     this.relatedDiscuss[index].collect = true;
-                    console.log(this.relatedDiscuss[index].collect);
+                    // console.log(this.relatedDiscuss[index].collect);
                 }
-                if(resp.data.split('*;')[1] == 1){
+                if(parseInt(resp.data.split('*;')[1]) == 1){
                     this.relatedDiscuss[index].like = true;
-                    console.log(this.relatedDiscuss[index].like);
+                    // console.log(this.relatedDiscuss[index].like);
                 }
                 this.industryForumMessage = this.relatedDiscuss[index];
                 if(parseInt(resp.data.split('*;')[2]) == 0){
@@ -283,9 +280,9 @@ let testResult = new Vue({
                             }
                         }
                     }
-                    console.log(this.memberArticleMessage)
+                    // console.log(this.memberArticleMessage)
                 }
-                console.log(this.industryForumMessage)
+                // console.log(this.industryForumMessage)
             })
             // console.log(this.industryForumMessage)
             document.querySelector('.mem_overlay').classList.add('artShow');
