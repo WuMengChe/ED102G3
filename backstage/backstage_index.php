@@ -431,7 +431,6 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                 </td>
                 <td id="ski_buy_num">
                   <?=$skillRow["SKI_BUY_NUM"]?>
-                  <p><input type="number" min="0"></p>
                 </td>
                 <td id="ski_price">
                   <?=$skillRow["SKI_PRICE"]?>
@@ -557,16 +556,6 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                     <option :value="type.value" v-for="type in types">{{type.type}}</option>
               </select>
             </div>
-            <!-- <div>
-              <label for="">購買人數</label>
-              <input
-                type="number"
-                name="ski_buy_num"
-                min="0"
-                class="ski_buy_num"
-                value="0"
-              >
-            </div> -->
             <div>
               <label for="">價格</label>
               <input
@@ -580,8 +569,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             <div>
               <label for="">總時數</label>
               <input
-                type="number"
-                min="0"
+                type="text"
                 class="ski_time"
                 name="ski_time"
                 placeholder="ex:3小時"
