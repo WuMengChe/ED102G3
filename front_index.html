@@ -152,7 +152,12 @@
                                         <i class="fa fa-comment-alt " aria-hidden="true ">{{item.mes_num}}</i>
                                         <i class="fa fa-heart " aria-hidden="true ">{{item.DIS_LIK_NUM}}</i>
                                         <hr>
-                                        <p>{{item.DIS_DATE}}</p>
+                                        <div class="megBelow">
+
+                                            <!-- <img :src="item.MEM_PIC" alt=""> -->
+                                            <p class="member">{{item.MEM_NAME}}</p>
+                                            <p class="date">{{item.DIS_DATE}}</p>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
@@ -181,10 +186,10 @@
                                         <div class="screen_carousel "  >
                                             <div v-for="course in courses ">
 
-                                                <a :href="'./course_introduce.html?ski_no=' + course.SKI_NO " class="item " id="indexCoures ">
+                                                <a :href="'./course_introduce.html?ski_no=' + course.SKI_NO" class="item " id="indexCoures ">
                                                     <div class="course_img ">
                                                         <img :src="course.SKI_IMG " alt=" ">
-                                                        <div class="typeTag " :style="{backgroundColor:course.IND_COLOR}">{{course.IND_CLASS}}</div>
+                                                        <div class="typeTag " :style="'backgroundColor:'+course.IND_COLOR+';'">{{course.IND_CLASS}}</div>
                                                     </div>
                                                     <div class="course_text ">
                                                         <p class="courseTitle ">{{course.SKI_NAME}}</p>

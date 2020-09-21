@@ -1,24 +1,14 @@
 <?php
-// session_start();
 
 try {
-  $quizUp = json_decode($_POST["quizJson"], true);
+  $careerUp = json_decode($_POST["careerJson"], true);
   //圖片一解碼
 
-  $quizImgOneSrc = str_replace('data:image/png;base64,', '', $quizUp["quizImgOneSrc"]);
-  $quizImgOneSrc = str_replace(' ', '+', $quizImgOneSrc);
-  $quizImgOneData = base64_decode($quizImgOneSrc);
-  $quizImgOneFilename = "./img/quiz/{$quizUp['quizImgOneName']}";
-  file_put_contents($quizImgOneFilename, $quizImgOneData);
-
-  $quizImgTwoSrc = str_replace('data:image/png;base64,', '', $quizUp["quizImgTwoSrc"]);
-  $quizImgTwoSrc = str_replace(' ', '+', $quizImgTwoSrc);
-  $quizImgTwoData = base64_decode($quizImgTwoSrc);
-  $quizImgTwoFilename = "./img/quiz/{$quizUp['quizImgTwoName']}";
-  file_put_contents($quizImgTwoFilename, $quizImgTwoData);
-
-
-
+  $indImgUpdate = str_replace('data:image/png;base64,', '', $quizUp["quizImgOneSrc"]);
+  $indImgUpdate = str_replace(' ', '+', $indImgUpdate);
+  $indImgData = base64_decode($indImgUpdate);
+  $indImgFilename = "./img/career/{$careerUp['indPic_name']}";
+  file_put_contents($indImgFilename, $indImgData);
 
 
   require_once("./connectMySql.php");
@@ -26,7 +16,7 @@ try {
 
 
   // 修改測驗題庫資料
-  $quizUpSql = "update quiz set 
+  $careerUpSql = "update quiz set 
   QUIZ_CON = :QUIZ_CON,
   QUIZ_PIC_ONE=:QUIZ_PIC_ONE,
   QUIZ_PIC_TWO=:QUIZ_PIC_TWO,

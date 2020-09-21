@@ -47,7 +47,6 @@ $side_color:#424965;
     tr:last-child td:last-child {
       border-bottom-right-radius: 10px;
     }
-
   }
 }
 
@@ -102,7 +101,6 @@ $side_color:#424965;
       border-radius: 8px;
       height: 28px;
 
-
       input.search_input {
         outline: none;
         border: none;
@@ -114,7 +112,6 @@ $side_color:#424965;
         padding: 2px 6px;
         background-color: white;
         display: inline-block;
-
       }
 
       button.search {
@@ -127,7 +124,6 @@ $side_color:#424965;
         vertical-align: top;
       }
     }
-
   }
 }
 
@@ -291,41 +287,9 @@ header {
     }
   }
 
-  .bg_ad2 {
-    // border: 1px solid black;
-    margin: 5px 15px;
-
-    // display: inline-block;
-    div {
-      display: inline-block;
-      // border: 1px solid red;
-      margin-top: 6%;
-
-      p.ad_name {
-        cursor: default;
-      }
-
-      p {
-        display: inline-block;
-        margin-left: 20px;
-        // border: 1px solid blue;
-        cursor: pointer;
-        padding: 5px;
-        color: gray;
-
-        a {
-          color: $a_color;
-
-          &:hover {
-            color: $main_color;
-          }
-        }
-      }
-    }
-
-  }
-
 }
+
+
 
 .backstage {
   // border: 1px solid black;
@@ -355,22 +319,8 @@ header {
           @include listStyle();
         }
 
-        .management {
-          margin-top: 10px;
-          // padding: 5px 0;
-          @include listStyle();
-        }
-      }
-
-      .copyright {
-        // border: 1px solid yellow;
-        margin-bottom: 10%;
-        color: rgb(180, 180, 180);
-        text-align: center;
-        padding-right: 15px;
-
-        a {
-          color: $a_color;
+        #MEM_USE {
+          display: none;
         }
       }
     }
