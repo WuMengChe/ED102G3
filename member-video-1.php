@@ -1,3 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/app_public.css">
+
+    <title>Document</title>
+    @@include('app/link.html')
+    @@include('app/script.html');
+</head>
+
+<body>
+    @@include('app/header.html')
+
 <?php
 try {
 
