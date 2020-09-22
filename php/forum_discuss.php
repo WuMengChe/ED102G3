@@ -25,8 +25,27 @@ if ($action == "getAllDiscuss") {
     accuse_inner_btn();
 }elseif($action =="addfeedbackFavor"){
     addfeedbackFavor();
+}elseif($action =="showinnerBoxLike"){
+    showinnerBoxLike();
 }
 
+
+function showinnerBoxLike(){
+
+    try {
+        require_once "connectMySql.php";
+        $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
+        $sql = "select DIS_MES_NO from MESSAGE_LIKE where MES_LIK_STATE =1 and MEM_NO = $mem_no;";
+
+        $feedBackLike = $pdo->prepare($sql);
+        $feedBackLike->execute();
+
+        $result = $feedBackLike->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($result);
+     } catch (PDOException $e) {
+        echo json_encode($e->getMessage());
+    }
+}
 
 function addfeedbackFavor(){
     try {
