@@ -2,38 +2,44 @@
 
 try {
     require_once "./connectMySql.php";
-    if ($pdo != false) {
+
+    $sql = "SELECT * FROM `skill_class` WHERE ski_name = :SKI_NAME";
+    $ski = $pdo->prepare($sql);
+    $ski->bindValue(":SKI_NAME", $_POST["ski_name"]);
+    $ski->execute();
+
+    if ($ski->rowCount() == 0) {
         // insert into order_mem
         $sql = "INSERT INTO `skill_class` (ski_name,
-    ind_no,
-    -- ski_buy_num,
-    ski_price,
-    ski_time,
-    ski_intro,
-    ski_harvest,
-    ski_link,
-    ski_img,
-    ski_tec_img,
-    ski_tec_name,
-    ski_tec_intro,
-    ski_outline,
-    ski_stud,
-    ski_hidden
+        ind_no,
+        -- ski_buy_num,
+        ski_price,
+        ski_time,
+        ski_intro,
+        ski_harvest,
+        ski_link,
+        ski_img,
+        ski_tec_img,
+        ski_tec_name,
+        ski_tec_intro,
+        ski_outline,
+        ski_stud,
+        ski_hidden
             )VALUES (:ski_name,
-    :ind_no,
+        :ind_no,
     -- :ski_buy_num,
-    :ski_price,
-    :ski_time,
-    :ski_intro,
-    :ski_harvest,
-    :ski_link,
-    :ski_img,
-    :ski_tec_img,
-    :ski_tec_name,
-    :ski_tec_intro,
-    :ski_outline,
-    :ski_stud,
-    :ski_hidden);";
+        :ski_price,
+        :ski_time,
+        :ski_intro,
+        :ski_harvest,
+        :ski_link,
+        :ski_img,
+        :ski_tec_img,
+        :ski_tec_name,
+        :ski_tec_intro,
+        :ski_outline,
+        :ski_stud,
+        :ski_hidden);";
         $disAll = $pdo->prepare($sql);
 
         $disAll->bindValue(":ski_name", $_POST["ski_name"]);
@@ -55,6 +61,9 @@ try {
 
         header("Location:/backstage_index.php");
 
+    } else {
+        header("Location:/backstage_index.php");
+        echo '此課程已存在';
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

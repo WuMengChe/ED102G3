@@ -174,7 +174,7 @@ while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
-                  <button class="edit adEdit<?=$adminRow["AD_NO"]?>" @click="edit">編輯</button>
+                  <button class="edit adEdit<?=$adminRow["AD_NO"]?>">編輯</button>
                   <button class="cancel">取消</button>
                 </td>
               </tr>
@@ -284,6 +284,60 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
+               <!-- 新增題庫form -->
+               <form action="backstage_quiz_add.php" method="post" style="display:none;">
+            <div>
+              <label for="quiz_con">問題內容</label>
+              <textarea  name="quiz_con" cols="20" rows="5" placeholder="輸入題目" id="quiz_cons"></textarea>
+            </div>
+            <div>
+              <label for="">選項一圖片</label>
+              <input type="file" class="form" name="quiz_pic_one">
+              <div class="postImg_show">
+                <img src="" alt="" id="quiz_pic_one">
+              </div>
+            </div>
+            <div>
+              <label for="">選項一內容</label>
+              <textarea  name="quiz_sel_one_content" cols="20" rows="5" placeholder="輸入內容"></textarea>
+            </div>
+            <div>
+              <label for="">選項一類
+              別</label>
+              <select name="quiz_sel_one_class" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">選項二圖片</label>
+              <input type="file" class="form" name="quiz_pic_two">
+              <div class="postImg_show"><img src="" alt="" id="quiz_pic_one"></div>
+            </div>
+            <div>
+              <label for="">選項二內容</label>
+              <textarea  name="quiz_sel_two_content" cols="20" rows="5" placeholder="輸入內容"></textarea>
+            </div>
+            <div>
+              <label for="">選項二類別</label>
+              <select name="quiz_sel_two_class" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">啟用題目</label>
+              <input type="radio" name="quiz_use" value="1" checked>是
+              <input type="radio" name="quiz_use" value="0">否
+            </div>
+
+
+            <div>
+              <button type="submit" class="submit">送出</button>
+            </div>
+
+          </form>
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div>
 
         </div>
 
@@ -399,6 +453,69 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
 ?>
           </table>
 
+              <!-- 新增行業form -->
+              <!-- <form action="backstage_ind_add.php" method="post" style="display:none;">
+            <div>
+              <label for="">名字</label>
+              <input type="text" class="form" name="ind_int_name">
+            </div>
+            <div>
+              <label for="">介紹</label>
+              <textarea  name="ind_int_intro" cols="20" rows="5" placeholder="輸入職業介紹"></textarea>
+            </div>
+            <div>
+              <label for="">圖片</label>
+              <input type="file" class="form" name="ind_int_picture"">
+            </div>
+            <div>
+              <label for="">類別</label>
+              <select name="ind_no" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">內容</label>
+              <textarea  name="ind_int_content" cols="20" rows="5" placeholder="輸入職業內容"></textarea>
+            </div>
+            <div>
+              <label for="">技能</label>
+              <textarea  name="ind_int_skill" cols="20" rows="5" placeholder="輸入職業技能"></textarea>
+            </div>
+            <div>
+              <label for="">一年以下</label>
+              <select name="ind_no" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">一~三年</label>
+              <input type="radio" name="ski_hidden" value="1" checked>否
+              <input type="radio" name="ski_hidden" value="0">是
+            </div>
+            <div>
+              <label for="">三~五年</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+            <div>
+              <label for="">五~十年</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+            <div>
+              <label for="">十年以上</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+
+
+            <div>
+              <button type="submit" class="submit">送出</button>
+            </div>
+
+          </form>
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div> -->
+
+
         </div>
 
         <!-- skill_class -->
@@ -504,7 +621,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                   </select>
                 </td>
                 <td>
-                  <button class="edit" @click="edit">編輯</button>
+                  <button class="edit">編輯</button>
                   <button class="edit" @click="deleteSki">刪除</button>
                 </td>
               </tr>
@@ -536,7 +653,6 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                 name="ski_time"
                 placeholder="ex:3小時"
               >
-              <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
 
             </div>
             <div>
@@ -554,10 +670,16 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             <div>
               <label for="">課程圖片</label>
               <input type="file" class="ski_img form" name="ski_img">
+              <div class="postImg_show">
+                <img src="" alt="" id="ski_img_show">
+              </div>
             </div>
             <div>
               <label for="">講師圖片</label>
               <input type="file" class="ski_tec_img form" name="ski_tec_img">
+              <div class="postImg_show">
+                <img src="" alt="" id="ski_tec_img_show">
+              </div>
             </div>
             <div>
               <label for="">講師名稱</label>
@@ -589,7 +711,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
 
           </form>
           <div>
-            <button class="back" id="backAd" @click="cancel_add">返回全部列表</button>
+            <button class="back"  @click="cancel_add">返回全部列表</button>
           </div>
         </div>
 
