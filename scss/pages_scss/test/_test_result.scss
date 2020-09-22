@@ -139,7 +139,7 @@ main.main_test_result{
             display: flex;
             border-radius: 25px;
             position: absolute;
-            background: $second_color2;
+            background: $second_color1;
             // border: 2px solid white;
             // box-shadow: $card_shadow;
             width: 150%;
@@ -155,7 +155,7 @@ main.main_test_result{
             }
             100%{
                 width: 150%;
-                background: $second_color2;
+                background: $second_color1;
             }
         }
     }
@@ -181,8 +181,12 @@ main.main_test_result{
              width: 50%;
              padding: 2%;
              h2{
-                 margin: 3%;
+                 margin: 3% 0;
                  font-weight: 600;
+                 display: flex ;
+                //  border: 1px solid black;
+                 width: 200px;
+                 text-align: center;
              }
              span,p{
                  line-height: 28px;
