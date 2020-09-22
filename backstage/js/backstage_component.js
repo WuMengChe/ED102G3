@@ -272,6 +272,20 @@ new Vue({
                     });
             }
         },
+        //公告新增
+        add_annNew(){
+            alert("1234")
+            $("#add_annNew").hide();
+            $("#annTable").hide();
+            $("#ann_form").show();
+
+        },
+        ann_backAd(){
+            alert("123")
+            $("#add_annNew").show();
+            $("#annTable").show();
+            $("#ann_form").hide();
+        }
     },
     mounted() {
         axios.get("./backstage_order.php").then((res) => {

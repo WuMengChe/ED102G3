@@ -1,11 +1,11 @@
 <?php
-//   $_current ='backstage_announcement_add.php';
-//   $_redirect = "http://" . str_replace($_current, '',$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI']) . 'backstage_index.php';
+  $_current ='backstage_announcement_add.php';
+  $_redirect = "http://" . str_replace($_current, '',$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI']) . 'backstage_index.php';
 try {
 
     require_once "connectMySql.php";
     if($pdo!=false){
-        $sql = "INSERT INTO ANNOUNCEMENT(ANN_CONTENT,ANN_DATE,ANN_USE) VALUES(:ANN_CONTENT,:ANN_DATE,:ANN_USE);";
+        $sql = " update ANNOUNCEMENT set ANN_USE = $ANN_USE where ANN_NO = $ANN_NO;";
 
 
         $disAll = $pdo->prepare($sql);
@@ -14,7 +14,7 @@ try {
         $disAll->bindValue(":ANN_DATE",$_POST["ANN_DATE"]);
         $disAll->bindValue(":ANN_USE",$_POST["ANN_USE"]);
         $disAll->execute();
-        // header("Location: ". $_redirect);
+        header("Location: ". $_redirect);
     }
 
 

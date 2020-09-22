@@ -1,37 +1,37 @@
 <?php
 session_start();
 try {
-  require_once "./connectMySql.php";
+    require_once "./connectMySql.php";
 
-  //-------------------------------------------------
-  $memSql = "select * from member";
-  $memSearchSql = "select * from `member` where MEM_NO = 3";
-  $adminSql = "select * from administrator";
-  $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
-  $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_INTRO, i.INT_INT_CONTENT, i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
+    //-------------------------------------------------
+    $memSql = "select * from member";
+    $memSearchSql = "select * from `member` where MEM_NO = 3";
+    $adminSql = "select * from administrator";
+    $quizSql = "select q.QUIZ_NO, q.QUIZ_CON, q.QUIZ_PIC_ONE, q.QUIZ_SEL_ONE_CONTENT ,c.ind_class 'firstType', q.QUIZ_PIC_TWO,q.QUIZ_SEL_TWO_CONTENT, d.ind_class 'secondType', q.QUIZ_USE from quiz q join industry_class c on q.QUIZ_SEL_ONE_CLASS=c.IND_NO join industry_class d on q.QUIZ_SEL_two_CLASS=d.IND_NO order by QUIZ_NO;";
+    $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_INTRO, i.INT_INT_CONTENT, i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
 
-  $skillSql = "select a.*, b.IND_CLASS from SKILL_CLASS a join INDUSTRY_CLASS b on a.IND_NO = b.IND_NO order by SKI_NO";
-  $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
-  $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
+    $skillSql = "select a.*, b.IND_CLASS from SKILL_CLASS a join INDUSTRY_CLASS b on a.IND_NO = b.IND_NO order by SKI_NO";
+    $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
+    $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
 
-  $materialSql = "select * from POSTCARD_MATERIAL ";
-  $announceSql = "select * from announcement;";
-  $member = $pdo->query($memSql);
-  $memSearch = $pdo->query($memSearchSql);
-  $administrator = $pdo->query($adminSql);
-  $quiz = $pdo->query($quizSql);
-  $career = $pdo->query($careerSql);
-  $skill = $pdo->query($skillSql);
-  $ArReport = $pdo->query($ArReportSql);
-  $MgReport = $pdo->query($MgReportSql);
+    $materialSql = "select * from POSTCARD_MATERIAL ";
+    $announceSql = "select * from announcement;";
+    $member = $pdo->query($memSql);
+    $memSearch = $pdo->query($memSearchSql);
+    $administrator = $pdo->query($adminSql);
+    $quiz = $pdo->query($quizSql);
+    $career = $pdo->query($careerSql);
+    $skill = $pdo->query($skillSql);
+    $ArReport = $pdo->query($ArReportSql);
+    $MgReport = $pdo->query($MgReportSql);
 
-  // $ordCount = $pdo->query($ordCountSql);
+    // $ordCount = $pdo->query($ordCountSql);
 
-  $material = $pdo->query($materialSql);
-  $announce = $pdo->query($announceSql);
+    $material = $pdo->query($materialSql);
+    $announce = $pdo->query($announceSql);
 } catch (PDOException $e) {
-  echo "錯誤原因:", $e->getMessage(), "<br>";
-  echo "錯誤行號:", $e->getLine(), "<br>";
+    echo "錯誤原因:", $e->getMessage(), "<br>";
+    echo "錯誤行號:", $e->getLine(), "<br>";
 }
 
 ?>
@@ -65,8 +65,8 @@ try {
       <div>
         <p class="ad_name">
           <?php
-          echo $_SESSION["AD_NAME"];
-          ?>
+echo $_SESSION["AD_NAME"];
+?>
         </p>
         <p>
           <a href="./backstage_login.html">登出</a>
@@ -124,14 +124,14 @@ try {
               <th>是否停權</th>
             </tr>
             <?php
-            while ($memberRow = $member->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+while ($memberRow = $member->fetch(PDO::FETCH_ASSOC)) {
+    ?>
               <tr>
 
-                <td><?= $memberRow["MEM_NO"] ?></td>
-                <td><?= $memberRow["MEM_NAME"] ?></td>
-                <td><?= $memberRow["MEM_TEL"] ?></td>
-                <td><?= $memberRow["MEM_EMAIL"] ?></td>
+                <td><?=$memberRow["MEM_NO"]?></td>
+                <td><?=$memberRow["MEM_NAME"]?></td>
+                <td><?=$memberRow["MEM_TEL"]?></td>
+                <td><?=$memberRow["MEM_EMAIL"]?></td>
                 <td>
                   <p class="memUse"> <?php echo $memberRow["MEM_USE"] == 0 ? "否" : "是" ?></p>
                   <select name="MEM_USE" id="MEM_USE">
@@ -143,8 +143,8 @@ try {
                 </td>
               </tr>
             <?php
-            }
-            ?>
+}
+?>
           </table>
         </div>
 
@@ -161,12 +161,12 @@ try {
               <th>是否停權</th>
             </tr>
             <?php
-            while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
+    ?>
               <tr>
-                <td><?= $adminRow["AD_NO"] ?></td>
-                <td><?= $adminRow["AD_NAME"] ?></td>
-                <td><?= $adminRow["AD_ACCOUNT"] ?></td>
+                <td><?=$adminRow["AD_NO"]?></td>
+                <td><?=$adminRow["AD_NAME"]?></td>
+                <td><?=$adminRow["AD_ACCOUNT"]?></td>
                 <td>
                   <p><?php echo $adminRow["AD_MAT_USE"] == 1 ? "否" : "是" ?></p>
 
@@ -174,14 +174,14 @@ try {
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
-                  <button class="edit adEdit<?= $adminRow["AD_NO"] ?>" @click="edit">編輯</button>
+                  <button class="edit adEdit<?=$adminRow["AD_NO"]?>" @click="edit">編輯</button>
                   <button class="cancel">取消</button>
                 </td>
               </tr>
             <?php
-            }
+}
 
-            ?>
+?>
 
           </table>
           <form action="./backstage_add_administrator.php" method="post" id="newAdForm">
@@ -215,7 +215,7 @@ try {
         <div class="quiz" v-show="quiz">
           <div class="title">
             <p class="title">測驗題庫</p>
-            <button class="add" @click="addForm">新增題目</button>
+            <button class="add">新增題目</button>
           </div>
           <table>
             <tr>
@@ -231,45 +231,45 @@ try {
               <th>修改</th>
             </tr>
             <?php
-            while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
+    ?>
               <tr>
-                <td><?= $quizRow["QUIZ_NO"] ?></td>
+                <td><?=$quizRow["QUIZ_NO"]?></td>
                 <td>
-                  <div class="QUIZ_CON"><?= $quizRow["QUIZ_CON"] ?></div>
+                  <div class="QUIZ_CON"><?=$quizRow["QUIZ_CON"]?></div>
                   <textarea class="QUIZ_CON editShow" cols="20" rows="5"></textarea>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_ONE'] ?>" alt="photo1" class="quizImgOne" id="quizImgOne1">
+                  <img src="<?=$quizRow['QUIZ_PIC_ONE']?>" alt="photo1" class="quizImgOne" id="quizImgOne1">
                   <input type="file" name="QUIZ_PIC_ONE" class="editShow QUIZ_PIC_ONE">
                 </td>
                 <td>
-                  <div class="QUIZ_ONE_CONTENT"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
-                  <textarea class="QUIZ_ONE_CONTENT editShow editValue" cols="20" rows="5"></textarea>
+                  <div class="QUIZ_ONE_CONTENT"><?=$quizRow["QUIZ_SEL_ONE_CONTENT"]?></div>
+                  <textarea class="QUIZ_ONE_CONTENT editShow editValue"cols="20" rows="5"></textarea>
                 </td>
                 <td>
-                  <p> <?= $quizRow["firstType"] ?></p>
+                  <p> <?=$quizRow["firstType"]?></p>
 
-                  <select name="firstType<?= $quizRow["QUIZ_NO"] ?>" class="editShow firstType">
+                  <select name="firstType<?=$quizRow["QUIZ_NO"]?>" class="editShow firstType">
                     <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
-                  <img src="<?= $quizRow['QUIZ_PIC_TWO'] ?>" alt="photo2" class="quizImgTwo">
+                  <img src="<?=$quizRow['QUIZ_PIC_TWO']?>" alt="photo2" class="quizImgTwo">
                   <input type="file" name="QUIZ_PIC_TWO" class="editShow QUIZ_PIC_TWO">
                 </td>
                 <td>
-                  <div class="QUIZ_TWO_CONTENT"><?= $quizRow["QUIZ_SEL_TWO_CONTENT"] ?></div>
+                  <div class="QUIZ_TWO_CONTENT"><?=$quizRow["QUIZ_SEL_TWO_CONTENT"]?></div>
                 </td>
                 <td>
-                  <p><?= $quizRow["secondType"] ?></p>
-                  <select name="secondType<?= $quizRow["QUIZ_NO"] ?>" class="editShow secondType">
+                  <p><?=$quizRow["secondType"]?></p>
+                  <select name="secondType<?=$quizRow["QUIZ_NO"]?>" class="editShow secondType">
                     <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
                   <p><?php echo $quizRow["QUIZ_USE"] == 0 ? "否" : "是" ?></p>
-                  <select name="QUIZ_USE<?= $quizRow["QUIZ_NO"] ?>" class="editShow QUIZ_USE">
+                  <select name="QUIZ_USE<?=$quizRow["QUIZ_NO"]?>" class="editShow QUIZ_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
@@ -281,8 +281,8 @@ try {
               </tr>
 
             <?php
-            }
-            ?>
+}
+?>
           </table>
 
         </div>
@@ -291,7 +291,7 @@ try {
         <div class="industry" v-show="industry">
           <div class="title">
             <p class="title">行業管理</p>
-            <button class="add" @click="addForm">新增行業</button>
+            <button class="add">新增行業</button>
           </div>
           <table>
             <tr>
@@ -310,22 +310,22 @@ try {
               <th>修改</th>
             </tr>
             <?php
-            while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
-              $careerArrayH = array();
-              $careerArrayL = array();
-              $careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
-              $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
-            ?>
+while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
+    $careerArrayH = array();
+    $careerArrayL = array();
+    $careerArrayH = mb_split(",", $careerRow["IND_SAL_HIGH"]);
+    $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
+    ?>
               <tr>
-                <td><?= $careerRow["IND_INT_NO"] ?></td>
+                <td><?=$careerRow["IND_INT_NO"]?></td>
                 <td>
-                  <div class="indName"><?= $careerRow["IND_INT_NAME"] ?></div>
+                  <div class="indName"><?=$careerRow["IND_INT_NAME"]?></div>
                 </td>
                 <td>
-                  <div class="overflow indIntro"><?= $careerRow["IND_INT_INTRO"] ?></div>
+                  <div class="overflow indIntro"><?=$careerRow["IND_INT_INTRO"]?></div>
                 </td>
                 <td>
-                  <img src="<?= $careerRow["IND_INT_PICTURE"] ?>" alt="行業圖片" class="indImg">
+                  <img src="<?=$careerRow["IND_INT_PICTURE"]?>" alt="行業圖片" class="indImg">
                   <input type="file" name="indPic" class="editShow indPic">
                 </td>
                 <td>
@@ -335,57 +335,57 @@ try {
                   </select>
                 </td>
                 <td>
-                  <div class="overflow indContent"><?= $careerRow["INT_INT_CONTENT"] ?></div>
+                  <div class="overflow indContent"><?=$careerRow["INT_INT_CONTENT"]?></div>
                 </td>
                 <td>
-                  <div class="overflow indSkill"><?= $careerRow["IND_INT_SKILL"] ?></div>
+                  <div class="overflow indSkill"><?=$careerRow["IND_INT_SKILL"]?></div>
                 </td>
                 <td>
                   <p>最低月薪:
-                    <div class="firstYearLow"><?= $careerArrayL[0] ?></div>
+                    <div class="firstYearLow"><?=$careerArrayL[0]?></div>
                   </p>
                   <p>最高月薪:
-                    <div class="firstYearHigh"><?= $careerArrayH[0] ?></div>
-                  </p>
-
-                </td>
-
-                <td>
-                  <p>最低月薪:
-                    <div class="thirdYearLow"><?= $careerArrayL[1] ?></div>
-                  </p>
-                  <p>最高月薪:
-                    <div class="thirdYearHigh"><?= $careerArrayH[1] ?></div>
+                    <div class="firstYearHigh"><?=$careerArrayH[0]?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <div class="fifthYearLow"><?= $careerArrayL[2] ?></div>
+                    <div class="thirdYearLow"><?=$careerArrayL[1]?></div>
                   </p>
                   <p>最高月薪:
-                    <div class="fifthYearHigh"><?= $careerArrayH[2] ?></div>
+                    <div class="thirdYearHigh"><?=$careerArrayH[1]?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <div class="tenYearLow"><?= $careerArrayL[3] ?></div>
+                    <div class="fifthYearLow"><?=$careerArrayL[2]?></div>
                   </p>
                   <p>最高月薪:
-                    <div class="tenYearHigh"><?= $careerArrayH[3] ?></div>
+                    <div class="fifthYearHigh"><?=$careerArrayH[2]?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <div class="upYearLow"><?= $careerArrayL[4] ?></div>
+                    <div class="tenYearLow"><?=$careerArrayL[3]?></div>
                   </p>
                   <p>最高月薪:
-                    <div class="upYearHigh"><?= $careerArrayH[4] ?></div>
+                    <div class="tenYearHigh"><?=$careerArrayH[3]?></div>
+                  </p>
+
+                </td>
+
+                <td>
+                  <p>最低月薪:
+                    <div class="upYearLow"><?=$careerArrayL[4]?></div>
+                  </p>
+                  <p>最高月薪:
+                    <div class="upYearHigh"><?=$careerArrayH[4]?></div>
                   </p>
 
                 </td>
@@ -395,8 +395,8 @@ try {
                 </td>
               </tr>
             <?php
-            }
-            ?>
+}
+?>
           </table>
 
         </div>
@@ -428,71 +428,71 @@ try {
               <th>修改</th>
             </tr>
             <?php
-            while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
+    ?>
               <tr>
-                <td id="ski_no"><?= $skillRow["SKI_NO"] ?></td>
+                <td id="ski_no"><?=$skillRow["SKI_NO"]?></td>
                 <td id="ski_name">
-                  <?= $skillRow["SKI_NAME"] ?>
-                  <p><input type="text" placeholder="名稱" value="<?= $skillRow["SKI_NAME"] ?>"></p>
+                  <?=$skillRow["SKI_NAME"]?>
+                  <p><input type="text" placeholder="名稱" value="<?=$skillRow["SKI_NAME"]?>"></p>
                 </td>
                 <td id="ind_no">
-                  <?= $skillRow["IND_CLASS"] ?>
+                  <?=$skillRow["IND_CLASS"]?>
                   <select name="" id="">
                     <option :value="type.value" v-for="type in types">{{type.type}}</option>
                   </select>
                 </td>
                 <td id="ski_buy_num">
-                  <?= $skillRow["SKI_BUY_NUM"] ?>
+                  <?=$skillRow["SKI_BUY_NUM"]?>
                 </td>
                 <td id="ski_price">
-                  <?= $skillRow["SKI_PRICE"] ?>
+                  <?=$skillRow["SKI_PRICE"]?>
                   <p><input type="number" min="0"></p>
                 </td>
-                <td id="ski_time"><?= $skillRow["SKI_TIME"] ?></td>
+                <td id="ski_time"><?=$skillRow["SKI_TIME"]?></td>
                 <td id="ski_intro">
                   <div class="overflow">
-                    <?= $skillRow["SKI_INTRO"] ?>
+                    <?=$skillRow["SKI_INTRO"]?>
                   </div>
                   <div>
                     <textarea name="ski_intro" cols="20" rows="5" placeholder="限制最多100字" maxlength="100"></textarea>
                   </div>
                 </td>
                 <td id="ski_harvest">
-                  <div class="overflow"><?= $skillRow["SKI_HARVEST"] ?></div>
+                  <div class="overflow"><?=$skillRow["SKI_HARVEST"]?></div>
                   <div>
                     <textarea name="ski_harvest" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea>
                   </div>
                 </td>
-                <td id="ski_line"><?= $skillRow["SKI_LINK"] ?><p><input type="number" min="0"></p>
+                <td id="ski_line"><?=$skillRow["SKI_LINK"]?><p><input type="number" min="0"></p>
                 </td>
                 <td id="ski_img">
-                  <img src="<?= $skillRow["SKI_IMG"] ?>" alt="課程圖片">
+                  <img src="<?=$skillRow["SKI_IMG"]?>" alt="課程圖片">
                   <p><input type="file" class="ski_img" name="ski_img"></p>
                 </td>
                 <td id="ski_tec_img">
-                  <img src="<?= $skillRow["SKI_TEC_IMG"] ?>" alt="講師圖片">
+                  <img src="<?=$skillRow["SKI_TEC_IMG"]?>" alt="講師圖片">
                   <p><input type="file" class="ski_tec_img" name="ski_tec_img"></p>
                 </td>
                 <td id="ski_tec_name">
-                  <?= $skillRow["SKI_TEC_NAME"] ?>
+                  <?=$skillRow["SKI_TEC_NAME"]?>
                   <p><input type="number" min="0"></p>
                 </td>
                 <td id="ski_tec_intro">
-                  <div class="overflow"><?= $skillRow["SKI_TEC_INTRO"] ?></div>
+                  <div class="overflow"><?=$skillRow["SKI_TEC_INTRO"]?></div>
                   <div>
                     <textarea name="ski_tec_intro" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
                   </div>
                 </td>
                 <td id="ski_outline">
-                  <div class="overflow"><?= $skillRow["SKI_OUTLINE"] ?></div>
+                  <div class="overflow"><?=$skillRow["SKI_OUTLINE"]?></div>
                   <div>
                     <textarea name="ski_outline" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea>
                   </div>
                 </td>
 
                 <td id="ski_stud">
-                  <div class="overflow"><?= $skillRow["SKI_STUD"] ?></div>
+                  <div class="overflow"><?=$skillRow["SKI_STUD"]?></div>
                   <p> <input type="text" class="ski_stud" name="ski_stud" placeholder="ex:學生"></p>
                 </td>
                 <td>
@@ -509,8 +509,8 @@ try {
                 </td>
               </tr>
             <?php
-            }
-            ?>
+}
+?>
           </table>
           <!-- 新增課程form -->
           <form action="backstage_skillClass_add.php" method="post" style="display:none;">
@@ -530,7 +530,12 @@ try {
             </div>
             <div>
               <label for="">總時數</label>
-              <input type="text" class="ski_time" name="ski_time" placeholder="ex:3小時">
+              <input
+                type="text"
+                class="ski_time"
+                name="ski_time"
+                placeholder="ex:3小時"
+              >
               <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
 
             </div>
@@ -603,15 +608,15 @@ try {
               <th>審核</th>
             </tr>
             <?php
-            while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
+    ?>
               <tr>
-                <td><?= $ArReportRow["ART_REP_NO"] ?></td>
-                <td><?= $ArReportRow["DIS_NO"] ?></td>
-                <td><?= $ArReportRow["DIS_NAME"] ?></td>
-                <td><?= $ArReportRow["DIS_CONTENT"] ?></td>
-                <td><?= $ArReportRow["MEM_EMAIL"] ?></td>
-                <td><?= $ArReportRow["ART_REP_CONTENT"] ?></td>
+                <td><?=$ArReportRow["ART_REP_NO"]?></td>
+                <td><?=$ArReportRow["DIS_NO"]?></td>
+                <td><?=$ArReportRow["DIS_NAME"]?></td>
+                <td><?=$ArReportRow["DIS_CONTENT"]?></td>
+                <td><?=$ArReportRow["MEM_EMAIL"]?></td>
+                <td><?=$ArReportRow["ART_REP_CONTENT"]?></td>
                 <td>
                   <p>
                     <?php echo $ArReportRow["ART_REP_PASS"] == 1 ? "不通過" : "通過" ?>
@@ -627,8 +632,8 @@ try {
                 </td>
               </tr>
             <?php
-            }
-            ?>
+}
+?>
           </table>
         </div>
 
@@ -646,14 +651,14 @@ try {
               <th>審核</th>
             </tr>
             <?php
-            while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
+    ?>
               <tr>
-                <td><?= $MgReportRow["MES_REP_NO"] ?></td>
-                <td><?= $MgReportRow["DIS_MES_NO"] ?></td>
-                <td><?= $MgReportRow["DIS_MES_CONTENT"] ?></td>
-                <td><?= $MgReportRow["MEM_EMAIL"] ?></td>
-                <td><?= $MgReportRow["MES_REP_CONTENT"] ?></td>
+                <td><?=$MgReportRow["MES_REP_NO"]?></td>
+                <td><?=$MgReportRow["DIS_MES_NO"]?></td>
+                <td><?=$MgReportRow["DIS_MES_CONTENT"]?></td>
+                <td><?=$MgReportRow["MEM_EMAIL"]?></td>
+                <td><?=$MgReportRow["MES_REP_CONTENT"]?></td>
                 <td>
                   <p>
                     <?php echo $MgReportRow["MES_REP_PASS"] == 1 ? "不通過" : "通過" ?>
@@ -667,8 +672,8 @@ try {
                   <button class="pos_cancel">取消</button>
                 </td>
               <?php
-            }
-              ?>
+}
+?>
               </tr>
           </table>
         </div>
@@ -735,13 +740,13 @@ try {
               <th>啟用</th>
             </tr>
             <?php
-            while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
+    ?>
               <tr>
-                <td><?= $materialRow["POS_MAT_NO"] ?></td>
-                <td><?= $materialRow["POS_MAT_NAME"] ?></td>
+                <td><?=$materialRow["POS_MAT_NO"]?></td>
+                <td><?=$materialRow["POS_MAT_NAME"]?></td>
                 <td>
-                  <img src="<?= $materialRow["POS_MAT_PIC"] ?>" alt="<?= $materialRow["POS_MAT_NAME"] ?>">
+                  <img src="<?=$materialRow["POS_MAT_PIC"]?>" alt="<?=$materialRow["POS_MAT_NAME"]?>">
                 </td>
                 <td>
                   <p class="POS_USE">
@@ -757,23 +762,23 @@ try {
                 </td>
               </tr>
             <?php
-            }
-            ?>
+}
+?>
           </table>
-          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm" enctype="multipart/form-data">
+          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm">
             <div class="postName">
-              <label for="POS_MAT_NAME">名稱:</label>
-              <input type="text" class="form" name="POS_MAT_NAME" id="POS_MAT_NAME">
+              <!-- <label for="">素材名稱:</label>
+              <input type="text" class="form"> -->
             </div>
             <div>
               <p class="post_type">素材類型</p>
             </div>
             <div>
-              <input type="radio" name="post_type" id="outline" value="outline">
+              <input type="radio" name="POS_MAT_NAME" id="outline" value="outline">
               <label for="outline">外框</label>
-              <input type="radio" name="post_type" id="stamp" value="stamp">
+              <input type="radio" name="POS_MAT_NAME" id="stamp" value="stamp">
               <label for="stamp">郵票</label>
-              <input type="radio" name="post_type" id="postmark" value="postmark">
+              <input type="radio" name="POS_MAT_NAME" id="postmark" value="postmark">
               <label for="postmark">郵戳</label>
             </div>
             <div>
@@ -796,12 +801,13 @@ try {
           </div>
         </div>
 
-    
      <!-- announcement -->
      <div class="announcement" v-show="announcement">
+     <div class="title">
           <p class="title">公告管理</p>
-
-          <table>
+          <button class="add" id="add_annNew" @click="add_annNew">新增公告</button>
+      </div>
+          <table id="annTable">
             <tr>
               <th>編號</th>
               <th>內容</th>
@@ -813,7 +819,7 @@ try {
             ?>
               <tr>
                 <td><?= $announceRow["ANN_NO"] ?></td>
-                <td><?= $announceRow["ANN_CONTENT"] ?></td>
+                <td><p><input type="text"><?= $announceRow["ANN_CONTENT"] ?></p></td>
                 <td><?= $announceRow["ANN_DATE"] ?></td>
 
                 <td>
@@ -830,11 +836,13 @@ try {
             }
             ?>
           </table>
-          <button class="add">新增公告</button>
+     
 
           <form
             action="backstage_announcement_add.php"
             method="post"   
+            id="ann_form"
+            style="display:none"
           >
        <div>
               <label for="">公告日期</label>
@@ -874,27 +882,38 @@ try {
               >取消</button>
             </div>
           </form>
+          <div>
+            <button class="back" id="ann_backAd" @click="ann_backAd">返回全部列表</button>
+          </div>
 
         </div>
-
-
-      </div>
-
-
 
 
       </div>
     </div>
   </div>
 
+  <script>
+  window.addEventListener("load", function() {
+    var add_annNew = document.getElementById("add_annNew");
+        add_annNew.onclick = function(){
+
+	  alert("1244");
+      }
+
+  }
+  
+  </script>
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
+  <script src="./js/backstage_insert_announcement.js"></script>
 
 </body>
 
