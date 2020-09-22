@@ -19,14 +19,13 @@ let vm = new Vue({
       select: "全部文章", //下拉選單預設
       stopScroll: false, //開啟燈箱背景不可以動
       msg: "", //點擊留言開啟燈箱，第一則文章要跟討論版的同步
-      isHeart: [], //點擊愛心 綁定的class顏色，但是未完成
-      // isCollect: false, //點擊收藏 綁定的class顏色，但是未完成
+      isHeart: [], //點擊愛心 
       isCollect: [],
       showCollect: [], //會員曾經按錯的收藏
       memberAccuse: [], //檢舉
       repIndex: 0, //文章檢舉的索引值
       repNo: 0, //文章檢舉第幾篇文章
-      feedBoxHeart: false, //點擊愛心 綁定的class顏色，但是未完成
+      feedBoxHeart: [], //點擊愛心 綁定的class顏色，但是未完成
       currentPage: 1,//目前的頁碼
       totalPages: 0,
       accuseinnerIsOpen:false,//回覆留言的檢舉燈箱
@@ -70,6 +69,47 @@ let vm = new Vue({
     };
   },
   mounted() {
+    
+    //燈箱裡回覆留言愛心，會員曾經點過的愛心
+    axios.post("./php/memberStateCheck.php").then(res => {
+      console.log(res);
+      this.memberCheck = res.data;
+      if (this.memberCheck !== 0) {
+        sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+        const memNo = sessionStorage.getItem("memNo");
+        axios
+          .get("./php/forum_discuss.php?action=showinnerBoxLike&MEM_NO=" + memNo)
+          .then(res => {
+            console.log(res.data);
+            this.showlike = res.data;
+            // this.showlike = res.data[0].DIS_NO.split(',');
+
+            for (let i = 0; i < this.information.length; i++) {
+              // console.log(this.information[i].DIS_NO);
+              // console.log(typeof this.information);
+              // console.log(this.showlike)
+              // console.log(this.showlike.length)
+              // console.log(JSON.parse(this.showlike))
+              // console.log(typeof this.showlike)
+              // console.log(typeof this.showlike)
+              var disNo = this.information[i].DIS_NO;
+              if (
+                this.showlike.find(function (item) {
+                  return item.DIS_NO == disNo;
+                })
+              ) {
+                // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
+                // this.isHeart[i] = true;
+                this.isHeart.push(true);
+              } else {
+                this.isHeart.push(false);
+              }
+            }
+            // console.log(this.isCollect)
+          });
+      }
+    });
+
     //討論區文章和公告PHP
     axios.all([this.getAllDisscuss(this.currentPage), this.getAnnouncement()]);
     //會員登入後可到曾經點過愛心的按鈕
@@ -228,7 +268,10 @@ let vm = new Vue({
         .then(res => {
           this.box_msg = res.data;
            console.log(res.data);
-
+           //燈箱內的愛心放進來，要用for迴圈把它box_msg的資料放進來，並檢查按了哪些愛心
+           for(let i=0;i<this.box_msg.length;i++){
+             this.feedBoxHeart.push(false);
+           }
         })
         .catch(function (error) {
           console.log(error);
@@ -523,8 +566,40 @@ let vm = new Vue({
       e.currentTarget.classList.add("side_click");
     },
     //燈箱裡的愛心
-    heart_btn_feedback(e) {
-      this.feedBoxHeart = !this.feedBoxHeart;
+    heart_btn_feedback(index) {
+      // alert("123")
+      console.log(index)
+      console.log(this.feedBoxHeart[index])
+      // this.feedBoxHeart[index] = !this.feedBoxHeart[index];
+    
+    //會員登入PHP
+      axios
+        .post("./php/memberStateCheck.php")
+        .then(res => {
+          console.log(res);
+          this.memberCheck = res.data;
+          if (this.memberCheck == 0) {
+            alert("請先登入會員");
+            window.location.href = "./member_sign_in.html";
+          } else {
+            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+            const DIS_MES_NO = this.box_msg[index].DIS_MES_NO;
+            const MEM_NO = sessionStorage.getItem("memNo");
+            // $(".feedback_content .fa-heart").eq(index).toggleClass("colorRed");
+            axios.post(
+              "./php/forum_discuss.php?action=addfeedbackFavor&DIS_MES_NO=" +
+              DIS_MES_NO +
+              "&MEM_NO=" +
+              MEM_NO
+            )
+            .then((resp)=>{console.log(resp.data)});
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+
     },
     //討論區文章PHP
     sendMsg(msg_DIS_NO) {
