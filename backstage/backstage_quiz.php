@@ -2,8 +2,12 @@
 // session_start();
 
 try {
+  require_once("./connectMySql.php");
+
   $quizUp = json_decode($_POST["quizJson"], true);
   //圖片一解碼
+  
+
 
   $quizImgOneSrc = str_replace('data:image/png;base64,', '', $quizUp["quizImgOneSrc"]);
   $quizImgOneSrc = str_replace(' ', '+', $quizImgOneSrc);
@@ -21,7 +25,6 @@ try {
 
 
 
-  require_once("./connectMySql.php");
 
 
 
@@ -30,16 +33,17 @@ try {
   QUIZ_CON = :QUIZ_CON,
   QUIZ_PIC_ONE=:QUIZ_PIC_ONE,
   QUIZ_PIC_TWO=:QUIZ_PIC_TWO,
-  QUIZ_SEL_ONE_CONTENT=:QUIZ_SEL_ONE_CONTENT,
+  QUIZ_SEL_ONE_CONTENT= :QUIZ_SEL_ONE_CONTENT,
   QUIZ_SEL_ONE_CLASS=:QUIZ_SEL_ONE_CLASS, 
   QUIZ_SEL_TWO_CONTENT=:QUIZ_SEL_TWO_CONTENT,
   QUIZ_SEL_TWO_CLASS=:QUIZ_SEL_TWO_CLASS,
   QUIZ_USE=:QUIZ_USE
-  where QUIZ_NO=1;";
+  where QUIZ_NO=:quizNo;";
 
   $quizUpData = $pdo->prepare($quizUpSql);
 
   // exit();
+  $quizUpData->bindValue(":quizNo", $quizUp["quizNo"]);
   $quizUpData->bindValue(":QUIZ_PIC_ONE", $quizImgOneFilename);
   $quizUpData->bindValue(":QUIZ_CON", $quizUp["QUIZ_CONTxt"]);
   $quizUpData->bindValue(":QUIZ_PIC_TWO", $quizImgTwoFilename);

@@ -208,25 +208,7 @@ new Vue({
         // detail() {
         //     $(".orderDetail1").show();
         // },
-        edit(e) {
-            let td = $(e.target).parent().parent();
-            switch (e.target.innerText) {
-                case "編輯":
-                    e.target.innerText = "確認";
-                    td.find("select").show();
-                    td.find("input").show();
-                    td.find("textarea").show();
-                    td.find("select").show();
-                    break;
-                case "確認":
-                    e.target.innerText = "編輯";
-                    td.find("select").hide();
-                    td.find("input").hide();
-                    td.find("textarea").hide();
-                    td.find("select").hide();
-                    break;
-            }
-        },
+
         addForm(e) {
             switch (e.target.innerText) {
                 case "新增課程":
