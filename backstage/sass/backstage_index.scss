@@ -24,6 +24,7 @@ $side_color:#424965;
       border: 1px solid $main_color;
       border-bottom: 3px solid $main_color;
       vertical-align: middle;
+      max-width: 400px;
     }
 
     /*第一欄第一列：左上*/
@@ -227,6 +228,15 @@ button.edit {
   }
 }
 
+button.cancel {
+  outline: none;
+
+
+  &:hover {
+    color: #EE7002;
+  }
+}
+
 button.add {
   outline: none;
   background-color: $side_color;
@@ -272,6 +282,17 @@ button.back {
   }
 }
 
+select {
+  outline: none;
+  border: 1px solid $main_color;
+  border-radius: 5px;
+  background-color: rgb(245, 239, 239);
+
+  &:hover {
+    border: 1px solid $a_color;
+    cursor: pointer;
+  }
+}
 
 //----------------------------------------
 header {
