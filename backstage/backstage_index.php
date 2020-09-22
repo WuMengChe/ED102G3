@@ -743,12 +743,12 @@ try {
                     <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
                   </p>
 
-                  <select name="" id="">
-                    <option value="">是</option>
-                    <option value="">否</option>
+                  <select name="" id="" class="editShow">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
                   </select>
                   <button class="edit pos_edit">編輯</button>
-                  <button class="pos_cancel">取消</button>
+                  <button class="pos_cancel editShow">取消</button>
                 </td>
               </tr>
             <?php
