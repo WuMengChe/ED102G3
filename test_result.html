@@ -57,8 +57,8 @@
                 <div class="analysis_description ">
                     <div class="analysis_txt ">
                         <span>測驗結果出爐，您的類型是．．．</span>
-                        <h2 style="color: blcak;" class="typeName">{{ anaTypeResult[0].IND_CLASS }}</h2>
-                            &emsp;&emsp;&emsp;&emsp;
+                        <h2 style="color: blcak;" class="typeName" :style="{backgroundColor:anaTypeResult[0].IND_COLOR}" >{{ anaTypeResult[0].IND_CLASS }}</h2>
+                            <!-- &emsp;&emsp;&emsp;&emsp; -->
                             <p class="type_descrp">{{ anaTypeResult[0].IND_INFO }}</p>
                         <!-- <h3 class="accuracy">準確率{{ resultData[index].accuracy }} %</h3> -->
                     </div>
@@ -132,7 +132,7 @@
                 </div>
                 <div class="article_wrap">
                     <ul class="articles" >
-                        <li v-for="(item, index) in relatedDiscuss" :key="index" :style="{borderColor:item.IND_COLOR}" ><a>
+                        <li v-for="(item, index) in relatedDiscuss" :key="index" :style="{borderColor:item.IND_COLOR}" @click="openArtPage(index)"><a>
                             <span :style="{backgroundColor:item.IND_COLOR}" >{{item.DIS_CLASS}}</span>{{item.DIS_NAME}}</a></li>
                     </ul>
                     <div class="btn_wrap">
@@ -143,7 +143,110 @@
                 </div>
 
             </div>
-
+            <div class="mem_overlay" @click="closeArtPage">
+                <div class="mem_checkMsg" @click.stop>
+                    <div class="close_btn">
+                        <button type="button" class="btn_modal_close btn_third" @click="closeArtPage">
+                            返回
+                        </button>
+                    </div>
+                    <div class="mem_wrap">
+                        <div class="mem_ove_info">
+                            <div class="mem_ove_list">
+                                <div class="mem_ove_img">
+                                    <img :src="industryForumMessage.MEM_PIC"/>
+                                </div>
+                                <div class="mem_ove_name">
+                                    {{industryForumMessage.MEM_NAME}}
+                                </div>
+                                <div class="mem_ove_date">
+                                    {{industryForumMessage.DIS_DATE}}
+                                </div>
+                            </div>
+                            <div class="mem_ove_tags">
+                                <span>{{industryForumMessage.IND_CLASS}}</span>
+                                <span>{{industryForumMessage.DIS_CLASS}}</span>
+                            </div>
+                        </div>
+                        <div class="mem_ove_title">
+                            {{industryForumMessage.DIS_NAME}}
+                        </div>
+                        <div class="mem_ove_textarea" v-for="(item, index) in industryForumMessage.DIS_CONTENT">
+                            {{item}}
+                        </div>
+                        <div class="mem_ove_btn">
+                            <button class="heart">
+                                <i class="fas fa-heart" :class="{'colorRed':industryForumMessage.like}" @click="$forceUpdate(), changeArticleLike(industryForumMessage)"></i>
+                            </button>
+                            <button class="gray_btn">
+                                <i class="fas fa-bookmark"  :class="{'colorGray':industryForumMessage.collect}" @click="$forceUpdate(), changeCollect(industryForumMessage)"></i>
+                            </button>
+                            <button class="gray_btn">
+                                <i class="fas fa-exclamation-circle" @click="openAccuse(), repIndex = -1, repConNum = 0, repNo = industryForumMessage.DIS_NO"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mem_ove_feedback_count">
+                        共{{industryForumMessage.length}}則回覆
+                    </div>
+                    <div class="mem_ove_feedback" v-if="industryForumMessage.length != 0">
+                        <div class="mem_ove_feedback_content" v-for="(item, index) in memberArticleMessage">
+                            <div class="mem_ove_info">
+                                <div class="mem_ove_list">
+                                    <div class="mem_ove_img">
+                                        <img :src="item.MEM_PIC"/>
+                                    </div>
+                                    <div class="mem_ove_name">
+                                        {{item.MEM_NAME}}
+                                    </div>
+                                    <div class="mem_ove_date">
+                                        {{item.DIS_MES_DATE}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mem_ove_textarea">
+                                {{item.DIS_MES_CONTENT}}
+                            </div>
+                            <div class="mem_ove_btn">
+                                <button class="heart">
+                                    <i class="fas fa-heart" :class="{'colorRed':item.like}" @click="$forceUpdate(), item.like = !item.like, changeMessageLike(item.DIS_MES_NO)"></i>
+                                </button>
+                                <button class="gray_btn">
+                                    <i class="fas fa-exclamation-circle" @click="accuseIsOpen = !accuseIsOpen, repIndex = -1, repConNum = 1, repNo = item.DIS_MES_NO"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mem_ove_leave_msg">
+                        <div class="mem_ove_leave_msg_content">
+                            <textarea class="send_msg" placeholder="請輸入訊息..."></textarea>
+                        </div>
+                        <div class="mem_ove_msg_btn">
+                            <input type="submit" value="送出" class="btn_third" id="send_msg_btn" @click="$forceUpdate(), sendMessage(industryForumMessage.DIS_NO, industryForumMessage.length)"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="impeachment_overlay" :class="{'-on':accuseIsOpen}" @click="accuseIsOpen = !accuseIsOpen, closeAccuse()">
+                <article @click.stop>
+                    <div class="accuse_close_btn">
+                        <button type="button" class="impeachment_close_btn" @click="accuseIsOpen = !accuseIsOpen, closeAccuse()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <h3>檢舉這篇文章的原因？</h3>
+                    <div class="accuse_wrap">
+                        <p v-for="(item, index) in memberAccuse">
+                            <label @click="repIndex = index">
+                                <input type="radio" name="accuse" class="radio"/>{{item}}
+                            </label>
+                        </p>
+                    </div>
+                    <div class="accuse_send_btn">
+                        <button class="impeachment_send_btn btn_third" @click="sendReport()">送出</button>
+                    </div>
+                </article>
+            </div>
 
         </main>
         @@include('app/footer.html') 

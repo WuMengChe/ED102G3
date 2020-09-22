@@ -18,7 +18,7 @@ $course_title_margin_bottom: 20px;
         transform: translate(-50%, -50%);
         top: 50%;
         left: 50%;
-        z-index: 99;
+        z-index: 999;
         display: none;
     .lightbx_login{
         border: 2px solid #ffffff;
@@ -139,7 +139,7 @@ main.main_test_result{
             display: flex;
             border-radius: 25px;
             position: absolute;
-            background: $second_color2;
+            background: $second_color1;
             // border: 2px solid white;
             // box-shadow: $card_shadow;
             width: 150%;
@@ -155,7 +155,7 @@ main.main_test_result{
             }
             100%{
                 width: 150%;
-                background: $second_color2;
+                background: $second_color1;
             }
         }
     }
@@ -181,8 +181,12 @@ main.main_test_result{
              width: 50%;
              padding: 2%;
              h2{
-                 margin: 3%;
+                 margin: 3% 0;
                  font-weight: 600;
+                 display: flex ;
+                //  border: 1px solid black;
+                 width: 200px;
+                 text-align: center;
              }
              span,p{
                  line-height: 28px;
@@ -205,8 +209,15 @@ main.main_test_result{
             padding: 2%;
             }
             .test_radar{
-                width: 400px;
-                height: 400px;
+                width: 350px;
+                height: 320px;
+                // min-width: 250px;
+                // min-height: 300px;
+                
+            @media screen  and (max-width: 570px){ 
+                width: 150px;
+                height: 250px;
+                }
             }
         }
      }
@@ -376,6 +387,10 @@ main.main_test_result{
                     list-style: none;
                     display: flex;
                     justify-content: space-evenly;
+                    @media screen  and (max-width: 760px){ 
+                       flex-direction: column;
+                       align-items: center;
+                      }
                     li.courseCard{
                         // border: 1px solid blue;
                         border-radius: 5px;
@@ -385,6 +400,12 @@ main.main_test_result{
                         position: relative;
                         background: #ffffff;
                         box-shadow: $card_shadow;
+                        @media screen  and (max-width: 760px){ 
+                           margin: 2% 0;
+                           }
+                        @media screen  and (max-width: 570px){ 
+                           width: 300px;
+                           }
                         a.link_to_course{
                             // border: 1px solid goldenrod;
                             // background: goldenrod;
@@ -516,6 +537,7 @@ main.main_test_result{
                         box-shadow: $card_shadow;
                         padding: 1%;
                         transition: linear .2s;
+                        cursor: pointer;
                         @media screen  and (max-width: 570px){ 
                           line-height: 20px;
                         }
@@ -540,5 +562,210 @@ main.main_test_result{
                 }
             }
         }
-
-    
+        .mem_overlay{
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: hsla(0, 0%, 0%, 0.5);
+            opacity: 1;
+            transition: opacity 1s;
+            display: none;
+            .mem_checkMsg{
+                background-color: #ccc;
+                border-radius: 10px;
+                height: 100%;
+                max-height: 100vh;
+                padding: 0 5px;
+                top: 0;
+                left: 50%;
+                width: 100%;
+                max-width: 800px;
+                position: absolute;
+                transform: translate(-50%,0%);
+                overflow: scroll;
+                overflow-x: hidden;
+                .close_btn{
+                    height: 40px;
+                    text-align: left;
+                    padding-left: 5px;
+                    .btn_modal_close{
+                        width: 60px;
+                        height: 30px;
+                        line-height: 25px;
+                    }
+                }
+                .mem_wrap, .mem_ove_feedback{
+                    background: #f8f6f2;
+                    .mem_ove_info{
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 10px;
+                        line-height: 33px;
+                        color: gray;
+                        .mem_ove_list{
+                            display: flex;
+                            flex-direction: row;
+                            .mem_ove_img{
+                                width: 30px;
+                                height: 30px;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                img{
+                                    width: 100%;
+                                }
+                            }
+                            .mem_ove_name{
+                                margin: 0 10px;
+                            }
+                        }
+                        .mem_ove_tags{
+                            margin: 0;
+                            padding: 0;
+                            border: 0;
+                            font-size: 100%;
+                            font: inherit;
+                            vertical-align: baseline;
+                            span{
+                                background-color: #1b4d9f;
+                                padding: 5px;
+                                border-radius: 5px;
+                                color: #fff;
+                            }
+                        }
+                    }
+                    .mem_ove_title{
+                        padding: 20px;
+                        font-weight: 700;
+                        font-size: 22px;
+                    }
+                    .mem_ove_textarea{
+                        padding: 5px 20px;
+                        letter-spacing: 1px;
+                        color: #000;
+                    }
+                    .mem_ove_btn{
+                        padding-top: 15px;
+                        text-align: end;
+                        .heart{
+                            box-sizing: border-box;
+                            width: 40px;
+                            height: 40px;
+                            padding: 0;
+                            border: none;
+                            outline: 0;
+                            border-radius: 50%;
+                            i{
+                                width: 100%;
+                                height: 100%;
+                                font-size: 21px;
+                                cursor: pointer;
+                                color: #ada9a9;
+                            }
+                            i.colorRed{
+                                color: red;
+                            }
+                        }
+                        .gray_btn{
+                            box-sizing: border-box;
+                            width: 40px;
+                            height: 40px;
+                            padding: 0;
+                            border: none;
+                            outline: 0;
+                            border-radius: 50%;
+                            i{
+                                width: 100%;
+                                height: 100%;
+                                font-size: 21px;
+                                cursor: pointer;
+                                color: #ada9a9;
+                            }
+                            i.colorGray{
+                                color: #4b4747;
+                            }
+                        }
+                    }
+                    .mem_ove_feedback_content{
+                        background-color: #f8f6f2;
+                        margin: 5px 0;
+                    }
+                    img{
+                        width: 100%;
+                    }
+                }
+                .mem_ove_feedback{
+                    background-color: transparent;
+                }
+                .mem_ove_feedback_count{
+                    text-align: center;
+                    background-color: #f7ecd9;
+                    padding: 10px;
+                    margin: 5px 0;
+                }
+                .mem_ove_leave_msg{
+                    width: 100%;
+                    background-color: #fff;
+                    text-align: right;
+                    position: sticky;
+                    bottom: 0;
+                    .send_msg{
+                        width: 100%;
+                        resize: none;
+                        border: none;
+                        padding: 10px;
+                    }
+                    .mem_ove_msg_btn{
+                        padding-bottom: 15px;
+                        text-align: center;
+                        #send_msg_btn{
+                            width: 60px;
+                            height: 30px;
+                            line-height: 25px;
+                        }
+                    }
+                }
+            }
+        }
+        .artShow{
+            z-index: 300;
+            position: fixed;
+            display: block;
+        }
+        .impeachment_overlay{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,.5);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity .5s;
+            >article{
+                border-radius: 10px;
+                padding: 10px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background-color: #f5edde;
+                .accuse_close_btn{
+                    text-align: right;
+                }
+                h3, .accuse_send_btn{
+                    text-align: center;
+                }
+                .accuse_wrap{
+                    width: 300px;
+                    padding-top: 10px;
+                    p{
+                        padding: 5px;
+                    }
+                }
+            }
+        }
+        .-on{
+            opacity: 1;
+            z-index: 400;
+        }

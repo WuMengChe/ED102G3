@@ -1,44 +1,51 @@
 <?php
 
 try {
+  require_once("./connectMySql.php");
   $careerUp = json_decode($_POST["careerJson"], true);
   //圖片一解碼
 
-  $indImgUpdate = str_replace('data:image/png;base64,', '', $quizUp["quizImgOneSrc"]);
+  $indImgUpdate = str_replace('data:image/png;base64,', '', $careerUp["quizImgOneSrc"]);
   $indImgUpdate = str_replace(' ', '+', $indImgUpdate);
   $indImgData = base64_decode($indImgUpdate);
   $indImgFilename = "./img/career/{$careerUp['indPic_name']}";
   file_put_contents($indImgFilename, $indImgData);
 
 
-  require_once("./connectMySql.php");
-
 
 
   // 修改測驗題庫資料
-  $careerUpSql = "update quiz set 
-  QUIZ_CON = :QUIZ_CON,
-  QUIZ_PIC_ONE=:QUIZ_PIC_ONE,
-  QUIZ_PIC_TWO=:QUIZ_PIC_TWO,
-  QUIZ_SEL_ONE_CONTENT=:QUIZ_SEL_ONE_CONTENT,
-  QUIZ_SEL_ONE_CLASS=:QUIZ_SEL_ONE_CLASS, 
-  QUIZ_SEL_TWO_CONTENT=:QUIZ_SEL_TWO_CONTENT,
-  QUIZ_SEL_TWO_CLASS=:QUIZ_SEL_TWO_CLASS,
-  QUIZ_USE=:QUIZ_USE
-  where QUIZ_NO=1;";
+  $salSql = "update industry_salary set IND_SAL_LOW = :firstYearLowUpdate,IND_SAL_HIGH=:firstYearHighUpdate where IND_SAL_STEP_DISTANCE='不到一年' and IND_INT_NO=:indNo;
+                  update industry_salary set IND_SAL_LOW =:thirdYearLowUpdate, IND_SAL_HIGH=:thirdYearHighUpdate where IND_SAL_STEP_DISTANCE='一到三年' and IND_INT_NO=:indNo;
+                  update industry_salary set IND_SAL_LOW =:thirdYearLowUpdate, IND_SAL_HIGH=:thirdYearHighUpdate where IND_SAL_STEP_DISTANCE='一到三年' and IND_INT_NO=:indNo;
+                  update industry_salary set IND_SAL_LOW =:fifthYearLowUpdate,IND_SAL_HIGH=:fifthYearHighUpdate where IND_SAL_STEP_DISTANCE='三到五年' and IND_INT_NO=:indNo;
+                  update industry_salary set IND_SAL_LOW =:tenYearLowUpdate,IND_SAL_HIGH=:tenYearHighUpdate where IND_SAL_STEP_DISTANCE='五到十年' and IND_INT_NO=:indNo;
+                  update industry_salary set IND_SAL_LOW =:upYearLowUpdate,IND_SAL_HIGH=:upYearHighUpdate where IND_SAL_STEP_DISTANCE='十年以上' and IND_INT_NO=:indNo;
+              update industry_introduce set IND_INT_NAME =:indNameUpdate,IND_INT_INTRO=:indIntroUpdate,IND_INT_PICTURE=:indImgUpdate,IND_NO=:indTypeUpdate,INT_INT_CONTENT=:indContentUpdate,IND_INT_SKILL=:indSkillUpdate where IND_INT_NO=:indNo;";
 
-  $quizUpData = $pdo->prepare($quizUpSql);
+
+
+  $salUp = $pdo->prepare($salSql);
 
   // exit();
-  $quizUpData->bindValue(":QUIZ_PIC_ONE", $quizImgOneFilename);
-  $quizUpData->bindValue(":QUIZ_CON", $quizUp["QUIZ_CONTxt"]);
-  $quizUpData->bindValue(":QUIZ_PIC_TWO", $quizImgTwoFilename);
-  $quizUpData->bindValue(":QUIZ_SEL_ONE_CONTENT", $quizUp["QUIZ_ONETxt"]);
-  $quizUpData->bindValue(":QUIZ_SEL_ONE_CLASS", $quizUp["stOutput"]);
-  $quizUpData->bindValue(":QUIZ_SEL_TWO_CONTENT", $quizUp["QUIZ_TWOTxt"]);
-  $quizUpData->bindValue(":QUIZ_SEL_TWO_CLASS", $quizUp["ndOutput"]);
-  $quizUpData->bindValue(":QUIZ_USE", $quizUp["QUIZ_USE"]);
-  $quizUpData->execute(); //執行
+  $salUp->bindValue(":indNo", $careerUp["indNo"]);
+  $salUp->bindValue(":indNameUpdate", $careerUp["indNameUpdate"]);
+  $salUp->bindValue(":indIntroUpdate", $careerUp["indIntroUpdate"]);
+  $salUp->bindValue(":indContentUpdate", $careerUp["indContentUpdate"]);
+  $salUp->bindValue(":indSkillUpdate", $careerUp["indSkillUpdate"]);
+  $salUp->bindValue(":firstYearLowUpdate", $careerUp["firstYearLowUpdate"]);
+  $salUp->bindValue(":firstYearHighUpdate", $careerUp["firstYearHighUpdate"]);
+  $salUp->bindValue(":thirdYearLowUpdate", $careerUp["thirdYearLowUpdate"]);
+  $salUp->bindValue(":thirdYearHighUpdate", $careerUp["thirdYearHighUpdate"]);
+  $salUp->bindValue(":fifthYearLowUpdate", $careerUp["fifthYearLowUpdate"]);
+  $salUp->bindValue(":fifthYearHighUpdate", $careerUp["fifthYearHighUpdate"]);
+  $salUp->bindValue(":tenYearLowUpdate", $careerUp["tenYearLowUpdate"]);
+  $salUp->bindValue(":tenYearHighUpdate", $careerUp["tenYearHighUpdate"]);
+  $salUp->bindValue(":upYearLowUpdate", $careerUp["upYearLowUpdate"]);
+  $salUp->bindValue(":upYearHighUpdate", $careerUp["upYearHighUpdate"]);
+  $salUp->bindValue(":indTypeUpdate", $careerUp["indTypeUpdate"]);
+  $salUp->bindValue(":indImgUpdate", $careerUp["indImgUpdate"]);
+  $salUp->execute(); //執行
 
   echo "已成功修改";
 } catch (PDOException $e) {

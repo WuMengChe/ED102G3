@@ -1,13 +1,21 @@
 <?php
-// echo $_POST["quiz_con"];
+// echo '1' . $_POST["quiz_con"] . '<br>';
+// echo '2' . $_POST["quiz_pic_one"] . '<br>';
+// echo '3' . $_POST["quiz_sel_one_content"] . '<br>';
+// echo '4' . $_POST["quiz_sel_one_class"] . '<br>';
+// echo '5' . $_POST["quiz_pic_two"] . '<br>';
+// echo '6' . $_POST["quiz_sel_two_content"] . '<br>';
+// echo '7' . $_POST["quiz_sel_two_class"] . '<br>';
+// echo '8' . $_POST["quiz_use"] . '<br>';
 
 try {
     require_once "./connectMySql.php";
 
-    $quiz = "SELECT * FROM `quiz` WHERE quiz_con = :quiz_con";
+    $sql = "SELECT * FROM `quiz` WHERE quiz_con = :quiz_con";
     $quiz = $pdo->prepare($sql);
     $quiz->bindValue(":quiz_con", $_POST["quiz_con"]);
     $quiz->execute();
+    // echo 1;
 
     if ($quiz->rowCount() == 0) {
 
