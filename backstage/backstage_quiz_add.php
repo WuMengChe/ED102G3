@@ -1,0 +1,57 @@
+<?php
+// echo '1' . $_POST["quiz_con"] . '<br>';
+// echo '2' . $_POST["quiz_pic_one"] . '<br>';
+// echo '3' . $_POST["quiz_sel_one_content"] . '<br>';
+// echo '4' . $_POST["quiz_sel_one_class"] . '<br>';
+// echo '5' . $_POST["quiz_pic_two"] . '<br>';
+// echo '6' . $_POST["quiz_sel_two_content"] . '<br>';
+// echo '7' . $_POST["quiz_sel_two_class"] . '<br>';
+// echo '8' . $_POST["quiz_use"] . '<br>';
+
+try {
+    require_once "./connectMySql.php";
+
+    $sql = "SELECT * FROM `quiz` WHERE quiz_con = :quiz_con";
+    $quiz = $pdo->prepare($sql);
+    $quiz->bindValue(":quiz_con", $_POST["quiz_con"]);
+    $quiz->execute();
+    // echo 1;
+
+    if ($quiz->rowCount() == 0) {
+
+        $sql = "INSERT INTO `quiz` (quiz_con,
+            quiz_pic_one,
+            quiz_pic_two,
+            quiz_sel_one_content,
+            quiz_sel_one_class,
+            quiz_sel_two_content,
+            quiz_sel_two_class,
+            quiz_use
+            )VALUES (:quiz_con,
+            :quiz_pic_one,
+            :quiz_pic_two,
+            :quiz_sel_one_content,
+            :quiz_sel_one_class,
+            :quiz_sel_two_content,
+            :quiz_sel_two_class,
+            :quiz_use
+            );";
+        $disAll = $pdo->prepare($sql);
+
+        $disAll->bindValue(":quiz_con", $_POST["quiz_con"]);
+        $disAll->bindValue(":quiz_pic_one", $_POST["quiz_pic_one"]);
+        $disAll->bindValue(":quiz_sel_one_content", $_POST["quiz_sel_one_content"]);
+        $disAll->bindValue(":quiz_sel_one_class", $_POST["quiz_sel_one_class"]);
+        $disAll->bindValue(":quiz_pic_two", $_POST["quiz_pic_two"]);
+        $disAll->bindValue(":quiz_sel_two_content", $_POST["quiz_sel_two_content"]);
+        $disAll->bindValue(":quiz_sel_two_class", $_POST["quiz_sel_two_class"]);
+        $disAll->bindValue(":quiz_use", $_POST["quiz_use"]);
+        $disAll->execute();
+        header("Location:/backstage_index.php");
+    } else {
+        header("Location:/backstage_index.php");
+        echo '此題目已存在';
+    }
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
