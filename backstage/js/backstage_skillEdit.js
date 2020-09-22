@@ -98,13 +98,13 @@ window.addEventListener('load', function() {
                 $(this).parent().find('button.edit').text('編輯');
 
                 //skill
-                td.children(".ski_name").replaceWith(`<div class="${ski_nameClass}" value="${ski_name}"></div>`);
-                td.children(".ski_price").replaceWith(`<div class="${ski_priceClass}" value="${ski_price}"></div>`);
-                td.children(".ski_time").replaceWith(`<div class="${ski_timeClass}" value="${ski_time}"></div>`);
+                td.children(".ski_name").replaceWith(`<div class="${ski_nameClass}">${ski_name}</div>`);
+                td.children(".ski_price").replaceWith(`<div class="${ski_priceClass}">${ski_price}</div>`);
+                td.children(".ski_time").replaceWith(`<div class="${ski_timeClass}">${ski_time}</div>`);
                 td.children(".ski_intro").replaceWith(`<div class="${ski_introClass}">${ski_intro}</div>`);
                 td.children(".ski_harvest").replaceWith(`<div class="${ski_harvestClass}" >${ski_harvest}</div>`);
                 td.children(".ski_line").replaceWith(`<div class="${ski_lineClass}">${ski_line}</div>`);
-                td.children(".ski_tec_name").replaceWith(`<div class="${ski_tec_nameClass}" value="${ski_tec_name}"></div>`);
+                td.children(".ski_tec_name").replaceWith(`<div class="${ski_tec_nameClass}">${ski_tec_name}</div>`);
                 td.children(".ski_tec_intro").replaceWith(`<div class="${ski_tec_introClass}">${ski_tec_intro}</div>`);
                 td.children(".ski_outline").replaceWith(`<div class="${ski_outlineClass}">${ski_outline}</div>`);
                 td.children(".ski_stud").replaceWith(`<div class="${ski_studClass}">${ski_stud}</div>`);
@@ -143,7 +143,7 @@ window.addEventListener('load', function() {
             skill.upYearHighUpdate = td.children(".upYearHigh").val();
             skill.indTypeUpdate = td.children(".indType").val();
             skill.indImgUpdate = td.children(".indImg").attr("src");
-            skill.skill_USE = parseInt(td.children('.skill_USE').val())
+            skill.skill_USE = parseInt(td.children('.QUIZ_USE').val())
             skill.indPic_name = indPic_name;
 
 

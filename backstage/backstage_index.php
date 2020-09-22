@@ -748,7 +748,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
 while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
     ?>
               <tr>
-                <td><?=$ArReportRow["ART_REP_NO"]?></td>
+                <td><div class="ART_REP_NO"><?=$ArReportRow["ART_REP_NO"]?></div></td>
                 <td><?=$ArReportRow["DIS_NO"]?></td>
                 <td><?=$ArReportRow["DIS_NAME"]?></td>
                 <td><?=$ArReportRow["DIS_CONTENT"]?></td>
@@ -759,14 +759,14 @@ while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
                     <?php echo $ArReportRow["ART_REP_PASS"] == 0 ? "不通過" : "通過" ?>
                   </p>
 
-                  <select name="" id=""  class="editShow">
+                  <select name="" id=""  class="editShow ART_REP_PASS">
                     <option value="1">通過</option>
                     <option value="0">不通過</option>
 
                   </select>
                 </td>
                 <td>
-                  <button class="edit quizEdit">編輯</button>
+                  <button class="edit artReportEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               </tr>
@@ -883,12 +883,14 @@ while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
                     <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
                   </p>
 
-                  <select name="" id="">
-                    <option value="">是</option>
-                    <option value="">否</option>
+
+                  
+                  <select name="" id="" class="editShow">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
                   </select>
                   <button class="edit pos_edit">編輯</button>
-                  <button class="pos_cancel">取消</button>
+                  <button class="pos_cancel editShow">取消</button>
                 </td>
               </tr>
             <?php
@@ -932,10 +934,10 @@ while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
         </div>
      <!-- announcement -->
      <div class="announcement" v-show="announcement">
-     <div class="title">
-          <p class="title">公告管理</p>
-          <button class="add" id="add_annNew" @click="add_annNew">新增公告</button>
-      </div>
+          <div class="title">
+            <p class="title">公告管理</p>
+            <button class="add" id="add_annNew" @click="add_annNew">新增公告</button>
+          </div>
           <table id="annTable">
             <tr>
               <th>編號</th>
@@ -945,12 +947,12 @@ while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
               <th>修改</th>
             </tr>
             <?php
-while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
-    ?>
+            while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
+            ?>
               <tr>
-                <td><?=$announceRow["ANN_NO"]?></td>
-                <td><?=$announceRow["ANN_CONTENT"]?></td>
-                <td><?=$announceRow["ANN_DATE"]?></td>
+                <td><?= $announceRow["ANN_NO"] ?></td>
+                <td><?= $announceRow["ANN_CONTENT"] ?></td>
+                <td><?= $announceRow["ANN_DATE"] ?></td>
 
                 <td>
                   <?php echo $announceRow["ANN_USE"] == 1 ? "是" : "否" ?>
@@ -959,65 +961,43 @@ while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
-                  <button class="edit" @click="edit">編輯</button> <button class="editShow cancel">取消</button>
                 </td>
                 <td>
                   <button class="edit quizEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               </tr>
+
             <?php
-}
-?>
+            }
+            ?>
           </table>
 
 
-          <form
-            action="backstage_announcement_add.php"
-            method="post"
-            id="ann_form"
-            style="display:none"
-          >
-       <div>
+          <form action="backstage_announcement_add.php" method="post" id="ann_form" style="display:none">
+            <div>
               <label for="">公告日期</label>
-              <input
-                type="text"
-                class="form"
-                name="ANN_DATE"
-                placeholder="YYYY-MM-DD"
-              >
+              <input type="text" class="form" name="ANN_DATE" placeholder="YYYY-MM-DD">
             </div>
             <div>
               <label for="">公告內容</label>
-              <textarea
-                class="form"
-                name="ANN_CONTENT"
-                cols="20"
-                rows="5"
-                placeholder="限制最多30字"
-                maxlength="30"
-              ></textarea>
+              <textarea class="form" name="ANN_CONTENT" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea>
             </div>
 
             <div>
-               <select name="ANN_USE" id="">
-                  <option value="1">是</option>
-                  <option value="0">否</option>
-                </select>
+              <label for="ANN_USE">是否發布</label>
+              <select name="ANN_USE" id="ANN_USE">
+                <option value="1">是</option>
+                <option value="0">否</option>
+              </select>
             </div>
 
             <div>
-              <button
-                type="submit"
-                class="submit"
-              >送出</button>
-              <button
-                @click="cancel_add"
-              >取消</button>
+              <button type="submit" class="submit">送出</button>
             </div>
           </form>
           <div>
-            <button class="back" id="ann_backAd" @click="ann_backAd">返回全部列表</button>
+            <button class="back" id="ann_backAd" @click="ann_backAd" style="display: none;">返回全部列表</button>
           </div>
 
         </div>
@@ -1026,18 +1006,6 @@ while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
       </div>
     </div>
   </div>
-
-  <script>
-  window.addEventListener("load", function() {
-    var add_annNew = document.getElementById("add_annNew");
-        add_annNew.onclick = function(){
-
-	  alert("1244");
-      }
-
-  }
-
-  </script>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
@@ -1052,6 +1020,7 @@ while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
   <script src="./js/backstage_memberEdit.js"></script>
   <script src="./js/backstage_adminEdit.js"></script>
   <script src="./js/backstage_skillEdit.js"></script>
+  <script src="./js/backstage_artReportEdit.js"></script>
   <script src="./js/backstage_insert_announcement.js"></script>
 
 </body>
