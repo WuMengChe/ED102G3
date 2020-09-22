@@ -221,7 +221,7 @@ try {
         <div class="quiz" v-show="quiz">
           <div class="title">
             <p class="title">測驗題庫</p>
-            <button class="add">新增題目</button>
+            <button class="add" @click="addForm">新增題目</button>
           </div>
           <table>
             <tr>
@@ -292,9 +292,61 @@ try {
             }
             ?>
           </table>
+          <!-- 新增題庫form -->
+          <form action="backstage_quiz_add.php" method="post" style="display:none;">
+            <div>
+              <label for="quiz_con">問題內容</label>
+              <textarea name="quiz_con" cols="20" rows="5" placeholder="輸入題目" id="quiz_cons"></textarea>
+            </div>
+            <div>
+              <label for="">選項一圖片</label>
+              <input type="file" class="form" name="quiz_pic_one">
+              <div class="postImg_show">
+                <img src="" alt="" id="quiz_pic_one">
+              </div>
+            </div>
+            <div>
+              <label for="">選項一內容</label>
+              <textarea name="quiz_sel_one_content" cols="20" rows="5" placeholder="輸入內容"></textarea>
+            </div>
+            <div>
+              <label for="">選項一類
+                別</label>
+              <select name="quiz_sel_one_class">
+                <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">選項二圖片</label>
+              <input type="file" class="form" name="quiz_pic_two">
+              <div class="postImg_show"><img src="" alt="" id="quiz_pic_one"></div>
+            </div>
+            <div>
+              <label for="">選項二內容</label>
+              <textarea name="quiz_sel_two_content" cols="20" rows="5" placeholder="輸入內容"></textarea>
+            </div>
+            <div>
+              <label for="">選項二類別</label>
+              <select name="quiz_sel_two_class">
+                <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">啟用題目</label>
+              <input type="radio" name="quiz_use" value="1" checked>是
+              <input type="radio" name="quiz_use" value="0">否
+            </div>
+
+
+            <div>
+              <button type="submit" class="submit">送出</button>
+            </div>
+
+          </form>
           <div>
             <button class="back" @click="cancel_add">返回全部列表</button>
           </div>
+
         </div>
 
         <!-- industry -->
@@ -410,9 +462,70 @@ try {
             }
             ?>
           </table>
+
+          <!-- 新增行業form -->
+          <!-- <form action="backstage_ind_add.php" method="post" style="display:none;">
+            <div>
+              <label for="">名字</label>
+              <input type="text" class="form" name="ind_int_name">
+            </div>
+            <div>
+              <label for="">介紹</label>
+              <textarea  name="ind_int_intro" cols="20" rows="5" placeholder="輸入職業介紹"></textarea>
+            </div>
+            <div>
+              <label for="">圖片</label>
+              <input type="file" class="form" name="ind_int_picture"">
+            </div>
+            <div>
+              <label for="">類別</label>
+              <select name="ind_no" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">內容</label>
+              <textarea  name="ind_int_content" cols="20" rows="5" placeholder="輸入職業內容"></textarea>
+            </div>
+            <div>
+              <label for="">技能</label>
+              <textarea  name="ind_int_skill" cols="20" rows="5" placeholder="輸入職業技能"></textarea>
+            </div>
+            <div>
+              <label for="">一年以下</label>
+              <select name="ind_no" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">一~三年</label>
+              <input type="radio" name="ski_hidden" value="1" checked>否
+              <input type="radio" name="ski_hidden" value="0">是
+            </div>
+            <div>
+              <label for="">三~五年</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+            <div>
+              <label for="">五~十年</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+            <div>
+              <label for="">十年以上</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+
+
+            <div>
+              <button type="submit" class="submit">送出</button>
+            </div>
+
+          </form>
           <div>
             <button class="back" @click="cancel_add">返回全部列表</button>
-          </div>
+          </div> -->
+
+
         </div>
 
         <!-- skill_class -->
@@ -530,7 +643,6 @@ try {
             <div>
               <label for="">總時數</label>
               <input type="text" class="ski_time" name="ski_time" placeholder="ex:3小時">
-              <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
 
             </div>
             <div>
@@ -548,10 +660,16 @@ try {
             <div>
               <label for="">課程圖片</label>
               <input type="file" class="ski_img form" name="ski_img">
+              <div class="postImg_show">
+                <img src="" alt="" id="ski_img_show">
+              </div>
             </div>
             <div>
               <label for="">講師圖片</label>
               <input type="file" class="ski_tec_img form" name="ski_tec_img">
+              <div class="postImg_show">
+                <img src="" alt="" id="ski_tec_img_show">
+              </div>
             </div>
             <div>
               <label for="">講師名稱</label>
@@ -589,9 +707,8 @@ try {
 
         <!-- article_report -->
         <div class="article_report" v-show="article_report">
-          <div class="title">
-            <p class="title">主題檢舉</p>
-          </div>
+          <p class="title">主題檢舉</p>
+
           <table>
             <tr>
               <th>檢舉編號</th>
@@ -607,7 +724,9 @@ try {
             while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td><?= $ArReportRow["ART_REP_NO"] ?></td>
+                <td>
+                  <div class="ART_REP_NO"><?= $ArReportRow["ART_REP_NO"] ?></div>
+                </td>
                 <td><?= $ArReportRow["DIS_NO"] ?></td>
                 <td><?= $ArReportRow["DIS_NAME"] ?></td>
                 <td><?= $ArReportRow["DIS_CONTENT"] ?></td>
@@ -618,14 +737,14 @@ try {
                     <?php echo $ArReportRow["ART_REP_PASS"] == 0 ? "不通過" : "通過" ?>
                   </p>
 
-                  <select name="" id="" class="editShow">
+                  <select name="" id="" class="editShow ART_REP_PASS">
                     <option value="1">通過</option>
                     <option value="0">不通過</option>
 
                   </select>
                 </td>
                 <td>
-                  <button class="edit quizEdit">編輯</button>
+                  <button class="edit artReportEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               </tr>
@@ -637,9 +756,8 @@ try {
 
         <!-- message_report -->
         <div class="message_report" v-show="message_report">
-          <div class="title">
-            <p class="title">留言檢舉</p>
-          </div>
+          <p class="title">留言檢舉</p>
+
           <table>
             <tr>
               <th>檢舉編號</th>
@@ -779,7 +897,7 @@ try {
                 注意只能上傳png檔
               </span>
             </div>
-            <div class=" postImg_show ">
+            <div class=" postImg_show">
               <img src="" alt="" id="postNew">
             </div>
             <div>
@@ -865,8 +983,6 @@ try {
     </div>
   </div>
 
-
-
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
@@ -880,6 +996,7 @@ try {
   <script src="./js/backstage_memberEdit.js"></script>
   <script src="./js/backstage_adminEdit.js"></script>
   <script src="./js/backstage_skillEdit.js"></script>
+  <script src="./js/backstage_artReportEdit.js"></script>
   <script src="./js/backstage_insert_announcement.js"></script>
 
 </body>

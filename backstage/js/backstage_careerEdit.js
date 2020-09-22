@@ -101,20 +101,20 @@ window.addEventListener('load', function() {
                 // $('.cancel').hide();
 
                 //career
-                td.children(".indName").replaceWith(`<div class="${indNameClass}" value="${indName}"></div>`);
+                td.children(".indName").replaceWith(`<div class="${indNameClass}">${indName}</div>`);
                 td.children(".indIntro").replaceWith(`<div class="${indIntroClass}">${indIntro}</div>`);
                 td.children(".indContent").replaceWith(`<div class="${indContentClass}">${indContent}</div>`);
                 td.children(".indSkill").replaceWith(`<div class="${indSkillClass}">${indSkill}</div>`);
-                td.children(".firstYearLow").replaceWith(`<div class="${firstYearLowClass}" value="${firstYearLow}"></div>`);
-                td.children(".firstYearHigh").replaceWith(`<div class="${firstYearHighClass}" value="${firstYearHigh}"></div>`);
-                td.children(".thirdYearLow").replaceWith(`<div class="${thirdYearLowClass}" value="${thirdYearLow}"></div>`);
-                td.children(".thirdYearHigh").replaceWith(`<div class="${thirdYearHighClass}" value="${thirdYearHigh}"></div>`);
-                td.children(".fifthYearLow").replaceWith(`<div class="${fifthYearLowClass}" value="${fifthYearLow}"></div>`);
-                td.children(".fifthYearHigh").replaceWith(`<div class="${fifthYearHighClass}" value="${fifthYearHigh}"></div>`);
-                td.children(".tenYearLow").replaceWith(`<div class="${tenYearLowClass}" value="${tenYearLow}"></div>`);
-                td.children(".tenYearHigh").replaceWith(`<div class="${tenYearHighClass}" value="${tenYearHigh}"></div>`);
-                td.children(".upYearLow").replaceWith(`<div class="${upYearLowClass}" value="${upYearLow}"></div>`);
-                td.children(".upYearHigh").replaceWith(`<div class="${upYearHighClass}" value="${upYearHigh}"></div>`);
+                td.children(".firstYearLow").replaceWith(`<div class="${firstYearLowClass}">${firstYearLow}</div>`);
+                td.children(".firstYearHigh").replaceWith(`<div class="${firstYearHighClass}">${firstYearHigh}</div>`);
+                td.children(".thirdYearLow").replaceWith(`<div class="${thirdYearLowClass}">${thirdYearLow}</div>`);
+                td.children(".thirdYearHigh").replaceWith(`<div class="${thirdYearHighClass}">${thirdYearHigh}</div>`);
+                td.children(".fifthYearLow").replaceWith(`<div class="${fifthYearLowClass}">${fifthYearLow}</div>`);
+                td.children(".fifthYearHigh").replaceWith(`<div class="${fifthYearHighClass}">${fifthYearHigh}</div>`);
+                td.children(".tenYearLow").replaceWith(`<div class="${tenYearLowClass}">${tenYearLow}</div>`);
+                td.children(".tenYearHigh").replaceWith(`<div class="${tenYearHighClass}">${tenYearHigh}</div>`);
+                td.children(".upYearLow").replaceWith(`<div class="${upYearLowClass}">${upYearLow}</div>`);
+                td.children(".upYearHigh").replaceWith(`<div class="${upYearHighClass}">${upYearHigh}</div>`);
                 td.children('.indImg').attr("src", indImgSrc);
                 td.children('.indPic').value = "";
 
