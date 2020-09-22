@@ -7,7 +7,7 @@ try {
   $oldAd->execute();
   if ($oldAd->rowCount() == 0) {
     $addAd = "insert into administrator (AD_NAME,AD_ACCOUNT,AD_PASSWORD,AD_MAT_USE)
-values(:AD_NAME,:AD_ACCOUNT,:AD_PASSWORD,'1');";
+values(:AD_NAME,:AD_ACCOUNT,:AD_PASSWORD,'0');";
 
     $insertAd = $pdo->prepare($addAd);
     $insertAd->bindValue(":AD_NAME", $_POST["AD_NAME"]);

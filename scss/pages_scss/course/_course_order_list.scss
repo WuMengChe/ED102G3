@@ -248,11 +248,27 @@ div.course_order_list {
 @media (max-width: 991px) {
     div.course_order_list div.check_out_contain {
         margin-top: 50px;
+        width: 60%;
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 767px) {
+    div.course_order_list div.check_out_contain {
+        width: 80%;
+    }
+}
+
+@media (max-width: 575px) {
     div.course_order_list div.check_out_contain {
         width: 100%;
+    }
+}
+
+@media (max-width: 484px) {
+    div.course_order_list div.cus_list div.pre_list {
+        padding: 100px 0;
+    }
+    div.course_order_list {
+        padding: 50px 0;
     }
 }
