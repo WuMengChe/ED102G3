@@ -24,13 +24,15 @@ let vm = new Vue({
       isCollect: [],
       showCollect: [], //會員曾經按錯的收藏
       memberAccuse: [], //檢舉
-      repIndex: 0, //檢舉的索引值
-      repNo: 0, //檢舉第幾篇文章
-      // repInnerNo:0,//燈箱裡檢舉第幾篇文章
-      repChange: -1, //外部的檢舉是0，若不等於0執行另外個PHP
+      repIndex: 0, //文章檢舉的索引值
+      repNo: 0, //文章檢舉第幾篇文章
       feedBoxHeart: false, //點擊愛心 綁定的class顏色，但是未完成
-      currentPage: 1,
+      currentPage: 1,//目前的頁碼
       totalPages: 0,
+      accuseinnerIsOpen:false,//回覆留言的檢舉燈箱
+      repinnerIndex:0, //燈箱裡回覆留言的檢舉索引值
+      repinnerNo:0, //燈箱裡回覆留言的檢舉第幾篇文章
+
       category: [
         {
           link_title: "實作型",
@@ -224,8 +226,9 @@ let vm = new Vue({
           memNo
         )
         .then(res => {
-          console.log(res.data);
           this.box_msg = res.data;
+           console.log(res.data);
+
         })
         .catch(function (error) {
           console.log(error);
@@ -267,11 +270,13 @@ let vm = new Vue({
     },
     //關閉檢舉燈箱
     btn_modal() {
-      if (this.accuseIsOpen) {
+      if (this.accuseIsOpen||this.accuseinnerIsOpen) {
         this.accuseIsOpen = false;
+        this.accuseinnerIsOpen = false;
         this.stopScroll = false;
       } else {
         this.accuseIsOpen = true;
+        this.accuseinnerIsOpen = true;
         this.stopScroll = true;
       }
     },
@@ -321,7 +326,7 @@ let vm = new Vue({
     //送出檢舉內容到資料庫
     sendAccuse() {
       //檢舉PHP
-      axiostoggleDropdown
+      axios
         .post("./php/memberStateCheck.php")
         .then(res => {
           console.log(res);
@@ -338,7 +343,7 @@ let vm = new Vue({
             console.log(content);
             const repNo = this.repNo;
             console.log(repNo);
-            const repChange = this.repChange;
+
 
             if (content == "") {
               alert("請輸入內容");
@@ -349,18 +354,70 @@ let vm = new Vue({
                 "&MEM_NO=" +
                 memNo +
                 "&ART_REP_CONTENT=" +
-                content +
-                "repChange" +
-                repChange
+                content 
               );
-              // location.reload();
-              this.repChange = -1;
+              alert("檢舉成功")
+              location.reload();
+         }
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    //燈箱內送出檢舉
+    accuse_inner_sendBtn(){
+      axios
+        .post("./php/memberStateCheck.php")
+        .then(res => {
+          console.log(res);
+          this.memberCheck = res.data;
+          if (this.memberCheck == 0) {
+            alert("請先登入會員");
+            window.location.href = "./member_sign_in.html";
+          } else {
+            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+            // sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
+            const memNo = sessionStorage.getItem("memNo");
+            console.log(memNo);
+            const content = this.memberAccuse[this.repinnerIndex];
+            console.log(content);
+            const repinnerNo = this.repinnerNo;
+            console.log(repinnerNo);
+           
+             
+            if (content == "") {
+              alert("請輸入內容");
+            } else {
+              axios.post(
+                "./php/forum_discuss.php?action=accuse_inner_btn&DIS_MES_NO=" +
+                repinnerNo +
+                "&MEM_NO=" +
+                memNo +
+                "&MES_REP_CONTENT=" +
+                content 
+              );
+              alert("檢舉成功，會為您處理")
+              location.reload();
             }
           }
         })
         .catch(function (error) {
           console.log(error);
         });
+
+    },
+    //回覆留言裡的檢舉燈箱開啟
+    accuse_innerbox_btn(){
+      // alert('aaa')
+      // alert(this.accuseinnerIsOpen);
+          if (this.accuseinnerIsOpen) {
+              this.accuseIsOpen = false;
+              this.stopScroll = false;
+            } else {
+              this.accuseinnerIsOpen = true;
+              this.stopScroll = true;
+            }
     },
     //愛心
     heart_btn(index, disNo, conNum) {
