@@ -51,9 +51,7 @@ new Vue({
 
         orders: [],
         orderList: [],
-        adminName: "名稱",
-        adminId: "id",
-        adminPw: "密碼",
+
     },
     methods: {
         show(index) {
@@ -205,38 +203,66 @@ new Vue({
             $("#oneMem").hide();
         },
 
-        // detail() {
-        //     $(".orderDetail1").show();
-        // },
+        //查看訂單明細
+        searchOrd(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "backstage_orderSearch.php",
+                type: "POST",
+                data: new FormData(document.getElementById("search_ore_form")),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#OrderDetail").html(data);
+                },
+            });
+            $("#backAllOrd").show();
+            $("#OrderDetail").show();
+            $("#allOrd").hide();
+        },
 
-        addForm(e) {
+        backAllOrd() {
+            $("#backAllOrd").hide();
+            $("#OrderDetail").hide();
+            $("#allOrd").show();
+        },
+
+
+        edit(e) {
+            let td = $(e.target).parent().parent();
             switch (e.target.innerText) {
-                case "新增課程":
-                    e.target.innerText = "取消新增";
-                    $("form").show();
-
+                case "編輯":
+                    e.target.innerText = "確認";
+                    td.find("select").show();
+                    td.find("input").show();
+                    td.find("textarea").show();
+                    td.find("select").show();
                     break;
-                case "取消新增":
-                    e.target.innerText = "新增課程";
-                    $("form").hide();
-
+                case "確認":
+                    e.target.innerText = "編輯";
+                    td.find("select").hide();
+                    td.find("input").hide();
+                    td.find("textarea").hide();
+                    td.find("select").hide();
                     break;
             }
         },
+        addForm(e) {
+            $(e.target).hide();
+            $(e.target).parent().parent().find('table').hide();
+            $(e.target).parent().parent().find('form').show();
+            $(e.target).parent().parent().find('.back').show();
+        },
         cancel_add(e) {
             e.preventDefault();
-            $("form").hide();
+            $(e.target).hide();
+            $(e.target).parent().parent().find('table').show();
+            $(e.target).parent().parent().find('form').hide();
+            $(e.target).parent().parent().find('.add').show();
+            //   window.scrollTo(0, 0);
         },
-        test: function(e) {
-            e.preventDefault();
-            console.log($(e.target).parent().parent().parent().find(".OrderDetail"));
-            $(e.target)
-                .parent()
-                .parent()
-                .parent()
-                .find(".OrderDetail")
-                .css("display", "block");
-        },
+
         deleteSki(e) {
             if (window.confirm("確認刪除此課程？")) {
                 let ski_no = $(e.target).parent().parent().find("#ski_no").text();
@@ -258,6 +284,20 @@ new Vue({
                     });
             }
         },
+        //公告新增
+        add_annNew() {
+            alert("1234")
+            $("#add_annNew").hide();
+            $("#annTable").hide();
+            $("#ann_form").show();
+
+        },
+        ann_backAd() {
+            alert("123")
+            $("#add_annNew").show();
+            $("#annTable").show();
+            $("#ann_form").hide();
+        }
     },
     mounted() {
         axios.get("./backstage_order.php").then((res) => {

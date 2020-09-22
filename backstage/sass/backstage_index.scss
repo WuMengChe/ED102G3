@@ -24,6 +24,7 @@ $side_color:#424965;
       border: 1px solid $main_color;
       border-bottom: 3px solid $main_color;
       vertical-align: middle;
+      max-width: 400px;
     }
 
     /*第一欄第一列：左上*/
@@ -146,10 +147,12 @@ $side_color:#424965;
       label {
         background-color: #F4C3C5;
         padding: 6px;
-
+        width: 110px;
+        text-align: center;
         display: inline-block;
         border-radius: 5px 0 0 5px;
         font-size: 18px;
+        vertical-align: top;
       }
 
       input.form {
@@ -157,11 +160,20 @@ $side_color:#424965;
         border-radius: 0 5px 5px 0;
         outline: none;
         border: none;
+        min-width: 220px;
+      }
+
+      input[type=radio] {
+        vertical-align: middle;
+        color: white;
       }
 
       textarea {
         border: none;
         outline: none;
+        padding: 5px;
+        border-radius: 0 5px 5px 5px;
+        min-width: 220px;
       }
 
       &:last-child {
@@ -216,12 +228,22 @@ button.edit {
   }
 }
 
+button.cancel {
+  outline: none;
+
+
+  &:hover {
+    color: #EE7002;
+  }
+}
+
 button.add {
   outline: none;
   background-color: $side_color;
   color: white;
   padding: 5px;
   border-radius: 5px;
+  margin-left: 30px;
 
   &:hover {
     background-color: #586083;
@@ -230,7 +252,7 @@ button.add {
 
 div.title {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 15px;
 
   p.title {
@@ -260,6 +282,17 @@ button.back {
   }
 }
 
+select {
+  outline: none;
+  border: 1px solid $main_color;
+  border-radius: 5px;
+  background-color: rgb(245, 239, 239);
+
+  &:hover {
+    border: 1px solid $a_color;
+    cursor: pointer;
+  }
+}
 
 //----------------------------------------
 header {
@@ -427,7 +460,8 @@ header {
         margin: 10px 0;
 
         img {
-          width: 30%;
+          height: 75px;
+          width: auto;
         }
 
         p {
@@ -481,6 +515,14 @@ header {
         @include form();
         @include table();
         margin: 10px 0;
+
+        form {
+          div {
+            button.search {
+              width: 80px;
+            }
+          }
+        }
       }
 
       .postcard_material {
@@ -505,11 +547,13 @@ header {
           div {
             span {
               color: #ff9335;
+              vertical-align: middle;
             }
 
             label {
               background-color: transparent;
               cursor: pointer;
+              width: 60px;
             }
 
             input[type=file] {
@@ -519,6 +563,7 @@ header {
             label.postImg {
               background-color: #F4C3C5;
               border-radius: 5px;
+              width: 100px;
               color: black;
               cursor: pointer;
             }

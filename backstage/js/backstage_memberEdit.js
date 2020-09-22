@@ -48,7 +48,7 @@ window.addEventListener('load', function() {
             memberXhr.onload = function() {
                 if (memberXhr.status == 200) {
                     alert(memberXhr.responseText);
-                    // location.reload();
+                    location.reload();
                     console.log(memberXhr.responseText);
                 } else {
                     alert(memberXhr.status);

@@ -152,6 +152,7 @@ while ($memberRow = $member->fetch(PDO::FETCH_ASSOC)) {
 
         <div class="administrator" v-show="administrator">
           <p class="title">管理員管理</p>
+          <button id="newAdBtn" class="add">新增管理員</button>
           <table>
             <tr>
               <th>編號</th>
@@ -184,32 +185,29 @@ while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
           </table>
-          <div id="adForm">
-            <table id="myForm" style="display: none;">
-              <tr class="title">
-                <th>名稱</th>
-                <th>帳號</th>
-                <th>密碼</th>
-                <th></th>
-              </tr>
-              <tr class="new_administrator">
-                <td>
-                  <input type="text" name="adminName" v-model="adminName">
-                </td>
-                <td>
-                  <input type="text" class="adminId" v-model="adminId">
-                </td>
-                <td>
-                  <input type="text" class="adminPw" v-model="adminPw">
-                </td>
-                <td>
-                  <button class="edit insertToDb" onClick="adNew();">確認</button>
-                  <button class="cancelAd">取消</button>
-                </td>
-              </tr>
-            </table>
+          <form action="./backstage_add_administrator.php" method="post" id="newAdForm">
+            <div>
+              <label for="AD_NAME">名稱:</label>
+              <input type="text" class="form" name="AD_NAME" placeholder="請輸入小於20個字" maxlength="20">
+            </div>
+            <div>
+              <label for="AD_ACCOUNT">帳號:</label>
+              <input type="text" class="form" name="AD_ACCOUNT" placeholder="請輸入小於10個字" maxlength="10">
+            </div>
+            <div>
+              <label for="AD_PASSWORD">密碼:</label>
+              <input type="password" class="form" name="AD_PASSWORD" placeholder="請輸入小於10個字" maxlength="10" id="AD_PASSWORD">
+              <span>
+                <i class="far fa-eye" id="showPassword"></i>
+              </span>
 
-            <button id="newAdBtn" class="add">新增管理員</button>
+            </div>
+            <div>
+              <button type="submit" class="submit" id="newAdSubmit">送出</button>
+            </div>
+          </form>
+          <div>
+            <button class="back" id="backAd">返回全部列表</button>
           </div>
         </div>
 
@@ -255,7 +253,7 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
                 </td>
                 <td>
                   <img src="<?=$quizRow['QUIZ_PIC_TWO']?>" alt="photo2" class="quizImgTwo">
-                  <input type="file" name="QUIZ_PIC_Two" class="editShow QUIZ_PIC_TWO">
+                  <input type="file" name="QUIZ_PIC_TWO" class="editShow QUIZ_PIC_TWO">
                 </td>
                 <td>
                   <div class="QUIZ_TWO_CONTENT"><?=$quizRow["QUIZ_SEL_TWO_CONTENT"]?></div>
@@ -283,7 +281,9 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
-          <button class="add">新增題目</button>
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div>
         </div>
 
         <!-- industry -->
@@ -315,13 +315,13 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
               <tr>
                 <td><div class="indNo"><?= $careerRow["IND_INT_NO"] ?></div></td>
                 <td>
-                  <div class="indName"><?= $careerRow["IND_INT_NAME"] ?></div>
+                  <div class="indName"><?=$careerRow["IND_INT_NAME"]?></div>
                 </td>
                 <td>
-                  <div class="overflow indIntro"><?= $careerRow["IND_INT_INTRO"] ?></div>
+                  <div class="overflow indIntro"><?=$careerRow["IND_INT_INTRO"]?></div>
                 </td>
                 <td>
-                  <img src="<?= $careerRow["IND_INT_PICTURE"] ?>" alt="行業圖片" class="indImg">
+                  <img src="<?=$careerRow["IND_INT_PICTURE"]?>" alt="行業圖片" class="indImg">
                   <input type="file" name="indPic" class="editShow indPic">
                 </td>
                 <td>
@@ -331,57 +331,57 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
                   </select>
                 </td>
                 <td>
-                  <div class="overflow indContent"><?= $careerRow["INT_INT_CONTENT"] ?></div>
+                  <div class="overflow indContent"><?=$careerRow["INT_INT_CONTENT"]?></div>
                 </td>
                 <td>
-                  <div class="overflow indSkill"><?= $careerRow["IND_INT_SKILL"] ?></div>
+                  <div class="overflow indSkill"><?=$careerRow["IND_INT_SKILL"]?></div>
                 </td>
                 <td>
                   <p>最低月薪:
-                    <div class="firstYearLow"><?= $careerArrayL[0] ?></div>
+                    <div class="firstYearLow"><?=$careerArrayL[0]?></div>
                   </p>
                   <p>最高月薪:
-                    <div class="firstYearHigh"><?= $careerArrayH[0] ?></div>
-                  </p>
-
-                </td>
-
-                <td>
-                  <p>最低月薪:
-                    <div class="thirdYearLow"><?= $careerArrayL[1] ?></div>
-                  </p>
-                  <p>最高月薪:
-                    <div class="thirdYearHigh"><?= $careerArrayH[1] ?></div>
+                    <div class="firstYearHigh"><?=$careerArrayH[0]?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <div class="fifthYearLow"><?= $careerArrayL[2] ?></div>
+                    <div class="thirdYearLow"><?=$careerArrayL[1]?></div>
                   </p>
                   <p>最高月薪:
-                    <div class="fifthYearHigh"><?= $careerArrayH[2] ?></div>
+                    <div class="thirdYearHigh"><?=$careerArrayH[1]?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <div class="tenYearLow"><?= $careerArrayL[3] ?></div>
+                    <div class="fifthYearLow"><?=$careerArrayL[2]?></div>
                   </p>
                   <p>最高月薪:
-                    <div class="tenYearHigh"><?= $careerArrayH[3] ?></div>
+                    <div class="fifthYearHigh"><?=$careerArrayH[2]?></div>
                   </p>
 
                 </td>
 
                 <td>
                   <p>最低月薪:
-                    <div class="upYearLow"><?= $careerArrayL[4] ?></div>
+                    <div class="tenYearLow"><?=$careerArrayL[3]?></div>
                   </p>
                   <p>最高月薪:
-                    <div class="upYearHigh"><?= $careerArrayH[4] ?></div>
+                    <div class="tenYearHigh"><?=$careerArrayH[3]?></div>
+                  </p>
+
+                </td>
+
+                <td>
+                  <p>最低月薪:
+                    <div class="upYearLow"><?=$careerArrayL[4]?></div>
+                  </p>
+                  <p>最高月薪:
+                    <div class="upYearHigh"><?=$careerArrayH[4]?></div>
                   </p>
 
                 </td>
@@ -391,16 +391,20 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
                 </td>
               </tr>
             <?php
-            }
-            ?>
+}
+?>
           </table>
-
-          <button class="add">新增行業</button>
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div>
         </div>
 
         <!-- skill_class -->
         <div class="skill_class" v-show="skill_class">
-          <p class="title">課程管理</p>
+          <div class="title">
+            <p class="title">課程管理</p>
+            <button class="add" @click="addForm">新增課程</button>
+          </div>
           <table>
             <tr>
               <th>編號</th>
@@ -486,7 +490,6 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
-          <button class="add" @click="addForm">新增課程</button>
           <!-- 新增課程form -->
           <form
             action="backstage_skillClass_add.php"
@@ -495,12 +498,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
           >
             <div>
               <label for="">名稱</label>
-              <input
-                type="text"
-                class="ski_name"
-                name="ski_name"
-                placeholder="輸入課程名稱"
-              >
+              <input type="text" class="ski_name form" name="ski_name" placeholder="輸入課程名稱">
             </div>
             <div>
               <label for="">類別</label>
@@ -510,13 +508,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div>
               <label for="">價格</label>
-              <input
-                type="number"
-                min="0"
-                class="ski_price"
-                name="ski_price"
-                placeholder="ex:3000"
-              >
+              <input type="number" min="0" class="ski_price form" name="ski_price" placeholder="ex:3000">
             </div>
             <div>
               <label for="">總時數</label>
@@ -526,6 +518,8 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                 name="ski_time"
                 placeholder="ex:3小時"
               >
+              <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
+
             </div>
             <div>
               <label for="">介紹</label>
@@ -551,37 +545,19 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div>
               <label for="">課程連結</label>
-              <input
-                type="text"
-                class="ski_link"
-                name="ski_link"
-                placeholder="ex:youtube.com"
-              >
+              <input type="text" class="ski_link form" name="ski_link" placeholder="ex:youtube.com">
             </div>
             <div>
               <label for="">課程圖片</label>
-              <input
-                type="file"
-                class="ski_img"
-                name="ski_img"
-              >
+              <input type="file" class="ski_img form" name="ski_img">
             </div>
             <div>
               <label for="">講師圖片</label>
-              <input
-                type="file"
-                class="ski_tec_img"
-                name="ski_tec_img"
-              >
+              <input type="file" class="ski_tec_img form" name="ski_tec_img">
             </div>
             <div>
               <label for="">講師名稱</label>
-              <input
-                type="text"
-                class="ski_tec_name"
-                name="ski_tec_name"
-                placeholder="ex:廣仲"
-              >
+              <input type="text" class="ski_tec_name form" name="ski_tec_name" placeholder="ex:廣仲">
             </div>
             <div>
               <label for="">講師介紹</label>
@@ -607,11 +583,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div>
               <label for="">上課對象</label>
-              <input
-                type="text"
-                class="ski_stud"
-                name="ski_stud"
-                placeholder="ex:學生">
+              <input type="text" class="ski_stud form" name="ski_stud" placeholder="ex:學生">
               <button class="stud_add">新增</button>
             </div>
             <div>
@@ -622,15 +594,13 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
 
 
             <div>
-              <button
-                type="submit"
-                class="submit"
-              >送出</button>
-              <button
-                @click="cancel_add"
-              >取消</button>
+              <button type="submit" class="submit">送出</button>
             </div>
+
           </form>
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div>
         </div>
 
         <!-- article_report -->
@@ -659,10 +629,14 @@ while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
                 <td><?=$ArReportRow["MEM_EMAIL"]?></td>
                 <td><?=$ArReportRow["ART_REP_CONTENT"]?></td>
                 <td>
-                  <?php echo $ArReportRow["ART_REP_PASS"] == 1 ? "不通過" : "通過" ?>
-                  <select name="" id="" class="editShow">
-                    <option value="">通過</option>
-                    <option value="">未通過</option>
+                  <p>
+                    <?php echo $ArReportRow["ART_REP_PASS"] == 0 ? "不通過" : "通過" ?>
+                  </p>
+
+                  <select name="" id=""  class="editShow">
+                    <option value="1">通過</option>
+                    <option value="0">不通過</option>
+
                   </select>
                 </td>
                 <td>
@@ -700,11 +674,11 @@ while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
                 <td><?=$MgReportRow["MEM_EMAIL"]?></td>
                 <td><?=$MgReportRow["MES_REP_CONTENT"]?></td>
                 <td>
-                  <?php echo $MgReportRow["MES_REP_PASS"] == 1 ? "不通過" : "通過" ?>
+                  <?php echo $MgReportRow["MES_REP_PASS"] == 0 ? "不通過" : "通過" ?>
 
                   <select name="" id="" class="editShow">
-                    <option value="">通過</option>
-                    <option value="">未通過</option>
+                    <option value="1">通過</option>
+                    <option value="0">未通過</option>
 
                   </select>
                 </td>
@@ -721,98 +695,122 @@ while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
 
         <!-- order_mem -->
         <div class="order_mem" v-show="order_mem">
-          <p class="title">訂單管理</p>
-          <form>
-            <div>
-              <input type="text" class="search_input">
-              <button class="search">查詢</button>
-            </div>
+          <div class="title">
+            <p class="title">訂單管理</p>
+          </div>
 
+          <form method="post" action="./backstage_orderSearch.php" id="search_ore_form">
+            <div>
+              <input type="text" class="search_input" name="ORD_NO" id="orderSearch">
+              <button class="search" @click="searchOrd" id="searchOrd">查看明細</button>
+            </div>
           </form>
-          <table v-for="item in orders">
+          <table id="OrderDetail">
+          </table>
+          <div>
+            <button class="back" @click="backAllOrd" id="backAllOrd" style="display: none;">返回全部列表</button>
+          </div>
+          <table id="allOrd">
             <tr>
               <th>編號</th>
               <th>會員編號</th>
               <th>總金額</th>
               <th>付款方式</th>
               <th>購買日期</th>
-              <th></th>
+            </tr>
+            <tr v-for="item in orders">
+              <td>{{item.ORD_NO}}</td>
+              <td>{{item.MEM_NO}}</td>
+              <td>{{item.ORD_AMOUNT}}</td>
+              <td>{{item.ORD_PAY}}</td>
+              <td>{{item.ORD_DATE}}</td>
             </tr>
 
-              <tr>
-                <td class="OrderDetail" style="display: none;">
-                  <div class="OrderDetail" style="display: none;">
-                    <table>
-                      <tr>
-                        <th>訂單明細編號</th>
-                        <th>課程編號</th>
-                        <th>課程名稱</th>
-                        <th>價格</th>
-                      </tr>
-
-                      <tr v-for="detail in orderList">
-                        <td>{{detail.ORD_DET_NO}}</td>
-                        <td>{{detail.SKI_NO}}</td>
-                        <td>{{detail.SKI_NAME}}</td>
-                        <td>{{detail.ORD_DET_PRICE}}</td>
-                      </tr>
-                    </table>
-                  </div>
-                </td>
-              </tr>
-
-
           </table>
-
         </div>
 
         <!-- postcard_material -->
         <div class="postcard_material" v-show="postcard_material">
-          <p class="title">明信片素材管理</p>
-
-          <table>
+          <div class="title">
+            <p class="title">明信片素材管理</p>
+            <button class="add" id="newPostBtn">新增素材</button>
+          </div>
+          <table id="postTable">
 
             <tr>
               <th>素材編號</th>
               <th>素材名稱</th>
               <th>素材圖片</th>
               <th>啟用</th>
-              <th>修改</th>
             </tr>
             <?php
-while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
-    ?>
+            while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
+            ?>
               <tr>
-                <td><?=$materialRow["POS_MAT_NO"]?></td>
-                <td><?=$materialRow["POS_MAT_NAME"]?></td>
+                <td><?= $materialRow["POS_MAT_NO"] ?></td>
+                <td><?= $materialRow["POS_MAT_NAME"] ?></td>
                 <td>
-                  <img src="<?=$materialRow["POS_MAT_PIC"]?>" alt="<?=$materialRow["POS_MAT_NAME"]?>">
+                  <img src="<?= $materialRow["POS_MAT_PIC"] ?>" alt="<?= $materialRow["POS_MAT_NAME"] ?>">
                 </td>
                 <td>
-                  <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
-                  <select name="" id="" class="editShow">
+                  <p class="POS_USE">
+                    <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
+                  </p>
+
+                  <select name="" id="">
                     <option value="">是</option>
                     <option value="">否</option>
                   </select>
-                </td>
-                <td>
-                  <button class="edit quizEdit">編輯</button>
-                  <button class="editShow cancel">取消</button>
+                  <button class="edit pos_edit">編輯</button>
+                  <button class="pos_cancel">取消</button>
                 </td>
               </tr>
             <?php
-}
-?>
+            }
+            ?>
           </table>
-          <button class="add">新增素材</button>
+          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm">
+            <div class="postName">
+              <!-- <label for="">素材名稱:</label>
+              <input type="text" class="form"> -->
+            </div>
+            <div>
+              <p class="post_type">素材類型</p>
+            </div>
+            <div>
+              <input type="radio" name="POS_MAT_NAME" id="outline" value="outline">
+              <label for="outline">外框</label>
+              <input type="radio" name="POS_MAT_NAME" id="stamp" value="stamp">
+              <label for="stamp">郵票</label>
+              <input type="radio" name="POS_MAT_NAME" id="postmark" value="postmark">
+              <label for="postmark">郵戳</label>
+            </div>
+            <div>
+              <label for="postImg" class="postImg">上傳檔案
+                <input type="file" name="POS_MAT_PIC" id="postImg" accept="image/png">
+              </label>
+              <span>
+                注意只能上傳png檔
+              </span>
+            </div>
+            <div class=" postImg_show">
+              <img src="" alt="" id="postNew">
+            </div>
+            <div>
+              <button type="submit" class="submit" id="newPostSubmit">送出</button>
+            </div>
+          </form>
+          <div>
+            <button class="back" id="backPost">返回全部列表</button>
+          </div>
         </div>
-
-        <!-- announcement -->
-        <div class="announcement" v-show="announcement">
+     <!-- announcement -->
+     <div class="announcement" v-show="announcement">
+     <div class="title">
           <p class="title">公告管理</p>
-
-          <table>
-
+          <button class="add" id="add_annNew" @click="add_annNew">新增公告</button>
+      </div>
+          <table id="annTable">
             <tr>
               <th>編號</th>
               <th>內容</th>
@@ -829,13 +827,13 @@ while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
                 <td><?=$announceRow["ANN_DATE"]?></td>
 
                 <td>
-
                   <?php echo $announceRow["ANN_USE"] == 1 ? "是" : "否" ?>
 
                   <select name="" id="" class="editShow">
-                    <option value="">是</option>
-                    <option value="">否</option>
+                    <option value="1">是</option>
+                    <option value="0">否</option>
                   </select>
+                  <button class="edit" @click="edit">編輯</button> <button class="editShow cancel">取消</button>
                 </td>
                 <td>
                   <button class="edit quizEdit">編輯</button>
@@ -846,23 +844,89 @@ while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
-          <button class="add">新增公告</button>
+     
+
+          <form
+            action="backstage_announcement_add.php"
+            method="post"   
+            id="ann_form"
+            style="display:none"
+          >
+       <div>
+              <label for="">公告日期</label>
+              <input
+                type="text"
+                class="form"
+                name="ANN_DATE"
+                placeholder="YYYY-MM-DD"
+              >
+            </div>
+            <div>
+              <label for="">公告內容</label>
+              <textarea
+                class="form"
+                name="ANN_CONTENT"
+                cols="20"
+                rows="5"
+                placeholder="限制最多30字"
+                maxlength="30"
+              ></textarea>
+            </div>
+        
+            <div>
+               <select name="ANN_USE" id="">
+                  <option value="1">是</option>
+                  <option value="0">否</option>
+                </select>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="submit"
+              >送出</button>
+              <button
+                @click="cancel_add"
+              >取消</button>
+            </div>
+          </form>
+          <div>
+            <button class="back" id="ann_backAd" @click="ann_backAd">返回全部列表</button>
+          </div>
+
         </div>
+
+
       </div>
     </div>
   </div>
 
+  <script>
+  window.addEventListener("load", function() {
+    var add_annNew = document.getElementById("add_annNew");
+        add_annNew.onclick = function(){
+
+	  alert("1244");
+      }
+
+  }
+  
+  </script>
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
   <script src="./js/backstage_edit.js"></script>
   <script src="./js/backstage_careerEdit.js"></script>
   <script src="./js/backstage_memberEdit.js"></script>
   <script src="./js/backstage_adminEdit.js"></script>
+  <script src="./js/backstage_skillEdit.js"></script>
+  <script src="./js/backstage_insert_announcement.js"></script>
+
 </body>
 
 
