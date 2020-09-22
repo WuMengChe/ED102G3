@@ -61,7 +61,7 @@ div.cus_card {
     }
 }
 
-@media(max-width:499px) {
+@media (max-width: 655px) {
     div.cus_list {
         ul {
             li {
@@ -154,7 +154,8 @@ div.hot_course {
                     div.card_content_msg {
                         display: flex;
                         justify-content: space-between;
-                        span.card_time {}
+                        span.card_time {
+                        }
                         span.card_price {
                             font-size: 20px;
                             font-weight: bold;
@@ -172,7 +173,7 @@ div.hot_course {
                         border-radius: $hot_course_btn_width;
                         background: #119beb;
                         box-shadow: $card_shadow;
-                        transition: .6s ease-in-out;
+                        transition: 0.3s ease-in-out;
                         i {
                             color: #fff;
                             font-size: 18px;
