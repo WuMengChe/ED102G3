@@ -157,7 +157,7 @@ try {
     
     ?>
     
-       <h1 class="video_p2"><?php  echo $testRow["SKI_NAME"] ?></h1>
+       <h1 class="video_p2"><?= $testRow["SKI_NAME"] ?></h1>
 
 	<?php
 	
@@ -170,7 +170,7 @@ try {
     <?php
     
 	?>
-	<iframe id="video-Cascade" class="i-frame" max-width="1200px" height="50vh" src="<?php echo $testRow["SKI_LINK"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe id="video-Cascade" class="i-frame" max-width="1200px" height="50vh" src="<?= $testRow["SKI_LINK"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	<?php
 	
 	?>

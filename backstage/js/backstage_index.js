@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+window.addEventListener("load", function() {
     // 增加新管理員
     function addAdministrator() {
         let myForm = document.getElementById("myForm");
@@ -14,13 +14,34 @@ window.addEventListener("load", function () {
 
     document.getElementById("newAdBtn").onclick = addAdministrator;
     // 側邊欄切換
-    $('.list li').click(function () {
+    $('.list li').click(function() {
         $(this).siblings().removeClass("active");
         $(this).parent().siblings().children().removeClass("active");
         $(this).addClass("active");
     });
     //編輯按鈕
-
+    function MEM_USE() {
+        // var conn = new ActiveXObject(“MEMBER.Connection”);
+        // conn.Open(“DBQ=F:abc.mdb;DRIVER={Microsoft Access Driver (*.mdb)};”);
+        // var rs = new ActiveXObject(“MEMBER.Connection”);
+        // var sql='update Student set stuName= 'userName' Id='userId;
+        // conn.execute(sql);
+        // conn.close();
+        // conn = null;
+        // alert(“修改成功”);
+        if (MEM_USE != "") {
+            document.getElementById("edit").innerHTML = "";
+            return;
+        }
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("edit").innerHTML = this.responseText;
+            }
+        }
+        xmlhttp.open("POST", "backstage-Member Management-no1.php", true);
+        xmlhttp.send();
+    }
 
 
 
@@ -35,7 +56,7 @@ window.addEventListener("load", function () {
     // let quizEditBtn = quizEdit1.innerText;
 
     quizEdit1.addEventListener('click',
-        function () {
+        function() {
             if (quizEdit1.innerText == "編輯") {
                 let quizEditBtn = quizEdit1.innerText;
 
@@ -62,7 +83,7 @@ window.addEventListener("load", function () {
                     let QUIZ_PIC_ONE1 = document.getElementById('QUIZ_PIC_ONE1').files[0];
                     let readFile = new FileReader();
                     readFile.readAsDataURL(QUIZ_PIC_ONE1);
-                    readFile.addEventListener('load', function () {
+                    readFile.addEventListener('load', function() {
                         let quizImg1 = document.getElementById('quiz1ImgOne');
                         quizImg1.src = readFile.result;
                         quizImg1.style.maxHeight = '75px';
@@ -76,7 +97,7 @@ window.addEventListener("load", function () {
                     let QUIZ_PIC_Two1 = document.getElementById('QUIZ_PIC_Two1').files[0];
                     let readFile = new FileReader();
                     readFile.readAsDataURL(QUIZ_PIC_Two1);
-                    readFile.addEventListener('load', function () {
+                    readFile.addEventListener('load', function() {
                         let quizImg1 = document.getElementById('quiz1ImgTwo');
                         quizImg1.src = readFile.result;
                         quizImg1.style.maxHeight = '75px';

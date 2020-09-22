@@ -2,10 +2,12 @@
 try {
 
     require_once('./connectMySql.php');
-	$sql = "select * from `skill_class` where SKI_NO = 1"; 
-	$skill = $pdo->query($sql);
+	$sql = "select * from `skill_class` where SKI_NO = :SKI_NO"; 
+    $skill = $pdo->prepare($sql);
+    $skill->bindValue(':SKI_NO',$_POST['SKI_NO']);
+    $skill->execute();
     // $skillRows = $skill->fetchAll(PDO::FETCH_ASSOC);
-    $testRow = $skill->fetch(PDO::FETCH_ASSOC);
+    $testRow = $skill->fetchAll(PDO::FETCH_ASSOC);
 
 
     // var_dump($skillRow);exit();
@@ -153,15 +155,15 @@ try {
         </a><br>
     </div>
     <div class="video_title2">
-    <?php
     
-    ?>
+    
+    
     
        <h1 class="video_p2"><?php  echo $testRow["SKI_NAME"] ?></h1>
 
-	<?php
 	
-	?>
+	
+
     </div>
     
 
