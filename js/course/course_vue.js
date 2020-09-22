@@ -81,8 +81,6 @@ let vm = new Vue({
     };
   },
   mounted() {
-    // 共用
-    this.check_member_api();
     // course_main.html
     this.all_course_api();
 
@@ -95,6 +93,9 @@ let vm = new Vue({
     if (localURL.toString().includes("course_check")) {
       this.load_order_list();
     }
+
+    // 共用
+    this.check_member_api();
   },
   methods: {
     // localStorage
@@ -298,13 +299,9 @@ let vm = new Vue({
             if (res.data != 0) {
               let memName = res.data.split(";")[1];
 
-              $("div.member > a").html("Hi," + memName);
+              // $("div.member > a").html("Hi," + memName);
               $("div.member > a").attr("href", "member.html");
               $("#header_logOut").css("display", "block");
-
-              // course_main.html課程內容載入
-              // this.all_course_api();
-              return res;
             }
           }
         })
@@ -313,59 +310,65 @@ let vm = new Vue({
         });
     },
     // ================================
+    go_checkout(e) {
+      e.preventDefault();
+      if (this.cart_items.length == 1) {
+        if (
+          window.confirm("再加購一堂課程即可享有85折扣，確定要繼續結帳嗎？")
+        ) {
+          location.href = "./course_orderlist.html";
+        }
+      } else {
+        location.href = "./course_orderlist.html";
+      }
+    },
     // orderList傳訂單到資料庫
     orderListSend(item) {
-      axios.post("./php/memberStateCheck.php").then((resp) => {
-        if (resp.data == 0) {
-          document.querySelector(".bg_of_lightbx").style = "display:block";
-        } else {
-          if (item.length > 0) {
-            let d_ord_amount = $(".final_price").text().split("$")[1]; //總金額
-            let d_ord_pay = "信用卡"; //付款方式
-            let d_ord_discount = 0; //是否折扣
-            if (item.length > 1) {
-              d_ord_discount = 1;
-            }
-            let arr = [];
-
-            item.forEach((key) => {
-              //課程資訊
-              arr.push({
-                ski_no: key.ski_no,
-                ski_price: key.ski_price,
-              });
-            });
-
-            let d_course_arr = JSON.stringify(arr);
-
-            // 建立php的變數
-            var formData = new FormData();
-            formData.append("ord_amount", d_ord_amount);
-            formData.append("ord_pay", d_ord_pay);
-            formData.append("ord_discount", d_ord_discount);
-            formData.append("course_arr", d_course_arr);
-
-            // -------------
-            // 連結php
-            axios
-              .all([axios.post("./php/course_send_ordList.php", formData)])
-              .then(
-                axios.spread((res1, res2) => {
-                  alert("訂單完成");
-                  let ord_no = res1.data[0].ord_no;
-                  window.location.href = "./course_check.html?ord_no=" + ord_no;
-                })
-              )
-
-              .catch((err) => {
-                console.log(err);
-              });
-          } else {
-            alert("購物車內無課程，請先挑選課程唷！");
-            window.location.href = "./course_main.html";
-          }
+      if (item.length > 0) {
+        let d_ord_amount = $(".final_price").text().split("$")[1]; //總金額
+        let d_ord_pay = "信用卡"; //付款方式
+        let d_ord_discount = 0; //是否折扣
+        if (item.length > 1) {
+          d_ord_discount = 1;
         }
-      });
+        let arr = [];
+
+        item.forEach((key) => {
+          //課程資訊
+          arr.push({
+            ski_no: key.ski_no,
+            ski_price: key.ski_price,
+          });
+        });
+
+        let d_course_arr = JSON.stringify(arr);
+
+        // 建立php的變數
+        var formData = new FormData();
+        formData.append("ord_amount", d_ord_amount);
+        formData.append("ord_pay", d_ord_pay);
+        formData.append("ord_discount", d_ord_discount);
+        formData.append("course_arr", d_course_arr);
+
+        // -------------
+        // 連結php
+        axios
+          .all([axios.post("./php/course_send_ordList.php", formData)])
+          .then(
+            axios.spread((res1, res2) => {
+              alert("訂單完成");
+              let ord_no = res1.data[0].ord_no;
+              window.location.href = "./course_check.html?ord_no=" + ord_no;
+            })
+          )
+
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        alert("購物車內無課程，請先挑選課程唷！");
+        window.location.href = "./course_main.html";
+      }
     },
     load_order_list() {
       // 清空購物車

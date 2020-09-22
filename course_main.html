@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    @@include('app/link.html')
+    @@include('app/link.html') @@include('app/script.html')
     <link rel="stylesheet" href="./css/pages_scss/course/course.css" />
   </head>
 
   <body>
-    <!-- @@include('app/header.html') -->
     <div id="course_main">
       <div class="header_wrap">
         <header class="header">
@@ -51,7 +50,9 @@
               <a id="member_icon" href="member_sign_in.html"
                 ><i class="fas fa-user"></i
               ></a>
-              <button id="header_logOut" @click="header_logOut">登出</button>
+              <button id="header_logOut" @click="header_logOut">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
             </div>
           </div>
         </header>
@@ -116,7 +117,7 @@
             <div class="price_total">
               <span>總計:${{final_price}}</span>
             </div>
-            <a href="course_orderlist.html" class="check_out">前往結帳</a>
+            <button class="check_out" @click="go_checkout">前往結帳</button>
           </div>
         </div>
       </div>
@@ -319,10 +320,11 @@
       </div>
     </div>
 
-    @@include('app/footer.html') @@include('app/script.html')
+    @@include('app/footer.html')
+
+    <script src="./js/course/course_vue.js"></script>
     <!-- <script src="./js/course/owl_auto_slide.js "></script> -->
     <script src="./js/course/parallax_script.js "></script>
     <!-- <script src="./js/course/course_main.js "></script> -->
-    <script src="./js/course/course_vue.js"></script>
   </body>
 </html>

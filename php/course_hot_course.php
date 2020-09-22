@@ -5,7 +5,7 @@ try {
 
     require_once "connectMySql.php";
 
-    $sql = "select a.ski_no ,
+    $sql = "select a.ski_no , 
             a.ski_name,
             a.ski_img,
             a.ski_buy_num,
@@ -14,7 +14,6 @@ try {
             b.ind_class,
             b.ind_color
             from skill_class a join industry_class b on a.ind_no = b.ind_no
-            where ski_hidden = 1
             order by ski_buy_num desc
             limit 4;";
     $dis = $pdo->query($sql);

@@ -99,7 +99,7 @@ div.header_wrap {
         .hamburger-inner::before,
         .hamburger-inner::after {
             width: 30px;
-            height: 4px;
+            height: 3px;
             background-color: #000;
             border-radius: 4px;
             position: absolute;
@@ -127,11 +127,13 @@ div.header_wrap {
         }
         .hamburger--spring .hamburger-inner::before {
             top: 10px;
-            transition: top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+            transition: top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
         }
         .hamburger--spring .hamburger-inner::after {
             top: 20px;
-            transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+            transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
         }
         .hamburger--spring.is-active .hamburger-inner {
             transition-delay: 0.22s;
@@ -139,12 +141,14 @@ div.header_wrap {
         }
         .hamburger--spring.is-active .hamburger-inner::before {
             top: 0;
-            transition: top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+            transition: top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+                transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
             transform: translate3d(0, 10px, 0) rotate(45deg);
         }
         .hamburger--spring.is-active .hamburger-inner::after {
             top: 0;
-            transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+            transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+                transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
             transform: translate3d(0, 10px, 0) rotate(-45deg);
         }
         div.logo {
@@ -228,6 +232,7 @@ div.header_wrap {
                     font-size: 16px;
                     color: $header_icon_i_color;
                     display: none;
+                    margin-left: 20px;
                 }
             }
         }
@@ -268,29 +273,10 @@ div.header_wrap {
                         100% {
                             background: linear-gradient(-45deg, rgb(228, 200, 200) 60%, rgb(192, 192, 247) 10%);
                         }
-                        // 0% {
-                        //     background-position: 24% 0%
-                        // }
-                        // 50% {
-                        //     background-position: 77% 100%
-                        // }
-                        // 100% {
-                        //     background-position: 24% 0%
-                        // }
                     }
-                    // @keyframes color {
-                    //     from {
-                    //         background: green;
-                    //     }
-                    //     to {
-                    //         background: yellow;
-                    //     }
+
                     &:hover {
-                        // background: rgb(192, 192, 247);
                         background: linear-gradient(124deg, rgb(228, 200, 200) 90%, rgb(192, 192, 247) 90%);
-                        // background: blue;
-                        // animation: linear-gradient 3s infinite 1s;
-                        // transition: 3s ease-in-out ;
                         animation: color 1s ease infinite;
                     }
                 }
@@ -299,5 +285,14 @@ div.header_wrap {
         div.header_icon {
             margin-left: 0 !important;
         }
+    }
+    div.header_wrap header.header div.logo {
+        height: 40px;
+    }
+    div.header_wrap header.header div.header_icon div.cart {
+        margin-right: 10px;
+    }
+    div.header_wrap header.header div.header_icon div.member button#header_logOut {
+        margin-left: 10px;
     }
 }

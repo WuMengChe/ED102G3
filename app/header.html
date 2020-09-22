@@ -36,7 +36,9 @@
           <a id="member_icon" href="member_sign_in.html"
             ><i class="fas fa-user"></i
           ></a>
-          <button id="header_logOut" @click="header_logOut">登出</button>
+          <button id="header_logOut" @click="header_logOut">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
         </div>
       </div>
     </header>
@@ -100,7 +102,7 @@
         <div class="price_total">
           <span>總計:${{final_price}}</span>
         </div>
-        <a href="course_orderlist.html" class="check_out">前往結帳</a>
+        <button class="check_out" @click="go_checkout">前往結帳</button>
       </div>
     </div>
   </div>
