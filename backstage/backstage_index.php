@@ -98,10 +98,10 @@ echo $_SESSION["AD_NAME"];
       </div>
 
       <div class="main col-11">
-        <!-- <component :is="member"></component> -->
-        <!-- member -->
         <div class="account" v-show="account">
-          <p class="title">會員管理</p>
+          <div class="title">
+              <p class="title">會員管理</p>
+          </div>
           <form id="search_mem_form" action="./backstage_memberSearch.php">
             <div>
               <input type="text" class="search_input" id="MemSearch" name="MEM_NO">
@@ -151,14 +151,16 @@ while ($memberRow = $member->fetch(PDO::FETCH_ASSOC)) {
         </div>
 
         <div class="administrator" v-show="administrator">
-          <p class="title">管理員管理</p>
-          <button id="newAdBtn" class="add">新增管理員</button>
-          <table>
+        <div class="title">
+            <p class="title">管理員管理</p>
+            <button id="newAdBtn" class="add">新增管理員</button>
+          </div>
+          <table id="adTable">
             <tr>
               <th>編號</th>
               <th>名稱</th>
               <th>帳號</th>
-              <th>停權</th>
+              <th>是否停權</th>
               <th>修改</th>
             </tr>
             <?php
@@ -213,7 +215,10 @@ while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
 
         <!-- quiz -->
         <div class="quiz" v-show="quiz">
-          <p class="title">測驗題庫</p>
+        <div class="title">
+            <p class="title">測驗題庫</p>
+            <button class="add">新增題目</button>
+          </div>          
           <table>
             <tr>
               <th>編號</th>
@@ -288,7 +293,10 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
 
         <!-- industry -->
         <div class="industry" v-show="industry">
-          <p class="title">行業管理</p>
+          <div class="title">
+            <p class="title">行業管理</p>
+            <button class="add">新增行業</button>
+          </div>
           <table>
             <tr>
               <th>編號</th>
@@ -769,20 +777,20 @@ while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
             }
             ?>
           </table>
-          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm">
+          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm" enctype="multipart/form-data">
             <div class="postName">
-              <!-- <label for="">素材名稱:</label>
-              <input type="text" class="form"> -->
+              <label for="POS_MAT_NAME">名稱:</label>
+              <input type="text" class="form" name="POS_MAT_NAME" id="POS_MAT_NAME">
             </div>
             <div>
               <p class="post_type">素材類型</p>
             </div>
             <div>
-              <input type="radio" name="POS_MAT_NAME" id="outline" value="outline">
+              <input type="radio" name="post_type" id="outline" value="outline">
               <label for="outline">外框</label>
-              <input type="radio" name="POS_MAT_NAME" id="stamp" value="stamp">
+              <input type="radio" name="post_type" id="stamp" value="stamp">
               <label for="stamp">郵票</label>
-              <input type="radio" name="POS_MAT_NAME" id="postmark" value="postmark">
+              <input type="radio" name="post_type" id="postmark" value="postmark">
               <label for="postmark">郵戳</label>
             </div>
             <div>
@@ -914,6 +922,7 @@ while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
   </script>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
