@@ -138,8 +138,8 @@ while ($memberRow = $member->fetch(PDO::FETCH_ASSOC)) {
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
-                  <button class="edit">編輯</button>
-                  <button class="cancel">取消</button>
+                  <button class="edit memEdit">編輯</button>
+                  <button class="cancel memCancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -236,16 +236,16 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
               <tr>
                 <td><?=$quizRow["QUIZ_NO"]?></td>
                 <td>
-                  <div class="QUIZ_CON"><?=$quizRow["QUIZ_CON"]?></div>
-                  <textarea class="QUIZ_CON editShow" cols="20" rows="5"></textarea>
+                  <div class="QUIZ_CON"><?= $quizRow["QUIZ_CON"] ?></div>
+                  <!-- <textarea class="QUIZ_CON editShow" cols="20" rows="5"></textarea> -->
                 </td>
                 <td>
                   <img src="<?=$quizRow['QUIZ_PIC_ONE']?>" alt="photo1" class="quizImgOne" id="quizImgOne1">
                   <input type="file" name="QUIZ_PIC_ONE" class="editShow QUIZ_PIC_ONE">
                 </td>
                 <td>
-                  <div class="QUIZ_ONE_CONTENT"><?=$quizRow["QUIZ_SEL_ONE_CONTENT"]?></div>
-                  <textarea class="QUIZ_ONE_CONTENT editShow editValue"cols="20" rows="5"></textarea>
+                  <div class="QUIZ_ONE_CONTENT"><?= $quizRow["QUIZ_SEL_ONE_CONTENT"] ?></div>
+                  <!-- <textarea class="QUIZ_ONE_CONTENT editShow editValue" cols="20" rows="5"></textarea> -->
                 </td>
                 <td>
                   <p> <?=$quizRow["firstType"]?></p>
@@ -275,8 +275,8 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
                   </select>
                 </td>
                 <td>
-                  <button class="edit">編輯</button>
-                  <button class="editShow cancel">取消</button>
+                  <button class="edit quizEdit">編輯</button>
+                  <button class="editShow cancel quizCancel">取消</button>
                 </td>
               </tr>
 
@@ -284,7 +284,9 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
-
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div>
         </div>
 
         <!-- industry -->
@@ -398,7 +400,9 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
-
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div>
         </div>
 
         <!-- skill_class -->
@@ -589,7 +593,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
 
           </form>
           <div>
-            <button class="back" id="backAd" @click="cancel_add">返回全部列表</button>
+            <button class="back" @click="cancel_add">返回全部列表</button>
           </div>
         </div>
 
@@ -680,49 +684,38 @@ while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
 
         <!-- order_mem -->
         <div class="order_mem" v-show="order_mem">
-          <p class="title">訂單管理</p>
-          <form>
-            <div>
-              <input type="text" class="search_input">
-              <button class="search">查詢</button>
-            </div>
+          <div class="title">
+            <p class="title">訂單管理</p>
+          </div>
 
+          <form method="post" action="./backstage_orderSearch.php" id="search_ore_form">
+            <div>
+              <input type="text" class="search_input" name="ORD_NO" id="orderSearch">
+              <button class="search" @click="searchOrd" id="searchOrd">查看明細</button>
+            </div>
           </form>
-          <table v-for="item in orders">
+          <table id="OrderDetail">
+          </table>
+          <div>
+            <button class="back" @click="backAllOrd" id="backAllOrd" style="display: none;">返回全部列表</button>
+          </div>
+          <table id="allOrd">
             <tr>
               <th>編號</th>
               <th>會員編號</th>
               <th>總金額</th>
               <th>付款方式</th>
               <th>購買日期</th>
-              <th></th>
             </tr>
-
-            <tr>
-              <td class="OrderDetail" style="display: none;">
-                <div class="OrderDetail" style="display: none;">
-                  <table>
-                    <tr>
-                      <th>訂單明細編號</th>
-                      <th>課程編號</th>
-                      <th>課程名稱</th>
-                      <th>價格</th>
-                    </tr>
-
-                    <tr v-for="detail in orderList">
-                      <td>{{detail.ORD_DET_NO}}</td>
-                      <td>{{detail.SKI_NO}}</td>
-                      <td>{{detail.SKI_NAME}}</td>
-                      <td>{{detail.ORD_DET_PRICE}}</td>
-                    </tr>
-                  </table>
-                </div>
-              </td>
+            <tr v-for="item in orders">
+              <td>{{item.ORD_NO}}</td>
+              <td>{{item.MEM_NO}}</td>
+              <td>{{item.ORD_AMOUNT}}</td>
+              <td>{{item.ORD_PAY}}</td>
+              <td>{{item.ORD_DATE}}</td>
             </tr>
-
 
           </table>
-
         </div>
 
         <!-- postcard_material -->

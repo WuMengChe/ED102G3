@@ -22,8 +22,7 @@ try {
 
 
   require_once("./connectMySql.php");
-
-
+  // update industry_introduce set IND_INT_NAME ="律師",IND_INT_INTRO="介紹法律",IND_INT_PICTURE="./img",IND_NO="C",INT_INT_CONTENT="打官司",IND_INT_SKILL="賺大錢" where IND_INT_NO=1;
 
   // 修改測驗題庫資料
   $quizUpSql = "update quiz set 

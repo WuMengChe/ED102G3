@@ -178,6 +178,11 @@ let testResult = new Vue({
                         show: false
                     },
                     tooltip: {},
+                    // grid: { // 控制图的大小，调整下面这些值就可以，
+                    //     x: 40,
+                    //     x2: 50,
+                    //     y2: 150// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
+                    // },
                     legend: {
                         data: ['分析結果'],
                         show: false
@@ -189,7 +194,7 @@ let testResult = new Vue({
                                 color: 'black',
                                 backgroundColor: '#999',
                                 borderRadius: 3,
-                                padding: [3, 1]
+                                padding: [2, 1]
                             }
                         },
                         indicator: [
@@ -214,15 +219,15 @@ let testResult = new Vue({
                         lineStyle: {
                             color: "rgba(50, 87, 200, 1)"
                         },
-                        symbolSize: 10,
+                        symbolSize: 8,
                         symbol: "diamond"
                     }]
                 },
                 media: [
                     {
                         query: {
-                            minWidth: 200,
-                            maxHeight: 300
+                            Width: 200,
+                            Height: 300
                         },
                         option: {
                             series:[{
@@ -463,22 +468,22 @@ created() {
     //以下判定第幾個值是最大的決定要撈什麼資料:順序: [R,I,A,S,E,C]            
        if ( this.maxIndex === 0 ){
          this.maxIndex = 'R';
-         alert('哈~ R 最大')
+        //  alert('哈~ R 最大')
        }else if( this.maxIndex === 1 ){
         this.maxIndex = 'I';
-        alert('哈~ I 最大(愛最大!!)')
+        // alert('哈~ I 最大(愛最大!!)')
        }else if( this.maxIndex === 2 ){
         this.maxIndex = 'A';
-        alert('哈~ A 最大~')
+        // alert('哈~ A 最大~')
        }else if( this.maxIndex === 3 ){
         this.maxIndex = 'S';
-        alert('哈~ S 最大~')
+        // alert('哈~ S 最大~')
        }else if( this.maxIndex === 4 ){
         this.maxIndex = 'E';
-        alert('哈~ E 最大~')
+        // alert('哈~ E 最大~')
        }else if( this.maxIndex === 5 ){
         this.maxIndex = 'C'; 
-        alert('哈~ C 最大~')
+        // alert('哈~ C 最大~')
        }
 
        //送出最大的

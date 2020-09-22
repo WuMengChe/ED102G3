@@ -51,9 +51,7 @@ new Vue({
 
         orders: [],
         orderList: [],
-        adminName: "名稱",
-        adminId: "id",
-        adminPw: "密碼",
+
     },
     methods: {
         show(index) {
@@ -182,7 +180,7 @@ new Vue({
                     break;
             }
         },
-        SearchMEM: function(e) {
+        SearchMEM: function (e) {
             e.preventDefault();
             $.ajax({
                 url: "backstage_memberSearch.php",
@@ -191,7 +189,7 @@ new Vue({
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     $("#oneMem").html(data);
                 },
             });
@@ -205,9 +203,32 @@ new Vue({
             $("#oneMem").hide();
         },
 
-        // detail() {
-        //     $(".orderDetail1").show();
-        // },
+        //查看訂單明細
+        searchOrd(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "backstage_orderSearch.php",
+                type: "POST",
+                data: new FormData(document.getElementById("search_ore_form")),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    $("#OrderDetail").html(data);
+                },
+            });
+            $("#backAllOrd").show();
+            $("#OrderDetail").show();
+            $("#allOrd").hide();
+        },
+
+        backAllOrd() {
+            $("#backAllOrd").hide();
+            $("#OrderDetail").hide();
+            $("#allOrd").show();
+        },
+
+
         edit(e) {
             let td = $(e.target).parent().parent();
             switch (e.target.innerText) {
@@ -241,16 +262,7 @@ new Vue({
             $(e.target).parent().parent().find('.add').show();
             //   window.scrollTo(0, 0);
         },
-        test: function(e) {
-            e.preventDefault();
-            console.log($(e.target).parent().parent().parent().find(".OrderDetail"));
-            $(e.target)
-                .parent()
-                .parent()
-                .parent()
-                .find(".OrderDetail")
-                .css("display", "block");
-        },
+
         deleteSki(e) {
             if (window.confirm("確認刪除此課程？")) {
                 let ski_no = $(e.target).parent().parent().find("#ski_no").text();
