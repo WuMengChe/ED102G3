@@ -98,12 +98,10 @@ echo $_SESSION["AD_NAME"];
       </div>
 
       <div class="main col-11">
-        <!-- member -->
         <div class="account" v-show="account">
           <div class="title">
-            <p class="title">會員管理</p>
+              <p class="title">會員管理</p>
           </div>
-
           <form id="search_mem_form" action="./backstage_memberSearch.php">
             <div>
               <input type="text" class="search_input" id="MemSearch" name="MEM_NO">
@@ -122,24 +120,28 @@ echo $_SESSION["AD_NAME"];
               <th>電話</th>
               <th>電子郵件</th>
               <th>是否停權</th>
+              <th>修改</th>
             </tr>
             <?php
 while ($memberRow = $member->fetch(PDO::FETCH_ASSOC)) {
     ?>
               <tr>
 
-                <td><?=$memberRow["MEM_NO"]?></td>
+                <td><div class="memNo"><?=$memberRow["MEM_NO"]?></div></td>
                 <td><?=$memberRow["MEM_NAME"]?></td>
                 <td><?=$memberRow["MEM_TEL"]?></td>
                 <td><?=$memberRow["MEM_EMAIL"]?></td>
                 <td>
-                  <p class="memUse"> <?php echo $memberRow["MEM_USE"] == 0 ? "否" : "是" ?></p>
-                  <select name="MEM_USE" id="MEM_USE">
+                  <p><?php echo $memberRow["MEM_USE"] == 0 ? "否" : "是" ?></p>
+
+                  <select name="authority" id="" class="editShow MEM_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
-                  <button class="edit">編輯</button>
-                  <button class="cancel">取消</button>
+                </td>
+                  <td>
+                  <button class="edit memberEdit">編輯</button>
+                  <button class="editShow cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -149,7 +151,7 @@ while ($memberRow = $member->fetch(PDO::FETCH_ASSOC)) {
         </div>
 
         <div class="administrator" v-show="administrator">
-          <div class="title">
+        <div class="title">
             <p class="title">管理員管理</p>
             <button id="newAdBtn" class="add">新增管理員</button>
           </div>
@@ -159,30 +161,31 @@ while ($memberRow = $member->fetch(PDO::FETCH_ASSOC)) {
               <th>名稱</th>
               <th>帳號</th>
               <th>是否停權</th>
+              <th>修改</th>
             </tr>
             <?php
 while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
     ?>
               <tr>
-                <td><?=$adminRow["AD_NO"]?></td>
+                <td><div class="adNo"><?=$adminRow["AD_NO"]?></div></td>
                 <td><?=$adminRow["AD_NAME"]?></td>
                 <td><?=$adminRow["AD_ACCOUNT"]?></td>
                 <td>
-                  <p><?php echo $adminRow["AD_MAT_USE"] == 1 ? "否" : "是" ?></p>
-
-                  <select name="AD_MAT_USE" id="">
+                  <p><?php echo $adminRow["AD_MAT_USE"] == 0 ? "否" : "是" ?></p>
+                  <select name="authority" id="" class="editShow AD_MAT_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
-                  <button class="edit adEdit<?=$adminRow["AD_NO"]?>" @click="edit">編輯</button>
-                  <button class="cancel">取消</button>
+                </td>
+                <td>
+                  <button class="edit adminEdit">編輯</button>
+                  <button class="editShow cancel">取消</button>
                 </td>
               </tr>
             <?php
 }
 
 ?>
-
           </table>
           <form action="./backstage_add_administrator.php" method="post" id="newAdForm">
             <div>
@@ -208,12 +211,11 @@ while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
           <div>
             <button class="back" id="backAd">返回全部列表</button>
           </div>
-
         </div>
 
         <!-- quiz -->
         <div class="quiz" v-show="quiz">
-          <div class="title">
+        <div class="title">
             <p class="title">測驗題庫</p>
             <button class="add" @click="addForm">新增題目</button>
           </div>
@@ -234,18 +236,18 @@ while ($adminRow = $administrator->fetch(PDO::FETCH_ASSOC)) {
 while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
     ?>
               <tr>
-                <td><?=$quizRow["QUIZ_NO"]?></td>
+                <td><div class="quizNo"><?=$quizRow["QUIZ_NO"]?></div></td>
                 <td>
                   <div class="QUIZ_CON"><?=$quizRow["QUIZ_CON"]?></div>
-                  <textarea class="QUIZ_CON editShow" cols="20" rows="5"></textarea>
                 </td>
                 <td>
-                  <img src="<?=$quizRow['QUIZ_PIC_ONE']?>" alt="photo1" class="quizImgOne" id="quizImgOne1">
+                  <img src="<?=$quizRow['QUIZ_PIC_ONE']?>" alt="photo1" class="quizImgOne">
                   <input type="file" name="QUIZ_PIC_ONE" class="editShow QUIZ_PIC_ONE">
+
+
                 </td>
                 <td>
                   <div class="QUIZ_ONE_CONTENT"><?=$quizRow["QUIZ_SEL_ONE_CONTENT"]?></div>
-                  <textarea class="QUIZ_ONE_CONTENT editShow editValue"cols="20" rows="5"></textarea>
                 </td>
                 <td>
                   <p> <?=$quizRow["firstType"]?></p>
@@ -275,7 +277,7 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
                   </select>
                 </td>
                 <td>
-                  <button class="edit">編輯</button>
+                  <button class="edit quizEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               </tr>
@@ -284,6 +286,60 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
+               <!-- 新增題庫form -->
+               <form action="backstage_quiz_add.php" method="post" style="display:none;">
+            <div>
+              <label for="quiz_con">問題內容</label>
+              <textarea  name="quiz_con" cols="20" rows="5" placeholder="輸入題目" id="quiz_cons"></textarea>
+            </div>
+            <div>
+              <label for="">選項一圖片</label>
+              <input type="file" class="form" name="quiz_pic_one">
+              <div class="postImg_show">
+                <img src="" alt="" id="quiz_pic_one">
+              </div>
+            </div>
+            <div>
+              <label for="">選項一內容</label>
+              <textarea  name="quiz_sel_one_content" cols="20" rows="5" placeholder="輸入內容"></textarea>
+            </div>
+            <div>
+              <label for="">選項一類
+              別</label>
+              <select name="quiz_sel_one_class" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">選項二圖片</label>
+              <input type="file" class="form" name="quiz_pic_two">
+              <div class="postImg_show"><img src="" alt="" id="quiz_pic_one"></div>
+            </div>
+            <div>
+              <label for="">選項二內容</label>
+              <textarea  name="quiz_sel_two_content" cols="20" rows="5" placeholder="輸入內容"></textarea>
+            </div>
+            <div>
+              <label for="">選項二類別</label>
+              <select name="quiz_sel_two_class" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">啟用題目</label>
+              <input type="radio" name="quiz_use" value="1" checked>是
+              <input type="radio" name="quiz_use" value="0">否
+            </div>
+
+
+            <div>
+              <button type="submit" class="submit">送出</button>
+            </div>
+
+          </form>
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div>
 
         </div>
 
@@ -291,7 +347,7 @@ while ($quizRow = $quiz->fetch(PDO::FETCH_ASSOC)) {
         <div class="industry" v-show="industry">
           <div class="title">
             <p class="title">行業管理</p>
-            <button class="add" @click="addForm">新增行業</button>
+            <button class="add">新增行業</button>
           </div>
           <table>
             <tr>
@@ -317,7 +373,7 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
     $careerArrayL = mb_split(",", $careerRow["IND_SAL_LOW"]);
     ?>
               <tr>
-                <td><?=$careerRow["IND_INT_NO"]?></td>
+                <td><div class="indNo"><?=$careerRow["IND_INT_NO"]?></div></td>
                 <td>
                   <div class="indName"><?=$careerRow["IND_INT_NAME"]?></div>
                 </td>
@@ -329,7 +385,7 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
                   <input type="file" name="indPic" class="editShow indPic">
                 </td>
                 <td>
-                  文藝型
+                <?=$careerRow["IND_CLASS"]?>
                   <select name="" id="" class="editShow indType">
                     <option value="" v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
@@ -390,7 +446,7 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
 
                 </td>
                 <td>
-                  <button class="edit">編輯</button>
+                  <button class="edit careerEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               </tr>
@@ -398,6 +454,69 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
+
+              <!-- 新增行業form -->
+              <!-- <form action="backstage_ind_add.php" method="post" style="display:none;">
+            <div>
+              <label for="">名字</label>
+              <input type="text" class="form" name="ind_int_name">
+            </div>
+            <div>
+              <label for="">介紹</label>
+              <textarea  name="ind_int_intro" cols="20" rows="5" placeholder="輸入職業介紹"></textarea>
+            </div>
+            <div>
+              <label for="">圖片</label>
+              <input type="file" class="form" name="ind_int_picture"">
+            </div>
+            <div>
+              <label for="">類別</label>
+              <select name="ind_no" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">內容</label>
+              <textarea  name="ind_int_content" cols="20" rows="5" placeholder="輸入職業內容"></textarea>
+            </div>
+            <div>
+              <label for="">技能</label>
+              <textarea  name="ind_int_skill" cols="20" rows="5" placeholder="輸入職業技能"></textarea>
+            </div>
+            <div>
+              <label for="">一年以下</label>
+              <select name="ind_no" >
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="">一~三年</label>
+              <input type="radio" name="ski_hidden" value="1" checked>否
+              <input type="radio" name="ski_hidden" value="0">是
+            </div>
+            <div>
+              <label for="">三~五年</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+            <div>
+              <label for="">五~十年</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+            <div>
+              <label for="">十年以上</label>
+              <input type="file" class="form" name="quiz_pic_one">
+            </div>
+
+
+            <div>
+              <button type="submit" class="submit">送出</button>
+            </div>
+
+          </form>
+          <div>
+            <button class="back" @click="cancel_add">返回全部列表</button>
+          </div> -->
+
 
         </div>
 
@@ -431,14 +550,13 @@ while ($careerRow = $career->fetch(PDO::FETCH_ASSOC)) {
 while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
     ?>
               <tr>
-                <td id="ski_no"><?=$skillRow["SKI_NO"]?></td>
+                <td class="ski_no"><?=$skillRow["SKI_NO"]?></td>
                 <td id="ski_name">
-                  <?=$skillRow["SKI_NAME"]?>
-                  <p><input type="text" placeholder="名稱" value="<?=$skillRow["SKI_NAME"]?>"></p>
+                <div class="ski_name"><?=$skillRow["SKI_NAME"]?></div>
                 </td>
                 <td id="ind_no">
                   <?=$skillRow["IND_CLASS"]?>
-                  <select name="" id="">
+                  <select name="" id="" class="editShow indType">
                     <option :value="type.value" v-for="type in types">{{type.type}}</option>
                   </select>
                 </td>
@@ -446,66 +564,47 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                   <?=$skillRow["SKI_BUY_NUM"]?>
                 </td>
                 <td id="ski_price">
-                  <?=$skillRow["SKI_PRICE"]?>
-                  <p><input type="number" min="0"></p>
+                  <div class="ski_price"><?=$skillRow["SKI_PRICE"]?></div>
                 </td>
-                <td id="ski_time"><?=$skillRow["SKI_TIME"]?></td>
-                <td id="ski_intro">
-                  <div class="overflow">
-                    <?=$skillRow["SKI_INTRO"]?>
-                  </div>
-                  <div>
-                    <textarea name="ski_intro" cols="20" rows="5" placeholder="限制最多100字" maxlength="100"></textarea>
-                  </div>
+                <td id="ski_time"><div class="ski_time"><?=$skillRow["SKI_TIME"]?></div></td>
+                <td id="ski_intro"><div class="overflow ski_intro"><?=$skillRow["SKI_INTRO"]?></div>
                 </td>
                 <td id="ski_harvest">
-                  <div class="overflow"><?=$skillRow["SKI_HARVEST"]?></div>
-                  <div>
-                    <textarea name="ski_harvest" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea>
-                  </div>
+                  <div class="overflow ski_harvest"><?=$skillRow["SKI_HARVEST"]?></div>
                 </td>
-                <td id="ski_line"><?=$skillRow["SKI_LINK"]?><p><input type="number" min="0"></p>
-                </td>
+                <td id="ski_line"><div class="ski_line" ><?=$skillRow["SKI_LINK"]?></div></td>
                 <td id="ski_img">
-                  <img src="<?=$skillRow["SKI_IMG"]?>" alt="課程圖片">
-                  <p><input type="file" class="ski_img" name="ski_img"></p>
+                  <img src="<?=$skillRow["SKI_IMG"]?>" alt="課程圖片" class="ski_img">
+                  <input type="file" name="" class="editShow skiImgInput">
                 </td>
                 <td id="ski_tec_img">
-                  <img src="<?=$skillRow["SKI_TEC_IMG"]?>" alt="講師圖片">
-                  <p><input type="file" class="ski_tec_img" name="ski_tec_img"></p>
+                  <img src="<?=$skillRow["SKI_TEC_IMG"]?>" alt="講師圖片" class="ski_tec_img">
+                  <input type="file" name="" class="editShow skiTecImgInput">
                 </td>
                 <td id="ski_tec_name">
-                  <?=$skillRow["SKI_TEC_NAME"]?>
-                  <p><input type="number" min="0"></p>
+                  <div class="ski_tec_name"><?=$skillRow["SKI_TEC_NAME"]?></div>
                 </td>
                 <td id="ski_tec_intro">
-                  <div class="overflow"><?=$skillRow["SKI_TEC_INTRO"]?></div>
-                  <div>
-                    <textarea name="ski_tec_intro" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
-                  </div>
+                  <div class="overflow ski_tec_intro"><?=$skillRow["SKI_TEC_INTRO"]?></div>
                 </td>
                 <td id="ski_outline">
-                  <div class="overflow"><?=$skillRow["SKI_OUTLINE"]?></div>
-                  <div>
-                    <textarea name="ski_outline" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea>
-                  </div>
+                  <div class="overflow ski_outline"><?=$skillRow["SKI_OUTLINE"]?></div>
                 </td>
 
                 <td id="ski_stud">
-                  <div class="overflow"><?=$skillRow["SKI_STUD"]?></div>
-                  <p> <input type="text" class="ski_stud" name="ski_stud" placeholder="ex:學生"></p>
+                  <div class="overflow ski_stud"><?=$skillRow["SKI_STUD"]?></div>
                 </td>
                 <td>
 
-                  <?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?>
-                  <select name="authority" id="">
-                    <option value="authority">是</option>
-                    <option value="authority">否</option>
+                <?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?>
+                  <select name="" id="" class="editShow skill_USE">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
                   </select>
                 </td>
                 <td>
-                  <button class="edit" @click="edit">編輯</button>
-                  <button class="edit" @click="deleteSki">刪除</button>
+                  <button class="edit skillEdit">編輯</button>
+                  <button class="editShow cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -513,7 +612,11 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
 ?>
           </table>
           <!-- 新增課程form -->
-          <form action="backstage_skillClass_add.php" method="post" style="display:none;">
+          <form
+            action="backstage_skillClass_add.php"
+            method="post"
+            style="display:none;"
+          >
             <div>
               <label for="">名稱</label>
               <input type="text" class="ski_name form" name="ski_name" placeholder="輸入課程名稱">
@@ -521,7 +624,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             <div>
               <label for="">類別</label>
               <select name="ind_no" id="">
-                <option :value="type.value" v-for="type in types">{{type.type}}</option>
+                    <option :value="type.value" v-for="type in types">{{type.type}}</option>
               </select>
             </div>
             <div>
@@ -536,16 +639,29 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
                 name="ski_time"
                 placeholder="ex:3小時"
               >
-              <input type="number" min="0" class="ski_time" name="ski_time" placeholder="ex:3小時">
 
             </div>
             <div>
               <label for="">介紹</label>
-              <textarea class="ski_intro" name="ski_intro" cols="20" rows="5" placeholder="限制最多100字" maxlength="100"></textarea>
+              <textarea
+                class="ski_intro"
+                name="ski_intro"
+                cols="20"
+                rows="5"
+                placeholder="限制最多100字"
+                maxlength="100"
+              ></textarea>
             </div>
             <div>
               <label for="">學習內容</label>
-              <textarea class="ski_harvest" name="ski_harvest" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea><button class="harvest_add">新增</button>
+              <textarea
+                class="ski_harvest"
+                name="ski_harvest"
+                cols="20"
+                rows="5"
+                placeholder="限制最多30字"
+                maxlength="30"
+              ></textarea><button class="harvest_add">新增</button>
             </div>
             <div>
               <label for="">課程連結</label>
@@ -554,10 +670,16 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             <div>
               <label for="">課程圖片</label>
               <input type="file" class="ski_img form" name="ski_img">
+              <div class="postImg_show">
+                <img src="" alt="" id="ski_img_show">
+              </div>
             </div>
             <div>
               <label for="">講師圖片</label>
               <input type="file" class="ski_tec_img form" name="ski_tec_img">
+              <div class="postImg_show">
+                <img src="" alt="" id="ski_tec_img_show">
+              </div>
             </div>
             <div>
               <label for="">講師名稱</label>
@@ -565,11 +687,25 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div>
               <label for="">講師介紹</label>
-              <textarea class="ski_tec_intro" name="ski_tec_intro" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
+              <textarea
+                class="ski_tec_intro"
+                name="ski_tec_intro"
+                cols="20"
+                rows="5"
+                placeholder="限制最多250字"
+                maxlength="250"
+              ></textarea>
             </div>
             <div>
               <label for="">大綱</label>
-              <textarea class="ski_outline" name="ski_outline" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea><button class="outline_add">新增</button>
+              <textarea
+                class="ski_outline"
+                name="ski_outline"
+                cols="20"
+                rows="5"
+                placeholder="限制最多30字"
+                maxlength="30"
+              ></textarea><button class="outline_add">新增</button>
             </div>
             <div>
               <label for="">上課對象</label>
@@ -589,7 +725,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
 
           </form>
           <div>
-            <button class="back" id="backAd" @click="cancel_add">返回全部列表</button>
+            <button class="back"  @click="cancel_add">返回全部列表</button>
           </div>
         </div>
 
@@ -606,6 +742,7 @@ while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
               <th>檢舉者</th>
               <th>檢舉原因</th>
               <th>審核</th>
+              <th>修改</th>
             </tr>
             <?php
 while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
@@ -619,16 +756,18 @@ while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
                 <td><?=$ArReportRow["ART_REP_CONTENT"]?></td>
                 <td>
                   <p>
-                    <?php echo $ArReportRow["ART_REP_PASS"] == 1 ? "不通過" : "通過" ?>
+                    <?php echo $ArReportRow["ART_REP_PASS"] == 0 ? "不通過" : "通過" ?>
                   </p>
 
-                  <select name="" id="">
+                  <select name="" id=""  class="editShow">
                     <option value="1">通過</option>
-                    <option value="0">未通過</option>
+                    <option value="0">不通過</option>
 
                   </select>
-                  <button class="edit pos_edit">編輯</button>
-                  <button class="pos_cancel">取消</button>
+                </td>
+                <td>
+                  <button class="edit quizEdit">編輯</button>
+                  <button class="editShow cancel">取消</button>
                 </td>
               </tr>
             <?php
@@ -649,6 +788,7 @@ while ($ArReportRow = $ArReport->fetch(PDO::FETCH_ASSOC)) {
               <th>檢舉者</th>
               <th>檢舉原因</th>
               <th>審核</th>
+              <th>修改</th>
             </tr>
             <?php
 while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
@@ -660,16 +800,17 @@ while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
                 <td><?=$MgReportRow["MEM_EMAIL"]?></td>
                 <td><?=$MgReportRow["MES_REP_CONTENT"]?></td>
                 <td>
-                  <p>
-                    <?php echo $MgReportRow["MES_REP_PASS"] == 1 ? "不通過" : "通過" ?>
-                  </p>
-                  <select name="" id="">
+                  <?php echo $MgReportRow["MES_REP_PASS"] == 0 ? "不通過" : "通過" ?>
+
+                  <select name="" id="" class="editShow">
                     <option value="1">通過</option>
                     <option value="0">未通過</option>
 
                   </select>
-                  <button class="edit pos_edit">編輯</button>
-                  <button class="pos_cancel">取消</button>
+                </td>
+                <td>
+                  <button class="edit quizEdit">編輯</button>
+                  <button class="editShow cancel">取消</button>
                 </td>
               <?php
 }
@@ -680,49 +821,38 @@ while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
 
         <!-- order_mem -->
         <div class="order_mem" v-show="order_mem">
-          <p class="title">訂單管理</p>
-          <form>
-            <div>
-              <input type="text" class="search_input">
-              <button class="search">查詢</button>
-            </div>
+          <div class="title">
+            <p class="title">訂單管理</p>
+          </div>
 
+          <form method="post" action="./backstage_orderSearch.php" id="search_ore_form">
+            <div>
+              <input type="text" class="search_input" name="ORD_NO" id="orderSearch">
+              <button class="search" @click="searchOrd" id="searchOrd">查看明細</button>
+            </div>
           </form>
-          <table v-for="item in orders">
+          <table id="OrderDetail">
+          </table>
+          <div>
+            <button class="back" @click="backAllOrd" id="backAllOrd" style="display: none;">返回全部列表</button>
+          </div>
+          <table id="allOrd">
             <tr>
               <th>編號</th>
               <th>會員編號</th>
               <th>總金額</th>
               <th>付款方式</th>
               <th>購買日期</th>
-              <th></th>
             </tr>
-
-            <tr>
-              <td class="OrderDetail" style="display: none;">
-                <div class="OrderDetail" style="display: none;">
-                  <table>
-                    <tr>
-                      <th>訂單明細編號</th>
-                      <th>課程編號</th>
-                      <th>課程名稱</th>
-                      <th>價格</th>
-                    </tr>
-
-                    <tr v-for="detail in orderList">
-                      <td>{{detail.ORD_DET_NO}}</td>
-                      <td>{{detail.SKI_NO}}</td>
-                      <td>{{detail.SKI_NAME}}</td>
-                      <td>{{detail.ORD_DET_PRICE}}</td>
-                    </tr>
-                  </table>
-                </div>
-              </td>
+            <tr v-for="item in orders">
+              <td>{{item.ORD_NO}}</td>
+              <td>{{item.MEM_NO}}</td>
+              <td>{{item.ORD_AMOUNT}}</td>
+              <td>{{item.ORD_PAY}}</td>
+              <td>{{item.ORD_DATE}}</td>
             </tr>
-
 
           </table>
-
         </div>
 
         <!-- postcard_material -->
@@ -765,20 +895,20 @@ while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
           </table>
-          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm">
+          <form action="./backstage_add_postcard_material.php" method="post" id="newPosForm" enctype="multipart/form-data">
             <div class="postName">
-              <!-- <label for="">素材名稱:</label>
-              <input type="text" class="form"> -->
+              <label for="POS_MAT_NAME">名稱:</label>
+              <input type="text" class="form" name="POS_MAT_NAME" id="POS_MAT_NAME">
             </div>
             <div>
               <p class="post_type">素材類型</p>
             </div>
             <div>
-              <input type="radio" name="POS_MAT_NAME" id="outline" value="outline">
+              <input type="radio" name="post_type" id="outline" value="outline">
               <label for="outline">外框</label>
-              <input type="radio" name="POS_MAT_NAME" id="stamp" value="stamp">
+              <input type="radio" name="post_type" id="stamp" value="stamp">
               <label for="stamp">郵票</label>
-              <input type="radio" name="POS_MAT_NAME" id="postmark" value="postmark">
+              <input type="radio" name="post_type" id="postmark" value="postmark">
               <label for="postmark">郵戳</label>
             </div>
             <div>
@@ -800,18 +930,19 @@ while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
             <button class="back" id="backPost">返回全部列表</button>
           </div>
         </div>
-
-        <!-- announcement -->
-        <div class="announcement" v-show="announcement">
+     <!-- announcement -->
+     <div class="announcement" v-show="announcement">
+     <div class="title">
           <p class="title">公告管理</p>
-
-          <table>
-
+          <button class="add" id="add_annNew" @click="add_annNew">新增公告</button>
+      </div>
+          <table id="annTable">
             <tr>
               <th>編號</th>
               <th>內容</th>
               <th>日期</th>
               <th>發布</th>
+              <th>修改</th>
             </tr>
             <?php
 while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
@@ -822,33 +953,106 @@ while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
                 <td><?=$announceRow["ANN_DATE"]?></td>
 
                 <td>
-
                   <?php echo $announceRow["ANN_USE"] == 1 ? "是" : "否" ?>
 
-                  <select name="" id="">
-                    <option value="">是</option>
-                    <option value="">否</option>
+                  <select name="" id="" class="editShow">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
                   </select>
+                  <button class="edit" @click="edit">編輯</button> <button class="editShow cancel">取消</button>
+                </td>
+                <td>
+                  <button class="edit quizEdit">編輯</button>
+                  <button class="editShow cancel">取消</button>
                 </td>
               </tr>
             <?php
 }
 ?>
           </table>
-          <button class="add">新增公告</button>
+
+
+          <form
+            action="backstage_announcement_add.php"
+            method="post"
+            id="ann_form"
+            style="display:none"
+          >
+       <div>
+              <label for="">公告日期</label>
+              <input
+                type="text"
+                class="form"
+                name="ANN_DATE"
+                placeholder="YYYY-MM-DD"
+              >
+            </div>
+            <div>
+              <label for="">公告內容</label>
+              <textarea
+                class="form"
+                name="ANN_CONTENT"
+                cols="20"
+                rows="5"
+                placeholder="限制最多30字"
+                maxlength="30"
+              ></textarea>
+            </div>
+
+            <div>
+               <select name="ANN_USE" id="">
+                  <option value="1">是</option>
+                  <option value="0">否</option>
+                </select>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="submit"
+              >送出</button>
+              <button
+                @click="cancel_add"
+              >取消</button>
+            </div>
+          </form>
+          <div>
+            <button class="back" id="ann_backAd" @click="ann_backAd">返回全部列表</button>
+          </div>
+
         </div>
+
+
       </div>
     </div>
   </div>
+
+  <script>
+  window.addEventListener("load", function() {
+    var add_annNew = document.getElementById("add_annNew");
+        add_annNew.onclick = function(){
+
+	  alert("1244");
+      }
+
+  }
+
+  </script>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
+  <script src="./js/backstage_edit.js"></script>
+  <script src="./js/backstage_careerEdit.js"></script>
+  <script src="./js/backstage_memberEdit.js"></script>
+  <script src="./js/backstage_adminEdit.js"></script>
+  <script src="./js/backstage_skillEdit.js"></script>
+  <script src="./js/backstage_insert_announcement.js"></script>
 
 </body>
 

@@ -15,7 +15,7 @@
 
   @@include('app/header.html')
   <div id="forum_discuss" class="container-fluid">
-@@include('app/lightbox_login.html')
+  @@include('app/lightbox_login.html')
     <div class="wrap row">
       <div class="side_wrap col-lg-3">
         <div class="dis_side main_side_bar">
@@ -172,7 +172,7 @@
               <button class="gray_btn collect_btn">
                 <i class="fas fa-bookmark" :class="{'colorGray':isCollect[msg.index]}" @click="$forceUpdate(),collect_btn(msg.index,msg.DIS_NO, 1)"></i>
               </button>
-              <button class="gray_btn" @click="accuse_btn">
+              <button class="gray_btn" @click="accuse_btn(msg.index), repNo = msg.DIS_NO">
                 <i class="fas fa-exclamation-circle"></i>
               </button>
             </div>
@@ -194,9 +194,9 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="heart_btn_feedback(index)"></i>
+                 <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="$forceUpdate(), heart_btn_feedback(index,msg.DIS_MES_NO), feedBoxHeart[index] = !feedBoxHeart[index]"></i>
               </button>
-              <button class="gray_btn" @click="accuse_btn">
+              <button class="gray_btn" @click="accuse_innerbox_btn(msg.index), repinnerNo = msg.DIS_MES_NO">
                 <i class="fas fa-exclamation-circle"></i>
               </button>
             </div>
@@ -236,9 +236,33 @@
         </div>
       </article>
     </div>
+
+     <!--點擊燈箱內回覆留言的檢舉跳出 -->
+    <div class="impeachment_overlay" :class="{'-on':accuseinnerIsOpen}">
+      <article>
+        <div class="accuse_close_btn">
+          <button type="button" class="impeachment_close_btn" @click="btn_modal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <h3>檢舉這篇文章的原因？</h3>
+        <div class="accuse_wrap">
+          <p v-for="(item, index) in memberAccuse">
+             <label @click="repinnerIndex = index">
+                 <input type="radio" name="accuse" class="radio"/>{{item}}
+             </label>
+          </p>
+        </div>
+        <div class="accuse_send_btn">
+          <button class="impeachment_send_btn btn_third" @click="accuse_inner_sendBtn()">送出</button>
+        </div>
+      </article>
+    </div>
+
+
   </div>
 
-
+   
  @@include('app/footer.html') @@include('app/script.html')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>

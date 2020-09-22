@@ -19,18 +19,19 @@ let vm = new Vue({
       select: "全部文章", //下拉選單預設
       stopScroll: false, //開啟燈箱背景不可以動
       msg: "", //點擊留言開啟燈箱，第一則文章要跟討論版的同步
-      isHeart: [], //點擊愛心 綁定的class顏色，但是未完成
-      // isCollect: false, //點擊收藏 綁定的class顏色，但是未完成
+      isHeart: [], //點擊愛心 
       isCollect: [],
       showCollect: [], //會員曾經按錯的收藏
       memberAccuse: [], //檢舉
-      repIndex: 0, //檢舉的索引值
-      repNo: 0, //檢舉第幾篇文章
-      // repInnerNo:0,//燈箱裡檢舉第幾篇文章
-      repChange: -1, //外部的檢舉是0，若不等於0執行另外個PHP
-      feedBoxHeart: false, //點擊愛心 綁定的class顏色，但是未完成
-      currentPage: 1,
+      repIndex: 0, //文章檢舉的索引值
+      repNo: 0, //文章檢舉第幾篇文章
+      feedBoxHeart: [], //點擊愛心 綁定的class顏色，但是未完成
+      currentPage: 1,//目前的頁碼
       totalPages: 0,
+      accuseinnerIsOpen:false,//回覆留言的檢舉燈箱
+      repinnerIndex:0, //燈箱裡回覆留言的檢舉索引值
+      repinnerNo:0, //燈箱裡回覆留言的檢舉第幾篇文章
+
       category: [
         {
           link_title: "實作型",
@@ -68,6 +69,47 @@ let vm = new Vue({
     };
   },
   mounted() {
+    
+    //燈箱裡回覆留言愛心，會員曾經點過的愛心
+    axios.post("./php/memberStateCheck.php").then(res => {
+      console.log(res);
+      this.memberCheck = res.data;
+      if (this.memberCheck !== 0) {
+        sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+        const memNo = sessionStorage.getItem("memNo");
+        axios
+          .get("./php/forum_discuss.php?action=showinnerBoxLike&MEM_NO=" + memNo)
+          .then(res => {
+            console.log(res.data);
+            this.showlike = res.data;
+            // this.showlike = res.data[0].DIS_NO.split(',');
+
+            for (let i = 0; i < this.information.length; i++) {
+              // console.log(this.information[i].DIS_NO);
+              // console.log(typeof this.information);
+              // console.log(this.showlike)
+              // console.log(this.showlike.length)
+              // console.log(JSON.parse(this.showlike))
+              // console.log(typeof this.showlike)
+              // console.log(typeof this.showlike)
+              var disNo = this.information[i].DIS_NO;
+              if (
+                this.showlike.find(function (item) {
+                  return item.DIS_NO == disNo;
+                })
+              ) {
+                // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
+                // this.isHeart[i] = true;
+                this.isHeart.push(true);
+              } else {
+                this.isHeart.push(false);
+              }
+            }
+            // console.log(this.isCollect)
+          });
+      }
+    });
+
     //討論區文章和公告PHP
     axios.all([this.getAllDisscuss(this.currentPage), this.getAnnouncement()]);
     //會員登入後可到曾經點過愛心的按鈕
@@ -224,8 +266,12 @@ let vm = new Vue({
           memNo
         )
         .then(res => {
-          console.log(res.data);
           this.box_msg = res.data;
+           console.log(res.data);
+           //燈箱內的愛心放進來，要用for迴圈把它box_msg的資料放進來，並檢查按了哪些愛心
+           for(let i=0;i<this.box_msg.length;i++){
+             this.feedBoxHeart.push(false);
+           }
         })
         .catch(function (error) {
           console.log(error);
@@ -267,11 +313,13 @@ let vm = new Vue({
     },
     //關閉檢舉燈箱
     btn_modal() {
-      if (this.accuseIsOpen) {
+      if (this.accuseIsOpen||this.accuseinnerIsOpen) {
         this.accuseIsOpen = false;
+        this.accuseinnerIsOpen = false;
         this.stopScroll = false;
       } else {
         this.accuseIsOpen = true;
+        this.accuseinnerIsOpen = true;
         this.stopScroll = true;
       }
     },
@@ -321,7 +369,7 @@ let vm = new Vue({
     //送出檢舉內容到資料庫
     sendAccuse() {
       //檢舉PHP
-      axiostoggleDropdown
+      axios
         .post("./php/memberStateCheck.php")
         .then(res => {
           console.log(res);
@@ -338,7 +386,7 @@ let vm = new Vue({
             console.log(content);
             const repNo = this.repNo;
             console.log(repNo);
-            const repChange = this.repChange;
+
 
             if (content == "") {
               alert("請輸入內容");
@@ -349,18 +397,70 @@ let vm = new Vue({
                 "&MEM_NO=" +
                 memNo +
                 "&ART_REP_CONTENT=" +
-                content +
-                "repChange" +
-                repChange
+                content 
               );
-              // location.reload();
-              this.repChange = -1;
+              alert("檢舉成功")
+              location.reload();
+         }
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    //燈箱內送出檢舉
+    accuse_inner_sendBtn(){
+      axios
+        .post("./php/memberStateCheck.php")
+        .then(res => {
+          console.log(res);
+          this.memberCheck = res.data;
+          if (this.memberCheck == 0) {
+            alert("請先登入會員");
+            window.location.href = "./member_sign_in.html";
+          } else {
+            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+            // sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
+            const memNo = sessionStorage.getItem("memNo");
+            console.log(memNo);
+            const content = this.memberAccuse[this.repinnerIndex];
+            console.log(content);
+            const repinnerNo = this.repinnerNo;
+            console.log(repinnerNo);
+           
+             
+            if (content == "") {
+              alert("請輸入內容");
+            } else {
+              axios.post(
+                "./php/forum_discuss.php?action=accuse_inner_btn&DIS_MES_NO=" +
+                repinnerNo +
+                "&MEM_NO=" +
+                memNo +
+                "&MES_REP_CONTENT=" +
+                content 
+              );
+              alert("檢舉成功，會為您處理")
+              location.reload();
             }
           }
         })
         .catch(function (error) {
           console.log(error);
         });
+
+    },
+    //回覆留言裡的檢舉燈箱開啟
+    accuse_innerbox_btn(){
+      // alert('aaa')
+      // alert(this.accuseinnerIsOpen);
+          if (this.accuseinnerIsOpen) {
+              this.accuseIsOpen = false;
+              this.stopScroll = false;
+            } else {
+              this.accuseinnerIsOpen = true;
+              this.stopScroll = true;
+            }
     },
     //愛心
     heart_btn(index, disNo, conNum) {
@@ -466,8 +566,40 @@ let vm = new Vue({
       e.currentTarget.classList.add("side_click");
     },
     //燈箱裡的愛心
-    heart_btn_feedback(e) {
-      this.feedBoxHeart = !this.feedBoxHeart;
+    heart_btn_feedback(index) {
+      // alert("123")
+      console.log(index)
+      console.log(this.feedBoxHeart[index])
+      // this.feedBoxHeart[index] = !this.feedBoxHeart[index];
+    
+    //會員登入PHP
+      axios
+        .post("./php/memberStateCheck.php")
+        .then(res => {
+          console.log(res);
+          this.memberCheck = res.data;
+          if (this.memberCheck == 0) {
+            alert("請先登入會員");
+            window.location.href = "./member_sign_in.html";
+          } else {
+            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+            const DIS_MES_NO = this.box_msg[index].DIS_MES_NO;
+            const MEM_NO = sessionStorage.getItem("memNo");
+            // $(".feedback_content .fa-heart").eq(index).toggleClass("colorRed");
+            axios.post(
+              "./php/forum_discuss.php?action=addfeedbackFavor&DIS_MES_NO=" +
+              DIS_MES_NO +
+              "&MEM_NO=" +
+              MEM_NO
+            )
+            .then((resp)=>{console.log(resp.data)});
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+
     },
     //討論區文章PHP
     sendMsg(msg_DIS_NO) {
