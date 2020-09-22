@@ -226,6 +226,7 @@ let testResult = new Vue({
                 media: [
                     {
                         query: {
+                           
                             Width: 200,
                             Height: 300
                         },

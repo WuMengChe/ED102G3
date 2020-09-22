@@ -299,7 +299,7 @@ let vm = new Vue({
             if (res.data != 0) {
               let memName = res.data.split(";")[1];
 
-              $("div.member > a").html("Hi," + memName);
+              // $("div.member > a").html("Hi," + memName);
               $("div.member > a").attr("href", "member.html");
               $("#header_logOut").css("display", "block");
             }
@@ -310,6 +310,18 @@ let vm = new Vue({
         });
     },
     // ================================
+    go_checkout(e) {
+      e.preventDefault();
+      if (this.cart_items.length == 1) {
+        if (
+          window.confirm("再加購一堂課程即可享有85折扣，確定要繼續結帳嗎？")
+        ) {
+          location.href = "./course_orderlist.html";
+        }
+      } else {
+        location.href = "./course_orderlist.html";
+      }
+    },
     // orderList傳訂單到資料庫
     orderListSend(item) {
       if (item.length > 0) {
