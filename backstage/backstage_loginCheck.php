@@ -5,7 +5,7 @@ $AD_ACCOUNT = $_POST["AD_ACCOUNT"];
 try {
   require_once("./connectMySql.php");
   // 抓管理員資料
-  $ADSql = "select * from `administrator` where AD_ACCOUNT=:AD_ACCOUNT and AD_PASSWORD=:AD_PASSWORD ";
+  $ADSql = "select * from `administrator` where AD_ACCOUNT=:AD_ACCOUNT and AD_PASSWORD=:AD_PASSWORD and AD_MAT_USE=0";
   $AD = $pdo->prepare($ADSql);
   $AD->bindValue(":AD_PASSWORD", $AD_PASSWORD);
   $AD->bindValue(":AD_ACCOUNT", $AD_ACCOUNT);
