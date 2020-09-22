@@ -2,7 +2,6 @@ let vm = new Vue({
   el: "#forum_discuss",
   data() {
     return {
-      // aaa: "",
       signIn: true,
       information: [], //討論區所有文章PHP
       searchResult: [], //點擊側邊欄，過濾後的資料
@@ -26,12 +25,13 @@ let vm = new Vue({
       repIndex: 0, //文章檢舉的索引值
       repNo: 0, //文章檢舉第幾篇文章
       feedBoxHeart: [], //點擊愛心 綁定的class顏色，但是未完成
+       // 燈箱回覆留言，會員曾經點過的愛心
       currentPage: 1,//目前的頁碼
       totalPages: 0,
       accuseinnerIsOpen:false,//回覆留言的檢舉燈箱
       repinnerIndex:0, //燈箱裡回覆留言的檢舉索引值
       repinnerNo:0, //燈箱裡回覆留言的檢舉第幾篇文章
-
+      showfeedbacklike:[],
       category: [
         {
           link_title: "實作型",
@@ -69,7 +69,7 @@ let vm = new Vue({
     };
   },
   mounted() {
-    
+  
     //燈箱裡回覆留言愛心，會員曾經點過的愛心
     axios.post("./php/memberStateCheck.php").then(res => {
       console.log(res);
@@ -77,14 +77,16 @@ let vm = new Vue({
       if (this.memberCheck !== 0) {
         sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
         const memNo = sessionStorage.getItem("memNo");
+        console.log(memNo);
         axios
           .get("./php/forum_discuss.php?action=showinnerBoxLike&MEM_NO=" + memNo)
           .then(res => {
-            console.log(res.data);
-            this.showlike = res.data;
+         console.log(res.data);
+            this.showfeedbacklike = res.data;
+               console.log(res.data);
             // this.showlike = res.data[0].DIS_NO.split(',');
 
-            for (let i = 0; i < this.information.length; i++) {
+            for (let i = 0; i < this.box_msg.length; i++) {
               // console.log(this.information[i].DIS_NO);
               // console.log(typeof this.information);
               // console.log(this.showlike)
@@ -92,20 +94,20 @@ let vm = new Vue({
               // console.log(JSON.parse(this.showlike))
               // console.log(typeof this.showlike)
               // console.log(typeof this.showlike)
-              var disNo = this.information[i].DIS_NO;
+              var dis_mes_no = this.box_msg[i].DIS_MES_NO;
               if (
-                this.showlike.find(function (item) {
-                  return item.DIS_NO == disNo;
+                this.showfeedbacklike.find(function (item) {
+                  return item.DIS_MES_NO == dis_mes_no;
                 })
               ) {
                 // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
                 // this.isHeart[i] = true;
-                this.isHeart.push(true);
+                this.feedBoxHeart.push(true);
               } else {
-                this.isHeart.push(false);
+                this.feedBoxHeart.push(false);
               }
             }
-            // console.log(this.isCollect)
+            console.log(this.feedBoxHeart)
           });
       }
     });
@@ -287,21 +289,25 @@ let vm = new Vue({
         this.stopScroll = true;
       }
     },
+
     //側邊欄搜尋
-    search(type) {
+    search(e,type) {
       const result = this.information.filter(element => {
         return element.IND_CLASS == type;
       });
       this.searchResult = result;
       this.select = "選擇分類";
+
+      $(".main_side_bar > ul> li > a").removeClass("side_click");
+      e.currentTarget.classList.add("side_click");
     },
     //關鍵字搜尋
     searchContent() {
       const keyword = this.filter;
       const result = this.information.filter(element => {
         return (
-          element.d_title.indexOf(keyword) != -1 ||
-          element.d_text.indexOf(keyword) != -1
+          element.DIS_NAME.indexOf(keyword) != -1 ||
+          element.DIS_CONTENT.indexOf(keyword) != -1
         );
         // return element.d_title == type
       });

@@ -20,8 +20,8 @@
       <div class="side_wrap col-lg-3">
         <div class="dis_side main_side_bar">
           <ul>
-            <li v-for="(type, index) in category" @click="search(type.link_title)">
-              <a href="#" :class="'point' + index" @click="cart_click_bg"><span></span>{{type.link_title}}</a>
+            <li v-for="(type, index) in category">
+              <a href="#" :class="'point' + index" @click="search($event,type.link_title);"><span></span>{{type.link_title}}</a>
             </li>
           </ul>
           <div class="side_bar_img">
@@ -92,9 +92,11 @@
                 {{messages.DIS_NAME}}
               </div>
               <div class="msg_textarea" @click="openContent(index)">
+              <p>
                 {{messages.DIS_CONTENT}}
                 ＰＰＰＰ
                 {{messages.DIS_NO}}
+                </p>
               </div>
               <div class="msg_btn">
                 <button class="heart">
@@ -160,7 +162,9 @@
               {{msg.DIS_NAME}}
             </div>
             <div class="msg_textarea">
+              <p>
               {{msg.DIS_CONTENT}}
+              </p>
             </div>
             <div class="msg_btn">
               <button class="heart">
