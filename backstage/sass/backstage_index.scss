@@ -175,7 +175,7 @@ $side_color:#424965;
                 outline: none;
                 padding: 5px;
                 border-radius: 0 5px 5px 5px;
-                min-width: 220px;
+                min-width: 250px;
             }
 
             &:last-child {
@@ -210,7 +210,7 @@ $side_color:#424965;
         width: 270px;
         height: 200px;
         padding: 8px;
-
+        margin: 15px 0;
 
         img {
             width: 100%;
@@ -560,6 +560,49 @@ header {
                     height: 75px;
                     width: auto;
                 }
+
+                div.indIntro {
+                    display: inline-block;
+                    // border: 1px solid wheat;
+                    vertical-align: top;
+
+                }
+
+                div.salary {
+                    display: inline-block;
+                    // border: 1px solid wheat;
+                    vertical-align: top;
+                    @include preImgShow();
+
+                    div.salaryP {
+
+
+                        p {
+                            color: white;
+                            line-height: 31px;
+                            font-size: 20px;
+                        }
+                    }
+
+
+
+                    label.file {
+                        background-color: #F4C3C5;
+                        border-radius: 5px;
+                        width: 100px;
+                        color: black;
+                        cursor: pointer;
+                    }
+
+                    div {
+                        margin-left: 0;
+
+                        &:last-child {
+                            text-align: left;
+
+                        }
+                    }
+                }
             }
 
             .skill_class {
@@ -569,13 +612,137 @@ header {
 
                 td {
                     height: 100px;
-                    // overflow-y: scroll;
+
                 }
 
                 img {
-                    // width: 30%;
+
                     height: 75px;
                     width: auto;
+                }
+
+                div.classShort {
+                    display: inline-block;
+                    // border: 1px solid pink;
+                    vertical-align: top;
+
+                    div {
+                        margin-left: 0;
+
+                        &:last-child {
+                            text-align: left;
+
+                        }
+                    }
+
+                    label.useLabel {
+                        width: 60px;
+                    }
+                }
+
+                div.teacherInto {
+                    display: inline-block;
+                    // border: 1px solid rgb(209, 24, 55);
+                    vertical-align: top;
+
+                    div.teacherP {
+                        margin: 0;
+
+                        p {
+                            color: white;
+                            font-size: 20px;
+                        }
+
+                    }
+
+                    div.teacherText {
+                        display: inline-block;
+                        vertical-align: top;
+                        margin: 0;
+
+                        .ski_tec_intro {
+                            height: 195px;
+                        }
+                    }
+
+                    div.teacherImg {
+                        display: inline-block;
+                        @include preImgShow();
+                        vertical-align: top;
+                        margin-top: 0;
+
+                    }
+
+                    label.file {
+                        background-color: #F4C3C5;
+                        border-radius: 5px;
+                        width: 100px;
+                        color: black;
+                        cursor: pointer;
+                    }
+
+                    div {
+                        margin-left: 0;
+
+                        &:last-child {
+                            text-align: left;
+
+                        }
+                    }
+
+
+                }
+
+                div.classInto {
+
+                    margin: 0px;
+
+                    div.classP {
+                        margin-bottom: 0;
+
+                        p {
+                            color: white;
+                            font-size: 20px;
+                        }
+                    }
+
+
+
+                    div.classText {
+                        display: inline-block;
+                        vertical-align: top;
+                        margin: 0;
+
+                        textarea.long {
+                            width: 690px;
+                        }
+                    }
+
+                    div.classImg {
+                        display: inline-block;
+                        margin: 0;
+                        vertical-align: top;
+                        @include preImgShow();
+
+                        label.file {
+                            background-color: #F4C3C5;
+                            border-radius: 5px;
+                            width: 100px;
+                            color: black;
+                            cursor: pointer;
+                        }
+
+                        div {
+                            margin-left: 0;
+
+                            &:last-child {
+                                text-align: left;
+
+                            }
+                        }
+                    }
+
+
                 }
             }
 
@@ -587,6 +754,7 @@ header {
                     display: inline-block;
                 }
             }
+
 
             .message_report {
                 @include table();
