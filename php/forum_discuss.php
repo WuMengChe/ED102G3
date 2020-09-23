@@ -35,6 +35,7 @@ function showinnerBoxLike(){
     try {
         require_once "connectMySql.php";
         $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
+        $mem_no =2;
         $sql = "select DIS_MES_NO from MESSAGE_LIKE where MES_LIK_STATE =1 and MEM_NO = $mem_no;";
 
         $feedBackLike = $pdo->prepare($sql);
