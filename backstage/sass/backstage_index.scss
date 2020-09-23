@@ -2,6 +2,10 @@ $main_color:#A0CADB;
 $a_color:#3791c5;
 $side_color:#424965;
 
+[v-cloak] {
+    display: none;
+}
+
 @mixin table {
     #{'table'} {
         border-collapse: separate;
@@ -162,7 +166,7 @@ $side_color:#424965;
                 border-radius: 0 5px 5px 0;
                 outline: none;
                 border: none;
-                min-width: 250px;
+                width: 250px;
             }
 
             input[type=radio] {
@@ -175,7 +179,7 @@ $side_color:#424965;
                 outline: none;
                 padding: 5px;
                 border-radius: 0 5px 5px 5px;
-                min-width: 250px;
+                width: 250px;
             }
 
             &:last-child {
@@ -574,17 +578,15 @@ header {
                     vertical-align: top;
                     @include preImgShow();
 
-                    div.salaryP {
-
-
-                        p {
-                            color: white;
-                            line-height: 31px;
-                            font-size: 20px;
-                        }
+                    p {
+                        color: white;
+                        margin-bottom: 15px;
+                        font-size: 20px;
                     }
 
-
+                    input.short {
+                        width: 120px;
+                    }
 
                     label.file {
                         background-color: #F4C3C5;
