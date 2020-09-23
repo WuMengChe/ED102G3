@@ -14,9 +14,9 @@
 
 
 <!-- 基本盤 -->
-<link rel="stylesheet" href="../../bootstrap/bootstrap-grid.min.css">
-<link rel="stylesheet" href="../../css/app_public.css">
-<link rel="stylesheet" href="../../css/video.css">
+<link rel="stylesheet" href="../bootstrap/bootstrap-grid.min.css">
+<link rel="stylesheet" href="../css/app_public.css">
+<link rel="stylesheet" href="../css/video.css">
 
 <!-- 基本盤 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -36,11 +36,11 @@
 try {
 
     require_once('./connectMySql.php');
-	$sql = "select * from `skill_class` where SKI_NO = '1'"; 
-    // $skill = $pdo->prepare($sql);
-    // $skill->bindValue(':SKI_NO',$_POST['SKI_NO']);
-    // $skill->execute();
-    $skill = $pdo->query($sql);
+	$sql = "select * from `skill_class` where SKI_NO = :SKI_NO"; 
+    $skill = $pdo->prepare($sql);
+    $skill->bindValue(':SKI_NO',$_POST['SKI_NO']);
+    $skill->execute();
+    // $skill = $pdo->query($sql);
     // $skillRows = $skill->fetchAll(PDO::FETCH_ASSOC);
     $testRow = $skill->fetch(PDO::FETCH_ASSOC);
 
