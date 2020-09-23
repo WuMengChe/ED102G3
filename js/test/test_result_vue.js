@@ -203,8 +203,9 @@ let testResult = new Vue({
                             { name: '文藝型（A）', max: 100},
                             { name: '社會型（S）', max: 100},
                             { name: '企業型（E）', max: 100},
-                            { name: '事務型（C）', max: 100}
-                        ]
+                            { name: '事務型（C）', max: 100},
+                        ],
+                        radius: 80 // 調整雷達圖大小
                     },
                     series: [{
                         name: '分析結果',
