@@ -16,10 +16,16 @@ try {
     $quiz->bindValue(":quiz_con", $_POST["quiz_con"]);
     $quiz->execute();
     // echo 1;
+    $fromPicOne = $_FILES["quiz_pic_one"]["tmp_name"];
+    $toPicOne = "./img/quiz/{$_FILES["quiz_pic_one"]["name"]}";
+    copy($fromPicOne, $toPicOne);
+
+    $fromPicTwo = $_FILES["quiz_pic_two"]["tmp_name"];
+    $toPicTwo = "./img/quiz/{$_FILES["quiz_pic_two"]["name"]}";
+    copy($fromPicTwo, $toPicTwo);
 
     if ($quiz->rowCount() == 0) {
 
-        // insert into order_mem
         $sql = "INSERT INTO `quiz` (quiz_con,
             quiz_pic_one,
             quiz_pic_two,
@@ -40,18 +46,17 @@ try {
         $disAll = $pdo->prepare($sql);
 
         $disAll->bindValue(":quiz_con", $_POST["quiz_con"]);
-        $disAll->bindValue(":quiz_pic_one", $_POST["quiz_pic_one"]);
+        $disAll->bindValue(":quiz_pic_one", $toPicOne);
         $disAll->bindValue(":quiz_sel_one_content", $_POST["quiz_sel_one_content"]);
         $disAll->bindValue(":quiz_sel_one_class", $_POST["quiz_sel_one_class"]);
-        $disAll->bindValue(":quiz_pic_two", $_POST["quiz_pic_two"]);
+        $disAll->bindValue(":quiz_pic_two", $toPicTwo);
         $disAll->bindValue(":quiz_sel_two_content", $_POST["quiz_sel_two_content"]);
         $disAll->bindValue(":quiz_sel_two_class", $_POST["quiz_sel_two_class"]);
         $disAll->bindValue(":quiz_use", $_POST["quiz_use"]);
         $disAll->execute();
-        header("Location:/backstage_index.php");
-
+        header("Location:./backstage_index.php");
     } else {
-        header("Location:/backstage_index.php");
+        // header("Location:/backstage_index.php");
         echo '此題目已存在';
     }
 } catch (PDOException $e) {

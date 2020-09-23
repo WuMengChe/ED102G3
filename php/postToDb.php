@@ -23,7 +23,7 @@ try {
   // $postcard->bindValue(":MEM_NO", $_SESSION["memNo"]);
   // $postcard->execute();
 
-  echo "OK";
+  // echo "OK";
 } catch (PDOException $e) {
   echo $e->getMessage();
 }

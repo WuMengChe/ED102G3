@@ -82,8 +82,6 @@ let vm = new Vue({
     };
   },
   mounted() {
-    // 共用
-    this.check_member_api();
     // course_main.html
     this.all_course_api();
 
@@ -96,6 +94,9 @@ let vm = new Vue({
     if (localURL.toString().includes("course_check")) {
       this.load_order_list();
     }
+
+    // 共用
+    this.check_member_api();
   },
   methods: {
     // localStorage
@@ -318,10 +319,6 @@ let vm = new Vue({
               this.mem_check = res.data.split(";")[0];
               $("div.member > a").attr("href", "member.html");
               $("#header_logOut").css("display", "block");
-
-              // course_main.html課程內容載入
-              // this.all_course_api();
-              return res;
             }
           }
         })
