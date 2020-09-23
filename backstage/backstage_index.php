@@ -417,7 +417,7 @@ try {
                 <td>
                   <?= $careerRow["IND_CLASS"] ?>
                   <select name="" id="" class="editShow indType">
-                    <option value="" v-for="type in types" :value="type.value">{{type.type}}</option>
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
@@ -580,14 +580,14 @@ try {
             while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td class="ski_no"><?= $skillRow["SKI_NO"] ?></td>
+                <td class="ski_no"><div class="skiNo"><?= $skillRow["SKI_NO"] ?></div></td>
                 <td id="ski_name">
                   <div class="ski_name"><?= $skillRow["SKI_NAME"] ?></div>
                 </td>
-                <td id="ind_no">
+                <td id="ski_no">
                   <?= $skillRow["IND_CLASS"] ?>
-                  <select name="" id="" class="editShow indType">
-                    <option :value="type.value" v-for="type in types">{{type.type}}</option>
+                  <select name="" id="" class="editShow skiType">
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td id="ski_buy_num">
@@ -606,7 +606,7 @@ try {
                   <div class="overflow ski_harvest"><?= $skillRow["SKI_HARVEST"] ?></div>
                 </td>
                 <td id="ski_line">
-                  <div class="ski_line"><?= $skillRow["SKI_LINK"] ?></div>
+                  <div class="ski_link"><?= $skillRow["SKI_LINK"] ?></div>
                 </td>
                 <td id="ski_img">
                   <img src="<?= $skillRow["SKI_IMG"] ?>" alt="課程圖片" class="ski_img">
