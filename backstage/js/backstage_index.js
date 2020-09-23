@@ -118,4 +118,36 @@ window.addEventListener("load", function () {
         });
     };
 
+    //新增課程預覽照片
+    document.getElementById('skiTecImg').onchange = skiTecImgChange;
+    document.getElementById('skiImg').onchange = skiImgChange;
+
+    function skiTecImgChange() {
+        let skiTecImg = document.getElementById('skiTecImg').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(skiTecImg);
+        readFile.addEventListener('load', function () {
+            let ski_tec_img_show = document.getElementById('ski_tec_img_show');
+            let skiTecPre = document.getElementById('skiTecPre');
+            ski_tec_img_show.src = readFile.result;
+            skiTecPre.style.height = 'auto';
+
+
+        });
+    };
+
+    function skiImgChange() {
+        let skiImg = document.getElementById('skiImg').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(skiImg);
+        readFile.addEventListener('load', function () {
+            let ski_img_show = document.getElementById('ski_img_show');
+            let skiPre = document.getElementById('skiPre');
+            ski_img_show.src = readFile.result;
+            skiPre.style.height = 'auto';
+
+
+        });
+    };
+
 });

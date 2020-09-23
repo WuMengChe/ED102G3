@@ -4,6 +4,7 @@ let vm = new Vue({
     return {
       // 共用
       cart_items: [],
+      mem_check: 0,
       // 燈箱變數
       signIn: true,
 
@@ -74,7 +75,7 @@ let vm = new Vue({
         ind_color: "",
       },
       introduce_suggest: [],
-      favorite_items: [],
+      collect_state: 0,
 
       //course_check.html
       final_order_list: [],
@@ -118,68 +119,60 @@ let vm = new Vue({
     // 購物車功能
     add_cart(item) {
       // 登入燈箱
-      axios.post("./php/memberStateCheck.php").then((resp) => {
-        if (resp.data == 0) {
-          document.querySelector(".bg_of_lightbx").style = "display:block";
+      if (this.mem_check == 0) {
+        document.querySelector(".bg_of_lightbx").style = "display:block";
+      } else {
+        // 若購物車內無商品
+        if (this.cart_items.length == 0) {
+          this.cart_items.push(item);
         } else {
-          // 若購物車內無商品
-          if (this.cart_items.length == 0) {
-            this.cart_items.push(item);
-          } else {
-            let check = true;
-            for (i = 0; i < this.cart_items.length; i++) {
-              // 若購物車內已有此商品
-              if (this.cart_items[i].ski_no == item.ski_no) {
-                check = false;
-                // alert("購物車內已有此課程囉!");
-                $(`.cus_${item.ski_no}`).removeClass("cart_clicked");
-                this.cart_items.splice(i, 1);
-                return;
-              }
-            }
-
-            if (check) {
-              this.cart_items.push(item);
+          let check = true;
+          for (i = 0; i < this.cart_items.length; i++) {
+            // 若購物車內已有此商品
+            if (this.cart_items[i].ski_no == item.ski_no) {
+              check = false;
+              // alert("購物車內已有此課程囉!");
+              $(`.cus_${item.ski_no}`).removeClass("cart_clicked");
+              this.cart_items.splice(i, 1);
+              return;
             }
           }
-          this.add_storage();
-          $(`.cus_${item.ski_no}`).addClass("cart_clicked");
-        }
-      });
-    },
-    // 收藏功能
-    // add_favorite(item) {
-    //   if (this.favorite_items.length == 0) {
-    //     this.favorite_items.push(item);
-    //     alert("已加入收藏");
-    //   } else {
-    //     let check = true;
-    //     for (let i = 0; i < this.favorite_items.length; i++) {
-    //       if (this.favorite_items[i].ski_no == item.ski_no) {
-    //         check = false;
-    //         alert("此課程已收藏過囉！");
-    //       }
-    //       if (check) {
-    //         this.favorite_items.push(item);
-    //         alert("已加入收藏");
-    //       }
-    //     }
-    //     // this.cart_items.forEach((card) => {
-    //     //   if (card.ski_no == item.ski_no) {
-    //     //     check = false;
-    //     //     alert("此課程已收藏過囉！");
-    //     //   }
-    //     //   if (check) {
-    //     //     this.favorite_items.push(item);
-    //     //     alert("已加入收藏");
-    //     //   }
-    //     // });
-    //   }
 
-    //   let ss = " ";
-    //   ss = JSON.stringify(this.favorite_items);
-    //   localStorage.setItem("course_favorite", ss);
-    // },
+          if (check) {
+            this.cart_items.push(item);
+          }
+        }
+        this.add_storage();
+        $(`.cus_${item.ski_no}`).addClass("cart_clicked");
+      }
+    },
+
+    // 收藏功能
+    add_check_favorite(item) {
+      if (this.mem_check == 0) {
+        document.querySelector(".bg_of_lightbx").style = "display:block";
+      } else {
+        var formData = new FormData();
+        formData.append("ski_no", item.ski_no);
+        formData.append("mem_no", this.mem_check);
+
+        axios.post("./php/course_courseCollect.php", formData).then((res) => {
+          if (res.status == 200) {
+            // alert(res.data);
+            // console.log(res.data);
+            this.collect_state = res.data;
+            switch (this.collect_state) {
+              case 1:
+                $(".btn_intro_favor").addClass("cart_clicked");
+                break;
+              case 0:
+                $(".btn_intro_favor").removeClass("cart_clicked");
+                break;
+            }
+          }
+        });
+      }
+    },
     remove_item(index) {
       $(`.cus_${this.cart_items[index].ski_no}`).removeClass("cart_clicked");
       this.cart_items.splice(index, 1);
@@ -246,9 +239,10 @@ let vm = new Vue({
         .all([
           axios.post("./php/course_introduce.php", formData),
           axios.post("./php/course_introduce_suggest.php", formData),
+          axios.post("./php/course_checkCollect.php", formData),
         ])
         .then(
-          axios.spread((res1, res2) => {
+          axios.spread((res1, res2, res3) => {
             // 課程介紹資料
             if (res1.status == 200) {
               if (res1.data != 0) {
@@ -281,10 +275,35 @@ let vm = new Vue({
                 _this.introduce_suggest = res2.data;
               }
             }
+
+            // ==============
+            // 課程收藏
+            if (res3.status == 200) {
+              this.collect_state = res3.data;
+              // console.log(res3.data);
+              switch (this.collect_state) {
+                case 1:
+                  $(".btn_intro_favor").addClass("cart_clicked");
+                  break;
+                case 0:
+                  $(".btn_intro_favor").removeClass("cart_clicked");
+                  break;
+              }
+            }
           })
         )
         .then(() => {
           _this.receive_storage();
+        })
+        .then(() => {
+          switch (this.collect_state) {
+            case 1:
+              $(".btn_intro_favor").addClass("cart_clicked");
+              break;
+            case 0:
+              $(".btn_intro_favor").removeClass("cart_clicked");
+              break;
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -295,11 +314,9 @@ let vm = new Vue({
         .get("./php/memberStateCheck.php")
         .then((res) => {
           if (res.status == 200) {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data != 0) {
-              let memName = res.data.split(";")[1];
-
-              // $("div.member > a").html("Hi," + memName);
+              this.mem_check = res.data.split(";")[0];
               $("div.member > a").attr("href", "member.html");
               $("#header_logOut").css("display", "block");
             }
@@ -324,50 +341,54 @@ let vm = new Vue({
     },
     // orderList傳訂單到資料庫
     orderListSend(item) {
-      if (item.length > 0) {
-        let d_ord_amount = $(".final_price").text().split("$")[1]; //總金額
-        let d_ord_pay = "信用卡"; //付款方式
-        let d_ord_discount = 0; //是否折扣
-        if (item.length > 1) {
-          d_ord_discount = 1;
-        }
-        let arr = [];
-
-        item.forEach((key) => {
-          //課程資訊
-          arr.push({
-            ski_no: key.ski_no,
-            ski_price: key.ski_price,
-          });
-        });
-
-        let d_course_arr = JSON.stringify(arr);
-
-        // 建立php的變數
-        var formData = new FormData();
-        formData.append("ord_amount", d_ord_amount);
-        formData.append("ord_pay", d_ord_pay);
-        formData.append("ord_discount", d_ord_discount);
-        formData.append("course_arr", d_course_arr);
-
-        // -------------
-        // 連結php
-        axios
-          .all([axios.post("./php/course_send_ordList.php", formData)])
-          .then(
-            axios.spread((res1, res2) => {
-              alert("訂單完成");
-              let ord_no = res1.data[0].ord_no;
-              window.location.href = "./course_check.html?ord_no=" + ord_no;
-            })
-          )
-
-          .catch((err) => {
-            console.log(err);
-          });
+      if (this.mem_check == 0) {
+        document.querySelector(".bg_of_lightbx").style = "display:block";
       } else {
-        alert("購物車內無課程，請先挑選課程唷！");
-        window.location.href = "./course_main.html";
+        if (item.length > 0) {
+          let d_ord_amount = $(".final_price").text().split("$")[1]; //總金額
+          let d_ord_pay = "信用卡"; //付款方式
+          let d_ord_discount = 0; //是否折扣
+          if (item.length > 1) {
+            d_ord_discount = 1;
+          }
+          let arr = [];
+
+          item.forEach((key) => {
+            //課程資訊
+            arr.push({
+              ski_no: key.ski_no,
+              ski_price: key.ski_price,
+            });
+          });
+
+          let d_course_arr = JSON.stringify(arr);
+
+          // 建立php的變數
+          var formData = new FormData();
+          formData.append("ord_amount", d_ord_amount);
+          formData.append("ord_pay", d_ord_pay);
+          formData.append("ord_discount", d_ord_discount);
+          formData.append("course_arr", d_course_arr);
+
+          // -------------
+          // 連結php
+          axios
+            .all([axios.post("./php/course_send_ordList.php", formData)])
+            .then(
+              axios.spread((res1, res2) => {
+                alert("訂單完成");
+                let ord_no = res1.data[0].ord_no;
+                window.location.href = "./course_check.html?ord_no=" + ord_no;
+              })
+            )
+
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          alert("購物車內無課程，請先挑選課程唷！");
+          window.location.href = "./course_main.html";
+        }
       }
     },
     load_order_list() {
