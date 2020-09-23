@@ -5,7 +5,7 @@ body {
 .video-container {
     max-width: 1200px;
     width: 100%;
-    height: 50vh;
+    height: 65vh;
     margin: auto;
     margin-top: 50px;
     // border: 1px solid red;
@@ -17,6 +17,11 @@ body {
     overflow: hidden;
 }
 
+.fa-chevron-left {
+    padding-top: 3px;
+    color: #119BEB;
+}
+
 .video-container iframe,
 .video-container object,
 .video-container embed {
@@ -24,13 +29,13 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50vh;
+    height: 65vh;
 }
 
 .video_title {
     max-width: 1200px;
     margin: auto;
-    margin-top: 130px;
+    margin-top: 30px;
     width: 100%;
     display: flex;
     justify-content: left;
