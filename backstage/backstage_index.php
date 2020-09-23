@@ -375,7 +375,7 @@ try {
         <div class="industry" v-show="industry">
           <div class="title">
             <p class="title">行業管理</p>
-            <button class="add">新增行業</button>
+            <button class="add" @click="addForm">新增行業</button>
           </div>
           <table>
             <tr>
@@ -486,58 +486,67 @@ try {
           </table>
 
           <!-- 新增行業form -->
-          <!-- <form action="backstage_ind_add.php" method="post" style="display:none;">
-            <div>
-              <label for="">名字</label>
-              <input type="text" class="form" name="ind_int_name">
-            </div>
-            <div>
-              <label for="">介紹</label>
-              <textarea  name="ind_int_intro" cols="20" rows="5" placeholder="輸入職業介紹"></textarea>
-            </div>
-            <div>
-              <label for="">圖片</label>
-              <input type="file" class="form" name="ind_int_picture"">
-            </div>
-            <div>
-              <label for="">類別</label>
-              <select name="ind_no" >
-                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
-              </select>
-            </div>
-            <div>
-              <label for="">內容</label>
-              <textarea  name="ind_int_content" cols="20" rows="5" placeholder="輸入職業內容"></textarea>
-            </div>
-            <div>
-              <label for="">技能</label>
-              <textarea  name="ind_int_skill" cols="20" rows="5" placeholder="輸入職業技能"></textarea>
-            </div>
-            <div>
-              <label for="">一年以下</label>
-              <select name="ind_no" >
-                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
-              </select>
-            </div>
-            <div>
-              <label for="">一~三年</label>
-              <input type="radio" name="ski_hidden" value="1" checked>否
-              <input type="radio" name="ski_hidden" value="0">是
-            </div>
-            <div>
-              <label for="">三~五年</label>
-              <input type="file" class="form" name="quiz_pic_one">
-            </div>
-            <div>
-              <label for="">五~十年</label>
-              <input type="file" class="form" name="quiz_pic_one">
-            </div>
-            <div>
-              <label for="">十年以上</label>
-              <input type="file" class="form" name="quiz_pic_one">
-            </div>
+          <form action="backstage_ind_add.php" method="post" enctype="multipart/form-data">
+            <div class="indIntro">
+              <div>
+                <label for="">行業名字:</label>
+                <input type="text" class="form" name="ind_int_name">
+              </div>
+              <div>
+                <label for="">行業介紹:</label>
+                <textarea name="ind_int_intro" cols="20" rows="5" placeholder="輸入職業介紹"></textarea>
+              </div>
+
+              <div>
+                <label for="">行業類別:</label>
+                <select name=" ind_no">
+                  <option v-for="type in types" :value="type.value">{{type.type}}</option>
+                </select>
+              </div>
+              <div>
+                <label for="">行業內容:</label>
+                <textarea name="ind_int_content" cols="20" rows="5" placeholder="輸入職業內容"></textarea>
+              </div>
+              <div>
+                <label for="">行業技能:</label>
+                <textarea name="ind_int_skill" cols="20" rows="5" placeholder="輸入職業技能"></textarea>
+              </div>
 
 
+            </div>
+            <div class="salary">
+              <div class="salaryP">
+                <p>行業薪水</p>
+              </div>
+              <div>
+                <label for="">一年以下:</label>
+                <input type="number" class="form">
+              </div>
+              <div>
+                <label for="">一~三年:</label>
+                <input type="number" class="form">
+              </div>
+              <div>
+                <label for="">三~五年:</label>
+                <input type="number" class="form">
+              </div>
+              <div>
+                <label for="">五~十年:</label>
+                <input type="number" class="form">
+              </div>
+              <div>
+                <label for="">十年以上:</label>
+                <input type="number" class="form">
+              </div>
+              <div>
+                <label for="ind_int_picture" class="file">上傳檔案
+                  <input type="file" class="form" name="ind_int_picture" id="ind_int_picture" style="display: none;">
+                </label>
+                <div class="showPreImg " id="indPre">
+                  <img src="" id="indPreShow">
+                </div>
+              </div>
+            </div>
             <div>
               <button type="submit" class="submit">送出</button>
             </div>
@@ -545,7 +554,7 @@ try {
           </form>
           <div>
             <button class="back" @click="cancel_add">返回全部列表</button>
-          </div> -->
+          </div>
 
 
         </div>
