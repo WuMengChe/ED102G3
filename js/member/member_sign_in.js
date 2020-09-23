@@ -56,7 +56,7 @@ let changeSignType = new Vue({
                 document.querySelector('.input_div #code').value = "";
                 document.querySelector('.input_div #code_again').value = "";
             }
-            else if((memCode == memCodeAgain)&&emailCheck.test(memAccount)&&memName.length>0&&memCode.length < 10&&memCodeAgain.length < 10){
+            else if((memCode == memCodeAgain)&&emailCheck.test(memAccount)&&memName.length>0){
                 var formData = new FormData();
                 formData.append('memAccount', memAccount);
                 formData.append('memCode', memCode);
@@ -84,7 +84,6 @@ let changeSignType = new Vue({
                 document.querySelector('.input_div #code').value = "";
                 document.querySelector('.input_div #code_again').value = "";
             }
-            
         }
     }
 })
