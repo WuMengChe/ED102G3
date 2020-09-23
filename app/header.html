@@ -27,7 +27,7 @@
         <div class="cart">
           <button href="#">
             <i class="fas fa-shopping-cart"></i>
-            <div class="cart_num">
+            <div class="cart_num" v-show="cart_items.length !== 0">
               <span>{{cart_items.length}}</span>
             </div>
           </button>
