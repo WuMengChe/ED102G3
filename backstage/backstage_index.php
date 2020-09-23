@@ -293,48 +293,70 @@ try {
             ?>
           </table>
           <!-- 新增題庫form -->
-          <form action="backstage_quiz_add.php" method="post" style="display:none;">
+          <form action="backstage_quiz_add.php" method="post" style="display:none;" enctype="multipart/form-data">
             <div>
-              <label for="quiz_con">問題內容</label>
-              <textarea name="quiz_con" cols="20" rows="5" placeholder="輸入題目" id="quiz_cons"></textarea>
+              <label for="quiz_con">問題內容:</label>
+              <input type="text" name="quiz_con" placeholder="輸入題目" id="quiz_cons" class="form">
             </div>
             <div>
-              <label for="">選項一圖片</label>
-              <input type="file" class="form" name="quiz_pic_one">
-              <div class="postImg_show">
-                <img src="" alt="" id="quiz_pic_one">
+              <label for="quiz_use">啟用題目:</label>
+              <input type="radio" name="quiz_use" value="1" checked class="radio" id="quiz_use1">
+              <label for="quiz_use1" class="use">是</label>
+
+              <input type="radio" name="quiz_use" value="0" class="radio" id="quiz_use0">
+              <label for="quiz_use0" class="use">否</label>
+
+            </div>
+            <div class="quizOne">
+              <div>
+                <p>選項一</p>
               </div>
+
+              <div>
+                <label for="quiz_sel_one_content">內容:</label>
+                <input type="text" name="quiz_sel_one_content" cols="20" rows="5" placeholder="輸入內容" class="form">
+              </div>
+              <div>
+                <label for="quiz_sel_one_class">類別:</label>
+                <select name="quiz_sel_one_class">
+                  <option v-for="type in types" :value="type.value">{{type.type}}</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="quiz_pic_one" class="file">上傳檔案
+                  <input type="file" class="form" name="quiz_pic_one" style="display: none;" id="quiz_pic_one">
+                </label>
+                <div class="showPreImg" id="quizShowPreImg1">
+                  <img src="" id="quiz_pic_one_show">
+                </div>
+              </div>
+
             </div>
-            <div>
-              <label for="">選項一內容</label>
-              <textarea name="quiz_sel_one_content" cols="20" rows="5" placeholder="輸入內容"></textarea>
-            </div>
-            <div>
-              <label for="">選項一類
-                別</label>
-              <select name="quiz_sel_one_class">
-                <option v-for="type in types" :value="type.value">{{type.type}}</option>
-              </select>
-            </div>
-            <div>
-              <label for="">選項二圖片</label>
-              <input type="file" class="form" name="quiz_pic_two">
-              <div class="postImg_show"><img src="" alt="" id="quiz_pic_one"></div>
-            </div>
-            <div>
-              <label for="">選項二內容</label>
-              <textarea name="quiz_sel_two_content" cols="20" rows="5" placeholder="輸入內容"></textarea>
-            </div>
-            <div>
-              <label for="">選項二類別</label>
-              <select name="quiz_sel_two_class">
-                <option v-for="type in types" :value="type.value">{{type.type}}</option>
-              </select>
-            </div>
-            <div>
-              <label for="">啟用題目</label>
-              <input type="radio" name="quiz_use" value="1" checked>是
-              <input type="radio" name="quiz_use" value="0">否
+            <div class="quizTwo">
+              <div>
+                <p>選項二</p>
+              </div>
+
+              <div>
+                <label for="quiz_sel_two_content">內容:</label>
+                <input type="text" name="quiz_sel_two_content" placeholder="輸入內容" class="form">
+              </div>
+              <div>
+                <label for="quiz_sel_two_class">類別:</label>
+                <select name="quiz_sel_two_class">
+                  <option v-for="type in types" :value="type.value">{{type.type}}</option>
+                </select>
+              </div>
+              <div>
+                <label for="quiz_pic_two" class="file">上傳檔案
+                  <input type="file" class="form" name="quiz_pic_two" style="display: none;" id="quiz_pic_two">
+                </label>
+                <div class="showPreImg" id="quizShowPreImg2">
+                  <img src="" id="quiz_pic_two_show">
+                </div>
+              </div>
+
             </div>
 
 
@@ -660,14 +682,14 @@ try {
             <div>
               <label for="">課程圖片</label>
               <input type="file" class="ski_img form" name="ski_img">
-              <div class="postImg_show">
+              <div class="showPreImg">
                 <img src="" alt="" id="ski_img_show">
               </div>
             </div>
             <div>
               <label for="">講師圖片</label>
               <input type="file" class="ski_tec_img form" name="ski_tec_img">
-              <div class="postImg_show">
+              <div class="showPreImg">
                 <img src="" alt="" id="ski_tec_img_show">
               </div>
             </div>
@@ -890,7 +912,7 @@ try {
               <label for="postmark">郵戳</label>
             </div>
             <div>
-              <label for="postImg" class="postImg">上傳檔案
+              <label for="postImg" class="file">上傳檔案
                 <input type="file" name="POS_MAT_PIC" id="postImg" accept="image/png">
               </label>
               <span>

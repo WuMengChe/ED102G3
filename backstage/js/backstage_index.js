@@ -82,7 +82,38 @@ window.addEventListener("load", function () {
             let postImg_show = document.querySelector('.postImg_show');
             postNew.src = readFile.result;
             postImg_show.style.height = 'auto';
-            postImgName = postImg.name;
+
+
+        });
+    };
+    //新增題目預覽照片
+    document.getElementById('quiz_pic_one').onchange = quiz1Change;
+    document.getElementById('quiz_pic_two').onchange = quiz2Change;
+
+    function quiz1Change() {
+        let quiz_pic_one = document.getElementById('quiz_pic_one').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(quiz_pic_one);
+        readFile.addEventListener('load', function () {
+            let quiz_pic_one_show = document.getElementById('quiz_pic_one_show');
+            let quizShowPreImg1 = document.getElementById('quizShowPreImg1');
+            quiz_pic_one_show.src = readFile.result;
+            quizShowPreImg1.style.height = 'auto';
+
+
+        });
+    };
+
+    function quiz2Change() {
+        let quiz_pic_two = document.getElementById('quiz_pic_two').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(quiz_pic_two);
+        readFile.addEventListener('load', function () {
+            let quiz_pic_two_show = document.getElementById('quiz_pic_two_show');
+            let quizShowPreImg2 = document.getElementById('quizShowPreImg2');
+            quiz_pic_two_show.src = readFile.result;
+            quizShowPreImg2.style.height = 'auto';
+
 
         });
     };
