@@ -560,6 +560,49 @@ header {
                     height: 75px;
                     width: auto;
                 }
+
+                div.indIntro {
+                    display: inline-block;
+                    // border: 1px solid wheat;
+                    vertical-align: top;
+
+                }
+
+                div.salary {
+                    display: inline-block;
+                    // border: 1px solid wheat;
+                    vertical-align: top;
+                    @include preImgShow();
+
+                    div.salaryP {
+
+
+                        p {
+                            color: white;
+                            line-height: 31px;
+                            font-size: 20px;
+                        }
+                    }
+
+
+
+                    label.file {
+                        background-color: #F4C3C5;
+                        border-radius: 5px;
+                        width: 100px;
+                        color: black;
+                        cursor: pointer;
+                    }
+
+                    div {
+                        margin-left: 0;
+
+                        &:last-child {
+                            text-align: left;
+
+                        }
+                    }
+                }
             }
 
             .skill_class {
