@@ -32,21 +32,31 @@ let changeSignType = new Vue({
                     alert('帳號或密碼錯誤，請重新輸入');
                     document.querySelector('.input_div #code').value = "";
                 }
+                else if(resp.data == -1){
+                    alert('此帳戶已被停權，禁止使用');
+                    document.querySelector('.input_div #code').value = "";
+                }
                 else{
                     alert('會員登入成功');
                     window.location.href = "./member.html";
                 }
-                console.table(resp.data)
             })
-            // .catch(error => console.log(error))
-            // window.location.href = "./member.html";
         },
         changePageSignUp(){
             var memAccount = document.querySelector('.input_div #account').value;
             var memCode = document.querySelector('.input_div #code').value;
             var memCodeAgain = document.querySelector('.input_div #code_again').value;
             var memName = document.querySelector('.input_div #memName').value
-            if((memCode == memCodeAgain)&&memAccount.length>0&&memName.length>0&&memCode.length>0&&memCodeAgain.length>0){
+            var emailCheck = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(!emailCheck.test(memAccount)){
+                alert("請輸入正確的email格式");
+            }
+            else if(memCode.length < 10){
+                alert("密碼長度至少為10");
+                document.querySelector('.input_div #code').value = "";
+                document.querySelector('.input_div #code_again').value = "";
+            }
+            else if((memCode == memCodeAgain)&&emailCheck.test(memAccount)&&memName.length>0&&memCode.length < 10&&memCodeAgain.length < 10){
                 var formData = new FormData();
                 formData.append('memAccount', memAccount);
                 formData.append('memCode', memCode);
