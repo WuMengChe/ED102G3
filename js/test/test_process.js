@@ -40,11 +40,11 @@ let testtest = new Vue({
           this.totalScore[1] = this.totalScore[1]+1
         } else if(value ==='A'){
           this.totalScore[2] = this.totalScore[2]+1
-        }else if(value ==='S'){
+        } else if(value ==='S'){
           this.totalScore[3] = this.totalScore[3]+1
-        }else if(value ==='E'){
+        } else if(value ==='E'){
           this.totalScore[4] = this.totalScore[4]+1
-        }else if(value ==='C'){
+        } else if(value ==='C'){
           this.totalScore[5] = this.totalScore[5]+1
         } 
       },
@@ -61,7 +61,7 @@ let testtest = new Vue({
   computed:{
     divStyle:function(){   //進度條每次點擊後增加30px
       return {
-        width: this.width+'px',
+        width: this.width+'%',
       }
     }
   }
