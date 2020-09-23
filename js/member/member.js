@@ -767,7 +767,19 @@ let changeMemContent = new Vue({
             this.repNo = -1;
         },
         goToClass(no){
-            window.location.href="./course_introduce.html?ski_no=" + no
+            var videoUrl = './php/member-video-1.php';
+            var videoForm = document.createElement("form");
+            videoForm.action = videoUrl;
+            videoForm.method = "POST";
+            videoForm.style.display = "none";
+            var videoData = document.createElement("input");
+            videoData.type = "hidden";
+            videoData.name = "SKI_NO";
+            videoData.value = no;
+            videoForm.appendChild(videoData);
+            document.body.appendChild(videoForm);
+            videoForm.submit();
+            document.body.removeChild(videoForm);
         }
     },
 })

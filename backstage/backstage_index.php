@@ -46,7 +46,7 @@ try {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/app_public.css">
   <link rel="stylesheet" href="./css/backstage_index.css">
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
 
 </head>
 
@@ -82,11 +82,11 @@ try {
         <div class="list">
           <ul class="member_management">
             <li class="title">人員管理</li>
-            <li v-for="(member,index) in members" @click="show(index)">{{member}}</li>
+            <li v-cloak v-for="(member,index) in members" @click="show(index)">{{member}}</li>
           </ul>
           <ul class="management">
             <li class="title">前後台管理</li>
-            <li v-for="(list,index) in lists" @click="showBoard(index)">{{list}}</li>
+            <li v-cloak v-for="(list,index) in lists" @click="showBoard(index)">{{list}}</li>
           </ul>
         </div>
         <div class="copyright">
@@ -366,7 +366,7 @@ try {
 
           </form>
           <div>
-            <button class="back" @click="cancel_add">返回全部列表</button>
+            <button class="back" @click="cancel_add" style="display: none;">返回全部列表</button>
           </div>
 
         </div>
@@ -375,7 +375,7 @@ try {
         <div class="industry" v-show="industry">
           <div class="title">
             <p class="title">行業管理</p>
-            <button class="add">新增行業</button>
+            <button class="add" @click="addForm">新增行業</button>
           </div>
           <table>
             <tr>
@@ -417,7 +417,7 @@ try {
                 <td>
                   <?= $careerRow["IND_CLASS"] ?>
                   <select name="" id="" class="editShow indType">
-                    <option value="" v-for="type in types" :value="type.value">{{type.type}}</option>
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td>
@@ -486,66 +486,87 @@ try {
           </table>
 
           <!-- 新增行業form -->
-          <!-- <form action="backstage_ind_add.php" method="post" style="display:none;">
-            <div>
-              <label for="">名字</label>
-              <input type="text" class="form" name="ind_int_name">
-            </div>
-            <div>
-              <label for="">介紹</label>
-              <textarea  name="ind_int_intro" cols="20" rows="5" placeholder="輸入職業介紹"></textarea>
-            </div>
-            <div>
-              <label for="">圖片</label>
-              <input type="file" class="form" name="ind_int_picture"">
-            </div>
-            <div>
-              <label for="">類別</label>
-              <select name="ind_no" >
-                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
-              </select>
-            </div>
-            <div>
-              <label for="">內容</label>
-              <textarea  name="ind_int_content" cols="20" rows="5" placeholder="輸入職業內容"></textarea>
-            </div>
-            <div>
-              <label for="">技能</label>
-              <textarea  name="ind_int_skill" cols="20" rows="5" placeholder="輸入職業技能"></textarea>
-            </div>
-            <div>
-              <label for="">一年以下</label>
-              <select name="ind_no" >
-                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
-              </select>
-            </div>
-            <div>
-              <label for="">一~三年</label>
-              <input type="radio" name="ski_hidden" value="1" checked>否
-              <input type="radio" name="ski_hidden" value="0">是
-            </div>
-            <div>
-              <label for="">三~五年</label>
-              <input type="file" class="form" name="quiz_pic_one">
-            </div>
-            <div>
-              <label for="">五~十年</label>
-              <input type="file" class="form" name="quiz_pic_one">
-            </div>
-            <div>
-              <label for="">十年以上</label>
-              <input type="file" class="form" name="quiz_pic_one">
-            </div>
+          <form action="backstage_ind_add.php" method="post" enctype="multipart/form-data" style="display: none;">
+            <div class="indIntro">
+              <div>
+                <label for="ind_int_name">行業名字:</label>
+                <input type="text" class="form" name="ind_int_name">
+              </div>
+              <div>
+                <label for="ind_int_intro">行業介紹:</label>
+                <textarea name="ind_int_intro" cols="20" rows="5" placeholder="輸入職業介紹"></textarea>
+              </div>
+
+              <div>
+                <label for="ind_no">行業類別:</label>
+                <select name="ind_no">
+                  <option v-for="type in types" :value="type.value">{{type.type}}</option>
+                </select>
+              </div>
+              <div>
+                <label for="ind_int_content">行業內容:</label>
+                <textarea name="ind_int_content" cols="20" rows="5" placeholder="輸入職業內容"></textarea>
+              </div>
+              <div>
+                <label for="ind_int_skill">行業技能:</label>
+                <textarea name="ind_int_skill" cols="20" rows="5" placeholder="輸入職業技能"></textarea>
+              </div>
 
 
+            </div>
+            <div class="salary">
+              <div>
+                <p>一年以下</p>
+                <label for="IND_SAL_LOW1">最低月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_LOW1">
+                <label for="IND_SAL_HIGH1">最高月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_HIGH1">
+              </div>
+              <div>
+                <p>一~三年</p>
+                <label for="IND_SAL_LOW2">最低月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_LOW2">
+                <label for="IND_SAL_HIGH2">最高月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_HIGH2">
+              </div>
+              <div>
+                <p>三~五年</p>
+                <label for="IND_SAL_LOW3">最低月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_LOW3">
+                <label for="IND_SAL_HIGH3">最高月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_HIGH3">
+              </div>
+              <div>
+                <p>五~十年</p>
+                <label for="IND_SAL_LOW4">最低月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_LOW4">
+                <label for="IND_SAL_HIGH4">最高月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_HIGH4">
+              </div>
+              <div>
+                <p>十年以上</p>
+                <label for="IND_SAL_LOW5">最低月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_LOW5">
+                <label for="IND_SAL_HIGH5">最高月薪:</label>
+                <input type="number" class="form short" name="IND_SAL_HIGH5">
+              </div>
+              <div>
+                <label for="ind_int_picture" class="file">上傳檔案
+                  <input type="file" class="form" name="ind_int_picture" id="ind_int_picture" style="display: none;">
+                </label>
+                <div class="showPreImg " id="indPre">
+                  <img src="" id="indPreShow">
+                </div>
+              </div>
+            </div>
             <div>
               <button type="submit" class="submit">送出</button>
             </div>
 
           </form>
           <div>
-            <button class="back" @click="cancel_add">返回全部列表</button>
-          </div> -->
+            <button class="back" @click="cancel_add" style="display: none;">返回全部列表</button>
+          </div>
 
 
         </div>
@@ -580,14 +601,16 @@ try {
             while ($skillRow = $skill->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td class="ski_no"><?= $skillRow["SKI_NO"] ?></td>
+                <td class="ski_no">
+                  <div class="skiNo"><?= $skillRow["SKI_NO"] ?></div>
+                </td>
                 <td id="ski_name">
                   <div class="ski_name"><?= $skillRow["SKI_NAME"] ?></div>
                 </td>
-                <td id="ind_no">
+                <td id="ski_no">
                   <?= $skillRow["IND_CLASS"] ?>
-                  <select name="" id="" class="editShow indType">
-                    <option :value="type.value" v-for="type in types">{{type.type}}</option>
+                  <select name="" id="" class="editShow skiType">
+                    <option v-for="type in types" :value="type.value">{{type.type}}</option>
                   </select>
                 </td>
                 <td id="ski_buy_num">
@@ -606,7 +629,7 @@ try {
                   <div class="overflow ski_harvest"><?= $skillRow["SKI_HARVEST"] ?></div>
                 </td>
                 <td id="ski_line">
-                  <div class="ski_line"><?= $skillRow["SKI_LINK"] ?></div>
+                  <div class="ski_link"><?= $skillRow["SKI_LINK"] ?></div>
                 </td>
                 <td id="ski_img">
                   <img src="<?= $skillRow["SKI_IMG"] ?>" alt="課程圖片" class="ski_img">
@@ -647,74 +670,110 @@ try {
             ?>
           </table>
           <!-- 新增課程form -->
-          <form action="backstage_skillClass_add.php" method="post" style="display:none;">
-            <div>
-              <label for="">名稱</label>
-              <input type="text" class="ski_name form" name="ski_name" placeholder="輸入課程名稱">
+          <form action="backstage_skillClass_add.php" method="post" style="display:none;" enctype="multipart/form-data">
+            <div class="classShort">
+              <div>
+                <label for="">課程名稱:</label>
+                <input type="text" class="ski_name form" name="ski_name" placeholder="輸入課程名稱">
+              </div>
+              <div>
+                <label for="">課程類別:</label>
+                <select name="ind_no" id="">
+                  <option :value="type.value" v-for="type in types">{{type.type}}</option>
+                </select>
+
+                <label for="" class="useLabel">隱藏:</label>
+                <input type="radio" name="ski_hidden" value="0" id="skillUse1">
+                <label for="skillUse1" class="use">是</label>
+                <input type="radio" name="ski_hidden" value="1" checked id="skillUse0">
+                <label for="skillUse0" class="use">否</label>
+              </div>
+
+
+              <div>
+                <label for="">課程價格:</label>
+                <input type="number" min="0" class="ski_price form" name="ski_price" placeholder="ex:3000">
+              </div>
+              <div>
+                <label for="">總時數:</label>
+                <input type="text" class="ski_time form" name="ski_time" placeholder="ex:3小時">
+
+              </div>
+              <div>
+                <label for="">上課對象:</label>
+                <input type="text" class="ski_stud form" name="ski_stud" placeholder="ex:學生">
+
+              </div>
+              <div>
+                <label for="">課程連結:</label>
+                <input type="text" class="ski_link form" name="ski_link" placeholder="ex:youtube.com">
+              </div>
             </div>
-            <div>
-              <label for="">類別</label>
-              <select name="ind_no" id="">
-                <option :value="type.value" v-for="type in types">{{type.type}}</option>
-              </select>
-            </div>
-            <div>
-              <label for="">價格</label>
-              <input type="number" min="0" class="ski_price form" name="ski_price" placeholder="ex:3000">
-            </div>
-            <div>
-              <label for="">總時數</label>
-              <input type="text" class="ski_time" name="ski_time" placeholder="ex:3小時">
+            <div class="teacherInto">
+              <div class="teacherP">
+                <p>講師簡介</p>
+              </div>
+
+              <div class="teacherText">
+
+
+                <div>
+                  <label for="">講師名稱:</label>
+                  <input type="text" class="ski_tec_name form" name="ski_tec_name" placeholder="ex:廣仲">
+                </div>
+                <div>
+                  <label for="">講師介紹:</label>
+                  <textarea class="ski_tec_intro" name="ski_tec_intro" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
+                </div>
+
+
+              </div>
+              <div class="teacherImg">
+                <div>
+                  <label for="skiTecImg" class="file">上傳檔案
+                    <input type="file" class="form" name="ski_tec_img" id="skiTecImg" style="display: none;">
+                  </label>
+                </div>
+                <div class="showPreImg " id="skiTecPre">
+                  <img src="" id="ski_tec_img_show">
+                </div>
+              </div>
 
             </div>
-            <div>
-              <label for="">介紹</label>
-              <textarea class="ski_intro" name="ski_intro" cols="20" rows="5" placeholder="限制最多100字" maxlength="100"></textarea>
-            </div>
-            <div>
-              <label for="">學習內容</label>
-              <textarea class="ski_harvest" name="ski_harvest" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea><button class="harvest_add">新增</button>
-            </div>
-            <div>
-              <label for="">課程連結</label>
-              <input type="text" class="ski_link form" name="ski_link" placeholder="ex:youtube.com">
-            </div>
-            <div>
-              <label for="">課程圖片</label>
-              <input type="file" class="ski_img form" name="ski_img">
-              <div class="showPreImg">
-                <img src="" alt="" id="ski_img_show">
+            <div class="classInto">
+              <div class="classP">
+
+                <p>課程簡介</p>
+              </div>
+              <div class="classText">
+                <div>
+                  <label for="">課程介紹:</label>
+                  <textarea class="ski_intro long" name="ski_intro" cols="20" rows="5" placeholder="限制最多100字" maxlength="100"></textarea>
+                </div>
+                <div>
+                  <label for="">學習內容:</label>
+                  <textarea class="ski_harvest long" name="ski_harvest" cols="20" rows="5" placeholder="限制最多200字" maxlength="200"></textarea>
+                </div>
+                <div>
+                  <label for="">課程大綱:</label>
+                  <textarea class="ski_outline long" name="ski_outline" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
+                </div>
+              </div>
+              <div class="classImg">
+                <div>
+                  <label for="skiImg" class="file">上傳檔案
+                    <input type="file" class="ski_img form" name="ski_img" id="skiImg" style="display: none;">
+                  </label>
+                  <div class="showPreImg" id="skiPre">
+                    <img src="" alt="" id="ski_img_show">
+                  </div>
+                </div>
+
               </div>
             </div>
-            <div>
-              <label for="">講師圖片</label>
-              <input type="file" class="ski_tec_img form" name="ski_tec_img">
-              <div class="showPreImg">
-                <img src="" alt="" id="ski_tec_img_show">
-              </div>
-            </div>
-            <div>
-              <label for="">講師名稱</label>
-              <input type="text" class="ski_tec_name form" name="ski_tec_name" placeholder="ex:廣仲">
-            </div>
-            <div>
-              <label for="">講師介紹</label>
-              <textarea class="ski_tec_intro" name="ski_tec_intro" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
-            </div>
-            <div>
-              <label for="">大綱</label>
-              <textarea class="ski_outline" name="ski_outline" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea><button class="outline_add">新增</button>
-            </div>
-            <div>
-              <label for="">上課對象</label>
-              <input type="text" class="ski_stud form" name="ski_stud" placeholder="ex:學生">
-              <button class="stud_add">新增</button>
-            </div>
-            <div>
-              <label for="">是否隱藏</label>
-              <input type="radio" name="ski_hidden" value="1" checked>否
-              <input type="radio" name="ski_hidden" value="0">是
-            </div>
+
+
+
 
 
             <div>
@@ -723,7 +782,7 @@ try {
 
           </form>
           <div>
-            <button class="back" @click="cancel_add">返回全部列表</button>
+            <button class="back" @click="cancel_add" style="display: none;">返回全部列表</button>
           </div>
         </div>
 
@@ -1009,7 +1068,7 @@ try {
   <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
