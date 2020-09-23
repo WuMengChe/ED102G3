@@ -1,3 +1,27 @@
+<?php
+try {
+
+    require_once('./connectMySql.php');
+	$sql = "select * from `skill_class` where SKI_NO = '1'"; 
+    $skill = $pdo->prepare($sql);
+    $skill->bindValue(':SKI_NO',$_POST['SKI_NO']);
+    $skill->execute();
+    // $skill = $pdo->query($sql);
+    $skillRows = $skill->fetchAll(PDO::FETCH_ASSOC);
+    // $testRow = $skill->fetch(PDO::FETCH_ASSOC);
+
+
+    // var_dump($skillRow);exit();
+
+} catch (PDOException $e) {
+	echo "錯誤原因 : ", $e->getMessage(), "<br>";
+	echo "錯誤行號 : ", $e->getLine(), "<br>";
+}
+?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,64 +48,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<script src="../../js/header.js" async></script>
 <!-- 套件 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<!-- <script src="./js/"></script> -->
 
 </head>
 
 <body>
-<?php
-try {
-
-    require_once('./connectMySql.php');
-	$sql = "select * from `skill_class` where SKI_NO = '1'"; 
-    // $skill = $pdo->prepare($sql);
-    // $skill->bindValue(':SKI_NO',$_POST['SKI_NO']);
-    // $skill->execute();
-    $skill = $pdo->query($sql);
-    // $skillRows = $skill->fetchAll(PDO::FETCH_ASSOC);
-    $testRow = $skill->fetch(PDO::FETCH_ASSOC);
-
-
-    // var_dump($skillRow);exit();
-
-} catch (PDOException $e) {
-	echo "錯誤原因 : ", $e->getMessage(), "<br>";
-	echo "錯誤行號 : ", $e->getLine(), "<br>";
-}
-?>
 
 
     <div class="video_title">
-        <img class="video_img" src="./img/career/箭頭.png">&nbsp;&nbsp;
+    <i class="fas fa-chevron-left"></i>&nbsp;
         <a href="#">
             <p class="video_p1">返回我的課程</p>
         </a><br>
     </div>
     <div class="video_title2">
-    
-    
-    
-    
        <h1 class="video_p2"><?php  echo $testRow["SKI_NAME"] ?></h1>
-
-	
-	
-
     </div>
     
 
     <div id="video" class="video-container">
-       
-    <?php
-    
-	?>
 	<iframe id="video-Cascade" class="i-frame" max-width="1200px" height="50vh" src="<?php echo $testRow["SKI_LINK"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	<?php
-	
-	?>
     </div>
 
 

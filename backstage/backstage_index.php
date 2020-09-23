@@ -647,74 +647,110 @@ try {
             ?>
           </table>
           <!-- 新增課程form -->
-          <form action="backstage_skillClass_add.php" method="post" style="display:none;">
-            <div>
-              <label for="">名稱</label>
-              <input type="text" class="ski_name form" name="ski_name" placeholder="輸入課程名稱">
+          <form action="backstage_skillClass_add.php" method="post" style="display:none;" enctype="multipart/form-data">
+            <div class="classShort">
+              <div>
+                <label for="">課程名稱:</label>
+                <input type="text" class="ski_name form" name="ski_name" placeholder="輸入課程名稱">
+              </div>
+              <div>
+                <label for="">課程類別:</label>
+                <select name="ind_no" id="">
+                  <option :value="type.value" v-for="type in types">{{type.type}}</option>
+                </select>
+
+                <label for="" class="useLabel">隱藏:</label>
+                <input type="radio" name="ski_hidden" value="0" id="skillUse1">
+                <label for="skillUse1" class="use">是</label>
+                <input type="radio" name="ski_hidden" value="1" checked id="skillUse0">
+                <label for="skillUse0" class="use">否</label>
+              </div>
+
+
+              <div>
+                <label for="">課程價格:</label>
+                <input type="number" min="0" class="ski_price form" name="ski_price" placeholder="ex:3000">
+              </div>
+              <div>
+                <label for="">總時數:</label>
+                <input type="text" class="ski_time form" name="ski_time" placeholder="ex:3小時">
+
+              </div>
+              <div>
+                <label for="">上課對象:</label>
+                <input type="text" class="ski_stud form" name="ski_stud" placeholder="ex:學生">
+
+              </div>
+              <div>
+                <label for="">課程連結:</label>
+                <input type="text" class="ski_link form" name="ski_link" placeholder="ex:youtube.com">
+              </div>
             </div>
-            <div>
-              <label for="">類別</label>
-              <select name="ind_no" id="">
-                <option :value="type.value" v-for="type in types">{{type.type}}</option>
-              </select>
-            </div>
-            <div>
-              <label for="">價格</label>
-              <input type="number" min="0" class="ski_price form" name="ski_price" placeholder="ex:3000">
-            </div>
-            <div>
-              <label for="">總時數</label>
-              <input type="text" class="ski_time" name="ski_time" placeholder="ex:3小時">
+            <div class="teacherInto">
+              <div class="teacherP">
+                <p>講師簡介</p>
+              </div>
+
+              <div class="teacherText">
+
+
+                <div>
+                  <label for="">講師名稱:</label>
+                  <input type="text" class="ski_tec_name form" name="ski_tec_name" placeholder="ex:廣仲">
+                </div>
+                <div>
+                  <label for="">講師介紹:</label>
+                  <textarea class="ski_tec_intro" name="ski_tec_intro" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
+                </div>
+
+
+              </div>
+              <div class="teacherImg">
+                <div>
+                  <label for="skiTecImg" class="file">上傳檔案
+                    <input type="file" class="form" name="ski_tec_img" id="skiTecImg" style="display: none;">
+                  </label>
+                </div>
+                <div class="showPreImg " id="skiTecPre">
+                  <img src="" id="ski_tec_img_show">
+                </div>
+              </div>
 
             </div>
-            <div>
-              <label for="">介紹</label>
-              <textarea class="ski_intro" name="ski_intro" cols="20" rows="5" placeholder="限制最多100字" maxlength="100"></textarea>
-            </div>
-            <div>
-              <label for="">學習內容</label>
-              <textarea class="ski_harvest" name="ski_harvest" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea><button class="harvest_add">新增</button>
-            </div>
-            <div>
-              <label for="">課程連結</label>
-              <input type="text" class="ski_link form" name="ski_link" placeholder="ex:youtube.com">
-            </div>
-            <div>
-              <label for="">課程圖片</label>
-              <input type="file" class="ski_img form" name="ski_img">
-              <div class="showPreImg">
-                <img src="" alt="" id="ski_img_show">
+            <div class="classInto">
+              <div class="classP">
+
+                <p>課程簡介</p>
+              </div>
+              <div class="classText">
+                <div>
+                  <label for="">課程介紹:</label>
+                  <textarea class="ski_intro long" name="ski_intro" cols="20" rows="5" placeholder="限制最多100字" maxlength="100"></textarea>
+                </div>
+                <div>
+                  <label for="">學習內容:</label>
+                  <textarea class="ski_harvest long" name="ski_harvest" cols="20" rows="5" placeholder="限制最多200字" maxlength="200"></textarea>
+                </div>
+                <div>
+                  <label for="">課程大綱:</label>
+                  <textarea class="ski_outline long" name="ski_outline" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
+                </div>
+              </div>
+              <div class="classImg">
+                <div>
+                  <label for="skiImg" class="file">上傳檔案
+                    <input type="file" class="ski_img form" name="ski_img" id="skiImg" style="display: none;">
+                  </label>
+                  <div class="showPreImg" id="skiPre">
+                    <img src="" alt="" id="ski_img_show">
+                  </div>
+                </div>
+
               </div>
             </div>
-            <div>
-              <label for="">講師圖片</label>
-              <input type="file" class="ski_tec_img form" name="ski_tec_img">
-              <div class="showPreImg">
-                <img src="" alt="" id="ski_tec_img_show">
-              </div>
-            </div>
-            <div>
-              <label for="">講師名稱</label>
-              <input type="text" class="ski_tec_name form" name="ski_tec_name" placeholder="ex:廣仲">
-            </div>
-            <div>
-              <label for="">講師介紹</label>
-              <textarea class="ski_tec_intro" name="ski_tec_intro" cols="20" rows="5" placeholder="限制最多250字" maxlength="250"></textarea>
-            </div>
-            <div>
-              <label for="">大綱</label>
-              <textarea class="ski_outline" name="ski_outline" cols="20" rows="5" placeholder="限制最多30字" maxlength="30"></textarea><button class="outline_add">新增</button>
-            </div>
-            <div>
-              <label for="">上課對象</label>
-              <input type="text" class="ski_stud form" name="ski_stud" placeholder="ex:學生">
-              <button class="stud_add">新增</button>
-            </div>
-            <div>
-              <label for="">是否隱藏</label>
-              <input type="radio" name="ski_hidden" value="1" checked>否
-              <input type="radio" name="ski_hidden" value="0">是
-            </div>
+
+
+
 
 
             <div>
@@ -723,7 +759,7 @@ try {
 
           </form>
           <div>
-            <button class="back" @click="cancel_add">返回全部列表</button>
+            <button class="back" @click="cancel_add" style="display: none;">返回全部列表</button>
           </div>
         </div>
 
