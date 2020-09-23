@@ -82,7 +82,7 @@ window.addEventListener("load", function () {
             let postImg_show = document.querySelector('.postImg_show');
             postNew.src = readFile.result;
             postImg_show.style.height = 'auto';
-            postImgName = postImg.name;
+
 
         });
     };
@@ -99,7 +99,7 @@ window.addEventListener("load", function () {
             let quizShowPreImg1 = document.getElementById('quizShowPreImg1');
             quiz_pic_one_show.src = readFile.result;
             quizShowPreImg1.style.height = 'auto';
-            quiz_pic_oneName = quiz_pic_one.name;
+
 
         });
     };
@@ -113,7 +113,7 @@ window.addEventListener("load", function () {
             let quizShowPreImg2 = document.getElementById('quizShowPreImg2');
             quiz_pic_two_show.src = readFile.result;
             quizShowPreImg2.style.height = 'auto';
-            quiz_pic_twoName = quiz_pic_two.name;
+
 
         });
     };
