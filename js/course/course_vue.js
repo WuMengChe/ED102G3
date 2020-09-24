@@ -118,7 +118,7 @@ let vm = new Vue({
       }
     },
     // 購物車功能
-    add_cart(item) {
+    add_cart(item, e) {
       // 登入燈箱
       if (this.mem_check == 0) {
         document.querySelector(".bg_of_lightbx").style = "display:block";
@@ -146,15 +146,16 @@ let vm = new Vue({
         }
         this.add_storage();
         $(`.cus_${item.ski_no}`).addClass("cart_clicked");
-        this.add_cart_effect(item);
+        this.add_cart_effect(item, e);
       }
     },
-    add_cart_effect(item) {
+    add_cart_effect(item, e) {
       // 加入購物車動畫
 
       var cart = $("#add_effect");
-      var imgtodrag = $(`#img_drag${item.ski_no}`);
-      if (imgtodrag) {
+      var imgtodrag = $(e.target).parents("li").find("img");
+      // console.log(imgtodrag);
+      if (imgtodrag.length != 0) {
         var imgclone = imgtodrag
           .clone()
           .offset({
