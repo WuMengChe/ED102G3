@@ -15,8 +15,8 @@
 
 <!-- 基本盤 -->
 <link rel="stylesheet" href="../../bootstrap/bootstrap-grid.min.css">
-<link rel="stylesheet" href="../../css/app_public.css">
-<link rel="stylesheet" href="../../css/video.css">
+<link rel="stylesheet" href="./css/app_public.css">
+<link rel="stylesheet" href="./css/industry.css">
 
 <!-- 基本盤 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -56,7 +56,7 @@ try {
 
 
     <div class="video_title">
-        <img class="video_img" src="./img/career/箭頭.png">&nbsp;&nbsp;
+    <i class="fas fa-chevron-left"></i>&nbsp;
         <a href="#">
             <p class="video_p1">返回我的課程</p>
         </a><br>
