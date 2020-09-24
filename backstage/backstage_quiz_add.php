@@ -26,7 +26,7 @@ try {
 
     if ($quiz->rowCount() == 0) {
 
-        $sql = "INSERT INTO `quiz` (quiz_con,
+        $quizSql = "INSERT INTO `quiz` (quiz_con,
             quiz_pic_one,
             quiz_pic_two,
             quiz_sel_one_content,
@@ -43,17 +43,17 @@ try {
             :quiz_sel_two_class,
             :quiz_use
             );";
-        $disAll = $pdo->prepare($sql);
+        $insertQuiz = $pdo->prepare($quizSql);
 
-        $disAll->bindValue(":quiz_con", $_POST["quiz_con"]);
-        $disAll->bindValue(":quiz_pic_one", $toPicOne);
-        $disAll->bindValue(":quiz_sel_one_content", $_POST["quiz_sel_one_content"]);
-        $disAll->bindValue(":quiz_sel_one_class", $_POST["quiz_sel_one_class"]);
-        $disAll->bindValue(":quiz_pic_two", $toPicTwo);
-        $disAll->bindValue(":quiz_sel_two_content", $_POST["quiz_sel_two_content"]);
-        $disAll->bindValue(":quiz_sel_two_class", $_POST["quiz_sel_two_class"]);
-        $disAll->bindValue(":quiz_use", $_POST["quiz_use"]);
-        $disAll->execute();
+        $insertQuiz->bindValue(":quiz_con", $_POST["quiz_con"]);
+        $insertQuiz->bindValue(":quiz_pic_one", $toPicOne);
+        $insertQuiz->bindValue(":quiz_sel_one_content", $_POST["quiz_sel_one_content"]);
+        $insertQuiz->bindValue(":quiz_sel_one_class", $_POST["quiz_sel_one_class"]);
+        $insertQuiz->bindValue(":quiz_pic_two", $toPicTwo);
+        $insertQuiz->bindValue(":quiz_sel_two_content", $_POST["quiz_sel_two_content"]);
+        $insertQuiz->bindValue(":quiz_sel_two_class", $_POST["quiz_sel_two_class"]);
+        $insertQuiz->bindValue(":quiz_use", $_POST["quiz_use"]);
+        $insertQuiz->execute();
         header("Location:./backstage_index.php");
     } else {
         // header("Location:/backstage_index.php");
