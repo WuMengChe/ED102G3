@@ -70,47 +70,6 @@ let vm = new Vue({
   },
   mounted() {
   
-    //燈箱裡回覆留言愛心，會員曾經點過的愛心
-    axios.post("./php/memberStateCheck.php").then(res => {
-      console.log(res);
-      this.memberCheck = res.data;
-      if (this.memberCheck !== 0) {
-        sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
-        const memNo = sessionStorage.getItem("memNo");
-        console.log(memNo);
-        axios
-          .get("./php/forum_discuss.php?action=showinnerBoxLike&MEM_NO=" + memNo)
-          .then(res => {
-         console.log(res.data);
-            this.showfeedbacklike = res.data;
-               console.log(res.data);
-            // this.showlike = res.data[0].DIS_NO.split(',');
-
-            for (let i = 0; i < this.box_msg.length; i++) {
-              // console.log(this.information[i].DIS_NO);
-              // console.log(typeof this.information);
-              // console.log(this.showlike)
-              // console.log(this.showlike.length)
-              // console.log(JSON.parse(this.showlike))
-              // console.log(typeof this.showlike)
-              // console.log(typeof this.showlike)
-              var dis_mes_no = this.box_msg[i].DIS_MES_NO;
-              if (
-                this.showfeedbacklike.find(function (item) {
-                  return item.DIS_MES_NO == dis_mes_no;
-                })
-              ) {
-                // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
-                // this.isHeart[i] = true;
-                this.feedBoxHeart.push(true);
-              } else {
-                this.feedBoxHeart.push(false);
-              }
-            }
-            console.log(this.feedBoxHeart)
-          });
-      }
-    });
 
     //討論區文章和公告PHP
     axios.all([this.getAllDisscuss(this.currentPage), this.getAnnouncement()]);
@@ -128,17 +87,10 @@ let vm = new Vue({
             this.showlike = res.data;
             // this.showlike = res.data[0].DIS_NO.split(',');
 
-            for (let i = 0; i < this.information.length; i++) {
-              // console.log(this.information[i].DIS_NO);
-              // console.log(typeof this.information);
-              // console.log(this.showlike)
-              // console.log(this.showlike.length)
-              // console.log(JSON.parse(this.showlike))
-              // console.log(typeof this.showlike)
-              // console.log(typeof this.showlike)
+            for (let i = 0; i < this.information.length; i++){
               var disNo = this.information[i].DIS_NO;
-              if (
-                this.showlike.find(function (item) {
+              
+              if (this.showlike.find(function (item) {
                   return item.DIS_NO == disNo;
                 })
               ) {
@@ -271,13 +223,57 @@ let vm = new Vue({
           this.box_msg = res.data;
            console.log(res.data);
            //燈箱內的愛心放進來，要用for迴圈把它box_msg的資料放進來，並檢查按了哪些愛心
+           this.feedBoxHeart = new Array();
            for(let i=0;i<this.box_msg.length;i++){
              this.feedBoxHeart.push(false);
            }
+
+
+      axios.post("./php/memberStateCheck.php").then(res => {
+        console.log(res);
+      this.memberCheck = res.data;
+      if (this.memberCheck !== 0) {
+        sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+        const memNo = sessionStorage.getItem("memNo");
+        console.log(memNo);
+        axios
+          .get("./php/forum_discuss.php?action=showinnerBoxLike&MEM_NO=" + memNo)
+          .then(res => {
+         console.log(res.data);
+            this.showfeedbacklike = res.data;
+               console.log(res.data);
+            // this.showlike = res.data[0].DIS_NO.split(',');
+            console.log(this.box_msg)
+            for (let i = 0; i < this.box_msg.length; i++) {
+              var dis_mes_no = this.box_msg[i].DIS_MES_NO;
+              if (
+                this.showfeedbacklike.find(function (item) {
+                  return item.DIS_MES_NO == dis_mes_no;
+                })
+              ) { 
+                // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
+                // this.isHeart[i] = true;
+                console.log(i)
+                this.feedBoxHeart[i] = true;
+              } else {
+                console.log(i)
+                console.log(dis_mes_no)
+                console.log(this.showfeedbacklike)
+                this.feedBoxHeart[i] = false;
+              }
+            }
+            console.log(dis_mes_no);
+            console.log(this.feedBoxHeart)
+          });
+      }
+    });
         })
         .catch(function (error) {
           console.log(error);
         });
+
+    //燈箱裡回覆留言愛心，會員曾經點過的愛心
+    
     },
     //關閉燈箱
     close_openContent() {
@@ -291,7 +287,7 @@ let vm = new Vue({
     },
 
     //側邊欄搜尋
-    search(e,type) {
+    search(type) {
       const result = this.information.filter(element => {
         return element.IND_CLASS == type;
       });
@@ -458,8 +454,12 @@ let vm = new Vue({
     },
     //回覆留言裡的檢舉燈箱開啟
     accuse_innerbox_btn(){
-      // alert('aaa')
-      // alert(this.accuseinnerIsOpen);
+       axios
+        .post("./php/memberStateCheck.php") // 送去檢查使用者當前狀態
+        .then(resp => {
+          if (resp.data == 0) {
+            document.querySelector(".bg_of_lightbx").style = "display:block";
+          } else {
           if (this.accuseinnerIsOpen) {
               this.accuseIsOpen = false;
               this.stopScroll = false;
@@ -467,6 +467,11 @@ let vm = new Vue({
               this.accuseinnerIsOpen = true;
               this.stopScroll = true;
             }
+          }
+        });
+      
+
+        
     },
     //愛心
     heart_btn(index, disNo, conNum) {
@@ -489,12 +494,9 @@ let vm = new Vue({
       //會員登入PHP
       axios
         .post("./php/memberStateCheck.php")
-        .then(res => {
-          console.log(res);
-          this.memberCheck = res.data;
-          if (this.memberCheck == 0) {
-            alert("請先登入會員");
-            window.location.href = "./member_sign_in.html";
+        .then(resp => {
+          if (resp.data == 0) {
+            document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const memNo = sessionStorage.getItem("memNo");
@@ -535,12 +537,9 @@ let vm = new Vue({
 
       axios
         .post("./php/memberStateCheck.php")
-        .then(res => {
-          console.log(res);
-          this.memberCheck = res.data;
-          if (this.memberCheck == 0) {
-            alert("請先登入會員");
-            window.location.href = "./member_sign_in.html";
+         .then(resp => {
+          if (resp.data == 0) {
+            document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const memNo = sessionStorage.getItem("memNo");
@@ -573,20 +572,15 @@ let vm = new Vue({
     },
     //燈箱裡的愛心
     heart_btn_feedback(index) {
-      // alert("123")
       console.log(index)
       console.log(this.feedBoxHeart[index])
       // this.feedBoxHeart[index] = !this.feedBoxHeart[index];
     
-    //會員登入PHP
       axios
         .post("./php/memberStateCheck.php")
-        .then(res => {
-          console.log(res);
-          this.memberCheck = res.data;
-          if (this.memberCheck == 0) {
-            alert("請先登入會員");
-            window.location.href = "./member_sign_in.html";
+            .then(resp => {
+          if (resp.data == 0) {
+            document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const DIS_MES_NO = this.box_msg[index].DIS_MES_NO;
@@ -616,12 +610,9 @@ let vm = new Vue({
       }
       axios
         .post("./php/memberStateCheck.php")
-        .then(res => {
-          console.log(res);
-          this.memberCheck = res.data;
-          if (this.memberCheck == 0) {
-            alert("請先登入會員");
-            window.location.href = "./member_sign_in.html";
+          .then(resp => {
+          if (resp.data == 0) {
+            document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);

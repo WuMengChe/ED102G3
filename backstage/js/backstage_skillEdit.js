@@ -17,7 +17,7 @@ window.addEventListener('load', function() {
             let ski_time = td.children('.ski_time').text();
             let ski_intro = td.children('.ski_intro').text();
             let ski_harvest = td.children('.ski_harvest').text();
-            let ski_line = td.children('.ski_line').text();
+            let ski_link = td.children('.ski_link').text();
             let ski_tec_name = td.children('.ski_tec_name').text();
             let ski_tec_intro = td.children('.ski_tec_intro').text();
             let ski_outline = td.children('.ski_outline').text();
@@ -37,7 +37,7 @@ window.addEventListener('load', function() {
             let ski_timeClass = td.children(".ski_time").attr('class');
             let ski_introClass = td.children(".ski_intro").attr('class');
             let ski_harvestClass = td.children(".ski_harvest").attr('class');
-            let ski_lineClass = td.children(".ski_line").attr('class');
+            let ski_linkClass = td.children(".ski_link").attr('class');
             let ski_tec_nameClass = td.children(".ski_tec_name").attr('class');
             let ski_tec_introClass = td.children(".ski_tec_intro").attr('class');
             let ski_outlineClass = td.children(".ski_outline").attr('class');
@@ -53,7 +53,7 @@ window.addEventListener('load', function() {
             td.children(".ski_time").replaceWith(`<input type="text" class="${ski_timeClass}" value="${ski_time}">`);
             td.children(".ski_intro").replaceWith(`<textarea class="${ski_introClass}" cols="20" rows="5">${ski_intro}</textarea>`);
             td.children(".ski_harvest").replaceWith(`<textarea class="${ski_harvestClass}"  cols="20" rows="5">${ski_harvest}</textarea>`);
-            td.children(".ski_line").replaceWith(`<textarea class="${ski_lineClass}" cols="20" rows="5">${ski_line}</textarea>`);
+            td.children(".ski_link").replaceWith(`<textarea class="${ski_linkClass}" cols="20" rows="5">${ski_link}</textarea>`);
             td.children(".ski_tec_name").replaceWith(`<input type="text" class="${ski_tec_nameClass}" value="${ski_tec_name}">`);
             td.children(".ski_tec_intro").replaceWith(`<textarea class="${ski_tec_introClass}" cols="20" rows="5">${ski_tec_intro}</textarea>`);
             td.children(".ski_outline").replaceWith(`<textarea class="${ski_outlineClass}" cols="20" rows="5">${ski_outline}</textarea>`);
@@ -62,7 +62,7 @@ window.addEventListener('load', function() {
 
 
             //quiz換照片
-            let skiImgInput, ski_img, skiImgInput_name;
+            let skiImgInput, ski_img, skiTecImgInput, ski_tec_img;
 
             //skill換圖
             td.children('.skiImgInput').change(function(e) {
@@ -103,7 +103,7 @@ window.addEventListener('load', function() {
                 td.children(".ski_time").replaceWith(`<div class="${ski_timeClass}">${ski_time}</div>`);
                 td.children(".ski_intro").replaceWith(`<div class="${ski_introClass}">${ski_intro}</div>`);
                 td.children(".ski_harvest").replaceWith(`<div class="${ski_harvestClass}" >${ski_harvest}</div>`);
-                td.children(".ski_line").replaceWith(`<div class="${ski_lineClass}">${ski_line}</div>`);
+                td.children(".ski_link").replaceWith(`<div class="${ski_linkClass}">${ski_link}</div>`);
                 td.children(".ski_tec_name").replaceWith(`<div class="${ski_tec_nameClass}">${ski_tec_name}</div>`);
                 td.children(".ski_tec_intro").replaceWith(`<div class="${ski_tec_introClass}">${ski_tec_intro}</div>`);
                 td.children(".ski_outline").replaceWith(`<div class="${ski_outlineClass}">${ski_outline}</div>`);
@@ -126,39 +126,37 @@ window.addEventListener('load', function() {
 
             //career data
             let skill = {};
-            skill.indNo = parseInt(td.children(".indNo").text());
-            skill.indNameUpdate = td.children(".indName").val();
-            skill.indIntroUpdate = td.children(".indIntro").val();
-            skill.indContentUpdate = td.children(".indContent").val();
-            skill.indSkillUpdate = td.children(".indSkill").val();
-            skill.firstYearLowUpdate = td.children(".firstYearLow").val();
-            skill.firstYearHighUpdate = td.children(".firstYearHigh").val();
-            skill.thirdYearLowUpdate = td.children(".thirdYearLow").val();
-            skill.thirdYearHighUpdate = td.children(".thirdYearHigh").val();
-            skill.fifthYearLowUpdate = td.children(".fifthYearLow").val();
-            skill.fifthYearHighUpdate = td.children(".fifthYearHigh").val();
-            skill.tenYearLowUpdate = td.children(".tenYearLow").val();
-            skill.tenYearHighUpdate = td.children(".tenYearHigh").val();
-            skill.upYearLowUpdate = td.children(".upYearLow").val();
-            skill.upYearHighUpdate = td.children(".upYearHigh").val();
-            skill.indTypeUpdate = td.children(".indType").val();
-            skill.indImgUpdate = td.children(".indImg").attr("src");
-            skill.skill_USE = parseInt(td.children('.QUIZ_USE').val())
-            skill.indPic_name = indPic_name;
-
+            skill.skiNo = parseInt(td.children(".skiNo").text());
+            skill.ski_name = td.children(".ski_name").val();
+            skill.skiType = td.children(".skiType").val();
+            skill.ski_price = parseInt(td.children(".ski_price").val());
+            skill.ski_time = td.children(".ski_time").val();
+            skill.ski_intro = td.children(".ski_intro").val();
+            skill.ski_harvest = td.children(".ski_harvest").val();
+            skill.ski_link = td.children(".ski_link").val();
+            skill.ski_tec_name = td.children(".ski_tec_name").val();
+            skill.ski_tec_intro = td.children(".ski_tec_intro").val();
+            skill.ski_outline = td.children(".ski_outline").val();
+            skill.ski_stud = td.children(".ski_stud").val();
+            skill.skill_USE = parseInt(td.children('.skill_USE').val())
+            skill.skiTecImgInput = td.children(".ski_tec_img").attr("src");
+            skill.skiTecImgInput_name = skiTecImgInput_name;
+            skill.skiImgInput = td.children(".ski_img").attr("src");
+            skill.skiImgInput_name = skiImgInput_name;
+            console.log(skill);
 
             let skillJson = JSON.stringify(skill);
             let skillXhr = new XMLHttpRequest();
             console.log(skillJson);
-            skillXhr.open("POST", "backstage_skill.php", true);
+            skillXhr.open("POST", "backstage_course.php", true);
             skillXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             skillXhr.send(`skillJson=${skillJson}`);
 
             skillXhr.onload = function() {
                 if (skillXhr.status == 200) {
-                    // alert(careerXhr.responseText);
+                    alert(skillXhr.responseText);
                     // location.reload();
-                    // console.log(careerXhr.responseText);
+                    console.log(skillXhr.responseText);
                 } else {
                     alert(skillXhr.status);
                 }

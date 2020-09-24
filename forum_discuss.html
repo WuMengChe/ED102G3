@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>forum_discuss</title>
+  @@include('app/script.html')
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
   <link rel="stylesheet" href="./css/app_public.css" />
   <link rel="stylesheet" href="./css/pages_scss/forum/forum.css" />
@@ -194,7 +195,8 @@
               <div class="dis_date">{{msg.DIS_MES_DATE}}</div>
             </div>
             <div class="msg_textarea">
-              {{msg.DIS_MES_CONTENT}}
+              {{msg.DIS_MES_CONTENT}} 123---
+                {{msg.DIS_MES_NO}}
             </div>
             <div class="msg_btn">
               <button class="heart">
@@ -267,11 +269,11 @@
   </div>
 
    
- @@include('app/footer.html') @@include('app/script.html')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://kit.fontawesome.com/d18b20bddd.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+ @@include('app/footer.html') 
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <!-- <script src="https://kit.fontawesome.com/d18b20bddd.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script> -->
   <script src="js/forum/forum_discuss.js"></script>
   <script>
 

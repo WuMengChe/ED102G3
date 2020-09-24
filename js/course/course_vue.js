@@ -450,6 +450,8 @@ let vm = new Vue({
         if (resp.data == 0) {
           alert("帳號或密碼錯誤，請重新輸入");
           document.querySelector(".input_div #code").value = "";
+        } else if (resp.data == -1) {
+          alert("此帳戶已被停權，禁止使用");
         } else {
           alert("會員登入成功");
           //登入成功則燈箱移除
