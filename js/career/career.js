@@ -329,18 +329,34 @@ let careerVueContent = new Vue({
         this.screenWidth = document.documentElement.clientWidth;
     },
     created() {
-        window.addEventListener('resize', this.changeWidth);
-        window.addEventListener('resize', this.rankingPlot);
+        // window.addEventListener('resize', this.changeWidth);
+        var userB = navigator.userAgent;
+        var mobile = !!userB.match(/AppleWebKit.*Mobile.*/);
+        var ios = !!userB.match(/\(i[^;] ;( U;)? CPU. Mac OS X/);
+        var android = userB.indexOf('Android') > -1 || userB.indexOf('Adr') > -1;
+        if(!mobile || !android || !ios){
+            window.addEventListener('resize', this.changeWidth);
+            window.addEventListener('resize', this.rankingPlot);
+        }
+        // window.addEventListener('resize', this.rankingPlot);
     },
     destroyed() {
-        window.removeEventListener('resize', this.changeWidth);
-        window.removeEventListener('resize', this.rankingPlot);
+        // window.removeEventListener('resize', this.changeWidth);
+        var userB = navigator.userAgent;
+        var mobile = !!userB.match(/AppleWebKit.*Mobile.*/);
+        var ios = !!userB.match(/\(i[^;] ;( U;)? CPU. Mac OS X/);
+        var android = userB.indexOf('Android') > -1 || userB.indexOf('Adr') > -1;
+        if(!mobile || !android || !ios){
+            window.removeEventListener('resize', this.changeWidth);
+            window.removeEventListener('resize', this.rankingPlot);
+        }
+        // window.removeEventListener('resize', this.rankingPlot);
     },
     methods: {
         changeWidth(e){
             this.screenWidth = document.documentElement.clientWidth;
-            this.chooseIndustry = -1;
-            this.showPlotControl = true;
+            // this.chooseIndustry = -1;
+            // this.showPlotControl = true;
         },
         rankingPlot(){
             if (this.myChart != null && this.myChart != "" && this.myChart != undefined) {
