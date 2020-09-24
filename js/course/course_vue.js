@@ -575,7 +575,7 @@ let vm = new Vue({
     },
     final_price() {
       let final = this.add_total - this.discount;
-      return final;
+      return Math.round(final);
     },
   },
 });
