@@ -5,6 +5,7 @@ let vm = new Vue({
       // 共用
       cart_items: [],
       mem_check: 0,
+      mem_boughtCourse: [],
       // 燈箱變數
       signIn: true,
 
@@ -227,11 +228,12 @@ let vm = new Vue({
         .all([
           axios.get("./php/course_hot_course.php"),
           axios.get("./php/course_course_list.php"),
+          axios.get("./php/course_mem_boughtCourse.php"),
         ])
         .then(
-          axios.spread((res1, res2) => {
+          axios.spread((res1, res2, res3) => {
             // 熱門課程資料
-            console.log(res1);
+            // console.log(res1);
             this.hot_course = res1.data;
 
             // OWL套件
@@ -241,7 +243,7 @@ let vm = new Vue({
 
             // ===================
             // category課程資料
-            console.log(res2);
+            // console.log(res2);
 
             // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
             for (let i = 0; i < this.category.length; i++) {
@@ -249,7 +251,10 @@ let vm = new Vue({
                 (item) => item.ind_class == this.category[i].link_title
               );
             }
-            console.log(this.category);
+            // console.log(this.category);
+
+            // =====================
+            this.mem_boughtCourse = res3.data;
           })
         )
         .then(() => {
@@ -260,6 +265,15 @@ let vm = new Vue({
           script.src = "./js/course/course_main.js";
           document.body.appendChild(script);
         })
+        .then(() => {
+          this.mem_boughtCourse.forEach((course) => {
+            $(`button.cus_${course.ski_no}`).text("已購買").addClass("bought");
+          });
+        })
+        .then(() => {
+          $(".bought").attr("disabled", "disabled");
+        })
+
         .catch((err) => {
           console.log(err);
         });
@@ -337,6 +351,14 @@ let vm = new Vue({
         )
         .then(() => {
           _this.receive_storage();
+        })
+        .then(() => {
+          this.mem_boughtCourse.forEach((course) => {
+            $(`button.cus_${course.ski_no}`).text("已購買").addClass("bought");
+          });
+        })
+        .then(() => {
+          $(".bought").attr("disabled", "disabled");
         })
         .then(() => {
           switch (this.collect_state) {
