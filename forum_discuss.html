@@ -103,10 +103,10 @@
                 <button class="heart">
                <i class="fas fa-heart" :class="{'colorRed':isHeart[index]}" @click="heart_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
-                <button class="gray_btn count" @click="openContent(index)">
+                <!-- <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
                   <span>{{1}}</span>
-                </button>
+                </button> -->
                 <button class="gray_btn collect_btn">
                   <i class="fas fa-bookmark" :class="{'colorGray':isCollect[index]}" @click="collect_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
@@ -126,7 +126,7 @@
             </div>
           </div>
 
-          <a href="./forum_form.html" class="pencil_btn">
+          <a href="./forum_form.html" class="pencil_btn" @click="formBtn">
             <i class="fas fa-edit"></i>
           </a>
         </div>
