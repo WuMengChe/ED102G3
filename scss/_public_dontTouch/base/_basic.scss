@@ -1,9 +1,9 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .container {
-    max-width: 1200px;
+  max-width: 1200px;
 }
 
 // main_color
@@ -14,46 +14,51 @@
 // 事務型 thing
 // 企業型 enterprise
 .practical_bg_color {
-    background: #79bbb5;
+  background: #79bbb5;
 }
 
 .research_bg_color {
-    background: #a0cadb;
+  background: #a0cadb;
 }
 
 .art_bg_color {
-    background: #ccc5e3;
+  background: #ccc5e3;
 }
 
 .social_bg_color {
-    background: #f4c3c5;
+  background: #f4c3c5;
 }
 
 .thing_bg_color {
-    background: #e7995f;
+  background: #e7995f;
 }
 
 .enterprise_bg_color {
-    background: #f7ea92;
+  background: #f7ea92;
 }
 
 // ------------
 // 輔色
 .second_color1 {
-    background: #ffe56d;
+  background: #ffe56d;
 }
 
 .second_color2 {
-    background: #f6f3ed;
+  background: #f6f3ed;
 }
 
 .second_color3 {
-    background: #bceaff;
+  background: #bceaff;
 }
 
 // -------------
 // 購物車按鈕
 button.cart_clicked {
-    background: #ed7007 !important;
-    color: #fff;
+  background: #ed7007 !important;
+  color: #fff;
+}
+
+button.bought {
+  background: gray !important;
+  color: #fff;
 }

@@ -249,29 +249,35 @@
                       <div class="form_account">
                         <label for="c_account">卡號</label>
                         <div class="account_input">
-                          <input type="text" id="c_account" />-
-                          <input type="text" id="c_account" />-
-                          <input type="text" id="c_account" />-
-                          <input type="text" id="c_account" />
+                          <input type="text" id="c_account" maxlength="3" />-
+                          <input type="text" id="c_account" maxlength="3" />-
+                          <input type="text" id="c_account" maxlength="3" />-
+                          <input type="text" id="c_account" maxlength="3" />
                         </div>
                       </div>
                       <div class="form_exp">
                         <div class="c_exp_date">
                           <label for="c_exp">有效日期</label>
                           <div class="c_select">
-                            <select name="c_exp_date" id="c_exp">
-                              <option value="1">01</option>
-                              <option value="2">02</option>
+                            <select
+                              name="c_exp_date"
+                              v-model="this_month"
+                              id="c_exp"
+                            >
+                              <option :value="exp" v-for="exp in exp_month">
+                                {{exp}}
+                              </option>
                             </select>
                             <select name="c_exp_month" id="c_exp">
-                              <option value="1">01</option>
-                              <option value="2">02</option>
+                              <option :value="exp" v-for="exp in exp_year">
+                                {{exp}}
+                              </option>
                             </select>
                           </div>
                         </div>
                         <div class="c_ccv">
                           <label for="ccv">ccv</label>
-                          <input type="text" id="ccv" />
+                          <input type="password" id="ccv" maxlength="3" />
                         </div>
                       </div>
                     </form>

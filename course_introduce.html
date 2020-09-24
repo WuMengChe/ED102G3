@@ -51,7 +51,9 @@
               <a id="member_icon" href="member_sign_in.html"
                 ><i class="fas fa-user"></i
               ></a>
-              <button id="header_logOut" @click="header_logOut">登出</button>
+              <button id="header_logOut" @click="header_logOut">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
             </div>
           </div>
         </header>
@@ -132,11 +134,7 @@
               <div class="intro_banner">
                 <div class="intro_banner_pic">
                   <div class="banner_img">
-                    <img
-                      :src="introduce_single.ski_img"
-                      :id="'img_drag'+ introduce_single.ski_no"
-                      alt=""
-                    />
+                    <img :src="introduce_single.ski_img" alt="" />
                   </div>
                   <div class="banner_type_btn">
                     <div class="banner_type">
@@ -146,7 +144,7 @@
                       <button
                         class="btn_intro_addcart"
                         :class="'cus_' + introduce_single.ski_no"
-                        @click="add_cart(introduce_single)"
+                        @click="add_cart(introduce_single,$event)"
                       >
                         <i class="fas fa-shopping-cart"></i>
 
@@ -278,7 +276,7 @@
                     <div class="add_cart_btn">
                       <button
                         :class="'cus_' + card.ski_no"
-                        @click="add_cart(card)"
+                        @click="add_cart(card,$event)"
                       >
                         <i class="fas fa-shopping-cart"></i>
                       </button>

@@ -238,7 +238,7 @@
                             <div class="add_cart_btn">
                               <button
                                 :class="'cus_' + card.ski_no"
-                                @click="add_cart(card,index)"
+                                @click="add_cart(card,$event)"
                               >
                                 <i class="fas fa-shopping-cart"></i>
                               </button>
@@ -312,7 +312,7 @@
                                     <div class="add_cart_btn">
                                       <button
                                         :class="'cus_' + card.ski_no"
-                                        @click="add_cart(card)"
+                                        @click="add_cart(card,$event)"
                                       >
                                         <i class="fas fa-shopping-cart"></i>
                                       </button>

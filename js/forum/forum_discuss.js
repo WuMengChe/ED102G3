@@ -177,6 +177,26 @@ let vm = new Vue({
     }
   },
   methods: {
+    //判斷留言文章時，要是會員
+    formBtn(){
+      axios
+        .post("./php/memberStateCheck.php")
+        .then(res => {
+          console.log(res);
+          this.memberCheck = res.data;
+          if (this.memberCheck == 0) {
+            alert("請先登入會員");
+            window.location.href = "./member_sign_in.html";
+          } else {
+            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+            const memNo = sessionStorage.getItem("memNo");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    
+    },
     //討論區文章(會員曾經按錯的愛心)PHP
     getAllDisscuss(pageNo) {
       const memNo = sessionStorage.getItem("memNo");
@@ -502,6 +522,7 @@ let vm = new Vue({
         .then(resp => {
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
+              $(".msg_content .fa-heart").attr('disabled', "true");
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const memNo = sessionStorage.getItem("memNo");
@@ -619,9 +640,9 @@ let vm = new Vue({
       axios
         .post("./php/memberStateCheck.php")
           .then(resp => {
-          if (resp.data == 0) {
-            document.querySelector(".bg_of_lightbx").style = "display:block";
-          } else {
+          // if (resp.data == 0) {
+          //   document.querySelector(".bg_of_lightbx").style = "display:block";
+          // } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
             const memNo = sessionStorage.getItem("memNo");
@@ -641,9 +662,8 @@ let vm = new Vue({
                 document.getElementById("send_msg").value = "";
                 this.box_msg.unshift(res.data[0]);
 
-
               });
-          }
+          // }
         })
         .catch(function (error) {
           console.log(error);
