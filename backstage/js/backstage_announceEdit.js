@@ -3,18 +3,13 @@ window.addEventListener('load', function() {
     $('.editShow').hide();
     // let quizEdit = document.getElementsByClassName('quizEdit');
 
-    $('.msgReportEdit').click(function(e) {
+    $('.announceEdit').click(function(e) {
         let editBtn = e.target;
         let td = $(editBtn).parent().siblings()
         if (editBtn.innerText == "編輯") {
             editBtn.innerText = '確認';
             $(editBtn).siblings('.editShow').show();
             td.children('.editShow').show();
-
-
-
-
-
 
 
             $('.cancel').click(function() {
@@ -33,25 +28,25 @@ window.addEventListener('load', function() {
 
         } else {
 
-            let msgReport = {};
-            msgReport.MES_REP_PASS = parseInt(td.children('.MES_REP_PASS').val());
-            msgReport.MES_REP_NO = parseInt(td.children('.MES_REP_NO').text())
-            console.log(msgReport);
+            let announce = {};
+            announce.ANN_USE = parseInt(td.children('.ANN_USE').val());
+            announce.ANN_NO = parseInt(td.children('.ANN_NO').text())
+            console.log(announce);
 
-            let msgReportJson = JSON.stringify(msgReport);
-            let msgReportXhr = new XMLHttpRequest();
+            let announceJson = JSON.stringify(announce);
+            let announceXhr = new XMLHttpRequest();
             // console.log(artReportXhr);
-            msgReportXhr.open("POST", "backstage_msgReport.php", true);
-            msgReportXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            msgReportXhr.send(`msgReportJson=${msgReportJson}`);
+            announceXhr.open("POST", "backstage_announce.php", true);
+            announceXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            announceXhr.send(`announceJson=${announceJson}`);
 
-            msgReportXhr.onload = function() {
-                if (msgReportXhr.status == 200) {
-                    alert(msgReportXhr.responseText);
+            announceXhr.onload = function() {
+                if (announceXhr.status == 200) {
+                    alert(announceXhr.responseText);
                     location.reload();
-                    console.log(msgReportXhr.responseText);
+                    // console.log(announceXhr.responseText);
                 } else {
-                    alert(msgReportXhr.status);
+                    alert(announceXhr.status);
                 }
 
             }

@@ -839,7 +839,7 @@ try {
             while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td><?= $MgReportRow["MES_REP_NO"] ?></td>
+                <td><div class="MES_REP_NO"><?= $MgReportRow["MES_REP_NO"] ?></div></td>
                 <td><?= $MgReportRow["DIS_MES_NO"] ?></td>
                 <td><?= $MgReportRow["DIS_MES_CONTENT"] ?></td>
                 <td><?= $MgReportRow["MEM_EMAIL"] ?></td>
@@ -847,14 +847,14 @@ try {
                 <td>
                   <?php echo $MgReportRow["MES_REP_PASS"] == 0 ? "不通過" : "通過" ?>
 
-                  <select name="" id="" class="editShow">
+                  <select name="" id="" class="editShow MES_REP_PASS">
                     <option value="1">通過</option>
                     <option value="0">未通過</option>
 
                   </select>
                 </td>
-                <td>
-                  <button class="edit quizEdit">編輯</button>
+                <td> 
+                  <button class="edit msgReportEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               <?php
@@ -913,12 +913,13 @@ try {
               <th>素材名稱</th>
               <th>素材圖片</th>
               <th>啟用</th>
+              <th>修改</th>
             </tr>
             <?php
             while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td><?= $materialRow["POS_MAT_NO"] ?></td>
+                <td><div class="POS_MAT_NO"><?= $materialRow["POS_MAT_NO"]?></div></td>
                 <td><?= $materialRow["POS_MAT_NAME"] ?></td>
                 <td>
                   <img src="<?= $materialRow["POS_MAT_PIC"] ?>" alt="<?= $materialRow["POS_MAT_NAME"] ?>">
@@ -927,13 +928,14 @@ try {
                   <p class="POS_USE">
                     <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
                   </p>
-
-                  <select name="" id="" class="editShow">
+                  <select name="" id="" class="editShow POS_MAT_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
-                  <button class="edit pos_edit">編輯</button>
-                  <button class="pos_cancel editShow">取消</button>
+                  <td>
+                    <button class="edit pos_edit">編輯</button>
+                    <button class="pos_cancel editShow">取消</button>
+                  </td>
                 </td>
               </tr>
             <?php
@@ -993,20 +995,20 @@ try {
             while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td><?= $announceRow["ANN_NO"] ?></td>
+                <td><div class="ANN_NO"><?= $announceRow["ANN_NO"] ?></div></td>
                 <td><?= $announceRow["ANN_CONTENT"] ?></td>
                 <td><?= $announceRow["ANN_DATE"] ?></td>
 
                 <td>
                   <?php echo $announceRow["ANN_USE"] == 1 ? "是" : "否" ?>
 
-                  <select name="" id="" class="editShow">
+                  <select name="" id="" class="editShow ANN_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
                 </td>
                 <td>
-                  <button class="edit quizEdit">編輯</button>
+                  <button class="edit announceEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               </tr>
@@ -1064,6 +1066,9 @@ try {
   <script src="./js/backstage_adminEdit.js"></script>
   <script src="./js/backstage_skillEdit.js"></script>
   <script src="./js/backstage_artReportEdit.js"></script>
+  <script src="./js/backstage_msgReportEdit.js"></script>
+  <script src="./js/backstage_postMaterialEdit.js"></script>
+  <script src="./js/backstage_announceEdit.js"></script>
   <script src="./js/backstage_insert_announcement.js"></script>
 
 </body>
