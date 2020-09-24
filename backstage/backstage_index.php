@@ -377,7 +377,7 @@ try {
             <p class="title">行業管理</p>
             <button class="add" @click="addForm">新增行業</button>
           </div>
-          <table>
+          <table class="ind_all">
             <tr>
               <th>編號</th>
               <th>名字</th>
@@ -488,6 +488,7 @@ try {
           <!-- 新增行業form -->
           <form action="backstage_ind_add.php" method="post" enctype="multipart/form-data" style="display: none;">
             <div class="indIntro">
+              <input type="hidden" name="IND_INT_NO" id="IND_INT_NO">
               <div>
                 <label for="ind_int_name">行業名字:</label>
                 <input type="text" class="form" name="ind_int_name">

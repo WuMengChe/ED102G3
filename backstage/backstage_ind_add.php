@@ -38,17 +38,30 @@ try {
     $insertInd->execute();
 
 
-    $count = "SELECT round(count(IND_INT_NO)/5+1) FROM industry_salary;";
-    $countNum = $pdo->prepare($count);
-    $countNum->execute();
+    // $count = "SELECT round(count(IND_INT_NO)/5+1) FROM industry_salary;";
+    // $countNum = $pdo->prepare($count);
+    // $countNum->execute();
 
     $addSal = "
-    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('不到一年',IND_SAL_LOW1,IND_SAL_HIGH1,$countNum);
-    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('一到三年',IND_SAL_LOW2,IND_SAL_HIGH2,$countNum);
-    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('三到五年',IND_SAL_LOW3,IND_SAL_HIGH3,$countNum);
-    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('五到十年',IND_SAL_LOW4,IND_SAL_HIGH4,$countNum);
-    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('十年以上',IND_SAL_LOW5,IND_SAL_HIGH5,$countNum);";
+    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('不到一年',:IND_SAL_LOW1,:IND_SAL_HIGH1,:IND_INT_NO);
+    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('一到三年',:IND_SAL_LOW2,:IND_SAL_HIGH2,:IND_INT_NO);
+    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('三到五年',:IND_SAL_LOW3,:IND_SAL_HIGH3,:IND_INT_NO);
+    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('五到十年',:IND_SAL_LOW4,:IND_SAL_HIGH4,:IND_INT_NO);
+    insert into industry_salary(IND_SAL_STEP_DISTANCE,IND_SAL_LOW ,IND_SAL_HIGH,IND_INT_NO)values('十年以上',:IND_SAL_LOW5,:IND_SAL_HIGH5,:IND_INT_NO);";
+    $insertSal = $pdo->prepare($addSal);
+    $insertSal->bindValue(":IND_INT_NO", $_POST["IND_INT_NO"]);
+    $insertSal->bindValue(":IND_SAL_LOW1", $_POST["IND_SAL_LOW1"]);
+    $insertSal->bindValue(":IND_SAL_LOW2", $_POST["IND_SAL_LOW2"]);
+    $insertSal->bindValue(":IND_SAL_LOW3", $_POST["IND_SAL_LOW3"]);
+    $insertSal->bindValue(":IND_SAL_LOW4", $_POST["IND_SAL_LOW4"]);
+    $insertSal->bindValue(":IND_SAL_LOW5", $_POST["IND_SAL_LOW5"]);
 
+    $insertSal->bindValue(":IND_SAL_HIGH1", $_POST["IND_SAL_HIGH1"]);
+    $insertSal->bindValue(":IND_SAL_HIGH2", $_POST["IND_SAL_HIGH2"]);
+    $insertSal->bindValue(":IND_SAL_HIGH3", $_POST["IND_SAL_HIGH3"]);
+    $insertSal->bindValue(":IND_SAL_HIGH4", $_POST["IND_SAL_HIGH4"]);
+    $insertSal->bindValue(":IND_SAL_HIGH5", $_POST["IND_SAL_HIGH5"]);
+    $insertSal->execute();
     header("Location:./backstage_index.php");
   } else {
     // header("Location:/backstage_index.php");
