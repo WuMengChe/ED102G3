@@ -13,41 +13,47 @@
 // 社會型 social
 // 事務型 thing
 // 企業型 enterprise
-
 .practical_bg_color {
-    background: #79BBB5;
+    background: #79bbb5;
 }
 
 .research_bg_color {
-    background: #A0CADB;
+    background: #a0cadb;
 }
 
 .art_bg_color {
-    background: #CCC5E3;
+    background: #ccc5e3;
 }
 
 .social_bg_color {
-    background: #F4C3C5;
+    background: #f4c3c5;
 }
 
 .thing_bg_color {
-    background: #E7995F;
+    background: #e7995f;
 }
 
 .enterprise_bg_color {
-    background: #F7EA92;
+    background: #f7ea92;
 }
 
 // ------------
 // 輔色
 .second_color1 {
-    background: #FFE56D;
+    background: #ffe56d;
 }
 
 .second_color2 {
-    background: #F6F3ED;
+    background: #f6f3ed;
 }
 
 .second_color3 {
-    background: #BCEAFF;
+    background: #bceaff;
+}
+
+// -------------
+// 購物車按鈕
+button.cart_clicked {
+    background: #ed7007 !important;
+    color: #fff;
 }

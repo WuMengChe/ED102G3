@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>職引960客製明信片</title>
   @@include('app/link.html')
-  <link rel="stylesheet" href="./css/pages_scss/post_card/post_card.css">
-
+  <link rel="stylesheet" href="./css/pages_scss/post_card/post_card.css" />
+  @@include('app/script.html')
 </head>
 
 <body>
@@ -48,14 +48,13 @@
         <!-- --------------------正面開始 ------------------->
         <div class="postcard_front">
           <h2>正面</h2>
-          <form class="front_post" method="post" id="frontPost">
-            <input name="hidden_front" id="hidden_front" type="hidden" />
+          <div class="front_post" method="post" id="frontPost">
             <div class="mainStyle" id="frontCapture">
               <!-- 正面格式一 -->
               <label for="img1" class="style1" id="frontStyle1">
                 <div class="all">
                   <p class="drag"></p>
-                  <input type="file" name="img1" id="img1">
+                  <input type="file" name="img1" id="img1" />
                 </div>
               </label>
 
@@ -63,43 +62,40 @@
               <div class="style2" id="frontStyle2">
                 <label for="img2_top" class="top_2" id="frontStyle2Top">
                   <p class="drag"></p>
-                  <input type="file" name="img2_top" id="img2_top">
+                  <input type="file" name="img2_top" id="img2_top" />
                 </label>
 
                 <div class="bottom_2">
                   <label for="img2_left" class="left_2" id="frontStyle2Left">
                     <p class="drag"></p>
-                    <input type="file" name="img2_left" id="img2_left">
+                    <input type="file" name="img2_left" id="img2_left" />
                   </label>
 
                   <label for="img2_right" class="right_2" id="frontStyle2Right">
                     <p class="drag"></p>
-                    <input type="file" name="img2_right" id="img2_right">
+                    <input type="file" name="img2_right" id="img2_right" />
                   </label>
-
                 </div>
-
               </div>
               <!-- 正面格式三 -->
               <div class="style3" id="frontStyle3">
                 <label for="img3_left" class="left_3" id="frontStyle3Left">
                   <p class="drag"></p>
-                  <input type="file" name="img3_left" id="img3_left">
+                  <input type="file" name="img3_left" id="img3_left" />
                 </label>
 
                 <label for="img3_right" class="right_3" id="frontStyle3Right">
                   <p class="drag"></p>
-                  <input type="file" name="img3_right" id="img3_right">
+                  <input type="file" name="img3_right" id="img3_right" />
                 </label>
               </div>
               <!-- 到這裡正面格式結束 -->
               <!-- 主要外框 -->
               <div class="main_outline_style">
-                <img src="./img/post_card/outline1.png" id="mainImg">
+                <img src="./img/post_card/a_outline0.png" id="mainImg" />
               </div>
-
             </div>
-          </form>
+          </div>
           <button id="toBack" class="btn_third" onclick="captureFront();">
             <!-- onclick="doCapture();" -->
             背面
@@ -117,7 +113,6 @@
               <outline-style></outline-style>
             </div>
           </div>
-
         </div>
         <!-- --------------------背面開始------------------ -->
         <div class="postcard_back">
@@ -126,17 +121,18 @@
             <div class="mainStyle">
               <!-- 背面格式-->
               <div class="style_back" id="backCapture">
-                <img src="./img/post_card/postmark1.png" id="postmark" class="mark_position">
+                <img src="./img/post_card/postmark1.png" id="postmark" class="mark_position" />
 
                 <div class="left_write">
-                  <textarea id="leftWrite" placeholder="請寫下對未來的期許" maxlength="357"></textarea>
+                  <!-- <p id="leftWrite" contenteditable="plaintext-only">請寫下對未來的期許</p> -->
+                  <p id="leftWrite" contenteditable="true">請寫下對未來的期許</p>
                 </div>
                 <div class="right_write">
                   <div class="style_stamp">
-                    <img src="./img/post_card/stamp1.png" id="mainStamp">
+                    <img src="./img/post_card/stamp1.png" id="mainStamp" />
                   </div>
                   <div class="text">
-                    <textarea id="rightWrite" maxlength="208"></textarea>
+                    <div id="rightWrite" maxlength="208" contenteditable="true"></div>
                   </div>
                 </div>
               </div>
@@ -148,7 +144,7 @@
               <i class="fas fa-arrow-left"></i>
               正面
             </button>
-            <a href="./post_date.html" id="choice_date" class="btn_third" onclick="captureBack();">選擇日期
+            <a href="javascript:;" id=" choice_date" class="btn_third" onclick="captureBack();">選擇日期
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -165,28 +161,17 @@
     </div>
   </div>
   @@include('app/footer.html')
-  @@include('app/script.html')
+
   <script src="./js/post_card/popper.min.js"></script>
   <script src="./js/post_card/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   <script src="./js/post_card/html2canvas.js"></script>
   <script src="./js/post_card/post_vue.js"></script>
   <script src="./js/post_card/post_imgUp.js"></script>
   <script src="./js/post_card/post_change.js"></script>
   <script src="./js/post_card/post_canvas.js"></script>
-
-  <script>
-    // function doCapture() {
-
-    //   window.scrollTo(0, 0);
-    //   html2canvas(document.getElementById("frontCapture")).then(function (canvas) {
-    //     console.log(canvas.toDataURL("image/png", 1));
-    //   });
-
-    // }
-  </script>
-
 </body>
 
 </html>

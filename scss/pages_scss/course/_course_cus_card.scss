@@ -40,7 +40,7 @@ div.cus_card {
                     margin-top: 10px;
                     display: flex;
                     span.card_type {
-                        background: orange;
+                        // background: orange;
                         border-radius: 5px;
                         padding: 0 5px;
                         line-height: 20px;
@@ -172,6 +172,7 @@ div.hot_course {
                         border-radius: $hot_course_btn_width;
                         background: #119beb;
                         box-shadow: $card_shadow;
+                        transition: .6s ease-in-out;
                         i {
                             color: #fff;
                             font-size: 18px;

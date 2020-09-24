@@ -1,41 +1,55 @@
 div.side_cart {
     // border: $outline2;
     width: 400px;
-    height: 100vh;
+    // height: 100vh;
+    height: calc(100vh - 70px);
     // background: rgba(255, 255, 255, 0.9);
     background: $second_color2;
     position: fixed;
     bottom: 0;
     right: 0;
     z-index: 300;
-    transition: .6s ease-in-out;
+    transition: 0.6s ease-in-out;
     padding: 10 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border: 3px solid $second_color1;
+    border-radius: 10px 0 0 10px;
     div.cart_close {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        margin: 10px 15px 0;
+        margin: 20px 15px 10px;
         span {
             font-size: 20px;
             font-weight: bold;
             align-self: flex-end;
         }
         button {
-            width: 60px;
+            width: 50px;
             height: 30px;
             line-height: 0;
+            position: absolute;
+            top: 10px;
+            left: 15px;
         }
     }
     div.cart_course {
-        margin: 10px;
+        margin: 0 10px;
         overflow-y: scroll;
         height: 100%;
         p.no_item {
             text-align: center;
             transform: translateY(150px);
+            span {
+                display: inline-block;
+                margin-bottom: 15px;
+                a {
+                    display: inline-block;
+                    margin-left: 10px;
+                }
+            }
         }
         ul {
             display: flex;
@@ -64,7 +78,7 @@ div.side_cart {
                             height: 100%;
                             font-size: 18px;
                             &:hover {
-                                background: #FCDA27;
+                                background: #fcda27;
                             }
                         }
                     }
@@ -106,7 +120,7 @@ div.side_cart {
                 flex-grow: 2;
                 text-align: center;
             }
-            a.check_out {
+            button.check_out {
                 flex-grow: 1;
                 background: #1b4d9f;
                 font-size: 18px;
@@ -114,7 +128,7 @@ div.side_cart {
                 padding: 10px 0;
                 text-align: center;
                 &:hover {
-                    background: #336AC6;
+                    background: #336ac6;
                 }
             }
         }
@@ -125,9 +139,8 @@ div.side_cart {
     transform: translateX(100%);
 }
 
-@media(max-width:400px) {
+@media (max-width: 400px) {
     div.side_cart {
         width: 100%;
-        background: #f6f3ede0;
     }
 }

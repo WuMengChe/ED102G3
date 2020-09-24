@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   @@include('app/link.html')
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datedropper/2.0/datedropper.min.css">
-  <link rel="stylesheet" href="./css/pages_scss/post_card/post_card.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datedropper/2.0/datedropper.min.css" />
+  <link rel="stylesheet" href="./css/pages_scss/post_card/post_card.css" />
+  @@include('app/script.html')
 
   <title>職引960選擇日期</title>
 </head>
@@ -15,6 +16,7 @@
   <!-- header -->
   @@include('app/header.html')
   <!-- header 結束-->
+  @@include('app/lightbox_login.html')
   <div class="postcard_view container">
     <!-- action="#" method="post" -->
     <div class="select_date row">
@@ -24,15 +26,16 @@
         <input type="text" class="input" id="pickdate" data-dd-theme="calendar" placeholder="YYYY-MM-DD" />
       </div>
     </div>
-    <img src="" alt="" id="f_img_s1">
     <div class="view row">
       <div class="view_front col-md-6">
         <p>正面</p>
-        <img src="./img/post_card/front.png" alt="">
+        <!-- <img src="./img/post_card/front.png" alt=""> -->
+        <img src="" id="frontImg" />
       </div>
       <div class="view_back col-md-6">
         <p>背面</p>
-        <img src="./img/post_card/back.png" alt="">
+        <!-- <img src="./img/post_card/back.png" alt=""> -->
+        <img src="" id="backImg" />
       </div>
       <div class="send_date col">
         <div class="col-md-5 col-lg-4">
@@ -41,10 +44,9 @@
             重新製作
           </a>
 
-          <button class="btn_primary" id="send">送出</button>
+          <button class="btn_primary" type="button" id="send">送出</button>
         </div>
       </div>
-
     </div>
     <div class="overlay">
       <div class="pop">
@@ -58,11 +60,12 @@
       </div>
     </div>
   </div>
+  </div>
   @@include('app/footer.html')
-  @@include('app/script.html')
+
   <script src="./js/post_card/datedropper.pro.min.js"></script>
   <script src="./js/post_card/post_date.js"></script>
-
+  <script src="./js/post_card/post_canvas.js"></script>
 </body>
 
 </html>

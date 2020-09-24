@@ -227,7 +227,7 @@ $timing: 0.3s;
         .info_list {
           display: flex;
           .img_div {
-            width: 30px;
+            width: 20px;
             height: 30px;
             border-radius: 50%;
             overflow: hidden;
@@ -265,6 +265,17 @@ $timing: 0.3s;
         padding: 20px;
         letter-spacing: 1px;
         cursor: pointer;
+       
+        p{
+          overflow:hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          white-space: normal;
+          
+        }
       }
       .msg_btn {
         padding-bottom: 10px;
@@ -296,12 +307,18 @@ $timing: 0.3s;
             cursor: pointer;
             color: rgb(173, 169, 169);
             &.colorGray {
-              color: gray;
+              color: rgb(31, 30, 30);
             }
             &::before {
               line-height: 2;
             }
           }
+        }
+        .count {
+          display: inline-flex;
+          line-height: 38px;
+          font-weight: 500;
+          color: rgb(173, 169, 169);
         }
       }
     }
@@ -349,6 +366,18 @@ $timing: 0.3s;
 .msg_content:nth-child(6) {
   background: #f7ecd9;
 }
+.msg_content:nth-child(7) {
+  background: #f6f3ed;
+}
+.msg_content:nth-child(8) {
+  background: #f7ecd9;
+}
+.msg_content:nth-child(9) {
+  background: #f6f3ed;
+}
+.msg_content:nth-child(10) {
+  background: #f7ecd9;
+}
 
 //頁碼
 div.pagination_block {
@@ -392,6 +421,15 @@ div.pagination_block > ul.pagination > li > a {
 //   color: #0056b3;
 // }
 
+.actived {
+  background-color: #e9ecef !important;
+  color: #0056b3 !important;
+  border-radius: 50% !important;
+  a {
+    color: #000 !important;
+  }
+}
+
 div.pagination_block > ul.pagination > li > a:hover {
   background-color: #e9ecef;
   color: #0056b3;
@@ -434,7 +472,7 @@ a.pencil_btn {
 
 .-open {
   opacity: 1;
-  z-index: 300;
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
@@ -450,10 +488,12 @@ a.pencil_btn {
   background-color: #ccc;
   border-radius: 10px;
   max-height: 103vh;
+  min-height: 72vh;
   padding: 0 5px;
   top: 22%;
   left: 50%;
   max-width: 800px;
+  min-width: 600px;
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: scroll;
@@ -515,6 +555,7 @@ a.pencil_btn {
       letter-spacing: 1px;
       color: black;
       cursor: pointer;
+      line-height: 30px;
     }
     .msg_btn {
       // border: 1px solid red;
@@ -546,7 +587,7 @@ a.pencil_btn {
           cursor: pointer;
           color: rgb(173, 169, 169);
           &.colorGray {
-            color: gray;
+            color: rgb(31, 30, 30);
           }
           &::before {
             line-height: 2;
@@ -555,6 +596,10 @@ a.pencil_btn {
       }
     }
   }
+}
+
+.colorGray {
+  color: red;
 }
 
 /* 回應留言 */
@@ -619,7 +664,7 @@ a.pencil_btn {
         cursor: pointer;
         color: rgb(173, 169, 169);
         &.colorGray {
-          color: gray;
+          color: rgb(31, 30, 30);
         }
         &::before {
           line-height: 2;
@@ -632,10 +677,10 @@ a.pencil_btn {
 .forum_overlay {
   .forum_checkMsg {
     .close_btn {
-      height: 30px;
-      // border: 1px solid red;
+      height: 40px;
       text-align: left;
       padding-left: 5px;
+      padding-top: 10px;
       .btn_modal_close {
         width: 60px;
         height: 30px;
@@ -837,4 +882,16 @@ div.-on {
   .select {
     padding: 20px 5px;
   }
+
+  .forum_overlay > .forum_checkMsg {
+    min-width: 390px;
+  } 
+
+  .close_btn{
+
+
+  }
+
+
 }
+

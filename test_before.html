@@ -14,7 +14,7 @@
 
 <body>
     @@include('app/header.html')
-    <div class="before_test_wrap" >
+    <div class="before_test_wrap " id="testBefore" >
         <img src="./img/test/bg_testintro.svg" alt="">
         <main class="main_before_test container">
 
@@ -25,77 +25,89 @@
 
       <div class="all_type_card_before_test" >
           <div class="cards_wrap">
-     
-            <div class="card_R type_card ">
+            <!-- <div class="card_R type_card " v-for="(item, index) in cardType" :class="{'active':item.isActive}" @click="$forceUpdate(), item.isActive = !item.isActive, test(index)">
+                <template v-if="item.IND_NO">
+                    <div class="card_content">
+                        <div class="type_capital_img ">
+                            <h2>{{item.IND_NO}}</h2>
+                            <h3>{{item.IND_CLASS}}</h3>
+                        </div>
+                        <div class="type_intro" v-if="item.isActive">
+                            <p class="p_small">{{item.IND_INFO}}</p>
+                        </div>
+                    </div>
+                </template>
+            </div> -->
+            <div class="card_R type_card " :class="{'active':cardType[4].isActive}" @click="$forceUpdate(), cardType[4].isActive = !cardType[4].isActive, test(4)">
                 <div class="card_content">
                     <div class="type_capital_img ">
-                        <h2>R</h2>
-                        <h3>實作型</h3>
+                        <h2>{{cardType[4].IND_NO}}</h2>
+                        <h3>{{cardType[4].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">實作型（Realistic）的人大多情緒穩定、有耐性，做事坦承直率，寧願行動不喜多言，喜歡在講求實際、需要動手的環境中，從事明確的工作。對於機械和工具等事物較有興趣，生活上亦以實用為重，重視眼前的事勝過於對未來的想像，喜歡獨自做事。此型分數較高的人通常喜歡從事機械、電子、土木、農業等相關工作。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card_I type_card "> 
-                <div class="card_content">
-                    <div class="type_capital_img">
-                        <h2>I</h2>
-                        <h3>研究型</h3>
-                    </div>
-                    <div class="type_intro">
-                        <p class="p_small">研究型（Investigative）的人樂於觀察、思考、分析，喜歡用頭腦依自己的步調解決問題並追根究底。做事時能提出新的想法和策略，但通常對實際解決問題的細節較無興趣，喜歡和有相同興趣或專業的人討論，或者自己看書思考。此型分數較高的人通常喜歡從事生物、化學、醫藥、數學、天文等需要研究與分析的工作。</p>
+                    <div class="type_intro" v-if="cardType[4].isActive">
+                        <p class="p_small">{{cardType[4].IND_INFO}}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="card_A type_card">
+            <div class="card_I type_card " :class="{'active':cardType[3].isActive}" @click="$forceUpdate(), cardType[3].isActive = !cardType[3].isActive, test(3)"> 
                 <div class="card_content">
                     <div class="type_capital_img">
-                        <h2>A</h2>
-                        <h3>文藝型</h3>
+                        <h2>{{cardType[3].IND_NO}}</h2>
+                        <h3>{{cardType[3].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">文藝型（Artistic）的人通常直覺敏銳、善於表達和創新。他們希望藉由文字、聲音、色彩或形式來表達創造力和美的感受。生活的目的是創造美麗的事物。此型分數較高的人通常喜歡從事音樂、寫作、戲劇、繪畫、設計、舞蹈等相關工作。</p>
+                    <div class="type_intro" v-if="cardType[3].isActive">
+                        <p class="p_small">{{cardType[3].IND_INFO}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card_A type_card" :class="{'active':cardType[0].isActive}" @click="$forceUpdate(), cardType[0].isActive = !cardType[0].isActive, test(0)" >
+                <div class="card_content">
+                    <div class="type_capital_img">
+                        <h2>{{cardType[0].IND_NO}}</h2>
+                        <h3>{{cardType[0].IND_CLASS}}</h3>
+                    </div>
+                    <div class="type_intro" v-if="cardType[0].isActive" >
+                        <p class="p_small">{{cardType[0].IND_INFO}}</p>
                     </div>
                 </div>
             </div>
 
 
-            <div class="card_S type_card">
+            <div class="card_S type_card" :class="{'active':cardType[5].isActive}" @click="$forceUpdate(), cardType[5].isActive = !cardType[5].isActive, test(5)" >
                 <div class="card_content">
                     <div class="type_capital_img">
-                        <h2>S</h2>
-                        <h3>社會型</h3>
+                        <h2>{{cardType[5].IND_NO}}</h2>
+                        <h3>{{cardType[5].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">社會型（Social )的人通常和善、容易相處，關心自己和別人的感受，喜歡傾聽和瞭解別人，也願意付出時間和精力去解決別人的困擾。他們喜歡教導別人，並幫助他人成長。喜歡大家一起做事，一起為團體盡力，善於和人互動，關心人勝過於關心工作。此型分數較高的人通常喜歡從事教師、輔導、醫護、宗教等相關工作。</p>
+                    <div class="type_intro" v-if="cardType[5].isActive" >
+                        <p class="p_small">{{cardType[5].IND_INFO}}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="card_E type_card">
+            <div class="card_E type_card" :class="{'active':cardType[2].isActive}" @click="$forceUpdate(), cardType[2].isActive = !cardType[2].isActive, test(2)" >
                 <div class="card_content">
                     <div class="type_capital_img">
-                        <h2>E</h2>
-                        <h3>企業型</h3>
+                        <h2>{{cardType[2].IND_NO}}</h2>
+                        <h3>{{cardType[2].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">企業型（Enterprising）的人通常精力旺盛、生活緊湊、好冒險競爭，做事有計畫。希望擁有權力去改善不合理的事。善用說服力和組織能力，希望被他人肯定，並成為團體的焦點人物。此型分數較高的人通常喜歡管理、銷售、司法、從政等相關工作。
+                    <div class="type_intro" v-if="cardType[2].isActive" >
+                        <p class="p_small">{{cardType[2].IND_INFO}}
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="card_C type_card">
+            <div class="card_C type_card" :class="{'active':cardType[1].isActive}" @click="$forceUpdate(), cardType[1].isActive = !cardType[1].isActive, test(1)" >
                 <div class="card_content">
                     <div class="type_capital_img">
-                        <h2>C</h2>
-                        <h3>事務型</h3>
+                        <h2>{{cardType[1].IND_NO}}</h2>
+                        <h3>{{cardType[1].IND_CLASS}}</h3>
                     </div>
-                    <div class="type_intro">
-                        <p class="p_small">事務型（Conventional）的人通常個性謹慎、做事講求規矩和精確。喜歡在有清楚規範的環境下工作。他們做事按部就班、精打細算，給人的感覺是有效率、精確、仔細、可靠。他們的生活哲學是穩紮穩打，不喜歡改變或創新，此型分數較高的人通常喜歡從事銀行、金融、會計、秘書、行政等相關工作。</p>
+                    <div class="type_intro" v-if="cardType[1].isActive" >
+                        <p class="p_small">{{cardType[1].IND_INFO}}</p>
                     </div>
                 </div>
             </div>
@@ -110,14 +122,25 @@
                 立即測驗
             </a></div>
         </main>
-      
-  
     @@include('app/footer.html')  
+    </div>
     @@include('app/script.html')
-</div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js'></script>
     <script type="text/javascript" src="./js/test/jquery-3.5.1.min.js"></script>
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script type="text/javascript" src="./js/test/test_before.js"></script>
+    <script type="text/javascript" src="./js/test/test_before_vue.js"></script>
+<!--     
+    <script type="text/javascript">
+
+$(document).ready(function(){
+  $('.type_card').click(function(){
+      $('.type_card').addClass('stop');
+      })
+    });
+    </script> -->
+    <!-- <script type="text/javascript" src="./js/test/test_before.js"></script> -->
+
 </body>
 
 </html>

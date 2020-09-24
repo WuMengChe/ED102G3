@@ -65,17 +65,107 @@ function changed(e) {
 var lenF = document.getElementById('leftWrite');
 var width = $(window).width();
 
+var count = 0;
+lenF.addEventListener('focus', function () {
+  // lenF.innerText = '';
+  if (count == 0) {
+    document.getElementById('leftWrite').innerText = '';
+    count += 1;
+  } else {
+    document.getElementById('leftWrite').value = document.getElementById('leftWrite').innerText;
+  }
+
+
+});
+
+
+
+
 //  進來先判斷
 if (width >= 1200) {
-  lenF.maxLength = 357;
+  lenF.addEventListener('keyup', function () {
+    var lenF = $('#leftWrite'),
+      cutCount = 350,
+      openTxt = '…超過字數';
+    lenF.each(function () {
+      var self = $(this),
+        selfText = self.text(),
+        textLength = selfText.length,
+        textTrim = selfText.substr(0, cutCount);
+
+      function textTrimming() {
+        self.html(textTrim + '<span style="color:#ccc;">' + openTxt + '</span>').css({
+          visibility: 'visible'
+        });
+      }
+
+      if (cutCount < textLength) {
+        textTrimming();
+      } else if (cutCount >= textLength) {
+        self.css({
+          visibility: 'visible'
+        });
+      }
+    });
+  });
+
 } else if (width < 1200 && width > 767) {
-  let x = 21 - Math.ceil(1200 - width) / 50;
-  let y = 17 - Math.ceil(1200 - width) / 70;
-  lenF.maxLength = x * y;
+  var lenF = $('#leftWrite'),
+    openTxt = '…超過字數',
+    x = 21 - Math.ceil(1200 - width) / 50,
+    y = 17 - Math.ceil(1200 - width) / 70,
+    cutCount = x * y;
+  lenF.addEventListener('keyup', function () {
+
+    lenF.each(function () {
+      var self = $(this),
+        selfText = self.text(),
+        textLength = selfText.length,
+        textTrim = selfText.substr(0, cutCount);
+
+      function textTrimming() {
+        self.html(textTrim + '<span style="color:#ccc;">' + openTxt + '</span>').css({
+          visibility: 'visible'
+        });
+      }
+
+      if (cutCount < textLength) {
+        textTrimming();
+      } else if (cutCount >= textLength) {
+        self.css({
+          visibility: 'visible'
+        });
+      }
+    });
+  });
 } else {
-  let x = 18 - Math.ceil(767 - width) / 38;
-  let y = 14 - Math.ceil(767 - width) / 50;
-  lenF.maxLength = x * y;
+  var lenF = $('#leftWrite'),
+    openTxt = '…超過字數',
+    x = 18 - Math.ceil(767 - width) / 38,
+    y = 14 - Math.ceil(767 - width) / 50,
+    cutCount = x * y;
+  lenF.addEventListener('keyup', function () {
+    lenF.each(function () {
+      var self = $(this),
+        selfText = self.text(),
+        textLength = selfText.length,
+        textTrim = selfText.substr(0, cutCount);
+
+      function textTrimming() {
+        self.html(textTrim + '<span style="color:#ccc;">' + openTxt + '</span>').css({
+          visibility: 'visible'
+        });
+      }
+
+      if (cutCount < textLength) {
+        textTrimming();
+      } else if (cutCount >= textLength) {
+        self.css({
+          visibility: 'visible'
+        });
+      }
+    });
+  });
 }
 
 //  resize再判斷一次

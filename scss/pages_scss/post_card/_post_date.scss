@@ -6,9 +6,12 @@ div.header_wrap header.header div.header_nav ul li:nth-child(5) a::after {
 }
 
 .postcard_view {
-  // border: 1px solid black;
+
   max-width: 1200px;
   margin: 50px auto;
+  // height: calc(100vh - 128px);
+  // border: 1px solid black;
+  min-height: calc(100vh - 305px);
 
 
   .select_date {
@@ -44,6 +47,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(5) a::after {
   .view {
     margin-top: 20px;
 
+
     .view_front {
       // border: 1px solid black;
 
@@ -53,7 +57,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(5) a::after {
 
       img {
         width: 100%;
-        border: 1px solid black;
+        // border: 1px solid black;
 
       }
     }
@@ -68,7 +72,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(5) a::after {
 
       img {
         width: 100%;
-        border: 1px solid black;
+        // border: 1px solid black;
 
       }
     }

@@ -5,7 +5,6 @@
     try{
         require_once("./connectMySql.php");
         if( $pdo != false ){
-
             $sql = "select * from `member` where MEM_EMAIL = :MEM_EMAIL";
             $member_all = $pdo -> prepare($sql);
             $member_all -> bindValue(":MEM_EMAIL",$_POST["memAccount"]);
@@ -17,9 +16,13 @@
                 $member_all -> bindValue(":MEM_CODE",$_POST["memCode"]);
                 $member_all -> bindValue(":MEM_NAME",$_POST["memName"]);
                 $member_all -> execute();
-                $member_row=$member_all->fetch(PDO::FETCH_ASSOC);
-                $_SESSION["memName"] = $member_row["MEM_NAME"];
-                $_SESSION["memEmail"] = $member_row["MEM_EMAIL"];
+                $sql = "select * from `member` where MEM_EMAIL = :MEM_EMAIL";
+                $member_all = $pdo -> prepare($sql);
+                $member_all -> bindValue(":MEM_EMAIL",$_POST["memAccount"]);
+                $member_all -> execute();
+                $member_row=$member_all->fetch(PDO::FETCH_OBJ);
+                $_SESSION["memNo"] = $member_row->MEM_NO;
+                $_SESSION["memName"] = $member_row->MEM_NAME;
                 echo 0;
             }
             else{

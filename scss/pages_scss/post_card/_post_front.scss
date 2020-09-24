@@ -119,6 +119,7 @@ div.postcard_main {
   padding-top: 20px;
   max-width: 1200px;
   margin-top: 30px;
+  min-height: calc(100vh - 230px);
 
   .postcard,
   .row {
@@ -466,8 +467,10 @@ div.postcard_main {
                 width: 50%;
                 height: 0;
                 padding-bottom: 63.6%;
+                // border: 1px solid red;
+                overflow: hidden;
 
-                textarea {
+                #leftWrite {
                   margin-top: 5%;
                   margin-left: 5%;
                   padding: 0 5px;
@@ -475,14 +478,18 @@ div.postcard_main {
                   border-right: 2px solid #cccccc;
                   resize: none;
                   width: 95%;
-                  height: 0;
-                  padding-bottom: 117%;
+                  padding-bottom: 100%;
                   outline: none;
                   line-height: 30px;
                   font-size: 18px;
                   background: transparent;
                   overflow: hidden;
                   // border: 1px solid blue;
+                  // height: 0;
+                  // color: rgb(179, 35, 35);
+                  word-break: break-word;
+                  white-space: pre-wrap;
+                  // max-height: 100%;
                 }
 
 
@@ -496,6 +503,7 @@ div.postcard_main {
                 display: flex;
                 flex-direction: column;
                 flex-wrap: nowrap;
+
 
                 .style_stamp {
                   // border: 1px solid black;
@@ -524,13 +532,14 @@ div.postcard_main {
                   display: inline-block;
                   height: 0;
                   padding-bottom: 65%;
+                  overflow: hidden;
 
-                  textarea {
+                  #rightWrite {
                     margin-left: 5%;
                     resize: none;
                     width: 90%;
-                    height: 0;
-                    padding-bottom: 68%;
+                    // height: 50;
+                    padding-bottom: 60%;
                     outline: none;
                     line-height: 30px;
                     font-size: 18px;
@@ -538,6 +547,8 @@ div.postcard_main {
                     background-size: 100% 30px;
                     overflow: hidden;
                     border: none;
+                    // border: 1px solid blue;
+
                   }
                 }
               }

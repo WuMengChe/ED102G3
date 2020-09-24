@@ -1,141 +1,362 @@
 let carData = {
+    loadData:'',
+    loadDataTemp: new Array(),
+    memberAccuse: ['重傷、歧視、挑釁、謾罵他人', '交換個人資料', '惡意洗版、重複張貼', '包含色情、露點、性騷擾之內容', '包含廣告、商業宣傳之內容', '其他原因'],
     industry:[
-        {typeName: "實作型", class: "practical_bg_color", backgroundColor: "#79BBB5", detail: [
-            {name: "送貨人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "廚師", src: "./img/career/廚師.svg", isCheck: false},
-            {name: "引擎技術人員", src: "./img/career/引擎技術員.svg", isCheck: false},
-            {name: "餐飲服務生", src: "./img/career/餐飲服務員.svg", isCheck: false}
-        ]},
-        {typeName: "研究型", class: "research_bg_color", backgroundColor: "#a0cadb", detail: [
-            {name: "品檢人員", src: "./img/career/品檢員.svg", isCheck: false},
-            {name: "工程師", src: "./img/career/工程師.svg", isCheck: false},
-            {name: "研究人員", src: "./img/career/研究員.svg", isCheck: false},
-            {name: "醫生", src: "./img/career/醫生.svg", isCheck: false}
-        ]},
-        {typeName: "文藝型", class: "art_bg_color", backgroundColor: "#ccc5e3", detail: [
-            {name: "室內設計師", src: "./img/career/室內設計師.svg", isCheck: false},
-            {name: "攝影師", src: "./img/career/攝影師.svg", isCheck: false},
-            {name: "文字工作者", src: "./img/career/文字編輯.svg", isCheck: false},
-            {name: "髮型師", src: "./img/career/理髮師.svg", isCheck: false}
-        ]},
-        {typeName: "社會型", class: "social_bg_color", backgroundColor: "#f4c3c5", detail: [
-            {name: "牙科助理", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "社工", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "老師", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "醫護人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
-        ]},
-        {typeName: "企業型", class: "thing_bg_color", backgroundColor: "#e7995f", detail: [
-            {name: "保險業務", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "產品行銷人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "賣場管理人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "法務人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
-        ]},
-        {typeName: "事務型", class: "enterprise_bg_color", backgroundColor: "#f7ea92", detail: [
-            {name: "國貿人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "會計", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "行政人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false},
-            {name: "保全人員", src: "./img/career/201750-120GGGR240.jpg", isCheck: false}
-        ]}
+        {typeName: "", class: "practical_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "research_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "art_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "social_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "thing_bg_color", backgroundColor: "", detail: new Array()},
+        {typeName: "", class: "enterprise_bg_color", backgroundColor: "", detail: new Array()}
     ],
     industryCourse: [
-        {typeName: "實作型(R)", detail: [
-            {name: "酒及飲料調製", time: "2天12小時", price: 5800},
-            {name: "職場溝通管理學：打造團隊好關係與高績效", time: "3小時", price: 2880}
-        ]},
-        {typeName: "研究型(I)", detail: [
-            {name: "人工智慧TENSORFLOW上手實作班", time: "18小時", price: 21000},
-            {name: "前端工程師就業養成班", time: "600小時", price: 120000}
-        ]},
-        {typeName: "文藝型(A)", detail: [
-            {name: "行銷必上文案課：受眾溝通與表達", time: "4小時21分鐘", price: 1280},
-            {name: "設計色彩學：建立自己的色彩品味資料庫", time: "3小時46分鐘", price: 1800}
-        ]},
-        {typeName: "社會型(S)", detail: [
-            {name: "社會心理學", time: "9小時", price: 3000},
-            {name: "翻轉課堂的職業講師祕訣", time: "5小時", price: 3980}
-        ]},
-        {typeName: "企業型(E)", detail: [
-            {name: "九個步驟快速提昇你的簡報力、溝通力", time: "2小時", price: 615},
-            {name: "新世代行銷法則，行銷=內容X社群X商務", time: "2小時", price: 615}
-        ]},
-        {typeName: "事務型(C)", detail: [
-            {name: "財報分析基礎雲端班", time: "6小時", price: 4200},
-            {name: "初級會計基礎班", time: "12小時", price: 5000}
-        ]},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()}
     ],
     industryForum: [
-        {typeName: "實作型(R)", detail: [
-            {name: "酒及飲料調製"},
-            {name: "職場溝通管理學：打造團隊好關係與高績效"}
-        ]},
-        {typeName: "研究型(I)", detail: [
-            {name: "人工智慧TENSORFLOW上手實作班"},
-            {name: "前端工程師就業養成班"}
-        ]},
-        {typeName: "文藝型(A)", detail: [
-            {name: "行銷必上文案課：受眾溝通與表達"},
-            {name: "設計色彩學：建立自己的色彩品味資料庫"}
-        ]},
-        {typeName: "社會型(S)", detail: [
-            {name: "社會心理學"},
-            {name: "翻轉課堂的職業講師祕訣"}
-        ]},
-        {typeName: "企業型(E)", detail: [
-            {name: "九個步驟快速提昇你的簡報力、溝通力"},
-            {name: "新世代行銷法則，行銷=內容X社群X商務"}
-        ]},
-        {typeName: "事務型(C)", detail: [
-            {name: "財報分析基礎雲端班"},
-            {name: "初級會計基礎班"}
-        ]},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()},
+        {typeName: "", detail: new Array()}
     ],
+    industryForumMessage: new Array(),
     careerPlot:{
-        industryRank: ['醫生', '老師', '品檢人員', '產品行銷人員', '保險業務'],
-        industrySalary: [90000, 49500, 46500, 44998, 44911],
+        industryRank: new Array(5),
+        industrySalary: new Array(5),
         crownSrc: "./img/career/crown.png"
     },
     sendDataTemp: [
-        {typeName: "", typeIndex: "", name: "", backgroundColor: "", industryIndex: ""},
-        {typeName: "", typeIndex: "", name: "", backgroundColor: "", industryIndex: ""}
+        {typeIndex: "", name: "", industryIndex: "", proNo: ""},
+        {typeIndex: "", name: "", industryIndex: "", proNo: ""}
     ],
+    accuseIsOpen: false,
     chooseIndustry: -1,
     myChart: '',
+    memberCheck: '',
+    memberName: '',
+    memberPic: '',
+    memberArticleMessage: '',
+    repIndex: -1,
+    repNo: -1,
+    repConNum: -1,
     sendData: false,
     showPlotControl: true,
     screenWidth: 0,
+    signIn : true,
 }
 
 let careerVueContent = new Vue({
     el: '#car_vue',
     data: carData,
     mounted() {
+        axios
+        .post('./php/memberStateCheck.php')
+        .then((resp) => {
+            if(resp.data != 0){
+                this.memberCheck = resp.data.split(';')[0]
+                this.memberName = resp.data.split(';')[1]
+                var colData = new FormData();
+                colData.append('MEM_NO', this.memberCheck);
+                axios
+                .post('./php/memberGetPicture.php', colData)
+                .then((resp) => {
+                    if(resp.data != 0){
+                        this.memberPic = resp.data
+                    }
+                })
+            }
+        })
+        axios
+        .post('./php/carreerLoadData.php')
+        .then((resp) => {
+            this.loadData = resp.data;
+            this.loadData = this.loadData.split(']');
+            for(var i = 0; i < this.loadData.length-1; i++){
+                this.loadData[i] = this.loadData[i] + ']';
+                this.loadDataTemp[i] = JSON.parse(this.loadData[i]);
+            }
+            var dataInsertControl = [0, 0, 0, 0, 0, 0];
+            for(var i = 0; i < this.loadDataTemp[0].length; i++){
+                if(this.loadDataTemp[0][i].IND_NO == 'R'){
+                    this.industry[0].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[0].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[0].detail.push(new Object());
+                    this.industry[0].detail[dataInsertControl[0]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[0].detail[dataInsertControl[0]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[0].detail[dataInsertControl[0]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[0].detail[dataInsertControl[0]].isCheck = false;
+                    dataInsertControl[0] = dataInsertControl[0] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'I'){
+                    this.industry[1].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[1].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[1].detail.push(new Object());
+                    this.industry[1].detail[dataInsertControl[1]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[1].detail[dataInsertControl[1]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[1].detail[dataInsertControl[1]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[1].detail[dataInsertControl[1]].isCheck = false;
+                    dataInsertControl[1] = dataInsertControl[1] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'A'){
+                    this.industry[2].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[2].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[2].detail.push(new Object());
+                    this.industry[2].detail[dataInsertControl[2]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[2].detail[dataInsertControl[2]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[2].detail[dataInsertControl[2]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[2].detail[dataInsertControl[2]].isCheck = false;
+                    dataInsertControl[2] = dataInsertControl[2] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'S'){
+                    this.industry[3].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[3].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[3].detail.push(new Object());
+                    this.industry[3].detail[dataInsertControl[3]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[3].detail[dataInsertControl[3]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[3].detail[dataInsertControl[3]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[3].detail[dataInsertControl[3]].isCheck = false;
+                    dataInsertControl[3] = dataInsertControl[3] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'E'){
+                    this.industry[4].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[4].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[4].detail.push(new Object());
+                    this.industry[4].detail[dataInsertControl[4]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[4].detail[dataInsertControl[4]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[4].detail[dataInsertControl[4]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[4].detail[dataInsertControl[4]].isCheck = false;
+                    dataInsertControl[4] = dataInsertControl[4] + 1;
+                }
+                else if(this.loadDataTemp[0][i].IND_NO == 'C'){
+                    this.industry[5].typeName = this.loadDataTemp[0][i].IND_CLASS;
+                    this.industry[5].backgroundColor = this.loadDataTemp[0][i].IND_COLOR;
+                    this.industry[5].detail.push(new Object());
+                    this.industry[5].detail[dataInsertControl[5]].name = this.loadDataTemp[0][i].IND_INT_NAME;
+                    this.industry[5].detail[dataInsertControl[5]].src = this.loadDataTemp[0][i].IND_INT_PICTURE;
+                    this.industry[5].detail[dataInsertControl[5]].proNo = this.loadDataTemp[0][i].IND_INT_NO;
+                    this.industry[5].detail[dataInsertControl[5]].isCheck = false;
+                    dataInsertControl[5] = dataInsertControl[5] + 1;
+                }
+            }
+            for(var i = 0; i < this.loadDataTemp[1].length; i++){
+                this.careerPlot.industryRank[i] = this.loadDataTemp[1][i].職業名稱;
+                this.careerPlot.industrySalary[i] = Math.round(this.loadDataTemp[1][i].薪資平均);
+            }
+            var dataInsertControl = [0, 0, 0, 0, 0, 0];
+            for(var i = 0; i < this.loadDataTemp[2].length; i++){
+                if(this.loadDataTemp[2][i].IND_NO == 'R'){
+                    this.industryForum[0].typeName = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[0].detail.push(new Object());
+                    this.industryForum[0].detail[dataInsertControl[0]].name = this.loadDataTemp[2][i].DIS_NAME;
+                    this.industryForum[0].detail[dataInsertControl[0]].disClass = this.loadDataTemp[2][i].DIS_CLASS;
+                    this.industryForum[0].detail[dataInsertControl[0]].indClass = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[0].detail[dataInsertControl[0]].disNo = this.loadDataTemp[2][i].DIS_NO;
+                    this.industryForum[0].detail[dataInsertControl[0]].date = this.loadDataTemp[2][i].DIS_DATE;
+                    this.industryForum[0].detail[dataInsertControl[0]].content = this.loadDataTemp[2][i].DIS_CONTENT.split(';');
+                    this.industryForum[0].detail[dataInsertControl[0]].art = this.loadDataTemp[2][i].MEM_NAME;
+                    this.industryForum[0].detail[dataInsertControl[0]].artPic = this.loadDataTemp[2][i].MEM_PIC;
+                    this.industryForum[0].detail[dataInsertControl[0]].like = false;
+                    this.industryForum[0].detail[dataInsertControl[0]].collect = false;
+                    dataInsertControl[0] = dataInsertControl[0] + 1;
+                }
+                else if(this.loadDataTemp[2][i].IND_NO == 'I'){
+                    this.industryForum[1].typeName = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[1].detail.push(new Object());
+                    this.industryForum[1].detail[dataInsertControl[1]].name = this.loadDataTemp[2][i].DIS_NAME;
+                    this.industryForum[1].detail[dataInsertControl[1]].disClass = this.loadDataTemp[2][i].DIS_CLASS;
+                    this.industryForum[1].detail[dataInsertControl[1]].indClass = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[1].detail[dataInsertControl[1]].disNo = this.loadDataTemp[2][i].DIS_NO;
+                    this.industryForum[1].detail[dataInsertControl[1]].date = this.loadDataTemp[2][i].DIS_DATE;
+                    this.industryForum[1].detail[dataInsertControl[1]].content = this.loadDataTemp[2][i].DIS_CONTENT.split(';');
+                    this.industryForum[1].detail[dataInsertControl[1]].art = this.loadDataTemp[2][i].MEM_NAME;
+                    this.industryForum[1].detail[dataInsertControl[1]].artPic = this.loadDataTemp[2][i].MEM_PIC;
+                    this.industryForum[1].detail[dataInsertControl[1]].like = false;
+                    this.industryForum[1].detail[dataInsertControl[1]].collect = false;
+                    dataInsertControl[1] = dataInsertControl[1] + 1;
+                }
+                else if(this.loadDataTemp[2][i].IND_NO == 'A'){
+                    this.industryForum[2].typeName = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[2].detail.push(new Object());
+                    this.industryForum[2].detail[dataInsertControl[2]].name = this.loadDataTemp[2][i].DIS_NAME;
+                    this.industryForum[2].detail[dataInsertControl[2]].disClass = this.loadDataTemp[2][i].DIS_CLASS;
+                    this.industryForum[2].detail[dataInsertControl[2]].indClass = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[2].detail[dataInsertControl[2]].disNo = this.loadDataTemp[2][i].DIS_NO;
+                    this.industryForum[2].detail[dataInsertControl[2]].date = this.loadDataTemp[2][i].DIS_DATE;
+                    this.industryForum[2].detail[dataInsertControl[2]].content = this.loadDataTemp[2][i].DIS_CONTENT.split(';');
+                    this.industryForum[2].detail[dataInsertControl[2]].art = this.loadDataTemp[2][i].MEM_NAME;
+                    this.industryForum[2].detail[dataInsertControl[2]].artPic = this.loadDataTemp[2][i].MEM_PIC;
+                    this.industryForum[2].detail[dataInsertControl[2]].like = false;
+                    this.industryForum[2].detail[dataInsertControl[2]].collect = false;
+                    dataInsertControl[2] = dataInsertControl[2] + 1;
+                }
+                else if(this.loadDataTemp[2][i].IND_NO == 'S'){
+                    this.industryForum[3].typeName = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[3].detail.push(new Object());
+                    this.industryForum[3].detail[dataInsertControl[3]].name = this.loadDataTemp[2][i].DIS_NAME;
+                    this.industryForum[3].detail[dataInsertControl[3]].disClass = this.loadDataTemp[2][i].DIS_CLASS;
+                    this.industryForum[3].detail[dataInsertControl[3]].indClass = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[3].detail[dataInsertControl[3]].disNo = this.loadDataTemp[2][i].DIS_NO;
+                    this.industryForum[3].detail[dataInsertControl[3]].date = this.loadDataTemp[2][i].DIS_DATE;
+                    this.industryForum[3].detail[dataInsertControl[3]].content = this.loadDataTemp[2][i].DIS_CONTENT.split(';');
+                    this.industryForum[3].detail[dataInsertControl[3]].art = this.loadDataTemp[2][i].MEM_NAME;
+                    this.industryForum[3].detail[dataInsertControl[3]].artPic = this.loadDataTemp[2][i].MEM_PIC;
+                    this.industryForum[3].detail[dataInsertControl[3]].like = false;
+                    this.industryForum[3].detail[dataInsertControl[3]].collect = false;
+                    dataInsertControl[3] = dataInsertControl[3] + 1;
+                }
+                else if(this.loadDataTemp[2][i].IND_NO == 'E'){
+                    this.industryForum[4].typeName = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[4].detail.push(new Object());
+                    this.industryForum[4].detail[dataInsertControl[4]].name = this.loadDataTemp[2][i].DIS_NAME;
+                    this.industryForum[4].detail[dataInsertControl[4]].disClass = this.loadDataTemp[2][i].DIS_CLASS;
+                    this.industryForum[4].detail[dataInsertControl[4]].indClass = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[4].detail[dataInsertControl[4]].disNo = this.loadDataTemp[2][i].DIS_NO;
+                    this.industryForum[4].detail[dataInsertControl[4]].date = this.loadDataTemp[2][i].DIS_DATE;
+                    this.industryForum[4].detail[dataInsertControl[4]].content = this.loadDataTemp[2][i].DIS_CONTENT.split(';');
+                    this.industryForum[4].detail[dataInsertControl[4]].art = this.loadDataTemp[2][i].MEM_NAME;
+                    this.industryForum[4].detail[dataInsertControl[4]].artPic = this.loadDataTemp[2][i].MEM_PIC;
+                    this.industryForum[4].detail[dataInsertControl[4]].like = false;
+                    this.industryForum[4].detail[dataInsertControl[4]].collect = false;
+                    dataInsertControl[4] = dataInsertControl[4] + 1;
+                }
+                else if(this.loadDataTemp[2][i].IND_NO == 'C'){
+                    this.industryForum[5].typeName = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[5].detail.push(new Object());
+                    this.industryForum[5].detail[dataInsertControl[5]].name = this.loadDataTemp[2][i].DIS_NAME;
+                    this.industryForum[5].detail[dataInsertControl[5]].disClass = this.loadDataTemp[2][i].DIS_CLASS;
+                    this.industryForum[5].detail[dataInsertControl[5]].indClass = this.loadDataTemp[2][i].IND_CLASS;
+                    this.industryForum[5].detail[dataInsertControl[5]].disNo = this.loadDataTemp[2][i].DIS_NO;
+                    this.industryForum[5].detail[dataInsertControl[5]].date = this.loadDataTemp[2][i].DIS_DATE;
+                    this.industryForum[5].detail[dataInsertControl[5]].content = this.loadDataTemp[2][i].DIS_CONTENT.split(';');
+                    this.industryForum[5].detail[dataInsertControl[5]].art = this.loadDataTemp[2][i].MEM_NAME;
+                    this.industryForum[5].detail[dataInsertControl[5]].artPic = this.loadDataTemp[2][i].MEM_PIC;
+                    this.industryForum[5].detail[dataInsertControl[5]].like = false;
+                    this.industryForum[5].detail[dataInsertControl[5]].collect = false;
+                    dataInsertControl[5] = dataInsertControl[5] + 1;
+                }
+            }
+            var dataInsertControl = [0, 0, 0, 0, 0, 0];
+            for(var i = 0; i < this.loadDataTemp[3].length; i++){
+                if(this.loadDataTemp[3][i].IND_NO == 'R'){
+                    if(dataInsertControl[0] < 2){
+                        this.industryCourse[0].typeName = this.loadDataTemp[3][i].IND_CLASS;
+                        this.industryCourse[0].detail.push(new Object());
+                        this.industryCourse[0].detail[dataInsertControl[0]].name = this.loadDataTemp[3][i].SKI_NAME;
+                        this.industryCourse[0].detail[dataInsertControl[0]].time = this.loadDataTemp[3][i].SKI_TIME;
+                        this.industryCourse[0].detail[dataInsertControl[0]].price = this.loadDataTemp[3][i].SKI_PRICE;
+                        this.industryCourse[0].detail[dataInsertControl[0]].picture = this.loadDataTemp[3][i].SKI_IMG;
+                        this.industryCourse[0].detail[dataInsertControl[0]].num = this.loadDataTemp[3][i].SKI_BUY_NUM;
+                        this.industryCourse[0].detail[dataInsertControl[0]].no = this.loadDataTemp[3][i].SKI_NO;
+                    }
+                    dataInsertControl[0] = dataInsertControl[0] + 1;
+                }
+                else if(this.loadDataTemp[3][i].IND_NO == 'I'){
+                    if(dataInsertControl[1] < 2){
+                        this.industryCourse[1].typeName = this.loadDataTemp[3][i].IND_CLASS;
+                        this.industryCourse[1].detail.push(new Object());
+                        this.industryCourse[1].detail[dataInsertControl[1]].name = this.loadDataTemp[3][i].SKI_NAME;
+                        this.industryCourse[1].detail[dataInsertControl[1]].time = this.loadDataTemp[3][i].SKI_TIME;
+                        this.industryCourse[1].detail[dataInsertControl[1]].price = this.loadDataTemp[3][i].SKI_PRICE;
+                        this.industryCourse[1].detail[dataInsertControl[1]].picture = this.loadDataTemp[3][i].SKI_IMG;
+                        this.industryCourse[1].detail[dataInsertControl[1]].num = this.loadDataTemp[3][i].SKI_BUY_NUM;
+                        this.industryCourse[1].detail[dataInsertControl[1]].no = this.loadDataTemp[3][i].SKI_NO;
+                    }
+                    dataInsertControl[1] = dataInsertControl[1] + 1;
+                }
+                else if(this.loadDataTemp[3][i].IND_NO == 'A'){
+                    if(dataInsertControl[2] < 2){
+                        this.industryCourse[2].typeName = this.loadDataTemp[3][i].IND_CLASS;
+                        this.industryCourse[2].detail.push(new Object());
+                        this.industryCourse[2].detail[dataInsertControl[2]].name = this.loadDataTemp[3][i].SKI_NAME;
+                        this.industryCourse[2].detail[dataInsertControl[2]].time = this.loadDataTemp[3][i].SKI_TIME;
+                        this.industryCourse[2].detail[dataInsertControl[2]].price = this.loadDataTemp[3][i].SKI_PRICE;
+                        this.industryCourse[2].detail[dataInsertControl[2]].picture = this.loadDataTemp[3][i].SKI_IMG;
+                        this.industryCourse[2].detail[dataInsertControl[2]].num = this.loadDataTemp[3][i].SKI_BUY_NUM;
+                        this.industryCourse[2].detail[dataInsertControl[2]].no = this.loadDataTemp[3][i].SKI_NO;
+                    }
+                    dataInsertControl[2] = dataInsertControl[2] + 1;
+                }
+                else if(this.loadDataTemp[3][i].IND_NO == 'S'){
+                    if(dataInsertControl[3] < 2){
+                        this.industryCourse[3].typeName = this.loadDataTemp[3][i].IND_CLASS;
+                        this.industryCourse[3].detail.push(new Object());
+                        this.industryCourse[3].detail[dataInsertControl[3]].name = this.loadDataTemp[3][i].SKI_NAME;
+                        this.industryCourse[3].detail[dataInsertControl[3]].time = this.loadDataTemp[3][i].SKI_TIME;
+                        this.industryCourse[3].detail[dataInsertControl[3]].price = this.loadDataTemp[3][i].SKI_PRICE;
+                        this.industryCourse[3].detail[dataInsertControl[3]].picture = this.loadDataTemp[3][i].SKI_IMG;
+                        this.industryCourse[3].detail[dataInsertControl[3]].num = this.loadDataTemp[3][i].SKI_BUY_NUM;
+                        this.industryCourse[3].detail[dataInsertControl[3]].no = this.loadDataTemp[3][i].SKI_NO;
+                    }
+                    dataInsertControl[3] = dataInsertControl[3] + 1;
+                }
+                else if(this.loadDataTemp[3][i].IND_NO == 'E'){
+                    if(dataInsertControl[4] < 2){
+                        this.industryCourse[4].typeName = this.loadDataTemp[3][i].IND_CLASS;
+                        this.industryCourse[4].detail.push(new Object());
+                        this.industryCourse[4].detail[dataInsertControl[4]].name = this.loadDataTemp[3][i].SKI_NAME;
+                        this.industryCourse[4].detail[dataInsertControl[4]].time = this.loadDataTemp[3][i].SKI_TIME;
+                        this.industryCourse[4].detail[dataInsertControl[4]].price = this.loadDataTemp[3][i].SKI_PRICE;
+                        this.industryCourse[4].detail[dataInsertControl[4]].picture = this.loadDataTemp[3][i].SKI_IMG;
+                        this.industryCourse[4].detail[dataInsertControl[4]].num = this.loadDataTemp[3][i].SKI_BUY_NUM;
+                        this.industryCourse[4].detail[dataInsertControl[4]].no = this.loadDataTemp[3][i].SKI_NO;
+                    }
+                    dataInsertControl[4] = dataInsertControl[4] + 1;
+                }
+                else if(this.loadDataTemp[3][i].IND_NO == 'C'){
+                    if(dataInsertControl[5] < 2){
+                        this.industryCourse[5].typeName = this.loadDataTemp[3][i].IND_CLASS;
+                        this.industryCourse[5].detail.push(new Object());
+                        this.industryCourse[5].detail[dataInsertControl[5]].name = this.loadDataTemp[3][i].SKI_NAME;
+                        this.industryCourse[5].detail[dataInsertControl[5]].time = this.loadDataTemp[3][i].SKI_TIME;
+                        this.industryCourse[5].detail[dataInsertControl[5]].price = this.loadDataTemp[3][i].SKI_PRICE;
+                        this.industryCourse[5].detail[dataInsertControl[5]].picture = this.loadDataTemp[3][i].SKI_IMG;
+                        this.industryCourse[5].detail[dataInsertControl[5]].num = this.loadDataTemp[3][i].SKI_BUY_NUM;
+                        this.industryCourse[5].detail[dataInsertControl[5]].no = this.loadDataTemp[3][i].SKI_NO;
+                    }
+                    dataInsertControl[5] = dataInsertControl[5] + 1;
+                }
+            }
+            console.log(this.loadDataTemp)
+            this.rankingPlot();
+        })
         this.screenWidth = document.documentElement.clientWidth;
-        this.rankingPlot();
     },
-    // watch: {
-    //     scrollHeight: function(val){
-    //         this.scrollHeight = document.documentElement.scrollTop;
-    //         console.log(this.scrollHeight)
-    //     }
-    // },
     created() {
-        window.addEventListener('resize', this.changeWidth);
-        window.addEventListener('resize', this.rankingPlot);
+        // window.addEventListener('resize', this.changeWidth);
+        var userB = navigator.userAgent;
+        var mobile = !!userB.match(/AppleWebKit.*Mobile.*/);
+        var ios = !!userB.match(/\(i[^;] ;( U;)? CPU. Mac OS X/);
+        var android = userB.indexOf('Android') > -1 || userB.indexOf('Adr') > -1;
+        if(!mobile || !android || !ios){
+            window.addEventListener('resize', this.changeWidth);
+            window.addEventListener('resize', this.rankingPlot);
+        }
+        // window.addEventListener('resize', this.rankingPlot);
     },
     destroyed() {
-        window.removeEventListener('resize', this.changeWidth);
-        window.removeEventListener('resize', this.rankingPlot);
+        // window.removeEventListener('resize', this.changeWidth);
+        var userB = navigator.userAgent;
+        var mobile = !!userB.match(/AppleWebKit.*Mobile.*/);
+        var ios = !!userB.match(/\(i[^;] ;( U;)? CPU. Mac OS X/);
+        var android = userB.indexOf('Android') > -1 || userB.indexOf('Adr') > -1;
+        if(!mobile || !android || !ios){
+            window.removeEventListener('resize', this.changeWidth);
+            window.removeEventListener('resize', this.rankingPlot);
+        }
+        // window.removeEventListener('resize', this.rankingPlot);
     },
     methods: {
-        ulMove(){
-            // if(992 > this.screenWidth){
-            //     console.log(123)
-            // }
-        },
         changeWidth(e){
             this.screenWidth = document.documentElement.clientWidth;
-            this.chooseIndustry = -1;
-            this.showPlotControl = true;
+            // this.chooseIndustry = -1;
+            // this.showPlotControl = true;
         },
         rankingPlot(){
             if (this.myChart != null && this.myChart != "" && this.myChart != undefined) {
@@ -176,18 +397,8 @@ let careerVueContent = new Vue({
                 grid: {
                     left: gridUse
                 },
-                // toolbox: {
-                //     show: true,
-                //     feature: {
-                //         saveAsImage: {}
-                //     }
-                // },
                 xAxis: {
                     type: 'value',
-                    // name: 'NTD',
-                    max: function(value){
-                        return value.max + 10000;
-                    },
                     axisLabel: {
                         formatter: '{value}'
                     }
@@ -195,27 +406,16 @@ let careerVueContent = new Vue({
                 yAxis: {
                     type: 'category',
                     inverse: true,
-                    data: ['醫生', '老師', '品檢人員', '產品行銷人員', '保險業務'],
+                    data: this.careerPlot.industryRank,
                     axisLabel: {
                         formatter: function (value) {
-                            // return '{' + value + '| }\n{value|' + value + '}';
                             return value;
                         },
                         margin: 5,
-                        // backgroundColor: "rgba(193, 45, 45, 1)",
                         rich: {
                             value: {
                                 align: 'center'
                             },
-                            // 醫生: {
-                            //     height: 40,
-                            //     align: 'center',
-                            //     backgroundColor: {
-                            //         width: 40,
-                            //         height: 40,
-                            //         image: '../img/career/crown.png'
-                            //     }
-                            // }
                         }
                     }
                 },
@@ -249,35 +449,39 @@ let careerVueContent = new Vue({
         },
         storeData(indIndex, proIndex){
             if(this.industry[indIndex].detail[proIndex].name == this.sendDataTemp[0].name){
-                this.sendDataTemp[0].typeName = "";
+                // this.sendDataTemp[0].typeName = "";
                 this.sendDataTemp[0].typeIndex = "";
-                this.sendDataTemp[0].backgroundColor = "";
+                // this.sendDataTemp[0].backgroundColor = "";
                 this.sendDataTemp[0].industryIndex = "";
                 this.sendDataTemp[0].name = "";
+                this.sendDataTemp[0].proNo = "";
                 this.industry[indIndex].detail[proIndex].isCheck = false;
             }
             else if(this.industry[indIndex].detail[proIndex].name == this.sendDataTemp[1].name){
-                this.sendDataTemp[1].typeName = "";
+                // this.sendDataTemp[1].typeName = "";
                 this.sendDataTemp[1].typeIndex = "";
-                this.sendDataTemp[1].backgroundColor = "";
+                // this.sendDataTemp[1].backgroundColor = "";
                 this.sendDataTemp[1].industryIndex = "";
                 this.sendDataTemp[1].name = "";
+                this.sendDataTemp[1].proNo = "";
                 this.industry[indIndex].detail[proIndex].isCheck = false;
             }else{
                 if(this.sendDataTemp[0].industryIndex.length == 0){
-                    this.sendDataTemp[0].typeName = this.industry[indIndex].typeName;
+                    // this.sendDataTemp[0].typeName = this.industry[indIndex].typeName;
                     this.sendDataTemp[0].typeIndex = proIndex;
-                    this.sendDataTemp[0].backgroundColor = this.industry[indIndex].backgroundColor;
+                    // this.sendDataTemp[0].backgroundColor = this.industry[indIndex].backgroundColor;
                     this.sendDataTemp[0].industryIndex = indIndex;
                     this.sendDataTemp[0].name = this.industry[indIndex].detail[proIndex].name;
+                    this.sendDataTemp[0].proNo = this.industry[indIndex].detail[proIndex].proNo;
                     this.industry[indIndex].detail[proIndex].isCheck = true;
                 }
                 else if(this.sendDataTemp[1].industryIndex.length == 0){
-                    this.sendDataTemp[1].typeName = this.industry[indIndex].typeName;
+                    // this.sendDataTemp[1].typeName = this.industry[indIndex].typeName;
                     this.sendDataTemp[1].typeIndex = proIndex;
-                    this.sendDataTemp[1].backgroundColor = this.industry[indIndex].backgroundColor;
+                    // this.sendDataTemp[1].backgroundColor = this.industry[indIndex].backgroundColor;
                     this.sendDataTemp[1].industryIndex = indIndex;
                     this.sendDataTemp[1].name = this.industry[indIndex].detail[proIndex].name;
+                    this.sendDataTemp[1].proNo = this.industry[indIndex].detail[proIndex].proNo;
                     this.industry[indIndex].detail[proIndex].isCheck = true;
                 }
                 else{
@@ -294,11 +498,12 @@ let careerVueContent = new Vue({
         removeData(index){
             var indIndex = this.sendDataTemp[index].industryIndex;
             var proIndex = this.sendDataTemp[index].typeIndex;
-            this.sendDataTemp[index].typeName = "";
+            // this.sendDataTemp[index].typeName = "";
             this.sendDataTemp[index].typeIndex = "";
-            this.sendDataTemp[index].backgroundColor = "";
+            // this.sendDataTemp[index].backgroundColor = "";
             this.sendDataTemp[index].industryIndex = "";
             this.sendDataTemp[index].name = "";
+            this.sendDataTemp[index].proNo = "";
             this.industry[indIndex].detail[proIndex].isCheck = false;
             if((this.sendDataTemp[0].name.length > 0) || (this.sendDataTemp[1].name.length > 0)){
                 this.sendData = true;
@@ -308,12 +513,212 @@ let careerVueContent = new Vue({
             }
         },
         viewPro(){
-            localStorage.clear();
-            localStorage.pro_industryIndex_1 = this.sendDataTemp[0].industryIndex;
-            localStorage.pro_typeIndex_1 = this.sendDataTemp[0].typeIndex;
-            localStorage.pro_industryIndex_2 = this.sendDataTemp[1].industryIndex;
-            localStorage.pro_typeIndex_2 = this.sendDataTemp[1].typeIndex;
+            localStorage.removeItem('proNo_1');
+            localStorage.removeItem('proNo_2');
+            localStorage.proNo_1 = this.sendDataTemp[0].proNo;
+            localStorage.proNo_2 = this.sendDataTemp[1].proNo;
             window.location.href = "./career_profession.html";
-        }
-    },
+        },
+        openArtPage(indClass, index){
+            console.log(indClass)
+            console.log(index)
+            var colData = new FormData();
+            colData.append('DIS_NO', this.industryForum[indClass].detail[index].disNo);
+            colData.append('MEM_NO', this.memberCheck);
+            colData.append('controlNum', 0);
+
+            axios
+            .post('./php/carreerDiscussData.php', colData)
+            .then((resp) =>{
+                // console.log(resp.data)
+                // console.log(resp.data.split('*;'))
+                if(parseInt(resp.data.split('*;')[0]) == 1){
+                    this.industryForum[indClass].detail[index].collect = true;
+                    // console.log(this.industryForum[indClass].detail[index].collect);
+                }
+                if(parseInt(resp.data.split('*;')[1]) == 1){
+                    this.industryForum[indClass].detail[index].like = true;
+                    // console.log(this.industryForum[indClass].detail[index].like);
+                }
+                this.industryForumMessage = this.industryForum[indClass].detail[index];
+                if(parseInt(resp.data.split('*;')[2]) == 0){
+                    this.industryForumMessage.length = 0;
+                }
+                else{
+                    var messageDataTemp = JSON.parse(resp.data.split('*;')[2]);
+                    this.industryForumMessage.length = messageDataTemp.length;
+                    this.industryForumMessage.index = index;
+                    this.memberArticleMessage = messageDataTemp;
+                    if(JSON.parse(resp.data.split('*;')[3]) == 0){
+                        for(var i = 0; i < messageDataTemp.length; i++){
+                            this.memberArticleMessage[i].like = false;
+                        }
+                    }
+                    else{
+                        var mesNoTemp = 0;
+                        for(var i = 0; i < messageDataTemp.length; i++){
+                            this.memberArticleMessage[i].like = false;
+                            mesNoTemp = this.memberArticleMessage[i].DIS_MES_NO;
+                            if(JSON.parse(resp.data.split('*;')[3]).find(function(item){return item.DIS_MES_NO == mesNoTemp})){
+                                this.memberArticleMessage[i].like = true;
+                            }
+                            else{
+                                this.memberArticleMessage[i].like = false;
+                            }
+                        }
+                    }
+                    // console.log(this.memberArticleMessage)
+                }
+                // console.log(this.industryForumMessage)
+            })
+            // console.log(this.industryForumMessage)
+            document.querySelector('.mem_overlay').classList.add('artShow');
+        },
+        closeArtPage(){
+            document.querySelector('.mem_overlay').classList.remove('artShow');
+        },
+        sendMessage(DIS_NO, msgIndex){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                var msgTemp = document.querySelector('.send_msg').value;
+                if(msgTemp.length == 0){
+                    alert("請輸入訊息")
+                }
+                else{
+                    var dateTemp = new Date().getFullYear() + '-' + (new Date().getMonth()+1<10 ? '0' : '') + parseInt(new Date().getMonth()+1) + '-' + (new Date().getDate()<10 ? '0' : '') + new Date().getDate();
+                    console.log(this.memberName, this.memberPic, dateTemp, msgIndex, DIS_NO)
+                    console.log(this.memberArticleMessage)
+                    console.log(DIS_NO)
+                    if(!this.memberArticleMessage){
+                        this.memberArticleMessage = new Array();
+                    }
+                    this.memberArticleMessage.push(new Object());
+                    this.memberArticleMessage[msgIndex].MEM_NAME = this.memberName;
+                    this.memberArticleMessage[msgIndex].DIS_MES_CONTENT = msgTemp;
+                    this.memberArticleMessage[msgIndex].DIS_MES_DATE = dateTemp;
+                    this.memberArticleMessage[msgIndex].MEM_PIC = this.memberPic;
+                    this.memberArticleMessage[msgIndex].like = false;
+                    this.industryForumMessage.length = this.industryForumMessage.length + 1;
+                    document.querySelector('.send_msg').value = "";
+                    var mesData = new FormData();
+                    mesData.append('DIS_NO', DIS_NO);
+                    mesData.append('MEM_NO', this.memberCheck);
+                    mesData.append('DIS_MES_CONTENT', msgTemp);
+                    mesData.append('DIS_MES_DATE', dateTemp);
+                    axios
+                    .post('./php/memberInsertMessage.php', mesData)
+                    .then((resp) => {
+                        this.memberArticleMessage[msgIndex].DIS_MES_NO = resp.data;
+                    })
+                }
+            }
+        },
+        changeCollect(data){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                data.collect = !data.collect;
+                var colData = new FormData();
+                colData.append('DIS_NO', data.disNo);
+                colData.append('MEM_NO', this.memberCheck);
+                axios
+                .post('./php/memberArticleCollect.php', colData)
+            }
+        },
+        changeArticleLike(data){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                data.like = !data.like;
+                var colData = new FormData();
+                colData.append('DIS_NO', data.disNo);
+                colData.append('MEM_NO', this.memberCheck);
+                axios
+                .post('./php/memberArticleLike.php', colData)
+            }
+        },
+        changeMessageLike(MES_NO){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                var colData = new FormData();
+                colData.append('DIS_MES_NO', MES_NO);
+                colData.append('MEM_NO', this.memberCheck);
+                axios
+                .post('./php/memberMessageLike.php', colData)
+            }
+        },
+        openAccuse(){
+            if(this.memberCheck == 0){
+                alert("請先登入會員才能使用")
+                document.querySelector('.bg_of_lightbx').style = "display:block";
+            }
+            else{
+                this.accuseIsOpen = !this.accuseIsOpen;
+            }
+        },
+        closeAccuse(){
+            if(this.repIndex != -1){
+                document.querySelectorAll('.radio')[this.repIndex].checked = false;
+            }
+            this.repConNum = -1;
+            this.repNo = -1;
+        },
+        sendReport(){
+            var repData = new FormData();
+            repData.append('REP_CON_TEMP', this.repConNum);
+            repData.append('REP_NO', this.repNo);
+            repData.append('MEM_NO', this.memberCheck);
+            repData.append('ART_REP_CONTENT', this.memberAccuse[this.repIndex]);
+            axios
+            .post('./php/memberReport.php', repData)
+            .then((resp) =>{
+                console.log(resp.data);
+                if(resp.data == 1){
+                    alert("感謝您的檢舉，我們將盡速處裡")
+                }
+                else{
+                    alert("您已經檢舉過了")
+                }
+            })
+            this.accuseIsOpen = false;
+            this.repConNum = -1;
+            this.repNo = -1;
+            document.querySelectorAll('.radio')[this.repIndex].checked = false;
+        },
+        changeState(){
+            var memAccount = document.querySelector('.input_div #account').value;
+            var memCode = document.querySelector('.input_div #code').value;
+            var formData = new FormData();
+            formData.append('memAccount', memAccount);
+            formData.append('memCode', memCode);
+            axios
+            .post('./php/memberSignInCheck.php',formData)
+            .then((resp) => {
+                if(resp.data == 0){
+                    alert('帳號或密碼錯誤，請重新輸入');
+                    document.querySelector('.input_div #code').value = "";
+                }
+                else{
+                    alert('會員登入成功，請再次點擊儲存結果!');
+                    //登入成功則燈箱移除
+                    document.querySelector('.bg_of_lightbx').style = "display:none";
+                    console.log(resp.data)
+                    window.location.reload();
+                }
+            })
+        },
+        btnClose(){
+            document.querySelector('.bg_of_lightbx').style = "display:none"; 
+        },
+    }
 })
