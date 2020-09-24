@@ -78,6 +78,12 @@ let vm = new Vue({
       introduce_suggest: [],
       collect_state: 0,
 
+      // course_orderlist.html
+      exp_month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      this_month: new Date().getMonth() + 1,
+
+      exp_year: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+
       //course_check.html
       final_order_list: [],
     };
