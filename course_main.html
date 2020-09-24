@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
     @@include('app/link.html') @@include('app/script.html')
+    @@include('app/course_cdn.html')
     <link rel="stylesheet" href="./css/pages_scss/course/course.css" />
   </head>
 
@@ -40,7 +40,7 @@
           <div class="header_icon">
             <div class="cart">
               <button href="#">
-                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-shopping-cart" id="add_effect"></i>
                 <div class="cart_num" v-show="cart_items.length !== 0">
                   <span>{{cart_items.length}}</span>
                 </div>
@@ -60,8 +60,11 @@
       <!-- cart -->
       <div class="side_cart cart_off">
         <div class="cart_close">
+          <button id="cart_close" class="btn_third">
+            <!-- close -->
+            <i class="fas fa-reply"></i>
+          </button>
           <span>購物車</span>
-          <button id="cart_close" class="btn_third">close</button>
         </div>
         <div class="cart_course">
           <p class="no_item" v-show="cart_items.length == 0">
@@ -192,12 +195,19 @@
                         class="auto_slider owl-carousel"
                         v-if="hot_course.length > 0"
                       >
-                        <li class="auto_slider_card" v-for="card in hot_course">
+                        <li
+                          class="auto_slider_card"
+                          v-for="(card,index) in hot_course"
+                        >
                           <a
                             :href="'./course_introduce.html?ski_no=' + card.ski_no"
                           >
                             <div class="auto_slider_card_pic">
-                              <img :src="card.ski_img" alt="" />
+                              <img
+                                :src="card.ski_img"
+                                :id="'img_drag'+ card.ski_no"
+                                alt=""
+                              />
                               <span
                                 class="course_type"
                                 :style="'background:' + card.ind_color + ';'"
@@ -228,7 +238,7 @@
                             <div class="add_cart_btn">
                               <button
                                 :class="'cus_' + card.ski_no"
-                                @click="add_cart(card)"
+                                @click="add_cart(card,index)"
                               >
                                 <i class="fas fa-shopping-cart"></i>
                               </button>
@@ -264,7 +274,11 @@
                               <a
                                 :href="'./course_introduce.html?ski_no=' + card.ski_no"
                               >
-                                <img :src="card.ski_img " alt=" " />
+                                <img
+                                  :src="card.ski_img "
+                                  :id="'img_drag'+ card.ski_no"
+                                  alt=" "
+                                />
                               </a>
                             </div>
                             <div class="card_content">

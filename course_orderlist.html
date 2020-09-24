@@ -50,7 +50,9 @@
               <a id="member_icon" href="member_sign_in.html"
                 ><i class="fas fa-user"></i
               ></a>
-              <button id="header_logOut" @click="header_logOut">登出</button>
+              <button id="header_logOut" @click="header_logOut">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
             </div>
           </div>
         </header>
@@ -58,8 +60,10 @@
       <!-- cart -->
       <div class="side_cart cart_off">
         <div class="cart_close">
+          <button id="cart_close" class="btn_third">
+            <i class="fas fa-reply"></i>
+          </button>
           <span>購物車</span>
-          <button id="cart_close" class="btn_third">close</button>
         </div>
         <div class="cart_course">
           <p class="no_item" v-show="cart_items.length == 0">
