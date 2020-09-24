@@ -606,6 +606,13 @@ let changeMemContent = new Vue({
                 this.memberTemp.code = tempData.code;
                 this.fixMode = !this.fixMode;
             }
+            else if(this.member.newCode.length < 10){
+                alert("密碼長度至少為10");
+                this.member.newCode = '';
+                this.member.checkNewcode = '';
+                this.member.codeCheck = '';
+                this.newCodeEqualWord = false;
+            }
             else if(this.newCodeEqual || (this.member.codeCheck.length == 0)){
                 var formMemberData = new FormData();
                 formMemberData.append('memNo', this.memberCheck.split(';')[0]);
@@ -767,7 +774,7 @@ let changeMemContent = new Vue({
             this.repNo = -1;
         },
         goToClass(no){
-            var videoUrl = './php/member-video-1.php';
+            var videoUrl = './php/member-video.php';
             var videoForm = document.createElement("form");
             videoForm.action = videoUrl;
             videoForm.method = "POST";
