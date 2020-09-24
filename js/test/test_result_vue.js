@@ -149,6 +149,8 @@ let testResult = new Vue({
                 if(resp.data == 0){
                     alert('帳號或密碼錯誤，請重新輸入');
                     document.querySelector('.input_div #code').value = "";
+                }else if(resp.data == -1){
+                    alert('此帳戶已被停權，禁止使用');
                 }
                 else{
                     alert('會員登入成功，請再次點擊儲存結果!');
@@ -178,11 +180,6 @@ let testResult = new Vue({
                         show: false
                     },
                     tooltip: {},
-                    // grid: { // 控制图的大小，调整下面这些值就可以，
-                    //     x: 40,
-                    //     x2: 50,
-                    //     y2: 150// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
-                    // },
                     legend: {
                         data: ['分析結果'],
                         show: false

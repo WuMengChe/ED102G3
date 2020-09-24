@@ -196,6 +196,42 @@ new Vue({
             $("#allMem").hide();
             $("#backAllMem").show();
             $("#oneMem").show();
+
+
+            setTimeout(function () {
+                let editBtn = $("#oneMem .memberEdit");
+                console.log(editBtn.text())
+                let td = editBtn.parent().siblings();
+                $(".edit.memberEdit").click(function () {
+                    let member = {};
+                    console.log(td.eq(4).find("option:selected").val())
+                    member.MEM_USE = td.eq(4).find("option:selected").val();
+                    member.memNo = td.eq(0).text();
+                    console.log(member);
+
+                    let memberJson = JSON.stringify(member);
+                    let memberXhr = new XMLHttpRequest();
+                    // console.log(memberXhr);
+                    memberXhr.open("POST", "./backstage_member.php", true);
+                    memberXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    memberXhr.send(`memberJson=${memberJson}`);
+
+                    memberXhr.onload = function () {
+                        if (memberXhr.status == 200) {
+                            alert(memberXhr.responseText);
+                            location.reload();
+                            console.log(memberXhr.responseText);
+                        } else {
+                            alert(memberXhr.status);
+                        }
+
+                    }
+                })
+
+            }, 500)
+
+
+
         },
         backAllMem() {
             $("#backAllMem").hide();

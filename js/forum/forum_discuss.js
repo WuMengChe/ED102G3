@@ -205,10 +205,10 @@ let vm = new Vue({
       } else {
         this.contentIsOpen = true;
         this.stopScroll = true;
-        console.log(this.searchResult[index]);
+        // console.log(this.searchResult[index]);
         this.msg = this.searchResult[index];
         this.msg.index = index;
-        console.log(this.msg);
+        // console.log(this.msg);
       }
 
       const memNo = sessionStorage.getItem("memNo");
@@ -293,7 +293,7 @@ let vm = new Vue({
     },
 
     //側邊欄搜尋
-    search(type) {
+    search(e,type) {
       const result = this.information.filter(element => {
         return element.IND_CLASS == type;
       });
@@ -389,12 +389,11 @@ let vm = new Vue({
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             // sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
             const memNo = sessionStorage.getItem("memNo");
-            console.log(memNo);
+            // console.log(memNo);
             const content = this.memberAccuse[this.repIndex];
-            console.log(content);
+            // console.log(content);
             const repNo = this.repNo;
-            console.log(repNo);
-
+            // console.log(repNo);
 
             if (content == "") {
               alert("請輸入內容");
@@ -407,7 +406,7 @@ let vm = new Vue({
                 "&ART_REP_CONTENT=" +
                 content 
               );
-              alert("檢舉成功")
+              alert("檢舉成功，將會為您處理")
               location.reload();
          }
           }
@@ -448,7 +447,7 @@ let vm = new Vue({
                 "&MES_REP_CONTENT=" +
                 content 
               );
-              alert("檢舉成功，會為您處理")
+              alert("檢舉成功，將會為您處理")
               location.reload();
             }
           }
@@ -640,7 +639,9 @@ let vm = new Vue({
                 console.log("-----------");
                 console.log(res.data);
                 document.getElementById("send_msg").value = "";
-                this.box_msg.push(res.data[0]);
+                this.box_msg.unshift(res.data[0]);
+
+
               });
           }
         })
