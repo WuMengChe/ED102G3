@@ -122,6 +122,7 @@ let vm = new Vue({
       if (this.mem_check == 0) {
         document.querySelector(".bg_of_lightbx").style = "display:block";
       } else {
+        // this.add_cart_effect();
         // 若購物車內無商品
         if (this.cart_items.length == 0) {
           this.cart_items.push(item);
@@ -144,6 +145,48 @@ let vm = new Vue({
         }
         this.add_storage();
         $(`.cus_${item.ski_no}`).addClass("cart_clicked");
+        this.add_cart_effect(item);
+      }
+    },
+    add_cart_effect(item) {
+      // 加入購物車動畫
+
+      var cart = $("#add_effect");
+      var imgtodrag = $(`#img_drag${item.ski_no}`);
+      if (imgtodrag) {
+        var imgclone = imgtodrag
+          .clone()
+          .offset({
+            top: imgtodrag.offset().top,
+            left: imgtodrag.offset().left,
+          })
+          .css({
+            opacity: "0.8",
+            position: "absolute",
+            height: "150px",
+            width: "150px",
+            "z-index": "100",
+          })
+          .appendTo($("body"))
+          .animate(
+            {
+              top: cart.offset().top + 10,
+              left: cart.offset().left + 10,
+              width: 75,
+              height: 75,
+            },
+            1000,
+            "easeInOutExpo"
+          );
+        imgclone.animate(
+          {
+            width: 0,
+            height: 0,
+          },
+          function () {
+            $(this).detach();
+          }
+        );
       }
     },
 
@@ -432,6 +475,7 @@ let vm = new Vue({
             location.reload();
             $("#header_logOut").css("display", "none");
             $("div.member > a").attr("href", "member_sign_in.html");
+            window.localStorage.removeItem("cart");
           }
         })
         .catch(function (error) {

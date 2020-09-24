@@ -136,6 +136,10 @@ window.addEventListener('load', function() {
             career.indIntroUpdate = td.children(".indIntro").val();
             career.indContentUpdate = td.children(".indContent").val();
             career.indSkillUpdate = td.children(".indSkill").val();
+            career.indTypeUpdate = td.children(".indType").val();
+            career.indImgUpdate = td.children(".indImg").attr("src");
+            career.indPic_name = indPic_name;
+
             career.firstYearLowUpdate = td.children(".firstYearLow").val();
             career.firstYearHighUpdate = td.children(".firstYearHigh").val();
             career.thirdYearLowUpdate = td.children(".thirdYearLow").val();
@@ -146,9 +150,6 @@ window.addEventListener('load', function() {
             career.tenYearHighUpdate = td.children(".tenYearHigh").val();
             career.upYearLowUpdate = td.children(".upYearLow").val();
             career.upYearHighUpdate = td.children(".upYearHigh").val();
-            career.indTypeUpdate = td.children(".indType").val();
-            career.indImgUpdate = td.children(".indImg").attr("src");
-            career.indPic_name = indPic_name;
 
             console.log(career);
 
@@ -162,7 +163,7 @@ window.addEventListener('load', function() {
             careerXhr.onload = function() {
                 if (careerXhr.status == 200) {
                     alert(careerXhr.responseText);
-                    // location.reload();
+                    location.reload();
                     // console.log(careerXhr.responseText);
                 } else {
                     alert(careerXhr.status);

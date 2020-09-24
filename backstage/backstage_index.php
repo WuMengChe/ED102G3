@@ -11,8 +11,8 @@ try {
   $careerSql = "select i.IND_INT_NO,i.IND_INT_NAME,i.IND_INT_PICTURE ,c.IND_CLASS,i.IND_INT_INTRO, i.INT_INT_CONTENT, i.IND_INT_SKILL, GROUP_CONCAT(s.IND_SAL_STEP_DISTANCE),GROUP_CONCAT(s.IND_SAL_LOW) IND_SAL_LOW,GROUP_CONCAT(s.IND_SAL_HIGH) IND_SAL_HIGH from industry_introduce i join industry_class c on i.IND_NO = c.IND_NO join industry_salary s on i.IND_INT_NO = s.IND_INT_NO GROUP by i.IND_INT_NO order by i.IND_INT_NO";
 
   $skillSql = "select a.*, b.IND_CLASS from SKILL_CLASS a join INDUSTRY_CLASS b on a.IND_NO = b.IND_NO order by SKI_NO";
-  $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_EMAIL, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
-  $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_EMAIL, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
+  $ArReportSql = "select a.ART_REP_NO, a.DIS_NO, b.DIS_NAME, b.DIS_CONTENT, c.MEM_NO, a.ART_REP_CONTENT, a.ART_REP_PASS from ARTICLE_REPORT a join DISCUSS_AREA b on a.DIS_NO = b.DIS_NO join MEMBER c on a.MEM_NO = c.MEM_NO";
+  $MgReportSql = "select a.MES_REP_NO, a.DIS_MES_NO, c.DIS_MES_CONTENT, b.MEM_NO, a.MES_REP_CONTENT, a.MES_REP_PASS from MESSAGE_REPORT a join MEMBER b on a.MEM_NO = b.MEM_NO join DISCUSS_MESSAGE c on a.DIS_MES_NO = c.DIS_MES_NO";
 
   $materialSql = "select * from POSTCARD_MATERIAL ";
   $announceSql = "select * from announcement;";
@@ -377,7 +377,7 @@ try {
             <p class="title">行業管理</p>
             <button class="add" @click="addForm">新增行業</button>
           </div>
-          <table>
+          <table class="ind_all">
             <tr>
               <th>編號</th>
               <th>名字</th>
@@ -488,6 +488,7 @@ try {
           <!-- 新增行業form -->
           <form action="backstage_ind_add.php" method="post" enctype="multipart/form-data" style="display: none;">
             <div class="indIntro">
+              <input type="hidden" name="IND_INT_NO" id="IND_INT_NO">
               <div>
                 <label for="ind_int_name">行業名字:</label>
                 <input type="text" class="form" name="ind_int_name">
@@ -788,7 +789,10 @@ try {
 
         <!-- article_report -->
         <div class="article_report" v-show="article_report">
-          <p class="title">主題檢舉</p>
+          <div class="title">
+          <p class="title">主題檢舉</p>  
+          </div>
+        
 
           <table>
             <tr>
@@ -796,7 +800,8 @@ try {
               <th>主題編號</th>
               <th>主題名稱</th>
               <th>檢舉內容</th>
-              <th>檢舉者</th>
+              <th>被檢舉者編號</th>
+              <th>發文者編號</th>
               <th>檢舉原因</th>
               <th>審核</th>
               <th>修改</th>
@@ -811,7 +816,8 @@ try {
                 <td><?= $ArReportRow["DIS_NO"] ?></td>
                 <td><?= $ArReportRow["DIS_NAME"] ?></td>
                 <td><?= $ArReportRow["DIS_CONTENT"] ?></td>
-                <td><?= $ArReportRow["MEM_EMAIL"] ?></td>
+                <td><?= $ArReportRow["MEM_NO"] ?></td>
+                <td><?= $ArReportRow["MEM_NO"] ?></td>
                 <td><?= $ArReportRow["ART_REP_CONTENT"] ?></td>
                 <td>
                   <p>
@@ -837,14 +843,18 @@ try {
 
         <!-- message_report -->
         <div class="message_report" v-show="message_report">
-          <p class="title">留言檢舉</p>
+          <div class="title">
+            <p class="title">留言檢舉</p>
+          </div>
+          
 
           <table>
             <tr>
               <th>檢舉編號</th>
               <th>留言編號</th>
               <th>檢舉內容</th>
-              <th>檢舉者</th>
+              <th>被檢舉者編號</th>
+              <th>留言者編號</th>
               <th>檢舉原因</th>
               <th>審核</th>
               <th>修改</th>
@@ -853,22 +863,24 @@ try {
             while ($MgReportRow = $MgReport->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td><?= $MgReportRow["MES_REP_NO"] ?></td>
+                <td><div class="MES_REP_NO"><?= $MgReportRow["MES_REP_NO"] ?></div></td>
                 <td><?= $MgReportRow["DIS_MES_NO"] ?></td>
                 <td><?= $MgReportRow["DIS_MES_CONTENT"] ?></td>
-                <td><?= $MgReportRow["MEM_EMAIL"] ?></td>
+                <td><?= $MgReportRow["MEM_NO"] ?></td>
+                <td><?= $MgReportRow["MEM_NO"] ?></td>
+
                 <td><?= $MgReportRow["MES_REP_CONTENT"] ?></td>
                 <td>
                   <?php echo $MgReportRow["MES_REP_PASS"] == 0 ? "不通過" : "通過" ?>
 
-                  <select name="" id="" class="editShow">
+                  <select name="" id="" class="editShow MES_REP_PASS">
                     <option value="1">通過</option>
                     <option value="0">未通過</option>
 
                   </select>
                 </td>
-                <td>
-                  <button class="edit quizEdit">編輯</button>
+                <td> 
+                  <button class="edit msgReportEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               <?php
@@ -927,12 +939,13 @@ try {
               <th>素材名稱</th>
               <th>素材圖片</th>
               <th>啟用</th>
+              <th>修改</th>
             </tr>
             <?php
             while ($materialRow = $material->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td><?= $materialRow["POS_MAT_NO"] ?></td>
+                <td><div class="POS_MAT_NO"><?= $materialRow["POS_MAT_NO"]?></div></td>
                 <td><?= $materialRow["POS_MAT_NAME"] ?></td>
                 <td>
                   <img src="<?= $materialRow["POS_MAT_PIC"] ?>" alt="<?= $materialRow["POS_MAT_NAME"] ?>">
@@ -941,13 +954,14 @@ try {
                   <p class="POS_USE">
                     <?php echo $materialRow["POS_MAT_USE"] == 1 ? "是" : "否" ?>
                   </p>
-
-                  <select name="" id="" class="editShow">
+                  <select name="" id="" class="editShow POS_MAT_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
-                  <button class="edit pos_edit">編輯</button>
-                  <button class="pos_cancel editShow">取消</button>
+                  <td>
+                    <button class="edit pos_edit">編輯</button>
+                    <button class="pos_cancel editShow">取消</button>
+                  </td>
                 </td>
               </tr>
             <?php
@@ -1007,20 +1021,20 @@ try {
             while ($announceRow = $announce->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <tr>
-                <td><?= $announceRow["ANN_NO"] ?></td>
+                <td><div class="ANN_NO"><?= $announceRow["ANN_NO"] ?></div></td>
                 <td><?= $announceRow["ANN_CONTENT"] ?></td>
                 <td><?= $announceRow["ANN_DATE"] ?></td>
 
                 <td>
                   <?php echo $announceRow["ANN_USE"] == 1 ? "是" : "否" ?>
 
-                  <select name="" id="" class="editShow">
+                  <select name="" id="" class="editShow ANN_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
                   </select>
                 </td>
                 <td>
-                  <button class="edit quizEdit">編輯</button>
+                  <button class="edit announceEdit">編輯</button>
                   <button class="editShow cancel">取消</button>
                 </td>
               </tr>
@@ -1068,7 +1082,6 @@ try {
   <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="./js/backstage_component.js"></script>
   <script src="./js/backstage_index.js"></script>
@@ -1078,6 +1091,9 @@ try {
   <script src="./js/backstage_adminEdit.js"></script>
   <script src="./js/backstage_skillEdit.js"></script>
   <script src="./js/backstage_artReportEdit.js"></script>
+  <script src="./js/backstage_msgReportEdit.js"></script>
+  <script src="./js/backstage_postMaterialEdit.js"></script>
+  <script src="./js/backstage_announceEdit.js"></script>
   <script src="./js/backstage_insert_announcement.js"></script>
 
 </body>

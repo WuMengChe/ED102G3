@@ -205,10 +205,10 @@ let vm = new Vue({
       } else {
         this.contentIsOpen = true;
         this.stopScroll = true;
-        console.log(this.searchResult[index]);
+        // console.log(this.searchResult[index]);
         this.msg = this.searchResult[index];
         this.msg.index = index;
-        console.log(this.msg);
+        // console.log(this.msg);
       }
 
       const memNo = sessionStorage.getItem("memNo");
@@ -239,9 +239,10 @@ let vm = new Vue({
         axios
           .get("./php/forum_discuss.php?action=showinnerBoxLike&MEM_NO=" + memNo)
           .then(res => {
-         console.log(res.data);
+             console.log(res.data)
             this.showfeedbacklike = res.data;
-               console.log(res.data);
+            console.log(res.data)
+               console.log(this.showfeedbacklike) ;
             // this.showlike = res.data[0].DIS_NO.split(',');
             console.log(this.box_msg)
             for (let i = 0; i < this.box_msg.length; i++) {
@@ -249,11 +250,15 @@ let vm = new Vue({
               if (
                 this.showfeedbacklike.find(function (item) {
                   return item.DIS_MES_NO == dis_mes_no;
+                      
+                //  console.log(item.DIS_MES_NO == dis_mes_no);
                 })
               ) { 
                 // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
                 // this.isHeart[i] = true;
                 console.log(i)
+                console.log(document.querySelectorAll('.forum_overlay .heart i').length)
+                document.querySelectorAll('.forum_overlay .heart i')[i+1].classList.add("colorRed")
                 this.feedBoxHeart[i] = true;
               } else {
                 console.log(i)
@@ -262,8 +267,9 @@ let vm = new Vue({
                 this.feedBoxHeart[i] = false;
               }
             }
-            console.log(dis_mes_no);
             console.log(this.feedBoxHeart)
+            // alert(dis_mes_no);
+            // alert(this.feedBoxHeart)
           });
       }
     });
@@ -287,7 +293,7 @@ let vm = new Vue({
     },
 
     //側邊欄搜尋
-    search(type) {
+    search(e,type) {
       const result = this.information.filter(element => {
         return element.IND_CLASS == type;
       });
@@ -383,12 +389,11 @@ let vm = new Vue({
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             // sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
             const memNo = sessionStorage.getItem("memNo");
-            console.log(memNo);
+            // console.log(memNo);
             const content = this.memberAccuse[this.repIndex];
-            console.log(content);
+            // console.log(content);
             const repNo = this.repNo;
-            console.log(repNo);
-
+            // console.log(repNo);
 
             if (content == "") {
               alert("請輸入內容");
@@ -401,7 +406,7 @@ let vm = new Vue({
                 "&ART_REP_CONTENT=" +
                 content 
               );
-              alert("檢舉成功")
+              alert("檢舉成功，將會為您處理")
               location.reload();
          }
           }
@@ -442,7 +447,7 @@ let vm = new Vue({
                 "&MES_REP_CONTENT=" +
                 content 
               );
-              alert("檢舉成功，會為您處理")
+              alert("檢舉成功，將會為您處理")
               location.reload();
             }
           }
@@ -571,10 +576,11 @@ let vm = new Vue({
       e.currentTarget.classList.add("side_click");
     },
     //燈箱裡的愛心
-    heart_btn_feedback(index) {
-      console.log(index)
-      console.log(this.feedBoxHeart[index])
-      // this.feedBoxHeart[index] = !this.feedBoxHeart[index];
+    heart_btn_feedback(index,mesno) {
+      // alert(index)
+    console.log(this.feedBoxHeart)
+    console.log(index)
+    console.log(mesno)
     
       axios
         .post("./php/memberStateCheck.php")
@@ -585,14 +591,16 @@ let vm = new Vue({
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const DIS_MES_NO = this.box_msg[index].DIS_MES_NO;
             const MEM_NO = sessionStorage.getItem("memNo");
-            // $(".feedback_content .fa-heart").eq(index).toggleClass("colorRed");
+            console.log(DIS_MES_NO)
             axios.post(
               "./php/forum_discuss.php?action=addfeedbackFavor&DIS_MES_NO=" +
               DIS_MES_NO +
               "&MEM_NO=" +
               MEM_NO
             )
-            .then((resp)=>{console.log(resp.data)});
+            // .then(resp=>{
+            //   console.log(resp.data)
+            //   });
           }
         })
         .catch(function (error) {
@@ -631,7 +639,9 @@ let vm = new Vue({
                 console.log("-----------");
                 console.log(res.data);
                 document.getElementById("send_msg").value = "";
-                this.box_msg.push(res.data[0]);
+                this.box_msg.unshift(res.data[0]);
+
+
               });
           }
         })

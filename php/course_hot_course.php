@@ -16,7 +16,7 @@ try {
             from skill_class a join industry_class b on a.ind_no = b.ind_no
             where not(ski_hidden = 0)
             order by ski_buy_num desc
-            limit 4;";
+            limit 5;";
     $dis = $pdo->query($sql);
 
     if ($dis->rowCount() == 0) { //找不到

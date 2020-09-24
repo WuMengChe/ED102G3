@@ -55,8 +55,8 @@ try {
 
 
     <div class="video_title">
-        <img class="video_img" src="./img/career/箭頭.png">&nbsp;&nbsp;
-        <a href="#">
+    <i class="fas fa-chevron-left"></i>&nbsp;
+        <a href="../member.html">
             <p class="video_p1">返回我的課程</p>
         </a><br>
     </div>

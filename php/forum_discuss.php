@@ -11,21 +11,21 @@ if ($action == "getAllDiscuss") {
     getMsg();
 } elseif ($action == "addReplay") {
     addReplay();
-}elseif($action =="showLike"){
+}elseif($action == "showLike"){
     showLike();
-}elseif($action =="sendMsg"){
+}elseif($action == "sendMsg"){
     sendMsg();
-}elseif($action=="addCol"){
+}elseif($action == "addCol"){
     addCol();
-}elseif($action =="showCollect"){
+}elseif($action == "showCollect"){
     showCollect();
-}elseif($action =="accuse"){
+}elseif($action == "accuse"){
     accuse();
-}elseif($action =="accuse_inner_btn"){
+}elseif($action == "accuse_inner_btn"){
     accuse_inner_btn();
-}elseif($action =="addfeedbackFavor"){
+}elseif($action == "addfeedbackFavor"){
     addfeedbackFavor();
-}elseif($action =="showinnerBoxLike"){
+}elseif($action == "showinnerBoxLike"){
     showinnerBoxLike();
 }
 
@@ -35,7 +35,7 @@ function showinnerBoxLike(){
     try {
         require_once "connectMySql.php";
         $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
-        $mem_no =2;
+   
         $sql = "select DIS_MES_NO from MESSAGE_LIKE where MES_LIK_STATE =1 and MEM_NO = $mem_no;";
 
         $feedBackLike = $pdo->prepare($sql);
@@ -60,15 +60,16 @@ function addfeedbackFavor(){
                              where MEM_NO = '" . $MEM_NO . "'
                              and DIS_MES_NO = '" . $DIS_MES_NO . "';";
 
-        $sql = $pdo->query($sql);
-        $result = $sql->fetch(PDO::FETCH_ASSOC);
-
+        $addfeedbackFavor = $pdo->query($sql);
+        $result = $addfeedbackFavor->fetch(PDO::FETCH_ASSOC);
+        // echo $result;
         //找不到就是沒點過 沒點過就新增 點過就刪除
-        if ($sql->rowCount() == 0) {
+        if ($addfeedbackFavor->rowCount() == 0) {
             $sql = "insert into MESSAGE_LIKE (DIS_MES_NO, MEM_NO) values (" . $DIS_MES_NO . "," . $MEM_NO . ")";
             $sql_calc = "update DISCUSS_MESSAGE set DIS_MES_LIK_NUM = DIS_MES_LIK_NUM + 1 where DIS_MES_NO = " . $DIS_MES_NO;
         } else {
-            $data_result = $result;
+            $data_result = $result["MES_LIK_STATE"];
+            // echo $data_result;
             if ($data_result == 0) {
                 $sql = "update MESSAGE_LIKE set MES_LIK_STATE =1 where DIS_MES_NO = " . $DIS_MES_NO . " and MEM_NO = " . $MEM_NO . "";
                 $sql_calc = "update DISCUSS_MESSAGE set DIS_MES_LIK_NUM = DIS_MES_LIK_NUM + 1 where DIS_MES_NO = " . $DIS_MES_NO;
@@ -196,8 +197,6 @@ function accuse(){
         } catch (PDOException $e) {
             echo json_encode($e->getMessage());
     }
-
-
 }
 
 
@@ -313,7 +312,7 @@ function addReplay()
         $sql = "insert into DISCUSS_MESSAGE (DIS_NO, MEM_NO, DIS_MES_CONTENT, DIS_MES_DATE) values (" . $dis_no . "," . $mem_no . ", '" . $content . "',CURDATE())";
         $statement = $pdo->prepare($sql);
         $statement->execute();
-        $id = $pdo->lastInsertId();
+        // $id = $pdo->lastInsertId();
         $sql = "select  MEMBER.MEM_NAME,
                 MEMBER.MEM_PIC,
                 DISCUSS_MESSAGE.DIS_MES_NO,
@@ -353,11 +352,12 @@ function getMsg()
         $dis = $pdo->query($sql);
         if ($dis->rowCount() == 0) { //找不到
             //傳回空的JSON字串
-            echo "{}";
+            echo json_encode([]);
         } else { //找得到
             //取回一筆資料
             $disRow = $dis->fetchAll(PDO::FETCH_ASSOC);
             //送出json字串
+         
             echo json_encode($disRow);
         }
     } catch (PDOException $e) {
