@@ -200,7 +200,7 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                 <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="$forceUpdate(), heart_btn_feedback(index,msg.DIS_MES_NO), feedBoxHeart[index] = !feedBoxHeart[index]"></i>
+                 <i class="fas fa-heart" :class="]{colorRed:feedBoxHeart[index}" @click="$forceUpdate(), heart_btn_feedback(msg.DIS_MES_NO), feedBoxHeart[index] = !feedBoxHeart[index]"></i>
               </button>
               <button class="gray_btn" @click="accuse_innerbox_btn(msg.index), repinnerNo = msg.DIS_MES_NO">
                 <i class="fas fa-exclamation-circle"></i>

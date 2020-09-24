@@ -35,7 +35,7 @@ function showinnerBoxLike(){
     try {
         require_once "connectMySql.php";
         $mem_no = isset($_POST["MEM_NO"]) ? $_POST["MEM_NO"] : $_GET["MEM_NO"];
-        $mem_no =2;
+        // $mem_no =;
         $sql = "select DIS_MES_NO from MESSAGE_LIKE where MES_LIK_STATE =1 and MEM_NO = $mem_no;";
 
         $feedBackLike = $pdo->prepare($sql);
@@ -60,15 +60,16 @@ function addfeedbackFavor(){
                              where MEM_NO = '" . $MEM_NO . "'
                              and DIS_MES_NO = '" . $DIS_MES_NO . "';";
 
-        $sql = $pdo->query($sql);
-        $result = $sql->fetch(PDO::FETCH_ASSOC);
-
+        $addfeedbackFavor = $pdo->query($sql);
+        $result = $addfeedbackFavor->fetch(PDO::FETCH_ASSOC);
+        // echo $result;
         //找不到就是沒點過 沒點過就新增 點過就刪除
-        if ($sql->rowCount() == 0) {
+        if ($addfeedbackFavor->rowCount() == 0) {
             $sql = "insert into MESSAGE_LIKE (DIS_MES_NO, MEM_NO) values (" . $DIS_MES_NO . "," . $MEM_NO . ")";
             $sql_calc = "update DISCUSS_MESSAGE set DIS_MES_LIK_NUM = DIS_MES_LIK_NUM + 1 where DIS_MES_NO = " . $DIS_MES_NO;
         } else {
-            $data_result = $result;
+            $data_result = $result["MES_LIK_STATE"];
+            // echo $data_result;
             if ($data_result == 0) {
                 $sql = "update MESSAGE_LIKE set MES_LIK_STATE =1 where DIS_MES_NO = " . $DIS_MES_NO . " and MEM_NO = " . $MEM_NO . "";
                 $sql_calc = "update DISCUSS_MESSAGE set DIS_MES_LIK_NUM = DIS_MES_LIK_NUM + 1 where DIS_MES_NO = " . $DIS_MES_NO;
