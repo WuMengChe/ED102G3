@@ -10,11 +10,15 @@
 
     .img_bx{
         // border: 1px solid blue;
-        width: 100%;
+        width: 500px;
         display: flex;
         justify-content: center;
         padding: 5%;
+        @media screen  and (max-width: 767px){ 
+            width: 350px;
+           }
         img{
+            width: 100%;
             animation: ta-da 1.5s linear 1;
             @keyframes ta-da {
                 0%{
@@ -26,6 +30,7 @@
                 }
             }
         }
+      
     }
     .link_wrap{
         // border: 1px solid black;
@@ -33,6 +38,7 @@
         display: flex;
         @media screen  and (max-width: 767px){ 
             flex-direction: column;
+            align-items: center;
            }
         .sign{
             // border: 1px solid black;
@@ -51,7 +57,7 @@
             display: flex;
             justify-content: center;
             @media screen  and (max-width: 767px){ 
-                width: 100%;
+                width: 80%;
                 }
             .circle{
               width: 350px;
@@ -62,13 +68,13 @@
               border-radius: 50%;
             //   background: white;
               overflow: hidden;
-            transition: linear .2s;
-            animation: ta-da 1.5s linear 1;
+             transition: linear .2s;
+             animation: ta-da 1.5s linear 1;
             @media screen  and (max-width: 767px){ 
-                width: 350px;
-                height: 200px;
+                width: 300px;
+                height: 150px;
+                margin: 1% 0;
                 border-radius: 5px;
-                
             }
               a{
                   font-size: 32px;
@@ -87,6 +93,9 @@
                 transition: linear .5s;
                 a{
                 color: #EE7002;
+                @media screen  and (max-width: 767px){ 
+                color: #ffffff;
+                }
                 }
                 &:hover{
                 animation-play-state: paused;
@@ -95,6 +104,10 @@
                    &:hover a{
                     color: white;
                    }
+                @media screen  and (max-width: 767px){ 
+                animation: none;
+                background: #119BEB;
+                }
             }
             .circle_right{
                 border: 10px solid transparent;
@@ -103,6 +116,9 @@
                 transition: linear .5s;
                 a{
                 color: #119BEB;
+                @media screen  and (max-width: 767px){ 
+                color: #ffffff;
+                }            
                }
                 &:hover{
                     animation-play-state: paused;
@@ -111,6 +127,11 @@
                    &:hover a{
                     color: white;
                    }
+                @media screen  and (max-width: 767px){ 
+                animation: none;
+                background: #EE7002;
+                }
+                }
             }
 
             @keyframes blink {
@@ -141,7 +162,7 @@
             }
             
             }
-}}
+}
     
 
 

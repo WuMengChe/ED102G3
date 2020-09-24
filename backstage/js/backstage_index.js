@@ -149,5 +149,28 @@ window.addEventListener("load", function () {
 
         });
     };
+    //新增行業預覽照片
+    document.getElementById('ind_int_picture').onchange = ind_int_pictureChange;
 
+
+    function ind_int_pictureChange() {
+        let ind_int_picture = document.getElementById('ind_int_picture').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(ind_int_picture);
+        readFile.addEventListener('load', function () {
+            let indPreShow = document.getElementById('indPreShow');
+            let indPre = document.getElementById('indPre');
+            indPreShow.src = readFile.result;
+            indPre.style.height = 'auto';
+
+
+        });
+    };
+    //找hidden值
+    let val = $('.industry .ind_all tr:last td:first').last().text();
+    let hiddenVal = parseInt(val) + 1;
+    // console.log(hiddenVal);
+    // document.getElementById('ND_INT_NO').value = hiddenVal;
+    $('#IND_INT_NO').attr("value", hiddenVal);
+    console.log(hiddenVal);
 });
