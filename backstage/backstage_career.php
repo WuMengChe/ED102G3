@@ -28,7 +28,6 @@ try {
   $indIntro = $pdo->prepare($indIntroSql);
 
   // exit();
-  $salUp->bindValue(":indNo", $careerUp["indNo"]);
   $indIntro->bindValue(":indNo", $careerUp["indNo"]);
   $indIntro->bindValue(":indNameUpdate", $careerUp["indNameUpdate"]);
   $indIntro->bindValue(":indIntroUpdate", $careerUp["indIntroUpdate"]);
@@ -36,8 +35,12 @@ try {
   $indIntro->bindValue(":indSkillUpdate", $careerUp["indSkillUpdate"]);
   $indIntro->bindValue(":indTypeUpdate", $careerUp["indTypeUpdate"]);
   $indIntro->bindValue(":indImgUpdate", $indImgFilename);
-  // echo $indImgFilename;
-  // die;
+  $indIntro->execute(); //執行
+
+ 
+
+
+  $salUp->bindValue(":indNo", $careerUp["indNo"]);
   $salUp->bindValue(":firstYearLowUpdate", $careerUp["firstYearLowUpdate"]);
   $salUp->bindValue(":firstYearHighUpdate", $careerUp["firstYearHighUpdate"]);
   $salUp->bindValue(":thirdYearLowUpdate", $careerUp["thirdYearLowUpdate"]);
