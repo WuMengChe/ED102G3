@@ -559,7 +559,7 @@ div.header_wrap {
                         .pad {
                             // border: 1px solid #000;
                             width: 70%;
-                            min-width: 440px;
+                            min-width: 375px;
                             position: relative;
                             display: inline-block;
                             vertical-align: bottom;
@@ -616,6 +616,7 @@ div.header_wrap {
                                             }
                                             .course_text {
                                                 padding: 30px 10px 20px;
+                                                text-align: start;
                                                 .courseTitle {
                                                     font-size: 18px;
                                                     font-weight: bold;
@@ -629,6 +630,7 @@ div.header_wrap {
                                                 }
                                                 .courseInfo {
                                                     margin-top: 10px;
+                                                    margin-left: auto;
                                                     display: flex;
                                                     justify-content: space-around;
                                                     .courseHour {
