@@ -105,7 +105,7 @@
                 </button>
                 <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
-                  <span>{{messages.DIS_COL_NUM}}</span>
+                  <span>{{1}}</span>
                 </button>
                 <button class="gray_btn collect_btn">
                   <i class="fas fa-bookmark" :class="{'colorGray':isCollect[index]}" @click="collect_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
@@ -171,9 +171,9 @@
               <button class="heart">
                 <i class="fas fa-heart" :class="{'colorRed':isHeart[msg.index]}"  @click="$forceUpdate(), heart_btn(msg.index,msg.DIS_NO, 1)"></i>
               </button>
-              <button class="gray_btn">
+              <!-- <button class="gray_btn">
                 <i class="far fa-comment-alt"></i>
-              </button>
+              </button> -->
               <button class="gray_btn collect_btn">
                 <i class="fas fa-bookmark" :class="{'colorGray':isCollect[msg.index]}" @click="$forceUpdate(),collect_btn(msg.index,msg.DIS_NO, 1)"></i>
               </button>
@@ -183,7 +183,7 @@
             </div>
           </div>
         </div>
-        <div class="feedback_count">共{{msg.DIS_COL_NUM}}則回覆</div>
+        <div class="feedback_count">共<span>{{box_msg.length}}</span>則回覆</div>
         <!--回應留言區-->
         <div class="forum_feedback">
           <div class="feedback_content" v-for="(msg,index) in box_msg">
@@ -200,7 +200,7 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                 <i class="fas fa-heart" :class="]{colorRed:feedBoxHeart[index}" @click="$forceUpdate(), heart_btn_feedback(msg.DIS_MES_NO), feedBoxHeart[index] = !feedBoxHeart[index]"></i>
+                 <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="$forceUpdate(), heart_btn_feedback(index,msg.DIS_MES_NO), feedBoxHeart[index] = !feedBoxHeart[index]"></i>
               </button>
               <button class="gray_btn" @click="accuse_innerbox_btn(msg.index), repinnerNo = msg.DIS_MES_NO">
                 <i class="fas fa-exclamation-circle"></i>
