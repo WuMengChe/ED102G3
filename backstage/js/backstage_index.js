@@ -166,5 +166,11 @@ window.addEventListener("load", function () {
 
         });
     };
-
+    //找hidden值
+    let val = $('.industry .ind_all tr:last td:first').last().text();
+    let hiddenVal = parseInt(val) + 1;
+    // console.log(hiddenVal);
+    // document.getElementById('ND_INT_NO').value = hiddenVal;
+    $('#IND_INT_NO').attr("value", hiddenVal);
+    console.log(hiddenVal);
 });

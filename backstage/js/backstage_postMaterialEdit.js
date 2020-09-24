@@ -3,7 +3,7 @@ window.addEventListener('load', function() {
     $('.editShow').hide();
     // let quizEdit = document.getElementsByClassName('quizEdit');
 
-    $('.msgReportEdit').click(function(e) {
+    $('.pos_edit').click(function(e) {
         let editBtn = e.target;
         let td = $(editBtn).parent().siblings()
         if (editBtn.innerText == "編輯") {
@@ -33,25 +33,25 @@ window.addEventListener('load', function() {
 
         } else {
 
-            let msgReport = {};
-            msgReport.MES_REP_PASS = parseInt(td.children('.MES_REP_PASS').val());
-            msgReport.MES_REP_NO = parseInt(td.children('.MES_REP_NO').text())
-            console.log(msgReport);
+            let postMaterial = {};
+            postMaterial.POS_MAT_USE = parseInt(td.children('.POS_MAT_USE').val());
+            postMaterial.POS_MAT_NO = parseInt(td.children('.POS_MAT_NO').text())
+            console.log(postMaterial);
 
-            let msgReportJson = JSON.stringify(msgReport);
-            let msgReportXhr = new XMLHttpRequest();
+            let postJson = JSON.stringify(postMaterial);
+            let postMaterialXhr = new XMLHttpRequest();
             // console.log(artReportXhr);
-            msgReportXhr.open("POST", "backstage_msgReport.php", true);
-            msgReportXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            msgReportXhr.send(`msgReportJson=${msgReportJson}`);
+            postMaterialXhr.open("POST", "backstage_postMaterial.php", true);
+            postMaterialXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            postMaterialXhr.send(`postJson=${postJson}`);
 
-            msgReportXhr.onload = function() {
-                if (msgReportXhr.status == 200) {
-                    alert(msgReportXhr.responseText);
+            postMaterialXhr.onload = function() {
+                if (postMaterialXhr.status == 200) {
+                    alert(postMaterialXhr.responseText);
                     location.reload();
-                    console.log(msgReportXhr.responseText);
+                    // console.log(postMaterialXhr.responseText);
                 } else {
-                    alert(msgReportXhr.status);
+                    alert(postMaterialXhr.status);
                 }
 
             }
