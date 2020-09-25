@@ -329,7 +329,6 @@ let careerVueContent = new Vue({
         this.screenWidth = document.documentElement.clientWidth;
     },
     created() {
-        // window.addEventListener('resize', this.changeWidth);
         var userB = navigator.userAgent;
         var mobile = !!userB.match(/AppleWebKit.*Mobile.*/);
         var ios = !!userB.match(/\(i[^;] ;( U;)? CPU. Mac OS X/);
@@ -338,10 +337,8 @@ let careerVueContent = new Vue({
             window.addEventListener('resize', this.changeWidth);
             window.addEventListener('resize', this.rankingPlot);
         }
-        // window.addEventListener('resize', this.rankingPlot);
     },
     destroyed() {
-        // window.removeEventListener('resize', this.changeWidth);
         var userB = navigator.userAgent;
         var mobile = !!userB.match(/AppleWebKit.*Mobile.*/);
         var ios = !!userB.match(/\(i[^;] ;( U;)? CPU. Mac OS X/);
@@ -350,13 +347,10 @@ let careerVueContent = new Vue({
             window.removeEventListener('resize', this.changeWidth);
             window.removeEventListener('resize', this.rankingPlot);
         }
-        // window.removeEventListener('resize', this.rankingPlot);
     },
     methods: {
         changeWidth(e){
             this.screenWidth = document.documentElement.clientWidth;
-            // this.chooseIndustry = -1;
-            // this.showPlotControl = true;
         },
         rankingPlot(){
             if (this.myChart != null && this.myChart != "" && this.myChart != undefined) {
@@ -374,7 +368,7 @@ let careerVueContent = new Vue({
                 normal: {
                     show: true,
                     textBorderColor: '#333',
-                    textBorderWidth: 2
+                    textBorderWidth: 0
                 }
             }
             var option = {
@@ -400,7 +394,8 @@ let careerVueContent = new Vue({
                 xAxis: {
                     type: 'value',
                     axisLabel: {
-                        formatter: '{value}'
+                        formatter: '{value}',
+                        fontSize: 16
                     }
                 },
                 yAxis: {
@@ -416,7 +411,8 @@ let careerVueContent = new Vue({
                             value: {
                                 align: 'center'
                             },
-                        }
+                        },
+                        fontSize: 16
                     }
                 },
                 series: [

@@ -8,7 +8,7 @@ let vm = new Vue({
       announcement: [], //公告PHP
       memberCheck: [], //會員登入PHP
       box_msg: [], //燈箱回覆留言的PHP
-      showlike: [], //會員曾經按錯的愛心
+      showlike: [], //會員曾經按過的愛心
       like_icon: [], //按愛心的PHP
       isOpen: false, //下拉選單的綁定class的expand
       filter: "", //綁定關鍵字搜尋input
@@ -18,20 +18,19 @@ let vm = new Vue({
       select: "全部文章", //下拉選單預設
       stopScroll: false, //開啟燈箱背景不可以動
       msg: "", //點擊留言開啟燈箱，第一則文章要跟討論版的同步
-      isHeart: [], //點擊愛心 
+      isHeart: [], //點擊愛心
       isCollect: [],
       showCollect: [], //會員曾經按錯的收藏
       memberAccuse: [], //檢舉
       repIndex: 0, //文章檢舉的索引值
       repNo: 0, //文章檢舉第幾篇文章
       feedBoxHeart: [], //點擊愛心 綁定的class顏色，但是未完成
-       // 燈箱回覆留言，會員曾經點過的愛心
-      currentPage: 1,//目前的頁碼
+      currentPage: 1, //目前的頁碼
       totalPages: 0,
-      accuseinnerIsOpen:false,//回覆留言的檢舉燈箱
-      repinnerIndex:0, //燈箱裡回覆留言的檢舉索引值
-      repinnerNo:0, //燈箱裡回覆留言的檢舉第幾篇文章
-      showfeedbacklike:[],
+      accuseinnerIsOpen: false, //回覆留言的檢舉燈箱
+      repinnerIndex: 0, //燈箱裡回覆留言的檢舉索引值
+      repinnerNo: 0, //燈箱裡回覆留言的檢舉第幾篇文章
+      showfeedbacklike: [], // 燈箱回覆留言，會員曾經點過的愛心
       category: [
         {
           link_title: "實作型",
@@ -69,8 +68,6 @@ let vm = new Vue({
     };
   },
   mounted() {
-  
-
     //討論區文章和公告PHP
     axios.all([this.getAllDisscuss(this.currentPage), this.getAnnouncement()]);
     //會員登入後可到曾經點過愛心的按鈕
@@ -87,10 +84,11 @@ let vm = new Vue({
             this.showlike = res.data;
             // this.showlike = res.data[0].DIS_NO.split(',');
 
-            for (let i = 0; i < this.information.length; i++){
+            for (let i = 0; i < this.information.length; i++) {
               var disNo = this.information[i].DIS_NO;
-              
-              if (this.showlike.find(function (item) {
+
+              if (
+                this.showlike.find(function(item) {
                   return item.DIS_NO == disNo;
                 })
               ) {
@@ -101,7 +99,7 @@ let vm = new Vue({
                 this.isHeart.push(false);
               }
             }
-            // console.log(this.isCollect)
+            console.log(this.isHeart);
           });
       }
     });
@@ -130,7 +128,7 @@ let vm = new Vue({
               // console.log(typeof this.showCollect)
               var disNo = this.information[i].DIS_NO;
               if (
-                this.showCollect.find(function (item) {
+                this.showCollect.find(function(item) {
                   return item.DIS_NO == disNo;
                 })
               ) {
@@ -147,7 +145,7 @@ let vm = new Vue({
     });
   },
   watch: {
-    stopScroll: function () {
+    stopScroll: function() {
       console.log(this.stopScroll);
       if (this.stopScroll) {
         document.body.classList.add("noScroll");
@@ -155,22 +153,24 @@ let vm = new Vue({
         document.body.classList.remove("noScroll");
       }
     },
-    filter: function (value) {
+    filter: function(value) {
       if (value.length == 0) {
         this.searchResult = this.information;
       }
     },
     //下拉選單
-    select: function (value) {
+    select: function(value) {
       this.searchResult = this.information;
       if (value == "全部文章") {
         this.searchResult = this.information;
       } else if (value == "熱門討論") {
-        this.searchResult = this.information.sort(function (a, b) {
+        this.searchResult = this.information.sort(function(a, b) {
           return a.DIS_LIK_NUM < b.DIS_LIK_NUM ? 1 : -1;
-        }); 
+        });
+      } else if(value == "選擇分類") {
+        this.searchResult = this.searchResult;
       } else {
-        this.searchResult = this.information.filter(function (a, b) {
+        this.searchResult = this.information.filter(function(a, b) {
           return a.DIS_CLASS == value;
         });
       }
@@ -178,7 +178,7 @@ let vm = new Vue({
   },
   methods: {
     //判斷留言文章時，要是會員
-    formBtn(){
+    formBtn() {
       axios
         .post("./php/memberStateCheck.php")
         .then(res => {
@@ -192,22 +192,28 @@ let vm = new Vue({
             const memNo = sessionStorage.getItem("memNo");
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
-    
     },
-    //討論區文章(會員曾經按錯的愛心)PHP
+    //討論區文章(會員曾經按過的愛心)PHP
     getAllDisscuss(pageNo) {
       const memNo = sessionStorage.getItem("memNo");
-      axios.get(
-        "./php/forum_discuss.php?action=getAllDiscuss&MEM_NO=" + memNo + "&pageNo=" + pageNo
-      ).then(res => {
-        this.totalPages = res.data[0].TOTAL_PAGES;
-        this.currentPage = res.data[0].CURRENT_PAGE;
-        this.information = res.data;
-        this.searchResult = res.data;
-      });
+      axios
+        .get(
+          "./php/forum_discuss.php?action=getAllDiscuss&MEM_NO=" +
+            memNo +
+            "&pageNo=" +
+            pageNo
+        )
+        .then(res => {
+          console.log(res.data);
+          this.totalPages = res.data[0].TOTAL_PAGES;
+          console.log(this.totalPages);
+          this.currentPage = res.data[0].CURRENT_PAGE;
+          this.information = res.data;
+          this.searchResult = res.data;
+        });
     },
     //討論區公告PHP
     getAnnouncement() {
@@ -228,78 +234,104 @@ let vm = new Vue({
         // console.log(this.searchResult[index]);
         this.msg = this.searchResult[index];
         this.msg.index = index;
+        if (this.isHeart[index]) {
+          document.querySelectorAll(".check_content .heart i")[0].style.color =
+            "red";
+       
+        } else {
+          document.querySelectorAll(".check_content .heart i")[0].style.color =
+            "#ada9a9";
+        }
         // console.log(this.msg);
+
+      if (this.isCollect[index]) {
+         document.querySelectorAll(
+            ".check_content .collect_btn i"
+          )[0].style.color =
+            "black";
+        } else {
+           document.querySelectorAll(
+            ".check_content .collect_btn i"
+          )[0].style.color =
+            "#ada9a9";
+        }
       }
 
       const memNo = sessionStorage.getItem("memNo");
       axios
         .get(
           "./php/forum_discuss.php?action=getMsg&DIS_NO=" +
-          this.searchResult[index].DIS_NO +
-          "&MEM_NO=" +
-          memNo
+            this.searchResult[index].DIS_NO +
+            "&MEM_NO=" +
+            memNo
         )
         .then(res => {
           this.box_msg = res.data;
-           console.log(res.data);
-           //燈箱內的愛心放進來，要用for迴圈把它box_msg的資料放進來，並檢查按了哪些愛心
-           this.feedBoxHeart = new Array();
-           for(let i=0;i<this.box_msg.length;i++){
-             this.feedBoxHeart.push(false);
-           }
+          console.log(res.data);
+          //燈箱內的愛心放進來，要用for迴圈把它box_msg的資料放進來，並檢查按了哪些愛心
+          this.feedBoxHeart = new Array();
+          for (let i = 0; i < this.box_msg.length; i++) {
+            this.feedBoxHeart.push(false);
+          }
 
+          axios.post("./php/memberStateCheck.php").then(res => {
+            console.log(res);
+            this.memberCheck = res.data;
+            if (this.memberCheck !== 0) {
+              sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+              const memNo = sessionStorage.getItem("memNo");
+              console.log(memNo);
+              axios
+                .get(
+                  "./php/forum_discuss.php?action=showinnerBoxLike&MEM_NO=" +
+                    memNo
+                )
+                .then(res => {
+                  console.log(res.data);
+                  this.showfeedbacklike = res.data;
+                  console.log(res.data);
+                  console.log(this.showfeedbacklike);
+                  // this.showlike = res.data[0].DIS_NO.split(',');
+                  console.log(this.box_msg);
+                  for (let i = 0; i < this.box_msg.length; i++) {
+                    var dis_mes_no = this.box_msg[i].DIS_MES_NO;
+                    if (
+                      this.showfeedbacklike.find(function(item) {
+                        return item.DIS_MES_NO == dis_mes_no;
 
-      axios.post("./php/memberStateCheck.php").then(res => {
-        console.log(res);
-      this.memberCheck = res.data;
-      if (this.memberCheck !== 0) {
-        sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
-        const memNo = sessionStorage.getItem("memNo");
-        console.log(memNo);
-        axios
-          .get("./php/forum_discuss.php?action=showinnerBoxLike&MEM_NO=" + memNo)
-          .then(res => {
-             console.log(res.data)
-            this.showfeedbacklike = res.data;
-            console.log(res.data)
-               console.log(this.showfeedbacklike) ;
-            // this.showlike = res.data[0].DIS_NO.split(',');
-            console.log(this.box_msg)
-            for (let i = 0; i < this.box_msg.length; i++) {
-              var dis_mes_no = this.box_msg[i].DIS_MES_NO;
-              if (
-                this.showfeedbacklike.find(function (item) {
-                  return item.DIS_MES_NO == dis_mes_no;
-                      
-                //  console.log(item.DIS_MES_NO == dis_mes_no);
-                })
-              ) { 
-                // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
-                // this.isHeart[i] = true;
-                console.log(i)
-                console.log(document.querySelectorAll('.forum_overlay .heart i').length)
-                document.querySelectorAll('.forum_overlay .heart i')[i+1].classList.add("colorRed")
-                this.feedBoxHeart[i] = true;
-              } else {
-                console.log(i)
-                console.log(dis_mes_no)
-                console.log(this.showfeedbacklike)
-                this.feedBoxHeart[i] = false;
-              }
+                        //  console.log(item.DIS_MES_NO == dis_mes_no);
+                      })
+                    ) {
+                      // $(`#dis${this.information[i].DIS_NO}`).style('color', 'red');
+                      // this.isHeart[i] = true;
+                      console.log(i);
+                      console.log(
+                        document.querySelectorAll(".forum_overlay .heart i")
+                          .length
+                      );
+                      document
+                        .querySelectorAll(".forum_overlay .heart i")
+                        [i + 1].classList.add("colorRed");
+                      this.feedBoxHeart[i] = true;
+                    } else {
+                      console.log(i);
+                      console.log(dis_mes_no);
+                      console.log(this.showfeedbacklike);
+                      this.feedBoxHeart[i] = false;
+                    }
+                  }
+                  console.log(this.feedBoxHeart);
+                  // alert(dis_mes_no);
+                  // alert(this.feedBoxHeart)
+                });
             }
-            console.log(this.feedBoxHeart)
-            // alert(dis_mes_no);
-            // alert(this.feedBoxHeart)
           });
-      }
-    });
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
 
-    //燈箱裡回覆留言愛心，會員曾經點過的愛心
-    
+      //燈箱裡回覆留言愛心，會員曾經點過的愛心
     },
     //關閉燈箱
     close_openContent() {
@@ -313,15 +345,13 @@ let vm = new Vue({
     },
 
     //側邊欄搜尋
-    search(e,type) {
-      const result = this.information.filter(element => {
-        return element.IND_CLASS == type;
-      });
-      this.searchResult = result;
-      this.select = "選擇分類";
-
+    search(e, type) {
       $(".main_side_bar > ul> li > a").removeClass("side_click");
       e.currentTarget.classList.add("side_click");
+      this.select = "選擇分類";
+      setTimeout(() => { //讓watch先做事，我再篩，不然資料會被蓋過去
+        this.searchResult = this.information.filter(element => element.IND_CLASS == type);
+      }, 10)   
     },
     //關鍵字搜尋
     searchContent() {
@@ -341,7 +371,7 @@ let vm = new Vue({
     },
     //關閉檢舉燈箱
     btn_modal() {
-      if (this.accuseIsOpen||this.accuseinnerIsOpen) {
+      if (this.accuseIsOpen || this.accuseinnerIsOpen) {
         this.accuseIsOpen = false;
         this.accuseinnerIsOpen = false;
         this.stopScroll = false;
@@ -420,23 +450,23 @@ let vm = new Vue({
             } else {
               axios.post(
                 "./php/forum_discuss.php?action=accuse&DIS_NO=" +
-                repNo +
-                "&MEM_NO=" +
-                memNo +
-                "&ART_REP_CONTENT=" +
-                content 
+                  repNo +
+                  "&MEM_NO=" +
+                  memNo +
+                  "&ART_REP_CONTENT=" +
+                  content
               );
-              alert("檢舉成功，將會為您處理")
+              alert("檢舉成功，將會為您處理");
               location.reload();
-         }
+            }
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     },
     //燈箱內送出檢舉
-    accuse_inner_sendBtn(){
+    accuse_inner_sendBtn() {
       axios
         .post("./php/memberStateCheck.php")
         .then(res => {
@@ -454,38 +484,36 @@ let vm = new Vue({
             console.log(content);
             const repinnerNo = this.repinnerNo;
             console.log(repinnerNo);
-           
-             
+
             if (content == "") {
               alert("請輸入內容");
             } else {
               axios.post(
                 "./php/forum_discuss.php?action=accuse_inner_btn&DIS_MES_NO=" +
-                repinnerNo +
-                "&MEM_NO=" +
-                memNo +
-                "&MES_REP_CONTENT=" +
-                content 
+                  repinnerNo +
+                  "&MEM_NO=" +
+                  memNo +
+                  "&MES_REP_CONTENT=" +
+                  content
               );
-              alert("檢舉成功，將會為您處理")
+              alert("檢舉成功，將會為您處理");
               location.reload();
             }
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
-
     },
     //回覆留言裡的檢舉燈箱開啟
-    accuse_innerbox_btn(){
-       axios
+    accuse_innerbox_btn() {
+      axios
         .post("./php/memberStateCheck.php") // 送去檢查使用者當前狀態
         .then(resp => {
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
-          if (this.accuseinnerIsOpen) {
+            if (this.accuseinnerIsOpen) {
               this.accuseIsOpen = false;
               this.stopScroll = false;
             } else {
@@ -494,92 +522,144 @@ let vm = new Vue({
             }
           }
         });
-      
-
-        
     },
     //愛心
     heart_btn(index, disNo, conNum) {
-      if (this.isHeart[index]) {
-        document
-          .querySelectorAll(".tab_contents .heart i")
-        [index].classList.remove("colorRed");
-        document.querySelectorAll(".tab_contents .heart i")[index].style.color =
-          "#ada9a9";
-      } else if (!this.isHeart[index]) {
-        document
-          .querySelectorAll(".tab_contents .heart i")
-        [index].classList.add("colorRed");
-        document.querySelectorAll(".tab_contents .heart i")[index].style.color =
-          "red";
-      }
-
-      this.isHeart[index] = !this.isHeart[index];
-
       //會員登入PHP
       axios
         .post("./php/memberStateCheck.php")
         .then(resp => {
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
-              $(".msg_content .fa-heart").attr('disabled', "true");
           } else {
+            if (this.isHeart[index]) {
+              document
+                .querySelectorAll(".tab_contents .heart i")
+                [index].classList.remove("colorRed");
+
+              document.querySelectorAll(".tab_contents .heart i")[
+                index
+              ].style.color =
+                "#ada9a9";
+
+              if (
+                document.querySelector(".forum_overlay").classList.length == 2
+              ) {
+                document
+                  .querySelectorAll(".check_content .heart i")[0]
+                  .classList.remove("colorRed");
+                document.querySelectorAll(
+                  ".check_content .heart i"
+                )[0].style.color =
+                  "#ada9a9";
+              }
+            } else if (!this.isHeart[index]) {
+              document
+                .querySelectorAll(".tab_contents .heart i")
+                [index].classList.add("colorRed");
+              document.querySelectorAll(".tab_contents .heart i")[
+                index
+              ].style.color =
+                "red";
+              if (
+                document.querySelector(".forum_overlay").classList.length == 2
+              ) {
+                document
+                  .querySelectorAll(".check_content .heart i")[0]
+                  .classList.add("colorRed");
+                document.querySelectorAll(
+                  ".check_content .heart i"
+                )[0].style.color =
+                  "red";
+              }
+            }
+
+            this.isHeart[index] = !this.isHeart[index];
+            console.log(this.isHeart);
+            console.log(
+              document.querySelectorAll(".check_content .heart i")[index]
+                .classList
+            );
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const memNo = sessionStorage.getItem("memNo");
-            $(".msg_content .fa-heart").eq(index).toggleClass("colorRed");
+            // $(".msg_content .fa-heart").eq(index).toggleClass("colorRed");
             axios.post(
               "./php/forum_discuss.php?action=addFavor&DIS_NO=" +
-              disNo +
-              "&MEM_NO=" +
-              memNo
+                disNo +
+                "&MEM_NO=" +
+                memNo
             );
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     },
     //收藏
     collect_btn(index, disNo, conNum) {
-      if (this.isCollect[index]) {
-        document
-          .querySelectorAll(".tab_contents .collect_btn i")
-        [index].classList.remove("colorGray");
-        document.querySelectorAll(".tab_contents .collect_btn i")[
-          index
-        ].style.color =
-          "#ada9a9";
-      } else if (!this.isCollect[index]) {
-        document
-          .querySelectorAll(".tab_contents .collect_btn i")
-        [index].classList.add("colorGray");
-        document.querySelectorAll(".tab_contents .collect_btn i")[
-          index
-        ].style.color =
-          "black";
-      }
-
-      this.isCollect[index] = !this.isCollect[index];
-
       axios
         .post("./php/memberStateCheck.php")
-         .then(resp => {
+        .then(resp => {
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
+            if (this.isCollect[index]) {
+              document
+                .querySelectorAll(".tab_contents .collect_btn i")
+                [index].classList.remove("colorGray");
+              document.querySelectorAll(".tab_contents .collect_btn i")[
+                index
+              ].style.color =
+                "#ada9a9";
+
+              if (
+                document.querySelector(".forum_overlay").classList.length == 2
+              ) {
+                document
+                  .querySelectorAll(".check_content .collect_btn i")[0]
+                  .classList.remove("colorGray");
+                document.querySelectorAll(
+                  ".check_content .collect_btn i"
+                )[0].style.color =
+                  "#ada9a9";
+              }
+            } else if (!this.isCollect[index]) {
+              document
+                .querySelectorAll(".tab_contents .collect_btn i")
+                [index].classList.add("colorGray");
+              document.querySelectorAll(".tab_contents .collect_btn i")[
+                index
+              ].style.color =
+                "black";
+
+              if (
+                document.querySelector(".forum_overlay").classList.length == 2
+              ) {
+                document
+                  .querySelectorAll(".check_content .collect_btn i")[0]
+                  .classList.add("colorGray");
+                document.querySelectorAll(
+                  ".check_content .collect_btn i"
+                )[0].style.color =
+                  "black";
+              }
+            }
+
+            this.isCollect[index] = !this.isCollect[index];
+
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const memNo = sessionStorage.getItem("memNo");
             $(".msg_content .fa-bookmark").eq(index).toggleClass("colorGray");
             axios.post(
               "./php/forum_discuss.php?action=addCol&DIS_NO=" +
-              disNo +
-              "&MEM_NO=" +
-              memNo
+                disNo +
+                "&MEM_NO=" +
+                memNo
             );
             //  window.location.href = "./member_sign_in.html"
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     },
@@ -597,38 +677,36 @@ let vm = new Vue({
       e.currentTarget.classList.add("side_click");
     },
     //燈箱裡的愛心
-    heart_btn_feedback(index,mesno) {
+    heart_btn_feedback(index, mesno) {
       // alert(index)
-    console.log(this.feedBoxHeart)
-    console.log(index)
-    console.log(mesno)
-    
+      console.log(this.feedBoxHeart);
+      console.log(index);
+      console.log(mesno);
+
       axios
         .post("./php/memberStateCheck.php")
-            .then(resp => {
+        .then(resp => {
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const DIS_MES_NO = this.box_msg[index].DIS_MES_NO;
             const MEM_NO = sessionStorage.getItem("memNo");
-            console.log(DIS_MES_NO)
+            console.log(DIS_MES_NO);
             axios.post(
               "./php/forum_discuss.php?action=addfeedbackFavor&DIS_MES_NO=" +
-              DIS_MES_NO +
-              "&MEM_NO=" +
-              MEM_NO
-            )
+                DIS_MES_NO +
+                "&MEM_NO=" +
+                MEM_NO
+            );
             // .then(resp=>{
             //   console.log(resp.data)
             //   });
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
-
-
     },
     //討論區文章PHP
     sendMsg(msg_DIS_NO) {
@@ -639,33 +717,32 @@ let vm = new Vue({
       }
       axios
         .post("./php/memberStateCheck.php")
-          .then(resp => {
+        .then(resp => {
           // if (resp.data == 0) {
           //   document.querySelector(".bg_of_lightbx").style = "display:block";
           // } else {
-            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
-            sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
-            const memNo = sessionStorage.getItem("memNo");
-            const memName = sessionStorage.getItem("memName");
-            axios
-              .post(
-                "./php/forum_discuss.php?action=addReplay&DIS_NO=" +
+          sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+          sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
+          const memNo = sessionStorage.getItem("memNo");
+          const memName = sessionStorage.getItem("memName");
+          axios
+            .post(
+              "./php/forum_discuss.php?action=addReplay&DIS_NO=" +
                 msg_DIS_NO +
                 "&MEM_NO=" +
                 memNo +
                 "&content=" +
                 content
-              )
-              .then(res => {
-                console.log("-----------");
-                console.log(res.data);
-                document.getElementById("send_msg").value = "";
-                this.box_msg.unshift(res.data[0]);
-
-              });
+            )
+            .then(res => {
+              console.log("-----------");
+              console.log(res.data);
+              document.getElementById("send_msg").value = "";
+              this.box_msg.push(res.data[0]);
+            });
           // }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     }

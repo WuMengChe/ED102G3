@@ -16,19 +16,34 @@
         overflow: scroll;
         overflow-x: auto;
         overflow-y: hidden;
+        border-radius: 0px !important;
         ul{
             margin-bottom: 0 !important;
             width: fit-content;
             flex-direction: row !important;
             position: relative;
             li{
-                margin: 10px !important;
-                height: 40px;
+                width: 105px !important;
+                margin: 10px 5px !important;
+                padding: 5px !important;
+                height: 32px !important;
+                font-size: 16px !important;
+                span{
+                    width: 15px !important;
+                    height:  15px !important;
+                }
             }
         }
     }
     .car_title{
         margin: 10px 0 !important;
+    }
+    .car_con_area_all{
+        padding: 0px;
+        border-radius: 0px !important;
+        .car_con_area{
+            overflow-x: scroll;
+        }
     }
 }
 @media screen and (max-width:768px){
