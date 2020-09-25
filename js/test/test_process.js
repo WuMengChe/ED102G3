@@ -47,14 +47,24 @@ let testtest = new Vue({
         } else if(value ==='C'){
           this.totalScore[5] = this.totalScore[5]+1
         } 
+
       },
       divWidth(){   
       console.log('click')
     },
     changePage(){
       if( this.index === 18 ){
+        // localStorage.result = this.totalScore;
+        for(i=0;i<this.totalScore.length;i++){    // 賦予六個值新的值
+          if(this.totalScore[i] > 4 ){
+          this.totalScore[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.totalScore[i]-6))) * 100) + Math.floor(Math.random() * 10);
+          }else{
+          this.totalScore[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.totalScore[i]-6))) * 100) + Math.floor(Math.random() * 10) + 20 
+          };
+      };
         localStorage.result = this.totalScore;
         window.location.href = "./test_result.html";
+        // localStorage.result = this.totalScore;
       }
     } 
   },
