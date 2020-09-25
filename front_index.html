@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="./css/pages_scss/index/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" /> @@include('app/script.html')
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/easings.min.js"></script>
-
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js" integrity="sha512-OvWfXEXFlgwaMYESoKZRrPGq9Ndjcf7pMgp+NjbUNeqEA1OOOUbLgquJGOzvh7H78qinNObGwRiFIj22es61Eg==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
 </head>
 
@@ -139,7 +139,7 @@
                     <div class="index_sal_chart col-md-7 col-sm-12">
                         <h1>TOP 3 行業薪資排行</h1>
                         <div class="chart">
-                            <div class="horizontal-bar-graph" id="graph"></div>
+                            <div class="salGraph" id="salGraph"></div>
                         </div>
                         <a href="./career.html" class="btn_second">探索更多行業</a>
                     </div>
@@ -259,6 +259,7 @@
 
     <script src="./js/index/index_vue.js"></script>
     <script src="./js/index/index.js"></script>
+    <script src="./js/index/index_echart.js"></script>
 </body>
 
 </html>
