@@ -64,43 +64,44 @@ $(document).ready(function() {
 });
 
 
+
 // 排行榜
 
-var HorizontalBarGraph = function(el, series) {
-    this.el = d3.select(el);
-    this.series = series;
-};
+// var HorizontalBarGraph = function(el, series) {
+//     this.el = d3.select(el);
+//     this.series = series;
+// };
 
-HorizontalBarGraph.prototype.draw = function() {
-    var x = d3.scaleLinear()
-        .domain([0, d3.max(this.series, function(d) { return d.value })])
-        .range([0, 100]);
+// HorizontalBarGraph.prototype.draw = function() {
+//     var x = d3.scaleLinear()
+//         .domain([0, d3.max(this.series, function(d) { return d.value })])
+//         .range([0, 100]);
 
-    var segment = this.el
-        .selectAll(".horizontal-bar-graph-segment")
-        .data(this.series)
-        .enter()
-        .append("div").classed("horizontal-bar-graph-segment", true);
-    //classed("class", true/flase)->true代表加上class
-    segment
-        .append("div").classed("horizontal-bar-graph-label", true)
-        .text(function(d) { return d.label });
+//     var segment = this.el
+//         .selectAll(".horizontal-bar-graph-segment")
+//         .data(this.series)
+//         .enter()
+//         .append("div").classed("horizontal-bar-graph-segment", true);
+//     //classed("class", true/flase)->true代表加上class
+//     segment
+//         .append("div").classed("horizontal-bar-graph-label", true)
+//         .text(function(d) { return d.label });
 
-    segment
-        .append("div").classed("horizontal-bar-graph-value", true)
-        .append("div").classed("horizontal-bar-graph-value-bar", true)
-        .style("background-color", function(d) { return d.color })
-        .text(function(d) { return d.inner_label ? d.inner_label : "" })
-        .transition()
-        // .duration(1000)
-        // .delay(1000)
-        .style("min-width", function(d) { return x(d.value) + "%" });
+//     segment
+//         .append("div").classed("horizontal-bar-graph-value", true)
+//         .append("div").classed("horizontal-bar-graph-value-bar", true)
+//         .style("background-color", function(d) { return d.color })
+//         .text(function(d) { return d.inner_label ? d.inner_label : "" })
+//         .transition()
+//         // .duration(1000)
+//         // .delay(1000)
+//         .style("min-width", function(d) { return x(d.value) + "%" });
 
-};
+// };
 
-var graph = new HorizontalBarGraph('#graph', [
-    { label: "醫生", inner_label: "50000", value: 50, color: "#FFE56D" },
-    { label: "老師", inner_label: "40000", value: 40, color: "#F6F3ED" },
-    { label: "品檢人員", inner_label: "30000", value: 30, color: "#BCEAFF" }
-]);
-graph.draw();
+// var graph = new HorizontalBarGraph('#graph', [
+//     { label: "醫生", inner_label: "50000", value: 50, color: "#FFE56D" },
+//     { label: "老師", inner_label: "40000", value: 40, color: "#F6F3ED" },
+//     { label: "品檢人員", inner_label: "30000", value: 30, color: "#BCEAFF" }
+// ]);
+// graph.draw();
