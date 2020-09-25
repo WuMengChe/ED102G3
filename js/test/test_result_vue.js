@@ -154,7 +154,6 @@ let testResult = new Vue({
                 }
                 else{
                     alert('會員登入成功，請再次點擊儲存結果!');
-                    //登入成功則燈箱移除
                     document.querySelector('.bg_of_lightbx').style = "display:none";
                     console.log(resp.data)
                 }
@@ -414,25 +413,25 @@ let testResult = new Vue({
         },
 },
 created() {
-        window.addEventListener('load', this.plotRadar)
+        // window.addEventListener('load', this.plotRadar)
         window.addEventListener('resize', this.plotRadar)
-        this.testResult = localStorage.result;
-        this.R = this.testResult.substring(0,1);
-        this.I = this.testResult.substring(2,3);
-        this.A = this.testResult.substring(4,5);
-        this.S = this.testResult.substring(6,7);
-        this.E = this.testResult.substring(8,9);
-        this.C = this.testResult.substring(10,11);
-        this.anaValue =[ this.R, this.I, this.A, this.S, this.E, this.C];
+        this.anaValue = localStorage.result.split(',');
+        // this.R = this.testResult.substring(0,1);
+        // this.I = this.testResult.substring(2,3);
+        // this.A = this.testResult.substring(4,5);
+        // this.S = this.testResult.substring(6,7);
+        // this.E = this.testResult.substring(8,9);
+        // this.C = this.testResult.substring(10,11);
+        // this.anaValue =[ this.R, this.I, this.A, this.S, this.E, this.C];
 
-       for(i=0;i<this.anaValue.length;i++){    // 賦予六個值新的值
+    //    for(i=0;i<this.anaValue.length;i++){    // 賦予六個值新的值
 
-           if(this.anaValue[i] > 4 ){
-           this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10);
-           }else{
-           this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10) + 20 
-           };
-       };
+    //        if(this.anaValue[i] > 4 ){
+    //        this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10);
+    //        }else{
+    //        this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10) + 20 
+    //        };
+    //    };
     //    console.log('bbb')
     
 //  要傳上面這個array的值到php的話，不用一次傳整個陣列，用 this.anaValue[index]的方式一個一個傳到php 的方式
@@ -484,6 +483,7 @@ created() {
         this.maxIndex = 'C'; 
         // alert('哈~ C 最大~')
        }
+    //    console.log(this.anaValue.split(','))
 
        //送出最大的
        
@@ -548,6 +548,7 @@ mounted() {
             this.relatedDiscuss[i].collect = false;
         }
         console.log(this.relatedDiscuss)
+        this.plotRadar();
     });
          
 

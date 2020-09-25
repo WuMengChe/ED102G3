@@ -260,9 +260,9 @@ let changeMemContent = new Vue({
                     }
                     // console.log(resp.data);
                     // console.log(this.loadDataTemp[4]);
-                    console.log(this.loadDataTemp);
+                    // console.log(this.loadDataTemp);
                     // console.log(this.memberClass);
-                    console.log(this.memberArticleMessage);
+                    // console.log(this.memberArticleMessage);
 
                     this.screenWidth = document.documentElement.clientWidth;
                     this.myChart = Array(this.analysisResult.length);
