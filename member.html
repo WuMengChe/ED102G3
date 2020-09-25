@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>職引960-會員</title>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.js'></script>
     <script src="https://kit.fontawesome.com/d18b20bddd.js" crossorigin="anonymous"></script>
+    @@include('app/script.html')
     @@include('app/link.html')
     <link rel="stylesheet" href="./css/pages_scss/member/member_all.css">
 </head>
@@ -455,18 +454,18 @@
                     <h1>{{currentPage}}</h1>
                 </div>
                 <div class="col-md-11 mem_tit_area" v-if="screenWidth >= 768 && checkMemOrder">
+                    <div class="col-md-2 mem_title">訂單編號</div>
                     <div class="col-md-3 mem_title">標題</div>
                     <div class="col-md-2 mem_title">購買日期</div>
                     <div class="col-md-2 mem_title">價格</div>
-                    <div class="col-md-2 mem_title">付款類型</div>
                 </div>
                 <div class="col-md-11 mem_con_height" v-if="checkMemOrder">
                     <div class="col-md-12 col-sm-11 col-11 mem_ord_area" v-for="(memOrder, index) in memberOrder">
-                        <div class="col-md-3 col-sm-4 col-3 mem_ord">{{memOrder.title}}</div>
-                        <div class="col-md-2 col-sm-2 col-2 mem_ord">{{memOrder.buyDate}}</div>
-                        <div class="col-md-2 col-sm-2 col-2 mem_ord">{{memOrder.price}}</div>
-                        <div class="col-md-2 col-sm-4 col-3 mem_ord" v-if="screenWidth >= 768">信用卡</div>
-                        <div class="col-md-3 col-sm-4 col-5 mem_ord">
+                        <div class="col-md-2 col-sm-2 col-1 mem_ord">{{memOrder.ordNo}}</div>
+                        <div class="col-md-3 col-sm-3 col-5 mem_ord">{{memOrder.title}}</div>
+                        <div class="col-md-2 col-sm-2 col-3 mem_ord">{{memOrder.buyDate}}</div>
+                        <div class="col-md-2 col-sm-2 col-3 mem_ord">{{memOrder.price}}</div>
+                        <div class="col-md-3 col-sm-3 col-12 mem_ord">
                             <div class="mem_click" v-on:click="showOrderPage(index)">
                                 <span>詳細資訊</span>
                                 <i class="fas fa-angle-down"></i>
@@ -514,8 +513,6 @@
         </div>
     </main>
     @@include('app/footer.html')
-    @@include('app/script.html')
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
     <script type="text/javascript" src="./js/member/member.js"></script>
 </body>
 
