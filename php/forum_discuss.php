@@ -129,38 +129,39 @@ function accuse_inner_btn(){
 
 
 
-function pages(){
-    try {
-        require_once "connectMySql.php";
-        //------------取得總筆數
-        $sql = "select count(*) totalCount from DISCUSS_AREA";
-        $stmt = $pdo->query($sql);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $totalRecords = $row["totalCount"];
-        //------------每頁要印幾筆
-        $recPerPage = 5;
-        //------------算出總共有幾頁
-        $totalPages = ceil($totalRecords / $recPerPage);
+// function pages(){
+//     try {
+//         require_once "connectMySql.php";
+//         //------------取得總筆數
+//         $sql = "select count(*) totalCount from DISCUSS_AREA";
+//         $stmt = $pdo->query($sql);
+//         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+//         $totalRecords = $row["totalCount"];
+//         //------------每頁要印幾筆
+//         $recPerPage = 20;
+//         echo $recPerPage;
+//         //------------算出總共有幾頁
+//         $totalPages = ceil($totalRecords / $recPerPage);
 
-        //目前要顯示哪一頁
-        $pageNo = isset($_GET["pageNo"]) ? $_GET["pageNo"] : 1;
+//         //目前要顯示哪一頁
+//         $pageNo = isset($_GET["pageNo"]) ? $_GET["pageNo"] : 1;
 
-        //取回資料
-        $start = ($pageNo-1) * $recPerPage;
-        $sql = "select * from DISCUSS_AREA limit $start, $recPerPage";
-        $results = $pdo->query($sql);
-        $response = $results->fetchAll(PDO::FETCH_ASSOC);
-        array_push($response, $totalPages);
-        header('Content-Type: application/json');
-        echo json_encode($response);
+//         //取回資料
+//         $start = ($pageNo-1) * $recPerPage;
+//         $sql = "select * from DISCUSS_AREA limit $start, $recPerPage";
+//         $results = $pdo->query($sql);
+//         $response = $results->fetchAll(PDO::FETCH_ASSOC);
+//         array_push($response, $totalPages);
+//         header('Content-Type: application/json');
+//         echo json_encode($response);
 
-    } catch (PDOException $e) {
-        echo "錯誤原因 : ", $e->getMessage(), "<br>";
-        echo "錯誤行號 : ", $e->getLine(), "<br>";
-    }
+//     } catch (PDOException $e) {
+//         echo "錯誤原因 : ", $e->getMessage(), "<br>";
+//         echo "錯誤行號 : ", $e->getLine(), "<br>";
+//     }
 
 
-}
+// }
 
 
 function accuse(){
@@ -378,7 +379,7 @@ function getAllDiscuss()
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $totalRecords = $row["totalCount"];
         //------------每頁要印幾筆
-        $recPerPage = 10;
+        $recPerPage = 25;
         //------------算出總共有幾頁
         $totalPages = ceil($totalRecords / $recPerPage);
         //目前要顯示哪一頁
