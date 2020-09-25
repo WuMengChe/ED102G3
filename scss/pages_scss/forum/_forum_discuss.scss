@@ -498,25 +498,24 @@ div.pagination_block > ul.pagination > li > a:hover {
 }
 
 a.pencil_btn {
-  display: inline-block;
-  cursor: pointer;
-  position: fixed;
-  bottom: 30%;
-  right: 2%;
-
-  outline: none;
-  transform: translate(0, 10px);
-  transition: transform 0.5s;
-  background-color: #ee7002;
-  width: 60px;
-  height: 60px;
-  border-radius:50%;
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    bottom: 30%;
+    right: 2%;
+    outline: 0;
+    transform: translate(0,10px);
+    transition: transform .5s;
+    background-color: #ee7002;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   .fas {
     position: absolute;
-    right: 19%;
-    top: 24%;
+    right: 16%;
+    top: 20%;
     color: #fff;
-    font-size: 30px;
+    font-size: 25px;
 
   }
 }
@@ -557,7 +556,7 @@ a.pencil_btn {
   top: 22%;
   left: 50%;
   max-width: 800px;
-  min-width: 600px;
+  min-width: 500px;
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: scroll;
@@ -761,6 +760,7 @@ a.pencil_btn {
       .leave_msg {
         #send_msg {
           width: 100%;
+          min-height:150px;
           resize: none;
           // position: absolute;
           // bottom: 0;
@@ -771,6 +771,7 @@ a.pencil_btn {
       .confirm_send_btn {
         padding-bottom: 15px;
         text-align: center;
+        height: 120px;
       }
       #send_msg_btn {
         width: 60px;
@@ -915,6 +916,7 @@ div.-on {
 }
 
 @media screen and (max-width: 500px) {
+
   .rum_overlay {
     top: 0;
     left: 0;
@@ -927,6 +929,23 @@ div.-on {
 }
 
 @media (max-width: 400px) {
+
+  a.pencil_btn {
+    bottom: 5%;
+    right: 2%;
+    width: 40px;
+    height: 40px;
+  .fas {
+
+    right: 20%;
+    top: 27%;
+    color: white;
+    font-size: 17px;
+  }
+
+  }
+
+
   .dis_body {
     font-size: 14px;
     .tab_contents {
@@ -967,32 +986,5 @@ div.-on {
     min-width: 390px;
   }
 
-  .close_btn {
-  }
 
-
-
-  a.pencil_btn {
-
-    display: inline-block;
-    cursor: pointer;
-    position: fixed;
-    bottom: 5%;
-    right: 2%;
-    outline: 0;
-    transform: translate(0,10px);
-    transition: transform .5s;
-    background-color: #ee7002;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-  .fas {
-    position: absolute;
-    right: 20%;
-    top: 27%;
-    color: white;
-    font-size: 17px;
-  }
-}
-  
 }
