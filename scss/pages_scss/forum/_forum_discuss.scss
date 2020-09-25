@@ -20,7 +20,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
   background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
   background-position: top center;
-  min-height: 1000px;
+  min-height: 600px;
   padding: 0;
 }
 
@@ -219,6 +219,7 @@ $timing: 0.3s;
   .tab_contents {
     .msg_content {
       box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
+      max-height: 300px;
       .mem_info {
         display: flex;
         justify-content: space-between;
@@ -261,10 +262,11 @@ $timing: 0.3s;
         font-size: 22px;
       }
       .msg_textarea {
-        min-height: 85px;
-        padding: 20px;
-        letter-spacing: 1px;
-        cursor: pointer;
+          padding: 0px 20px;
+          letter-spacing: 1px;
+          cursor: pointer;
+          min-height:100px;
+          line-height: 25px;
 
         p {
           overflow: hidden;
@@ -505,14 +507,17 @@ a.pencil_btn {
   outline: none;
   transform: translate(0, 10px);
   transition: transform 0.5s;
-  background-color: #ccc;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  background-color: #ee7002;
+  width: 60px;
+  height: 60px;
+  border-radius:50%;
   .fas {
     position: absolute;
-    right: 24%;
-    top: 31%;
+    right: 19%;
+    top: 24%;
+    color: #fff;
+    font-size: 30px;
+
   }
 }
 
@@ -531,7 +536,7 @@ a.pencil_btn {
 
 .-open {
   opacity: 1;
-  z-index: 100;
+  z-index: 97;
   position: fixed;
   top: 0;
   left: 0;
@@ -556,6 +561,7 @@ a.pencil_btn {
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: scroll;
+  margin-top: 70px;
 }
 
 /* 留言數量 */
@@ -823,7 +829,22 @@ div.-on {
   }
 }
 
+
+
+
 /* RWD */
+
+
+@media screen and (min-width: 1440px) {
+
+  a.pencil_btn {
+    position: fixed;
+    bottom: 8%;
+    left: 93%;
+  }
+}
+
+
 @media screen and (max-width: 992px) {
   div.forum_overlay > .forum_checkMsg {
     max-width: 500px;
@@ -948,4 +969,30 @@ div.-on {
 
   .close_btn {
   }
+
+
+
+  a.pencil_btn {
+
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    bottom: 5%;
+    right: 2%;
+    outline: 0;
+    transform: translate(0,10px);
+    transition: transform .5s;
+    background-color: #ee7002;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  .fas {
+    position: absolute;
+    right: 20%;
+    top: 27%;
+    color: white;
+    font-size: 17px;
+  }
+}
+  
 }

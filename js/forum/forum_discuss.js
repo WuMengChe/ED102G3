@@ -22,13 +22,13 @@ let vm = new Vue({
       isCollect: [],
       showCollect: [], //會員曾經按錯的收藏
       memberAccuse: [], //檢舉
-      repIndex: 0, //文章檢舉的索引值
+      repIndex: -1, //文章檢舉的索引值
       repNo: 0, //文章檢舉第幾篇文章
       feedBoxHeart: [], //點擊愛心 綁定的class顏色，但是未完成
       currentPage: 1, //目前的頁碼
       totalPages: 0,
       accuseinnerIsOpen: false, //回覆留言的檢舉燈箱
-      repinnerIndex: 0, //燈箱裡回覆留言的檢舉索引值
+      repinnerIndex: -1, //燈箱裡回覆留言的檢舉索引值
       repinnerNo: 0, //燈箱裡回覆留言的檢舉第幾篇文章
       showfeedbacklike: [], // 燈箱回覆留言，會員曾經點過的愛心
       category: [
@@ -213,6 +213,12 @@ let vm = new Vue({
           this.currentPage = res.data[0].CURRENT_PAGE;
           this.information = res.data;
           this.searchResult = res.data;
+          for(var i = 0; i < res.data.length; i++){
+            console.log(this.searchResult[i].DIS_CONTENT)
+            this.searchResult[i].DIS_CONTENT = this.searchResult[i].DIS_CONTENT.split(';')
+            console.log(this.searchResult[i].DIS_CONTENT)
+          }
+          // console.log(this.searchResult)
         });
     },
     //討論區公告PHP
@@ -413,10 +419,10 @@ let vm = new Vue({
           alert("帳號或密碼錯誤，請重新輸入");
           document.querySelector(".input_div #code").value = "";
         } else {
-          alert("會員登入成功，請再次點擊儲存結果!");
           //登入成功則燈箱移除
           document.querySelector(".bg_of_lightbx").style = "display:none";
           console.log(resp.data);
+          location.reload();
         }
       });
     },
@@ -433,7 +439,6 @@ let vm = new Vue({
           console.log(res);
           this.memberCheck = res.data;
           if (this.memberCheck == 0) {
-            alert("請先登入會員");
             window.location.href = "./member_sign_in.html";
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
@@ -445,7 +450,7 @@ let vm = new Vue({
             const repNo = this.repNo;
             // console.log(repNo);
 
-            if (content == "") {
+            if (this.repIndex == -1) {
               alert("請輸入內容");
             } else {
               axios.post(
@@ -473,11 +478,10 @@ let vm = new Vue({
           console.log(res);
           this.memberCheck = res.data;
           if (this.memberCheck == 0) {
-            alert("請先登入會員");
             window.location.href = "./member_sign_in.html";
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
-            // sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
+      
             const memNo = sessionStorage.getItem("memNo");
             console.log(memNo);
             const content = this.memberAccuse[this.repinnerIndex];
@@ -485,7 +489,7 @@ let vm = new Vue({
             const repinnerNo = this.repinnerNo;
             console.log(repinnerNo);
 
-            if (content == "") {
+            if (this.repinnerIndex == -1) {
               alert("請輸入內容");
             } else {
               axios.post(
@@ -682,6 +686,7 @@ let vm = new Vue({
       console.log(this.feedBoxHeart);
       console.log(index);
       console.log(mesno);
+      
 
       axios
         .post("./php/memberStateCheck.php")
@@ -689,6 +694,14 @@ let vm = new Vue({
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
+            if(this.feedBoxHeart[index]){
+              document.querySelectorAll('.forum_feedback .heart i')[index].classList.remove('colorRed');
+            }
+            else{
+              document.querySelectorAll('.forum_feedback .heart i')[index].classList.add('colorRed');
+            }
+            this.feedBoxHeart[index] = !this.feedBoxHeart[index];
+            console.log(this.feedBoxHeart);
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const DIS_MES_NO = this.box_msg[index].DIS_MES_NO;
             const MEM_NO = sessionStorage.getItem("memNo");
@@ -711,16 +724,18 @@ let vm = new Vue({
     //討論區文章PHP
     sendMsg(msg_DIS_NO) {
       const content = document.getElementById("send_msg").value;
-      if (content.length <= 0) {
-        alert("填寫");
-        return;
-      }
+      
       axios
         .post("./php/memberStateCheck.php")
         .then(resp => {
-          // if (resp.data == 0) {
-          //   document.querySelector(".bg_of_lightbx").style = "display:block";
-          // } else {
+          if (resp.data == 0) {
+            document.querySelector(".bg_of_lightbx").style = "display:block";
+
+          } else {
+          if (content.length <= 0) {
+        alert("填寫");
+        return;
+      }else{
           sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
           sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
           const memNo = sessionStorage.getItem("memNo");
@@ -740,7 +755,9 @@ let vm = new Vue({
               document.getElementById("send_msg").value = "";
               this.box_msg.push(res.data[0]);
             });
-          // }
+          }
+      }
+
         })
         .catch(function(error) {
           console.log(error);

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>forum_discuss</title>
+  <title>職涯論壇</title>
   @@include('app/script.html')
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
   <link rel="stylesheet" href="./css/app_public.css" />
@@ -92,11 +92,9 @@
               <div class="msg_title open_dialog" @click="openContent(index)">
                 {{messages.DIS_NAME}}
               </div>
-              <div class="msg_textarea" @click="openContent(index)">
+              <div class="msg_textarea" @click="openContent(index)" v-for="(item, index) in messages.DIS_CONTENT" v-if="1 >= index">
               <p>
-                {{messages.DIS_CONTENT}}
-                ＰＰＰＰ
-                {{messages.DIS_NO}}
+                {{item}}
                 </p>
               </div>
               <div class="msg_btn">
@@ -162,9 +160,9 @@
             <div class="msg_title open_dialog">
               {{msg.DIS_NAME}}
             </div>
-            <div class="msg_textarea">
+            <div class="msg_textarea" v-for="(item, index) in msg.DIS_CONTENT">
               <p>
-              {{msg.DIS_CONTENT}}
+              {{item}}
               </p>
             </div>
             <div class="msg_btn">
@@ -200,7 +198,7 @@
             </div>
             <div class="msg_btn">
               <button class="heart">
-                 <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="$forceUpdate(), heart_btn_feedback(index,msg.DIS_MES_NO), feedBoxHeart[index] = !feedBoxHeart[index]"></i>
+                 <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="$forceUpdate(), heart_btn_feedback(index,msg.DIS_MES_NO)"></i>
               </button>
               <button class="gray_btn" @click="accuse_innerbox_btn(msg.index), repinnerNo = msg.DIS_MES_NO">
                 <i class="fas fa-exclamation-circle"></i>
