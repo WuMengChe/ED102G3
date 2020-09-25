@@ -5,6 +5,7 @@ let vm = new Vue({
       // 共用
       cart_items: [],
       mem_check: 0,
+      mem_boughtCourse: [],
       // 燈箱變數
       signIn: true,
 
@@ -77,6 +78,12 @@ let vm = new Vue({
       introduce_suggest: [],
       collect_state: 0,
 
+      // course_orderlist.html
+      exp_month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      this_month: new Date().getMonth() + 1,
+
+      exp_year: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+
       //course_check.html
       final_order_list: [],
     };
@@ -117,11 +124,12 @@ let vm = new Vue({
       }
     },
     // 購物車功能
-    add_cart(item) {
+    add_cart(item, e) {
       // 登入燈箱
       if (this.mem_check == 0) {
         document.querySelector(".bg_of_lightbx").style = "display:block";
       } else {
+        // this.add_cart_effect();
         // 若購物車內無商品
         if (this.cart_items.length == 0) {
           this.cart_items.push(item);
@@ -144,6 +152,49 @@ let vm = new Vue({
         }
         this.add_storage();
         $(`.cus_${item.ski_no}`).addClass("cart_clicked");
+        this.add_cart_effect(item, e);
+      }
+    },
+    add_cart_effect(item, e) {
+      // 加入購物車動畫
+
+      var cart = $("#add_effect");
+      var imgtodrag = $(e.target).parents("li").find("img");
+      // console.log(imgtodrag);
+      if (imgtodrag.length != 0) {
+        var imgclone = imgtodrag
+          .clone()
+          .offset({
+            top: imgtodrag.offset().top,
+            left: imgtodrag.offset().left,
+          })
+          .css({
+            opacity: "0.8",
+            position: "absolute",
+            height: "150px",
+            width: "150px",
+            "z-index": "100",
+          })
+          .appendTo($("body"))
+          .animate(
+            {
+              top: cart.offset().top + 10,
+              left: cart.offset().left + 10,
+              width: 75,
+              height: 75,
+            },
+            1000,
+            "easeInOutExpo"
+          );
+        imgclone.animate(
+          {
+            width: 0,
+            height: 0,
+          },
+          function () {
+            $(this).detach();
+          }
+        );
       }
     },
 
@@ -184,11 +235,12 @@ let vm = new Vue({
         .all([
           axios.get("./php/course_hot_course.php"),
           axios.get("./php/course_course_list.php"),
+          axios.get("./php/course_mem_boughtCourse.php"),
         ])
         .then(
-          axios.spread((res1, res2) => {
+          axios.spread((res1, res2, res3) => {
             // 熱門課程資料
-            console.log(res1);
+            // console.log(res1);
             this.hot_course = res1.data;
 
             // OWL套件
@@ -198,7 +250,7 @@ let vm = new Vue({
 
             // ===================
             // category課程資料
-            console.log(res2);
+            // console.log(res2);
 
             // 將課程總覽用filter（當總覽內的ind_class == category的link_title）代入this.category
             for (let i = 0; i < this.category.length; i++) {
@@ -206,7 +258,10 @@ let vm = new Vue({
                 (item) => item.ind_class == this.category[i].link_title
               );
             }
-            console.log(this.category);
+            // console.log(this.category);
+
+            // =====================
+            this.mem_boughtCourse = res3.data;
           })
         )
         .then(() => {
@@ -217,6 +272,15 @@ let vm = new Vue({
           script.src = "./js/course/course_main.js";
           document.body.appendChild(script);
         })
+        .then(() => {
+          this.mem_boughtCourse.forEach((course) => {
+            $(`button.cus_${course.ski_no}`).text("已購買").addClass("bought");
+          });
+        })
+        .then(() => {
+          $(".bought").attr("disabled", "disabled");
+        })
+
         .catch((err) => {
           console.log(err);
         });
@@ -294,6 +358,14 @@ let vm = new Vue({
         )
         .then(() => {
           _this.receive_storage();
+        })
+        .then(() => {
+          this.mem_boughtCourse.forEach((course) => {
+            $(`button.cus_${course.ski_no}`).text("已購買").addClass("bought");
+          });
+        })
+        .then(() => {
+          $(".bought").attr("disabled", "disabled");
         })
         .then(() => {
           switch (this.collect_state) {
@@ -432,6 +504,7 @@ let vm = new Vue({
             location.reload();
             $("#header_logOut").css("display", "none");
             $("div.member > a").attr("href", "member_sign_in.html");
+            window.localStorage.removeItem("cart");
           }
         })
         .catch(function (error) {
@@ -508,7 +581,7 @@ let vm = new Vue({
     },
     final_price() {
       let final = this.add_total - this.discount;
-      return final;
+      return Math.round(final);
     },
   },
 });

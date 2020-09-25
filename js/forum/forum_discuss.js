@@ -177,6 +177,26 @@ let vm = new Vue({
     }
   },
   methods: {
+    //判斷留言文章時，要是會員
+    formBtn(){
+      axios
+        .post("./php/memberStateCheck.php")
+        .then(res => {
+          console.log(res);
+          this.memberCheck = res.data;
+          if (this.memberCheck == 0) {
+            alert("請先登入會員");
+            window.location.href = "./member_sign_in.html";
+          } else {
+            sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+            const memNo = sessionStorage.getItem("memNo");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    
+    },
     //討論區文章(會員曾經按錯的愛心)PHP
     getAllDisscuss(pageNo) {
       const memNo = sessionStorage.getItem("memNo");
@@ -205,10 +225,10 @@ let vm = new Vue({
       } else {
         this.contentIsOpen = true;
         this.stopScroll = true;
-        console.log(this.searchResult[index]);
+        // console.log(this.searchResult[index]);
         this.msg = this.searchResult[index];
         this.msg.index = index;
-        console.log(this.msg);
+        // console.log(this.msg);
       }
 
       const memNo = sessionStorage.getItem("memNo");
@@ -293,7 +313,7 @@ let vm = new Vue({
     },
 
     //側邊欄搜尋
-    search(type) {
+    search(e,type) {
       const result = this.information.filter(element => {
         return element.IND_CLASS == type;
       });
@@ -389,12 +409,11 @@ let vm = new Vue({
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             // sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
             const memNo = sessionStorage.getItem("memNo");
-            console.log(memNo);
+            // console.log(memNo);
             const content = this.memberAccuse[this.repIndex];
-            console.log(content);
+            // console.log(content);
             const repNo = this.repNo;
-            console.log(repNo);
-
+            // console.log(repNo);
 
             if (content == "") {
               alert("請輸入內容");
@@ -407,7 +426,7 @@ let vm = new Vue({
                 "&ART_REP_CONTENT=" +
                 content 
               );
-              alert("檢舉成功")
+              alert("檢舉成功，將會為您處理")
               location.reload();
          }
           }
@@ -448,7 +467,7 @@ let vm = new Vue({
                 "&MES_REP_CONTENT=" +
                 content 
               );
-              alert("檢舉成功，會為您處理")
+              alert("檢舉成功，將會為您處理")
               location.reload();
             }
           }
@@ -503,6 +522,7 @@ let vm = new Vue({
         .then(resp => {
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
+              $(".msg_content .fa-heart").attr('disabled', "true");
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             const memNo = sessionStorage.getItem("memNo");
@@ -620,9 +640,9 @@ let vm = new Vue({
       axios
         .post("./php/memberStateCheck.php")
           .then(resp => {
-          if (resp.data == 0) {
-            document.querySelector(".bg_of_lightbx").style = "display:block";
-          } else {
+          // if (resp.data == 0) {
+          //   document.querySelector(".bg_of_lightbx").style = "display:block";
+          // } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
             sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
             const memNo = sessionStorage.getItem("memNo");
@@ -640,9 +660,10 @@ let vm = new Vue({
                 console.log("-----------");
                 console.log(res.data);
                 document.getElementById("send_msg").value = "";
-                this.box_msg.push(res.data[0]);
+                this.box_msg.unshift(res.data[0]);
+
               });
-          }
+          // }
         })
         .catch(function (error) {
           console.log(error);

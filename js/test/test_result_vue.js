@@ -149,6 +149,8 @@ let testResult = new Vue({
                 if(resp.data == 0){
                     alert('帳號或密碼錯誤，請重新輸入');
                     document.querySelector('.input_div #code').value = "";
+                }else if(resp.data == -1){
+                    alert('此帳戶已被停權，禁止使用');
                 }
                 else{
                     alert('會員登入成功，請再次點擊儲存結果!');
@@ -178,11 +180,6 @@ let testResult = new Vue({
                         show: false
                     },
                     tooltip: {},
-                    // grid: { // 控制图的大小，调整下面这些值就可以，
-                    //     x: 40,
-                    //     x2: 50,
-                    //     y2: 150// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
-                    // },
                     legend: {
                         data: ['分析結果'],
                         show: false
@@ -205,7 +202,7 @@ let testResult = new Vue({
                             { name: '企業型（E）', max: 100},
                             { name: '事務型（C）', max: 100},
                         ],
-                        radius: 80 // 調整雷達圖大小
+                        // radius: 80 // 調整雷達圖大小
                     },
                     series: [{
                         name: '分析結果',
@@ -228,8 +225,8 @@ let testResult = new Vue({
                     {
                         query: {
                            
-                            Width: 200,
-                            Height: 300
+                            mixWidth: 500,
+                            // Height: 300
                         },
                         option: {
                             series:[{
@@ -436,7 +433,7 @@ created() {
            this.anaValue[i] = Math.floor(1/(1 + Math.pow(Math.E, -(this.anaValue[i]-6))) * 100) + Math.floor(Math.random() * 10) + 20 
            };
        };
-       console.log('bbb')
+    //    console.log('bbb')
     
 //  要傳上面這個array的值到php的話，不用一次傳整個陣列，用 this.anaValue[index]的方式一個一個傳到php 的方式
         
@@ -466,7 +463,7 @@ created() {
       //這邊這個最大值也要傳到php喔
   
                       
-    console.log('ccc')                       //  [0,1,2,3,4,5]
+    // console.log('ccc')                       //  [0,1,2,3,4,5]
     //以下判定第幾個值是最大的決定要撈什麼資料:順序: [R,I,A,S,E,C]            
        if ( this.maxIndex === 0 ){
          this.maxIndex = 'R';
@@ -489,6 +486,7 @@ created() {
        }
 
        //送出最大的
+       
 
 },
     

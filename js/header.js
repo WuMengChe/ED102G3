@@ -65,6 +65,7 @@ new Vue({
             location.reload();
             $("#header_logOut").css("display", "none");
             $("div.member > a").attr("href", "member_sign_in.html");
+            window.localStorage.removeItem("cart");
           }
         })
         .catch(function (error) {

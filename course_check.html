@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>訂單完成</title>
     @@include('app/link.html') @@include('app/script.html')
     <link rel="stylesheet" href="./css/pages_scss/course/course.css" />
   </head>
@@ -49,7 +49,9 @@
               <a id="member_icon" href="member_sign_in.html"
                 ><i class="fas fa-user"></i
               ></a>
-              <button id="header_logOut" @click="header_logOut">登出</button>
+              <button id="header_logOut" @click="header_logOut">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
             </div>
           </div>
         </header>
@@ -57,8 +59,10 @@
       <!-- cart -->
       <div class="side_cart cart_off">
         <div class="cart_close">
+          <button id="cart_close" class="btn_third">
+            <i class="fas fa-reply"></i>
+          </button>
           <span>購物車</span>
-          <button id="cart_close" class="btn_third">close</button>
         </div>
         <div class="cart_course">
           <p class="no_item" v-show="cart_items.length == 0">
@@ -160,9 +164,11 @@
                     </fieldset>
                     <p>*線上課程會在48小時內上傳至<span>我的課程</span></p>
                     <div class="link_btn">
-                      <a href="front_index.html" class="btn_second">回到首頁</a>
                       <a href="course_main.html" class="btn_primary"
                         >瀏覽更多課程</a
+                      >
+                      <a href="post_intro.html" class="btn_primary"
+                        >時光明信片</a
                       >
                     </div>
                   </div>

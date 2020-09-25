@@ -21,6 +21,7 @@ try {
               <th>電話</th>
               <th>電子郵件</th>
               <th>是否停權</th>
+              <th>修改</th>
             </tr>
             <tr>
               <td>" . $memSearchRow['MEM_NO'] . "</td>
@@ -29,12 +30,14 @@ try {
               <td>" . $memSearchRow['MEM_EMAIL'] . "</td>
               <td>
                 <p>" . $MEMUSE  . "<p>
-                <select name='authority' id='MEM_USE'>
-                <option value='authority'>是</option>
-                <option value='authority' selected>否</option>
+                <select name='authority' class='editShow MEM_USE'>
+                <option value='1'>是</option>
+                <option value='0' selected>否</option>
                 </select>
-                <button class='edit'>編輯</button>
               </td>
+                <td>
+                  <button class='edit memberEdit'>確認</button>
+                </td>
             </tr>";
     } else {
       $MEMUSE = "是";
@@ -44,6 +47,7 @@ try {
               <th>電話</th>
               <th>電子郵件</th>
               <th>是否停權</th>
+              <th>修改</th>
             </tr>
             <tr>
               <td>" . $memSearchRow['MEM_NO'] . "</td>
@@ -52,12 +56,14 @@ try {
               <td>" . $memSearchRow['MEM_EMAIL'] . "</td>
               <td>
                 <p>" . $MEMUSE  . "<p>
-                <select name='authority' id='MEM_USE'>
-                <option value='authority' selected>是</option>
-                <option value='authority'>否</option>
+                <select name='authority' class='editShow MEM_USE'>
+                <option value='1' selected>是</option>
+                <option value='0'>否</option>
                 </select>
-                <button class='edit'>編輯</button>
               </td>
+              <td>
+                  <button class='edit memberEdit'>確認</button>
+                </td>
             </tr>";
     }
 
