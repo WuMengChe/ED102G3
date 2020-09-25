@@ -3,6 +3,10 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
   @include header_line;
 }
 
+[v-cloak] {
+display: none;
+}
+
 * {
   list-style: none;
   margin: 0;
@@ -219,7 +223,6 @@ $timing: 0.3s;
   .tab_contents {
     .msg_content {
       box-shadow: 0 0 0 -0.25rem rgba(0, 0, 0, 0.1);
-      max-height: 300px;
       .mem_info {
         display: flex;
         justify-content: space-between;
@@ -556,7 +559,7 @@ a.pencil_btn {
   top: 22%;
   left: 50%;
   max-width: 800px;
-  min-width: 500px;
+  min-width: 600px;
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: scroll;
@@ -848,7 +851,7 @@ div.-on {
 
 @media screen and (max-width: 992px) {
   div.forum_overlay > .forum_checkMsg {
-    max-width: 500px;
+    min-width: 500px;
     width: 100%;
     padding: 10px 0;
   }
@@ -930,6 +933,12 @@ div.-on {
 
 @media (max-width: 400px) {
 
+  .forum_overlay > .forum_checkMsg {
+  
+  min-width: 500px;
+
+}
+
   a.pencil_btn {
     bottom: 5%;
     right: 2%;
@@ -981,10 +990,4 @@ div.-on {
   .select {
     padding: 20px 5px;
   }
-
-  .forum_overlay > .forum_checkMsg {
-    min-width: 390px;
-  }
-
-
 }
