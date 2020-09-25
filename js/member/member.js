@@ -27,36 +27,6 @@ let memData = {
     memberPostCard: new Array(),
     memberOrder: new Array(),
     memberOrderList: new Array(),
-    // memberClassCollection: [
-    //     {name: '社會心理學', teacher: '劉威德'},
-    //     {name: '翻轉課堂的職業講師祕訣', teacher: '王永福'}
-    // ],
-    // memberArticle: [
-    //     {title: '我想學程式，但到底該從哪個語言入門？', content: '身處在這個「全民學程式」時代，幾年後當程式設計變成連國中生都必備的能力時，不會寫程式的人在未來就要變成少數民族。當越來越多人開始對學程式語言有興趣，大家常常問的第一個問題就是，到底該從哪個程式語言開始？'},
-    //     {title: 'LSTM的簡單介紹，附情感分析應用', content: '長短期記憶網絡，通常稱為「LSTM」(Long Short Term Memory network,由Schmidhuber和Hochreiterfa提出)。它已經被廣泛用於語音識別，語言建模，情感分析和文本預測。在深入研究LSTM之前，我們首先應該了解LSTM的要求，它可以用實際使用遞歸神經網絡（RNN）的缺點來解釋。所以，我們要從RNN講起。'}
-    // ],
-    // memberPostCard: [
-    //     {creatDate: '109/01/01', sentDate: '109/04/20', postSend: true, postSrc: './img/post_card/postCard.png'},
-    //     {creatDate: '109/03/07', sentDate: '109/11/02', postSend: false, postSrc: './img/post_card/postCard.png'}
-    // ],
-    // memberOrder: [
-    //     {title: '社會心理學', buyDate: '109/04/20', price: '123$'},
-    //     {title: '2門課程', buyDate: '109/05/20', price: '456$'},
-    //     {title: '社會心理學', buyDate: '109/06/20', price: '123$'}
-    // ],
-    // memberOrderList: [
-    //     [{name: '社會心理學', teacher: '劉威德'}],
-    //     [
-    //         {name: '社會心理學', teacher: '劉威德'},
-    //         {name: '翻轉課堂的職業講師祕訣', teacher: '王永福'}
-    //     ],
-    //     [{name: '社會心理學', teacher: '劉威德'}]
-    // ],
-    // memberMessage: [
-    //     {sentDate: '109/05/20', title: '您有一封明信片！！'},
-    //     {sentDate: '109/05/22', title: '您的文章有人回復'},
-    //     {sentDate: '109/05/29', title: '您的文章被檢舉，已刪除'}
-    // ],
     accuseIsOpen: false,
     currentPage: '會員資料',
     checkAnalysisResult: false,
@@ -254,7 +224,8 @@ let changeMemContent = new Vue({
                         for(var orderNo = 0; orderNo < parseInt(this.loadDataTemp[7][i].商品數量); orderNo++){
                             if(parseInt(this.loadDataTemp[7][i].商品數量) == 1){
                                 this.memberOrder[i].title = this.loadDataTemp[6][orderNoCon + orderNo].SKI_NAME;
-                                this.memberOrder[i].buyDate = this.loadDataTemp[6][orderNoCon + orderNo].ORD_DATE;
+                                this.memberOrder[i].ordNo = this.loadDataTemp[6][orderNoCon + orderNo].ORD_NO;
+                                this.memberOrder[i].buyDate = this.loadDataTemp[6][orderNoCon + orderNo].ORD_DATE.split(' ')[0];
                                 this.memberOrder[i].price = this.loadDataTemp[6][orderNoCon + orderNo].ORD_AMOUNT;
                                 orderLisCon = 0;
                                 this.memberOrderList[i].push(new Object());
@@ -265,7 +236,8 @@ let changeMemContent = new Vue({
                             }
                             else if(orderNo == 0){
                                 this.memberOrder[i].title = this.loadDataTemp[7][i].商品數量 + "門課程";
-                                this.memberOrder[i].buyDate = this.loadDataTemp[6][orderNoCon + orderNo].ORD_DATE;
+                                this.memberOrder[i].ordNo = this.loadDataTemp[6][orderNoCon + orderNo].ORD_NO;
+                                this.memberOrder[i].buyDate = this.loadDataTemp[6][orderNoCon + orderNo].ORD_DATE.split(' ')[0];
                                 this.memberOrder[i].price = this.loadDataTemp[6][orderNoCon + orderNo].ORD_AMOUNT;
                                 orderLisCon = 0;
                                 this.memberOrderList[i] = new Array();
@@ -395,7 +367,7 @@ let changeMemContent = new Vue({
             if(975 < this.screenWidth){
                 var liChange = document.querySelectorAll('.mem_list>ul>li');
                 for(var i = 0; i < liChange.length; i++){
-                liChange[i].style.backgroundColor = 'transparent';
+                // liChange[i].style.backgroundColor = 'transparent';
                 }
             }
             this.liSecondArrow = e;
