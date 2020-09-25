@@ -323,7 +323,7 @@ let careerVueContent = new Vue({
                     dataInsertControl[5] = dataInsertControl[5] + 1;
                 }
             }
-            console.log(this.loadDataTemp)
+            // console.log(this.loadDataTemp)
             this.rankingPlot();
         })
         this.screenWidth = document.documentElement.clientWidth;
