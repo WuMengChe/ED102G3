@@ -350,14 +350,15 @@ div.header_wrap {
                         // border: 1px solid #000;
                         margin: 0 auto;
                         .salGraph {
-                            border: 1px solid #000;
+                            // border: 1px solid #000;
                             height: 350px;
-                            width: 80%;
                             padding-top: 100px;
-                            padding-left: 50px;
+                            // padding-left: 50px;
                             margin: 0 auto;
                             display: table;
                             width: 80%;
+                            position: relative;
+                            left: -10px;
                         }
                     }
                     .btn_second {

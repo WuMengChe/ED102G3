@@ -19,11 +19,15 @@ new Vue({
                     },
                     tooltip: {},
                     legend: {
-                        data: ["平均薪資"]
+                        data: []
                     },
                     xAxis: {},
                     yAxis: {
-                        data: ["衬衫", "羊毛衫", "雪纺衫"]
+                        data: ["衬衫", "羊毛衫", "雪纺衫"],
+                        axisLabel: {
+
+                            fontSize: 14
+                        }
 
                     },
                     series: [{
@@ -32,16 +36,14 @@ new Vue({
                         data: [5, 20, 36],
                         itemStyle: {
                             normal: {
-                                // 随机显示
-                                //color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
 
-                                // 定制显示（按顺序）
                                 color: function(params) {
-                                    var colorList = ['#C33531', '#EFE42A', '#64BD3D'];
+                                    var colorList = ['#BCEBFF', '#F5F3ED', '#FFE56C'];
                                     return colorList[params.dataIndex]
                                 }
                             },
                         },
+
                     }],
 
 
