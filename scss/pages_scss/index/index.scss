@@ -549,6 +549,8 @@ div.header_wrap {
                                     border-radius: 20px;
                                     overflow: hidden;
                                     .screen_carousel {
+                                        height: 300px;
+                                        margin-top: 25px;
                                         // border: 1px solid #000;
                                         .item {
                                             display: inline-block;
@@ -593,14 +595,15 @@ div.header_wrap {
                                                     margin-top: 10px;
                                                     margin-left: auto;
                                                     display: flex;
-                                                    justify-content: space-around;
+                                                    text-align: left;
+                                                    // justify-content: space-around;
                                                     .courseHour {
                                                         font-size: 16px;
                                                     }
                                                     .courseCost {
                                                         font-size: 18px;
                                                         font-weight: bold;
-                                                        // margin-left: auto;
+                                                        margin-left: 20px;
                                                     }
                                                 }
                                             }

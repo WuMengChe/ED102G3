@@ -3,7 +3,7 @@ window.addEventListener('load', function() {
     $('.editShow').hide();
     // let quizEdit = document.getElementsByClassName('quizEdit');
 
-    $('.artReportEdit').click(function(e) {
+    $('.msgReportEdit').click(function(e) {
         let editBtn = e.target;
         let td = $(editBtn).parent().siblings()
         if (editBtn.innerText == "編輯") {
@@ -33,25 +33,25 @@ window.addEventListener('load', function() {
 
         } else {
 
-            let artReport = {};
-            artReport.ART_REP_PASS = parseInt(td.children('.ART_REP_PASS').val());
-            artReport.ART_REP_NO = parseInt(td.children('.ART_REP_NO').text())
-            console.log(artReport);
+            let msgReport = {};
+            msgReport.MES_REP_PASS = parseInt(td.children('.MES_REP_PASS').val());
+            msgReport.MES_REP_NO = parseInt(td.children('.MES_REP_NO').text())
+            console.log(msgReport);
 
-            let artReportJson = JSON.stringify(artReport);
-            let artReportXhr = new XMLHttpRequest();
+            let msgReportJson = JSON.stringify(msgReport);
+            let msgReportXhr = new XMLHttpRequest();
             // console.log(artReportXhr);
-            artReportXhr.open("POST", "backstage_artReport.php", true);
-            artReportXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            artReportXhr.send(`artReportJson=${artReportJson}`);
+            msgReportXhr.open("POST", "backstage_msgReport.php", true);
+            msgReportXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            msgReportXhr.send(`msgReportJson=${msgReportJson}`);
 
-            artReportXhr.onload = function() {
-                if (artReportXhr.status == 200) {
-                    alert(artReportXhr.responseText);
+            msgReportXhr.onload = function() {
+                if (msgReportXhr.status == 200) {
+                    alert(msgReportXhr.responseText);
                     location.reload();
-                    console.log(artReportXhr.responseText);
+                    console.log(msgReportXhr.responseText);
                 } else {
-                    alert(artReportXhr.status);
+                    alert(msgReportXhr.status);
                 }
 
             }
