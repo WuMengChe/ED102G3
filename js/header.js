@@ -43,7 +43,7 @@ new Vue({
         .get("./php/memberStateCheck.php")
         .then((res) => {
           if (res.status == 200) {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data != 0) {
               let memName = res.data.split(";")[1];
               // $("div.member > a").html("Hi," + memName);
