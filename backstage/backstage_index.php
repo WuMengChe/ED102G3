@@ -1100,8 +1100,6 @@ try {
   <script src="./js/backstage_msgReportEdit.js"></script>
   <script src="./js/backstage_postMaterialEdit.js"></script>
   <script src="./js/backstage_announceEdit.js"></script>
-  <script src="./js/backstage_insert_announcement.js"></script>
-
 </body>
 
 
