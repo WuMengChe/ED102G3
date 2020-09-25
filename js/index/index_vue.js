@@ -64,6 +64,8 @@ new Vue({
     el: '#img'
 })
 
+
+
 new Vue({
     el: '.message',
     data: {
@@ -100,6 +102,8 @@ new Vue({
         this.slick_data();
     },
 });
+
+
 new Vue({
     el: '.screen',
     data: {

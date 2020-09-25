@@ -244,9 +244,15 @@ let vm = new Vue({
             this.hot_course = res1.data;
 
             // OWL套件
-            script = document.createElement("script");
-            script.src = "./js/course/owl_auto_slide.js";
-            document.body.appendChild(script);
+            let localURL = new URL(document.location);
+            if (
+              localURL.toString().includes("course_main") ||
+              localURL.toString().includes("course_introduce")
+            ) {
+              script = document.createElement("script");
+              script.src = "./js/course/owl_auto_slide.js";
+              document.body.appendChild(script);
+            }
 
             // ===================
             // category課程資料
@@ -273,9 +279,13 @@ let vm = new Vue({
           document.body.appendChild(script);
         })
         .then(() => {
-          this.mem_boughtCourse.forEach((course) => {
-            $(`button.cus_${course.ski_no}`).text("已購買").addClass("bought");
-          });
+          if (this.mem_boughtCourse != 0) {
+            this.mem_boughtCourse.forEach((course) => {
+              $(`button.cus_${course.ski_no}`)
+                .text("已購買")
+                .addClass("bought");
+            });
+          }
         })
         .then(() => {
           $(".bought").attr("disabled", "disabled");
@@ -333,7 +343,6 @@ let vm = new Vue({
 
             // =================
             // 推薦課程資料
-            console.log(res2.status);
             if (res2.status == 200) {
               if (res2.data != 0) {
                 _this.introduce_suggest = res2.data;
@@ -360,9 +369,13 @@ let vm = new Vue({
           _this.receive_storage();
         })
         .then(() => {
-          this.mem_boughtCourse.forEach((course) => {
-            $(`button.cus_${course.ski_no}`).text("已購買").addClass("bought");
-          });
+          if (this.mem_boughtCourse != 0) {
+            this.mem_boughtCourse.forEach((course) => {
+              $(`button.cus_${course.ski_no}`)
+                .text("已購買")
+                .addClass("bought");
+            });
+          }
         })
         .then(() => {
           $(".bought").attr("disabled", "disabled");
@@ -448,7 +461,6 @@ let vm = new Vue({
             .all([axios.post("./php/course_send_ordList.php", formData)])
             .then(
               axios.spread((res1, res2) => {
-                alert("訂單完成");
                 let ord_no = res1.data[0].ord_no;
                 window.location.href = "./course_check.html?ord_no=" + ord_no;
               })
