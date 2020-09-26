@@ -2,6 +2,11 @@
 @import './index_animation';
 $title: 30px;
 $opacity: 0.8;
+@font-face {
+    font-family: 'noto';
+    src: url(../../../font/GenJyuuGothicL-Normal.ttf);
+}
+
 @mixin screen {
     // border: 1px solid red;
     height: fit-content;
@@ -65,27 +70,6 @@ div.header_wrap {
     }
 }
 
-.fp-viewing-4 {
-    .slick-active {
-        div {
-            .cards {
-                .allCard {
-                    .card--animated {
-                        @include animation (card, 1, 3s, ease-in) {
-                            animation-fill-mode: forwards;
-                        }
-                        ;
-                        @include animation (cardBounce, 1, 1.5s, ease-in-out) {
-                            animation-fill-mode: forwards;
-                        }
-                        ;
-                    }
-                }
-            }
-        }
-    }
-}
-
 #fp-nav ul li:hover .fp-tooltip,
 #fp-nav.fp-show-active a.active+.fp-tooltip {
     color: black;
@@ -132,6 +116,10 @@ div.header_wrap {
                         margin: 0 auto;
                         max-width: 600px;
                         svg {
+                            textpath {
+                                font-display: swap;
+                                font-family: 'noto';
+                            }
                             .real {
                                 fill: $practical_color;
                             }
@@ -199,7 +187,6 @@ div.header_wrap {
                 @media screen and (max-width:480px) {
                     .index_test_text {
                         top: 20%;
-                        left: 20%;
                         width: 60%;
                         text-align: center;
                         .btn_primary {
@@ -269,15 +256,17 @@ div.header_wrap {
                             .firstStage {
                                 width: 100%;
                             }
-                            .Stext {
-                                position: relative;
-                                bottom: 60px;
-                                color: darkslategray;
-                            }
-                            .Stitle {
-                                position: relative;
-                                bottom: 55px;
-                                color: darkslategray;
+                            .stageInfoS {
+                                .Stext {
+                                    position: relative;
+                                    bottom: 60px;
+                                    color: darkslategray;
+                                }
+                                .Stitle {
+                                    position: relative;
+                                    bottom: 55px;
+                                    color: darkslategray;
+                                }
                             }
                         }
                         .stageM {
@@ -285,15 +274,17 @@ div.header_wrap {
                             .secondStage {
                                 width: 100%;
                             }
-                            .Mtext {
-                                position: relative;
-                                bottom: 120px;
-                                color: darkslategray;
-                            }
-                            .Mtitle {
-                                position: relative;
-                                bottom: 60px;
-                                color: darkslategray;
+                            .stageInfoM {
+                                .Mtext {
+                                    position: relative;
+                                    bottom: 120px;
+                                    color: darkslategray;
+                                }
+                                .Mtitle {
+                                    position: relative;
+                                    bottom: 60px;
+                                    color: darkslategray;
+                                }
                             }
                         }
                         .stageL {
@@ -301,15 +292,17 @@ div.header_wrap {
                             .thirdStage {
                                 width: 100%;
                             }
-                            .Ltext {
-                                position: relative;
-                                bottom: 160px;
-                                color: darkslategray;
-                            }
-                            .Ltitle {
-                                position: relative;
-                                bottom: 60px;
-                                color: darkslategray;
+                            .stageInfoL {
+                                .Ltext {
+                                    position: relative;
+                                    bottom: 160px;
+                                    color: darkslategray;
+                                }
+                                .Ltitle {
+                                    position: relative;
+                                    bottom: 60px;
+                                    color: darkslategray;
+                                }
                             }
                         }
                     }
@@ -353,7 +346,6 @@ div.header_wrap {
                             // border: 1px solid #000;
                             height: 350px;
                             padding-top: 100px;
-                            // padding-left: 50px;
                             margin: 0 auto;
                             display: table;
                             width: 80%;

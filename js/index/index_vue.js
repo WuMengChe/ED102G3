@@ -49,7 +49,7 @@ Vue.component('cards', {
         // this.postcard_data();
         axios
             .get('./php/front_index_postcard.php')
-            .then(res => this.postcards = res.data);
+            .then((res) => { this.postcards = res.data });
 
 
 

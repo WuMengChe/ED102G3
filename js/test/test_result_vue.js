@@ -203,7 +203,7 @@ let testResult = new Vue({
                             { name: '企業型（E）', max: 100},
                             { name: '事務型（C）', max: 100},
                         ],
-                        // radius: 80 // 調整雷達圖大小
+                        radius: 85 // 調整雷達圖大小
                     },
                     series: [{
                         name: '分析結果',
