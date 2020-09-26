@@ -1,9 +1,9 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     // 更改行業資料
     $('.editShow').hide();
     // let quizEdit = document.getElementsByClassName('quizEdit');
 
-    $('.artReportEdit').click(function(e) {
+    $('.artReportEdit').click(function (e) {
         let editBtn = e.target;
         let td = $(editBtn).parent().siblings()
         if (editBtn.innerText == "編輯") {
@@ -17,7 +17,7 @@ window.addEventListener('load', function() {
 
 
 
-            $('.cancel').click(function() {
+            $('.cancel').click(function () {
                 $(this).parent().children('.editShow').hide();
                 $(this).parent().siblings().children('.editShow').hide();
                 // console.log($(this).parent().children('.quizShow'));
@@ -36,6 +36,7 @@ window.addEventListener('load', function() {
             let artReport = {};
             artReport.ART_REP_PASS = parseInt(td.children('.ART_REP_PASS').val());
             artReport.ART_REP_NO = parseInt(td.children('.ART_REP_NO').text())
+            artReport.DIS_NO = parseInt(td.children('.DIS_NO').text())
             console.log(artReport);
 
             let artReportJson = JSON.stringify(artReport);
@@ -45,13 +46,13 @@ window.addEventListener('load', function() {
             artReportXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             artReportXhr.send(`artReportJson=${artReportJson}`);
 
-            artReportXhr.onload = function() {
+            artReportXhr.onload = function () {
                 if (artReportXhr.status == 200) {
-                    // alert(artReportXhr.responseText);
-                    location.reload();
-                    // console.log(artReportXhr.responseText);
+                    alert(artReportXhr.responseText);
+                    // location.reload();
+                    console.log(artReportXhr.responseText);
                 } else {
-                    // alert(artReportXhr.status);
+                    alert(artReportXhr.status);
                 }
 
             }
