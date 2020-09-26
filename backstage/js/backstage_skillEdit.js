@@ -147,10 +147,10 @@ window.addEventListener('load', function() {
 
             let skillJson = JSON.stringify(skill);
             let skillXhr = new XMLHttpRequest();
-            console.log(skillJson);
             skillXhr.open("POST", "backstage_course.php", true);
             skillXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             skillXhr.send(`skillJson=${skillJson}`);
+            console.log(skillXhr);
 
             skillXhr.onload = function() {
                 if (skillXhr.status == 200) {
