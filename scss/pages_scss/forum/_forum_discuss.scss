@@ -63,7 +63,7 @@ display: none;
   max-width: 1200px;
   min-height: 600px;
   .dis_side {
-    position: fixed;
+    // position: fixed;
     // border: 1px solid red;
   }
   .right_panel {
@@ -83,7 +83,7 @@ $timing: 0.3s;
   .select_wrap {
     text-align: end;
     max-height: 34px;
-    z-index: 100;
+    z-index: 30;
   }
 }
 
@@ -159,7 +159,7 @@ $timing: 0.3s;
     padding: 0;
     box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
     max-height: 15em;
-    z-index: 50;
+    z-index: 30;
     label {
       border-top: 0.06em solid #d9d9d9;
       &:hover {
@@ -531,14 +531,14 @@ a.pencil_btn {
   height: 230vh;
   background-color: hsla(0, 0%, 0%, 0.5);
   opacity: 1;
-  z-index: 201;
+  z-index: 60;
   transition: opacity 1s;
   display: none;
 }
 
 .-open {
   opacity: 1;
-  z-index: 97;
+  z-index: 70;
   position: fixed;
   top: 0;
   left: 0;
@@ -800,7 +800,7 @@ a.pencil_btn {
 }
 div.-on {
   opacity: 1;
-  z-index: 400;
+  z-index: 80;
 }
 
 .impeachment_overlay > article {
@@ -851,7 +851,7 @@ div.-on {
 
 @media screen and (max-width: 992px) {
   div.forum_overlay > .forum_checkMsg {
-    min-width: 500px;
+    min-width: 250px;
     width: 100%;
     padding: 10px 0;
   }
@@ -859,9 +859,8 @@ div.-on {
   .wrap {
     .side_wrap {
       position: fixed;
-      z-index: 200;
+      z-index: 75;
       left: 0;
-      z-index: 10;
       .main_side_bar {
         position: inherit;
         width: inherit;
