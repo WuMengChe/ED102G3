@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>forum_discuss</title>
+  <title>職涯論壇</title>
   @@include('app/script.html')
   <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css" />
   <link rel="stylesheet" href="./css/app_public.css" />
@@ -21,7 +21,7 @@
       <div class="side_wrap col-lg-3">
         <div class="dis_side main_side_bar">
           <ul>
-            <li v-for="(type, index) in category">
+            <li v-cloak v-for="(type, index) in category">
               <a href="#" :class="'point' + index" @click="search($event,type.link_title);"><span></span>{{type.link_title}}</a>
             </li>
           </ul>
@@ -65,7 +65,7 @@
 
         <div class="bulletin">
           <marquee class="blink_text">
-            <div class="bulletin_text_wrap" v-for="(ann,index) in announcement">
+            <div class="bulletin_text_wrap" v-cloak v-for="(ann,index) in announcement">
               <span>公告</span>
               <span class="bulletin_tex">{{ann.ANN_CONTENT}}</span>
             </div>
@@ -75,8 +75,8 @@
         <div class="dis_body">
           <!--瀏覽留言區-->
           <div class="tab_contents">
-            <div class="msg_content" v-for="(messages,index) in searchResult">
-              <div class="mem_info" @click="openContent(index,1)">
+            <div class="msg_content" v-cloak v-for="(messages,index) in searchResult" @click="openContent(index,1)">
+              <div class="mem_info" >
                 <div class="info_list">
                   <div class="img_div">
                     <img :src="messages.MEM_PIC" alt="pic" class="dis_img" />
@@ -89,28 +89,26 @@
                   <span class="type_tag share_color">{{messages.DIS_CLASS}}</span>
                 </div>
               </div>
-              <div class="msg_title open_dialog" @click="openContent(index)">
+              <div class="msg_title open_dialog">
                 {{messages.DIS_NAME}}
               </div>
-              <div class="msg_textarea" @click="openContent(index)">
+              <div class="msg_textarea" v-for="(item, index) in messages.DIS_CONTENT" v-if="1 >= index">
               <p>
-                {{messages.DIS_CONTENT}}
-                ＰＰＰＰ
-                {{messages.DIS_NO}}
+                {{item}}
                 </p>
               </div>
               <div class="msg_btn">
                 <button class="heart">
-               <i class="fas fa-heart" :class="{'colorRed':isHeart[index]}" @click="heart_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
+               <i class="fas fa-heart" :class="{'colorRed':isHeart[index]}" @click.stop="heart_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
                 <!-- <button class="gray_btn count" @click="openContent(index)">
                   <i class="far fa-comment-alt"></i>
                   <span>{{1}}</span>
                 </button> -->
                 <button class="gray_btn collect_btn">
-                  <i class="fas fa-bookmark" :class="{'colorGray':isCollect[index]}" @click="collect_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
+                  <i class="fas fa-bookmark" :class="{'colorGray':isCollect[index]}" @click.stop="collect_btn(index,messages.DIS_NO, 0)" :id="'dis'+ messages.DIS_NO"></i>
                 </button>
-                <button class="gray_btn" @click="accuse_btn(index), repNo = messages.DIS_NO">
+                <button class="gray_btn" @click.stop="accuse_btn(index), repNo = messages.DIS_NO">
                   <i class="fas fa-exclamation-circle"></i>
                 </button>
               </div>
@@ -151,7 +149,7 @@
                 <div class="img_div">
                   <img :src="msg.MEM_PIC" alt="" class="dis_img" />
                 </div>
-                <div class="dis_name">{{msg.MEM_NO}}</div>
+                <div class="dis_name">{{msg.MEM_NAME}}</div>
                 <div class="dis_date">{{msg.DIS_DATE}}</div>
               </div>
               <div class="tags_list">
@@ -162,9 +160,9 @@
             <div class="msg_title open_dialog">
               {{msg.DIS_NAME}}
             </div>
-            <div class="msg_textarea">
+            <div class="msg_textarea" v-cloak v-for="(item, index) in msg.DIS_CONTENT">
               <p>
-              {{msg.DIS_CONTENT}}
+              {{item}}
               </p>
             </div>
             <div class="msg_btn">
@@ -186,7 +184,7 @@
         <div class="feedback_count">共<span>{{box_msg.length}}</span>則回覆</div>
         <!--回應留言區-->
         <div class="forum_feedback">
-          <div class="feedback_content" v-for="(msg,index) in box_msg">
+          <div class="feedback_content" v-cloak v-for="(msg,index) in box_msg">
             <div class="info_list">
               <div class="img_div">
                 <img :src="msg.MEM_PIC" alt="" class="dis_img" />
@@ -195,12 +193,11 @@
               <div class="dis_date">{{msg.DIS_MES_DATE}}</div>
             </div>
             <div class="msg_textarea">
-              {{msg.DIS_MES_CONTENT}} 123---
-                {{msg.DIS_MES_NO}}
+              {{msg.DIS_MES_CONTENT}}
             </div>
             <div class="msg_btn">
               <button class="heart">
-                 <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="$forceUpdate(), heart_btn_feedback(index,msg.DIS_MES_NO), feedBoxHeart[index] = !feedBoxHeart[index]"></i>
+                 <i class="fas fa-heart" :class="{colorRed:feedBoxHeart[index]}" @click="$forceUpdate(), heart_btn_feedback(index,msg.DIS_MES_NO)"></i>
               </button>
               <button class="gray_btn" @click="accuse_innerbox_btn(msg.index), repinnerNo = msg.DIS_MES_NO">
                 <i class="fas fa-exclamation-circle"></i>
@@ -213,7 +210,7 @@
               <textarea name="" id="send_msg" placeholder="請輸入訊息..."></textarea>
             </div>
             <div class="confirm_send_btn">
-              <input type="submit" value="送出" class="btn_third" id="send_msg_btn" @click="sendMsg(msg.DIS_NO)"/>
+              <button class="btn_primary" id="send_msg_btn" @click="sendMsg(msg.DIS_NO)">送出</button>
             </div>
           </div>
         </div>
@@ -231,7 +228,7 @@
         </div>
         <h3>檢舉這篇文章的原因？</h3>
         <div class="accuse_wrap">
-          <p v-for="(item, index) in memberAccuse">
+          <p v-cloak v-for="(item, index) in memberAccuse">
              <label @click="repIndex = index">
                  <input type="radio" name="accuse" class="radio"/>{{item}}
              </label>
@@ -253,7 +250,7 @@
         </div>
         <h3>檢舉這篇文章的原因？</h3>
         <div class="accuse_wrap">
-          <p v-for="(item, index) in memberAccuse">
+          <p v-cloak v-for="(item, index) in memberAccuse">
              <label @click="repinnerIndex = index">
                  <input type="radio" name="accuse" class="radio"/>{{item}}
              </label>
@@ -264,8 +261,6 @@
         </div>
       </article>
     </div>
-
-
   </div>
 
    

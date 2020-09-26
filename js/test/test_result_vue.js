@@ -131,6 +131,7 @@ let testResult = new Vue({
                         console.log(res.data)
                         // this.anaResult = res.data
                       });
+                    //   window.location.reload();
                 }
                 // console.log(resp)
             })
@@ -156,6 +157,7 @@ let testResult = new Vue({
                     alert('會員登入成功，請再次點擊儲存結果!');
                     document.querySelector('.bg_of_lightbx').style = "display:none";
                     console.log(resp.data)
+                    window.location.reload();
                 }
             })
         },
@@ -223,9 +225,8 @@ let testResult = new Vue({
                 media: [
                     {
                         query: {
-                           
-                            mixWidth: 500,
-                            // Height: 300
+                            minWidth: 200,
+                            maxHeight: 300,
                         },
                         option: {
                             series:[{

@@ -14,13 +14,20 @@ let careerProfessionVueContent = new Vue({
     el: '#car_pro_vue',
     data: carProData,
     mounted() {
+        var twoData = false;
         var formData = new FormData();
-        formData.append('proNo_1', localStorage.proNo_1);
         if(localStorage.proNo_1 && localStorage.proNo_2){
+            formData.append('proNo_1', localStorage.proNo_1);
             formData.append('proNo_2', localStorage.proNo_2);
             formData.append('proNo_2_Use', 1);
+            twoData = true;
+        }
+        else if(localStorage.proNo_1 && !localStorage.proNo_2){
+            formData.append('proNo_1', localStorage.proNo_1);
+            formData.append('proNo_2_Use', 0);
         }
         else{
+            formData.append('proNo_1', localStorage.proNo_2);
             formData.append('proNo_2_Use', 0);
         };
         axios
@@ -40,7 +47,7 @@ let careerProfessionVueContent = new Vue({
             this.industry[0].info = this.loadDataTemp[0][0].職業介紹;
             this.industry[0].content = this.loadDataTemp[0][0].職業內容.split(';').splice(1);
             this.industry[0].skill = this.loadDataTemp[0][0].職業技能.split(';').splice(1);
-            if(localStorage.proNo_1 && localStorage.proNo_2){
+            if(twoData){
                 this.industry.push(new Object());
                 this.industry[1].typeName = this.loadDataTemp[0][1].類型名稱;
                 this.industry[1].backgroundColor = this.loadDataTemp[0][1].類型顏色;
@@ -100,8 +107,8 @@ let careerProfessionVueContent = new Vue({
             window.location.href = "./career.html";
         }
         // localStorage.clear();
-        // localStorage.removeItem('proNo_1');
-        // localStorage.removeItem('proNo_2');
+        localStorage.removeItem('proNo_1');
+        localStorage.removeItem('proNo_2');
     },
     created() {
         window.addEventListener('resize', this.changeWidth);

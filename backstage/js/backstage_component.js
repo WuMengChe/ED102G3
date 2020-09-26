@@ -218,11 +218,11 @@ new Vue({
 
                     memberXhr.onload = function () {
                         if (memberXhr.status == 200) {
-                            alert(memberXhr.responseText);
+                            // alert(memberXhr.responseText);
                             location.reload();
                             console.log(memberXhr.responseText);
                         } else {
-                            alert(memberXhr.status);
+                            // alert(memberXhr.status);
                         }
 
                     }

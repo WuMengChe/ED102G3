@@ -349,7 +349,7 @@ function getMsg()
         from member
         join DISCUSS_MESSAGE using(MEM_NO)
         join discuss_area
-        on ( discuss_area.DIS_NO = DISCUSS_MESSAGE.DIS_NO and DISCUSS_MESSAGE.DIS_NO = " . $DIS_NO . " )";
+        on ( discuss_area.DIS_NO = DISCUSS_MESSAGE.DIS_NO and DISCUSS_MESSAGE.DIS_NO = " . $DIS_NO . " ) where DIS_MES_HIDDEN = 1";
         $dis = $pdo->query($sql);
         if ($dis->rowCount() == 0) { //找不到
             //傳回空的JSON字串
@@ -374,12 +374,12 @@ function getAllDiscuss()
     try {
         require_once "connectMySql.php";
         //------------取得總筆數
-        $sql = "select count(*) totalCount from DISCUSS_AREA";
+        $sql = "select count(*) totalCount from DISCUSS_AREA where DIS_HIDDEN = 1";
         $stmt = $pdo->query($sql);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $totalRecords = $row["totalCount"];
         //------------每頁要印幾筆
-        $recPerPage = 25;
+        $recPerPage = 30;
         //------------算出總共有幾頁
         $totalPages = ceil($totalRecords / $recPerPage);
         //目前要顯示哪一頁
@@ -449,7 +449,7 @@ function getAnn()
 {
     try {
         require_once "connectMySql.php";
-        $sql = "select ANN_CONTENT from ANNOUNCEMENT";
+        $sql = "select ANN_CONTENT from ANNOUNCEMENT where ANN_USE = 1";
         $dis = $pdo->query($sql);
         if ($dis->rowCount() == 0) { //找不到
             //傳回空的JSON字串

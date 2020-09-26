@@ -655,8 +655,6 @@ let changeMemContent = new Vue({
             this.memberArticleOverlay.index = index;
         },
         openPosPage(index){
-            console.log(index)
-            console.log(this.memberPostCard[index].postSrc)
             this.posTemp = this.memberPostCard[index];
             document.querySelector('.ove_pos').classList.add('artShow');
         },

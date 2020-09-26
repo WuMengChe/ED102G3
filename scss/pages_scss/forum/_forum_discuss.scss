@@ -3,6 +3,10 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
   @include header_line;
 }
 
+[v-cloak] {
+display: none;
+}
+
 * {
   list-style: none;
   margin: 0;
@@ -20,7 +24,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
   background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
   background-position: top center;
-  min-height: 1000px;
+  min-height: 600px;
   padding: 0;
 }
 
@@ -59,7 +63,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
   max-width: 1200px;
   min-height: 600px;
   .dis_side {
-    position: fixed;
+    // position: fixed;
     // border: 1px solid red;
   }
   .right_panel {
@@ -79,7 +83,7 @@ $timing: 0.3s;
   .select_wrap {
     text-align: end;
     max-height: 34px;
-    z-index: 100;
+    z-index: 30;
   }
 }
 
@@ -155,7 +159,7 @@ $timing: 0.3s;
     padding: 0;
     box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
     max-height: 15em;
-    z-index: 50;
+    z-index: 30;
     label {
       border-top: 0.06em solid #d9d9d9;
       &:hover {
@@ -261,10 +265,11 @@ $timing: 0.3s;
         font-size: 22px;
       }
       .msg_textarea {
-        min-height: 85px;
-        padding: 20px;
-        letter-spacing: 1px;
-        cursor: pointer;
+          padding: 0px 20px;
+          letter-spacing: 1px;
+          cursor: pointer;
+          min-height:100px;
+          line-height: 25px;
 
         p {
           overflow: hidden;
@@ -496,23 +501,25 @@ div.pagination_block > ul.pagination > li > a:hover {
 }
 
 a.pencil_btn {
-  display: inline-block;
-  cursor: pointer;
-  position: fixed;
-  bottom: 30%;
-  right: 2%;
-
-  outline: none;
-  transform: translate(0, 10px);
-  transition: transform 0.5s;
-  background-color: #ccc;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    bottom: 30%;
+    right: 2%;
+    outline: 0;
+    transform: translate(0,10px);
+    transition: transform .5s;
+    background-color: #ee7002;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   .fas {
     position: absolute;
-    right: 24%;
-    top: 31%;
+    right: 16%;
+    top: 20%;
+    color: #fff;
+    font-size: 25px;
+
   }
 }
 
@@ -524,14 +531,14 @@ a.pencil_btn {
   height: 230vh;
   background-color: hsla(0, 0%, 0%, 0.5);
   opacity: 1;
-  z-index: 201;
+  z-index: 60;
   transition: opacity 1s;
   display: none;
 }
 
 .-open {
   opacity: 1;
-  z-index: 100;
+  z-index: 70;
   position: fixed;
   top: 0;
   left: 0;
@@ -556,6 +563,7 @@ a.pencil_btn {
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: scroll;
+  margin-top: 70px;
 }
 
 /* 留言數量 */
@@ -755,6 +763,7 @@ a.pencil_btn {
       .leave_msg {
         #send_msg {
           width: 100%;
+          min-height:150px;
           resize: none;
           // position: absolute;
           // bottom: 0;
@@ -765,6 +774,7 @@ a.pencil_btn {
       .confirm_send_btn {
         padding-bottom: 15px;
         text-align: center;
+        height: 120px;
       }
       #send_msg_btn {
         width: 60px;
@@ -790,7 +800,7 @@ a.pencil_btn {
 }
 div.-on {
   opacity: 1;
-  z-index: 400;
+  z-index: 80;
 }
 
 .impeachment_overlay > article {
@@ -823,10 +833,25 @@ div.-on {
   }
 }
 
+
+
+
 /* RWD */
+
+
+@media screen and (min-width: 1440px) {
+
+  a.pencil_btn {
+    position: fixed;
+    bottom: 8%;
+    left: 93%;
+  }
+}
+
+
 @media screen and (max-width: 992px) {
   div.forum_overlay > .forum_checkMsg {
-    max-width: 500px;
+    min-width: 250px;
     width: 100%;
     padding: 10px 0;
   }
@@ -834,9 +859,8 @@ div.-on {
   .wrap {
     .side_wrap {
       position: fixed;
-      z-index: 200;
+      z-index: 75;
       left: 0;
-      z-index: 10;
       .main_side_bar {
         position: inherit;
         width: inherit;
@@ -894,6 +918,7 @@ div.-on {
 }
 
 @media screen and (max-width: 500px) {
+
   .rum_overlay {
     top: 0;
     left: 0;
@@ -906,6 +931,29 @@ div.-on {
 }
 
 @media (max-width: 400px) {
+
+  .forum_overlay > .forum_checkMsg {
+  
+  min-width: 500px;
+
+}
+
+  a.pencil_btn {
+    bottom: 5%;
+    right: 2%;
+    width: 40px;
+    height: 40px;
+  .fas {
+
+    right: 20%;
+    top: 27%;
+    color: white;
+    font-size: 17px;
+  }
+
+  }
+
+
   .dis_body {
     font-size: 14px;
     .tab_contents {
@@ -940,12 +988,5 @@ div.-on {
 
   .select {
     padding: 20px 5px;
-  }
-
-  .forum_overlay > .forum_checkMsg {
-    min-width: 390px;
-  }
-
-  .close_btn {
   }
 }
