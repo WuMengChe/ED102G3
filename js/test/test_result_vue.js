@@ -225,9 +225,8 @@ let testResult = new Vue({
                 media: [
                     {
                         query: {
-                           
-                            mixWidth: 500,
-                            // Height: 300
+                            minWidth: 200,
+                            maxHeight: 300,
                         },
                         option: {
                             series:[{
