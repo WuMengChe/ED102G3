@@ -1,25 +1,24 @@
 @import "../utils/variables";
 
 body {
-    font-family: "微軟正黑體";
-
+  font-family: "微軟正黑體";
 }
 
 img {
-    vertical-align: center;
+  vertical-align: middle;
 }
 
 h1 {
-    font-size: 30px;
-    font-weight: 600;
+  font-size: 30px;
+  font-weight: 600;
 }
 
 h2 {
-    font-size: 26px;
+  font-size: 26px;
 }
 
 h3 {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 // h4 {
@@ -32,9 +31,9 @@ h3 {
 // }
 
 p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .p_small {
-    font-size: 15px;
+  font-size: 15px;
 }
