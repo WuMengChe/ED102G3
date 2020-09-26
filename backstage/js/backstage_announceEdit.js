@@ -42,7 +42,7 @@ window.addEventListener('load', function() {
 
             announceXhr.onload = function() {
                 if (announceXhr.status == 200) {
-                    alert(announceXhr.responseText);
+                    // alert(announceXhr.responseText);
                     location.reload();
                     // console.log(announceXhr.responseText);
                 } else {

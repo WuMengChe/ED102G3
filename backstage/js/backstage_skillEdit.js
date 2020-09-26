@@ -154,11 +154,11 @@ window.addEventListener('load', function() {
 
             skillXhr.onload = function() {
                 if (skillXhr.status == 200) {
-                    alert(skillXhr.responseText);
-                    // location.reload();
-                    console.log(skillXhr.responseText);
+                    // alert(skillXhr.responseText);
+                    location.reload();
+                    // console.log(skillXhr.responseText);
                 } else {
-                    alert(skillXhr.status);
+                    // alert(skillXhr.status);
                 }
             }
 

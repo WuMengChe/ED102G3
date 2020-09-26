@@ -14,9 +14,7 @@ new Vue({
             this.myChart = echarts.init(document.getElementById("salGraph"));
             // 指定图表的配置项和数据
             this.option = {
-                    title: {
-                        text: ""
-                    },
+
                     tooltip: {},
                     legend: {
                         data: []
@@ -25,7 +23,6 @@ new Vue({
                     yAxis: {
                         data: ["衬衫", "羊毛衫", "雪纺衫"],
                         axisLabel: {
-
                             fontSize: 14
                         }
 

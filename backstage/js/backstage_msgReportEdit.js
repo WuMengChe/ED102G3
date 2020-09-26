@@ -3,7 +3,7 @@ window.addEventListener('load', function() {
     $('.editShow').hide();
     // let quizEdit = document.getElementsByClassName('quizEdit');
 
-    $('.memberEdit').click(function(e) {
+    $('.msgReportEdit').click(function(e) {
         let editBtn = e.target;
         let td = $(editBtn).parent().siblings()
         if (editBtn.innerText == "編輯") {
@@ -33,25 +33,25 @@ window.addEventListener('load', function() {
 
         } else {
 
-            let member = {};
-            member.MEM_USE = parseInt(td.children('.MEM_USE').val());
-            member.memNo = parseInt(td.children('.memNo').text())
-            console.log(member);
+            let msgReport = {};
+            msgReport.MES_REP_PASS = parseInt(td.children('.MES_REP_PASS').val());
+            msgReport.MES_REP_NO = parseInt(td.children('.MES_REP_NO').text())
+            console.log(msgReport);
 
-            let memberJson = JSON.stringify(member);
-            let memberXhr = new XMLHttpRequest();
-            // console.log(memberXhr);
-            memberXhr.open("POST", "backstage_member.php", true);
-            memberXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            memberXhr.send(`memberJson=${memberJson}`);
+            let msgReportJson = JSON.stringify(msgReport);
+            let msgReportXhr = new XMLHttpRequest();
+            // console.log(artReportXhr);
+            msgReportXhr.open("POST", "backstage_msgReport.php", true);
+            msgReportXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            msgReportXhr.send(`msgReportJson=${msgReportJson}`);
 
-            memberXhr.onload = function() {
-                if (memberXhr.status == 200) {
-                    // alert(memberXhr.responseText);
+            msgReportXhr.onload = function() {
+                if (msgReportXhr.status == 200) {
+                    // alert(msgReportXhr.responseText);
                     location.reload();
-                    // console.log(memberXhr.responseText);
+                    // console.log(msgReportXhr.responseText);
                 } else {
-                    // alert(memberXhr.status);
+                    // alert(msgReportXhr.status);
                 }
 
             }

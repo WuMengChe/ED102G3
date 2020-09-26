@@ -91,6 +91,16 @@ new Vue({
                 autoplay: true,
                 autoplaySpeed: 2000,
                 arrows: false,
+                responsive: [{
+
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                            // slidesToScroll: 1
+                        }
+                    },
+
+                ]
             });
         }
     },
