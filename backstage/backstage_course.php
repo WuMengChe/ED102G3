@@ -10,7 +10,7 @@ try {
   $couImgData = base64_decode($couImgUpdate);
   $couImgFilename = "./img/career/{$courseUp['skiImgInput_name']}";
   file_put_contents($couImgFilename, $couImgData);
-  
+
   $couTecImgUpdate = str_replace('data:image/png;base64,', '', $courseUp["skiTecImgInput"]);
   $couTecImgUpdate = str_replace(' ', '+', $couTecImgUpdate);
   $couTecImgData = base64_decode($couTecImgUpdate);
@@ -29,7 +29,7 @@ try {
   SKI_TEC_IMG=:SKI_TEC_IMG, SKI_TEC_NAME=:SKI_TEC_NAME, 
   SKI_TEC_INTRO=:SKI_TEC_INTRO, SKI_OUTLINE=:SKI_OUTLINE, 
   SKI_STUD=:SKI_STUD where SKI_NO = :SKI_NO and SKI_HIDDEN = :SKI_HIDDEN ";
-  
+
 
 
   $course = $pdo->prepare($courseSql);
@@ -51,8 +51,8 @@ try {
   $course->bindValue(":SKI_NO", $courseUp["skiNo"]);
   $course->bindValue(":SKI_HIDDEN", $courseUp["skill_USE"]);
   $course->execute(); //執行
-
   echo "已成功修改";
+  header("Location:./backstage_index.php");
 } catch (PDOException $e) {
   echo "錯誤原因:", $e->getMessage(), "<br>";
   echo "錯誤行號:", $e->getLine(), "<br>";

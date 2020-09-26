@@ -37,9 +37,7 @@ function dropped(e) {
     arr[i].style.background = `url(${readFile.result})`;
     arr[i].style.backgroundSize = 'cover';
     arr[i].style.backgroundRepeat = 'no-repeat';
-    // arr[i].style.backgroundPosition = 'center';
-    arr[i].style.backgroundPosition.draggable();;
-
+    arr[i].style.backgroundPosition = 'center';
     let p = arr[i].getElementsByTagName("p");
     p[0].style.opacity = 0;
   });
