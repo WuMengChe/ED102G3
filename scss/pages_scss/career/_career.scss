@@ -545,10 +545,11 @@ body.car_body {
         .mem_ove_list {
           display: flex;
           flex-direction: row;
+          align-items: center;
 
           .mem_ove_img {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            // height: 30px;
             border-radius: 50%;
             overflow: hidden;
 
@@ -589,6 +590,7 @@ body.car_body {
         padding: 5px 20px;
         letter-spacing: 1px;
         color: #000;
+        line-height: 1.5;
       }
 
       .mem_ove_btn {
@@ -864,5 +866,18 @@ body.car_body {
         }
       }
     }
+  }
+}
+
+@media (max-width: 400px) {
+
+  .mem_overlay .mem_checkMsg .mem_ove_feedback .mem_ove_info .mem_ove_list,
+  .mem_overlay .mem_checkMsg .mem_wrap .mem_ove_info .mem_ove_list {
+    font-size: 14px;
+  }
+
+  .mem_overlay .mem_checkMsg .mem_ove_feedback .mem_ove_info .mem_ove_tags,
+  .mem_overlay .mem_checkMsg .mem_wrap .mem_ove_info .mem_ove_tags {
+    font-size: 12px;
   }
 }
