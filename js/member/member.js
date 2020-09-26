@@ -63,7 +63,6 @@ let changeMemContent = new Vue({
             this.memberCheck = resp.data;
             // localStorage.memNo = this.memberCheck.split(';')[0];
             if(this.memberCheck == 0){
-                alert("請先登入會員");
                 window.location.href="./member_sign_in.html"
             }
             else{
@@ -655,8 +654,6 @@ let changeMemContent = new Vue({
             this.memberArticleOverlay.index = index;
         },
         openPosPage(index){
-            console.log(index)
-            console.log(this.memberPostCard[index].postSrc)
             this.posTemp = this.memberPostCard[index];
             document.querySelector('.ove_pos').classList.add('artShow');
         },

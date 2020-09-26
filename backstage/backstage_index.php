@@ -655,7 +655,7 @@ try {
                 </td>
                 <td>
 
-                  <?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?>
+                  <?php echo $skillRow["SKI_HIDDEN"] == 0 ? "否" : "是" ?>
                   <select name="" id="" class="editShow skill_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
