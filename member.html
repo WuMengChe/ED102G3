@@ -367,7 +367,7 @@
                                         <textarea class="send_msg" placeholder="請輸入訊息..."></textarea>
                                     </div>
                                     <div class="mem_ove_msg_btn">
-                                        <input type="submit" value="送出" class="btn_third" id="send_msg_btn" @click="sendMessage(memberArticleOverlay.no, memberArticleOverlay.index, memberArticleOverlay.mesLength)"/>
+                                        <button class="btn_primary" id="send_msg_btn" @click="$forceUpdate(), sendMessage(memberArticleOverlay.no, memberArticleOverlay.index, memberArticleOverlay.mesLength)">送出</button>
                                     </div>
                                 </div>
                             </div>

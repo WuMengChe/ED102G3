@@ -63,7 +63,6 @@ let changeMemContent = new Vue({
             this.memberCheck = resp.data;
             // localStorage.memNo = this.memberCheck.split(';')[0];
             if(this.memberCheck == 0){
-                alert("請先登入會員");
                 window.location.href="./member_sign_in.html"
             }
             else{
@@ -578,7 +577,7 @@ let changeMemContent = new Vue({
                 this.memberTemp.code = tempData.code;
                 this.fixMode = !this.fixMode;
             }
-            else if(this.member.newCode.length < 10){
+            else if(this.member.newCode.length < 10 && (this.member.codeCheck.length != 0)){
                 alert("密碼長度至少為10");
                 this.member.newCode = '';
                 this.member.checkNewcode = '';

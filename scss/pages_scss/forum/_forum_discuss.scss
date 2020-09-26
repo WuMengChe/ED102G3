@@ -4,7 +4,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
 }
 
 [v-cloak] {
-display: none;
+  display: none;
 }
 
 * {
@@ -231,8 +231,8 @@ $timing: 0.3s;
         .info_list {
           display: flex;
           .img_div {
-            width: 20px;
-            height: 30px;
+            width: 40px;
+            // height: 30px;
             border-radius: 50%;
             overflow: hidden;
             img {
@@ -265,11 +265,11 @@ $timing: 0.3s;
         font-size: 22px;
       }
       .msg_textarea {
-          padding: 0px 20px;
-          letter-spacing: 1px;
-          cursor: pointer;
-          min-height:100px;
-          line-height: 25px;
+        padding: 0px 20px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        min-height: 100px;
+        line-height: 25px;
 
         p {
           overflow: hidden;
@@ -501,25 +501,24 @@ div.pagination_block > ul.pagination > li > a:hover {
 }
 
 a.pencil_btn {
-    display: inline-block;
-    cursor: pointer;
-    position: fixed;
-    bottom: 30%;
-    right: 2%;
-    outline: 0;
-    transform: translate(0,10px);
-    transition: transform .5s;
-    background-color: #ee7002;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  position: fixed;
+  bottom: 30%;
+  right: 2%;
+  outline: 0;
+  transform: translate(0, 10px);
+  transition: transform 0.5s;
+  background-color: #ee7002;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   .fas {
     position: absolute;
     right: 16%;
     top: 20%;
     color: #fff;
     font-size: 25px;
-
   }
 }
 
@@ -764,7 +763,7 @@ a.pencil_btn {
       .leave_msg {
         #send_msg {
           width: 100%;
-          min-height:60px;
+          min-height: 60px;
           resize: none;
           // position: absolute;
           // bottom: 0;
@@ -834,14 +833,9 @@ div.-on {
   }
 }
 
-
-
-
 /* RWD */
 
-
 @media screen and (min-width: 1440px) {
-
   a.pencil_btn {
     position: fixed;
     bottom: 8%;
@@ -864,7 +858,6 @@ div.-on {
 //     }
 //   }
 // }
-
 
 @media screen and (max-width: 992px) {
   .wrap {
@@ -927,18 +920,15 @@ div.-on {
     width: max-content;
   }
 
-
-.forum_overlay > .forum_checkMsg {
+  .forum_overlay > .forum_checkMsg {
     min-width: 250px;
     width: 100%;
     padding: 10px 0;
     max-height: 90vh;
-    }
-  
+  }
 }
 
 @media (max-width: 400px) {
-
   .rum_overlay {
     top: 0;
     left: 0;
@@ -946,17 +936,17 @@ div.-on {
     height: 230vh;
   }
 
-div.forum_overlay > div.forum_checkMsg {
+  div.forum_overlay > div.forum_checkMsg {
     min-width: 250px;
     width: 100%;
     padding: 10px 0;
     max-height: 90vh;
     div.leave_msg_wrap {
-    //   width: 100%;
-    // background-color: #fff;
-    // text-align: right;
-    // position: sticky;
-    bottom: 0px;
+      //   width: 100%;
+      // background-color: #fff;
+      // text-align: right;
+      // position: sticky;
+      bottom: 0px;
     }
   }
 
@@ -965,16 +955,13 @@ div.forum_overlay > div.forum_checkMsg {
     right: 2%;
     width: 40px;
     height: 40px;
-  .fas {
-
-    right: 20%;
-    top: 27%;
-    color: white;
-    font-size: 17px;
+    .fas {
+      right: 20%;
+      top: 27%;
+      color: white;
+      font-size: 17px;
+    }
   }
-
-  }
-
 
   .dis_body {
     font-size: 14px;
@@ -1012,13 +999,11 @@ div.forum_overlay > div.forum_checkMsg {
     padding: 20px 5px;
   }
 
-.forum_overlay .forum_checkMsg .leave_msg_wrap {
+  .forum_overlay .forum_checkMsg .leave_msg_wrap {
     // width: 100%;
     // background-color: #fff;
     // text-align: right;
     // position: sticky;
     // bottom: ;
-}
-
-
+  }
 }
