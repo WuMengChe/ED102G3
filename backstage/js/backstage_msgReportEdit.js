@@ -47,11 +47,11 @@ window.addEventListener('load', function() {
 
             msgReportXhr.onload = function() {
                 if (msgReportXhr.status == 200) {
-                    alert(msgReportXhr.responseText);
+                    // alert(msgReportXhr.responseText);
                     location.reload();
-                    console.log(msgReportXhr.responseText);
+                    // console.log(msgReportXhr.responseText);
                 } else {
-                    alert(msgReportXhr.status);
+                    // alert(msgReportXhr.status);
                 }
 
             }

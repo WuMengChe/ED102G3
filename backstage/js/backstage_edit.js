@@ -124,7 +124,7 @@ window.addEventListener('load', function() {
 
             quizXhr.onload = function() {
                 if (quizXhr.status == 200) {
-                    alert(quizXhr.responseText);
+                    // alert(quizXhr.responseText);
                     location.reload();
                     // console.log(quizXhr.responseText);
                 } else {

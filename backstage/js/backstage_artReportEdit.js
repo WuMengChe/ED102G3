@@ -47,11 +47,11 @@ window.addEventListener('load', function() {
 
             artReportXhr.onload = function() {
                 if (artReportXhr.status == 200) {
-                    alert(artReportXhr.responseText);
+                    // alert(artReportXhr.responseText);
                     location.reload();
-                    console.log(artReportXhr.responseText);
+                    // console.log(artReportXhr.responseText);
                 } else {
-                    alert(artReportXhr.status);
+                    // alert(artReportXhr.status);
                 }
 
             }

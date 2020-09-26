@@ -47,11 +47,11 @@ window.addEventListener('load', function() {
 
             postMaterialXhr.onload = function() {
                 if (postMaterialXhr.status == 200) {
-                    alert(postMaterialXhr.responseText);
+                    // alert(postMaterialXhr.responseText);
                     location.reload();
                     // console.log(postMaterialXhr.responseText);
                 } else {
-                    alert(postMaterialXhr.status);
+                    // alert(postMaterialXhr.status);
                 }
 
             }

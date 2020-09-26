@@ -1,9 +1,9 @@
-window.addEventListener('load', function () {
+window.addEventListener('load', function() {
     // 更改行業資料
     $('.editShow').hide();
     // let quizEdit = document.getElementsByClassName('quizEdit');
 
-    $('.memberEdit').click(function (e) {
+    $('.memberEdit').click(function(e) {
         let editBtn = e.target;
         let td = $(editBtn).parent().siblings()
         if (editBtn.innerText == "編輯") {
@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
 
 
 
-            $('.cancel').click(function () {
+            $('.cancel').click(function() {
                 $(this).parent().children('.editShow').hide();
                 $(this).parent().siblings().children('.editShow').hide();
                 // console.log($(this).parent().children('.quizShow'));
@@ -45,11 +45,11 @@ window.addEventListener('load', function () {
             memberXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             memberXhr.send(`memberJson=${memberJson}`);
 
-            memberXhr.onload = function () {
+            memberXhr.onload = function() {
                 if (memberXhr.status == 200) {
                     // alert(memberXhr.responseText);
                     location.reload();
-                    console.log(memberXhr.responseText);
+                    // console.log(memberXhr.responseText);
                 } else {
                     // alert(memberXhr.status);
                 }

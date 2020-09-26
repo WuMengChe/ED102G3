@@ -41,7 +41,7 @@ window.addEventListener('load', function() {
 
             adminXhr.onload = function() {
                 if (adminXhr.status == 200) {
-                    alert(adminXhr.responseText);
+                    // alert(adminXhr.responseText);
                     location.reload();
                     // console.log(adminXhr.responseText);
                 } else {
