@@ -245,10 +245,7 @@ let vm = new Vue({
 
             // OWL套件
             let localURL = new URL(document.location);
-            if (
-              localURL.toString().includes("course_main") ||
-              localURL.toString().includes("course_introduce")
-            ) {
+            if (localURL.toString().includes("course_main")) {
               script = document.createElement("script");
               script.src = "./js/course/owl_auto_slide.js";
               document.body.appendChild(script);
@@ -349,6 +346,8 @@ let vm = new Vue({
               }
             }
 
+            this.$forceUpdate();
+
             // ==============
             // 課程收藏
             if (res3.status == 200) {
@@ -367,6 +366,11 @@ let vm = new Vue({
         )
         .then(() => {
           _this.receive_storage();
+        })
+        .then(() => {
+          script = document.createElement("script");
+          script.src = "./js/course/owl_auto_slide.js";
+          document.body.appendChild(script);
         })
         .then(() => {
           if (this.mem_boughtCourse != 0) {
@@ -556,24 +560,24 @@ let vm = new Vue({
       $(".main_side_bar > ul> li > a").removeClass("side_click");
       e.currentTarget.classList.add("side_click");
     },
-    owl_slide() {
-      $(".auto_slider").owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: true,
-        responsive: {
-          0: {
-            items: 1,
-          },
-          600: {
-            items: 2,
-          },
-          1000: {
-            items: 3,
-          },
-        },
-      });
-    },
+    // owl_slide() {
+    //   $(".auto_slider").owlCarousel({
+    //     loop: true,
+    //     margin: 10,
+    //     nav: true,
+    //     responsive: {
+    //       0: {
+    //         items: 1,
+    //       },
+    //       600: {
+    //         items: 2,
+    //       },
+    //       1000: {
+    //         items: 3,
+    //       },
+    //     },
+    //   });
+    // },
   },
   computed: {
     add_total() {
@@ -586,7 +590,7 @@ let vm = new Vue({
     discount() {
       if (this.cart_items.length >= 2) {
         let discount = this.add_total * 0.2;
-        return discount;
+        return Math.round(discount);
       } else {
         return 0;
       }
