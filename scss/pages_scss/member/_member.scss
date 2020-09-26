@@ -58,13 +58,14 @@ body.mem{
             li.liCol{
                 flex-wrap: wrap;
                 span {
+                    margin-top: 10px;
                     width: 100%;
                 }
                 ul{
                     display: none;
                     margin: 10px 0px 0px 0px;
                     li{
-                        margin-top: 5px;
+                        margin: 5px 0px;
                         padding-left: 15px;
                     }
                 }
@@ -525,6 +526,7 @@ body.mem{
             .mem_ove_textarea{
                 padding: 5px 20px;
                 letter-spacing: 1px;
+                line-height: 1.5;
                 color: #000;
             }
             .mem_ove_btn{
@@ -573,9 +575,6 @@ body.mem{
                 background-color: #f8f6f2;
                 margin: 5px 0;
             }
-            img{
-                width: 100%;
-            }
         }
         .mem_ove_feedback{
             background-color: transparent;
@@ -607,6 +606,17 @@ body.mem{
                     line-height: 25px;
                 }
             }
+        }
+    }
+}
+.ove_pos{
+    .mem_wrap{
+        display: flex;
+        flex-wrap: wrap;
+        max-height: calc(100vh - 40px);
+        img{
+            margin: 0 auto;
+            max-height: calc(50vh - 20px);
         }
     }
 }
