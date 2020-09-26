@@ -1,52 +1,76 @@
 new Vue({
-    el: '.chart',
+    el: '.secondScreen',
     data: {
         myChart: '',
         option: new Object(),
+        salAvg: '',
+        salStages: [],
+
     },
     mounted() {
-        this.salChart()
+        this.salChart();
+        this.salStage();
     },
     methods: {
         salChart() {
-            // 基于准备好的dom，初始化echarts实例
-            console.log(document.getElementById("salGraph"));
-            this.myChart = echarts.init(document.getElementById("salGraph"));
-            // 指定图表的配置项和数据
-            this.option = {
+            axios
+                .get('./php/front_index_salAvg.php')
+                .then((res) => {
+                    this.salAvg = res.data
+                    console.log(this.salAvg)
+                    var salName = new Array();
+                    var sal = new Array();
+                    for (let i = 0; i < this.salAvg.length; i++) {
+                        salName.push(this.salAvg[i].職業名稱)
+                        sal.push(this.salAvg[i].薪資平均)
 
-                    tooltip: {},
-                    legend: {
-                        data: []
-                    },
-                    xAxis: {},
-                    yAxis: {
-                        data: ["衬衫", "羊毛衫", "雪纺衫"],
-                        axisLabel: {
-                            fontSize: 14
-                        }
+                    }
+                    salName.reverse();
+                    sal.reverse();
 
-                    },
-                    series: [{
-                        name: "平均薪資",
-                        type: "bar",
-                        data: [5, 20, 36],
-                        itemStyle: {
-                            normal: {
+                    this.myChart = echarts.init(document.getElementById("salGraph"));
 
-                                color: function(params) {
-                                    var colorList = ['#BCEBFF', '#F5F3ED', '#FFE56C'];
-                                    return colorList[params.dataIndex]
-                                }
+                    this.option = {
+
+                            tooltip: {},
+                            legend: {
+                                data: []
                             },
+                            xAxis: {},
+                            yAxis: {
+                                data: salName,
+                                axisLabel: {
+                                    fontSize: 14
+                                }
+
+                            },
+                            series: [{
+                                name: "平均薪資",
+                                type: "bar",
+                                data: sal,
+                                itemStyle: {
+                                    normal: {
+
+                                        color: function(params) {
+                                            var colorList = ['#BCEBFF', '#F5F3ED', '#FFE56C'];
+                                            return colorList[params.dataIndex]
+                                        }
+                                    },
+                                },
+
+                            }],
+
+
                         },
+                        this.myChart.setOption(this.option);
+                })
 
-                    }],
-
-
-                },
-                this.myChart.setOption(this.option);
 
         },
+        salStage() {
+            axios
+                .get('./php/front_index_salStage.php')
+                .then((res) => { this.salStages = res.data });
+        }
     }
 })

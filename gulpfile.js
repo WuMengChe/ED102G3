@@ -192,3 +192,9 @@ gulp.task("bgfileinclude", function() {
 gulp.task("bgjs", function() {
     return gulp.src(["./backstage/js/**/*.js"]).pipe(gulp.dest("dest/js"));
 });
+
+
+
+gulp.task("font", function() {
+    return gulp.src(["./font/*"]).pipe(gulp.dest("dest/font"));
+});
