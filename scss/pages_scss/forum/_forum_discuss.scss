@@ -4,7 +4,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
 }
 
 [v-cloak] {
-display: none;
+  display: none;
 }
 
 * {
@@ -24,7 +24,7 @@ display: none;
   background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
   background-position: top center;
-  min-height: 600px;
+  min-height: 960px;
   padding: 0;
 }
 
@@ -231,8 +231,8 @@ $timing: 0.3s;
         .info_list {
           display: flex;
           .img_div {
-            width: 20px;
-            height: 30px;
+            width: 40px;
+            // height: 30px;
             border-radius: 50%;
             overflow: hidden;
             img {
@@ -265,11 +265,11 @@ $timing: 0.3s;
         font-size: 22px;
       }
       .msg_textarea {
-          padding: 0px 20px;
-          letter-spacing: 1px;
-          cursor: pointer;
-          min-height:100px;
-          line-height: 25px;
+        padding: 0px 20px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        min-height: 100px;
+        line-height: 25px;
 
         p {
           overflow: hidden;
@@ -501,25 +501,24 @@ div.pagination_block > ul.pagination > li > a:hover {
 }
 
 a.pencil_btn {
-    display: inline-block;
-    cursor: pointer;
-    position: fixed;
-    bottom: 30%;
-    right: 2%;
-    outline: 0;
-    transform: translate(0,10px);
-    transition: transform .5s;
-    background-color: #ee7002;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  position: fixed;
+  bottom: 30%;
+  right: 2%;
+  outline: 0;
+  transform: translate(0, 10px);
+  transition: transform 0.5s;
+  background-color: #ee7002;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   .fas {
     position: absolute;
     right: 16%;
     top: 20%;
     color: #fff;
     font-size: 25px;
-
   }
 }
 
@@ -538,7 +537,7 @@ a.pencil_btn {
 
 .-open {
   opacity: 1;
-  z-index: 70;
+  z-index: 80;
   position: fixed;
   top: 0;
   left: 0;
@@ -551,19 +550,20 @@ a.pencil_btn {
 
 /* 元素 article 置中及基本樣式 */
 .forum_overlay > .forum_checkMsg {
+  // margin-top: 30px;
   background-color: #ccc;
   border-radius: 10px;
-  max-height: 103vh;
-  min-height: 72vh;
+  max-height: 90vh;
+  min-height: 70vh;
   padding: 0 5px;
-  top: 22%;
+  top: 24%;
   left: 50%;
   max-width: 800px;
   min-width: 600px;
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: scroll;
-  margin-top: 70px;
+  // margin-top: 20px;
 }
 
 /* 留言數量 */
@@ -763,7 +763,7 @@ a.pencil_btn {
       .leave_msg {
         #send_msg {
           width: 100%;
-          min-height:150px;
+          min-height: 60px;
           resize: none;
           // position: absolute;
           // bottom: 0;
@@ -772,9 +772,9 @@ a.pencil_btn {
         }
       }
       .confirm_send_btn {
-        padding-bottom: 15px;
+        padding-bottom: 20px;
         text-align: center;
-        height: 120px;
+        // height: 120px;
       }
       #send_msg_btn {
         width: 60px;
@@ -833,14 +833,9 @@ div.-on {
   }
 }
 
-
-
-
 /* RWD */
 
-
 @media screen and (min-width: 1440px) {
-
   a.pencil_btn {
     position: fixed;
     bottom: 8%;
@@ -848,14 +843,23 @@ div.-on {
   }
 }
 
+// @media screen and (max-width: 400px) {
+//   div.forum_overlay > .forum_checkMsg {
+//     min-width: 250px;
+//     width: 100%;
+//     padding: 10px 0;
+//     max-height: 90vh;
+//     .leave_msg_wrap {
+//     //   width: 100%;
+//     // background-color: #fff;
+//     // text-align: right;
+//     // position: sticky;
+//     bottom: 100px;
+//     }
+//   }
+// }
 
 @media screen and (max-width: 992px) {
-  div.forum_overlay > .forum_checkMsg {
-    min-width: 250px;
-    width: 100%;
-    padding: 10px 0;
-  }
-
   .wrap {
     .side_wrap {
       position: fixed;
@@ -915,44 +919,49 @@ div.-on {
   .side_wrap .main_side_bar ul {
     width: max-content;
   }
+
+  .forum_overlay > .forum_checkMsg {
+    min-width: 250px;
+    width: 100%;
+    padding: 10px 0;
+    max-height: 90vh;
+  }
 }
 
-@media screen and (max-width: 500px) {
-
+@media (max-width: 400px) {
   .rum_overlay {
     top: 0;
     left: 0;
     width: 100%;
     height: 230vh;
   }
-  .forum_checkMsg {
-    min-width: 200px;
+
+  div.forum_overlay > div.forum_checkMsg {
+    min-width: 250px;
+    width: 100%;
+    padding: 10px 0;
+    max-height: 90vh;
+    div.leave_msg_wrap {
+      //   width: 100%;
+      // background-color: #fff;
+      // text-align: right;
+      // position: sticky;
+      bottom: 0px;
+    }
   }
-}
-
-@media (max-width: 400px) {
-
-  .forum_overlay > .forum_checkMsg {
-  
-  min-width: 500px;
-
-}
 
   a.pencil_btn {
     bottom: 5%;
     right: 2%;
     width: 40px;
     height: 40px;
-  .fas {
-
-    right: 20%;
-    top: 27%;
-    color: white;
-    font-size: 17px;
+    .fas {
+      right: 20%;
+      top: 27%;
+      color: white;
+      font-size: 17px;
+    }
   }
-
-  }
-
 
   .dis_body {
     font-size: 14px;
@@ -988,5 +997,13 @@ div.-on {
 
   .select {
     padding: 20px 5px;
+  }
+
+  .forum_overlay .forum_checkMsg .leave_msg_wrap {
+    // width: 100%;
+    // background-color: #fff;
+    // text-align: right;
+    // position: sticky;
+    // bottom: ;
   }
 }

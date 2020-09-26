@@ -704,8 +704,11 @@ let careerVueContent = new Vue({
                     alert('帳號或密碼錯誤，請重新輸入');
                     document.querySelector('.input_div #code').value = "";
                 }
+                else if(resp.data == -1){
+                    alert('此帳戶已被停權，禁止使用');
+                    document.querySelector('.input_div #code').value = "";
+                }
                 else{
-                    alert('會員登入成功，請再次點擊儲存結果!');
                     //登入成功則燈箱移除
                     document.querySelector('.bg_of_lightbx').style = "display:none";
                     console.log(resp.data)
