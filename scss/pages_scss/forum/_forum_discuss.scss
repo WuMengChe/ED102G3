@@ -24,7 +24,7 @@ div.header_wrap header.header div.header_nav ul li:nth-child(3) a::after {
   background-image: url("../../../img/forum/dis.png");
   background-repeat: no-repeat;
   background-position: top center;
-  min-height: 600px;
+  min-height: 960px;
   padding: 0;
 }
 
@@ -520,6 +520,7 @@ a.pencil_btn {
     color: #fff;
     font-size: 25px;
   }
+
 }
 
 /* 點擊主題跳出的燈箱 */

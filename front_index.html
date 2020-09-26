@@ -44,7 +44,7 @@
                                         <path id="realdefs" d="M155 40Q180 30,200 40" />
                                     </defs>
                                     <text style="font: normal 16px Tahoma; fill: #000;">
-                                        <textpath xlink:href="#realdefs"> 實作型</textpath>
+                                        <textpath xlink:href="#realdefs">實作型</textpath>
                                     </text>
                                 </g>
                                 <g id="inv">
@@ -120,18 +120,24 @@
                         <div class="stages">
                             <div class="stageS stageRWD">
                                 <img src="./img/index/index_2nd/3rd_blue.svg" class="firstStage" alt="">
-                                <p class="Stext">30000</p>
-                                <p class="Stitle">品檢人員</p>
+                                <div class="stageInfoS" v-for="(item,index) in salStages" v-if="index == 2">
+                                    <p class="Stext">{{item.薪資平均}}</p>
+                                    <p class="Stitle">{{item.職業名稱}}</p>
+                                </div>
                             </div>
                             <div class="stageM stageRWD">
                                 <img src="./img/index/index_2nd/2nd_diaper.svg" class="secondStage" alt="">
-                                <p class="Mtext">40000</p>
-                                <p class="Mtitle">老師</p>
+                                <div class="stageInfoM" v-for="(item,index) in salStages" v-if="index == 1">
+                                    <p class="Stext">{{item.薪資平均}}</p>
+                                    <p class="Stitle">{{item.職業名稱}}</p>
+                                </div>
                             </div>
                             <div class="stageL stageRWD">
                                 <img src="./img/index/index_2nd/1st_yellow.svg" class="thirdStage" alt="">
-                                <p class="Ltext">50000</p>
-                                <p class="Ltitle">醫生</p>
+                                <div class="stageInfoL" v-for="(item,index) in salStages" v-if="index == 0">
+                                    <p class="Stext">{{item.薪資平均}}</p>
+                                    <p class="Stitle">{{item.職業名稱}}</p>
+                                </div>
                             </div>
                         </div>
 

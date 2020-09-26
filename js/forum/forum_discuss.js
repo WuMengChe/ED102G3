@@ -451,7 +451,7 @@ let vm = new Vue({
             // console.log(repNo);
 
             if (this.repIndex == -1) {
-              alert("請輸入內容");
+              alert("請選擇檢舉原因");
             } else {
               axios.post(
                 "./php/forum_discuss.php?action=accuse&DIS_NO=" +
@@ -490,7 +490,7 @@ let vm = new Vue({
             console.log(repinnerNo);
 
             if (this.repinnerIndex == -1) {
-              alert("請輸入內容");
+              alert("請選擇檢舉原因");
             } else {
               axios.post(
                 "./php/forum_discuss.php?action=accuse_inner_btn&DIS_MES_NO=" +
