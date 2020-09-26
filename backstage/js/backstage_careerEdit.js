@@ -162,7 +162,7 @@ window.addEventListener('load', function() {
 
             careerXhr.onload = function() {
                 if (careerXhr.status == 200) {
-                    alert(careerXhr.responseText);
+                    // alert(careerXhr.responseText);
                     location.reload();
                     // console.log(careerXhr.responseText);
                 } else {

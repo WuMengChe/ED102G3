@@ -655,7 +655,7 @@ try {
                 </td>
                 <td>
 
-                  <?php echo $skillRow["SKI_HIDDEN"] == 1 ? "否" : "是" ?>
+                  <?php echo $skillRow["SKI_HIDDEN"] == 0 ? "否" : "是" ?>
                   <select name="" id="" class="editShow skill_USE">
                     <option value="1">是</option>
                     <option value="0">否</option>
@@ -1100,8 +1100,6 @@ try {
   <script src="./js/backstage_msgReportEdit.js"></script>
   <script src="./js/backstage_postMaterialEdit.js"></script>
   <script src="./js/backstage_announceEdit.js"></script>
-  <script src="./js/backstage_insert_announcement.js"></script>
-
 </body>
 
 

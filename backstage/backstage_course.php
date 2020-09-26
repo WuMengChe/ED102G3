@@ -28,7 +28,7 @@ try {
   SKI_LINK = :SKI_LINK, SKI_IMG = :SKI_IMG, 
   SKI_TEC_IMG=:SKI_TEC_IMG, SKI_TEC_NAME=:SKI_TEC_NAME, 
   SKI_TEC_INTRO=:SKI_TEC_INTRO, SKI_OUTLINE=:SKI_OUTLINE, 
-  SKI_STUD=:SKI_STUD where SKI_NO = :SKI_NO and SKI_HIDDEN = :SKI_HIDDEN ";
+  SKI_STUD=:SKI_STUD, SKI_HIDDEN = :SKI_HIDDEN where SKI_NO = :SKI_NO";
 
 
 
@@ -50,6 +50,8 @@ try {
   $course->bindValue(":SKI_STUD", $courseUp["ski_stud"]);
   $course->bindValue(":SKI_NO", $courseUp["skiNo"]);
   $course->bindValue(":SKI_HIDDEN", $courseUp["skill_USE"]);
+  // echo $courseUp["skill_USE"];
+  // die;
   $course->execute(); //執行
   echo "已成功修改";
   header("Location:./backstage_index.php");

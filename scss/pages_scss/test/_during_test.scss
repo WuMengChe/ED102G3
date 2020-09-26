@@ -9,6 +9,7 @@ main.main_during_test{
     margin: auto;
     overflow: hidden;
     padding-top:5%;
+    min-height: calc(100vh - 160px);
 
         .question_bx{
             // border: 1px solid blue;
@@ -119,7 +120,6 @@ main.main_during_test{
         position: relative;
         .compare{
             border: 2px solid black;
-            background: #FFF;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -133,6 +133,10 @@ main.main_during_test{
             p{
                 font-weight: 700;
             }
+            @media screen  and (max-width: 570px){ 
+                width: 60px;
+                height: 60px;
+                }
         }
         .answer_option{
             // border: 1px solid fuchsia;
@@ -218,7 +222,7 @@ main.main_during_test{
                  .progress_bar{
                      position: absolute;
                      z-index: 1;
-                     background: #5ed5f3;
+                     background: $second_color1;
                      width: 30px;
                      height: 30px;
                      border-radius: 50px;
