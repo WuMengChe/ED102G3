@@ -159,9 +159,7 @@ new Vue({
 
                         },
                         this.myChart.setOption(this.option);
-                    window.addEventListener('resize', function() {
-                        this.myChart.resize();
-                    })
+
 
                 })
 
