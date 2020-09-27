@@ -7,6 +7,14 @@ new Vue({
         salStages: [],
 
     },
+    created() {
+
+        this.stageRWD();
+        $(window).resize(function() {
+            this.myChart.resize();
+        })
+
+    },
     mounted() {
         this.salChart();
         this.salStage();
@@ -17,7 +25,7 @@ new Vue({
                 .get('./php/front_index_salAvg.php')
                 .then((res) => {
                     this.salAvg = res.data
-                    console.log(this.salAvg)
+                        // console.log(this.salAvg)
                     var salName = new Array();
                     var sal = new Array();
                     for (let i = 0; i < this.salAvg.length; i++) {
@@ -63,6 +71,7 @@ new Vue({
 
                         },
                         this.myChart.setOption(this.option);
+
                 })
 
 
@@ -71,6 +80,21 @@ new Vue({
             axios
                 .get('./php/front_index_salStage.php')
                 .then((res) => { this.salStages = res.data });
+        },
+        stageRWD() {
+            //stage:rwd時開啟文字
+            if ($(window).width() > 991) {
+                $(".stageRWD").hide();
+            } else {
+                $(".stageRWD").show();
+            };
+            $(window).resize(function() {
+                if ($(window).width() > 991) {
+                    $(".stageRWD").hide();
+                } else {
+                    $(".stageRWD").show();
+                };
+            })
         }
     }
 })

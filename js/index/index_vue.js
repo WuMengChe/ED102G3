@@ -22,8 +22,8 @@ Vue.component('cards', {
         slick() {
             $('.allCard').slick({
                 slidesToShow: 2,
-                autoplay: true,
-                autoplaySpeed: 2000,
+                // autoplay: true,
+                // autoplaySpeed: 2000,
                 arrows: false,
                 slidesToScroll: 1,
                 responsive: [{
@@ -34,7 +34,7 @@ Vue.component('cards', {
                         }
                     },
                     {
-                        breakpoint: 768,
+                        breakpoint: 571,
                         settings: {
                             slidesToShow: 1,
                             slidesToScroll: 1
@@ -92,7 +92,11 @@ new Vue({
                 autoplaySpeed: 2000,
                 arrows: false,
                 responsive: [{
-
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 4,
+                            // slidesToScroll: 1
+                        },
                         breakpoint: 768,
                         settings: {
                             slidesToShow: 3,

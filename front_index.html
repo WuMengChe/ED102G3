@@ -113,36 +113,36 @@
         <section class="index_car">
             <div class="twoBg container-fluid">
                 <div class="secondScreen row">
-                    <div class="index_sal_img col-lg-5 col-md-0 col-sm-12">
+                    <div class="index_sal_img col-lg-5 col-md-12 col-sm-12">
                         <img src="./img/index/index_2nd/auditor.png" class="thirdSal" alt="">
                         <img src="./img/index/index_2nd/teacher.png" class="secondSal" alt="">
                         <img src="./img/index/index_2nd/doctor.png" class="firstSal" alt="">
                         <div class="stages">
-                            <div class="stageS stageRWD">
+                            <div class="stageS ">
                                 <img src="./img/index/index_2nd/3rd_blue.svg" class="firstStage" alt="">
-                                <div class="stageInfoS" v-for="(item,index) in salStages" v-if="index == 2">
+                                <div class="stageInfoS stageRWD" v-for="(item,index) in salStages" v-if="index == 2">
                                     <p class="Stext">{{item.薪資平均}}</p>
                                     <p class="Stitle">{{item.職業名稱}}</p>
                                 </div>
                             </div>
-                            <div class="stageM stageRWD">
+                            <div class="stageM">
                                 <img src="./img/index/index_2nd/2nd_diaper.svg" class="secondStage" alt="">
-                                <div class="stageInfoM" v-for="(item,index) in salStages" v-if="index == 1">
-                                    <p class="Stext">{{item.薪資平均}}</p>
-                                    <p class="Stitle">{{item.職業名稱}}</p>
+                                <div class="stageInfoM stageRWD" v-for="(item,index) in salStages" v-if="index == 1">
+                                    <p class="Mtext">{{item.薪資平均}}</p>
+                                    <p class="Mtitle">{{item.職業名稱}}</p>
                                 </div>
                             </div>
-                            <div class="stageL stageRWD">
+                            <div class="stageL">
                                 <img src="./img/index/index_2nd/1st_yellow.svg" class="thirdStage" alt="">
-                                <div class="stageInfoL" v-for="(item,index) in salStages" v-if="index == 0">
-                                    <p class="Stext">{{item.薪資平均}}</p>
-                                    <p class="Stitle">{{item.職業名稱}}</p>
+                                <div class="stageInfoL stageRWD" v-for="(item,index) in salStages" v-if="index == 0">
+                                    <p class="Ltext">{{item.薪資平均}}</p>
+                                    <p class="Ltitle">{{item.職業名稱}}</p>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <div class="index_sal_chart col-lg-7 col-md-12 col-sm-12">
+                    <div class="index_sal_chart col-lg-7 col-md-0 col-sm-0">
                         <h1>TOP 3 行業薪資排行</h1>
                         <div class="chart">
                             <div class="salGraph" id="salGraph"></div>
