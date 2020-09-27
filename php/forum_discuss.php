@@ -398,7 +398,7 @@ function getAllDiscuss()
             DISCUSS_AREA.DIS_LIK_NUM,
             DISCUSS_AREA.DIS_NO
             from MEMBER join DISCUSS_AREA using(MEM_NO)
-            join INDUSTRY_CLASS using(IND_NO) order by DISCUSS_AREA.DIS_NO desc limit $start, $recPerPage;";
+            join INDUSTRY_CLASS using(IND_NO) where DIS_HIDDEN = 1 order by DISCUSS_AREA.DIS_NO desc limit $start, $recPerPage;";
 
         $dis = $pdo->query($sql);
         if ($dis->rowCount() == 0) { //找不到
