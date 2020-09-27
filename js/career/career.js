@@ -537,6 +537,7 @@ let careerVueContent = new Vue({
                     // console.log(this.industryForum[indClass].detail[index].like);
                 }
                 this.industryForumMessage = this.industryForum[indClass].detail[index];
+                this.industryForumMessage.backgroundColor = this.industry[indClass].backgroundColor;
                 if(parseInt(resp.data.split('*;')[2]) == 0){
                     this.industryForumMessage.length = 0;
                 }
