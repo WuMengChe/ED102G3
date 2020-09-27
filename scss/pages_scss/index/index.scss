@@ -350,13 +350,13 @@ div.header_wrap {
                     .chart {
                         // border: 1px solid #000;
                         margin: 0 auto;
-                        max-width: 600px;
                         .salGraph {
                             // border: 1px solid #000;
                             height: 350px;
                             padding-top: 100px;
                             margin: 0 auto;
-                            width: 100%;
+                            // width: 100%;
+                            width: 600px;
                             position: relative;
                             left: -10px;
                         }
