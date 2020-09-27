@@ -167,7 +167,7 @@ let vm = new Vue({
         this.searchResult = this.information.sort(function(a, b) {
           return a.DIS_LIK_NUM < b.DIS_LIK_NUM ? 1 : -1;
         });
-      } else if(value == "選擇分類") {
+      } else if (value == "選擇分類") {
         this.searchResult = this.searchResult;
       } else {
         this.searchResult = this.information.filter(function(a, b) {
@@ -213,10 +213,12 @@ let vm = new Vue({
           this.currentPage = res.data[0].CURRENT_PAGE;
           this.information = res.data;
           this.searchResult = res.data;
-          for(var i = 0; i < res.data.length; i++){
-            console.log(this.searchResult[i].DIS_CONTENT)
-            this.searchResult[i].DIS_CONTENT = this.searchResult[i].DIS_CONTENT.split(';')
-            console.log(this.searchResult[i].DIS_CONTENT)
+          for (var i = 0; i < res.data.length; i++) {
+            console.log(this.searchResult[i].DIS_CONTENT);
+            this.searchResult[i].DIS_CONTENT = this.searchResult[
+              i
+            ].DIS_CONTENT.split(";");
+            console.log(this.searchResult[i].DIS_CONTENT);
           }
           // console.log(this.searchResult)
         });
@@ -243,20 +245,19 @@ let vm = new Vue({
         if (this.isHeart[index]) {
           document.querySelectorAll(".check_content .heart i")[0].style.color =
             "red";
-       
         } else {
           document.querySelectorAll(".check_content .heart i")[0].style.color =
             "#ada9a9";
         }
         // console.log(this.msg);
 
-      if (this.isCollect[index]) {
-         document.querySelectorAll(
+        if (this.isCollect[index]) {
+          document.querySelectorAll(
             ".check_content .collect_btn i"
           )[0].style.color =
             "black";
         } else {
-           document.querySelectorAll(
+          document.querySelectorAll(
             ".check_content .collect_btn i"
           )[0].style.color =
             "#ada9a9";
@@ -355,17 +356,25 @@ let vm = new Vue({
       $(".main_side_bar > ul> li > a").removeClass("side_click");
       e.currentTarget.classList.add("side_click");
       this.select = "選擇分類";
-      setTimeout(() => { //讓watch先做事，我再篩，不然資料會被蓋過去
-        this.searchResult = this.information.filter(element => element.IND_CLASS == type);
-      }, 10)   
+      setTimeout(() => {
+        //讓watch先做事，我再篩，不然資料會被蓋過去
+        this.searchResult = this.information.filter(
+          element => element.IND_CLASS == type
+        );
+      }, 10);
     },
     //關鍵字搜尋
     searchContent() {
       const keyword = this.filter;
       const result = this.information.filter(element => {
+        // console.log(
+        //   element.DIS_NAME.indexOf(keyword) != -1 ||
+        //     element.DIS_CONTENT.indexOf(keyword) != -1
+        // );
+        // debugger;
         return (
           element.DIS_NAME.indexOf(keyword) != -1 ||
-          element.DIS_CONTENT.indexOf(keyword) != -1
+          element.DIS_CONTENT[0].indexOf(keyword) != -1
         );
         // return element.d_title == type
       });
@@ -481,7 +490,7 @@ let vm = new Vue({
             window.location.href = "./member_sign_in.html";
           } else {
             sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
-      
+
             const memNo = sessionStorage.getItem("memNo");
             console.log(memNo);
             const content = this.memberAccuse[this.repinnerIndex];
@@ -686,7 +695,6 @@ let vm = new Vue({
       console.log(this.feedBoxHeart);
       console.log(index);
       console.log(mesno);
-      
 
       axios
         .post("./php/memberStateCheck.php")
@@ -694,11 +702,14 @@ let vm = new Vue({
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
           } else {
-            if(this.feedBoxHeart[index]){
-              document.querySelectorAll('.forum_feedback .heart i')[index].classList.remove('colorRed');
-            }
-            else{
-              document.querySelectorAll('.forum_feedback .heart i')[index].classList.add('colorRed');
+            if (this.feedBoxHeart[index]) {
+              document
+                .querySelectorAll(".forum_feedback .heart i")
+                [index].classList.remove("colorRed");
+            } else {
+              document
+                .querySelectorAll(".forum_feedback .heart i")
+                [index].classList.add("colorRed");
             }
             this.feedBoxHeart[index] = !this.feedBoxHeart[index];
             console.log(this.feedBoxHeart);
@@ -724,40 +735,38 @@ let vm = new Vue({
     //討論區文章PHP
     sendMsg(msg_DIS_NO) {
       const content = document.getElementById("send_msg").value;
-      
+
       axios
         .post("./php/memberStateCheck.php")
         .then(resp => {
           if (resp.data == 0) {
             document.querySelector(".bg_of_lightbx").style = "display:block";
-
           } else {
-          if (content.length <= 0) {
-        alert("填寫");
-        return;
-      }else{
-          sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
-          sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
-          const memNo = sessionStorage.getItem("memNo");
-          const memName = sessionStorage.getItem("memName");
-          axios
-            .post(
-              "./php/forum_discuss.php?action=addReplay&DIS_NO=" +
-                msg_DIS_NO +
-                "&MEM_NO=" +
-                memNo +
-                "&content=" +
-                content
-            )
-            .then(res => {
-              console.log("-----------");
-              console.log(res.data);
-              document.getElementById("send_msg").value = "";
-              this.box_msg.push(res.data[0]);
-            });
+            if (content.length <= 0) {
+              alert("填寫");
+              return;
+            } else {
+              sessionStorage.setItem("memNo", this.memberCheck.split(";")[0]);
+              sessionStorage.setItem("memName", this.memberCheck.split(";")[1]);
+              const memNo = sessionStorage.getItem("memNo");
+              const memName = sessionStorage.getItem("memName");
+              axios
+                .post(
+                  "./php/forum_discuss.php?action=addReplay&DIS_NO=" +
+                    msg_DIS_NO +
+                    "&MEM_NO=" +
+                    memNo +
+                    "&content=" +
+                    content
+                )
+                .then(res => {
+                  console.log("-----------");
+                  console.log(res.data);
+                  document.getElementById("send_msg").value = "";
+                  this.box_msg.push(res.data[0]);
+                });
+            }
           }
-      }
-
         })
         .catch(function(error) {
           console.log(error);
