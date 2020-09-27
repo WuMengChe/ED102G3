@@ -712,6 +712,9 @@
 							$sql = "insert into `article_report`(`DIS_NO`, `MEM_NO`, `ART_REP_CONTENT`, `ART_REP_PASS`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
+							$sql_calc = "update `discuss_area` set `DIS_REP_NUM` = `DIS_REP_NUM` + 1 where `DIS_NO` = '$line[0]'";
+							echo "輸入收藏資料指令為 $sql_calc <br/>";
+							$pdo -> exec($sql_calc);
 							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
 						}
 					}
@@ -750,6 +753,9 @@
 							$sql = "insert into `message_report`(`DIS_MES_NO`, `MEM_NO`, `MES_REP_CONTENT`, `MES_REP_PASS`) values('$line[0]', '$line[1]', '$line[2]', '$line[3]')";
 							echo "輸入資料指令為 $sql <br/>";
 							$pdo -> exec($sql);
+							$sql_calc = "update `discuss_message` set `DIS_MES_REP_NUM` = `DIS_MES_REP_NUM` + 1 where `DIS_MES_NO` = '$line[0]'";
+							echo "輸入收藏資料指令為 $sql_calc <br/>";
+							$pdo -> exec($sql_calc);
 							echo "主鍵值為".$line[1]."的資料已成功存入資料庫！<br/><br/>";
 						}
 					}
