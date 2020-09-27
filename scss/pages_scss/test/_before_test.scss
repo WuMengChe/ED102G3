@@ -9,7 +9,7 @@ div.before_test_wrap{
     position: absolute;
     z-index: -2;
     overflow:hidden;
-
+    // min-height: calc(100vh - 20px);
     img{
         position: absolute;
         z-index: -1;
@@ -18,8 +18,7 @@ div.before_test_wrap{
     // border: 1px solid forestgreen;
     .main_before_test{
         margin: auto;
-   
-     
+        min-height: calc(100vh - 80px);
         section.origin_of_types_before_test{
             // border: 10px solid rgb(0, 0, 0, 0.3);
             width: 100%;
