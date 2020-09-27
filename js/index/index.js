@@ -44,21 +44,8 @@ $(document).ready(function() {
         })(dots[i], cruveG[i], tl);
     }
 
-    //stage:rwd時開啟文字
-    $(".stageRWD p").hide();
-    if ($(window).width() > 767) {
-        $(".stageRWD p").hide();
-    } else {
-        $(".stageRWD p").show();
-    };
-    $(window).resize(function() {
-            if ($(window).width() > 767) {
-                $(".stageRWD p").hide();
-            } else {
-                $(".stageRWD p").show();
-            };
-        })
-        //論壇&課程&post card輪播
+
+    //論壇&課程&post card輪播
 
 
 });
