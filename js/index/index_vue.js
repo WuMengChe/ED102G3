@@ -22,10 +22,11 @@ Vue.component('cards', {
         slick() {
             $('.allCard').slick({
                 slidesToShow: 2,
-                // autoplay: true,
-                // autoplaySpeed: 2000,
+                autoplay: true,
+                autoplaySpeed: 2000,
                 arrows: false,
                 slidesToScroll: 1,
+                pauseOnHover: false,
                 responsive: [{
                         breakpoint: 1200,
                         settings: {
