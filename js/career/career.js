@@ -516,8 +516,8 @@ let careerVueContent = new Vue({
             window.location.href = "./career_profession.html";
         },
         openArtPage(indClass, index){
-            console.log(indClass)
-            console.log(index)
+            // console.log(indClass)
+            // console.log(index)
             var colData = new FormData();
             colData.append('DIS_NO', this.industryForum[indClass].detail[index].disNo);
             colData.append('MEM_NO', this.memberCheck);

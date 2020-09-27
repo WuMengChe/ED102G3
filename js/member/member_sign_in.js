@@ -37,7 +37,6 @@ let changeSignType = new Vue({
                     document.querySelector('.input_div #code').value = "";
                 }
                 else{
-                    alert('會員登入成功');
                     window.location.href = "./member.html";
                 }
             })
