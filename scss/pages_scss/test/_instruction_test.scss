@@ -3,6 +3,7 @@
     // border: 1px solid forestgreen;
     margin: auto;
     background: $second_color2;
+    // min-height: calc(100vh -200px);
     .main_instruction_wrap{
         display: flex;
         justify-content: center;
@@ -10,6 +11,7 @@
         flex-direction: column;
         position: relative;
         overflow: hidden;
+        min-height: 100vh;
         .circle_bg{
             width: 500px;
             height: 500px;
