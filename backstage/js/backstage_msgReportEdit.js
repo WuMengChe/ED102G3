@@ -1,9 +1,9 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     // 更改行業資料
     $('.editShow').hide();
     // let quizEdit = document.getElementsByClassName('quizEdit');
 
-    $('.msgReportEdit').click(function(e) {
+    $('.msgReportEdit').click(function (e) {
         let editBtn = e.target;
         let td = $(editBtn).parent().siblings()
         if (editBtn.innerText == "編輯") {
@@ -17,7 +17,7 @@ window.addEventListener('load', function() {
 
 
 
-            $('.cancel').click(function() {
+            $('.cancel').click(function () {
                 $(this).parent().children('.editShow').hide();
                 $(this).parent().siblings().children('.editShow').hide();
                 // console.log($(this).parent().children('.quizShow'));
@@ -36,7 +36,8 @@ window.addEventListener('load', function() {
             let msgReport = {};
             msgReport.MES_REP_PASS = parseInt(td.children('.MES_REP_PASS').val());
             msgReport.MES_REP_NO = parseInt(td.children('.MES_REP_NO').text())
-            console.log(msgReport);
+            msgReport.DIS_MES_NO = parseInt(td.children('.DIS_MES_NO').text())
+            // console.log(msgReport);
 
             let msgReportJson = JSON.stringify(msgReport);
             let msgReportXhr = new XMLHttpRequest();
@@ -45,7 +46,7 @@ window.addEventListener('load', function() {
             msgReportXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             msgReportXhr.send(`msgReportJson=${msgReportJson}`);
 
-            msgReportXhr.onload = function() {
+            msgReportXhr.onload = function () {
                 if (msgReportXhr.status == 200) {
                     // alert(msgReportXhr.responseText);
                     location.reload();

@@ -257,11 +257,39 @@ let changeMemContent = new Vue({
                         }
                         orderNoCon = orderNoCon + orderNo;
                     }
+                    artNO = this.memberArticle.length;
+                    for(var i = 0;i < this.loadDataTemp[12].length; i++){
+                        disNoTemp = this.loadDataTemp[12][i].DIS_NO;
+                        if(this.memberArticle.find(function(item){return item.no == disNoTemp})){
+                            // console.log(this.loadDataTemp[12][i].DIS_NO)
+                        }
+                        else{
+                            this.memberArticle.push(new Object());
+                            console.log(this.memberArticle);
+                            this.memberArticle[artNO].title = this.loadDataTemp[12][i].DIS_NAME;
+                            this.memberArticle[artNO].no = this.loadDataTemp[12][i].DIS_NO;
+                            this.memberArticle[artNO].art = this.loadDataTemp[12][i].MEM_NAME;
+                            this.memberArticle[artNO].artPic = this.loadDataTemp[12][i].MEM_PIC;
+                            this.memberArticle[artNO].collect = true;
+                            this.memberArticle[artNO].date = this.loadDataTemp[12][i].DIS_DATE;
+                            this.memberArticle[artNO].content = this.loadDataTemp[12][i].DIS_CONTENT.split(';');
+                            this.memberArticle[artNO].disClass = this.loadDataTemp[12][i].DIS_CLASS;
+                            this.memberArticle[artNO].disColNum = 0;
+                            this.memberArticle[artNO].backgroundColor = this.loadDataTemp[12][i].IND_COLOR;
+                            this.memberArticle[artNO].indClass = this.loadDataTemp[12][i].IND_CLASS;
+                            if(this.loadDataTemp[8].find(function(item){return item.DIS_NO == disNoTemp})){
+                                this.memberArticle[artNO].like = true;
+                            }
+                            else{
+                                this.memberArticle[artNO].like = false;
+                            }
+                            this.memberArticle[artNO].mesLength = 0
+                            this.memberArticleMessage.push(new Array());
+                        }
+                    }
                     // console.log(resp.data);
-                    // console.log(this.loadDataTemp[4]);
                     // console.log(this.loadDataTemp);
                     // console.log(this.memberClass);
-                    // console.log(this.memberArticleMessage);
 
                     this.screenWidth = document.documentElement.clientWidth;
                     this.myChart = Array(this.analysisResult.length);
@@ -597,9 +625,6 @@ let changeMemContent = new Vue({
                 }
                 axios
                 .post('./php/memberUpdateData.php',formMemberData)
-                .then((resp) => {
-                    console.log(resp.data);
-                })
                 this.member.code = tempData.checkNewcode;
                 this.fixMode = !this.fixMode;
                 this.member.newCode = '';

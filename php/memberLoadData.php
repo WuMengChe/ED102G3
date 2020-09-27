@@ -15,6 +15,7 @@
             $sqlArticleMessageLike = "select discuss_message.DIS_MES_NO, message_like.MEM_NO, message_like.MES_LIK_STATE from `discuss_area` join `discuss_message` on discuss_area.DIS_NO = discuss_message.DIS_NO join `message_like` on discuss_message.DIS_MES_NO = message_like.DIS_MES_NO join `article_collect` on article_collect.DIS_NO = discuss_area.DIS_NO where article_collect.MEM_NO = :memNo and message_like.MEM_NO = :memNoLike and message_like.MES_LIK_STATE = 1";
             $sqlArticleReport = "select discuss_area.DIS_NO, article_report.MEM_NO from `discuss_area` join `article_report` on discuss_area.DIS_NO = article_report.DIS_NO join `article_collect` on article_collect.DIS_NO = discuss_area.DIS_NO where article_collect.MEM_NO = :memNo and article_report.MEM_NO = :memNoLike";
             $sqlArticleMessageReport = "select discuss_message.DIS_MES_NO, message_report.MEM_NO from `discuss_area` join `discuss_message` on discuss_area.DIS_NO = discuss_message.DIS_NO join `message_report` on discuss_message.DIS_MES_NO = message_report.DIS_MES_NO join `article_collect` on article_collect.DIS_NO = discuss_area.DIS_NO where article_collect.MEM_NO = :memNo and message_report.MEM_NO = :memNoLike";
+            $sqlArticleNoMessage = "select mem02.MEM_NAME, mem02.MEM_PIC, artcol.DIS_NO, dis.DIS_NAME, dis.DIS_CLASS, dis.DIS_CONTENT, dis.DIS_DATE, ind.IND_CLASS, ind.IND_COLOR from `article_collect` artcol join `member` mem on artcol.MEM_NO = mem.MEM_NO join `discuss_area` dis on artcol.DIS_NO = dis.DIS_NO join `member` mem02 on dis.MEM_NO = mem02.MEM_NO join `industry_class` ind on dis.IND_NO = ind.IND_NO where dis.DIS_HIDDEN = 1 and artcol.MEM_NO = :memNo and artcol.ART_COL_STATE = 1 order by dis.DIS_NO";
             $memberDataAll = $pdo -> prepare($sql);
             $memberDataAll -> bindValue(":memNo",$_POST["memNo"]);
             $memberDataAll -> execute();
@@ -55,6 +56,9 @@
             $memberArticleMessageReport -> bindValue(":memNo",$_POST["memNo"]);
             $memberArticleMessageReport -> bindValue(":memNoLike",$_POST["memNo"]);
             $memberArticleMessageReport -> execute();
+            $memberArticleNoMessage = $pdo -> prepare($sqlArticleNoMessage);
+            $memberArticleNoMessage -> bindValue(":memNo",$_POST["memNo"]);
+            $memberArticleNoMessage -> execute();
             
             if($memberDataAll -> rowCount() == 0){
                 echo "沒資料";
@@ -72,6 +76,7 @@
                 $memberArticleMessageLike_row=$memberArticleMessageLike->fetchAll(PDO::FETCH_ASSOC);
                 $memberArticleReport_row=$memberArticleReport->fetchAll(PDO::FETCH_ASSOC);
                 $memberArticleMessageReport_row=$memberArticleMessageReport->fetchAll(PDO::FETCH_ASSOC);
+                $memberArticleNoMessage_row=$memberArticleNoMessage->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode($memberDataAll_row);
                 echo json_encode($memberAnalysis_row);
                 echo json_encode($memberClassBuy_row);
@@ -96,6 +101,7 @@
                     $memberArticleMessageReport_row = array(array("DIS_MES_NO" => "-1"), array("DIS_MES_NO" => "-1"));
                     echo json_encode($memberArticleMessageReport_row);
                 }
+                echo json_encode($memberArticleNoMessage_row);
             }
         }
     }catch(PDOException $e){

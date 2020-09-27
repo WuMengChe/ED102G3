@@ -1,6 +1,71 @@
+//課程vue--要套資料
+
+
+//postcard
+Vue.component('cards', {
+    template: `
+  <div class="cards">
+    <div class="line"></div>
+    <div class="allCard">
+        <div class="card card--animated" v-for="card in postcards">
+            <img class="postCard" :src="card.POS_PIC" alt="">
+        </div>
+    </div>
+
+  </div> `,
+    data() {
+        return {
+            postcards: []
+        }
+    },
+    methods: {
+        slick() {
+            $('.allCard').slick({
+                slidesToShow: 2,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: false,
+                slidesToScroll: 1,
+                pauseOnHover: false,
+                responsive: [{
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 571,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    },
+                ]
+            });
+        }
+    },
+
+    mounted() {
+        // this.postcard_data();
+        axios
+            .get('./php/front_index_postcard.php')
+            .then((res) => { this.postcards = res.data });
+
+
+
+    },
+    updated() {
+        this.slick();
+
+    },
+});
+
 new Vue({
-    el: '.secondScreen',
+    el: 'main.index',
     data: {
+        messages: [],
+        courses: [],
         myChart: '',
         option: new Object(),
         salAvg: '',
@@ -10,16 +75,39 @@ new Vue({
     created() {
 
         this.stageRWD();
-        $(window).resize(function() {
-            this.myChart.resize();
-        })
+
 
     },
+
     mounted() {
+        this.allData();
         this.salChart();
         this.salStage();
+        // window.addEventListener('resize', this.resizMychart);
+
     },
     methods: {
+        allData() {
+            axios
+                .all([
+                    axios.get('./php/front_index_forum.php'),
+                    axios.get('./php/front_index_course.php')
+
+                ])
+                .then(
+                    axios.spread((res1, res2) => {
+                        this.messages = res1.data;
+                        this.courses = res2.data;
+                    })
+                )
+                .then(() => {
+                    script = document.createElement("script");
+                    script.src = "./js/index/index_slick.js";
+                    document.body.appendChild(script);
+
+                })
+
+        },
         salChart() {
             axios
                 .get('./php/front_index_salAvg.php')
@@ -72,10 +160,12 @@ new Vue({
                         },
                         this.myChart.setOption(this.option);
 
+
                 })
 
 
         },
+
         salStage() {
             axios
                 .get('./php/front_index_salStage.php')
@@ -96,5 +186,9 @@ new Vue({
                 };
             })
         }
-    }
+    },
+    // destroyed() {
+    //     // window.removeEventListener('resize', this.resizeMyChart);
+    // },
+
 })

@@ -190,7 +190,7 @@ $timing: 0.3s;
 //跑馬燈
 
 .bulletin {
-  background: #f7ecd9;
+  // background: #f7ecd9;
   min-height: 35px;
   margin-bottom: 10px;
   padding: 5px;
@@ -200,20 +200,23 @@ $timing: 0.3s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     display: inline-block;
+    margin-left: 30px;
     .bulletin_tex {
       background: transparent;
-      color: gray;
+      color: black;
       display: inline-block;
       min-width: 200px;
+      font-size: 16px;
     }
     span {
       display: inline-block;
-      background: maroon;
+      background: #c60302;
       color: white;
       border-radius: 5px;
-      margin-right: 5px;
+      // margin-right: 5px;
       padding: 4px;
       font-size: 10px;
+      line-height: 11px;
     }
   }
 }

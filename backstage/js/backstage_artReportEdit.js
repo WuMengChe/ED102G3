@@ -36,6 +36,7 @@ window.addEventListener('load', function() {
             let artReport = {};
             artReport.ART_REP_PASS = parseInt(td.children('.ART_REP_PASS').val());
             artReport.ART_REP_NO = parseInt(td.children('.ART_REP_NO').text())
+            artReport.DIS_NO = parseInt(td.children('.DIS_NO').text())
             console.log(artReport);
 
             let artReportJson = JSON.stringify(artReport);
@@ -51,7 +52,7 @@ window.addEventListener('load', function() {
                     location.reload();
                     // console.log(artReportXhr.responseText);
                 } else {
-                    // alert(artReportXhr.status);
+                    alert(artReportXhr.status);
                 }
 
             }
