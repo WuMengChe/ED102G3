@@ -229,8 +229,8 @@ div.header_wrap {
                     text-align: center;
                     .thirdSal {
                         @include position(100px, relative) {
-                            top: 125px;
-                            right: 5px;
+                            top: 160px;
+                            right: -3px;
                             z-index: 1;
                         }
                     }
@@ -257,15 +257,19 @@ div.header_wrap {
                                 width: 100%;
                             }
                             .stageInfoS {
+                                // border: 1px solid red;
+                                position: relative;
+                                bottom: 60px;
+                                left: 15px;
                                 .Stext {
-                                    position: relative;
-                                    bottom: 60px;
+                                    // bottom: 60px;
                                     color: darkslategray;
+                                    margin-bottom: 10px;
                                 }
                                 .Stitle {
-                                    position: relative;
-                                    bottom: 55px;
                                     color: darkslategray;
+                                    // position: relative;
+                                    // bottom: 55px;
                                 }
                             }
                         }
@@ -275,14 +279,16 @@ div.header_wrap {
                                 width: 100%;
                             }
                             .stageInfoM {
+                                position: relative;
+                                bottom: 120px;
+                                left: 15px;
                                 .Mtext {
-                                    position: relative;
-                                    bottom: 120px;
                                     color: darkslategray;
+                                    margin-bottom: 10px;
                                 }
                                 .Mtitle {
-                                    position: relative;
-                                    bottom: 60px;
+                                    // position: relative;
+                                    // bottom: 60px;
                                     color: darkslategray;
                                 }
                             }
@@ -293,21 +299,23 @@ div.header_wrap {
                                 width: 100%;
                             }
                             .stageInfoL {
+                                position: relative;
+                                bottom: 160px;
+                                left: 15px;
                                 .Ltext {
-                                    position: relative;
-                                    bottom: 160px;
                                     color: darkslategray;
+                                    margin-bottom: 10px;
                                 }
                                 .Ltitle {
-                                    position: relative;
-                                    bottom: 60px;
+                                    // position: relative;
+                                    // bottom: 60px;
                                     color: darkslategray;
                                 }
                             }
                         }
                     }
                 }
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 991px) {
                     .index_sal_img {
                         position: absolute;
                         top: 130px;
@@ -342,13 +350,13 @@ div.header_wrap {
                     .chart {
                         // border: 1px solid #000;
                         margin: 0 auto;
+                        max-width: 600px;
                         .salGraph {
                             // border: 1px solid #000;
                             height: 350px;
                             padding-top: 100px;
                             margin: 0 auto;
-                            display: table;
-                            width: 80%;
+                            width: 100%;
                             position: relative;
                             left: -10px;
                         }
@@ -358,11 +366,18 @@ div.header_wrap {
                         transform: translateX(-50%);
                     }
                 }
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 991px) {
                     .index_sal_chart {
+                        h1 {
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                        }
                         background-image: unset;
                         .chart {
                             display: none;
+                            canvas {
+                                display: none;
+                            }
                         }
                         .btn_second {
                             margin-top: 470px;
@@ -413,6 +428,10 @@ div.header_wrap {
                                     padding: 10px;
                                     h5 {
                                         display: inline-block;
+                                        width: 300px;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        white-space: nowrap;
                                     }
                                     i {
                                         float: right;
@@ -627,7 +646,6 @@ div.header_wrap {
                                             margin-top: 0px;
                                             .item {
                                                 margin-top: 10px;
-                                                box-shadow: none;
                                                 .img {
                                                     width: 50%;
                                                 }
@@ -734,10 +752,15 @@ div.header_wrap {
                                         z-index: 2;
                                     }
                                     .postCard {
-                                        width: 80%;
+                                        width: 70%;
                                         transform: rotate(3deg);
                                         z-index: 1;
                                     }
+                                    // @media screen and (max-width:787px) {
+                                    //     .postCard {
+                                    //         width: 80%;
+                                    //     }
+                                    // }
                                 }
                             }
                             .allCard_rwd {
@@ -770,7 +793,12 @@ div.header_wrap {
                         transform: translateX(-50%);
                     }
                 }
-                @media screen and (max-width:661px) {
+                @media screen and (max-width:991px) {
+                    .index_card_text {
+                        bottom: 40px;
+                    }
+                }
+                @media screen and (max-width:787px) {
                     .index_card_text {
                         position: static;
                         margin: 5% auto;
@@ -781,10 +809,6 @@ div.header_wrap {
     }
 }
 
-.slick-initialized .slick-slide {
+.index .index_card .fiveBg .fifthScreen .index_card_img #img .cards .slick-initialized .slick-slide {
     width: 300px;
-}
-
-.slick-list {
-    height: 350px;
 }

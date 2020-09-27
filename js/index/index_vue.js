@@ -26,6 +26,7 @@ Vue.component('cards', {
                 autoplaySpeed: 2000,
                 arrows: false,
                 slidesToScroll: 1,
+                pauseOnHover: false,
                 responsive: [{
                         breakpoint: 1200,
                         settings: {
@@ -34,7 +35,7 @@ Vue.component('cards', {
                         }
                     },
                     {
-                        breakpoint: 768,
+                        breakpoint: 571,
                         settings: {
                             slidesToShow: 1,
                             slidesToScroll: 1
@@ -92,7 +93,11 @@ new Vue({
                 autoplaySpeed: 2000,
                 arrows: false,
                 responsive: [{
-
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 4,
+                            // slidesToScroll: 1
+                        },
                         breakpoint: 768,
                         settings: {
                             slidesToShow: 3,

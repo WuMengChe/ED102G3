@@ -516,8 +516,8 @@ let careerVueContent = new Vue({
             window.location.href = "./career_profession.html";
         },
         openArtPage(indClass, index){
-            console.log(indClass)
-            console.log(index)
+            // console.log(indClass)
+            // console.log(index)
             var colData = new FormData();
             colData.append('DIS_NO', this.industryForum[indClass].detail[index].disNo);
             colData.append('MEM_NO', this.memberCheck);
@@ -585,9 +585,9 @@ let careerVueContent = new Vue({
                 }
                 else{
                     var dateTemp = new Date().getFullYear() + '-' + (new Date().getMonth()+1<10 ? '0' : '') + parseInt(new Date().getMonth()+1) + '-' + (new Date().getDate()<10 ? '0' : '') + new Date().getDate();
-                    console.log(this.memberName, this.memberPic, dateTemp, msgIndex, DIS_NO)
-                    console.log(this.memberArticleMessage)
-                    console.log(DIS_NO)
+                    // console.log(this.memberName, this.memberPic, dateTemp, msgIndex, DIS_NO)
+                    // console.log(this.memberArticleMessage)
+                    // console.log(DIS_NO)
                     if(!this.memberArticleMessage){
                         this.memberArticleMessage = new Array();
                     }
@@ -678,7 +678,7 @@ let careerVueContent = new Vue({
             axios
             .post('./php/memberReport.php', repData)
             .then((resp) =>{
-                console.log(resp.data);
+                // console.log(resp.data);
                 if(resp.data == 1){
                     alert("感謝您的檢舉，我們將盡速處裡")
                 }

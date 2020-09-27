@@ -18,9 +18,14 @@
             position: absolute;
             z-index: 0;
             top: 15%;
-            left: 30%;
+            // left: 30%;
+            transform: translateX(-50%);
             box-shadow: $card_shadow;
-
+            @media screen  and (max-width: 767px){ 
+              width: 300px;
+              height: 300px;
+              animation: circleMin 6s  infinite linear;
+             }
             @keyframes circle {
                 0% {
                     height: 510px;
@@ -55,6 +60,40 @@
                     transform: rotate(180deg);
                   }
               }
+              @keyframes circleMin {
+                0% {
+                    height: 310px;
+                    border-radius:100%;
+                    background: $practical_color;
+                    transform: rotate(0deg);
+                  }
+                  25% {
+                    width: 310px;
+                    border-radius: 100%;
+                    background: #F7EA92;
+                    transform: rotate(45deg);
+                  }
+                  50% {
+                    width: 330px;
+                    border-radius: 50% 50% 60% 80%;
+                    background: $enterprise_color;
+                    transform: rotate(90deg);
+                   
+                  }
+                  75% {
+                      width: 300px;
+                    border-radius: 50% 50% 50% 30%;
+                    background: #F4C3C5;
+                    transform: rotate(135deg);
+                  }
+                  100% {
+                      height: 320px;
+                      width: 330px;
+                    border-radius: 50% 50% 50% 50%;
+                    background: $research_color;
+                    transform: rotate(180deg);
+                  }
+              }
             }
            
         }
@@ -64,7 +103,7 @@
             // max-width: 500px;
             text-align: center;
             padding: 2%;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.6);
             border-radius: 25px;
             margin-top: 2%;
             box-shadow: $card_shadow;
@@ -84,6 +123,9 @@
                 font-size: 18px;
                 padding: 2%;
                 z-index:2;
+                .orderMark{
+                  font-weight: bolder;
+                }
             }   
         }
         }
