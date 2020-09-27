@@ -813,7 +813,9 @@ try {
                 <td>
                   <div class="ART_REP_NO"><?= $ArReportRow["ART_REP_NO"] ?></div>
                 </td>
-                <td><?= $ArReportRow["DIS_NO"] ?></td>
+                <td>
+                  <div class="DIS_NO"><?= $ArReportRow["DIS_NO"] ?></div>
+                </td>
                 <td><?= $ArReportRow["DIS_NAME"] ?></td>
                 <td><?= $ArReportRow["DIS_CONTENT"] ?></td>
                 <td><?= $ArReportRow["RM"] ?></td>
@@ -866,7 +868,9 @@ try {
                 <td>
                   <div class="MES_REP_NO"><?= $MgReportRow["MES_REP_NO"] ?></div>
                 </td>
-                <td><?= $MgReportRow["DIS_MES_NO"] ?></td>
+                <td>
+                  <div class="DIS_MES_NO"><?= $MgReportRow["DIS_MES_NO"] ?></div>
+                </td>
                 <td><?= $MgReportRow["DIS_MES_CONTENT"] ?></td>
                 <td><?= $MgReportRow["RM"] ?></td>
                 <td><?= $MgReportRow["MEM_NO"] ?></td>
