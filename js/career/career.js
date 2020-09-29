@@ -537,6 +537,7 @@ let careerVueContent = new Vue({
                     // console.log(this.industryForum[indClass].detail[index].like);
                 }
                 this.industryForumMessage = this.industryForum[indClass].detail[index];
+                this.industryForumMessage.backgroundColor = this.industry[indClass].backgroundColor;
                 if(parseInt(resp.data.split('*;')[2]) == 0){
                     this.industryForumMessage.length = 0;
                 }
@@ -575,7 +576,7 @@ let careerVueContent = new Vue({
         },
         sendMessage(DIS_NO, msgIndex){
             if(this.memberCheck == 0){
-                alert("請先登入會員才能使用")
+                // alert("請先登入會員才能使用")
                 document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
@@ -614,7 +615,7 @@ let careerVueContent = new Vue({
         },
         changeCollect(data){
             if(this.memberCheck == 0){
-                alert("請先登入會員才能使用")
+                // alert("請先登入會員才能使用")
                 document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
@@ -628,7 +629,7 @@ let careerVueContent = new Vue({
         },
         changeArticleLike(data){
             if(this.memberCheck == 0){
-                alert("請先登入會員才能使用")
+                // alert("請先登入會員才能使用")
                 document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
@@ -640,14 +641,15 @@ let careerVueContent = new Vue({
                 .post('./php/memberArticleLike.php', colData)
             }
         },
-        changeMessageLike(MES_NO){
+        changeMessageLike(item){
             if(this.memberCheck == 0){
-                alert("請先登入會員才能使用")
+                // alert("請先登入會員才能使用")
                 document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
+                item.like = !item.like
                 var colData = new FormData();
-                colData.append('DIS_MES_NO', MES_NO);
+                colData.append('DIS_MES_NO', item.DIS_MES_NO);
                 colData.append('MEM_NO', this.memberCheck);
                 axios
                 .post('./php/memberMessageLike.php', colData)
@@ -655,7 +657,7 @@ let careerVueContent = new Vue({
         },
         openAccuse(){
             if(this.memberCheck == 0){
-                alert("請先登入會員才能使用")
+                // alert("請先登入會員才能使用")
                 document.querySelector('.bg_of_lightbx').style = "display:block";
             }
             else{
