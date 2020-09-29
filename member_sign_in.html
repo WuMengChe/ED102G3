@@ -40,8 +40,7 @@
                             </div>
                             <div class = "input_div">
                                 <label for="code" class="input_label">密碼：</label>
-                                <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code">
-                                <!-- <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code" value="1234567890"> -->
+                                <input type="password"  pattern="[a-zA-Z0-9]{10,10}" required="required" class="input_field" id="code" value="1234567890">
                             </div>
                             <div class = "input_button">
                                 <button class = "btn_primary rwd_btn" @click.prevent = "signIn = !signIn, register = !register">{{signIn == false ? "會員登入" : "會員註冊"}}</button>
@@ -82,6 +81,5 @@
     @@include('app/footer.html')
     @@include('app/script.html')
     <script type="text/javascript" src="./js/member/member_sign_in.js"></script>
-    <!-- <script src="./js/header.js"></script> -->
 </body>
 </html>
