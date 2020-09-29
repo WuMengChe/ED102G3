@@ -536,6 +536,27 @@ a.pencil_btn {
   z-index: 60;
   transition: opacity 1s;
   display: none;
+  .leave_msg_wrap{
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+    transform: translate(-50%, 0);
+    max-width: 800px;
+    min-width: 600px;
+    left:50%;
+    #send_msg{
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    }
+    .confirm_send_btn{
+    text-align: center;
+    padding: 10px 0;
+    background: #c3c3c3;
+    }
+  }
 }
 
 .-open {
@@ -563,10 +584,13 @@ a.pencil_btn {
   left: 50%;
   max-width: 800px;
   min-width: 600px;
+  width: 100%;
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: scroll;
-  // margin-top: 20px;
+  .forum_feedback{
+    margin: 0 0 150px;
+  }
 }
 
 /* 留言數量 */
@@ -761,7 +785,7 @@ a.pencil_btn {
       width: 100%;
       background-color: white;
       text-align: right;
-      position: sticky;
+      position: fixed;
       bottom: 0px;
       .leave_msg {
         #send_msg {
@@ -923,11 +947,17 @@ div.-on {
     width: max-content;
   }
 
-  .forum_overlay > .forum_checkMsg {
+  .forum_overlay {
+    .forum_checkMsg {
     min-width: 250px;
     width: 100%;
     padding: 10px 0;
     max-height: 90vh;
+    }
+    .leave_msg_wrap{
+      width:100%;
+      min-width: 250px;
+    }
   }
 }
 
@@ -1002,11 +1032,5 @@ div.-on {
     padding: 20px 5px;
   }
 
-  .forum_overlay .forum_checkMsg .leave_msg_wrap {
-    // width: 100%;
-    // background-color: #fff;
-    // text-align: right;
-    // position: sticky;
-    // bottom: ;
-  }
+ 
 }

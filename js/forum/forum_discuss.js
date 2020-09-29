@@ -365,6 +365,7 @@ let vm = new Vue({
     },
     //關鍵字搜尋
     searchContent() {
+      $(".main_side_bar > ul> li > a").removeClass("side_click");
       const keyword = this.filter;
       const result = this.information.filter(element => {
         // console.log(
@@ -679,6 +680,7 @@ let vm = new Vue({
     //下拉選單
     toggleDropdown() {
       this.isOpen = !this.isOpen;
+      $(".main_side_bar > ul> li > a").removeClass("side_click");
     },
     closeOverlay() {
       this.contentIsOpen = false;
