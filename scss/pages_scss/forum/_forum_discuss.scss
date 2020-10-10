@@ -542,14 +542,16 @@ a.pencil_btn {
     z-index: 100;
     width: 100%;
     transform: translate(-50%, 0);
-    max-width: 800px;
+    max-width: 600px;
     min-width: 600px;
     left:50%;
     #send_msg{
     height: 100px;
     margin: 0 auto;
     display: block;
-    width: 100%;
+    width: 98%;
+    resize: none;
+    border:none;
     }
     .confirm_send_btn{
     text-align: center;
@@ -582,7 +584,7 @@ a.pencil_btn {
   padding: 0 5px;
   top: 24%;
   left: 50%;
-  max-width: 800px;
+  max-width: 600px;
   min-width: 600px;
   width: 100%;
   position: absolute;
@@ -727,6 +729,7 @@ a.pencil_btn {
     min-height: 80px;
     padding: 20px;
     letter-spacing: 1px;
+    line-height: 25px;
   }
   .msg_btn {
     // border: 1px solid red;
